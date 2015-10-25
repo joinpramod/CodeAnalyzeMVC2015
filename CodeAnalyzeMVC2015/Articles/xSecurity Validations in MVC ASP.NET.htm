@@ -1,0 +1,1201 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+
+ p.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	}
+p.MsoNoSpacing
+	{margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	        margin-left: 0in;
+            margin-right: 0in;
+            margin-top: 0in;
+        }
+a:link
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;
+        }
+    </style>
+</head>
+<body>
+
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal;mso-outline-level:2">
+        <b><span 
+            style="font-size:16.0pt;
+mso-fareast-font-family:Times New Roman;mso-bidi-font-family:Times New Roman">
+        Introduction</span><span style="font-size:18.0pt;font-family:Times New Roman,serif;mso-fareast-font-family:
+Times New Roman"><o:p></o:p></span></b></p>
+    <p class="MsoNoSpacing">
+        Validations in any application are so critical now days that developers ought to 
+        be on their toes while developing any such critical and sensitive applications. 
+        Hackers are now in every corner of the society, avoid them restrict them to post 
+        non sense data into your applications. The attacks are so vulnerable that 
+        security guard of any application is mandatory. The security checks and 
+        implementations should be alert and active in the application to counter the 
+        attacks. Let’s start learning about different types of validations we can have 
+        in our MVC application. <o:p></o:p>
+    </p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal;mso-outline-level:2">
+        <b><span 
+            style="font-size:16.0pt;
+mso-fareast-font-family:Times New Roman;mso-bidi-font-family:Times New Roman">
+        Server-Side Validation<o:p></o:p></span></b></p>
+    <p class="MsoNoSpacing">
+        Let’s begin with simple server side validations. Server side validation are 
+        required when we post something to the server with an expectation for the 
+        response, usually while posting form data. The form data post is generally very 
+        vulnerable. The attacks are quite easier for the attacker here. Thus, we need to 
+        check on the server if we are receiving valid data or not on our end. Thus, 
+        server side validation can to some extent prevent nonsense input data. Let’s 
+        discuss how to do validation <b>explicitly</b> using view model. Let’s discuss 
+        how: Explicitly means, we would be checking on server side after form post by 
+        the user, if the data input are valid input or not, then we post back the user 
+        with the validation message as response. Suppose we have a model for the 
+        Registration of a user to an application. The model goes as below: <o:p></o:p>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;font-family:Courier New;mso-fareast-font-family:Times New Roman"><o:p>
+        </o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">public</span> <span style="color:blue">class</span>
+        <span style="color:#2B91AF">RegistrationViewModel</span>(){<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">public</span> <span style="color:blue">string</span> 
+        FirstName { <span style="color:blue">get</span>; <span style="color:blue">set</span>; 
+        }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">public</span> <span style="color:blue">string</span> 
+        LastName { <span style="color:blue">get</span>; <span style="color:blue">set</span>; 
+        }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">public</span> <span style="color:blue">string</span> 
+        Address1 { <span style="color:blue">get</span>; <span style="color:blue">set</span>; 
+        }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">public</span> <span style="color:blue">string</span> 
+        Address2 { <span style="color:blue">get</span>; <span style="color:blue">set</span>; 
+        }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">public</span> <span style="color:blue">string</span> 
+        TelNo { <span style="color:blue">get</span>; <span style="color:blue">set</span>; 
+        }<o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;mso-layout-grid-align:none;text-autospace:none">
+        <span style="font-family:
+Consolas"><o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        Thus in the view/UI user will be displayed with the above labels and respective 
+        text boxes for input. The razor engine view page in the application looks like: <o:p></o:p>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;font-family:Courier New;mso-fareast-font-family:Times New Roman"><o:p>
+        </o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; background: yellow; mso-highlight: yellow">
+        @model </span><span style="font-family:Consolas">
+        ServerSideValidationDemo.Models.RegistrationViewModel<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; background: yellow; mso-highlight: yellow">
+        @{</span><span style="font-family:Consolas"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span>ViewBag.Title 
+        = <span style="color:#A31515">Registration Page</span>;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; background: yellow; mso-highlight: yellow">}</span><span 
+            style="font-family:Consolas"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; background: yellow; mso-highlight: yellow">@</span><span 
+            style="font-family:Consolas;color:blue">using</span><span 
+            style="font-family:Consolas"> (Html.BeginForm())<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; background: yellow; mso-highlight: yellow">
+        <span style="mso-spacerun:yes"></span>@</span><span 
+            style="font-family:Consolas">Html.LabelFor(m = m.FirstName)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><span 
+            style="background: yellow; mso-highlight: yellow">@</span>Html.TextBoxFor(m 
+        = m.FirstName, <span style="color:blue">new</span> { maxlength = 50 })<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><span 
+            style="background: yellow; mso-highlight: yellow">@</span>Html.ValidationMessageFor(m 
+        = m.FirstName)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><span 
+            style="background: yellow; mso-highlight: yellow">@</span>Html.LabelFor(m = 
+        m.LastName)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><span 
+            style="background: yellow; mso-highlight: yellow">@</span>Html.PasswordFor(m 
+        = m.LastName, <span style="color:blue">new</span> { maxlength = 50 })<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><span 
+            style="background: yellow; mso-highlight: yellow">@</span>Html.ValidationMessageFor(m 
+        = m.LastName)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><span 
+            style="background: yellow; mso-highlight: yellow">@</span>Html.LabelFor(m = 
+        m.Address1)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><span 
+            style="background: yellow; mso-highlight: yellow">@</span>Html.PasswordFor(m 
+        = m.Address1, <span style="color:blue">new</span> { maxlength = 50})<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><span 
+            style="background: yellow; mso-highlight: yellow">@</span>Html.ValidationMessageFor(m 
+        = m.Address1)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><span 
+            style="background: yellow; mso-highlight: yellow">@</span>Html.LabelFor(m = 
+        m.Address2)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><span 
+            style="background: yellow; mso-highlight: yellow">@</span>Html.TextAreaFor(m 
+        = m.Address2, <span style="color:blue">new</span> { maxlength = 200 })<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><span 
+            style="background: yellow; mso-highlight: yellow">@</span>Html.ValidationMessageFor(m 
+        = m.Address2)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><span 
+            style="background: yellow; mso-highlight: yellow">@</span>Html.LabelFor(m = 
+        m.TelNo)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><span 
+            style="background: yellow; mso-highlight: yellow">@</span>Html.TextBoxFor(m 
+        = m.MobileNo, <span style="color:blue">new</span> { maxlength = 10 })<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><span 
+            style="background: yellow; mso-highlight: yellow">@</span>Html.ValidationMessageFor(m 
+        = m.MobileNo)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span><span 
+            style="color:blue"></span><span style="color:maroon">input</span>
+        <span style="color:red">type</span><span style="color:blue">=submit</span>
+        <span style="color:red">value</span><span style="color:blue">=Submit</span>
+        <span style="color:blue">/</span><o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;mso-layout-grid-align:none;text-autospace:none">
+        <span style="font-family:
+Consolas"><o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;mso-layout-grid-align:none;text-autospace:none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes"></span><o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        Thus, the above snippet would bring the user the UI where the users would post 
+        their input and click submit. In the razor view page, you can see the HTML 
+        Helper <i>ValidationMessageFor</i>. This helper displays the Validation message 
+        returned after validation from the server as response, at the respective model 
+        property. Like for example, we want the user to enter the Model property First 
+        name as mandatory, then after validation the helper would display the validation 
+        message beside the First Name Text Box. Now let’s have a look at the Action 
+        snippet to which the post would call after Submit click. <o:p></o:p>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;font-family:Courier New;mso-fareast-font-family:Times New Roman"><o:p>
+        </o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">[<span style="color:#2B91AF">HttpPost</span>]<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas;color:blue">public</span><span 
+            style="font-family:Consolas"> <span style="color:#2B91AF">ActionResult</span> 
+        UserRegistration(<span style="color:#2B91AF">RegistrationViewModel</span> 
+        registerModel)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">if</span> (<span style="color:blue">string</span>.IsNullOrEmpty(registerModel.FirstName))<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>ModelState.AddModelError(<span style="color:#A31515">FirstName</span>,
+        <span style="color:#A31515">Please enter your first name</span>);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"> </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">if</span> (!<span style="color:blue">string</span>.IsNullOrEmpty(registerModel.TelNo))<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:#2B91AF">Regex</span> telNoRegex =
+        <span style="color:blue">new</span> <span style="color:#2B91AF">Regex</span>(<span 
+            style="color:#A31515">^9\\d{9}$</span>);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">if</span> 
+        (!telNoRegex.IsMatch(registerModel.TelNo))<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>ModelState.AddModelError(<span style="color:#A31515">TelNo</span>,
+        <span style="color:#A31515">Please Enter correct format of Telephone number</span>);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">if</span> (ModelState.IsValid)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">return</span> View(<span style="color:#A31515">Sucess</span>);<span 
+            style="mso-spacerun:yes"> </span><span style="color:green">//Returns 
+        user to success page</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">else</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">return</span> View();<span 
+            style="mso-spacerun:yes"> </span><span style="color:green">//Returns 
+        user to the same page back again</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">}<o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        Before explaining the above snippet, lets understand how this will be called 
+        after Submit click. <b>@using (Html.BeginForm())</b>, this does the trick even 
+        without specifying the Action and controller. This actually internally calls the 
+        Post method of the current url, i.e. looks for the HttpPost attribute to the 
+        respective action name of the current url. Thus, in this way the post method of 
+        UserRegistration gets called and this also post the required view model to the 
+        action, fetching the values input by the user. After the Action Result method 
+        gets called, there is check for the properties explicitly. Here, we check if the 
+        user has input into the First name or not. If the user skipped the First Name 
+        textbox and submits, then we post the user with the validation message saying 
+        Please enter the first name. This validation check will not let the user post 
+        the input, unless he adds the first name. Similarly, the telephone number is 
+        also validated with the regular expression (for the indian telephone number) 
+        given. This was all about the validation being done explicitly. Now, since we 
+        are developing an MVC application, it provides pre-defined attributes which can 
+        be used to validate our post data. The attributes are called Data-Annotations 
+        attribute. Let’s look at their usages below: The use of data annotations can be 
+        extensively done in order to avoid heaving the controller post action, 
+        explicitly checking for each property. The data annotations attribute in a view 
+        model would look like below:
+<o:p></o:p>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;font-family:Courier New;mso-fareast-font-family:Times New Roman"><o:p>
+        </o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">public</span> <span style="color:blue">class</span>
+        <span style="color:#2B91AF">RegistrationViewModel</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>[<span style="color:#2B91AF">Required</span>]<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>[<span style="color:#2B91AF">Display</span>(Name =
+        <span style="color:#A31515">First name</span>)]<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>[<span style="color:#2B91AF">StringLength</span>(50, ErrorMessage =
+        <span style="color:#A31515">The {0} must be at least {2} characters long.</span>, 
+        MinimumLength = 6)]<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">public</span> <span style="color:blue">string</span> 
+        FirstName { <span style="color:blue">get</span>; <span style="color:blue">set</span>; 
+        }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">public</span> <span style="color:blue">string</span> 
+        LastName { <span style="color:blue">get</span>; <span style="color:blue">set</span>; 
+        }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">public</span> <span style="color:blue">string</span> 
+        Address1 { <span style="color:blue">get</span>; <span style="color:blue">set</span>; 
+        }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">public</span> <span style="color:blue">string</span> 
+        Address2 { <span style="color:blue">get</span>; <span style="color:blue">set</span>; 
+        }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>[<span style="color:#2B91AF">Required</span>(ErrorMessage =
+        <span style="color:#A31515">Please Enter Telephone Number</span>)]<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>[<span style="color:#2B91AF">Display</span>(Name =
+        <span style="color:#A31515">Tele Phone</span>)]<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>[<span style="color:#2B91AF">RegularExpression</span>(<span 
+            style="color:#A31515">^9\\d{9}$</span>, ErrorMessage =
+        <span style="color:#A31515">Please Enter Correct format of Telephone No.</span>)]<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">public</span> <span style="color:blue">string</span> 
+        TelNo { <span style="color:blue">get</span>; <span style="color:blue">set</span>; 
+        }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        <o:p></o:p></p>
+    <p class="MsoNoSpacing">
+        The view model above uses Data Annotations attributes and all the required 
+        validations for the properties are provided. Let’s discuss one by one: <o:p></o:p>
+    </p>
+    <p class="MsoNoSpacing">
+        <b>Required:-</b> This attribute forces the user to enter the value for that 
+        specific property and then submit the form, else displays The FirstName is 
+        required.. Mark here, the previous message would be a default error message 
+        where as for the Tele phone number; the custom error message would be displayed. <o:p></o:p>
+    </p>
+    <p class="MsoNoSpacing">
+        <b>Display(Name = ):-</b> This attribute sets the label for the model property. 
+        We just need to specify <b><i>@Html.LabelFor(m=m.TeleNo)</i></b>. This would 
+        display the specified custom label for the property; here it would display <i>
+        Tele Phone</i> <o:p></o:p>
+    </p>
+    <p class="MsoNoSpacing">
+        <b>RegularExpression:-</b> This attribute is very handy specially when we have 
+        properties like Email Address, Tele Phone Numbers and specific expressions for 
+        passwords in the forms. We just specify the expression in the attribute and it 
+        validates the input from user and states if it is valid or else displays the 
+        error message. <o:p></o:p>
+    </p>
+    <p class="MsoNoSpacing">
+        Thus, here the view page would go like the same as above. And when we submit, 
+        the action post method called would be different i.e. much less code. Let’s have 
+        a look at the action below:- <o:p></o:p>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt;line-height:normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;font-family:Courier New;mso-fareast-font-family:Times New Roman"><o:p>
+        </o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">[<span style="color:#2B91AF">HttpPost</span>]<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas;color:blue">public</span><span 
+            style="font-family:Consolas"> <span style="color:#2B91AF">ActionResult</span> 
+        UserRegistration(<span style="color:#2B91AF">RegistrationViewModel</span> 
+        registerModel)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">if</span> (ModelState.IsValid)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">return</span> View(<span style="color:#A31515">Success</span>);<span 
+            style="color:green">//Return to the success</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">else</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">return</span> View();<span style="color:green">//Return 
+        back to the same view</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        Thus, the data annotations here made it so simple and easy. Here then comes 
+        another security vulnerability, i.e. <b>Cross-Site Request Forgery Attacks</b>, 
+        which can be easily attacked using the simple Fiddler. When we post any data, we 
+        can easily manipulate the data posted by one user using the fiddler and damp 
+        into the application and even ruin it. This is indeed very dangerous. Let’s see 
+        how to prevent Cross site forgery attacks <o:p></o:p>
+    </p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal;mso-outline-level:2">
+        <b><span 
+            style="font-size:13.5pt;
+mso-fareast-font-family:Times New Roman;mso-bidi-font-family:Times New Roman"><o:p>
+        </o:p></span></b></p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal;mso-outline-level:2">
+        <b><span 
+            style="font-size:13.5pt;
+mso-fareast-font-family:Times New Roman;mso-bidi-font-family:Times New Roman">
+        Preventing Cross Site forgery Attacks<o:p></o:p></span></b></p>
+    <p class="MsoNoSpacing">
+        In MVC applications, while posting the form data, it is quite simple to prevent 
+        such request if understood properly. MVC provides the attribute <b><i>
+        [ValidatAntiForgeryToken]</i></b> on the respective action. Let’s see the flow 
+        in the snippet first. First we need to place the AntiForgeryToken helper in the 
+        razor view page like:
+        <span style="font-size:10.0pt;font-family:
+Courier New;mso-fareast-font-family:Times New Roman"><o:p></o:p>
+        </span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; background: yellow; mso-highlight: yellow">@</span><span 
+            style="font-family:Consolas;color:blue">using</span><span 
+            style="font-family:Consolas">(Html.Form(<span style="color:#A31515">UserRegistration</span>,
+        <span style="color:#A31515">Register</span>)) {<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="background: yellow; mso-highlight: yellow">@</span>Html.AntiForgeryToken()<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:green">//Then here normal rest form as mentioned above<span 
+            style="mso-spacerun:yes"> </span></span><o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes"></span>}<o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        <o:p></o:p></p>
+    <p class="MsoNoSpacing">
+        <o:p></o:p></p>
+    <p class="MsoNoSpacing">
+        Then in the controller Register for the action UserRegistration(POST) add 
+        the attribute like below:
+        <span style="font-size:10.0pt;font-family:Courier New;mso-fareast-font-family:Times New Roman"><o:p></o:p>
+        </span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">[<span style="color:#2B91AF">HttpPost</span>]<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">[<span style="color:#2B91AF">ValidateAntiForgeryToken</span>]<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas;color:blue">public</span><span 
+            style="font-family:Consolas"> <span style="color:#2B91AF">ActionResult</span> 
+        UserRegistration(<span style="color:#2B91AF">RegistrationViewModel</span> 
+        registerModel)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:green">//ModeState Valid check and rest code goes here</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">}<o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        <o:p></o:p></p>
+    <p class="MsoNoSpacing">
+        Ok, so we have seen what two simple steps we need to do. Now let’s understand 
+        how it does. What happens exactly when we do not place these attributes? How 
+        vulnerable our controller is and to what extent an attacker can affect the 
+        application. Suppose we are on an Edit page, where a user sought to edit few of 
+        his login information. Now an attacker from over a third party domain and host a 
+        simple HTML that would post some information to the same Edit action, the user 
+        were to. Then, somehow the user if navigates to the Html page set up by the 
+        attacker, the user unknowingly is posting unwanted data to the server and normal 
+        saving to the database. Here the attacker may be replacing the email ids or any 
+        other vulnerable information to his own and retrieving the users data. BOOM! 
+        This is crash, rather a crap! Thus, what we need to do here, we need to check if 
+        the request to the server action is coming from the same domain, the user has 
+        logged in ! for this we need to have some header or property which will be 
+        mapped when a request is made and if matches then post else let the 
+        authentication fail. This is actually what the attribute does. The <b>
+        ValidateAntiForgeryToken</b> actually sets a cookie to the incoming reuest 
+        called <b>__RequestVerificationToken</b>, and the same <b>
+        __RequestVerificationToken</b> is set for the domain in which the user is logged 
+        in. Thus, when a request is made from the same domain, the request header cookie 
+        should match and let the user post the data, but when a request is made from the 
+        third party domain, then the request is rejected since the <b>
+        __RequestVerificationToken</b> will never match, just failing the authentication 
+        and preventing the Cross Site Forgery by any attacker. Now here there is another 
+        problem. If any how the attacker gets to know the Anti Forgery Token, then 
+        what!! again crap! No there is a way out here as well. The attribute has ability 
+        to add a unique/different Salt every time so that the same token is not reused 
+        everywhere. <o:p></o:p>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt;line-height:normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;font-family:Courier New;mso-fareast-font-family:Times New Roman"><o:p>
+        </o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; background: yellow; mso-highlight: yellow">@</span><span 
+            style="font-family:Consolas">Html.AntiForgeryToken(<span 
+            style="color:#A31515">SALT</span>) //The salt can be any sort of 
+        string(homogeneous mixture :))<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">[ValidateAntiForgeryToken(SALT)]<o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        <o:p></o:p></p>
+    <p class="MsoNoSpacing">
+        Another concept that is vulnerable to such attacks and may breach the security 
+        in the application is <b>SQL Injection</b> Lets discuss this in brief. :) <o:p></o:p>
+    </p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal;mso-outline-level:3">
+        <b><span 
+            style="font-size:13.5pt;
+mso-fareast-font-family:Times New Roman;mso-bidi-font-family:Times New Roman"><o:p>
+        </o:p></span></b></p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal;mso-outline-level:3">
+        <b><span 
+            style="font-size:13.5pt;
+mso-fareast-font-family:Times New Roman;mso-bidi-font-family:Times New Roman">
+        SQL Injection Attacks and Prevention Techniques<o:p></o:p></span></b></p>
+    <p class="MsoNoSpacing">
+        What exactly is SQL Injection attack? SQL Injection is an attack to fool and 
+        manipulate the application database. This is done through the malicious input 
+        from the user during post methods and if the posted data is not validated before 
+        being executed as sql query. This is really very dangerous which can let 
+        attackers get all the sensitive data or even delete the records from all tables, 
+        truncating them, just by posting a simple query to drop instead of actual data. 
+        In this, the objective of the attacker is to post their query into the 
+        application and let the server run and give him the response if not handled in 
+        the server end. Let’s see how: Suppose we have a sql query to select the names 
+        of houses and display. The query would be like: <o:p></o:p>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt;line-height:normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;font-family:Courier New;mso-fareast-font-family:Times New Roman"><o:p>
+        </o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">var sqlTobeExecuted = SELECT HouseID, 
+        HouseName+<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>FROM House  +<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>WHERE Address LIKE  + searchInputParam +%;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">SqlDataAdapter da = new 
+        SqlDataAdapter(sqlTobeExecuted , DbCommand);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt;line-height:normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;font-family:Courier New;mso-fareast-font-family:Times New Roman"><o:p>
+        </o:p></span></p>
+    <p class="MsoNoSpacing">
+        The above query is not parameterized and is a simple query in string format to 
+        get the house details. Now suppose the attacker posts the searchInputParam 
+        (which originally comes from the textbox input of the user) as <o:p></o:p>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"> UNION SELECT id,name FROM sysobjects;--<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">Mark the statement what becomes after that is 
+        passed to the string query, <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">SELECT HouseID,HouseName FROM House WHERE 
+        Address LIKE  UNION SELECT id,name FROM sysobjects;--% <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt;line-height:normal">
+        <span style="font-size:12.0pt;font-family:Times New Roman,serif;mso-fareast-font-family:
+Times New Roman"><o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        The first apostrophe in the searchInputParam closes the Like parameter in the 
+        SQL query and the double dashes -- comment out the rest of the query. Thus 
+        that gives the list of all the HouseNames and also all the tables present in the 
+        database. Even they can also get the ids of the sysObjects and use the Ids to 
+        retrieve the column names of the database table they want. Suppose there is a 
+        table named Users. Oviously the table would have all the user details. Thus, 
+        with the id and the table name the attacker can retrieve the column names of the 
+        Users table using the below query: <o:p></o:p>
+    </p>
+    <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt;line-height:normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:Times New Roman;mso-bidi-font-family:
+Times New Roman"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"> UNION SELECT name FROM syscolumns WHERE id 
+        = USERID;--<o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt;line-height:normal">
+        <span style="font-size:12.0pt;font-family:Times New Roman,serif;mso-fareast-font-family:
+Times New Roman"><o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        Thus, the whole of the database can be exposed to malicious users at a single 
+        click. To prevent this, <o:p></o:p>
+    </p>
+    <p class="MsoNoSpacing">
+        <b>Encrypt</b> the essential and sensitive data like password, credit card info 
+        and other details. So that to some extent if by any how they get the details 
+        they cannot decrypt it. Use one way hashing to encrypt the record data.<o:p></o:p></p>
+    <p class="MsoNoSpacing">
+        <b>Using parameterized queries</b> instead of strings, in order to avoid 
+        directly injecting the values from the User input to the query as we saw in the 
+        above section. A parameterized query would prevent the malicious input and it 
+        would look like below: <o:p></o:p>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:1.0in;margin-bottom:.0001pt;line-height:normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;font-family:Courier New;mso-fareast-font-family:Times New Roman"><o:p>
+        </o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">var commandToBeExecuted = SELECT HouseID, 
+        HouseName FROM House+<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>WHERE Address<span style="mso-spacerun:yes"> </span>Like 
+        @Address;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">SqlCommand cmd = new 
+        SqlCommand(commandToBeExecuted , conn);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">cmd.Parameters.Add(@Address,address);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:1.0in;margin-bottom:.0001pt;line-height:normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;font-family:Courier New;mso-fareast-font-family:Times New Roman"><o:p>
+        </o:p></span></p>
+    <p class="MsoNoSpacing">
+        As we see in the above query we avoid passing directly the string input, instead 
+        we are using parameters into the SQL query, which would prevent such attacks.<o:p></o:p></p>
+    <p class="MsoNoSpacing">
+        <b>use of parameterized Stored Procedures</b>, which also prevent and prove to 
+        be a good solution to these mallicious attacks of injection. Also it is 
+        advisable to not trust them completely/blindly so it is always better to check 
+        for the sensitive data from user inputs and then execute the Stored procedure. 
+        This can be done, where the developer can think there are chances of 
+        vulnerability.<o:p></o:p></p>
+    <p class="MsoNoSpacing">
+        <b>Entity Framework and LINQ</b>, it is interesting to note here is while using 
+        LINQ to entity, the query generation does not use the string based approach, 
+        rather it uses the object model API, thus being not susceptible to SQL injection 
+        attacks.<o:p></o:p></p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal;mso-outline-level:3">
+        <b><span 
+            style="font-size:13.5pt;
+mso-fareast-font-family:Times New Roman;mso-bidi-font-family:Times New Roman"><o:p>
+        </o:p></span></b></p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal;mso-outline-level:3">
+        <b><span 
+            style="font-size:13.5pt;
+mso-fareast-font-family:Times New Roman;mso-bidi-font-family:Times New Roman">
+        Authentication and Authorization<o:p></o:p></span></b></p>
+    <p class="MsoNoSpacing">
+        These two are very important in any application and these are two different 
+        concepts all together but are used to solve the same thing,i.e. Security. When 
+        we develop an secure application, the Login is highly essential. Thus, properly 
+        authenticating users to the application and authorizing users to particular 
+        section of the application is challenging. Usually Forms Authentication is 
+        implemented across MVC applications. In the web.config file, the following 
+        configuration is set: <o:p></o:p>
+    </p>
+    <p class="MsoNoSpacing">
+        Only this will not set the authentication. You need more set up be done. This 
+        would involve a lot of configuration. WebSecurity in MVC makes it easy and 
+        secure to be implemented. It provides tables and hashing as well. The hashing it 
+        provides is one way and very secure. You can learn more about implementing Web 
+        Security in MVC from <a href="http://surajpassion.in/websecurity-in-mvc/" 
+            target="_blank"><span style="color:blue">Web Security In MVC</span></a> Thus 
+        after setting this authentication, then the important thing is Authorization, 
+        which can be provided on controller level, action level, which can be customized 
+        in order to check for the access levels along with the sessions. Only Authorize 
+        attribute would let the check for the session, we can customized to check for 
+        the roles and access levels for the screens as well. <o:p></o:p>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt;line-height:normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;font-family:Courier New;mso-fareast-font-family:Times New Roman"><o:p>
+        </o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">[<span style="color:#2B91AF">Authorize</span>]<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">public</span> <span style="color:blue">class</span>
+        <span style="color:#2B91AF">HomeController</span> : <span style="color:#2B91AF">
+        Controller</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">public</span> <span style="color:#2B91AF">
+        ActionResult</span> Index()<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">return</span> View();<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        In the above snippet, the entire controller has been authorized. That is each 
+        method inside the controller will be first authorized.
+<o:p></o:p>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt;line-height:normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;font-family:Courier New;mso-fareast-font-family:Times New Roman"><o:p>
+        </o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">public</span> <span style="color:blue">class</span>
+        <span style="color:#2B91AF">HomeController</span> : <span style="color:#2B91AF">
+        Controller</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">public</span> <span style="color:#2B91AF">
+        ActionResult</span> Index()<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">return</span> View();<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>[<span style="color:#2B91AF">Authorize</span>]<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">public</span> <span style="color:#2B91AF">
+        ActionResult</span> GetHome(){<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">return</span> View()<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        Here, only the action method GetHome is authorized, not the whole controller. 
+        Thus, Authentication and Authorization are very important factors that ought to 
+        be taken into consideration. <o:p></o:p>
+    </p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal;mso-outline-level:3">
+        <b><span 
+            style="font-size:13.5pt;
+mso-fareast-font-family:Times New Roman;mso-bidi-font-family:Times New Roman"><o:p>
+        </o:p></span></b></p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal;mso-outline-level:3">
+        <b><span 
+            style="font-size:13.5pt;
+mso-fareast-font-family:Times New Roman;mso-bidi-font-family:Times New Roman">
+        More security considerations in MVC<o:p></o:p></span></b></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="mso-fareast-font-family:Times New Roman;mso-bidi-font-family:
+Times New Roman">Straight from the OWASP security points, Its advisable to 
+        hide the MVC versions as well as Asp.Net versions we use, never expose the 
+        versions through the headers. <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="mso-fareast-font-family:Times New Roman;mso-bidi-font-family:
+Times New Roman">X-AspNet-Version 4.0.30319 X-AspNetMvc-Version 5.0 <o:p></o:p>
+        </span>
+    </p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="mso-fareast-font-family:Times New Roman;mso-bidi-font-family:
+Times New Roman">We need to hide the versions which appears in the Network 
+        tab of the developer table. Let’s know how to remove the versions of Asp.Net and 
+        Asp.Net Mvc from the headers. <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:.5in;text-indent:-.25in;line-height:normal;mso-list:l0 level2 lfo1;
+tab-stops:list .5in">
+        <![if !supportLists]>
+        <span style="font-size:10.0pt;
+mso-bidi-font-size:11.0pt;font-family:Courier New;mso-fareast-font-family:
+Courier New"><span style="mso-list:Ignore">o<span 
+            style="font:7.0pt Times New Roman"> </span>
+        </span></span><![endif]>
+        <span style="mso-fareast-font-family:Times New Roman;
+mso-bidi-font-family:Times New Roman">Asp.net Version:-To hide the X version 
+        of the Asp.Net we use the below Web.Config change. The above will hide the 
+        Asp.net versions.<o:p></o:p></span></p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:.5in;text-indent:-.25in;line-height:normal;mso-list:l0 level2 lfo1;
+tab-stops:list 1.0in">
+        <![if !supportLists]>
+        <span style="font-size:10.0pt;
+mso-bidi-font-size:11.0pt;font-family:Courier New;mso-fareast-font-family:
+Courier New"><span style="mso-list:Ignore">o<span 
+            style="font:7.0pt Times New Roman"> </span>
+        </span></span><![endif]>
+        <span style="mso-fareast-font-family:Times New Roman;
+mso-bidi-font-family:Times New Roman">Asp.Net MVC Versions:- To hide the X 
+        version of the Asp.Net MVC we use the below change in the Application_Start 
+        method of the Global.asax. The snippet would go like below:- <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.25in;margin-bottom:.0001pt;line-height:normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;font-family:Courier New;mso-fareast-font-family:Times New Roman"><o:p>
+        </o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:blue">protected</span> <span style="color:blue">void</span> 
+        Application_Start()<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:#2B91AF">MvcHandler</span>.DisableMvcResponseHeader =
+        <span style="color:blue">true</span>;<o:p></o:p></span></p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:1.0in;line-height:normal">
+        <span style="mso-fareast-font-family:
+Times New Roman;mso-bidi-font-family:Times New Roman">This hides 
+        the Asp.Net MVC version from the headers in the Network tab. <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:.25in;text-indent:-.25in;line-height:normal;mso-list:l0 level2 lfo1;
+tab-stops:list .25in">
+        <![if !supportLists]>
+        <span style="font-size:10.0pt;
+mso-bidi-font-size:11.0pt;font-family:Courier New;mso-fareast-font-family:
+Courier New"><span style="mso-list:Ignore">o<span 
+            style="font:7.0pt Times New Roman"> </span>
+        </span></span><![endif]>
+        <span style="mso-fareast-font-family:Times New Roman;
+mso-bidi-font-family:Times New Roman">Lastly, there are chances of exposing 
+        the Users to the Yellow screen of death, when an exception occurs in the 
+        application and is unhandled. Thus, it is advisable to have a custom error page, 
+        where users will be landing when exception occur. Let’s see how: Custom errors 
+        in the Web config needs to be on. There are three modes of the Custom errors. 
+        They are: <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:.75in;text-indent:-.25in;line-height:normal;mso-list:l0 level3 lfo1;
+tab-stops:list 1.5in">
+        <![if !supportLists]>
+        <span style="mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin"><span style="mso-list:Ignore">1.<span 
+            style="font:7.0pt Times New Roman">
+        </span></span></span><![endif]>
+        <span style="mso-fareast-font-family:Times New Roman;mso-bidi-font-family:Times New Roman">
+        On:- --Prevents the stack trace that is shown when exceptions arise --Also 
+        allows to display custom error pages to the end user --Custom error pages shown 
+        to both Remote Clients as well as Local <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:.75in;text-indent:-.25in;line-height:normal;mso-list:l0 level3 lfo1;
+tab-stops:list 1.5in">
+        <![if !supportLists]>
+        <span style="mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin"><span style="mso-list:Ignore">2.<span 
+            style="font:7.0pt Times New Roman">
+        </span></span></span><![endif]>
+        <span style="mso-fareast-font-family:Times New Roman;mso-bidi-font-family:Times New Roman">
+        Off:- --Makes the end user view the description of the exception along with the 
+        entire stack trace. --ASP.NET error/exception and stack trace shown to both 
+        Remote clients and Local as well. <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:.75in;text-indent:-.25in;line-height:normal;mso-list:l0 level3 lfo1;
+tab-stops:list 1.5in">
+        <![if !supportLists]>
+        <span style="mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin"><span style="mso-list:Ignore">3.<span 
+            style="font:7.0pt Times New Roman">
+        </span></span></span><![endif]>
+        <span style="mso-fareast-font-family:Times New Roman;mso-bidi-font-family:Times New Roman">
+        Remote only:- --This is the best among all for the developers’ perspective, as 
+        this allows the Remote clients to view the custom error messages/pages. --Allows 
+        the Local users/especially developers to view the ASP.NET errors. --This is the 
+        default value. <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:.25in;line-height:normal">
+        <span style="mso-fareast-font-family:
+Times New Roman;mso-bidi-font-family:Times New Roman">The other 
+        attribute which is used to the custom error element is <b>defaultredirect</b>. 
+        This is used to redirect the users to a default page when exceptions occur.
+        </span>
+        <span style="font-size:10.0pt;font-family:Courier New;mso-fareast-font-family:Times New Roman"><o:p></o:p>
+        </span>
+    </p>
+    <p class="MsoNoSpacing">
+        <span style="mso-spacerun:yes"> </span>The 
+        exceptions can also be handled globally , application level by using the below 
+        snippet: <o:p></o:p>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:1.0in;margin-bottom:.0001pt;line-height:normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;font-family:Courier New;mso-fareast-font-family:Times New Roman"><o:p>
+        </o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas;color:blue">protected</span><span 
+            style="font-family:Consolas"> <span style="color:blue">void</span> 
+        Application_Error(<span style="color:#2B91AF">Object</span> sender,
+        <span style="color:#2B91AF">EventArgs</span> e)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas">{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span><span style="color:#2B91AF">Exception</span> ex = Server.GetLastError();<span 
+            style="mso-spacerun:yes"> </span><o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>Server.ClearError();<span style="mso-spacerun:yes"> </span><o:p></o:p>
+        </span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #EEECE1; mso-background-themecolor: background2; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas"><span style="mso-spacerun:yes">
+        </span>Response.Redirect(<span style="color:#A31515"></span>);}<o:p></o:p></span></p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal;mso-outline-level:2">
+        <b><span 
+            style="font-size:18.0pt;
+mso-fareast-font-family:Times New Roman;mso-bidi-font-family:Times New Roman">
+        Conclusion<o:p></o:p></span></b></p>
+    <p class="MsoNoSpacing">
+        Thus, security and validations are very important features to be implemented in 
+        any application now days. According to Forbes in a day 30,000 sites were hacked. 
+        This is truly an astonishing numbers. And in todays world most of the sensitive 
+        information is being stored on cloud. Thus, in any application the data have a 
+        great chance of being exposed and hacked. So security is a major concern and 
+        needs to be handled very carefully. Hopefully, some of the major points are 
+        discussed above and can be implemented in any application to avoid any sort of 
+        breaching. <o:p></o:p>
+    </p>
+    <p class="MsoNoSpacing">
+        <o:p></o:p></p>
+    <p class="MsoNoSpacing">
+        ReferencesHow can I miss the references from which I learnt and got this 
+        opportunity to share with the world.
+        <a href="https://www.owasp.org/index.php/.NET_Security_Cheat_Sheet">
+        <span style="color:blue">OWASP Cheat Sheet</span></a>
+        <a href="http://www.tutorialspoint.com/security_testing/testing_broken_authentication.htm">
+        <span style="color:blue">Security testing</span></a>
+        <a href="http://blogs.msdn.com/b/publicsector/archive/2008/08/21/preventing-sql-injection-with-the-entity-framework-and-data-services.aspx">
+        <span style="color:blue">Sql Injection and Entity Framework</span></a><o:p></o:p></p>
+
+</body>
+</html>

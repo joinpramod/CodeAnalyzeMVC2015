@@ -1,0 +1,291 @@
+﻿
+<div style="font-size:16px;width:100%">
+<h2>Introduction</h2>
+Validations in any application is so critical now a days that developers ought to be on their toes while developing any such critical and sensitive applications. Hackers are now in every corner of the society, avoid them restrict them to post non sense data into your applications. The attacks are so vulnerable that security guard of any application is mandatory.&nbsp;
+The security checks and implementations should be alert and active in the application to counter the attacks. Lets start learning about different types of validations we can have in our MVC application.
+<h2>&nbsp;</h2>
+<h2>Server-Side Validation</h2>
+Lets begin with simple server side validations. Server side validation are required when we post something to the server with an expectation for the response,usually while posting form data. The form data posQt is generally very vulnerable. The attacks are quite easier for the attacker here. Thus, we need to check on the server if we are receiving valid data or not on our end. Thus, server side validation can to some extent prevent nonsense input data. Lets discuss how to do validation <b>explicitly</b> using view model. Lets discuss how:
+Explicitly means, we would be checking on server side after form post by the user, if the data input are valid input or not, then we post back the user with the validation message as response.
+Suppose we have a model for the Registration of a user to an application. The model goesas below:
+ <pre class="brush: csharp;" style="font-size:medium;">
+public class RegistrationViewModel(){
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Address1 { get; set; }
+    public string Address2 { get; set; }
+    public string TelNo { get; set; }
+}
+</pre>
+Thus in the view/UI user will be displayed with the above labels and respective text boxes for input. The razor engine view page in the application looks like:
+ <pre class="brush: csharp;" style="font-size:medium;">
+    @model ServerSideValidationDemo.Models.RegistrationViewModel
+    @{
+     ViewBag.Title = "Registration Page";
+    }
+
+    @using (Html.BeginForm())
+    {
+         @Html.LabelFor(m => m.FirstName)
+         @Html.TextBoxFor(m => m.FirstName, new { maxlength = 50 })
+         @Html.ValidationMessageFor(m => m.FirstName)
+    
+         @Html.LabelFor(m => m.LastName)
+         @Html.PasswordFor(m => m.LastName, new { maxlength = 50 })
+         @Html.ValidationMessageFor(m => m.LastName)
+   
+         @Html.LabelFor(m => m.Address1)
+         @Html.PasswordFor(m => m.Address1, new { maxlength = 50})
+         @Html.ValidationMessageFor(m => m.Address1)
+ 
+         @Html.LabelFor(m => m.Address2)
+         @Html.TextAreaFor(m => m.Address2, new { maxlength = 200 })
+         @Html.ValidationMessageFor(m => m.Address2)
+    
+         @Html.LabelFor(m => m.TelNo)
+         @Html.TextBoxFor(m => m.MobileNo, new { maxlength = 10 })
+         @Html.ValidationMessageFor(m => m.MobileNo)
+    
+         <input type="submit" value="Submit" /> 
+    }
+</pre>
+Thus, the above snippet would bring the user the UI where the users would post their input and click submit. In the razor view page, you can see the HTML Helper <em>ValidationMessageFor</em>. This helper displays the Validation message returned after validation from the server as response, at the respective model property.  Like for example, we want the user to enter the Model property First name as mandatory, then after validation the helper would display the validation message beside the First Name Text Box.
+Now lets have a look at the Action snippet to which the post would call after Submit click.
+
+<pre class="brush: csharp;" style="font-size:medium;">
+[HttpPost]
+public ActionResult UserRegistration(RegistrationViewModel registerModel){
+     if (string.IsNullOrEmpty(registerModel.FirstName))
+         {
+             ModelState.AddModelError("FirstName", "Please enter your first name");
+         }
+     if (!string.IsNullOrEmpty(registerModel.TelNo))
+         {
+             Regex telNoRegex= new Regex("^9\d{9}$");
+             if (!telNoRegex.IsMatch(registerModel.TelNo))
+             ModelState.AddModelError("TelNo", "Please enter correct format of Telephone Number");
+         }
+     if(ModelState.IsValid){
+         return View("Sucess");  //Returns user to success page
+         }
+      else {
+         return View();  //Returns user to the same page back again
+        }
+ }
+</pre>
+Before explaining the above snippet, lets understand how this will be called after Submit click.
+<b>@using (Html.BeginForm())</b>, this does the trick even without specifying the Action and controller. This actually internally calls the Post method of the current url, i.e. looks for the HttpPost attribute to the respective action name of the current url. Thus, in this way the post method of UserRegistration gets called and this also post the required view model to the action, fetching the values input by the user.
+After the Action Result method gets called, there is check for the properties explicitly. Here, we check if the user has input into the First name or not. If the user skipd the First Name textbox and submits, then we post the user with the validation message saying "Please enter the first name". This validation check will not let the user post the input, unless he adds the first name. Similarly, the telephone number is also validated with the regular expression(for the indian telephone number) given.
+This was all about the validation being done explicitly.
+Now, since we are developing an MVC application, it provides pre defined attributes which can be used to validate our post data. The attributes are called Data-Annotations attribute. Lets look at their usages below:
+The use of data annotations can be extensively done in order to avoid heavying the controller post action,explicitly checking for each property. The data annotations attribute in a view model would look like below:
+ 
+ <pre class="brush: csharp;" style="font-size:medium;">
+public class RegistrationViewModel(){
+    [Required]
+    [Display(Name = "First name")]
+    [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Address1 { get; set; }
+    public string Address2 { get; set; }
+    [Required(ErrorMessage = "Please Enter Telephone Number")]
+    [Display(Name = "Tele Phone")]
+    [RegularExpression(""^9\d{9}$"", ErrorMessage = "Please Enter Correct format of Telephone No.")]
+    public string TelNo { get; set; }
+}
+</pre>
+The view model above uses Data Annotations attributes and all the required validations for the properties are provided. Lets discuss one by one:
+<ol>
+<li><b>Required:-</b> This attribute forces the user to enter the value for that specific property and then submit the form, else diplays "The FirstName is required.". Mark here, the previous message would be a default error message where as for the Tele phone number, the custom error message would be displayed.
+</li>
+<li><b>Display(Name = ):-</b> This attribute sets the label for the model property. We just need to specify
+<em><b>@Html.LabelFor(m=>m.TeleNo)</b></em>. This would display the specified custom label for the property, here it would display <em>Tele Phone</em>
+</li>
+<li>
+<b>RegularExpression:-</b> This attribute is very handy specially when we have properties like Email Address, Tele Phone Numbers and specific expressions for passwords in the forms. We just specify the expression in the attribute and it validates the input from user and states if it is valid or else displays the error message.
+</li>
+</ul>
+Thus, here the view page would go like the same as above. And when we submit, the action post method called would be different i.e. much less code. Lets have a look at the action below:-
+<pre class="brush: csharp;" style="font-size:medium;">
+[HttpPost]
+ public ActionResult UserRegistration(RegistrationViewModel registerModel){
+    if (ModelState.IsValid)
+      {
+         return View("Success");//Return to the success
+      }
+    else
+      {
+         return View();//Return back to the same view
+      }
+ }
+</pre>
+Thus, the data annotations here made it so simple and easy.
+Here then comes another security vulnerability, i.e. <b>Cross-Site Request Forgery Attacks</b>, which can be easily attacked using the simple Fiddler. When we post any data, we can easily manipulate the data posted by one user using the fiddler and damp into the application and even ruin it. This is indeed very dangerous. Lets see how to prevent Cross site forgery attacks
+<h3>&nbsp;</h3>
+    <h3>Preventing Cross Site forgery Attacks</h3>
+In MVC applications, while posting the form data, it is quite simple to prevent such request if understood properly. MVC provides the attribute <b><em>[ValidatAntiForgeryToken]</em></b> on the respective action. Lets see the flow in the snippet first.
+First we need to place the AntiForgeryToken helper in the razor view page like:
+
+<pre class="brush: csharp;" style="font-size:medium;">
+@using(Html.Form("UserRegistration", "Register")) {
+    @Html.AntiForgeryToken()
+    //Then here normal rest form as mentioned above    
+ }
+</pre>
+Then in the controller "Register" for the action "UserRegistration"(POST) add the attribute like below:
+
+<pre class="brush: csharp;" style="font-size:medium;">
+[HttpPost]
+[ValidateAntiForgeryToken]
+    public ActionResult UserRegistration(RegistrationViewModel registerModel){
+   //ModeState Valid check and rest code goes here
+}
+</pre>
+
+Ok, so we have seen what two simple steps we need to do. Now lets understand how it does. What happens exactly when we do not place these attributes. How vulnerable our controller is and to what extent an attacker can affect the application. Suppose we are on an Edit page, where a user soughts to edit few of his login information. Now an attacker from over a third party domain and host a simple HTML that would post some information to the same Edit action, the user were to. Then, some how the user if navigates to the Html page set up by the attacker, the user unknowingly is posting unwanted data to the server and normal saving to the database. Here the attacker may be replacing the email ids or any other vulnerable information to his own and retrieving the user's data. BOOM! This is crash, rather a crap!
+Thus, what we need to do here, we need to check if the request to the server action is coming from the same domain, the user has logged in ! for this we need to have some header or property which will be mapped when a request is made and if matches then post else let the authentication fail.
+This is actually what the attribute does. The <b>ValidateAntiForgeryToken</b> actually sets a cookie to the incoming reuest called <b>__RequestVerificationToken</b>, and the same <b>__RequestVerificationToken</b> is set for the domain in which the user is logged in. Thus, when a request is made from the same domain, the request header cookie should match and let the user post the data, but when a request is made from the third party domain, then the request is rejected since the <b>__RequestVerificationToken</b> will never match, just failing the authentication and preventing the Cross Site Forgery by any attacker.
+Now here there is another problem. If any how the attacker gets to know the Anti Forgery Token, then what!! again crap! No there is a way out here as well. The attribute has ability to add a unique/different Salt every time so that the same token is not reused everywhere.
+<pre class="brush: csharp;" style="font-size:medium;">
+    @Html.AntiForgeryToken("SALT") //The salt can be any sort of string(homogeneous mixture :))
+</pre>
+<pre class="brush: csharp;" style="font-size:medium;">
+[ValidateAntiForgeryToken("SALT")]
+</pre>
+Another concept that is vulnerable to such attacks and may breach the security in the application is <b>SQL Injection</b> Lets discuss this in brief. :)
+    <br />
+    <br />
+<h3>SQL Injection Attacks & Prevention Techniques</h3>
+What exWhat exactly is SQL Injection attack?&nbsp;
+SQL Injection is an attack to fool and manipulate the application database. This is done through the malicious input from the user during post methods and if the posted data is not validated before being executed as sql query. This is really very dangerous which can let attackers get all the sensitive data or even delete the  records from all tables, truncating them, just by posting a simple query to drop instead of actual data.
+In this, the objective of the attacker is to post their query into the application and let the server run and give him the response if not handled in the server end. Lets see how:
+Suppose we have a sql query to select the names of  houses and display. The query would be like:
+<pre class="brush: csharp;" style="font-size:medium;">
+    var sqlTobeExecuted = "SELECT HouseID, HouseName"+FROM House " +
+    "WHERE Address LIKE '" + searchInputParam +"%';
+    SqlDataAdapter da = new SqlDataAdapter(sqlTobeExecuted , DbCommand);
+</pre>
+The above query is not parameterized and is a simple query in string format to get the house details. Now suppose the attacker posts the searchInputParam (which originally comes from the textbox input of the user) as
+<blockquote>' UNION SELECT id,name FROM sysobjects;--</blockquote>
+Mark the statement what becomes after that is passed to the string query,
+<blockquote>
+SELECT HouseID,HouseName FROM House
+WHERE Address LIKE '' UNION SELECT id,name FROM sysobjects;--%'
+</blockquote>
+The first apostrophe in the searchInputParam closes the Like parameter in the SQL query and the double dashes "--" comment out the rest of the query. Thus that gives the list of all the HouseNames and also all the tables present in the database . Even they can also get the ids of the sysObjects and use the Ids to retrieve the column names of the database table they want. Suppose there is a table named Users. Oviously the table would have all the user details. Thus, with the id and the table name the attacker can retrieve the column names of the Users table using the below query:
+<blockquote>' UNION SELECT name FROM syscolumns WHERE id = "USERID";--</blockquote>
+Thus,the whole of the database can be exposed to malicious users at a single click.
+To prevent this,
+<ul>
+<li><b>Encrypt</b> the essential and sensitive data like password, credit card info and other details. So that to some extent if by any how they get the details they cannot decrypt it. Use one way hashing to encrypt the record data.</li>
+<li><b>Using parameterized queries</b> instead of strings, in order to avoid directly injecting the values from the User input to the query as we saw in the above section. A parameterized query would prevent the malicious input and it would look like below:
+ <pre class="brush: csharp;" style="font-size:medium;">
+    var commandToBeExecuted = "SELECT HouseID, HouseName FROM House"+
+        "WHERE Address  Like @Address";
+    SqlCommand cmd = new SqlCommand(commandToBeExecuted , conn);
+    cmd.Parameters.Add("@Address",address);
+</pre>
+As we see in the above query we avoid passing directly the string input, instead we are using parameters into the SQL query, which would prevent such attacks.</li>
+<li><b>use of parameterized Stored Procedures</b>, which also prevent and prove to be a good solution to these mallicious attacks of injection. Also it is advisable to not trust them completely/blindly so it is always better to check for the sensitive data from user inputs and then execute the Stored procedure. This can be done, where the developer can think there are chances of vulnerability.</li>
+<li><b>Entity Framework & LINQ</b>, it is interesting to note here is while using LINQ to entity, the query generation does not use the string based approach, rather it uses the object model API, thus being not susceptible to SQL injection attacks.</li>
+</ul>
+<h3>&nbsp;</h3>
+    <h3>Authentication & Authorization</h3>
+These two are very very very...important in any application and these are two different concepts all together but are used to solve the same thing,i.e. Security. When we develop an secure application, the Login is highly essential. Thus, properly authenticating users to the application & authorizing users to particular section of the application is challenging. Usually Forms Authentication is implemented across MVC applications. In the web.config file, the following configuration is set:
+
+Only this will not set the authentication. You need more set up be done. This would involve a lot of configuration. WebSecurity in MVC makes it easy and secure to be implemented. It provides tables and hashing as well. The hashing it provides is one way and very secure. You can learn more about implementing Web Security in MVC from
+<a style="color:Blue;" href="http://surajpassion.in/websecurity-in-mvc/" target="_blank">Web Security In MVC</a>
+Thus after setting this authentication, then the important thing is Authorization, which can be provided on controller level, action level, which can be customized in order to check for the access levels along with the sessions. Only Authorize attribute would let the check for the session, we can customized to check for the roles and access levels for the screens as well.
+
+<pre class="brush: csharp;" style="font-size:medium;">
+ [Authorize]
+ public class HomeController : Controller
+    {
+        public ActionResult Index()
+        {
+            return View();
+        }
+    }
+</pre>
+
+In the above snippet, the entire controller has been authorized. That is each method inside the controller will be first authorized.
+
+<pre class="brush: csharp;" style="font-size:medium;">
+public class HomeController : Controller
+    {
+      public ActionResult Index()
+        {
+            return View();
+        }
+       [Authorize]
+       public ActionResult GetHome(){
+         return View()
+       }
+    }
+</pre>
+Here, only the action method GetHome is authorized, not the whole controller.
+Thus, Authentication and Authorization are very important factors that ought to be taken into consideration.
+    <br />
+    <br />
+<h3>More security considerations in MVC</h3>
+Straight from the OWASP scurity points,
+Its advisable to hide the MVC versions as well as Asp.Net versions we use, never expose the versions through the headers.
+<blockquote>X-AspNet-Version    4.0.30319
+            X-AspNetMvc-Version 5.0
+</blockquote>
+We need to hide the versions which appears in the Network tab  of the developer table.
+Lets know how to remove the versions of Asp.Net and Asp.Net Mvc from the headers.
+<ul><li>Asp.net Version:-To hide the X version of the Asp.Net we use the below Web.Config change.
+
+The above will hide the Asp.net versions.</li>
+<li>
+Asp.Net MVC Versions:- To hide the X version of the Asp.Net MVC we use the below change in the Application_Start method of the Global.asax. The snippet would go like below:-
+
+<pre class="brush: csharp;" style="font-size:medium;">
+protected void Application_Start()
+        {
+            MvcHandler.DisableMvcResponseHeader = true;
+</pre>
+This hides the Asp.Net MVC version from the headers in the Network tab.
+</li>
+<li>Lastly, there are chances of exposing the Users to the Yellow screen of death, when an exception occurs in the application and is unhandled. Thus, it is advisable to have a custom error page, where users will be landing when exception occur. Lets see how:
+Custom errors in the Web config needs to be on. There are three modes of the Custom errors. They are:
+<ol><li>On:-
+--Prevents the stack trace that is shown when exceptions arise
+--Also allows to display custom error pages to the end user
+--Custom error pages shown to both Remote Clients as well as Local
+</li>
+<li>Off:-
+--Makes the end user view the description of the exception along with the entire stack trace.
+--ASP.NET error/exception and stack trace shown to both Remote clients and Local as well.
+</li>
+<li>Remote only:-
+--This is the best among all for the developers’ perspective, as this allows the Remote clients to view thecustom error messages/pages.
+--Allows the Local users/especially developers to view the ASP.NET errors.
+--This is the default value.
+</li>
+</ol>
+The other attribute which is used to the custom error element is <b>defaultredirect</b>. This is used to redirect the users to a default page when exceptions occur.
+
+The exceptions can also be handled globally , application level by using the below snippet:
+
+<pre class="brush: csharp;" style="font-size:medium;">
+protected void Application_Error(Object sender, EventArgs e)
+{
+    Exception ex = Server.GetLastError();  //self explanatory gets the most recent error
+    Server.ClearError();  //self explanatory clears the error
+        //(Required to clear as otherwise user gets to see the default ASP.NET error handlers)
+    Response.Redirect(""); //default redirect.
+}
+</pre>
+For details you can follow: <a style="color:Blue;" href="http://surajpassion.in/custom-errors-in-asp-net/" target="_blank">Custom Errors</a>
+<h2>Conclusion</h2>
+Thus, security and validations are very important features to be implemented in any application now a days. According to forbes in a day 30,000 sites were hacked. This is truly an astonishing numbers. And in today's world most of the sensitive information are being stored on cloud. Thus, in any application the data have a great chance of being exposed and hacked. So security is a major concern and needs to be handled very carefully.
+Hopefully, Some of the major points are discussed above and can be implemented in any application to avoid any sort of breaching.
+<h3>References</h3>
+How can I miss the references from which I learnt and got this opportunity to share with the world.
+<a style="color:Blue;" href="https://www.owasp.org/index.php/.NET_Security_Cheat_Sheet">OWASP Cheat Sheet</a>
+<a style="color:Blue;" href="http://www.tutorialspoint.com/security_testing/testing_broken_authentication.htm">Security testing</a>
+<a style="color:Blue;" href="http://blogs.msdn.com/b/publicsector/archive/2008/08/21/preventing-sql-injection-with-the-entity-framework-and-data-services.aspx">Sql Injection and Entity Framework</a>
+</div>

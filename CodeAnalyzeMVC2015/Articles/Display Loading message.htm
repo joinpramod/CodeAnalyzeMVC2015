@@ -1,0 +1,436 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+
+ p.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	}
+    </style>
+</head>
+<body>
+
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">This can be achieved in jquery<o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">Add below code in View<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">&lt;script 
+        src=&quot;~/Scripts/jquery-1.8.2.min.js&quot;&gt;&lt;/script&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:
+&quot;Times New Roman&quot;">&lt;script 
+        src=&quot;@Url.Content(&quot;~/Scripts/jquery.unobtrusive-ajax.min.js&quot;)&quot; 
+        type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</span><span style="font-size:10.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">Place the view part which is supposed 
+        to be processed with ajax in ajax form as shown below<o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp; </span>@using (Ajax.BeginForm(new 
+        AjaxOptions { HttpMethod = &quot;POST&quot;, LoadingElementId = &quot;loading1&quot; }))<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>{<span 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        &lt;div id=&quot;loading1&quot; style=&quot;display: none;&quot;&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>&lt;div class=&quot;modal&quot;&gt;&lt;/div&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>&lt;div class=&quot;spinner&quot;&gt;Loading...&lt;/div&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        &lt;/div&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;">Use the below css class to display spinner and message<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">&lt;style&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>#please-wait {<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>position: absolute;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>left: 0;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>top: 0;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>width: 100%;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>height: 100%;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>#please-wait .modal {<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>z-index: 1999;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>left: 0;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>top: 0;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>width: 100%;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>height: 100%;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>opacity: 0.5;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>-moz-opacity: 0.5;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>background-color: black;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>margin-left: 0;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>#please-wait .spinner {<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>z-index: 2000;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        &nbsp;&nbsp;&nbsp;</span>position: absolute;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>padding-top: 20px;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>padding-left: 20px;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>background: #E5E5E5 no-repeat 15px center;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>width: 120px;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>height: 40px;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>border: 2px solid #666;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>font-weight: bold;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>text-align: center;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>margin-left: auto;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>margin-right: auto;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>top: 35%;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>display: block;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:
+&quot;Times New Roman&quot;"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>&lt;/style&gt;</span><span style="font-size:10.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;">Sample controller<o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        [HttpPost]<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        public ActionResult Index()<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        {<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>Thread.Sleep(3000);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>return View();<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:
+&quot;Times New Roman&quot;"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}</span><span style="font-size:10.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;">If needed add below config value in web.config<o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>&lt;add 
+        key=&quot;webpages:Enabled&quot; value=&quot;false&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>&lt;add 
+        key=&quot;ClientValidationEnabled&quot; value=&quot;true&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-size:10.0pt;line-height:115%;
+font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>&lt;add 
+        key=&quot;UnobtrusiveJavaScriptEnabled&quot; value=&quot;true&quot; /&gt;</span><b 
+            style="mso-bidi-font-weight:normal"><span 
+            style="font-size:10.0pt;line-height:
+115%;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Consolas"><o:p></o:p></span></b></p>
+    <p class="MsoNormal">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="font-size:12.0pt;line-height:115%;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Consolas"><o:p>&nbsp;</o:p></span></b></p>
+
+</body>
+</html>

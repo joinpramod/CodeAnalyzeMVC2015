@@ -1,0 +1,127 @@
+﻿
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+<p style="width:80%">
+    The following example demonstrates how to pass table rows or ul li to MVC Controller as Collection List or ArrayList or Array. This will help in getting the previously posted dynamic data as a complete list. 
+</p>
+
+<p><b>Lets begin with the code. Sample Employee Model</b></p>
+    <pre class="brush: csharp">
+        public class Employee
+        {
+            public string Name { get; set; }
+            public string Company { get; set; }
+        }
+    </pre>
+
+    <br />
+    <br />
+<p><b>Add another model class of Employee list</b></p>
+
+    <pre class="brush: csharp">
+        public class EmployeeList
+        {
+            public List&lt;Employee&gt; Employees { get; set; }      
+        }
+    </pre>
+
+
+    <br />
+    <br />
+
+
+<p style="width:80%">View here contains 2 sections, one has the UI to add new Employee details and the other to display the Employee List.
+   After entering the employee details it will not be posted to server but will only be added to the list below that. After having all employee list, its posted to server.
+</p>
+
+
+    <pre class="brush: csharp">
+        @{
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+
+        @using (Html.BeginForm("PostTable", "Home", FormMethod.Post, new { @id = "formPost" }))
+        {
+	       
+                //Html UI To Add New Employee Details To The List Shown Next and NOT To The Server
+		        &lt;div&gt;
+			        &lt;div&gt;
+				        &lt;div&gt;
+					        &lt;label&gt;Name:&lt;/label&gt;
+					        &lt;input type="text" id="txtName" /&gt;
+				        &lt;/div&gt;
+				        &lt;div&gt;
+					        &lt;label&gt;Company:&lt;/label&gt;
+					        &lt;input type="text" id="txtCompany"/&gt;
+				        &lt;/div&gt;
+				        &lt;div&gt;
+					        &lt;button id="btnAddEmployee" type="button"&gt;Add Employee&lt;/button&gt;
+				        &lt;/div&gt;
+			        &lt;/div&gt;
+	            &lt;/div&gt;
+
+
+                //Html Code To Display Employee List and Post The Same To Server
+	            &lt;div&gt;
+		            &lt;div&gt;
+			            &lt;table id="tableEmployeeList"&gt;
+				            &lt;thead&gt;
+					            &lt;tr&gt;
+						            &lt;th&gt;Name&lt;/th&gt;
+						            &lt;th&gt;Company&lt;/th&gt;
+					            &lt;/tr&gt;
+				            &lt;/thead&gt;
+				            &lt;tbody&gt;&lt;/tbody&gt;
+			            &lt;/table&gt;
+			            &lt;div&gt;
+				            &lt;button id="btnSubmit" type="submit"&gt;Post Employee List&lt;/button&gt;
+			            &lt;/div&gt;
+		            &lt;/div&gt;
+	            &lt;/div&gt;
+           
+        }
+
+      
+        //scripts to perform actions
+        @section scripts{
+            &lt;script type="text/javascript"&gt;
+                $(document).ready(function () {
+
+                    //Script To Add New Employee Details To The List Shown Below and NOT To The Server
+                    $("#btnAddEmployee").on("click", function () {
+                        var name = $("#txtName").val();
+                        var company = $("#txtCompany").val();
+	
+                        $("#tableEmployeeList&gt; tbody").append("&lt;tr data-name='" + name + "' data-company='" + company + "'&gt;&lt;td&gt;" + name + "&lt;/td&gt;&lt;td&gt;" + company + "&lt;/td&gt;&lt;/tr&gt;");
+			
+                        $("#txtName").val('');
+                        $("#txtCompany").val('');
+			
+                        $("#txtName").focus();
+                    });
+
+
+
+                    //Script To Get All Employee Added and Post The List To The Server
+                    $("#btnSubmit").on("click", function () {
+                        var listName = "EmployeeList";
+			
+                        var counter = 0;
+                        $("#tableEmployeeList &gt; tbody &gt; tr").each(function () {
+                            var name = $(this).data("name");
+                            var company = $(this).data("company");
+                            $("#formPost").prepend("&lt;input type='hidden' name='" + listName + "[" + counter + "].Name' value='" + name + "'&gt;");
+                            $("#formPost").prepend("&lt;input type='hidden' name='" + listName + "[" + counter + "].Company' value='" + company + "'&gt;");
+                            counter += 1;
+                        });
+                    });
+
+                });
+            &lt;/script&gt;
+        }
+
+    </pre>
+
+
+</div>

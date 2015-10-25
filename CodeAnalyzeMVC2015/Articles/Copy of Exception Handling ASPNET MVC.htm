@@ -1,0 +1,621 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+
+ p.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	}
+table.MsoTableGrid
+	{border:solid windowtext 1.0pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	}
+ul
+	{margin-bottom:0in;}
+ li.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	}
+    </style>
+</head>
+<body>
+
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal;mso-outline-level:2">
+        <b><span 
+            style="font-size:16.0pt;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">
+        Introduction</span><span style="font-size:18.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;"><o:p></o:p></span></b></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">Exceptions are like part and parcel of 
+        an application. They are boon and ban for an application to. Isn’t it? This 
+        would be controversial, for developers it helps them track minor and major 
+        defects in an application, and sometimes they are frustrating when it lets users 
+        land on the Yellow screen of death each time. This would make the users mundane 
+        to the application. Thus to avoid this, developers handle the exceptions. But 
+        still sometimes there are a few unhandled exceptions. Now what is to be done for 
+        them? MVC provides us with built-in filters &#39;Exception Filters&#39; about which we 
+        will discuss. Let’s start.. <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal;mso-outline-level:2">
+        <b><span 
+            style="font-size:16.0pt;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">
+        Get Started<o:p></o:p></span></b></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">Exception filters run when some of the 
+        exceptions are unhandled and thrown from an invoked action. The reason for the 
+        exception can be anything and so is the source of the exception. <o:p></o:p>
+        </span>
+    </p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal;mso-outline-level:2">
+        <b><span 
+            style="font-size:16.0pt;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">
+        Creating an Exception Filter<o:p></o:p></span></b></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">Custom Exception Filters must 
+        implement the built in IExceptionFilter interface. The interface looks as: <o:p></o:p>
+        </span>
+    </p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="color:
+blue">public</span> <span style="color:blue">interface</span>
+        <span style="color:#2B91AF">IExceptionFilter</span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="color:blue">void</span> OnException(<span 
+            style="color:#2B91AF">ExceptionContext</span> filterContext);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;font-family:&quot;Courier New&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p>
+        &nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">Whenever an unhandled exception is 
+        encountered, the OnException method gets invoked. The parameter as we can see,
+        <b>ExceptionContext</b> is derived from the <b>ControllerContext</b> and has a 
+        number of built in properties that can be used to get the information about the 
+        request causing the exception. There properties ExceptionContext possess are 
+        shown in the table: <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;<span 
+            style="font-size: 12.0pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;"><table 
+            align="right" border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-table-lspace:9.0pt;margin-left:6.75pt;mso-table-rspace:
+ 9.0pt;margin-right:6.75pt;mso-table-anchor-vertical:paragraph;mso-table-anchor-horizontal:
+ margin;mso-table-left:right;mso-table-top:9.5pt;mso-padding-alt:0in 5.4pt 0in 5.4pt">
+            <tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;height:14.75pt">
+                <td style="width:99.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;height:14.75pt" 
+                    valign="top" width="133">
+                    <p align="center" class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;
+  text-align:center;line-height:normal;mso-element:frame;mso-element-frame-hspace:
+  9.0pt;mso-element-wrap:around;mso-element-anchor-vertical:paragraph;
+  mso-element-anchor-horizontal:margin;mso-element-left:right;mso-element-top:
+  9.5pt;mso-height-rule:exactly">
+                        <b>
+                        <span style="font-size:12.0pt;mso-fareast-font-family:
+  &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">Name</span></b><span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+  &quot;Times New Roman&quot;"><o:p></o:p></span></p>
+                </td>
+                <td style="width:78.9pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;height:14.75pt" valign="top" width="105">
+                    <p align="center" class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;
+  text-align:center;line-height:normal;mso-element:frame;mso-element-frame-hspace:
+  9.0pt;mso-element-wrap:around;mso-element-anchor-vertical:paragraph;
+  mso-element-anchor-horizontal:margin;mso-element-left:right;mso-element-top:
+  9.5pt;mso-height-rule:exactly">
+                        <b>
+                        <span style="font-size:12.0pt;mso-fareast-font-family:
+  &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">Type</span></b><span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+  &quot;Times New Roman&quot;"><o:p></o:p></span></p>
+                </td>
+                <td style="width:272.95pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;height:14.75pt" valign="top" width="364">
+                    <p align="center" class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;
+  text-align:center;line-height:normal;mso-element:frame;mso-element-frame-hspace:
+  9.0pt;mso-element-wrap:around;mso-element-anchor-vertical:paragraph;
+  mso-element-anchor-horizontal:margin;mso-element-left:right;mso-element-top:
+  9.5pt;mso-height-rule:exactly">
+                        <b>
+                        <span style="font-size:12.0pt;mso-fareast-font-family:
+  &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">Detail</span></b><span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+  &quot;Times New Roman&quot;"><o:p></o:p></span></p>
+                </td>
+            </tr>
+            <tr style="mso-yfti-irow:1;height:14.05pt">
+                <td style="width:99.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt;height:14.05pt" valign="top" width="133">
+                    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal;mso-element:frame;mso-element-frame-hspace:9.0pt;
+  mso-element-wrap:around;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:
+  margin;mso-element-left:right;mso-element-top:9.5pt;mso-height-rule:exactly">
+                        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+  &quot;Times New Roman&quot;">Result<o:p></o:p></span></p>
+                </td>
+                <td style="width:78.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;height:14.05pt" 
+                    valign="top" width="105">
+                    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal;mso-element:frame;mso-element-frame-hspace:9.0pt;
+  mso-element-wrap:around;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:
+  margin;mso-element-left:right;mso-element-top:9.5pt;mso-height-rule:exactly">
+                        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+  &quot;Times New Roman&quot;">ActionResult<o:p></o:p></span></p>
+                </td>
+                <td style="width:272.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;height:14.05pt" 
+                    valign="top" width="364">
+                    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal;mso-element:frame;mso-element-frame-hspace:9.0pt;
+  mso-element-wrap:around;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:
+  margin;mso-element-left:right;mso-element-top:9.5pt;mso-height-rule:exactly">
+                        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+  &quot;Times New Roman&quot;">The result returned by the action being invoked.<o:p></o:p></span></p>
+                </td>
+            </tr>
+            <tr style="mso-yfti-irow:2;height:.4in">
+                <td style="width:99.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt;height:.4in" valign="top" width="133">
+                    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal;mso-element:frame;mso-element-frame-hspace:9.0pt;
+  mso-element-wrap:around;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:
+  margin;mso-element-left:right;mso-element-top:9.5pt;mso-height-rule:exactly">
+                        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+  &quot;Times New Roman&quot;">Exception<o:p></o:p></span></p>
+                </td>
+                <td style="width:78.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;height:.4in" valign="top" 
+                    width="105">
+                    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal;mso-element:frame;mso-element-frame-hspace:9.0pt;
+  mso-element-wrap:around;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:
+  margin;mso-element-left:right;mso-element-top:9.5pt;mso-height-rule:exactly">
+                        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+  &quot;Times New Roman&quot;">Exception<o:p></o:p></span></p>
+                </td>
+                <td style="width:272.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;height:.4in" valign="top" 
+                    width="364">
+                    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal;mso-element:frame;mso-element-frame-hspace:9.0pt;
+  mso-element-wrap:around;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:
+  margin;mso-element-left:right;mso-element-top:9.5pt;mso-height-rule:exactly">
+                        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+  &quot;Times New Roman&quot;">The unhandled exceptions caused from the actions in the applications.<o:p></o:p></span></p>
+                </td>
+            </tr>
+            <tr style="mso-yfti-irow:3;mso-yfti-lastrow:yes;height:43.6pt">
+                <td style="width:99.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt;height:43.6pt" valign="top" width="133">
+                    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal;mso-element:frame;mso-element-frame-hspace:9.0pt;
+  mso-element-wrap:around;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:
+  margin;mso-element-left:right;mso-element-top:9.5pt;mso-height-rule:exactly">
+                        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+  &quot;Times New Roman&quot;">ExceptionHandled<o:p></o:p></span></p>
+                </td>
+                <td style="width:78.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;height:43.6pt" valign="top" 
+                    width="105">
+                    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal;mso-element:frame;mso-element-frame-hspace:9.0pt;
+  mso-element-wrap:around;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:
+  margin;mso-element-left:right;mso-element-top:9.5pt;mso-height-rule:exactly">
+                        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+  &quot;Times New Roman&quot;">BOOL<o:p></o:p></span></p>
+                </td>
+                <td style="width:272.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;height:43.6pt" valign="top" 
+                    width="364">
+                    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal;mso-element:frame;mso-element-frame-hspace:9.0pt;
+  mso-element-wrap:around;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:
+  margin;mso-element-left:right;mso-element-top:9.5pt;mso-height-rule:exactly">
+                        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+  &quot;Times New Roman&quot;">This is a very handy property, which returns a bool value (true/false) 
+                        based on if the exception is handled by any of the<o:p></o:p></span></p>
+                </td>
+            </tr>
+        </table>
+        </span></o:p>
+        </span>
+    </p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        &nbsp;</p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        &nbsp;</p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        &nbsp;</p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        &nbsp;</p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        &nbsp;</p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        &nbsp;</p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">The exception being thrown from the 
+        action is detailed by the <b>Exception</b> property and once handled (if), and 
+        then the property <b>ExceptionHandled</b> can be toggled, so that the other 
+        filters would know if the exception has been already handled and cancel the 
+        other filter requests to handle. The problem, lies that if the exceptions are 
+        not handled, then the default MVC behavior shows the dreaded yellow screen of 
+        death, to the users, which puts up a very bad impact on the users and more 
+        importantly, it exposes the application&#39;s handy and secure information to the 
+        outside world, which may have hackers and then the application gets into the 
+        road to hell. Thus, the exceptions need to be dealt very carefully. Let’s 
+        demonstrate one small custom exception filter. This filter can be stored inside 
+        the Filters folder in the web project of the solution. Let’s add a file/class 
+        called <b>CustomExceptionFilter.cs</b> <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="color:
+blue">public</span> <span style="color:blue">class</span> <span style="color:#2B91AF">
+        CustomExceptionFilter</span> : <span style="color:#2B91AF">FilterAttribute</span>,
+        <span style="color:#2B91AF">IExceptionFilter</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="color:blue">public</span> <span style="color:blue">void</span> 
+        OnException(<span style="color:#2B91AF">ExceptionContext</span> filterContext)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="color:blue">if</span> (!filterContext.ExceptionHandled &amp;&amp; 
+        filterContext.Exception <span style="color:blue">is</span>
+        <span style="color:#2B91AF">NullReferenceException</span>)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>filterContext.Result = <span style="color:blue">new</span>
+        <span style="color:#2B91AF">RedirectResult</span>(<span style="color:#A31515">&quot;customErrorPage.html&quot;</span>);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>filterContext.ExceptionHandled = <span style="color:blue">true</span>;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;font-family:&quot;Courier New&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p>
+        &nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">Now let us understand what this 
+        actually does. As we can see this implements the interface as mentioned earlier 
+        and thus implements the method, <i>OnException</i>. This mehtod has the 
+        parameter ExceptionContext, the properties of which is mentioned in the table. 
+        In this custom filter we have handled the most common and neglected exception 
+        &quot;Null Reference Exception&quot;, arises when a value returning null is not 
+        handled/checked and used in further implementations. The custom filter derives 
+        the FilterAttribute as to be used as Attribute over the action or the controller 
+        directly like <b>[CustomExceptionFilter]</b>. In this implementation above, we 
+        have used almost all the important properties of the ExceptionContext. First, 
+        the check is used for the <i>ExceptionHandled</i> which returns a Boolean value 
+        if the exception has been handled or not. If not then Check for the type of 
+        exception arisen. Since here we have used the NullReferenceException, we check 
+        for that exception. Then if the conditions are satisfied/passed we manipulate 
+        the result and return the RedirectResult (ActionResult type) and let the users 
+        land on a custom error page created in the application, to avoid the yellow 
+        dreaded screen. The use of the filter is pretty simple as this custom filter 
+        extends from the FilterAttribute. So based on the usage, this can be used as 
+        [CustomExceptionFilter] on the Controller Leveler the individual Action level, 
+        whichever is mandate. <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;font-family:&quot;Courier New&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p>
+        &nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="color:
+green">//Over controller</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>[<span style="color:#2B91AF">CustomExceptionFilter</span>]<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="color:
+blue">public</span> <span style="color:blue">class</span> <span style="color:#2B91AF">
+        HomeController</span> : <span style="color:#2B91AF">Controller</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="color:green">//......</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="color:
+green">//Over the Action</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>[<span style="color:#2B91AF">CustomExceptionFilter</span>]<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="color:
+blue">public</span> <span style="color:#2B91AF">ActionResult</span> Index()<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="color:green">//.......</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">Now, let’s discuss about the inbuilt
+        <i>HandleAttribute</i>. This is a built in class which is used similar way as a 
+        filter attribute in MVC applications. The most important thing is this attribute 
+        works only when the <b>custom errors</b> in the web.config is enabledor set to 
+        true. <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt">
+        <span style="font-size:10.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Courier New&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">the default mode for this element is 
+        RemoteOnly, which will only work out when application is deployed and request is 
+        made from some other systems. Let’s look at the properties of the HandleError 
+        Attribute. <o:p></o:p></span>
+    </p>
+    <ul type="disc">
+        <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     line-height:normal;mso-list:l0 level1 lfo1;tab-stops:list .5in"><b>
+            <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;">ExceptionType</span></b><span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;">: This property, as the name suggests 
+            tells the attribute the type of exception it needs to handle.<o:p></o:p></span></li>
+        <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     line-height:normal;mso-list:l0 level1 lfo1;tab-stops:list .5in"><b>
+            <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;">View</span></b><span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;">: This is the property, which we need 
+            to specify in order to lets the attribute, land the end users after handling the 
+            exception<o:p></o:p></span></li>
+        <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     line-height:normal;mso-list:l0 level1 lfo1;tab-stops:list .5in"><b>
+            <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;">Master</span></b><span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;">: If there is a special layout, we 
+            have for the error page, then this master can be set to that layout path, if 
+            left empty, this will take the default layout of the application for the error 
+            pages.<o:p></o:p></span></li>
+    </ul>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">Thus, the below code snippet shows how 
+        to use the HandleError attribute <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <span style="font-size:12.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas">[<span style="color:#2B91AF">HandleError</span>(ExceptionType =
+        <span style="color:blue">typeof</span>(<span style="color:#2B91AF">NullReferenceException</span>), 
+        View = <span style="color:#A31515">&quot;CustomErrorPage&quot;</span>)] {<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;color:blue">public</span><span style="font-family:Consolas">
+        <span style="color:#2B91AF">Action</span> Result {<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>
+        <span style="color:green">//........</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>var testVal =
+        <span style="color:blue">null</span>;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>
+        <span style="color:green">//Unhandled and used..</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas"><span style="mso-spacerun:yes">&nbsp;</span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <b>
+        <span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></b></p>
+    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">
+        <b>
+        <span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;">Caution:</span></b><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;"> </span>
+        <span style="font-size:12.0pt;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">While 
+        reading through the Adam Freeman, a very interesting note of caution was 
+        mentioned while using the HandleError attribute. In the custom error page, we 
+        would be using the HandleError Info like the Stack Trace, the exception message 
+        etc. Since we would not like to show this to the end user, we need to put the 
+        stack trace inside a hidden field or make the html tag invisible because <i>The 
+        view is not displayed to the user unless the Exception. StackTrace is included 
+        in the View.</i>. </span>
+        <span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal;mso-outline-level:2">
+        <b><span 
+            style="font-size:16.0pt;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">
+        Conclusion &amp; References<o:p></o:p></span></b></p>
+    <p class="MsoNormal">
+        <span style="font-size:12.0pt;line-height:115%;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">Thus, we 
+        learnt the creation of custom exception filters as well as the built-in filters 
+        in MVC applications. There are various ways/tools now to handle exceptions, but 
+        still we can make use of these filters in order to avoid detrimental effects on 
+        our applications. <b>References</b>: Adam Freeman-Professional Asp.Net MVC 4 &amp; 
+        MSDN I hope this would help developers &amp; beginners. The concept is interesting 
+        when we use them. So start using and enjoy Coding. :)</span><o:p></o:p></p>
+
+</body>
+</html>

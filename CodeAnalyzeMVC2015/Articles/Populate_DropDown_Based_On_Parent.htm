@@ -1,0 +1,253 @@
+﻿
+
+
+<div style="font-family:Calibri;font-size:16px;width:100%">
+
+    <p style="width:80%">Follow the procedure to populate drop downlist based on parent dropdown selection. Dynamically populate dropdownlist.
+        Lets create the well know Country, State and City dropdowns</p>
+
+    <p style="font-size:20px"><b>Create City, State and Country Models shown below </b></p>
+
+    <pre class="brush: csharp">
+        //City Model
+        {
+            public class CityModel
+            {
+                public Int32 ID { get; set; }
+                public String CityName { get; set; }
+            }
+        }
+
+        //State Model
+        public class StateModel
+        {
+            public Int32 ID { get; set; }
+            public String StateName { get; set; }
+            public List&lt;CityModel&gt;CityList = new List&lt;CityModel&gt;();
+        }
+
+        //Country Model
+        namespace DependentDropDownList.Models.Data
+        {
+            public class CountryModel
+            {
+                public Int32 ID { get; set; }
+                public String CountryName{ get; set; }
+                public List&lt;StateModel&gt;StateList= new List&lt;StateModel&gt;();
+            }
+        }
+    </pre>
+
+     
+    <p style="font-size:20px"><b>Next we need to create ViewModels for all as shown below</b></p>
+
+    <pre class="brush: csharp">
+        //City ViewModel
+        public class CityViewModel
+        {
+            public List&lt;Models.DataModel.CityModel&gt; CityList = new List&lt;Models.DataModel.CityModel&gt;();
+            public Int32 SelectedCityID {get; set;}
+            public IEnumerable&lt;SelectListItem&gt; CityIEnum
+            {
+                get
+                {
+                    return new SelectList(CityList, "ID", "CityName");
+                }
+            }
+        }
+
+
+        //State ViewModel
+        public class StateViewModel
+        {
+            public List&lt;Models.DataModel.StateModel&gt; StateList= new List&lt;Models.DataModel.StateModel&gt;();
+            public Int32 SelectedStateID {get; set;}
+            public IEnumerable&lt;SelectListItem&gt; StateIEnum
+            {
+                get
+                {
+                    return new SelectList(StateList, "ID", "StateName");
+                }
+            }
+        }
+
+        //Country ViewModel
+        public class CountryViewModel
+        {
+            public List&lt;Models.DataModel.CountryModel&gt; CountryList= new List&lt;Models.DataModel.CountryModel&gt;();
+            public Int32 SelectedCountryID {get; set;}
+            public IEnumerable&lt;SelectListItem&gt; CountryIEnum
+            {
+            get
+            {
+                return new SelectList(CountryList, "ID", "CountryName");
+            }
+        }
+        }
+
+    </pre>
+
+
+    <p style="font-size:20px;width:80%"><b>Lets create the controller and add some sample data with couple of country, state and city dropdown</b></p>
+
+
+    <pre class="brush: csharp">
+
+    public static List&lt;Models.DataModel.CountryModel&gt; Countries = new List&lt;Models.DataModel.CountryModel&gt;()
+    {
+        new Models.DataModel.CountryModel
+                { ID = 1, CountryName = "USA", StateList = new List&lt;Models.DataModel.StateModel&gt;()
+                            {
+                                new Models.DataModel.StateModel
+                                {
+                                    ID = 1, StateName = "New Jersey", CityList = new List&lt;Models.DataModel.CityModel&gt;()
+                                    {
+                                        new Models.DataModel.CityModel {ID = 1, CityName = "Jersey City"},
+                                        new Models.DataModel.CityModel {ID = 2, CityName = "Secaucus"},
+                                        new Models.DataModel.CityModel {ID = 3, CityName = "Edison"}
+                                    }
+                                },
+                new Models.DataModel.StateModel
+                                {
+                                    ID = 2, StateName = "New York",
+                                    CityList = new List&lt;Models.DataModel.CityModel&gt;()
+                                    {
+                                        new Models.DataModel.CityModel {ID = 1, CityName = "NYC"},
+                                        new Models.DataModel.CityModel {ID = 2, CityName = "Spring Valley"},
+                                        new Models.DataModel.CityModel {ID = 3, CityName = "Albany"}
+                                    }
+                                },
+                new Models.DataModel.StateModel
+                                {
+                                    ID = 3, StateName = "California",
+                                    CityList = new List&lt;Models.DataModel.CityModel&gt;()
+                                    {
+                                        new Models.DataModel.CityModel {ID = 1, CityName = "SFO"},
+                                        new Models.DataModel.CityModel {ID = 2, CityName = "San Jose"},
+                                        new Models.DataModel.CityModel {ID = 3, CityName = "Palo Alto"}
+                                    }
+                                }
+                            }
+                },
+                new Models.DataModel.CountryModel
+                { ID = 2, CountryName = "India",
+                          StateList = new List&lt;Models.DataModel.StateModel&gt;()
+                            {
+                                new Models.DataModel.StateModel
+                                {
+                                    ID = 1, StateName = "New Delhi",
+                                    CityList = new List&lt;Models.DataModel.CityModel&gt;()
+                                    {
+                                        new Models.DataModel.CityModel {ID = 1, CityName = "Delhi"},
+                                        new Models.DataModel.CityModel {ID = 2, CityName = "Gurgaon"},
+                                        new Models.DataModel.CityModel {ID = 3, CityName = "Noida"}
+                                    }
+                                },
+                                new Models.DataModel.StateModel
+                                {
+                                    ID = 2, StateName = "Karnataka",
+                                    CityList = new List&lt;Models.DataModel.CityModel&gt;()
+                                    {
+                                        new Models.DataModel.CityModel {ID = 1, CityName = "Bangalore"},
+                                        new Models.DataModel.CityModel {ID = 2, CityName = "Mysore"}
+                                    }
+                                }
+                            }
+                    }
+        };
+
+
+    </pre>
+
+    <p style="font-size:20px"><b>Create Country View</b></p>
+        <pre class="brush: csharp">
+            @model MVCControls.Models.CountryViewModel
+            @{
+                Layout = null;
+            }
+
+
+            @Html.DropDownListFor(p =&gt; p.SelectedCountryID,  Model.CountryIEnum, "Select a Country", new { @id="Country-DropdownID"})
+
+
+            &lt;script type="text/javascript"&gt;
+                $(function () {
+                    $('#Country-DropdownID').change(function () {
+                        var selectedCountryID = this.value;
+
+                        $('#StateContainer').load(&lt;a href="mailto:'@Url.Action("StateView")?countryID='"&gt;'@Url.Action("StateView")?countryID=' + selectedCountryID);
+                       
+                        $('#CityContainer').load(&lt;a href="mailto:'@Url.Action("CityView")'"&gt; '@Url.Action("CityView")'&lt;/a&gt;);
+                    });
+                });
+            &lt;/script&gt;
+
+        </pre>
+
+    <p style="font-size:20px"><b>Create State View</b></p>
+        <pre class="brush: csharp">
+            @model MVCControls.Models.StateViewModel
+            @{
+                Layout = null;
+            }
+
+
+            @Html.DropDownListFor(p =&gt; p.SelectedStateID, Model.StateIEnum, "Select a State", new { @id="State-DropDownID" })
+
+
+
+            &lt;script type="text/javascript"&gt;
+                $(function () {
+
+                    $('#State-DropDownID').change(function () {
+                        var selectedCountryID = $('#Country-DropdownID option:selected').val();
+                        var selectedStateID = this.value;
+                        $('#CityContainer').load(&lt;a href="mailto:'@Url.Action("CityView")?countryID='"&gt;'@Url.Action("CityView")?countryID=' + selectedCountryID +'&stateID=' + selectedStateID);
+                    });
+                });
+            &lt;/script&gt;
+         </pre>
+    
+
+    <p style="font-size:20px"><b>Create City View</b></p>
+    <pre class="brush: csharp">
+
+        @model DependentDropDownList.Models.ViewModel.CityViewModel
+
+        @{
+            Layout = null;
+        }
+
+
+       @Html.DropDownListFor(p=&gt;p.SelectedCityID, Model.CityIEnum, "Select a City", New &lt;a href="mailto:{@id="City-DropdownID"&gt;{@id="City-DropdownID"})
+    </pre>
+    
+    <p style="font-size:20px"><b>Index View</b></p>
+    <pre class="brush: csharp">
+        &lt;table&gt;
+            &lt;tr&gt;
+                &lt;th&gt;Country&lt;/th&gt;
+                &lt;th&gt;State&lt;/th&gt;
+                &lt;th&gt;City&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;
+                    &lt;div id="CountryContainer"&gt;
+                        @Html.Action("CountryView")
+                    &lt;/div&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;div id="StateContainer"&gt;
+                        @Html.Action("StateView")
+                    &lt;/div&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;div id="CityContainer"&gt;
+                        @Html.Action("CityView")
+                    &lt;/div&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+
+        </pre>
+ </div>

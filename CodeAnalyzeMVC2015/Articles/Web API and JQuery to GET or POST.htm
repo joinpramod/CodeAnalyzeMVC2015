@@ -1,0 +1,395 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+
+ p.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	}
+    </style>
+</head>
+<body>
+
+    <p class="MsoNormal" style="tab-stops: 82.7pt; font-size: 11pt;">
+        <span style="mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">We use Web 
+        API by calling the Web Api controller rather than project controller<o:p></o:p></span></p>
+    <p class="MsoNormal" style="tab-stops: 82.7pt; font-size: 11pt;">
+        <span style="mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">Sample API 
+        controller is shown below<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:blue"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="mso-spacerun:yes">&nbsp;</span>public</span><span style="font-size:10.0pt;
+font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        </span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">class</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> </span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        EmployeesController<span style="color:black"> : </span>ApiController<span 
+            style="color:black"><o:p></o:p></span></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>EmployeeEntities db = </span>
+        <span style="font-size:10.0pt;font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:blue">new</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"> EmployeeEntities();<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:blue">public</span><span style="font-size:10.0pt;
+font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        </span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        IEnumerable<span style="color:black">&lt;emploee&gt; Get()<o:p></o:p></span></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:blue">return</span><span style="font-size:10.0pt;
+font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> 
+        db.Employees.ToList();<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}<span style="mso-spacerun:yes">&nbsp; </span></span>
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p></o:p>
+        </span>
+    </p>
+    <p class="MsoNormal" style="tab-stops:82.7pt">
+        <span style="mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="tab-stops: 82.7pt; font-size: 11pt;">
+        <span style="mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">Sample 
+        model is as shown below<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        <span style="color:blue">public</span> <span style="color:blue">class</span>
+        <span style="color:#2B91AF">Employee</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        {<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="color:blue">public</span> <span style="color:blue">int</span> 
+        ID { <span style="color:blue">get</span>; <span style="color:blue">set</span>; }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="color:blue">public</span> <span style="color:blue">string</span> 
+        Name { <span style="color:blue">get</span>; <span style="color:blue">set</span>; 
+        }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="color:blue">public</span> <span style="color:blue">string</span> 
+        Address { <span style="color:blue">get</span>; <span style="color:blue">set</span>; 
+        }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        <span style="color:blue">public</span> <span style="color:blue">class</span>
+        <span style="color:#2B91AF">EmployeeEntities</span> :
+        <span style="color:#2B91AF">DbContext</span><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        {<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="color:blue">public</span> <span style="color:#2B91AF">DbSet</span>&lt;employee&gt; 
+        Employees { <span style="color:blue">get</span>; <span style="color:blue">set</span>; 
+        }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        }<o:p></o:p></span></p>
+    <p class="MsoNormal">
+        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal">
+        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="tab-stops: 109.8pt; font-size: 11pt;">
+        <span style="mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">GET Method 
+        Jquery making request to web api is as shown below <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        $(document).ready(function () {<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        $.ajax({<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>url: &quot;http://localhost:49493/api/Values&quot;,<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>type: &quot;Get&quot;,<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>success: function (data) { <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>for (var i = 0; i &lt; data.length; i++) {<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>$(data[i].Name + &quot; &quot; + data[i].Address).appendTo(&quot;#tbPerson&quot;);<span 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>},<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>error: function (msg) { alert(msg); }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        });<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="tab-stops: 109.8pt; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>});</span><span style="mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+    <p class="MsoNormal">
+        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="font-size: 11pt">
+        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">POST Method of Jquery<o:p></o:p></span></p>
+    <div style="mso-element: para-border-div; border: solid #FBEDBB 1.0pt; mso-border-alt: solid #FBEDBB .75pt; padding: 5.0pt 5.0pt 5.0pt 5.0pt; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <p class="MsoNormal" 
+            style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; border: none; mso-border-alt: solid #FBEDBB .75pt; padding: 0in; mso-padding-alt: 5.0pt 5.0pt 5.0pt 5.0pt">
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+            $(document).ready(</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">function</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
+            () {<o:p></o:p></span></p>
+        <p class="MsoNormal" 
+            style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; border: none; mso-border-alt: solid #FBEDBB .75pt; padding: 0in; mso-padding-alt: 5.0pt 5.0pt 5.0pt 5.0pt">
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+            <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>$(</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: purple">&quot;</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: red">#submit</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: purple">&quot;</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">).click(</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">function</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
+            () {<o:p></o:p></span></p>
+        <p class="MsoNormal" 
+            style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; border: none; mso-border-alt: solid #FBEDBB .75pt; padding: 0in; mso-padding-alt: 5.0pt 5.0pt 5.0pt 5.0pt">
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+            <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            </span>
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
+            var</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
+            name = $(</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: purple">&quot;</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: red">#Name</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: purple">&quot;</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">).val();<o:p></o:p></span></p>
+        <p class="MsoNormal" 
+            style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; border: none; mso-border-alt: solid #FBEDBB .75pt; padding: 0in; mso-padding-alt: 5.0pt 5.0pt 5.0pt 5.0pt">
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+            <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            </span>
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
+            var</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
+            address = $(</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: purple">&quot;</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: red">#Address</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: purple">&quot;</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">).val();<o:p></o:p></span></p>
+        <p class="MsoNormal" 
+            style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; border: none; mso-border-alt: solid #FBEDBB .75pt; padding: 0in; mso-padding-alt: 5.0pt 5.0pt 5.0pt 5.0pt">
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+            <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            </span>
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
+            var</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
+            dob = $(</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: purple">&quot;</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: red">#DOB</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: purple">&quot;</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">).val();<o:p></o:p></span></p>
+        <p class="MsoNormal" 
+            style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; border: none; mso-border-alt: solid #FBEDBB .75pt; padding: 0in; mso-padding-alt: 5.0pt 5.0pt 5.0pt 5.0pt">
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+            <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            $.ajax({<o:p></o:p></span></p>
+        <p class="MsoNormal" 
+            style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; border: none; mso-border-alt: solid #FBEDBB .75pt; padding: 0in; mso-padding-alt: 5.0pt 5.0pt 5.0pt 5.0pt">
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+            <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>url: </span>
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: purple">
+            &quot;</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: red">http://localhost:49493/api/Values</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: purple">&quot;</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">,<o:p></o:p></span></p>
+        <p class="MsoNormal" 
+            style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; border: none; mso-border-alt: solid #FBEDBB .75pt; padding: 0in; mso-padding-alt: 5.0pt 5.0pt 5.0pt 5.0pt">
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+            <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>type: </span>
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: purple">
+            &quot;</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: red">Post</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: purple">&quot;</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">,<o:p></o:p></span></p>
+        <p class="MsoNormal" 
+            style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; border: none; mso-border-alt: solid #FBEDBB .75pt; padding: 0in; mso-padding-alt: 5.0pt 5.0pt 5.0pt 5.0pt">
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+            <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>data: JSON.stringify([name, address, dob]), </span><i>
+            <span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:green"><o:p></o:p></span></i>
+        </p>
+        <p class="MsoNormal" 
+            style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; border: none; mso-border-alt: solid #FBEDBB .75pt; padding: 0in; mso-padding-alt: 5.0pt 5.0pt 5.0pt 5.0pt">
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+            <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>contentType: </span>
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: red">
+            &#39;application/json; charset=utf-8&#39;</span><span style="font-size:10.0pt;
+font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">,<o:p></o:p></span></p>
+        <p class="MsoNormal" 
+            style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; border: none; mso-border-alt: solid #FBEDBB .75pt; padding: 0in; mso-padding-alt: 5.0pt 5.0pt 5.0pt 5.0pt">
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+            <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>success: </span>
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
+            function</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
+            (data) { },<o:p></o:p></span></p>
+        <p class="MsoNormal" 
+            style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; border: none; mso-border-alt: solid #FBEDBB .75pt; padding: 0in; mso-padding-alt: 5.0pt 5.0pt 5.0pt 5.0pt">
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+            <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>error: </span>
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
+            function</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
+            () { alert(</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: purple">&#39;</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: red">error</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: purple">&#39;</span><span 
+                style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">); 
+            }<o:p></o:p></span></p>
+        <p class="MsoNormal" 
+            style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; border: none; mso-border-alt: solid #FBEDBB .75pt; padding: 0in; mso-padding-alt: 5.0pt 5.0pt 5.0pt 5.0pt">
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+            <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            });<o:p></o:p></span></p>
+        <p class="MsoNormal" 
+            style="margin-bottom: 5.0pt; line-height: normal; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; border: none; mso-border-alt: solid #FBEDBB .75pt; padding: 0in; mso-padding-alt: 5.0pt 5.0pt 5.0pt 5.0pt">
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+            <span style="mso-spacerun:yes">&nbsp;&nbsp; &nbsp;</span>});<o:p></o:p></span></p>
+        <p class="MsoNormal" 
+            style="margin-bottom: 5.0pt; line-height: normal; tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; border: none; mso-border-alt: solid #FBEDBB .75pt; padding: 0in; mso-padding-alt: 5.0pt 5.0pt 5.0pt 5.0pt">
+            <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+            });<o:p></o:p></span></p>
+    </div>
+    <p class="MsoNormal">
+        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+
+</body>
+</html>

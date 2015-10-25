@@ -1,0 +1,153 @@
+﻿
+<div style="font-size:16px;width:100%;font-family:Calibri">
+<br />
+<br />
+<p>
+   Following are the methods to pass data to Partial View in MVC asp.net
+    <br />
+    1. Pass data from ViewBag or ViewData
+    <br />
+    2. Pass data from the parent View
+    <br />
+    3. Pass data from TempData
+    <br />
+    4. Pass data from strongly typed view
+</p>
+
+    <br />
+    <br />
+
+
+    <p style="font-size:18px"><b>1. Pass Data from ViewBag or ViewData</b></p>
+    <p>
+        Consider below code of Controller passing Employee Name to the View from ViewBag. To quckly brief ViewData uses ViewDataDictionary and ViewBag is a wrapper on top of ViewData.
+    </p>
+    <pre class="brush: csharp">
+        public ActionResult Index()
+        {
+          ViewBag.EmployeeName = "John";
+          return View();
+        }
+    </pre>
+    <p>
+        View will look as shown below, here will will need to type cast to desired data type
+    </p>
+
+    <pre class="brush: csharp">
+    @{
+        ViewBag.Title = "Index";
+    }
+    <h2>Index</h2>
+    @Html.Partial("MyPartial", (string)@ViewBag.EmployeeName)
+    </pre>
+    <p>In partial view we access the data with &Model syntax as shown below</p>
+
+    <pre class="brush: csharp">
+        Employee Name is @Model
+    </pre> 
+    <p>Above code will display "Employee Name is John"</p>
+
+
+    <br />
+    <br />
+    <p style="font-size:18px"><b>2. Pass Data from Parent enclosed View</b></p>
+
+    <pre class="brush: csharp">
+    @{
+        ViewBag.Title = "Index";
+        string EmployeeName = "John";
+    }
+    <h2>Index</h2>
+    @Html.Partial("MyPartial", EmployeeName)
+    </pre>
+    <p>In partial view we access the data with @Model syntax as shown below</p>
+
+    <pre class="brush: csharp">
+        Employee Name is @Model
+    </pre> 
+    <p>Above code will display "Employee Name is John"</p>
+
+    <br />
+    <br />
+
+    <p style="font-size:18px"><b>3. Pass Data from TempData</b></p>
+    <p>
+        Consider below code of Controller.
+    </p>
+    <pre class="brush: csharp">
+        public ActionResult Index()
+        {
+          TempData["EmployeeName"] = "John"; 
+          return View();
+        }
+    </pre>
+    <p>
+        View will look as shown below, here will will need to type cast to desired data type
+    </p>
+
+    <pre class="brush: csharp">
+    @{
+        ViewBag.Title = "Index";
+    }
+    <h2>Index</h2>
+    @Html.Partial("MyPartial", (string)TempData["EmployeeName"])
+    </pre>
+    <p>In partial view we access the data with @Model syntax as shown below</p>
+
+    <pre class="brush: csharp">
+        Employee Name is @Model
+    </pre> 
+    <p>Above code will display "Employee Name is John"</p>
+
+    <br />
+    <br />
+
+    <p style="font-size:18px"><b>4. Pass Data from ViewBag or ViewData</b></p>
+    <p>
+        Consider and example model as shown below
+    </p>
+    <pre class="brush: csharp">
+        public class Employee
+        {
+          public string Name { get; set; }
+          public string Location { get; set; }
+        }
+    </pre>
+    <p>
+        Sample Controller
+    </p>
+
+    <pre class="brush: csharp">
+    public ActionResult Index()
+    {
+       var model = new Employee { Name = "John", Location = "New York" };
+       return View(model);
+    }
+    </pre> 
+
+
+    <p>We will type casting to be safe and Model keyword to access data </p>
+
+
+    <pre class="brush: csharp">
+        @model PassingData.Models.Employee
+        @{
+            ViewBag.Title = "Index";
+        }
+        <h2>Index</h2>
+        @Html.Partial("MyPartialView",Model)
+
+    </pre>
+
+        <p>Partial View looks like this</p>
+        <pre class="brush: csharp">
+            @model PassingData.Models.Employee
+
+            Name : @Model.Name<br/>
+
+            Location : @Model.Location
+
+        </pre> 
+
+
+        </div> 

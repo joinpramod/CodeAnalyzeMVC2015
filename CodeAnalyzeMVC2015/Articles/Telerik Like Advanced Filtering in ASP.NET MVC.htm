@@ -1,0 +1,979 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+
+ p.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	}
+p.MsoNoSpacing
+	{margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	        margin-left: 0in;
+            margin-right: 0in;
+            margin-top: 0in;
+        }
+    </style>
+</head>
+<body>
+
+    <p class="MsoNormal">
+        Quick demo to create a jquery table and add column level filtering to it.<o:p></o:p></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <b style="mso-bidi-font-weight:
+normal">Model</b><br />
+        <span style="font-size:10.0pt;font-family:Consolas;color:black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
+        <span style="font-size:10.0pt;
+font-family:Consolas;color:blue">public</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> </span>
+        <span style="font-size:10.0pt;
+font-family:Consolas;color:blue">class</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> </span>
+        <span style="font-size:10.0pt;
+font-family:Consolas;color:#2B91AF">Employee</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">
+        public</span><span style="font-size:10.0pt;font-family:Consolas;color:black">
+        </span><span style="font-size:10.0pt;font-family:Consolas;color:blue">int</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> ID { </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:blue">get</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">; </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:blue">set</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">; }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">
+        public</span><span style="font-size:10.0pt;font-family:Consolas;color:black">
+        </span><span style="font-size:10.0pt;font-family:Consolas;color:blue">string</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> Name { </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:blue">get</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">; </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:blue">set</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">; }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">
+        public</span><span style="font-size:10.0pt;font-family:Consolas;color:black">
+        </span><span style="font-size:10.0pt;font-family:Consolas;color:#2B91AF">
+        DateTime</span><span style="font-size:10.0pt;font-family:Consolas;color:black"> 
+        DateOfBirth { </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:blue">get</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">; </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:blue">set</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">; }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">
+        public</span><span style="font-size:10.0pt;font-family:Consolas;color:black">
+        </span><span style="font-size:10.0pt;font-family:Consolas;color:blue">string</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> Address { </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:blue">get</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">; </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:blue">set</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">; }<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;
+        </span>}<span style="mso-tab-count:1">&nbsp; </span></span>
+        <span style="font-size:
+10.0pt"><o:p></o:p></span>
+    </p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <b style="mso-bidi-font-weight:
+normal">View</b><br />
+        <span style="font-size:10.0pt;font-family:Consolas;color:black">@{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;
+        </span>Layout = </span>
+        <span style="font-size:10.0pt;font-family:Consolas;
+color:blue">null</span><span style="font-size:10.0pt;font-family:Consolas;
+color:black">;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black">}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:blue">&lt;!</span><span style="font-size:
+10.0pt;font-family:Consolas;color:maroon">DOCTYPE</span><span style="font-size:
+10.0pt;font-family:Consolas;color:black"> </span>
+        <span style="font-size:10.0pt;
+font-family:Consolas;color:red">html</span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">&gt;</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:blue">&lt;</span><span style="font-size:10.0pt;
+font-family:Consolas;color:maroon">html</span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">&gt;</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;
+        </span><o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">head</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><span 
+            style="mso-spacerun:yes">&nbsp;&nbsp; </span><o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">title</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">jQuery 
+        DataTables/ASP.NET MVC Filtering</span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">&lt;/</span><span style="font-size:10.0pt;
+font-family:Consolas;color:maroon">title</span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">&gt;</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">script</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:red">src</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">=&quot;~/Scripts/jQuery-1.4.4.min.js&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:red">type</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">=&quot;text/javascript&quot;&gt;&lt;/</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">script</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">script</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:red">src</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">=&quot;~/Scripts/jQuery.dataTables.min.js&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:red">type</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">=&quot;text/javascript&quot;&gt;&lt;/</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">script</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp; 
+        &nbsp;&nbsp;&nbsp;</span></span><span style="font-size:
+10.0pt;font-family:Consolas;color:blue">&lt;</span><span style="font-size:10.0pt;
+font-family:Consolas;color:maroon">script</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> </span>
+        <span style="font-size:10.0pt;
+font-family:Consolas;color:red">src</span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">=&quot;~/Scripts/init.js&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:red">type</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">=&quot;text/javascript&quot;&gt;&lt;/</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">script</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;/</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">head</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">body</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">table</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:red">id</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">=&quot;jqdataTable&quot;&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:
+10.0pt;font-family:Consolas;color:blue">&lt;</span><span style="font-size:10.0pt;
+font-family:Consolas;color:maroon">tr</span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">&gt;</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">th</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">ID</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;/</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">th</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">th</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">Name</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;/</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">th</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">th</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">DateOfBirth</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;/</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">th</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">th</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">Date</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;/</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">th</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:
+10.0pt;font-family:Consolas;color:blue">&lt;/</span><span style="font-size:
+10.0pt;font-family:Consolas;color:maroon">tr</span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">&gt;</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">&lt;</span><span style="font-size:10.0pt;
+font-family:Consolas;color:maroon">tbody</span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">&gt;</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">&lt;/</span><span style="font-size:10.0pt;
+font-family:Consolas;color:maroon">tbody</span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">&gt;</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:
+10.0pt;font-family:Consolas;color:blue">&lt;</span><span style="font-size:10.0pt;
+font-family:Consolas;color:maroon">tr</span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">&gt;</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">th</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">ID</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;/</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">th</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">th</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">Name</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;/</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">th</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">th</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">DateOfBirth</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;/</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">th</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">th</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">Address</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;/</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">th</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:
+10.0pt;font-family:Consolas;color:blue">&lt;/</span><span style="font-size:
+10.0pt;font-family:Consolas;color:maroon">tr</span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">&gt;</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;/</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">table</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">&lt;/</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:maroon">body</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">&gt;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:blue">&lt;/</span><span style="font-size:
+10.0pt;font-family:Consolas;color:maroon">html</span><span style="font-size:
+10.0pt;font-family:Consolas;color:blue">&gt;</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNormal">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        Jquery Code in the view<o:p></o:p></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;
+        </span>$(document).ready(</span><span style="font-size:10.0pt;font-family:Consolas;
+color:blue">function</span><span style="font-size:10.0pt;font-family:Consolas;
+color:black"> () {<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>$.datepicker.regional[</span><span style="font-size:10.0pt;font-family:
+Consolas;color:#A31515">&quot;&quot;</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black">].dateFormat = </span>
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:#A31515">&#39;dd/mm/yy&#39;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>$.datepicker.setDefaults($.datepicker.regional[</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:#A31515">&#39;&#39;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">]);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>$(</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:#A31515">&#39;# 
+        jqdataTable).dataTable({ </span>
+        <span style="font-size:10.0pt;font-family:Consolas;
+color:black"><o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:#A31515">
+        &quot;bServerSide&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">: </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:blue">true</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">,<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:#A31515">
+        &quot;sAjaxSource&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">: </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:#A31515">
+        &quot;/Home/GetEmployeesData&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;
+        </span>}).columnFilter({<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:#A31515">
+        &quot;aoColumns&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">: [<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        &nbsp;</span>{ </span>
+        <span style="font-size:10.0pt;
+font-family:Consolas;color:#A31515">&quot;type&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">: </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:#A31515">&quot;number-range&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> },<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>{ </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:#A31515">&quot;type&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">: </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:#A31515">&quot;text&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> },<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp; </span>{
+        </span><span style="font-size:10.0pt;font-family:Consolas;color:#A31515">&quot;type&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">: </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:#A31515">&quot;date-range&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> },<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>{ </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:#A31515">&quot;type&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">: </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:#A31515">&quot;text&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> }<span 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>]<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;
+        </span>});<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;
+        </span>});<o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        <b style="mso-bidi-font-weight:normal">Controller<o:p></o:p></b></p>
+    <p class="MsoNoSpacing">
+        <b style="mso-bidi-font-weight:normal"><o:p>&nbsp;</o:p></b></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:blue">public</span><span style="font-size:
+10.0pt;font-family:Consolas;color:black"> </span>
+        <span style="font-size:10.0pt;
+font-family:Consolas;color:#2B91AF">JsonResult</span><span style="font-size:
+10.0pt;font-family:Consolas;color:black"> GetEmployeesData(</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:blue">string</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> sIndex, </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:blue">int</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> startindex,
+        </span><span style="font-size:10.0pt;font-family:Consolas;color:blue">int</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> recordLength)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">var</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> idFilter = </span>
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:#2B91AF">Convert</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">.ToString(Request[</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:#A31515">&quot;sSearch_0&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">]);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">var</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> nameFilter = </span>
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:#2B91AF">Convert</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">.ToString(Request[</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:#A31515">&quot;sSearch_1&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">]);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">var</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> dobFilter = </span>
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:#2B91AF">Convert</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">.ToString(Request[</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:#A31515">&quot;sSearch_2&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">]);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">var</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> addrFilter = </span>
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:#2B91AF">Convert</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">.ToString(Request[</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:#A31515">&quot;sSearch_3&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">]);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">var</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> fromID = 0;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">var</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> toID = 0;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">if</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> (idFilter.Contains(</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:#A31515">&#39;~&#39;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">))<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>fromID = idFilter.Split(</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:#A31515">&#39;~&#39;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">)[0] == </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:#A31515">&quot;&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> ? 0 : </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:#2B91AF">Convert</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">.ToInt32(idFilter.Split(</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:#A31515">&#39;~&#39;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">)[0]);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>toID = idFilter.Split(</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:#A31515">&#39;~&#39;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">)[1] == </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:#A31515">&quot;&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> ? 0 : </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:#2B91AF">Convert</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">.ToInt32(idFilter.Split(</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:#A31515">&#39;~&#39;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">)[1]);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+        <span style="font-size:10.0pt;
+font-family:Consolas;color:#2B91AF">DateTime</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> fromDate = </span>
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:#2B91AF">DateTime</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">.MinValue;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+        <span style="font-size:10.0pt;
+font-family:Consolas;color:#2B91AF">DateTime</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> toDate = </span>
+        <span style="font-size:10.0pt;
+font-family:Consolas;color:#2B91AF">DateTime</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black">.MaxValue;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">if</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> (dateFilter.Contains(</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:#A31515">&#39;~&#39;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">))<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>fromDate = dateFilter.Split(</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:#A31515">&#39;~&#39;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">)[0] == </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:#A31515">&quot;&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> ?<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:#2B91AF">
+        DateTime</span><span style="font-size:10.0pt;font-family:Consolas;color:black">.MinValue 
+        : </span><span style="font-size:10.0pt;font-family:Consolas;color:#2B91AF">
+        Convert</span><span style="font-size:10.0pt;font-family:Consolas;color:black">.ToDateTime(dateFilter.Split(</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:#A31515">&#39;~&#39;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">)[0]);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>toDate = dateFilter.Split(</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:#A31515">&#39;~&#39;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">)[1] == </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:#A31515">&quot;&quot;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"> ?<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="font-size:10.0pt;
+font-family:Consolas;color:#2B91AF">DateTime</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black">.MaxValue : </span>
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:#2B91AF">Convert</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">.ToDateTime(dateFilter.Split(</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:#A31515">&#39;~&#39;</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">)[1]);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">var</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> filteredEmployees = DataRepository.GetEmployees()<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>.Where(c =&gt; (fromID == 0 || fromID &lt; c.ID)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&amp;&amp;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>(toID == 0 || c.ID &lt; toID)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>&amp;&amp;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>(nameFilter == </span>
+        <span style="font-size:10.0pt;font-family:Consolas;
+color:#A31515">&quot;&quot;</span><span style="font-size:10.0pt;font-family:
+Consolas;color:black"> || <span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="mso-spacerun:yes">&nbsp;</span><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>c.Name.ToLower().Contains(nameFilter.ToLower()))<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>&amp;&amp;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>(addrFilter == </span>
+        <span style="font-size:10.0pt;font-family:Consolas;
+color:#A31515">&quot;&quot;</span><span style="font-size:10.0pt;font-family:
+Consolas;color:black"> || <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>c.Address.ToLower().Contains(addrFilter.ToLower()))<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>&amp;&amp;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>(fromDate == </span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:#2B91AF">DateTime</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">.MinValue || 
+        fromDate &lt; <span style="mso-tab-count:1">&nbsp;&nbsp; </span>c.dob)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>&amp;&amp;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>(toDate == </span>
+        <span style="font-size:10.0pt;font-family:Consolas;
+color:#2B91AF">DateTime</span><span style="font-size:10.0pt;font-family:Consolas;
+color:black">.MaxValue || c.DateCreated &lt; <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>toDate)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">var</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> displayedEmployees = 
+        filteredEmployees.Skip(startindex).Take(recordLength);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">var</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> result = </span>
+        <span style="font-size:10.0pt;
+font-family:Consolas;color:blue">from</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> c </span>
+        <span style="font-size:10.0pt;
+font-family:Consolas;color:blue">in</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> displayedCompanies<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:blue">
+        select</span><span style="font-size:10.0pt;font-family:Consolas;color:black">
+        </span><span style="font-size:10.0pt;font-family:Consolas;color:blue">new</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">[] { <o:p></o:p>
+        </span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="font-size:10.0pt;
+font-family:Consolas;color:#2B91AF">Convert</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black">.ToString(c.ID),<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>c.Name,<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>c.dob.ToShortDateString(),<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>c.Address <o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>};<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">return</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"> Json(</span><span style="font-size:10.0pt;
+font-family:Consolas;color:blue">new</span><span style="font-size:10.0pt;
+font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        &nbsp;&nbsp;&nbsp;</span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>sIndex = sIndex,<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>iTotalRecords = DataRepository.GetEmployees().Count(),<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>iTotalDisplayRecords = filteredCompanies.Count(),<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>aaData = result<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>},<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-size:10.0pt;font-family:Consolas;color:#2B91AF">
+        JsonRequestBehavior</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black">.AllowGet);<o:p></o:p></span></p>
+    <p class="MsoNoSpacing" 
+        style="background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
+        <span style="font-size:10.0pt;font-family:Consolas;
+color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}</span><span style="font-size:10.0pt"><o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+
+</body>
+</html>

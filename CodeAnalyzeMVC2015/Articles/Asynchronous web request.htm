@@ -1,0 +1,331 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+
+p.MsoNoSpacing
+	{margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	        margin-left: 0in;
+            margin-right: 0in;
+            margin-top: 0in;
+        }
+ p.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	}
+        .style1
+        {
+            font-size: 11pt;
+        }
+    </style>
+</head>
+<body style="font-size: 11pt">
+
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <span style="mso-bidi-font-family:Consolas;color:black">With new Entity 
+        Framework 6 and .net 4.5 async and await keywards have been added to web api to 
+        make asynchronous requests from the MVC client application<o:p></o:p></span></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <span style="mso-bidi-font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <span style="mso-bidi-font-family:Consolas;color:black">We can implement this 
+        asynchronous stuff either directly in MVC Controller Or WEB API Controller<o:p></o:p></span></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <span style="mso-bidi-font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <span style="mso-bidi-font-family:Consolas;color:black">Suppose if we are 
+        implementing this in <b style="mso-bidi-font-weight:normal">WEB API controller
+        </b>then below is the code<o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span class="style1" style="font-family: Consolas; color: blue">public</span><span 
+            class="style1" style="font-family: Consolas; color: black"> </span>
+        <span class="style1" style="font-family: Consolas; color: blue">class</span><span 
+            class="style1" style="font-family: Consolas; color: black"> </span>
+        <span class="style1" style="font-family: Consolas; color: #2B91AF">
+        MyWebAPIController</span><span class="style1" 
+            style="font-family: Consolas; color: black"> : </span><span class="style1" 
+            style="font-family: Consolas; color: #2B91AF">ApiController</span><span 
+            style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
+        <span style="font-size:10.0pt;font-family:Consolas;color:black">{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        </span><span class="style1" style="font-family: Consolas; color: black">
+        DBEntities _db = </span><span class="style1" 
+            style="font-family: Consolas; color: blue">new</span><span class="style1" 
+            style="font-family: Consolas; color: black"> DBEntities();</span><o:p>&nbsp;</o:p></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; color: black; font-size: 11pt;">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span class="style1" style="font-family: Consolas; color: black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        </span><span class="style1" style="font-family: Consolas; color: blue">public</span><span 
+            class="style1" style="font-family: Consolas; color: black"> </span>
+        <span class="style1" style="font-family: Consolas; color: blue">async</span><span 
+            class="style1" style="font-family: Consolas; color: black"> 
+        Task&lt;IHttpActionResult&gt; <b style="mso-bidi-font-weight:normal">Create</b>(EmployeeMaster 
+        emp)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        </span><span style="font-size:10.0pt;font-family:Consolas;color:black">{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span class="style1" style="font-family: Consolas; color: black">
+        _db.EmployeeMaster.Add(emp);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span class="style1" style="font-family: Consolas; color: black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span class="style1" style="font-family: Consolas; color: blue">
+        await</span><span class="style1" style="font-family: Consolas; color: black"> 
+        _db.SaveChangesAsync();<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span class="style1" style="font-family: Consolas; color: black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span class="style1" style="font-family: Consolas; color: blue">
+        return</span><span class="style1" style="font-family: Consolas; color: black"> 
+        Created&lt;EmployeeMaster&gt;(</span><span class="style1" 
+            style="font-family: Consolas; color: #A31515">&quot;api/Employee/&quot;</span><span 
+            class="style1" style="font-family: Consolas; color: black"> + emp.Id, emp);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        </span><span style="font-size:10.0pt;font-family:Consolas;color:black">}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; color: black; font-size: 11pt;">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        </span><span class="style1" style="font-family: Consolas; color: black">public 
+        async Task&lt;IHttpActionResult&gt; <b style="mso-bidi-font-weight:normal">Read</b>()<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        </span><span style="font-size:10.0pt;font-family:Consolas;color:black">{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span class="style1" style="font-family: Consolas; color: black">
+        var data = await _db.EmployeeMaster.ToListAsync();<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span class="style1" style="font-family: Consolas; color: black">
+        return data;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        </span><span style="font-size:10.0pt;font-family:Consolas;color:black">}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; color: black; font-size: 11pt;">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span class="style1" style="font-family: Consolas; color: black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        </span><span class="style1" style="font-family: Consolas; color: blue">public</span><span 
+            class="style1" style="font-family: Consolas; color: black"> </span>
+        <span class="style1" style="font-family: Consolas; color: blue">async</span><span 
+            class="style1" style="font-family: Consolas; color: black"> 
+        Task&lt;IHttpActionResult&gt; <b style="mso-bidi-font-weight:normal">Update</b>(EmployeeMaster 
+        emp, </span><span class="style1" style="font-family: Consolas; color: blue">int</span><span 
+            class="style1" style="font-family: Consolas; color: black"> Id)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        </span><span style="font-size:10.0pt;font-family:Consolas;color:black">{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span class="style1" style="font-family: Consolas; color: black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span class="style1" style="font-family: Consolas; color: blue">
+        var</span><span class="style1" style="font-family: Consolas; color: black"> 
+        record = </span><span class="style1" style="font-family: Consolas; color: blue">
+        await</span><span class="style1" style="font-family: Consolas; color: black"> 
+        _db.EmployeeMaster.Where(f =&gt; f.id == Id).FirstOrDefaultAsync();<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span class="style1" style="font-family: Consolas; color: black">
+        record.firstname = emp.firstname;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span class="style1" style="font-family: Consolas; color: black">
+        record.lastname = emp.lastname;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span class="style1" style="font-family: Consolas; color: black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span class="style1" style="font-family: Consolas; color: blue">
+        await</span><span class="style1" style="font-family: Consolas; color: black"> 
+        _db.SaveChangesAsync();<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span class="style1" style="font-family: Consolas; color: black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span class="style1" style="font-family: Consolas; color: blue">
+        return</span><span style="font-size:
+10.0pt;font-family:Consolas;color:black">;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        </span><span style="font-size:10.0pt;font-family:Consolas;color:black">}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; color: black; font-size: 11pt;">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span class="style1" style="font-family: Consolas; color: black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        </span><span class="style1" style="font-family: Consolas; color: blue">public</span><span 
+            class="style1" style="font-family: Consolas; color: black"> </span>
+        <span class="style1" style="font-family: Consolas; color: blue">async</span><span 
+            class="style1" style="font-family: Consolas; color: black"> 
+        Task&lt;IHttpActionResult&gt; <b style="mso-bidi-font-weight:normal">Delete</b>(</span><span 
+            class="style1" style="font-family: Consolas; color: #2B91AF">Int32</span><span 
+            class="style1" style="font-family: Consolas; color: black"> Id)<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        </span><span style="font-size:10.0pt;font-family:Consolas;color:black">{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span class="style1" style="font-family: Consolas; color: black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span class="style1" style="font-family: Consolas; color: blue">
+        var</span><span class="style1" style="font-family: Consolas; color: black"> 
+        record = </span><span class="style1" style="font-family: Consolas; color: blue">
+        await</span><span class="style1" style="font-family: Consolas; color: black"> 
+        _db.EmployeeMaster.Where(f =&gt; f.id == Id).FirstOrDefaultAsync();<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span class="style1" style="font-family: Consolas; color: black">
+        _db.EmployeeMaster.Remove(record);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span class="style1" style="font-family: Consolas; color: black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span class="style1" style="font-family: Consolas; color: blue">
+        await</span><span class="style1" style="font-family: Consolas; color: black"> 
+        _db.SaveChangesAsync();<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        </span><span style="font-size:10.0pt;font-family:Consolas;color:black">}<o:p></o:p></span></p>
+    <p class="MsoNoSpacing" style="background: #E8E8E8">
+        <span style="font-family: Consolas; color: black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
+        <span style="font-size:10.0pt;
+font-family:Consolas;color:black">}<o:p></o:p></span></p>
+    <p class="MsoNormal" style="text-indent: .5in; font-size: 11pt;">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNormal" style="text-indent: .5in; font-size: 11pt;">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        Suppose if we are implementing this<b style="mso-bidi-font-weight:
+normal"> directly in Controller of MVC application</b> then <o:p></o:p>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="mso-spacerun:yes"><font size="3">&nbsp; </font></span>
+        <font size="3"><span style="font-family:Consolas;color:black">
+        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="font-family:Consolas;
+color:blue">public</span><span style="font-family:Consolas;color:black"> </span>
+        <span style="font-family:Consolas;color:blue">class</span><span style="font-family:
+Consolas;color:black"> </span><span style="font-family:Consolas;color:#2B91AF">
+        MyMVCAsyncController</span><span style="font-family:Consolas;color:black"> :
+        </span></font><span style="font-family:
+Consolas;color:#2B91AF"><font size="3">Controller</font></span><span style="font-family:Consolas;
+color:black"><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas;color:black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas;color:black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><font size="3">DBEntities _db = </font></span><font size="3">
+        <span style="font-family:Consolas;color:blue">new</span></font><span style="font-family:
+Consolas;color:black"><font size="3"> DBEntities();</font><o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none; font-size: 11pt;">
+        <span style="font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-family:
+Consolas;color:blue">public</span><span style="font-family:Consolas;color:black"> </span>
+        <span style="font-family:Consolas;color:blue">async</span><span 
+            style="font-family:Consolas;color:black"> Task&lt;actionresult&gt; GetData()<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas;color:black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>{<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none; font-size: 11pt;">
+        <span style="font-family:Consolas;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span><span style="font-family:
+Consolas;color:blue">return</span><span style="font-family:Consolas;color:black"> View(</span><span 
+            style="font-family:Consolas;color:#A31515">&quot;View&quot;</span><span 
+            style="font-family:Consolas;color:black">, </span>
+        <span style="font-family:
+Consolas;color:blue">await</span><span style="font-family:Consolas;color:black"> 
+        _db.EmployeeMaster.ToListAsync());<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #E8E8E8; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:Consolas;color:black"><span class="style1" 
+            style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNoSpacing" style="background: #E8E8E8">
+        <span style="font-family:Consolas;
+color:black"><span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><font size="3">}</font></span><o:p></o:p></p>
+    <p class="MsoNormal" style="text-indent: .5in; font-size: 11pt;">
+        <b style="mso-bidi-font-weight:
+normal"><o:p>&nbsp;</o:p></b></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        The above <b style="mso-bidi-font-weight:normal">can also be implemented by 
+        inheriting from AsyncController</b> controller class<o:p></o:p></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+
+</body>
+</html>

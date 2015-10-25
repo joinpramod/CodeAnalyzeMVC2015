@@ -1,0 +1,433 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+
+ p.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	}
+    </style>
+</head>
+<body>
+
+    <p class="MsoNormal">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="font-size:12.0pt;line-height:115%;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">Custom EditText for Android with 
+        custom lines displayed and line colors <o:p></o:p></span></b>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">import</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> 
+        android.content.Context;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">import</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> 
+        android.graphics.Canvas;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">import</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> 
+        android.graphics.Color;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">import</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> 
+        android.graphics.Paint;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">import</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> android.graphics.Rect;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">import</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> 
+        android.util.AttributeSet;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">import</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> 
+        android.widget.EditText;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">public</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> </span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">class</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> </span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#2B91AF">CustomEditText</span><span style="font-size:10.0pt;font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> extends 
+        EditText {<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        </span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">private</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> Rect _Rect;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        </span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">private</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> Paint _Paint;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        @Override<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        </span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">protected</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> </span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">void</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> onDraw(Canvas canvas) 
+        {<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">int</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> height = getHeight();<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">int</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> lHeight = 
+        getLineHeight();<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">int</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> count = 
+        (height/lHeight);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">if</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> (getLineCount() &gt; 
+        count) {<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>count = getLineCount();<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>Rect r = _Rect;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>Paint paint = _Paint;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">int</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> baseline = 
+        getLineBounds(0, r);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span></span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">for</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> (</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">int</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> i = 0; i &lt; count; i++) 
+        {<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>canvas.drawLine(r.left, baseline + 1, r.right, baseline + 1, paint);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>baseline += getLineHeight();<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>super.onDraw(canvas);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        </span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">public</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> CustomEditText(Context 
+        context, AttributeSet attrs) {<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>super(context, attrs);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>_Rect = </span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">new</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> Rect();<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>_Paint = </span>
+        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:blue">new</span><span style="font-size:10.0pt;font-family:Consolas;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> Paint();<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>_Paint.setColor(Color.BLUE);<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>_Paint.setStyle(Paint.Style.FILL_AND_STROKE);<span 
+            style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><o:p></o:p></span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">}<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&lt;vn.com.enclave.android.demo.CustomEditText<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>android:id=&quot;@+id/textView1&quot;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>android:layout_width=&quot;fill_parent&quot;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>android:layout_height=&quot;wrap_content&quot;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>android:layout_alignParentTop=&quot;true&quot;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>android:layout_centerHorizontal=&quot;true&quot;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>android:layout_marginTop=&quot;14dp&quot;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>android:ems=&quot;20&quot;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>android:text=&quot;@string/main_content&quot;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>android:textAppearance=&quot;?android:attr/textAppearanceMedium&quot; <o:p></o:p>
+        </span>
+    </p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><span style="mso-spacerun:yes">&nbsp; </span>/&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span 
+            style="font-size:
+10.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+        &nbsp;</o:p></span></p>
+
+</body>
+</html>

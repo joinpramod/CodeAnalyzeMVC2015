@@ -1,0 +1,218 @@
+﻿
+
+
+<div style="font-size:16px;width:100%">
+
+
+    <p style="font-weight: 700">
+            Topics Covered:
+    </p>
+
+<p>
+
+    •	MVC Framework
+        <br />
+    •	Model in details
+        <br />
+    •	View in details
+        <br />
+    •	Controller in details
+        <br />
+    •	Pipeline in MVC
+        <br />
+        •	Routing
+    <br />
+</p>
+
+
+
+<p style="font-weight: 700"> MVC Framework</p>
+
+<p>
+    MVC (Model View Controller), is simply a framework used to design web applications, as simple its definition could be.
+    <br />
+    •	<strong>Model</strong> : This layer represents the core of an application. It is responsible for maintaining the data of the application or can be termed  to be the Business layer.
+    <br />
+    •	<strong>View</strong> : As the name says about itself, this layer displays the data fetched or the designs. This can be termed simply as Display layer.
+    <br />
+    •	<strong>Controller</strong> : This handles the input to the database or fetches the data from the database records. This can be simply termed as Input layer.
+ 
+    The three layers are interconnected and are dependant on each other. The below figure will explain better:-
+</p>
+<div style="height:30%;width:30%">
+<img src="Articles/Images/MVC-Routing-Pipeline1.png" runat="server"/> 
+</div> 
+<p style="font-family:Calibri;font-size:16px;background-color:White">
+As we can see above, the Data layer or the Model that deals with the data is accessed both by the View and Controller. Here, in MVC there is separation between every laye, that helps in loose coupling the items and also in application development process. Now, one might wonder what exactly Separation of Concern means! This can be framed as there should not be or there should be minimal overlapping/dependancy of functions in an application. For example, take the scenario of the View and the Controller. Can they be separately done!! That is can their be no dependancy between them!! View is the presentation layer and the Controller is the action layer. We can have in real scenario a controller without a View, but a view without a controller sounds a bit radical. This is not necessarily true always. So, we can conclude here that Separation of Concern can be minimal but still lies a grey line. NOTE: Thus always have separate UI layer, Data access layer & Logic Layer in order to achieve clean separation.
+</p>
+<div style="height:70%;width:40%">
+<img src="Articles/Images/MVC Routing Pipeline2.jpg" /> 
+</div> 
+<p>
+The above image displays the simple MVC folder structure. The Models having the Entities, Controllers as well as the Views for each controller, the shared folder having the master pages.
+</p> 
+<div style="height:10%;width:10%">
+<img src="Articles/Images/MVC Routing Pipeline3.jpg" /> 
+</div> 
+<p>
+Lets get into more details.....
+</p> 
+
+
+<p style="font-weight: 700">&nbsp;</p>
+    <p style="font-weight: 700">Models</p> 
+<p>
+Models(in a bit more depth) : Contains all the application logic i.e.
+    <br />
+    •	Business logic
+    <br />
+    •	Validation Logic
+    <br />
+    •	Data access logic
+This holds as well as manipulates the data in the database. 
+    <br />
+    This folder contains the classes/entities that are required and present in the application.
+</p>
+<p style="font-weight: 700">Views</p> 
+
+<p>
+Views(in a bit more depth) : The View generally stores the Html files may it be .cshtml or .vbhtml (C# and VB) respectively. These may have extensions as html, asp, aspx. The interesting thing is every controller there is a view folder and for every action a view. There is always a Shared folder inside View, that is used to have the Layout or the Master pages.
+</p> 
+
+<p style="font-weight: 700">Controllers</p>
+<p>
+Controllers(in a bit more depth) : This contains the controller classes responsible for input and responses. The name of the Controller ends with Controller to distinguish. For example, "HomeController.cs". Every controller implements the Icontroller interface from the System.Web.Mvc namespace.
+</p>
+
+<pre class="brush: csharp;" style="font-size:medium;">
+public interface Icontroller {
+void Execute(RequestContext requestContext);
+}
+</pre> 
+<p style="font-family:Calibri;font-size:16px;background-color:White">
+    The single method Execute is invoked when a request is targeted at the controller class. 
+    What happens to the request that comes to the application? 
+    The request that comes to the web application first goes through the UrlRoutingModule object 
+    (System.Web.Routing.UrlRoutingModule). 
+    The request gets parsed and then the route selection is done. <br />
+    When the application starts up, it runs the Application_Start() method present in the Global.asax that marks the application initialization.<br />
+    •<strong>	HttpHandlers and HttpModules</strong>:- Module or the HttpModules is an assembly, that is called on every 
+        request that is made to our application. Where as the HttpHandlers is the solution/answer or running 
+        in response to the request made.<br />
+    Pipeline In MVC<br />
+    •	<strong>ROUTING</strong>:- This is the first step in the MVC pipeline, it is a pattern to match the incoming url request 
+        to the application. These URL are matched to the URLs registered to the Route Table. The route table has 
+        its set up done in the Global.asax. The routes are registered to the RouteConfig class that has the route 
+        URLs to be mapped and ignored in the application. Lets have a look at it:-
+</p>
+<pre class="brush: csharp;">
+protected void Application_Start()
+{
+    RouteConfig.RegisterRoutes(RouteTables.Routes);
+}
+
+public class RouteConfig
+{
+    public static void RegisterRoutes(RouteCollection routes)
+    {   
+        routes.Ignore(“{resource}.axd/{*pathinfo}”);
+        routes.MapRoute(
+        name:"",
+        url:"{controller}/{action}/{id}",
+        defaults: new {controller = "Home",action="Index",id=UrlParameter.optional}
+        );
+    }
+}
+</pre> 
+<p>
+Then the UrlRoutingModule discussed above finds a matching route for the incoming URL from the Route 
+Table. 
+When it matches, it retreives the IRouteHandler instance for that route (MvcRoutehandler). 
+Then the IRouteHandler's GetHttpHandler() is called and finally the ProcessRequest() method is invoked. 
+Then MvcRoutehandler instantiates and executes controller. 
+Here as you can see, the URL has the {controller}/{action}/{id}, the id is optional which is defined 
+in the defaults. 
+URL may also be only {controller}/{action}. 
+As the routes would be specified or registered in the Route Table, so will the navigation will be.
+</p> 
+<div style="height:35%;width:80%">
+<img src="Articles/Images/MVC Routing Pipeline4.png"/> 
+</div> 
+<pre class="brush: csharp;" style="font-size:medium;">
+  public class TenantController : Controller  //Derived from Base controller
+    {
+      public ActionResult Index() //Default Action method-URL: /Home/Index
+        {
+           return View();
+        }
+      public ActionResult Index(int id) //Action Method with an Id as parameter
+                                        // -URL: /Home/Index/3                                         
+        {
+          return View();
+        }
+     }
+ </pre>
+
+ <p>
+This is how the routing works on incoming request from the browser. Similarly we can use custom routes also 
+as not always we will be using Home/Index .. ;)
+ </p>
+
+<pre class="brush: csharp;" style="font-size:medium;">
+    public class RouteConfig
+    {
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.Ignore(“{resource}.axd/{*pathinfo}”);
+            routes.MapRoute(
+            name:"Employee",
+            url:"{controller}/{action}/{id}",
+            defaults: new{controller = "Employee",action="Add",id=UrlParameter.optional}//Adds a new employee action
+            );
+        }
+    }
+</pre>
+
+<p>
+If the Url matches any of the routing registered in the Table, the user lands on the View else 404 errornot found page.
+</p>
+<div style="height:10%;width:10%">
+<img src="Articles/Images/MVC Routing Pipeline5.png" /> 
+</div>
+
+<p>
+•	<strong>Initialization of Controller</strong> :- The real processing starts by the use of ProcessRequest(), that uses the 
+    IcontrollerFactory instance to' create the corresponding controller for the URL request. The IcontrollerFactory 
+    returns the appropriate controller for the request and instantiates that. Then the Execute() method mentioned 
+    above is invoked.<br />
+•	<strong>Invoking Controller Action</strong> :- The Execute() method refers the RouteData to get the appropriate action for the
+    controller in the Url request.
+     The controller then invokes its own InvokeAction() method.
+    public virtual bool InvokeAction(ControllerContext controllerContext, string actionName)
+    After getting the appropriate action, then comes the work of the model binders, default being 
+    System.Web.Mvc.DefaultModelBinder, receives the Http request, validates and does the conversions requiqred 
+    and also mapping the input values from the user.<br />
+•<strong>	Render View </strong>:- The user now would be expecting the beauty of the application to be shown. The View follows the 
+    same pattern as the Route. That is, the controller factory has a property known as ViewFactory(), which is a type 
+    of IviewFactory. This IviewFactory defines a method called CreateView(), that gets a name and instantiates and 
+    return IView, that has a property/method called RenderView() that has the necessary context information from the 
+    HttpResponse and returns the Html data as response.
+</p> 
+
+<div style="height:35%;width:80%">
+<img src="Articles/Images/MVC Routing Pipeline6.png" width="70% " height="20%"/> 
+</div>
+
+<p style="font-weight: 700">Conclusion</p> 
+<p>
+This was the basic and foremost things to knowabout MVC. These are all done on the background. Being Developers, not bothering about the flow is now worthy enough. Thus, Just adding a Controller an action to it and oviously a View to it, does not mean we have done something great!! You would always prefer a pot full with water rather than the one that is almost empty!!
+We are done with the first part. We will be covering interesting topics for learning MVC in part-2
+Hope this helps any way.
+</p> 
+
+
+
+
+</div> 
+
+

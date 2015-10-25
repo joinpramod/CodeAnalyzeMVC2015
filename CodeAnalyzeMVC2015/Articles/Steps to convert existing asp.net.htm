@@ -1,0 +1,412 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+
+p.MsoNoSpacing
+	{margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	        margin-left: 0in;
+            margin-right: 0in;
+            margin-top: 0in;
+        }
+ p.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	}
+    </style>
+</head>
+<body>
+
+    <p class="MsoNoSpacing">
+        The best way to convert asp.net web application to mvc is to first create a new 
+        mvc application and then start adding your asp.net files into the new project. 
+        This is becuase if you start converting an exisitng application the you might 
+        face lots of configuration issues.</p>
+    <p class="MsoNoSpacing">
+        &nbsp;</p>
+    <p class="MsoNoSpacing">
+        If you are planning to add mvc to an exisiting asp.net application then below 
+        are the steps you can try and get the configs right.</p>
+    <p class="MsoNoSpacing">
+        &nbsp;</p>
+    <p class="MsoNoSpacing">
+        &nbsp;</p>
+    <p class="MsoNoSpacing">
+        <span style="mso-bidi-font-weight:bold">Add References to</span><o:p></o:p></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        System.Web.Mvc.dll<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        System.Web.Optimization.dll<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        System.Web.Providers.dll<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        Newtonsoft.Json.dll<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">Razor View 
+        Engine<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        System.Web.Razor.dll<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">WebGrease.dll<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        Antlr3.Runtime.dll<o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        Update Web.config<o:p></o:p></p>
+    <p class="MsoNoSpacing">
+        <span style="mso-bidi-font-weight:bold"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&lt;appSettings&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&lt;add 
+        key=&quot;webpages:Version&quot; value=&quot;2.0.0.0&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&lt;add 
+        key=&quot;webpages:Enabled&quot; value=&quot;false&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&lt;add 
+        key=&quot;PreserveLoginUrl&quot; value=&quot;true&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&lt;add 
+        key=&quot;ClientValidationEnabled&quot; value=&quot;true&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&lt;add 
+        key=&quot;UnobtrusiveJavaScriptEnabled&quot; value=&quot;true&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&lt;/appSettings&gt;<o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&lt;pages&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;namespaces&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;add 
+        namespace=&quot;System.Web.Helpers&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;add 
+        namespace=&quot;System.Web.Mvc&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;add 
+        namespace=&quot;System.Web.Mvc.Ajax&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;add 
+        namespace=&quot;System.Web.Mvc.Html&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;add 
+        namespace=&quot;System.Web.Optimization&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;add 
+        namespace=&quot;System.Web.Routing&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;add 
+        namespace=&quot;System.Web.WebPages&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/namespaces&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&lt;/pages&gt;<o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&lt;handlers&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&nbsp;&nbsp;&lt;remove name=&quot;ExtensionlessUrlHandler-ISAPI-4.0_32bit&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&nbsp;&nbsp;&lt;remove name=&quot;ExtensionlessUrlHandler-ISAPI-4.0_64bit&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&nbsp;&nbsp;&lt;remove name=&quot;ExtensionlessUrlHandler-Integrated-4.0&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&nbsp;&nbsp;&lt;add name=&quot;ExtensionlessUrlHandler-ISAPI-4.0_32bit&quot; path=&quot;*.&quot;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">verb=&quot;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&quot; modules=&quot;IsapiModule&quot;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">
+        scriptProcessor=&quot;%windir%\Microsoft.NET\Framework\v4.0.30319\aspnet_isapi.dll&quot;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">preCondition=&quot;classicMode,runtimeVersionv4.0,bitness32&quot; 
+        responseBufferLimit=&quot;0&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&nbsp;&nbsp;&lt;add name=&quot;ExtensionlessUrlHandler-ISAPI-4.0_64bit&quot; path=&quot;*.&quot;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">verb=&quot;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&quot; modules=&quot;IsapiModule&quot;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">
+        scriptProcessor=&quot;%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll&quot;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">preCondition=&quot;classicMode,runtimeVersionv4.0,bitness64&quot; 
+        responseBufferLimit=&quot;0&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&nbsp;&nbsp;&lt;add name=&quot;ExtensionlessUrlHandler-Integrated-4.0&quot; path=&quot;*.&quot;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">verb=&quot;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&quot; 
+        type=&quot;System.Web.Handlers.TransferRequestHandler&quot;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">preCondition=&quot;integratedMode,runtimeVersionv4.0&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&lt;/handlers&gt;<o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&lt;configuration&gt;.&lt;runtime&gt;.&lt;assemblyBinding&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&lt;dependentAssembly&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&nbsp;&nbsp;&nbsp;&nbsp;&lt;assemblyIdentity name=&quot;System.Web.Helpers&quot; 
+        publicKeyToken=&quot;31bf3856ad364e35&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&nbsp;&nbsp;&nbsp;&nbsp;&lt;bindingRedirect oldVersion=&quot;1.0.0.0-2.0.0.0&quot; newVersion=&quot;2.0.0.0&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&lt;/dependentAssembly&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&lt;dependentAssembly&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&nbsp;&nbsp;&nbsp;&nbsp;&lt;assemblyIdentity name=&quot;System.Web.Mvc&quot; 
+        publicKeyToken=&quot;31bf3856ad364e35&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&nbsp;&nbsp;&nbsp;&nbsp;&lt;bindingRedirect oldVersion=&quot;1.0.0.0-4.0.0.0&quot; newVersion=&quot;4.0.0.0&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&lt;/dependentAssembly&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&lt;dependentAssembly&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&nbsp;&nbsp;&nbsp;&nbsp;&lt;assemblyIdentity name=&quot;System.Web.WebPages&quot; 
+        publicKeyToken=&quot;31bf3856ad364e35&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&nbsp;&nbsp;&nbsp;&nbsp;&lt;bindingRedirect oldVersion=&quot;1.0.0.0-2.0.0.0&quot; newVersion=&quot;2.0.0.0&quot; /&gt;<o:p></o:p></span></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-size:
+10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&lt;/dependentAssembly&gt;<o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        Add config files <o:p></o:p>
+    </p>
+    <p class="MsoNoSpacing">
+        <b style="mso-bidi-font-weight:normal">Add Bundle Config<o:p></o:p></b></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">Registers the 
+        JavaScript and CSS bundles. <o:p></o:p></span>
+    </p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        <b style="mso-bidi-font-weight:normal">Add Filter Config<o:p></o:p></b></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">Registers 
+        global filters like error handling and authorization. <o:p></o:p></span>
+    </p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        <b style="mso-bidi-font-weight:normal">Add Route Config<o:p></o:p></b></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">Registers the 
+        URL routes for the MVC application. <o:p></o:p></span>
+    </p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        <b style="mso-bidi-font-weight:normal">Change Global.asax<o:p></o:p></b></p>
+    <p class="MsoNoSpacing">
+        The Application_Start method calls the static methods to register the bundles, 
+        filters, routes, areas and display modes. This is how MVC starts listening for 
+        web requests.<o:p></o:p></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        <b style="mso-bidi-font-weight:normal">Add Content Folder<o:p></o:p></b></p>
+    <p class="MsoNoSpacing">
+        The Content folder contains the Images, Themes, and CSS for the site. Specific 
+        CSS files for individual pages should be named {Controller}.{Action}.css<o:p></o:p></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        <b style="mso-bidi-font-weight:normal">Add Views Folder<o:p></o:p></b></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        <b style="mso-bidi-font-weight:normal">Add Controllers Folder<o:p></o:p></b></p>
+    <p class="MsoNormal" 
+        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
+        <span style="font-family:
+Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">Controllers 
+        execute the requests made to the ASP.Net MVC website.<o:p></o:p></span></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing">
+        <o:p>&nbsp;</o:p></p>
+
+</body>
+</html>

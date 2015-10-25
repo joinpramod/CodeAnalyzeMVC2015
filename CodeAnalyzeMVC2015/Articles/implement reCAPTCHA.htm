@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+
+p.MsoNoSpacing
+	{margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	        margin-left: 0in;
+            margin-right: 0in;
+            margin-top: 0in;
+        }
+a:link
+	{font-family:"Times New Roman","serif";
+	color:blue;
+	text-decoration:underline;
+	text-underline:single;
+        }
+table.MsoTableGrid
+	{border:solid windowtext 1.0pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	}
+ p.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	}
+        .style1
+        {
+            font-size: 11pt;
+        }
+    </style>
+</head>
+<body>
+
+    <p class="MsoNoSpacing">
+        <span style="font-size:10.0pt;font-family:Consolas;
+color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNoSpacing" 
+        style="font-size: 11pt; mso-bidi-font-family: Consolas; color: black">
+        Download the .net library and public private key from the link below<o:p></o:p></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <span style="font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNoSpacing">
+        <a href="http://code.google.com/p/recaptcha/downloads/list?q=label:aspnetlib-Latest">
+        <span class="style1" style="mso-bidi-font-family:Consolas">
+        http://code.google.com/p/recaptcha/downloads/list?q=label:aspnetlib-Latest</span></a><b 
+            style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;mso-bidi-font-family:
+Consolas;color:black"> <o:p></o:p></span></b>
+    </p>
+    <p class="MsoNoSpacing">
+        <b style="mso-bidi-font-weight:normal"><span class="style1" 
+            style="mso-bidi-font-family: Consolas; color: black"><o:p>&nbsp;</o:p></span></b></p>
+    <p class="MsoNoSpacing">
+        <b style="mso-bidi-font-weight:normal"><span class="style1" 
+            style="mso-bidi-font-family: Consolas; color: black">After Download add 
+        reference to recaptcha.dll in the project in visual studio<o:p>,&nbsp;</o:p></span></b></p>
+    <p class="MsoNoSpacing">
+        <b style="mso-bidi-font-weight:normal"><span class="style1" 
+            style="mso-bidi-font-family: Consolas; color: black">Add the below 2 config 
+        values to web.config<o:p></o:p></span></b></p>
+    <p class="MsoNoSpacing">
+        <b style="mso-bidi-font-weight:normal"><span class="style1" 
+            style="mso-bidi-font-family: Consolas; color: black"><o:p>&nbsp;</o:p></span></b></p>
+    <p class="MsoNoSpacing" 
+        style="font-size: 11pt; mso-bidi-font-family: Consolas; color: black">
+        ReCaptchaPrivateKey <o:p></o:p>
+    </p>
+    <p class="MsoNoSpacing" 
+        style="font-size: 11pt; mso-bidi-font-family: Consolas; color: black">
+        ReCaptchaPublicKey<o:p></o:p></p>
+    <p class="MsoNoSpacing" 
+        style="font-size: 11pt; mso-bidi-font-family: Consolas; color: black">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <span style="mso-bidi-font-family:Consolas;color:black">In the view add the 
+        below code where you want recaptcha to be displayed<o:p></o:p></span></p>
+    <table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt" width="100%">
+        <tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes">
+            <td style="width: 6.65in; border: none; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; padding: 0in 5.4pt 0in 5.4pt" 
+                valign="top" width="638">
+                <p class="MsoNoSpacing" 
+                    style="font-size: 11pt; font-family: Consolas; color: black">
+                    @Html.Raw(Html.GenerateCaptcha())<o:p></o:p></p>
+                <p class="MsoNoSpacing" style="font-size: 11pt">
+                    <b style="mso-bidi-font-weight:normal">
+                    <span style="mso-bidi-font-family:Consolas"><o:p>&nbsp;</o:p></span></b></p>
+            </td>
+        </tr>
+    </table>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <span style="mso-bidi-font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNoSpacing" 
+        style="font-size: 11pt; font-family: Consolas; color: black">
+        <o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <span style="mso-bidi-font-family:Consolas;color:black">Controller looks as 
+        below<o:p></o:p></span></p>
+    <table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt" width="100%">
+        <tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes">
+            <td style="width: 6.65in; border: none; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; padding: 0in 5.4pt 0in 5.4pt" 
+                valign="top" width="638">
+                <p class="MsoNoSpacing" style="font-size: 11pt">
+                    <span style="mso-bidi-font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    [</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">HttpPost</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  color:black">]<o:p></o:p></span></p>
+                <p class="MsoNormal" 
+                    style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 11pt;">
+                    [RecaptchaControlMvc.CaptchaValidatorAttribute]<o:p></o:p></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
+                    public</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
+                    ActionResult</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
+                    Register(RegisterModel model, </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
+                    bool</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
+                    captchaValid)<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  color:black">{<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
+                    <span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
+                    if</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
+                    (!captchaValid)<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
+                    <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  color:black">{<o:p></o:p></span></p>
+                <p class="MsoNormal" 
+                    style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 11pt;">
+                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p>
+                </p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
+                    <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  color:black">}<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
+                    <span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
+                    else</span><span style="font-size:10.0pt;font-family:Consolas;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
+                    <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  color:black">{<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                    </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
+                    if</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
+                    (ModelState.IsValid)<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span>
+                    <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  color:black">{<o:p></o:p></span></p>
+                <p class="MsoNormal" 
+                    style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 11pt;">
+                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span><o:p></o:p>
+                </p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span>
+                    <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  color:black">}<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
+                    <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  color:black">}</span><o:p>&nbsp;</o:p></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
+                    <span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
+                    return</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
+                    View(model);<o:p></o:p></span></p>
+                <p class="MsoNoSpacing">
+                    <span class="style1" style="font-family: Consolas; color: black">}</span><span style="font-size:10.0pt;mso-bidi-font-family:Consolas;
+  color:black"><o:p></o:p></span></p>
+                <p class="MsoNoSpacing" style="font-size: 11pt">
+                    <b style="mso-bidi-font-weight:normal">
+                    <span style="mso-bidi-font-family:Consolas"><o:p>&nbsp;</o:p></span></b></p>
+            </td>
+        </tr>
+    </table>
+    <p class="MsoNoSpacing">
+        <span style="font-size:10.0pt;mso-bidi-font-family:Consolas;
+color:black"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNoSpacing">
+        <span style="font-size:10.0pt;mso-bidi-font-family:Consolas;
+color:black"><o:p>&nbsp;</o:p></span></p>
+
+</body>
+</html>

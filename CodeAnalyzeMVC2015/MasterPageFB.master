@@ -1,0 +1,121 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="MasterPageFB" Codebehind="MasterPageFB.master.cs" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head id="Head1" runat="server">
+	<%--<meta charset="UTF-8" content=""/>--%>
+	<%--<meta name="description" content="" />
+	<meta name="author" content="" />--%>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Code Analyze - Blogger Rewards</title>
+    <link id="Link1" runat="server" rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link id="Link2" runat="server" rel="icon" href="~/favicon.ico" type="image/ico" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+     <meta name="robots" content="noindex" />
+
+</head>
+
+<body>
+<form id="Form1" runat="server">
+
+<div id="fb-root"></div>
+<script>    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=848792638492356&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    } (document, 'script', 'facebook-jssdk'));</script>
+
+
+<header id="ccr-header">
+
+		<section id="ccr-nav-top" class="fullwidth">
+		<div class="fullwidth">
+			<div class="container">
+				<nav class="top-menu">
+					<ul class="left-top-menu">
+						<li><asp:LinkButton ID="lnkHome" ForeColor="White" runat="server" PostBackUrl="~/Articles.aspx" Text="Home" /></li>
+						<li><%--<a href="#">Site Map</a>--%></li>
+						<li><asp:LinkButton ID="lnkSuggestion" ForeColor="White" runat="server" PostBackUrl="~/Suggestions.aspx" Text="Contact Us" /></li>
+					</ul>
+
+					<ul class="right-top-menu pull-right">
+						<li><%--<a href="UserProfile.aspx">My Account</a>--%></li>
+						<li><%--<a href="UserProfile.aspx">Register</a>--%>
+                            <asp:LinkButton ID="btnUserProfile" runat="server" ForeColor="White" PostBackUrl="~/UserProfile.aspx" Text="Register" />
+                        </li>
+						<li> </li>
+						<li>
+							<%--<form class="form-inline" role="form" action="#">--%>
+                                               <asp:Button runat="server" Width="130px" Height="22px" ValidationGroup="Refer" OnClick="btnReferFriend_Click" BorderStyle="None" BackColor="#4fa4d5" ForeColor="White" Text="Refer Friend EMail" ID="btnReferFriend"/>
+							                    <asp:TextBox ID="txtReferEMail"  runat="server" ValidationGroup="Refer" Width="150px" Height="24px" BorderStyle="Groove" />
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
+                                                    ControlToValidate="txtReferEMail" ErrorMessage="*" ForeColor="White"
+                                                    ValidationGroup="Refer"></asp:RequiredFieldValidator>
+                                                    <asp:RegularExpressionValidator ID="RequiredFieldValidator3" runat="server" 
+                                    ControlToValidate="txtReferEMail" ErrorMessage="*" Font-Names="Calibri" 
+                                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"  ForeColor="White"
+                                    ValidationGroup="Refer"></asp:RegularExpressionValidator>
+
+							<%--</form>--%>
+						</li>
+					</ul> 
+				</nav>
+			</div>
+		</div>	
+	</section> 
+
+
+	<section id="ccr-site-title">
+		<div class="container">
+			<div class="site-logo">
+				<a href="Articles.aspx" class="navbar-brand">
+                    <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/cblogo.PNG" />
+						<h1><span>Code Analyze</span></h1>
+						<h3>Blogger Rewards</h3>
+				</a>
+			</div> 
+
+			
+		</div>
+	</section> 
+
+            
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>       
+               
+               
+               <footer id="ccr-footer">
+	<div class="container">
+	 	<div class="copyright">
+	 		&copy; 2014, Copyrights <a href="http://codeanalyze.com">CodeAnalyze</a>. All Rights Reserved
+	 	</div>
+
+	 	<div class="footer-social-icons">
+	 		<ul>
+	 			<li>
+	 				<a href="#"  class="google-plus"><i class="fa fa-google-plus"></i></a>
+	 			</li>
+	 			<li >
+	 				<a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+	 			</li>
+	 			<li >
+	 				<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+	 			</li>
+	 			<li >
+	 				<a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+	 			</li>
+	 		</ul>
+	 		
+	 	</div>
+
+	</div> 
+</footer>      
+
+    </form>
+</body>
+</html>

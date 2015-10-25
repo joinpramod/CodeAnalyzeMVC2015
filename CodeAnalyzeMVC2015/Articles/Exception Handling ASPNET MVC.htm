@@ -1,0 +1,114 @@
+﻿
+<div style="font-size:16px;width:100%">
+<h2>Introduction</h2>
+Exceptions, are like part and parcel of an application. They are boon and ban for an application to. Is'nt it?This would be controversial, for developers it helps them track minor and major defects in an application, and somtimes they are frustrating when it lets users land on the Yello screen of death each time. This would make the users mundane to the application. Thus to avoid this, developers handle the exceptions. But still sometimes there are a few unhandled exceptions. Now what is to be done for them? MVC provides us with built-in filters 'Exception Filters' about which we will discuss. Lets start..
+
+<!--more-->
+
+<br /><br />
+<h2>Get Started</h2>
+Exception filters run when some of the exceptions are unhandled and thrown from an invoked action. The reason for the exception can be anything and so is the source of the exception.
+
+<br /><br />
+
+<h3>Creating an Exception Filter</h3>
+Custom Exception Filters must implement the built in IExceptionFilter interface. The interface looks as :
+ <pre class="brush: csharp;" style="font-size:medium;">
+public interface IExceptionFilter{
+    void OnException(ExceptionContext filterContext)
+}
+</pre>
+Whenever an unhandled exception is encountered, the OnException method gets invoked. The parameter as we can see, <b>ExceptionContext</b> is derived from the <b>ControllerContext</b> and has a number of built in properties that can be used to get the information about the request causing the exception. There properties ExceptionContext possess are shown in the table:
+<table border="1">
+<tbody>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Detail</th>
+</tr>
+<tr>
+<td>Result</td>
+<td>ActionResult</td>
+<td>The result returned by the action being invoked.</td>
+</tr>
+<tr>
+<td>Exception</td>
+<td>Exception</td>
+<td>The unhandled exceptions caused from the actions in the applications.</td>
+</tr>
+<tr>
+<td>ExceptionHandled</td>
+<td>BOOL</td>
+<td>This is a very handy property, which returns a bool value (true/false) based on if the exception is handled by any of the filters in the applicaiton or not.</td>
+</tr>
+</tbody>
+</table>
+<p>
+    &nbsp;</p>
+The exception being thrown from the action is detailed by the <b>Exception</b> property and once handled (if), then the property <b>ExceptionHandled</b> can be toggled, so that the other filters would know if the exception has been already handled and cancel the other filter requests to handle. The problem, lies that if the exceptions are not handled, then the default MVC behaviour shows the dreaded yellow screen of death, to the users, which puts up a very bad impact on the users and more importantly, it exposes the application's handy and secure information to the outside world, which may have hackers and then the application gets into the road to hell. Thus, the exceptions need to be dealt very carefully.
+Lets demonstrate one small custom exception filter.
+This filter can be stored inside the Filters folder in the web project of the solution. Lets add a file/class called <b>CustomExceptionFilter.cs</b>
+<br />
+ <pre class="brush: csharp;" style="font-size:medium;">
+public class CustomExceptionFilter : FilterAttribute, IExceptionFilter 
+{
+     public void OnException(ExceptionContext filterContext) 
+     {
+        if(!filterContext.ExceptionHandled &amp;&amp; filterContext.Exception is NullReferenceException) 
+        {
+            filterContext.Result = new RedirectResult("customErrorPage.html");
+            filterContext.ExceptionHandled = true;   
+        }
+    }
+ }
+</pre>
+<p>
+    &nbsp;</p>
+Now let us understand what this actually does. as we can see this implements the interface as mentioned earlier and thus implements the method, <em>OnException</em>. This mehtod has the parameter ExceptionContext, the properties of which is mentioned in the table. In this custom filter we have handled the most common and neglected exception "Null Reference Exception", arises when a value returning null is not handled/checked and used in further implementations. The custom filter derives the FilterAttribute as to be used as Attribute over the action or the controller directly like <b>[CustomExceptionFilter]</b>. In this implementation above, we have used almost allthe important properties of the ExceptionContext. First, the check is used for the <em>ExceptionHandled</em> which returns a boolean value if the exception has been handled or not. If not then Check for the type of exception arisen. Since here we have used the NullReferenceException, we check for that exception. Then if the conditions are satisfied/passed we manipulate the result and return the RedirectResult (ActionResult type) and let the users land on a custom error page created in the application, to avoid the yellow dreaded screen.
+
+The use of the filter is pretty simple as this custom filter extends from the FilterAttribute. So based on the usage, this can be used as [CustomExceptionFilter] on the Controller Levelor the individual Action level,which ever is mandate.
+<br />
+
+ <pre class="brush: csharp;" style="font-size:medium;">
+//Over controller
+ [CustomExceptionFilter]
+ public class HomeController:Controller {
+    //......
+ }
+//Over the Action
+ [CustomExceptionFilter]
+ public ActionResult Index() {
+    //.......
+ }
+</pre>
+<p>
+    &nbsp;</p>
+Now, lets discuss about the in built <em>HandleAttribute</em>. This is a built in class which is used similar way as a filter attribute in MVC applications. The most important thing is this attribute works only when the <b>custom errors</b> in the web.config is enabledor set to true.
+the default mode for this element is RemoteOnly, which willonly work out when application is deployed and request is made from some other systems.
+Lets look at the properties of the HandleError Attribute.
+<ul>
+	<li><b>ExceptionType</b>: This property, as the name suggests tells the attribute the type of exception it needs to handle.</li>
+	<li><b>View</b>: This is the property, which we need to specify inorder to lets the attribute, land the end users after handling the exception</li>
+	<li><b>Master</b>: If there is a special layout, we have for the error page, then this master can be set to that layout path, if left empty, this will take the default layout of the application for the error pages.</li>
+</ul>
+<p>
+    &nbsp;</p>
+Thus, the below code snippet shows how to use the HandleError attribute
+<br />
+ <pre class="brush: csharp;" style="font-size:medium;">
+[HandleError(ExceptionType = typeof(NullReferenceException), View = "CustomErrorPage")] {
+public Action Result {
+    //........
+    var testVal = null;
+    //Unhandled and used..
+ }
+</pre>
+
+<b>Caution:</b> While reading through the Adam Freeman, a very interesting note of caution was mentioned while using the HandleError attribute. In the custom error page, we would be using the HandleError Info like the Stack Trace, the exception message etc. Since we would not like to show this to the end user, we need to put the stack trace inside a hidden field or make the html tag invisible because <em>The view is not displayed tothe user unless the Exception.StackTrace is included in the View.</em>.
+<br /><br />
+<h2>Conclusion &amp; References</h2>
+Thus, we learnt the creation of custom exception filters as well as the built-in filters in MVC applications.There are various ways/tools now tohandle exceptions, but stillwe can make use of these filters in order to avoid detrimental effects on our applications.
+<b>References</b>: Adam Freeman-Professional Asp.Net MVC 4 &amp; MSDN
+I hope this would help developers &amp; beginners. The concept is interesting when we use them. So start using and enjoy Coding. :)
+
+</div>

@@ -1,0 +1,162 @@
+﻿
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+    <p>
+        &nbsp;</p>
+    <p>
+        <strong>Connect to Microsoft Azure</strong></p>
+    
+     <p>
+        To do this first we need to Azure account
+
+         <br />
+         1. Go to Server Explorer in Visual Studio
+         <br />
+         2. Click on Azure and login into your account
+         <br />
+         3. Go to Storage after successful connection
+     </p>
+    <p>
+        &nbsp;</p>
+
+
+    <p style="font-weight: 700">
+        Create Azure Cloud Storage</p>
+
+    <p>
+        1. In your Visual Studio, Go to File- New Project.
+        <br />
+        2. Go to Installed->Templates->Visual C#.
+        <br />
+        3. Select Cloud.
+        <br />
+        4. Select Azure Cloud Service.
+        <br />
+        5. Enter name of your project.
+        In this case TestAzureVideoBlob.web
+     </p>
+    <p>
+        &nbsp;</p>
+       
+    <p style="font-weight: 700">
+        Create Web Role</p>
+    <p>
+        Next we need to create a Web Role to proceed further in the new window that appears.
+    </p>
+    <p>
+        1. Select "ASP.NET Web Role". <br />
+        2. Click on right mark arrow head button to add web role. <br />
+        3. Name it here it is "WebRoleVideoBlob". <br />
+        4. In the next window select MVC and hit OK 
+    </p>
+    <p>
+        <br />
+    </p>
+
+    <p style="font-weight: 700">
+        Work on Visual Studio Solution</p>
+     <p>
+        This will now create a visual studio solution, this will have 2 projects
+        Cloud Project - TestAzureVideoBlob.web
+        ASP.NET MVC web Project - WebRoleVideoBlob
+    </p>
+
+    <p style="font-weight: 700">
+        Create Connection String to connect Asure Cloud from solution</p>
+     <p>
+        Go to Cloud project - TestAzureVideoBlob.
+         <br />
+         Go to Roles Folder 
+         <br />
+         Right click and select properties.
+         <br />
+         Now Go to Settings.
+         <br />
+         Click on Add Settings.
+         <br />
+         This will have 3 Tabs Name, Type and Value.
+            <br />
+&nbsp; Enter your connection string name.
+            <br />
+&nbsp; Select "Connection string" for Type
+            <br />
+&nbsp; Click on Browse button for Connection String, in new window select "Your Subscription" and your Account subsequently.
+     </p>
+    <p>
+        &nbsp;</p>
+
+   
+    <p style="font-weight: 700">
+        MVC Code to store Video Files in blob formatt</p>
+      <p>
+        Create a model class some thing like VideoBlobs.cs <br />
+        Add the following code as given below
+      </p>
+    <p style="font-weight: 700">
+        &nbsp;</p>
+    <p style="font-weight: 700">
+        Model - VideoBlobs.cs</p>
+   
+      <pre class="brush: csharp;" style="font-size:medium;">
+    public class VideoBlobs
+    { 
+        public CloudBlobContainer AzureCloudConnect() 
+        { 
+            CloudStorageAccount storageac = CloudStorageAccount.Parse(RoleEnvironment.GetConfigurationSettingValue("ConnectionString")); 
+            CloudBlobClient client = storageac.CreateCloudBlobClient(); 
+            CloudBlobContainer container = client.GetContainerReference("VideoFiles"); 
+             return container; 
+        } 
+
+        public List GetBlobList() 
+        { 
+            CloudBlobContainer container = AzureCloudConnect(); 
+            List lstblobs = new List(); 
+            foreach (var item in container.ListBlobs()) 
+            { 
+                lstblobs.Add(item.Uri.ToString()); 
+            } return lstblobs; 
+        } 
+
+         public void AddBlob(HttpPostedFileBase videoFile) 
+        { 
+                CloudBlobContainer container = AzureCloudConnect(); 
+                CloudBlockBlob blob = container.GetBlockBlobReference(videoFile.FileName); 
+                blob.UploadFromStream(videoFile.InputStream); 
+        } 
+    }
+    </pre>    
+ 
+    <p style="font-weight: 700">
+        Controller - BlobController.cs</p>
+
+
+ 
+    <pre class="brush: csharp;">
+    public class BlobsController : Controller 
+    { 
+        BlBlobs objbl = new BlBlobs(); 
+        public ActionResult Index() 
+        { 
+            return View(objbl.GetBlobList()); 
+        } 
+        [HttpPost] 
+        public ActionResult Add(HttpPostedFileBase pic) 
+        { 
+            objbl.AddBlob(pic); 
+            return RedirectToAction("Index"); 
+        } 
+    }
+    </pre>
+    
+    <p style="font-weight: 700">
+        View - Index.cshtml</p>
+   
+      <pre class="brush: csharp;">
+    @model List<string>
+    @{
+        ViewBag.Title = "Index";
+    }
+    </pre>
+
+</div>

@@ -1,0 +1,400 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+  
+    <style type="text/css">
+
+p.MsoNoSpacing
+	{margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	        margin-left: 0in;
+            margin-right: 0in;
+            margin-top: 0in;
+        }
+table.MsoTableGrid
+	{border:solid windowtext 1.0pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	}
+ p.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	}
+        .style1
+        {
+            font-size: 11pt;
+        }
+        .style2
+        {
+            width: 8.24in;
+        }
+    </style>
+  
+</head>
+<body>
+
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="mso-bidi-font-family:Consolas;color:black">WebGrid has inbuilt 
+        features for most of the features we need or have in ASP.NET gridview<o:p></o:p></span></b></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="mso-bidi-font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></b></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="mso-bidi-font-family:Consolas;color:black">Sample webgrid code on 
+        view is as shown below<o:p></o:p></span></b></p>
+    <table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt" width="100%">
+        <tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes">
+            <td style="width: 6.65in; border: none; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; padding: 0in 5.4pt 0in 5.4pt" 
+                valign="top" width="638">
+                <p class="MsoNoSpacing">
+                    <span class="style1" style="font-family: Consolas; color: blue">&lt;</span><span 
+                        class="style1" style="font-family: Consolas; color: maroon">div</span><span 
+                        class="style1" style="font-family: Consolas; color: black"> </span>
+                    <span class="style1" style="font-family: Consolas; color: red">id</span><span 
+                        class="style1" style="font-family: Consolas; color: blue">=&quot;gridContent&quot;&gt;</span><b style="mso-bidi-font-weight:
+  normal"><span style="font-size:10.0pt;mso-bidi-font-family:Consolas;
+  color:black"><o:p></o:p></span></b></p>
+                <p class="MsoNormal" 
+                    style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 11pt;">
+                    @{<o:p></o:p></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                    </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
+                    var</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
+                    gd = </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
+                    new</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
+                    WebGrid</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">(Model, 
+                    canPage: </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
+                    true</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">, 
+                    rowsPerPage: 5, canSort: </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
+                    true</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  color:black">,</span><span 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"><span 
+                        class="style1" style="mso-spacerun:yes">&nbsp; </span></span>
+                    <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  color:black"><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    ajaxUpdateContainerId: </span></span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
+                    &quot;gridContent&quot;</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">);<o:p></o:p></span></p>
+                <p class="MsoNormal" 
+                    style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 11pt;">
+                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p>
+                </p>
+                <p class="MsoNoSpacing">
+                    <span class="style1" style="font-family: Consolas; color: black">}</span><b 
+                        style="mso-bidi-font-weight:normal"><span 
+                        style="font-size:10.0pt;mso-bidi-font-family:Consolas;color:black"><o:p></o:p></span></b></p>
+                <p class="MsoNoSpacing">
+                    <span class="style1" style="font-family: Consolas; color: blue">&lt;/</span><span 
+                        class="style1" style="font-family: Consolas; color: maroon">div</span><span 
+                        class="style1" style="font-family: Consolas; color: blue">&gt;</span><b 
+                        style="mso-bidi-font-weight:normal"><span 
+                        style="font-size:10.0pt;mso-bidi-font-family:Consolas;color:black"><o:p></o:p></span></b></p>
+                <p class="MsoNoSpacing" style="font-size: 11pt">
+                    <b style="mso-bidi-font-weight:normal">
+                    <span style="mso-bidi-font-family:Consolas"><o:p>&nbsp;</o:p></span></b></p>
+            </td>
+        </tr>
+    </table>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="mso-bidi-font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></b></p>
+    <p class="MsoNoSpacing">
+        <b style="mso-bidi-font-weight:normal"><span class="style1" 
+            style="mso-bidi-font-family: Consolas; color: black"><o:p>&nbsp;</o:p></span></b></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="mso-bidi-font-family:Consolas;color:black">canPage
+        <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>-attribute is for Paging<o:p></o:p></span></b></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="mso-bidi-font-family:Consolas;color:black">rowsPerPage
+        <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>-attribute 
+        is for pagesize<o:p></o:p></span></b></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="mso-bidi-font-family:Consolas;color:black">canSort
+        <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>-attribute is for sorting<o:p></o:p></span></b></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="mso-bidi-font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></b></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="mso-bidi-font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></b></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="mso-bidi-font-family:Consolas;color:black">ajaxUpdateContainerId – 
+        attribute is for implementing ajax, this is wrapping the whole webgrid object in<span 
+            style="mso-spacerun:yes">&nbsp; </span>div as shown below<o:p></o:p></span></b></p>
+    <table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt" width="100%">
+        <tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes">
+            <td class="style2" 
+                style="border-style: none; border-color: inherit; border-width: medium; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; padding: 0in 5.4pt 0in 5.4pt" 
+                valign="top">
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    @gd.GetHtml(tableStyle: </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
+                    &quot;csstable&quot;</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  color:black">,<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    headerStyle: </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
+                    &quot;csshead&quot;</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  color:black">,<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    alternatingRowStyle: </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
+                    &quot;cssaltRow&quot;</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  color:black">,<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    selectedRowStyle: </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
+                    &quot;cssselectRow&quot;</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  color:black">,<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    columns: gd.Columns(<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    gd.Column(</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;FirstName&quot;</span><span 
+                        class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">,
+                    </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
+                    &quot; FirstName&quot;</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">),<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    gd.Column(</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;LastName&quot;</span><span 
+                        class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">,
+                    </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
+                    &quot; LastName&quot;</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">),<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    gd.Column(</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;Address&quot;</span><span 
+                        class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">,
+                    </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
+                    &quot;Address&quot;</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">, 
+                    style: </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
+                    &quot;description&quot;</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">),<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    gd.Column(</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;Age&quot;</span><span 
+                        class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">,
+                    </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
+                    &quot; Age&quot;</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">),<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    gd.Column(</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;State&quot;</span><span 
+                        class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">,
+                    </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
+                    &quot; State&quot;</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">),<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    gd.Column(</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;UserName&quot;</span><span 
+                        class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">,
+                    </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
+                    &quot;UserName&quot;</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">),<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    gd.Column(</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;Details&quot;</span><span 
+                        class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">, 
+                    format: @&lt;text&gt;@Html.ActionLink(</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;Details&quot;</span><span 
+                        class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">,
+                    </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
+                    &quot;Details&quot;</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">,
+                    </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
+                    new</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
+                    { id = item.Id }, </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
+                    &quot;&quot;</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">) 
+                    &lt;/text&gt;),<o:p></o:p></span></p>
+                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;mso-layout-grid-align:none;text-autospace:none">
+                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
+                    gd.Column(</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;Edit&quot;</span><span 
+                        class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">, 
+                    format: @&lt;text&gt;@Html.ActionLink(</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;Edit&quot;</span><span 
+                        class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">,
+                    </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
+                    &quot;Edit&quot;</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">,
+                    </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
+                    new</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
+                    { id = item.Id }, </span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
+                    &quot;&quot;</span><span class="style1" 
+                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">) 
+                    &lt;/text&gt;))<o:p></o:p></span></p>
+                <p class="MsoNoSpacing">
+                    <span class="style1" style="font-family: Consolas; color: black">
+                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>)<span 
+                        style="mso-tab-count:1">&nbsp; </span></span>
+                    <b style="mso-bidi-font-weight:normal">
+                    <span style="font-size:10.0pt;mso-bidi-font-family:Consolas;color:black"><o:p></o:p>
+                    </span></b>
+                </p>
+                <p class="MsoNoSpacing" style="font-size: 11pt">
+                    <b style="mso-bidi-font-weight:normal">
+                    <span style="mso-bidi-font-family:Consolas"><o:p>&nbsp;</o:p></span></b></p>
+            </td>
+        </tr>
+    </table>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="mso-bidi-font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></b></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="mso-bidi-font-family:Consolas;color:black">tableStylee<span 
+            style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>-attribute is to assign css style class for whole grid<o:p></o:p></span></b></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="mso-bidi-font-family:Consolas;color:black">headerStyle<span 
+            style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>-</span></b> <b style="mso-bidi-font-weight:normal">
+        <span style="mso-bidi-font-family:Consolas;
+color:black">attribute is to assign css style class for header<o:p></o:p></span></b></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="mso-bidi-font-family:Consolas;color:black">alternatingRowStyle<span 
+            style="mso-tab-count:1"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>-</span></b> <b style="mso-bidi-font-weight:
+normal"><span style="mso-bidi-font-family:Consolas;color:black">attribute is to assign 
+        css style class for alternating roww<o:p></o:p></span></b></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="mso-bidi-font-family:Consolas;color:black">selectedRowStyle<span 
+            style="mso-tab-count:1"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>-attribute is to assign css style class for selected row<o:p></o:p></span></b></p>
+    <p class="MsoNoSpacing" style="font-size: 11pt">
+        <b style="mso-bidi-font-weight:normal">
+        <span style="mso-bidi-font-family:Consolas;color:black">columnss<span 
+            style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>- is to customize the column names, can add some button columns if needed
+        <span style="mso-tab-count:
+1">&nbsp; </span><font size="3">and so on</font><o:p></o:p></span></b></p>
+
+    </body>
+</html>
