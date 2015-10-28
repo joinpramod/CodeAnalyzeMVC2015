@@ -314,16 +314,30 @@ public partial class Solutions : System.Web.UI.UserControl
 
                 divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("\r\n", "#####");
 
+                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("<br>", "<br />");
 
                 foreach (Match regExp in Regex.Matches(divQuestionDetails.InnerHtml, @"\<pre\>(.*?)\<br />(.*?)\</pre\>", RegexOptions.IgnoreCase))
                 {
-                    //  matchFound = true;
                     divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace(regExp.Value, regExp.Value.Replace("<br />", ""));
+                }
+
+                foreach (Match regExp in Regex.Matches(divQuestionDetails.InnerHtml, @"\<pre\>(.*?)\&nbsp; (.*?)\</pre\>", RegexOptions.IgnoreCase))
+                {
                     divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace(regExp.Value, regExp.Value.Replace("&nbsp; ", " "));
                 }
 
+                foreach (Match regExp in Regex.Matches(divQuestionDetails.InnerHtml, @"\<pre\>(.*?)\##########(.*?)\</pre\>", RegexOptions.IgnoreCase))
+                {
+                    divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace(regExp.Value, regExp.Value.Replace("##########", "#####"));
+                }
+
+
                 divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("<pre>", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
                 divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("#####", "\r\n");
+                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("<html>", "");
+                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("</html>", "");
+                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("<body>", "");
+                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("</body>", "");
 
                 divQuestionDetails.Style.Add("font-family", "Calibri");
 
@@ -387,9 +401,43 @@ public partial class Solutions : System.Web.UI.UserControl
                 //Session["QuestionTitle"] = dsQuestion.Rows[0]["QuestionTitle"].ToString();
                 lblQuestionTitle.Text = "<b>" + dsQuestion.Rows[0]["QuestionTitle"].ToString() + "<b>";
                 divQuestionDetails.InnerHtml = dsQuestion.Rows[0]["Question"].ToString().Replace("font-size: x-small", "font-size: medium");
-                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.ToString().Replace("<b>", "");
-                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.ToString().Replace("</b>", "");
+                //divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.ToString().Replace("<b>", "");
+                //divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.ToString().Replace("</b>", "");
                 divQuestionDetails.Style.Add("font-family", "Calibri");
+
+                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("\r\n            #codestart", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("#codeend\r\n        ", "</pre>");
+
+                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("#codestart", "<pre>");
+                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("#codeend", "</pre>");
+
+                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("\r\n", "#####");
+
+                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("<br>", "<br />");
+
+                foreach (Match regExp in Regex.Matches(divQuestionDetails.InnerHtml, @"\<pre\>(.*?)\<br />(.*?)\</pre\>", RegexOptions.IgnoreCase))
+                {
+                    divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace(regExp.Value, regExp.Value.Replace("<br />", ""));
+                }
+
+                foreach (Match regExp in Regex.Matches(divQuestionDetails.InnerHtml, @"\<pre\>(.*?)\&nbsp; (.*?)\</pre\>", RegexOptions.IgnoreCase))
+                {
+                    divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace(regExp.Value, regExp.Value.Replace("&nbsp; ", " "));
+                }
+
+                foreach (Match regExp in Regex.Matches(divQuestionDetails.InnerHtml, @"\<pre\>(.*?)\##########(.*?)\</pre\>", RegexOptions.IgnoreCase))
+                {
+                    divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace(regExp.Value, regExp.Value.Replace("##########", "#####"));
+                }
+
+
+                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("<pre>", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("#####", "\r\n");
+                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("<html>", "");
+                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("</html>", "");
+                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("<body>", "");
+                divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("</body>", "");
+
 
                 //  divQuestionDetails.InnerHtml = divQuestionDetails.InnerHtml.Replace("<pre>", "<pre class=prestyle>");
 
@@ -437,12 +485,18 @@ public partial class Solutions : System.Web.UI.UserControl
 
                 foreach (Match regExp in Regex.Matches(htcReplyContent.InnerHtml, @"\<pre\>(.*?)\<br />(.*?)\</pre\>", RegexOptions.IgnoreCase))
                 {
-                    //  matchFound = true;
                     htcReplyContent.InnerHtml = htcReplyContent.InnerHtml.Replace(regExp.Value, regExp.Value.Replace("<br />", ""));
+                }
+
+                foreach (Match regExp in Regex.Matches(htcReplyContent.InnerHtml, @"\<pre\>(.*?)\&nbsp; (.*?)\</pre\>", RegexOptions.IgnoreCase))
+                {
                     htcReplyContent.InnerHtml = htcReplyContent.InnerHtml.Replace(regExp.Value, regExp.Value.Replace("&nbsp; ", " "));
                 }
 
-
+                foreach (Match regExp in Regex.Matches(htcReplyContent.InnerHtml, @"\<pre\>(.*?)\##########(.*?)\</pre\>", RegexOptions.IgnoreCase))
+                {
+                    htcReplyContent.InnerHtml = htcReplyContent.InnerHtml.Replace(regExp.Value, regExp.Value.Replace("##########", "#####"));
+                }
 
                 htcReplyContent.InnerHtml = htcReplyContent.InnerHtml.Replace("<pre>", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
 

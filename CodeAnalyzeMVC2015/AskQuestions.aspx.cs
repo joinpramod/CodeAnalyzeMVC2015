@@ -176,16 +176,19 @@ public partial class AskQuestions : System.Web.UI.Page
                 question.QuestionTypeId = int.Parse(ddType.SelectedValue);
                 question.OptionID = 1;
 
-                //EditorAskQuestion.Content = EditorAskQuestion.Content.Replace("&amp;", "&")
-                //    .Replace("&lt;", "<")
-                //    .Replace("&gt;", ">")
-                //    .Replace("&apos;", "'")
-                //    .Replace("&quot;", "\"");
+            //EditorAskQuestion.Content = EditorAskQuestion.Content.Replace("&amp;", "&")
+            //    .Replace("&lt;", "<")
+            //    .Replace("&gt;", ">")
+            //    .Replace("&apos;", "'")
+            //    .Replace("&quot;", "\"");
 
-                //question.QuestionDetails = customEditor2.Content;
-                //question.QuestionDetails = Utilities.ExpandUrls(EditorAskQuestion.Content);
+            //question.QuestionDetails = customEditor2.Content;
+            //question.QuestionDetails = Utilities.ExpandUrls(EditorAskQuestion.Content);
 
-                if (EditorAskQuestion.Content.Length > 10000)
+            EditorAskQuestion.Content = EditorAskQuestion.Content.Replace("<div>", "");
+            EditorAskQuestion.Content = EditorAskQuestion.Content.Replace("</div>", "");
+
+            if (EditorAskQuestion.Content.Length > 10000)
                 {
                     EditorAskQuestion.Content = EditorAskQuestion.Content.Substring(0, 10000);
                 }
