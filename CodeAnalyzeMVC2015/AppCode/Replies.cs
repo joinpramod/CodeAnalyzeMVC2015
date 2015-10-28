@@ -167,6 +167,12 @@ namespace CodeAnalyzeMVC2015
                         CmdExecute.Transaction = TrTransaction;
                     }
                     SqlDataReader DATReader = CmdExecute.ExecuteReader();
+
+                    while (DATReader.Read())
+                    {
+                        NewMasterID = double.Parse(DATReader[0].ToString());
+                    }
+
                     DATReader.Close();
                 }
                 catch (Exception ex)
