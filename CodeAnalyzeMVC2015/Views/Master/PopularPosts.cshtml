@@ -1,0 +1,24 @@
+﻿<table>
+
+    @foreach (CodeAnalyzeMVC2015.Models.ArticlesModel articlesModel in Model)
+    {
+        <tr>
+            <td colspan="5">
+                <img id="imgArrow" src="~/Images/WriteArticle.png" height="25" width="25" />
+                <a href="Articles/Articles/" style="color:black">@articlesModel.ArticleTitle</a>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 80px;" align="left"><span class="date">@DateTime.Parse(@articlesModel.InsertedDate).ToShortDateString()</span></td>
+            <td style="width: 80px;" align="left"><i class="fa fa-thumbs-o-up"></i>@articlesModel.ThumbsUp</td>
+            <td style="width: 80px;" align="left"><i class="fa fa-thumbs-o-down"></i>@articlesModel.ThumbsDown</td>
+            <td align="right">
+                
+                    <img id="ImageButton1" height="5px" src="~/Images/eye.png" width="5px" />
+            </td>
+            <td style="width: 40px;" align="left">@articlesModel.Views</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+
+    }
+</table>

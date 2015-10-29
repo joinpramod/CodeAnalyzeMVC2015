@@ -10,6 +10,9 @@ namespace CodeAnalyzeMVC2015.Controllers
     {
         public ActionResult Index()
         {
+
+            ViewBag.IsUserLoggedIn = false;
+            ViewBag.lblFirstName = "";
             return View();
         }
 

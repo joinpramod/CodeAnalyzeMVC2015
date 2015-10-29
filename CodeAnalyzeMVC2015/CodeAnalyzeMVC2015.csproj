@@ -291,6 +291,8 @@
     <Compile Include="MasterPageNoGoog.master.designer.cs">
       <DependentUpon>MasterPageNoGoog.master</DependentUpon>
     </Compile>
+    <Compile Include="Models\ArticlesModel.cs" />
+    <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="MVC.aspx.designer.cs">
       <DependentUpon>MVC.aspx</DependentUpon>
     </Compile>
@@ -766,6 +768,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Master\PopularPosts.cshtml" />
+    <Content Include="Views\Master\RecentPosts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

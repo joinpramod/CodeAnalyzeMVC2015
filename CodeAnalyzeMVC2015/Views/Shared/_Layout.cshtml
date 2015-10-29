@@ -1,44 +1,372 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Code Analyze - Blogger Rewards</title>
+    <link id="Link1" rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link id="Link2" rel="icon" href="~/favicon.ico" type="image/ico" />
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script src="https://apis.google.com/js/platform.js" async defer type="text/javascript"></script>
+
+    <script type="text/javascript" src="~/js/sCode.js"></script>
+    <script type="text/javascript" src="~/js/sCodeJScript.js"></script>
+    <script type="text/javascript" src="~/js/sCodeCSharp.js"></script>
+    <script type="text/javascript" src="~/js/JavaScript1.js"></script>
+    <link type="text/css" rel="stylesheet" href="~/css/sCodeCSS.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/CodeDecorate.css" />
+
+    <script src="~/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="~/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/js/custom.js" type="text/javascript"></script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-58993626-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Language" content="en-us" />
+    <meta name="Robots" content="All" />
+    <style type="text/css">
+        .fb-like {
+            transform: scale(1.2);
+            -ms-transform: scale(1.2);
+            -webkit-transform: scale(1.2);
+            -o-transform: scale(1.2);
+            -moz-transform: scale(1.2);
+        }
+    </style>
+
+
+    <script>
+        (function (d, s, id) {
+               var js, fjs = d.getElementsByTagName(s)[0];
+               if (d.getElementById(id)) return;
+               js = d.createElement(s); js.id = id;
+               js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=848792638492356&version=v2.0";
+               fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+
+    @*@Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")*@
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+    <header id="ccr-header">
+        <section id="ccr-nav-top" class="fullwidth">
+            <div class="fullwidth">
+                <div class="container">
+                    <nav class="top-menu">
+                        <ul class="left-top-menu">
+                            <li><a href="~/Articles.aspx">Home</a> </li>
+                            <li></li>
+                            <li><a href="~/Suggestions.aspx">Contact Us</a> </li>
+                        </ul>
+
+                        <ul class="right-top-menu pull-right">
+                            <li></li>
+                            <li>
+                                <a href="~/UserProfile.aspx">Register</a> 
+                            </li>
+                            <li>
+                                <a href="~/Login.aspx">Sign In</a> 
+                            </li>
+                            <li> <a href="~/Login.aspx">Log Out</a> </li>
+                            <li>
+                                    <asp:Button  Width="130px" Height="22px" OnClick="btnReferFriend_Click" BorderStyle="None" BackColor="#4fa4d5" ForeColor="White" Text="Refer Friend EMail" ID="btnReferFriend" />
+                                    <asp:TextBox ID="txtReferEMail"  ValidationGroup="Refer" Width="150px" Height="24px" BorderStyle="Groove" />
+
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section id="ccr-site-title">
+            <div class="container">
+                <div class="site-logo">
+                    <a href="~/Articles.aspx" class="navbar-brand">                    
+                        <img  src="~/Images/cblogo.PNG" />                     
+                        <h1><span>Code Analyze</span></h1>
+                        <h3>Blogger Rewards</h3>
+                    </a>
+                </div>
+
+                <ul class="right-top-menu pull-right">
+
+                   
+
+
+                   
+                </ul>
+            </div>
+        </section>
+
+
+                <section id="ccr-site-title1">
+                    <div class="container" style="font-size:16px">
+
+                    </div>
+                </section>
+
+                <section id="ccr-nav-main">
+                    <nav class="main-menu">
+                        <div class="container">
+
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".ccr-nav-main">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                            </div>
+
+                            <div class="collapse navbar-collapse ccr-nav-main">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="~/Articles.aspx">Articles</a></li>
+                                    <li><a href="~/PostArticles.aspx">Post Article</a></li>
+                                    <li><a href="~/AskQuestions.aspx">Post Question</a></li>
+                                    <li class="dropdown">
+                                        <a href="#">Tutorials<i class="fa fa-caret-down"></i></a>
+                                        <ul class="sub-menu">
+                                            <li><a href="~/Topics.aspx">Topics</a></li>
+                                            <li><a href="~/AngularJS.aspx">AngularJS</a></li>
+                                            <li><a href="~/Hadoop.aspx">Hadoop</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="~/UnAnswered.aspx" >UnAnswered</a> </li>
+                                    <li><a href="~/Chat.aspx">Chat</a> </li>
+                                    <li><a href="~/Info.aspx">About Us</a></li>
+                                    <li> <a href="~/Credits.aspx">Rewards</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </section>
+
+    </header>
+
+
+
+    <section id="ccr-main-section">
+        <div class="container">
+            <section id="ccr-left-section" class="col-md-8">
+                <div class="current-page">
+
+                    @if (ViewBag.IsUserLoggedIn)
+                    {
+                        <table style="width: 100%;">
+                            <tr>
+
+                                <td style="font-family: Calibri;margin-left:0">
+                                    <span style="color:red;font-weight:bold;width:20%">@ViewBag.lblFirstName</span>
+                                    @*<asp:Label ID="lblFirstName"  ForeColor="Red" Font-Bold="True"
+                                        Width="20%"></asp:Label>*@
+                                </td>
+                                <td style="margin-left:0">
+                                    <span style="font-family: Calibri; width: 10%">
+
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </div>
+
+                @RenderBody()
+
+            </section>
+
+
+            <aside id="ccr-right-section" class="col-md-4">
+                <section id="social-buttons">
+                    <ul>
+                        <li>
+                            <div class="fb-like" data-href="https://codeanalyze.com" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                        </li>
+                        <li>
+                            <div class="g-plusone" data-annotation="bubble"></div>
+                        </li>
+                        <li>
+                            <a class="twitter-share-button" href="https://twitter.com/codeanalyze_">Tweet</a>
+                            <script>
+                                window.twttr = (function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); t._e = []; t.ready = function (f) { t._e.push(f); }; return t; }(document, "script", "twitter-wjs"));
+                            </script>
+                        </li>
+                    </ul>
+
+                </section>
+
+                <section id="sidebar-popular-post">
+                    <div class="ccr-gallery-ttile">
+                        <span></span>
+                        <p><strong>Popular Post</strong></p>
+                    </div>
+                    <ul>
+                        <li>
+
+                            @Html.Action("PopularPosts", "Master")
+
+                        </li>
+                    </ul>
+
+                </section>
+
+                <section id="sidebar-video-post">
+                    <div class="ccr-gallery-ttile">
+                        <span></span>
+                        <p><strong>Video Post</strong></p>
+                    </div>
+                    <div class="sidebar-video">
+                        <iframe width="100%" height="195" src="//www.youtube.com/embed?listType=playlist&list=PLr5xM_46LGUtyEyyGilUu3YH5FTNo7SMH" frameborder="0" allowfullscreen></iframe>
+
+
+                    </div>
+                    <div class="date-like-comment">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-up"></i>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-down"></i>
+                    </div>
+                </section>
+
+
+
+
+                <section id="sidebar-older-post">
+                    <div class="ccr-gallery-ttile">
+                        <span></span>
+                        <p><strong>Recent Post</strong></p>
+                    </div>
+                    <ul>
+                        <li>
+                            @Html.Action("RecentPosts", "Master")
+                        </li>
+                    </ul>
+
+                </section>
+
+                <section id="ccr-sidebar-add-place">
+                    <div class="sidebar-add-place">
+                    </div>
+                </section>
+
+
+            </aside>
+        </div>
+    </section>
+
+
+    <aside id="ccr-footer-sidebar">
+        <div class="container">
+            <ul>
+                <li class="col-md-3">
+                    <h5 style="color: White">About Us</h5>
+                    <div class="about-us">
+                        CodeAnalyze is a new blogger rewarding platform intended to reward users for posting coding stuff, we believe bloggers deserve it as blogs actually helps many coders.
+                        Get rewarded for posting articles, questions, answers as a mark of appreciation.
+                    </div>
+
+                </li>
+                <li class="col-md-3">
+                    <h5 style="color: White">Support</h5>
+                    <ul>
+                        <li>
+                            <a href="Suggestions.aspx">Suggestion</a>
+                        </li>
+                        <li>
+                            <a href="PostingGuidelines.aspx">Posting Guidlines</a>
+                        </li>
+                    </ul>
+
+                </li>
+                <li class="col-md-3">
+                    <h5 style="color: White">CodeAnalyze</h5>
+                    <ul>
+                        <li>
+                            <a href="Articles.aspx">Home</a>
+                        </li>
+                        <li>
+                            <a href="Disclaimer.aspx">Terms & Conditions</a>
+                        </li>
+                        <li>
+                            <a href="Credits.aspx">Rewards</a>
+                        </li>
+                        <li>
+                            <a href="Info.aspx">About Us</a>
+                        </li>
+                    </ul>
+
+                </li>
+                <li class="col-md-3">
+                    <h5 style="color: White">Tags</h5>
+                    <div class="tagcloud">
+                        <a href="UnAnswered.aspx?Type=3">Java</a>
+                        <a href="UnAnswered.aspx?Type=2">C#</a>
+                        <a href="UnAnswered.aspx?Type=21">Android</a>
+                        <a href="UnAnswered.aspx?Type=20">XCode</a>
+                        <a href="UnAnswered.aspx?Type=5">ASP.NET</a>
+                        <a href="UnAnswered.aspx?Type=18">SharePoint</a>
+                        <a href="UnAnswered.aspx?Type=22">JQuery</a>
+                        <a href="UnAnswered.aspx?Type=8">Javascript</a>
+                        <a href="UnAnswered.aspx?Type=4">PHP</a>
+                        <a href="UnAnswered.aspx?Type=23">Html5</a>
+                        <a href="UnAnswered.aspx?Type=9">SQL</a>
+                        <a href="UnAnswered.aspx?Type=14">LINUX</a>
+                        <a href="UnAnswered.aspx?Type=5">ASP.NET MVC</a>
+                        <a href="UnAnswered.aspx?Type=19">Technology</a>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+    </aside>
+
+
+    <footer id="ccr-footer">
+        <div class="container">
+            <div class="copyright">
+                &copy; 2014, Copyrights <a href="http://codeanalyze.com">CodeAnalyze</a>. All Rights Reserved
+            </div>
+
+            <div class="footer-social-icons">
+                <ul>
+                    <li>
+                        <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a href="http://twitter.com/codeanalyze_" class="twitter"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </footer>
+
+    
 </body>
 </html>
