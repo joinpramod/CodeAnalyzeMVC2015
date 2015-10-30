@@ -42,75 +42,75 @@ namespace CodeAnalyzeMVC2015
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            //Exception ex = new Exception();
-            //ex = Server.GetLastError();
-            //if (!ex.Message.Contains("This is an invalid script resource request"))
-            //{
-            //    if (!ex.Message.Contains("File does not exist"))
-            //    {
-            //        Mail mail = new Mail();
-            //        try
-            //        {
-            //            string strBody = "";
+            Exception ex = new Exception();
+            ex = Server.GetLastError();
+            if (!ex.Message.Contains("This is an invalid script resource request"))
+            {
+                if (!ex.Message.Contains("File does not exist"))
+                {
+                    Mail mail = new Mail();
+                    try
+                    {
+                        string strBody = "";
 
-            //            if (!string.IsNullOrEmpty(ex.Message))
-            //                strBody += "Message -- " + ex.Message + "<br /><br />";
-            //            if (!string.IsNullOrEmpty(ex.Source))
-            //                strBody += "Source -- " + ex.Source + "<br /><br />";
-            //            if (ex.TargetSite != null)
-            //                strBody += "TargetSite -- " + ex.TargetSite + "<br /><br />";
-            //            if (ex.Data != null)
-            //                strBody += "Data -- " + ex.Data + "<br /><br />";
-            //            if (ex.InnerException != null)
-            //                strBody += "InnerException -- " + ex.InnerException + "<br /><br />";
-            //            if (!string.IsNullOrEmpty(ex.Source))
-            //                strBody += "Source -- " + ex.Source + "<br /><br />";
+                        if (!string.IsNullOrEmpty(ex.Message))
+                            strBody += "Message -- " + ex.Message + "<br /><br />";
+                        if (!string.IsNullOrEmpty(ex.Source))
+                            strBody += "Source -- " + ex.Source + "<br /><br />";
+                        if (ex.TargetSite != null)
+                            strBody += "TargetSite -- " + ex.TargetSite + "<br /><br />";
+                        if (ex.Data != null)
+                            strBody += "Data -- " + ex.Data + "<br /><br />";
+                        if (ex.InnerException != null)
+                            strBody += "InnerException -- " + ex.InnerException + "<br /><br />";
+                        if (!string.IsNullOrEmpty(ex.Source))
+                            strBody += "Source -- " + ex.Source + "<br /><br />";
 
-            //            try
-            //            {
-            //                strBody += "IP - " + Utilities.GetUserIP() + "<br /><br />";
-            //            }
-            //            catch
-            //            {
+                        try
+                        {
+                            strBody += "IP - " + Utilities.GetUserIP() + "<br /><br />";
+                        }
+                        catch
+                        {
 
-            //            }
+                        }
 
-            //            strBody += " Stack Trace -- " + ex.StackTrace + " <br /><br />";
+                        strBody += " Stack Trace -- " + ex.StackTrace + " <br /><br />";
 
-            //            try
-            //            {
-            //                if (ex.GetType().ToString() != null)
-            //                    strBody += "Type -- " + ex.GetType().ToString() + "<br />";
+                        try
+                        {
+                            if (ex.GetType().ToString() != null)
+                                strBody += "Type -- " + ex.GetType().ToString() + "<br />";
 
-            //                if (ex.GetType().ToString() == "System.Web.HttpException")
-            //                    Response.Redirect("Error.aspx");
-            //            }
-            //            catch
-            //            {
+                            if (ex.GetType().ToString() == "System.Web.HttpException")
+                                Response.Redirect("Error.aspx");
+                        }
+                        catch
+                        {
 
-            //            }
-            //            mail.Body = strBody;
-            //        }
-            //        catch
-            //        {
-            //            try
-            //            {
-            //                mail.Body = "IP - " + Utilities.GetUserIP() + "<br />" + ex.ToString();
-            //            }
-            //            catch
-            //            {
-            //                mail.Body = ex.ToString();
-            //            }
-            //        }
-            //        mail.FromAdd = "admin@codeanalyze.com";
-            //        mail.Subject = "Error";
-            //        mail.ToAdd = "admin@codeanalyze.com";
-            //        mail.IsBodyHtml = true;
-            //        mail.SendMail();
-            //        Response.Redirect("Error.aspx");
+                        }
+                        mail.Body = strBody;
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            mail.Body = "IP - " + Utilities.GetUserIP() + "<br />" + ex.ToString();
+                        }
+                        catch
+                        {
+                            mail.Body = ex.ToString();
+                        }
+                    }
+                    mail.FromAdd = "admin@codeanalyze.com";
+                    mail.Subject = "Error";
+                    mail.ToAdd = "admin@codeanalyze.com";
+                    mail.IsBodyHtml = true;
+                    mail.SendMail();
+                    Response.Redirect("Error.aspx");
 
-            //    }
-            //}
+                }
+            }
         }
 
         protected void Session_End(object sender, EventArgs e)

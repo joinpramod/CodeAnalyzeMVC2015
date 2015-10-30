@@ -12,7 +12,7 @@
 
            if (VarEMail != "") {
                if (content == "<br>" || content == "") {
-                   alert("Please enter details");
+                   alert("Please enter details"); 
                    return false;
                }
                else

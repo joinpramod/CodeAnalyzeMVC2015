@@ -42,18 +42,7 @@ namespace CodeAnalyzeMVC2015.Models
                 articles.Add(article);
             }
             return articles;
-
-            //var myData = DSQuestions.Tables[0].AsEnumerable().Select(r => new ArticlesModel
-            //{
-            //    ArticleID = r.Field<string>("ArticleID"),
-            //    ArticleTitle = r.Field<string>("ArticleTitle"),
-            //    InsertedDate = r.Field<string>("InsertedDate"),
-            //    ThumbsUp = r.Field<string>("ThumbsUp"),
-            //    ThumbsDown = r.Field<string>("ThumbsDown"),
-            //    Views = r.Field<string>("Views")
-            //});
-            //var articles = myData.ToList(); // For if you really need a List and not IEnumerable
-        }
+       }
 
 
 
