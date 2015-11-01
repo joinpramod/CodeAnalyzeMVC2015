@@ -240,6 +240,9 @@
     <Compile Include="ChatRoom.aspx.designer.cs">
       <DependentUpon>ChatRoom.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Controllers\QuestionsController.cs" />
+    <Compile Include="Controllers\TutorialsController.cs" />
     <Compile Include="Credits.aspx.designer.cs">
       <DependentUpon>Credits.aspx</DependentUpon>
     </Compile>
@@ -529,6 +532,7 @@
     <Compile Include="Startup.cs" />
     <Content Include="AskQuestions.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Web.config" />
     <Content Include="xcode.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -734,12 +738,16 @@
     <Content Include="UserProfileFB.aspx" />
     <Content Include="UserProfileGoogle.aspx" />
     <Content Include="VA.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -769,6 +777,15 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Master\PopularPosts.cshtml" />
     <Content Include="Views\Master\RecentPosts.cshtml" />
+    <Content Include="Views\Articles\Index.cshtml" />
+    <Content Include="Views\Home\Disclaimer.cshtml" />
+    <Content Include="Views\Home\PostingGuidelines.cshtml" />
+    <Content Include="Views\Home\Rewards.cshtml" />
+    <Content Include="Views\Tutorials\Basics.cshtml" />
+    <Content Include="Views\Tutorials\AngularJS.cshtml" />
+    <Content Include="Views\Tutorials\Hadoop.cshtml" />
+    <Content Include="Views\Questions\UnAns.cshtml" />
+    <Content Include="Views\Questions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

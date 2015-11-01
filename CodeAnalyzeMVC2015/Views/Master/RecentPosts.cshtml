@@ -1,11 +1,12 @@
 ﻿<table>
 
-    @foreach (CodeAnalyzeMVC2015.Models.ArticlesModel articlesModel in Model)
+    @foreach (CodeAnalyzeMVC2015.Models.ArticleModel articlesModel in Model)
     {
         <tr>
             <td colspan="5">
                 <img id="imgArrow" src="~/Images/WriteArticle.png" height="25" width="25" />
-                <a href="Articles/Articles/" style="color:black">@articlesModel.ArticleTitle</a>
+                @Html.ActionLink(articlesModel.ArticleTitle, "Index", "Articles", new { @ArticleID = articlesModel.ArticleID, @ArticleTitle = articlesModel.ArticleTitle }, null)
+
             </td>
         </tr>
         <tr>
@@ -13,7 +14,8 @@
             <td style="width: 80px; padding-left: 0"><i class="fa fa-thumbs-o-up"></i>@articlesModel.ThumbsUp</td>
             <td style="width: 80px; padding-left: 0"><i class="fa fa-thumbs-o-down"></i>@articlesModel.ThumbsDown</td>
             <td style="width: 20px; padding-left: 0">
-                <img id="ImageButton1" height="5px" src="~/Images/eye2.png" width="5px" />
+                <img id="ImageButton1" src="~/Images/eye.png" style="width:20px;height:20px;" />
+
             </td>
             <td style="width: 40px; padding-left: 0">@articlesModel.Views</td>
         </tr>

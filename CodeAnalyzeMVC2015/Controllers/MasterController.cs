@@ -14,13 +14,13 @@ namespace CodeAnalyzeMVC2015.Models
         [ChildActionOnly]
         public ActionResult PopularPosts()
         {
-            List<ArticlesModel> articles = GetArticles("Select top 3 * from VwArticles order by thumbsup desc");
+            List<ArticleModel> articles = GetArticles("Select top 3 * from VwArticles order by thumbsup desc");
             return PartialView("PopularPosts", articles);
         }
 
 
 
-        public List<ArticlesModel> GetArticles(string strQuery)
+        public List<ArticleModel> GetArticles(string strQuery)
         {
             ConnManager connManager = new ConnManager();
             connManager.OpenConnection();
@@ -28,11 +28,11 @@ namespace CodeAnalyzeMVC2015.Models
             DSQuestions = connManager.GetData(strQuery);
             connManager.DisposeConn();
 
-            List<ArticlesModel> articles = new List<ArticlesModel>();
-            ArticlesModel article;
+            List<ArticleModel> articles = new List<ArticleModel>();
+            ArticleModel article;
             foreach (DataRow row in DSQuestions.Tables[0].Rows)
             {
-                article = new ArticlesModel();
+                article = new ArticleModel();
                 article.ArticleID = row["ArticleID"].ToString();
                 article.ArticleTitle = row["ArticleTitle"].ToString();
                 article.InsertedDate = row["InsertedDate"].ToString();
@@ -50,9 +50,76 @@ namespace CodeAnalyzeMVC2015.Models
         [ChildActionOnly]
         public ActionResult RecentPosts()
         {
-            List<ArticlesModel> articles = GetArticles("Select top 3 * from VwArticles order by articleId desc");
+            List<ArticleModel> articles = GetArticles("Select top 3 * from VwArticles order by articleId desc");
             return PartialView("RecentPosts", articles);
         }
+
+        [AllowAnonymous]
+        public ActionResult LogOut()
+        {
+            Session["User"] = null;
+            Session["Facebook"] = null;
+            Session.RemoveAll();
+            return View("Articles");
+        }
+
+
+        [AllowAnonymous]
+        public ActionResult ReferFriend(string txtReferEMail)
+        {
+            if (ModelState.IsValid)
+            {
+                string strFrom = " freinds";
+                if (Session["User"] != null)
+                {
+                    //user = (Users)Session["User"];
+                    //if (!string.IsNullOrEmpty(user.FirstName))
+                    //    strFrom = user.FirstName;
+                    //else
+                    //    strFrom = user.Email;
+                }
+                Mail mail = new Mail();
+
+                string EMailBody = System.IO.File.ReadAllText(Server.MapPath("EMailBody.txt"));
+                string strCA = "<a id=HyperLink1 style=font-size: medium; font-weight: bold; color:White href=http://codeanalyze.com>CodeAnalyze</a>";
+                mail.Body = string.Format(EMailBody, "You have been refered to " + strCA + " by one of your " + strFrom + ". Get Rewards Amazon Gift Cards for code blogging. Do take a look");
+
+                mail.FromAdd = "admin@codeanalyze.com";
+               // mail.Subject = "Referred to CodeAnalyze -" + user.Email;
+                mail.ToAdd = txtReferEMail;
+                mail.IsBodyHtml = true;
+                mail.SendMail();
+                txtReferEMail = "Done";
+            }
+
+            return null;
+        }
+
+
+        [AllowAnonymous]
+        [ChildActionOnly]
+        public ActionResult CheckUserLogin()
+        {
+            if (Session["User"] != null)
+            {
+                //user = (Users)Session["User"];
+                //if (!string.IsNullOrEmpty(user.FirstName))
+                //    strFrom = user.FirstName;
+                //else
+                //    strFrom = user.Email;
+                //ViewBag.lblFirstName = user.FirstName;
+                //ViewBag.IsUserLoggedIn = false;
+            }
+            else
+            {
+                ViewBag.lblFirstName = "";
+                ViewBag.IsUserLoggedIn = true;
+            }
+            return null;
+        }
+
+
+
 
     }
 }

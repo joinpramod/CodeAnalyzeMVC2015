@@ -64,7 +64,7 @@
 
 
     @*@Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")*@
+        @Scripts.Render("~/bundles/modernizr")*@
 </head>
 <body>
 
@@ -74,94 +74,98 @@
             <div class="fullwidth">
                 <div class="container">
                     <nav class="top-menu">
+
                         <ul class="left-top-menu">
-                            <li><a href="~/Articles.aspx">Home</a> </li>
-                            <li></li>
-                            <li><a href="~/Suggestions.aspx">Contact Us</a> </li>
+                            <li><a href="Articles.aspx" style="color: white">Home</a></li>
+                            @*<li></li>*@
+                            <li>
+                                @Html.ActionLink("Contact Us", "Contact", "Home", null, new { style = "color:white;" })
+                            </li>
                         </ul>
 
                         <ul class="right-top-menu pull-right">
-                            <li></li>
+                         
+                                @if (ViewBag.IsUserLoggedIn == null || !ViewBag.IsUserLoggedIn)
+                                {
+                                    <li>
+                                        @Html.ActionLink("Register", "Register", "Master", new { @style = "color:white;" })</li>
+
+                                    <li>
+                                        @Html.ActionLink("Sign In", "SignIn", "Master", new { @style = "color:white;" })</li>
+                                }
+                                else
+                                { 
+                                <li>                                    
+                                        @Html.ActionLink("Log Out", "LogOut", "Master", new { @style = "color:white;" })                                    
+                                </li>
+                                }
                             <li>
-                                <a href="~/UserProfile.aspx">Register</a> 
-                            </li>
-                            <li>
-                                <a href="~/Login.aspx">Sign In</a> 
-                            </li>
-                            <li> <a href="~/Login.aspx">Log Out</a> </li>
-                            <li>
-                                    <asp:Button  Width="130px" Height="22px" OnClick="btnReferFriend_Click" BorderStyle="None" BackColor="#4fa4d5" ForeColor="White" Text="Refer Friend EMail" ID="btnReferFriend" />
-                                    <asp:TextBox ID="txtReferEMail"  ValidationGroup="Refer" Width="150px" Height="24px" BorderStyle="Groove" />
+
+                                @using (Html.BeginForm("ReferFriend", "Master"))
+                                {
+                                    <input type="submit" value="Refer Friend EMail" id="btnSubmit" style="border: none; width: 130px; height: 22px; color: white; background-color: #4fa4d5" />
+                                    @Html.TextBox("txtReferEMail", "", new { @style = "border:groove;width:150px;height:24px;" })
+                                }
 
                             </li>
                         </ul>
+
                     </nav>
                 </div>
             </div>
         </section>
 
-
-
         <section id="ccr-site-title">
             <div class="container">
                 <div class="site-logo">
-                    <a href="~/Articles.aspx" class="navbar-brand">                    
-                        <img  src="~/Images/cblogo.PNG" />                     
+                    <a href="~/Articles.aspx" class="navbar-brand">
+                        <img src="~/Images/cblogo.PNG" />
                         <h1><span>Code Analyze</span></h1>
                         <h3>Blogger Rewards</h3>
                     </a>
                 </div>
 
-                <ul class="right-top-menu pull-right">
-
-                   
-
-
-                   
-                </ul>
+                <ul class="right-top-menu pull-right"></ul>
             </div>
         </section>
 
 
-                <section id="ccr-site-title1">
-                    <div class="container" style="font-size:16px">
+        <section id="ccr-site-title1">
+            <div class="container" style="font-size:16px">
 
+            </div>
+        </section>
+
+        <section id="ccr-nav-main">
+            <nav class="main-menu">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".ccr-nav-main"></button>
                     </div>
-                </section>
+                    <div class="collapse navbar-collapse ccr-nav-main">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Articles", "Index", "Articles")</li>
 
-                <section id="ccr-nav-main">
-                    <nav class="main-menu">
-                        <div class="container">
-
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".ccr-nav-main">
-                                    <i class="fa fa-bars"></i>
-                                </button>
-                            </div>
-
-                            <div class="collapse navbar-collapse ccr-nav-main">
-                                <ul class="nav navbar-nav">
-                                    <li><a href="~/Articles.aspx">Articles</a></li>
-                                    <li><a href="~/PostArticles.aspx">Post Article</a></li>
-                                    <li><a href="~/AskQuestions.aspx">Post Question</a></li>
-                                    <li class="dropdown">
-                                        <a href="#">Tutorials<i class="fa fa-caret-down"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="~/Topics.aspx">Topics</a></li>
-                                            <li><a href="~/AngularJS.aspx">AngularJS</a></li>
-                                            <li><a href="~/Hadoop.aspx">Hadoop</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="~/UnAnswered.aspx" >UnAnswered</a> </li>
-                                    <li><a href="~/Chat.aspx">Chat</a> </li>
-                                    <li><a href="~/Info.aspx">About Us</a></li>
-                                    <li> <a href="~/Credits.aspx">Rewards</a></li>
+                            <li><a href="~/PostArticles.aspx">Post Article</a></li>
+                            <li><a href="~/AskQuestions.aspx">Post Question</a></li>
+                            <li class="dropdown">
+                                <a href="#">Tutorials<i class="fa fa-caret-down"></i></a>
+                                <ul class="sub-menu">
+                                    <li>@Html.ActionLink("Basics", "Basics", "Tutorials")</li>
+                                    <li>@Html.ActionLink("AngularJS", "AngularJS", "Tutorials")</li>
+                                    <li>@Html.ActionLink("Hadoop", "Hadoop", "Tutorials")</li>
                                 </ul>
-                            </div>
-                        </div>
-                    </nav>
-                </section>
+                            </li>
+                            <li>@Html.ActionLink("UnAnswered", "UnAns", "Questions")</li>
 
+                            @* <li><a href="~/Chat.aspx">Chat</a> </li>*@
+                            <li> @Html.ActionLink("About Us", "About", "Home")</li>
+                            <li> @Html.ActionLink("Rewards", "Rewards", "Home")</li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
     </header>
 
 
@@ -170,29 +174,23 @@
         <div class="container">
             <section id="ccr-left-section" class="col-md-8">
                 <div class="current-page">
-
-                    @if (ViewBag.IsUserLoggedIn)
+                    @if (ViewBag.IsUserLoggedIn != null && ViewBag.IsUserLoggedIn)
                     {
                         <table style="width: 100%;">
                             <tr>
-
-                                <td style="font-family: Calibri;margin-left:0">
-                                    <span style="color:red;font-weight:bold;width:20%">@ViewBag.lblFirstName</span>
-                                    @*<asp:Label ID="lblFirstName"  ForeColor="Red" Font-Bold="True"
-                                        Width="20%"></asp:Label>*@
+                                <td style="font-family: Calibri; margin-left: 0">
+                                    <span style="color: red; font-weight: bold; width: 20%">@ViewBag.lblFirstName</span>
                                 </td>
-                                <td style="margin-left:0">
-                                    <span style="font-family: Calibri; width: 10%">
-
-                                    </span>
+                                <td style="margin-left: 0">
+                                    <span style="font-family: Calibri; width: 10%"></span>
                                 </td>
                             </tr>
                         </table>
                     }
                 </div>
-
-                @RenderBody()
-
+                <div style="word-wrap: normal; word-break: break-all;">
+                    @RenderBody()
+                </div>
             </section>
 
 
@@ -222,9 +220,7 @@
                     </div>
                     <ul>
                         <li>
-
                             @Html.Action("PopularPosts", "Master")
-
                         </li>
                     </ul>
 
@@ -246,9 +242,6 @@
                     </div>
                 </section>
 
-
-
-
                 <section id="sidebar-older-post">
                     <div class="ccr-gallery-ttile">
                         <span></span>
@@ -266,8 +259,6 @@
                     <div class="sidebar-add-place">
                     </div>
                 </section>
-
-
             </aside>
         </div>
     </section>
@@ -288,10 +279,10 @@
                     <h5 style="color: White">Support</h5>
                     <ul>
                         <li>
-                            <a href="Suggestions.aspx">Suggestion</a>
+                            @Html.ActionLink("Suggestion", "Contact", "Home")
                         </li>
                         <li>
-                            <a href="PostingGuidelines.aspx">Posting Guidlines</a>
+                            @Html.ActionLink("Posting Guidlines", "PostingGuidelines", "Home")
                         </li>
                     </ul>
 
@@ -300,16 +291,16 @@
                     <h5 style="color: White">CodeAnalyze</h5>
                     <ul>
                         <li>
-                            <a href="Articles.aspx">Home</a>
+                            @Html.ActionLink("Home", "Index", "Home")
                         </li>
                         <li>
-                            <a href="Disclaimer.aspx">Terms & Conditions</a>
+                            @Html.ActionLink("Terms & Conditions", "Disclaimer", "Home")
                         </li>
                         <li>
-                            <a href="Credits.aspx">Rewards</a>
+                            @Html.ActionLink("Rewards", "Rewards", "Home")
                         </li>
                         <li>
-                            <a href="Info.aspx">About Us</a>
+                            @Html.ActionLink("About Us", "About", "Home")
                         </li>
                     </ul>
 
@@ -317,20 +308,21 @@
                 <li class="col-md-3">
                     <h5 style="color: White">Tags</h5>
                     <div class="tagcloud">
-                        <a href="UnAnswered.aspx?Type=3">Java</a>
-                        <a href="UnAnswered.aspx?Type=2">C#</a>
-                        <a href="UnAnswered.aspx?Type=21">Android</a>
-                        <a href="UnAnswered.aspx?Type=20">XCode</a>
-                        <a href="UnAnswered.aspx?Type=5">ASP.NET</a>
-                        <a href="UnAnswered.aspx?Type=18">SharePoint</a>
-                        <a href="UnAnswered.aspx?Type=22">JQuery</a>
-                        <a href="UnAnswered.aspx?Type=8">Javascript</a>
-                        <a href="UnAnswered.aspx?Type=4">PHP</a>
-                        <a href="UnAnswered.aspx?Type=23">Html5</a>
-                        <a href="UnAnswered.aspx?Type=9">SQL</a>
-                        <a href="UnAnswered.aspx?Type=14">LINUX</a>
-                        <a href="UnAnswered.aspx?Type=5">ASP.NET MVC</a>
-                        <a href="UnAnswered.aspx?Type=19">Technology</a>
+                        @Html.ActionLink("Java", "UnAns", "Questions", new { ID = 3 }, null)
+                        @Html.ActionLink("C#", "UnAns", "Questions", new { ID = 12 }, null)
+                        @Html.ActionLink("Android", "UnAns", "Questions", new { ID = 21 }, null)
+                        @Html.ActionLink("XCode", "UnAns", "Questions", new { ID = 20 }, null)
+                        @Html.ActionLink("ASP.NET", "UnAns", "Questions", new { ID = 5 }, null)
+                        @Html.ActionLink("SharePoint", "UnAns", "Questions", new { ID = 18 }, null)
+                        @Html.ActionLink("JQuery", "UnAns", "Questions", new { ID = 22 }, null)
+                        @Html.ActionLink("Javascript", "UnAns", "Questions", new { ID = 8 }, null)
+                        @Html.ActionLink("PHP", "UnAns", "Questions", new { ID = 4 }, null)
+                        @Html.ActionLink("Html5", "UnAns", "Questions", new { ID = 23 }, null)
+                        @Html.ActionLink("SQL", "UnAns", "Questions", new { ID = 9 }, null)
+                        @Html.ActionLink("LINUX", "UnAns", "Questions", new { ID = 14 }, null)
+                        @Html.ActionLink("ASP.NET MVC", "UnAns", "Questions", new { ID = 5 }, null)
+                        @Html.ActionLink("Technology", "UnAns", "Questions", new { ID = 19 }, null)
+
                     </div>
 
                 </li>
@@ -367,6 +359,6 @@
         </div>
     </footer>
 
-    
+
 </body>
 </html>

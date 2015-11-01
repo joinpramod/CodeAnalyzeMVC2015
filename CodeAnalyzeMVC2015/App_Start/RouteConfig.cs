@@ -13,17 +13,22 @@ namespace CodeAnalyzeMVC2015
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-               name: "Default",
-               url: "{controller}/{action}/{id}"
-           );
+            // routes.MapRoute(
+            //    name: "Default",
+            //    url: "{controller}/{action}/{id}"
+            //);
 
            // routes.MapRoute(
            //    name: "Default",
            //    url: "{controller}/{action}/{id}",
-           //    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+           //    defaults: new { controller = "Questions", action = "UnAns", txtQuesType = UrlParameter.Optional }
            //);
 
+            routes.MapRoute(
+              name: "Questions",
+              url: "{controller}/{action}/{ID}/{Title}",
+              defaults: new { controller = "Questions", action = "Index", ID = UrlParameter.Optional, Title = UrlParameter.Optional }
+              );
         }
     }
 }

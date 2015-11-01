@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Basics";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table style="width: 100%; font-size: 16px">
+    @foreach (CodeAnalyzeMVC2015.Models.QuestionModel questionModel in Model)
+    {
+        <tr>
+            <td>
+                <img id="imgArrow" src="~/Images/Info.png" style="width:20px;height:20px;"  />
+            </td>
+            <td>
+                @Html.ActionLink(questionModel.QuestionTitle, "Index", "Questions", new { ID = questionModel.QuestionID, Title = questionModel.QuestionTitle.ToString().Replace(" ", "-") }, null)
+            </td>
+        </tr>
+    }
+</table>

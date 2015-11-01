@@ -10,22 +10,42 @@ namespace CodeAnalyzeMVC2015.Controllers
     {
         public ActionResult Index()
         {
+            //ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
-            ViewBag.IsUserLoggedIn = false;
-            ViewBag.lblFirstName = "";
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            // ViewBag.Message = "Your app description page.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            //ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult Rewards()
+        {
+            //ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult PostingGuidelines()
+        {
+            //ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult Disclaimer()
+        {
+            //ViewBag.Message = "Your contact page.";
 
             return View();
         }
