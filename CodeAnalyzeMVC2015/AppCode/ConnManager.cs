@@ -164,6 +164,16 @@ namespace CodeAnalyzeMVC2015
             return questions;
         }
 
+        public void DeleteReply(string replyId)
+        {
+            ConnManager connManager = new ConnManager();
+            connManager.OpenConnection();
+            string strQuery = "Delete from Replies where ReplyId = " + replyId;
+            SqlCommand command = new SqlCommand(strQuery, connManager.DataCon);
+            command.ExecuteNonQuery();
+            connManager.DisposeConn();
+        }
+
         //public List<QuestionType> GetQuestionType(string sqlQuery)
         //{
         //    OpenConnection();

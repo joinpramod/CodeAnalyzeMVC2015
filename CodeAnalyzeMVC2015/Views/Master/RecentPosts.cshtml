@@ -4,7 +4,7 @@
     {
         <tr>
             <td colspan="5">
-                <img id="imgArrow" src="~/Images/WriteArticle.png" height="25" width="25" />
+                <img id="imgArrow" src="~/Images/WriteArticle.png" style="width:25px;height:25px;" />
                 @Html.ActionLink(articlesModel.ArticleTitle, "Index", "Articles", new { @ArticleID = articlesModel.ArticleID, @ArticleTitle = articlesModel.ArticleTitle }, null)
 
             </td>
@@ -13,11 +13,14 @@
             <td style="width: 80px; padding-left: 0"><span class="date">@DateTime.Parse(@articlesModel.InsertedDate).ToShortDateString()</span></td>
             <td style="width: 80px; padding-left: 0"><i class="fa fa-thumbs-o-up"></i>@articlesModel.ThumbsUp</td>
             <td style="width: 80px; padding-left: 0"><i class="fa fa-thumbs-o-down"></i>@articlesModel.ThumbsDown</td>
-            <td style="width: 20px; padding-left: 0">
-                <img id="ImageButton1" src="~/Images/eye.png" style="width:20px;height:20px;" />
-
+            <td style="width: 50px; padding-left: 0">
+                <img id="ImageButton1" src="~/Images/eye.png" style="width:20px;height:20px;" />@articlesModel.Views
             </td>
-            <td style="width: 40px; padding-left: 0">@articlesModel.Views</td>
+
+            @*</td>
+            <td style="width: 40px; padding-left: 0">*@
+            
+            
         </tr>
         <tr><td>&nbsp;</td></tr>
 

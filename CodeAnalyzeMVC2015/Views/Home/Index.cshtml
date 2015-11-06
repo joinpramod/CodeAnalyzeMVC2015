@@ -1,32 +1,128 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<style>
+    a.classThumpsUp {
+        background: url(../../ThumpsUp.png) no-repeat top left;
+        display: block;
+        width: 25px;
+        height: 25px;
+        text-indent: -9999px; /* hides the link text */
+    }
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+    a.classThumpsDown {
+        background: url(../../ThumpsDown.png);
+        
+        width: 25px;
+        height: 25px;
+       
+    }
+</style>
+
+<link href="~/css/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="~/js/prettify.js"></script>
+
+
+<table style="word-wrap:normal; word-break:break-all; width:100%">
+    <tr><td style="background-color:#4fa4d5"><table style="width:100%"><tr style="width:100%"><td> <img src="~/Images/cblogo.PNG" style="height:25px;width:25px" /></td><td valign="middle">Response No <b>1</b> by <b>Admin</b>  10/30/2015</td><td align="right"><td><a href="@Url.Action("UpVote","Questions", new {id="48328", rid="", title="icons-in-notification-bar-turns-white-in-Android-5-lollipop"})" id="lnkThumpsUp0"><img src="~/Images/ThumpsUp.png" style="height:10px;width:10px" /></a></td><td>0&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="right"><td><a href="@Url.Action("DownVote","Questions", new {id="48328", rid="", title="icons-in-notification-bar-turns-white-in-Android-5-lollipop"})" id="lnkThumpsDown0"><img src="~/Images/ThumpsDown.png" style="height:10px;width:10px" /></a></td><td>0&nbsp;&nbsp;&nbsp;&nbsp;</td></tr></table></td></tr>
+    <tr>
+        <td style="font-family:Calibri">
+            in Android 5 lollipop we need to use a color that will be displayed behind
+            white notiication bar
+            <br />
+
+            Following code works for all versions of android
+            <br />
+
+<pre class="prettyprint" style="font-size:14px;">
+private void sendNotification(String msg) {
+  NotificationManager mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+  Intent intent = new Intent(this, CheckOutActivity.class);
+  PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, 0);
+  NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
+      this).setSmallIcon(R.drawable.ic_notification)
+      .setContentTitle(getString(R.string.app_name))
+      .setStyle(new NotificationCompat.BigTextStyle().bigText(msg))
+      .setContentText(msg).setLights(Color.GREEN, 300, 300)
+      .setVibrate(new long[] { 100, 250 })
+      .setDefaults(Notification.DEFAULT_SOUND).setAutoCancel(true);
+  mBuilder.setContentIntent(contentIntent);
+  mNotificationManager.notify(new Random().nextInt(), mBuilder.build());
+}
+</pre>
+        </td>
+    </tr>
+    <tr><td><br /></td></tr>
+    <tr><td style="background-color:#4fa4d5"><table style="width:100%"><tr style="width:100%"><td> <img src="~/Images/cblogo.PNG" style="height:25px;width:25px" /></td><td valign="middle">Response No <b>2</b> by <b>Admin</b>  10/30/2015</td><td align="right"><td><a href="@Url.Action("UpVote","Questions", new {id="48328", rid="51066", title="icons-in-notification-bar-turns-white-in-Android-5-lollipop"})" id="lnkThumpsUp1"><img src="~/Images/ThumpsUp.png" style="height:10px;width:10px" /></a></td><td>0&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="right"><td><a href="@Url.Action("DownVote","Questions", new {id="48328", rid="51066", title="icons-in-notification-bar-turns-white-in-Android-5-lollipop"})" id="lnkThumpsDown1"><img src="~/Images/ThumpsDown.png" style="height:10px;width:10px" /></a></td><td>0&nbsp;&nbsp;&nbsp;&nbsp;</td></tr></table></td></tr>
+    <tr>
+        <td style="font-family:Calibri">
+            using silhouette icon in the app is better&nbsp;
+            <br />
+
+<pre class="prettyprint" style="font-size:14px;">
+Notification notification = new Notification.Builder(context)
+      .setAutoCancel(true)
+      .setContentTitle(&quot;My notification&quot;)
+      .setContentText(&quot;Look, white in Lollipop, else color!&quot;)
+      .setSmallIcon(getNotificationIcon())
+      .build();
+  return notification;
+</pre>
+            <br />
+
+            And, in the getNotificationIcon method:
+            <br />
+
+<pre class="prettyprint" style="font-size:14px;">
+private int getNotificationIcon() {
+  boolean whiteIcon = (android.os.Build.VERSION.SDK_INT &gt;= android.os.Build.VERSION_CODES.LOLLIPOP);
+  return whiteIcon ? R.drawable.icon_silhouette : R.drawable.ic_launcher;
+}
+</pre>
+        </td>
+    </tr>
+    <tr><td><br /></td></tr>
+    <tr><td style="background-color:#4fa4d5">
+        <table style="width:100%">
+        <tr style="width:100%">
+            <td><img src="~/Images/cblogo.PNG" style="height:35px;width:35px"/></td>
+        <td valign="middle">Response No <b>3</b> by <b>Admin</b>  10/30/2015</td>
+        <td align="right">
+        <a href="@Url.Action("UpVote","Questions", new {id="48328", rid="51067", title="icons-in-notification-bar-turns-white-in-Android-5-lollipop"})" id="lnkThumpsUp2">
+        <img src="~/Images/ThumpsUp.png" style="height:35px;width:35px" /></a>
+        </td>
+        <td>0&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td align="right">
+            <a href="@Url.Action("DownVote","Questions", new {id="48328", rid="51067", title="icons-in-notification-bar-turns-white-in-Android-5-lollipop"})" id="lnkThumpsDown2">
+                <img src="~/Images/ThumpsDown.png" style="height:35px;width:35px" /></a>
+        </td>
+        <td>0&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        </table>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-family:Calibri">
+            Use&nbsp;
+            <pre class="prettyprint" style="font-size:14px;">
+            .setColor(your_color_resource_here)
+            if (android.os.Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.LOLLIPOP) {
+              Notification notification = new Notification.Builder(context)
+              ...
+            } else {
+              // Lollipop specific setColor method goes here.
+              Notification notification = new Notification.Builder(context)
+              ...
+              notification.setColor(your_color)
+              ...      &nbsp;
+            }
+            </pre>
+        </td>
+    </tr>
+    <tr><td><br /></td></tr>
+</table>
+<script>
+        prettyPrint();
+</script>
