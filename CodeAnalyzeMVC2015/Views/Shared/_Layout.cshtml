@@ -99,10 +99,10 @@
                     <nav class="top-menu">
 
                         <ul class="left-top-menu">
-                            <li>@Html.ActionLink("Home", "Id", "Articles")</li>
+                            <li>@Html.ActionLink("Home", "Index", "Articles", null, new { style="color:white;" })</li>
                             @*<li></li>*@
                             <li>
-                                @Html.ActionLink("Contact Us", "Contact", "Home", null, new { style = "color:white;" })
+                                @Html.ActionLink("Contact Us", "Contact", "Home", null, new { style="color:white;" })
                             </li>
                         </ul>
 
@@ -111,10 +111,13 @@
                                 @if (ViewBag.IsUserLoggedIn == null || !ViewBag.IsUserLoggedIn)
                                 {
                                     <li>
-                                        @Html.ActionLink("Register", "Register", "Master", new { @style = "color:white;" })</li>
-
+                                        @*@Html.ActionLink("Register", "Register", "Master", new { @style = "color:white;" })*@
+                                        <a href="~/UserProfile.aspx" style="color:white">Register</a> 
+                                    </li>
                                     <li>
-                                        @Html.ActionLink("Sign In", "SignIn", "Master", new { @style = "color:white;" })</li>
+                                        @*@Html.ActionLink("Sign In", "SignIn", "Master", new { @style = "color:white;" })*@
+                                        <a href="~/Login.aspx" style="color:white">Login</a> 
+                                    </li>
                                 }
                                 else
                                 { 

@@ -26,12 +26,19 @@ namespace CodeAnalyzeMVC2015.Controllers
                 if (!string.IsNullOrEmpty(txtQuesType))
                     strSQL = "Select * from Question Where QuestionId > 37861 and QuestionTypeId = " + txtQuesType;
                 else
-                    strSQL = "Select * from Question Where QuestionId > 37861";
+                    strSQL = "Select * from Question Where QuestionId > 37861 order by questionid desc";
 
                 ConnManager connManager = new ConnManager();
                 questions = connManager.GetQuestions(strSQL);
             }
             return View(questions);
+        }
+
+        [ChildActionOnly]
+        public ActionResult SolnPartial(string Id, string Title)
+        {
+            VwSolutionsModel model = SetDefaults();
+            return View(model);
         }
 
         public ActionResult Soln(string Id, string Title)
@@ -143,10 +150,10 @@ namespace CodeAnalyzeMVC2015.Controllers
         public ActionResult DeleteReply(string Id, string RId, string Title)
         {
             VwSolutionsModel model = new VwSolutionsModel();
-            if (RouteData.Values["id"] != null)
+            if (Id != null)
             {
                 ConnManager conn = new ConnManager();
-                conn.DeleteReply(RouteData.Values["id"].ToString());
+                conn.DeleteReply(Id);
                 model = SetDefaults();
             }
             return View("../Questions/Soln", model);
@@ -154,26 +161,28 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult UpVote(string Id, string RId, string Title)
         {
-            string quesID = RouteData.Values["id"].ToString();
-            ProcessVotes("Up", Request.QueryString["RId"].ToString(), quesID);
+            ProcessVotes("Up", RId, Id);
             VwSolutionsModel model = SetDefaults();
             return View("../Questions/Soln", model);
         }
 
         public ActionResult DownVote(string Id, string RId, string Title)
         {
-            string quesID = RouteData.Values["id"].ToString();
-            ProcessVotes("Down", Request.QueryString["RId"].ToString(), quesID);
+            ProcessVotes("Down", RId, Id);
             VwSolutionsModel model = SetDefaults();
             return View("../Questions/Soln", model);
         }
-
 
         private VwSolutionsModel SetDefaults()
         {
             if (user.Email != null)
             {
                 user = (Users)Session["User"];
+                ViewBag.UserEMail = user.Email;
+            }
+            else
+            {
+                ViewBag.UserEMail = "test";
             }
 
             string quesID;
@@ -214,92 +223,88 @@ namespace CodeAnalyzeMVC2015.Controllers
             return model;
         }
 
-        private void BindQuestionAskedUserData(string strQuery)
-        {
+        //private void BindQuestionAskedUserData(string strQuery)
+        //{
 
-            ConnManager connManager = new ConnManager();
-            connManager.OpenConnection();
-            DataTable dsQuestion = connManager.GetDataTable(strQuery);
-            connManager.DisposeConn();
-            long quesID;
-            string strQuestionDetails = string.Empty;
-            VwSolutionsModel model = new VwSolutionsModel();
+        //    ConnManager connManager = new ConnManager();
+        //    connManager.OpenConnection();
+        //    DataTable dsQuestion = connManager.GetDataTable(strQuery);
+        //    connManager.DisposeConn();
+        //    long quesID;
+        //    string strQuestionDetails = string.Empty;
+        //    VwSolutionsModel model = new VwSolutionsModel();
 
-            if (dsQuestion != null)
-            {
-                if (dsQuestion.Rows.Count > 0)
-                {
-                    quesID = long.Parse(dsQuestion.Rows[0]["QuestionId"].ToString());
+        //    if (dsQuestion != null)
+        //    {
+        //        if (dsQuestion.Rows.Count > 0)
+        //        {
+        //            quesID = long.Parse(dsQuestion.Rows[0]["QuestionId"].ToString());
 
-                    if (!dsQuestion.Rows[0]["EMail"].ToString().Contains("codeanalyze.com"))
-                    {
-                        if (!string.IsNullOrEmpty(dsQuestion.Rows[0]["FirstName"].ToString()))
-                        {
-                            model.AskedUser = "Posted By: <b>" + dsQuestion.Rows[0]["FirstName"].ToString() + "<b>";
-                            if (!string.IsNullOrEmpty(dsQuestion.Rows[0]["LastName"].ToString()))
-                            {
-                                model.AskedUser = model.AskedUser + " <b>" + dsQuestion.Rows[0]["LastName"].ToString() + "<b>";
-                            }
+        //            if (!dsQuestion.Rows[0]["EMail"].ToString().Contains("codeanalyze.com"))
+        //            {
+        //                if (!string.IsNullOrEmpty(dsQuestion.Rows[0]["FirstName"].ToString()))
+        //                {
+        //                    model.AskedUser = "Posted By: <b>" + dsQuestion.Rows[0]["FirstName"].ToString() + "<b>";
+        //                    if (!string.IsNullOrEmpty(dsQuestion.Rows[0]["LastName"].ToString()))
+        //                    {
+        //                        model.AskedUser = model.AskedUser + " <b>" + dsQuestion.Rows[0]["LastName"].ToString() + "<b>";
+        //                    }
 
-                        }
-                        if (!string.IsNullOrEmpty(dsQuestion.Rows[0]["ImageURL"].ToString()))
-                            model.ImageURL = dsQuestion.Rows[0]["ImageURL"].ToString();
-                        else
-                            model.ImageURL = "~/Images/Person.JPG";
-                    }
-                    else
-                    {
-                        model.ImageURL = "~/Images/Person.JPG";
-                    }
+        //                }
+        //                if (!string.IsNullOrEmpty(dsQuestion.Rows[0]["ImageURL"].ToString()))
+        //                    model.ImageURL = dsQuestion.Rows[0]["ImageURL"].ToString();
+        //                //else
+        //                //    model.ImageURL = "~/Images/Person.JPG";
+        //            }
 
 
-                    Session["AskedUserEMail"] = dsQuestion.Rows[0]["EMail"].ToString();
+        //            Session["AskedUserEMail"] = dsQuestion.Rows[0]["EMail"].ToString();
 
-                    model.QuestionTitle = "<b>" + dsQuestion.Rows[0]["QuestionTitle"].ToString() + "<b>";
+        //            model.QuestionTitle = "<b>" + dsQuestion.Rows[0]["QuestionTitle"].ToString() + "<b>";
 
-                    strQuestionDetails = dsQuestion.Rows[0]["Question"].ToString();//.Replace("font-size: x-small", "font-size: medium");
+        //            strQuestionDetails = dsQuestion.Rows[0]["Question"].ToString();//.Replace("font-size: x-small", "font-size: medium");
 
-                    strQuestionDetails = strQuestionDetails.Replace("\r\n            #codestart", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
-                    strQuestionDetails = strQuestionDetails.Replace("#codeend\r\n        ", "</pre>");
+        //            strQuestionDetails = strQuestionDetails.Replace("\r\n            #codestart", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+        //            strQuestionDetails = strQuestionDetails.Replace("#codeend\r\n        ", "</pre>");
 
-                    strQuestionDetails = strQuestionDetails.Replace("#codestart", "<pre>");
-                    strQuestionDetails = strQuestionDetails.Replace("#codeend", "</pre>");
+        //            strQuestionDetails = strQuestionDetails.Replace("#codestart", "<pre>");
+        //            strQuestionDetails = strQuestionDetails.Replace("#codeend", "</pre>");
 
-                    strQuestionDetails = strQuestionDetails.Replace("\r\n", "#####");
+        //            strQuestionDetails = strQuestionDetails.Replace("\r\n", "#####");
 
-                    strQuestionDetails = strQuestionDetails.Replace("<br>", "<br />");
+        //            strQuestionDetails = strQuestionDetails.Replace("<br>", "<br />");
 
-                    foreach (Match regExp in Regex.Matches(strQuestionDetails, @"\<pre\>(.*?)\<br />(.*?)\</pre\>", RegexOptions.IgnoreCase))
-                    {
-                        strQuestionDetails = strQuestionDetails.Replace(regExp.Value, regExp.Value.Replace("<br />", ""));
-                    }
+        //            foreach (Match regExp in Regex.Matches(strQuestionDetails, @"\<pre\>(.*?)\<br />(.*?)\</pre\>", RegexOptions.IgnoreCase))
+        //            {
+        //                strQuestionDetails = strQuestionDetails.Replace(regExp.Value, regExp.Value.Replace("<br />", ""));
+        //            }
 
-                    foreach (Match regExp in Regex.Matches(strQuestionDetails, @"\<pre\>(.*?)\&nbsp; (.*?)\</pre\>", RegexOptions.IgnoreCase))
-                    {
-                        strQuestionDetails = strQuestionDetails.Replace(regExp.Value, regExp.Value.Replace("&nbsp; ", " "));
-                    }
+        //            foreach (Match regExp in Regex.Matches(strQuestionDetails, @"\<pre\>(.*?)\&nbsp; (.*?)\</pre\>", RegexOptions.IgnoreCase))
+        //            {
+        //                strQuestionDetails = strQuestionDetails.Replace(regExp.Value, regExp.Value.Replace("&nbsp; ", " "));
+        //            }
 
-                    foreach (Match regExp in Regex.Matches(strQuestionDetails, @"\<pre\>(.*?)\##########(.*?)\</pre\>", RegexOptions.IgnoreCase))
-                    {
-                        strQuestionDetails = strQuestionDetails.Replace(regExp.Value, regExp.Value.Replace("##########", "#####"));
-                    }
+        //            foreach (Match regExp in Regex.Matches(strQuestionDetails, @"\<pre\>(.*?)\##########(.*?)\</pre\>", RegexOptions.IgnoreCase))
+        //            {
+        //                strQuestionDetails = strQuestionDetails.Replace(regExp.Value, regExp.Value.Replace("##########", "#####"));
+        //            }
 
 
-                    strQuestionDetails = strQuestionDetails.Replace("<pre>", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
-                    strQuestionDetails = strQuestionDetails.Replace("#####", "\r\n");
-                    strQuestionDetails = strQuestionDetails.Replace("<html>", "");
-                    strQuestionDetails = strQuestionDetails.Replace("</html>", "");
-                    strQuestionDetails = strQuestionDetails.Replace("<body>", "");
-                    strQuestionDetails = strQuestionDetails.Replace("</body>", "");
+        //            strQuestionDetails = strQuestionDetails.Replace("<pre>", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+        //            strQuestionDetails = strQuestionDetails.Replace("#####", "\r\n");
+        //            strQuestionDetails = strQuestionDetails.Replace("<html>", "");
+        //            strQuestionDetails = strQuestionDetails.Replace("</html>", "");
+        //            strQuestionDetails = strQuestionDetails.Replace("<body>", "");
+        //            strQuestionDetails = strQuestionDetails.Replace("</body>", "");
 
-                    ViewBag.QuestionDetails = strQuestionDetails;
+        //            ViewBag.QuestionDetails = strQuestionDetails;
 
-                    model.Views = "24";
+        //           // model.Views = "24";
 
-                   // BindSolution("Select * from VwSolutions where QuestionId =" + quesID.ToString(), null);
-                }
-            }
-        }
+        //           // BindSolution("Select * from VwSolutions where QuestionId =" + quesID.ToString(), null);
+        //        }
+        //    }
+        //}
 
         private void GetQuestionData(string strQuestionId, ref VwSolutionsModel model)
         {
@@ -327,13 +332,13 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                         if (!string.IsNullOrEmpty(dsQuestion.Rows[0]["ImageURL"].ToString()))
                             model.ImageURL = dsQuestion.Rows[0]["ImageURL"].ToString();
-                        else
-                            model.ImageURL = "~/Images/Person.JPG";
+                        //else
+                        //    model.ImageURL = "~/Images/Person.JPG";
                     }
-                    else
-                    {
-                        model.ImageURL = "~/Images/Person.JPG";
-                    }
+                    //else
+                    //{
+                    //    model.ImageURL = "~/Images/Person.JPG";
+                    //}
 
 
                     Session["AskedUserEMail"] = dsQuestion.Rows[0]["EMail"].ToString();
@@ -406,7 +411,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                     lblUp = dsSolution.Rows[i]["ThumbsUp"].ToString();
                     lblDown = dsSolution.Rows[i]["ThumbsDown"].ToString();
 
-
+                    strReplyId = dsSolution.Rows[i]["ReplyID"].ToString();
                     //Response no user details
                     string htrResponseNoByDetailsOuterRow = "<tr>";
                     string htcResponseNoByDetailsOuterCell = "<td style=\"background-color:#4fa4d5\">";
@@ -418,10 +423,20 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                     string htcUserImage = "<td> ";
                     if (!string.IsNullOrEmpty(dsSolution.Rows[i]["ImageURL"].ToString()))
-                        htcUserImage += "<img src=\"" + dsSolution.Rows[i]["ImageURL"].ToString() + "\" style=\"height:25px;width:25px\" />";
+                    {
+                        if (Request.Url.ToString().Contains("localhost"))
+                            htcUserImage += "<img src=\"/CodeAnalyzeMVC2015/" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "") + "\" style=\"height:30px;width:30px\" />";
+                        else
+                            htcUserImage += "<img src=\"/codeanalyze.com/" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "") + "\" style=\"height:30px;width:30px\" />";
+                    }
                     else
-                        htcUserImage += "<img src=\"~/Images/Person.JPG\" style=\"height:25px;width:25px\" />";
-                    htcUserImage += "</td>";
+                    {
+                        if (Request.Url.ToString().Contains("localhost"))
+                            htcUserImage += "<img src=\"/CodeAnalyzeMVC2015/Images/Person.JPG\" style=\"height:25px;width:25px\" />";
+                        else
+                            htcUserImage += "<img src=\"/codeanalyze.com/Images/Person.JPG\" style=\"height:25px;width:25px\" />";
+                    }
+                        htcUserImage += "</td>";
 
 
                     string htcResponseNoByDetails = "<td valign=\"middle\">";
@@ -561,7 +576,15 @@ namespace CodeAnalyzeMVC2015.Controllers
             if (string.IsNullOrEmpty(lblUp))
                 lblUp = "0";
 
-            string strThumpsUp = "<td align=\"right\"><a href=\"@Url.Action(\"UpVote\",\"Questions\", new {id=\"" + quesID + "\", rid=\"" + Replyid + "\", title=\"" + strTitle + "\"})\" id=\"lnkThumpsUp" + i.ToString() + "\"><img src=\"~/Images/ThumpsUp.png\" style=\"height:10px;width:10px\" /></a>";
+            string strUpVoteLink = string.Empty;
+
+            if (Request.Url.ToString().Contains("localhost"))
+                strUpVoteLink = "<a href=\"http://localhost/CodeAnalyzeMVC2015/Questions/UpVote/" + quesID + "/" + Replyid + "/" + strTitle + " id=\"lnkThumpsUp" + i.ToString() + "\">";
+            else
+                strUpVoteLink = "<a href=\"http://codeanalyze.com/Questions/UpVote/" + quesID + "/" + Replyid + "/" + strTitle + " id=\"lnkThumpsUp" + i.ToString() + "\">";
+
+
+            string strThumpsUp = "<td align=\"right\">" + strUpVoteLink + "<img src=\"/CodeAnalyzeMVC2015/Images/ThumpsUp.png\" style=\"height:30px;width:30px\" /></a>";
             strThumpsUp += "</td><td>" + lblUp + "&nbsp;&nbsp;&nbsp;&nbsp;</td>";
             htcThumpsUp += strThumpsUp;
 
@@ -569,7 +592,13 @@ namespace CodeAnalyzeMVC2015.Controllers
             if (string.IsNullOrEmpty(lblDown))
                 lblDown = "0";
 
-            string strThumpsDown = "<td align=\"right\"><a href=\"@Url.Action(\"DownVote\",\"Questions\", new {id=\"" + quesID + "\", rid=\"" + Replyid + "\", title=\"" + strTitle + "\"})\" id=\"lnkThumpsDown" + i.ToString() + "\"><img src=\"~/Images/ThumpsDown.png\" style=\"height:10px;width:10px\" /></a>";
+            string strDownVoteLink = string.Empty;
+            if (Request.Url.ToString().Contains("localhost"))
+                strDownVoteLink = "<a href=\"http://localhost/CodeAnalyzeMVC2015/Questions/DownVote/" + quesID + "/" + Replyid + "/" + strTitle + " id=\"lnkThumpsUp" + i.ToString() + "\">";
+            else
+                strDownVoteLink = "<a href=\"http://codeanalyze.com/Questions/DownVote/" + quesID + "/" + Replyid + "/" + strTitle + " id=\"lnkThumpsUp" + i.ToString() + "\">";
+
+            string strThumpsDown = "<td align=\"right\">" + strDownVoteLink + "<img src=\"/CodeAnalyzeMVC2015/Images/ThumpsDown.png\" style=\"height:30px;width:30px\" /></a>";
             strThumpsDown += "</td><td>" + lblDown + "&nbsp;&nbsp;&nbsp;&nbsp;</td>";
             htcThumpsDown += strThumpsDown;
 
@@ -578,8 +607,6 @@ namespace CodeAnalyzeMVC2015.Controllers
 
             return strThumbsUpDown;
         }
-
-
 
         private void ProcessVotes(string LikeType, string ReplyId, string quesID)
         {
@@ -631,10 +658,6 @@ namespace CodeAnalyzeMVC2015.Controllers
             }
             //BindQuestionAskedUserData("Select * from VwQuestions where QuestionId = " + quesID.ToString() + "");
         }
-
-
-
-
 
         //public ActionResult QuestionTypeList()
         //{

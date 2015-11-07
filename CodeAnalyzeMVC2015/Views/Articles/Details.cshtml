@@ -1,0 +1,194 @@
+﻿@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model CodeAnalyzeMVC2015.Models.VwArticlesModel
+
+<script language="javascript" type="text/javascript">
+    function ValidateText() {
+        var varcont = '<%=txtReply.ClientID %>';
+        var VarhfUserEMail = '<%=hfUserEMail.ClientID %>';
+        var content = document.getElementById(varcont).value;
+        var VarEMail = document.getElementById(VarhfUserEMail).value;
+        if (VarEMail != "") {
+            if (content == "<br>" || content == "") {
+                alert("Please enter details");
+                return false;
+            }
+            else
+                return true;
+        }
+        else {
+            alert("Please login to post");
+            return false;
+        }
+    }
+</script>
+
+<style>
+    .element, .outer-container {
+        width: 100%;
+        height: 1000px;
+    }
+
+    .outer-container {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .inner-container {
+        position: absolute;
+        overflow-y: scroll;
+        width: 100%;
+    }
+
+        .inner-container::-webkit-scrollbar {
+            display: none;
+        }
+</style>
+
+
+
+@using (Html.BeginForm("InsertComment", "Articles"))
+{
+    <table style="width: 100%; font-family: Calibri">
+        <tr>
+            <td width="100%">
+                <span style="width: 90%; font-weight: bold; font-family: Calibri; color: Black; font-size: 24px">@Model.ArticleTitle</span>
+            </td>
+        </tr>
+        <tr>
+            <td width="100%" align="left">
+
+                <table style="font-size: 14px">
+                    <tr>
+                        <td align="right" style="width: 60px">
+                            <img id="ImageButton1" src="~/Images/eye.png" style="height: 30px; width: 30px" />
+                        </td>
+                        <td align="left" style="width: 60px">
+                            @Model.Views
+                        </td>
+                        <td align="right" style="width: 60px">
+                            <img id="btnThumbsUp" src="~/Images/ThumpsUp.png" style="height: 25px; width: 25px" />
+                        </td>
+                        <td align="left" style="width: 60px">
+                            @Model.ThumbsUp
+                        </td>
+                        <td align="right" style="width: 60px">
+                            <img id="btnThumbsDown" src="~/Images/ThumpsDown.png" style="height: 25px; width: 25px" />
+                        </td>
+                        <td align="left" style="width: 60px">
+                            @Model.ThumbsDown
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+        <tr>
+            <td align="left">
+
+                @*<asp:LinkButton Font-Bold="true" ID="lnkBtnSourceCode" OnClick="lnkBtnSourceCode_Click" runat="server" Font-Underline="true"
+                    ForeColor="Blue"  Text="Download Source Code" Font-Size="Medium"/>*@
+
+            </td>
+        </tr>
+    </table>
+
+    <div class="outer-container">
+        <div class="inner-container">
+            <div id="divContent" class="element" />
+        </div>
+    </div>
+
+    <table style="width: 100%; font-family: Calibri">
+        <tr>
+            <td>
+                <br />
+                @if (Model.HasVideo)
+                {
+                    <section id="sidebar-video-post">
+                        <div class="ccr-gallery-ttile">
+                            <span></span>
+                            <p><strong>Video Post</strong></p>
+                        </div>
+                        <div class="sidebar-video">
+                            <iframe width="340" height="195" id="iframeVideo" src="@Model.ImageURL" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </section>
+                }
+            </td>
+        </tr>
+
+
+        <tr>
+            <td width="100%">
+                <br />
+                <table style="width: 100%; font-size: 16px">
+                    <tr>
+                        <td style="width: 25%" align="center">
+                            <img id="imgAskedUser" src="@Url.Content("~/Images/" + System.IO.Path.GetFileName(Model.ImageURL))" style="height:130px;width:150px" />
+                        </td>
+                        <td align="left" valign="top" style="width: 75%">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td align="left" valign="top" style="width: 35px; height: 20px">
+                                        @Html.LabelFor(m => Model.AskedUser, new { style = "width:250px;font-family:Calibri" });
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="top">
+                                        @Html.LabelFor(m => Model.AskedUserDetails, new { style = "font-family:Calibri" });
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table id="tblReplies" style="width: 100%">
+        <tr>
+            <td>
+                <span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red; font-size: 20px">Comments</span>
+            </td>
+        </tr>
+    </table>
+    <br />
+
+    <table style="width: 100%">
+        <tr>
+            <td align="center">
+                <span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red">@ViewBag.lblAck</span><br />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b style="font-family: Calibri;" />Post your comments
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextBox("txtReply")
+                <br />
+
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input type="submit" value="Submit" id="btnSubmit" onclick="return ValidateText()"
+                       style="border: none; color: white; background-color: #4fa4d5; font-family: Calibri; font-size: 16px" />
+            </td>
+        </tr>
+    </table>
+
+    @Html.Hidden("hfUserEMail")
+    @Html.Hidden("hfSourceFile")
+}

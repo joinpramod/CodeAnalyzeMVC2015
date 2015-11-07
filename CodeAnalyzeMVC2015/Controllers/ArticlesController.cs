@@ -35,11 +35,6 @@ namespace CodeAnalyzeMVC2015.Controllers
             return View(articles);
         }
 
-
-      
-
-
-
         public ActionResult Search(string txtArticleTitle)
         {
             string strSQL = "Select * from VwArticles Where ArticleId > 0 ";
@@ -58,7 +53,6 @@ namespace CodeAnalyzeMVC2015.Controllers
             }
             return View(articles);
         }
-
 
         public ActionResult Details(string Id, string Title)
         {
@@ -180,7 +174,6 @@ namespace CodeAnalyzeMVC2015.Controllers
             return View("../Articles/Details", model);
         }
 
-
         //protected void lnkBtnSourceCode_Click(object sender, EventArgs e)
         //{
         //    Response.Clear();
@@ -189,8 +182,6 @@ namespace CodeAnalyzeMVC2015.Controllers
         //    Response.WriteFile(Server.MapPath("~/Articles/" + hfSourceFile.Value));
         //    Response.End();
         //}
-
-
 
         public ActionResult UpVote()
         {
@@ -286,7 +277,6 @@ namespace CodeAnalyzeMVC2015.Controllers
                 }
             }
         }
-
 
         private void BindComments(string strQuery, ref VwArticlesModel model)
         {
@@ -399,7 +389,6 @@ namespace CodeAnalyzeMVC2015.Controllers
             connManager.DisposeConn();
 
         }
-
 
         private void ProcessVotes(string LikeType, string articleID)
         {
