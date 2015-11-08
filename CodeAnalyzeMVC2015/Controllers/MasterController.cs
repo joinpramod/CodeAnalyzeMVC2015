@@ -66,7 +66,12 @@ namespace CodeAnalyzeMVC2015.Models
             Session["User"] = null;
             Session["Facebook"] = null;
             Session.RemoveAll();
-            return View("Articles");
+            List<ArticleModel> articles = new List<ArticleModel>();
+            ConnManager connManager = new ConnManager();
+            articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
+            connManager.DisposeConn();
+            return View("../Articles/Index", articles);
+            
         }
 
 

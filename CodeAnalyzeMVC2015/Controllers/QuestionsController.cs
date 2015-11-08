@@ -31,12 +31,11 @@ namespace CodeAnalyzeMVC2015.Controllers
             return View(questions);
         }
 
-        [ChildActionOnly]
-        public ActionResult SolnPartial(string Id, string Title)
+        public ActionResult Post()
         {
-            VwSolutionsModel model = SetDefaults();
-            return View(model);
+            return View();
         }
+
 
         //[Route("{Id}/{Title}")]
         public ActionResult Soln(string Id, string Title)

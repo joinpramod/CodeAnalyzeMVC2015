@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Web;
 using System.Web.Mvc;
 
 namespace CodeAnalyzeMVC2015.Controllers
@@ -35,6 +36,12 @@ namespace CodeAnalyzeMVC2015.Controllers
             }
             return View(articles);
         }
+
+        public ActionResult Post()
+        {
+            return View();
+        }
+
 
         public ActionResult Search(string txtArticleTitle)
         {
@@ -175,6 +182,20 @@ namespace CodeAnalyzeMVC2015.Controllers
               
             }
             return View("../Articles/Details", model);
+        }
+
+        [HttpPost]
+        public ActionResult PostArticle(string txtYouTubeLink, IEnumerable<HttpPostedFileBase> files)
+        {
+            foreach (var file in files)
+            {
+                if (file != null && file.ContentLength > 0)
+                {
+                    file.SaveAs(Path.Combine(Server.MapPath("/uploads"), Guid.NewGuid() + Path.GetExtension(file.FileName)));
+                }
+            }
+            ViewBag.Acknowledgement = "";
+            return View("Post");
         }
 
         //protected void lnkBtnSourceCode_Click(object sender, EventArgs e)
