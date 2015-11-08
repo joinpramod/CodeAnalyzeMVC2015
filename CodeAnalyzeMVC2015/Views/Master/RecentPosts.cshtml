@@ -2,10 +2,14 @@
 
     @foreach (CodeAnalyzeMVC2015.Models.ArticleModel articlesModel in Model)
     {
+        string title = articlesModel.ArticleTitle;
+        System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+        articlesModel.ArticleTitle = rgx.Replace(articlesModel.ArticleTitle, "");
+
         <tr>
             <td colspan="5">
                 <img id="imgArrow" src="~/Images/WriteArticle.png" style="width:25px;height:25px;" />
-                @Html.ActionLink(articlesModel.ArticleTitle, "Index", "Articles", new { @ArticleID = articlesModel.ArticleID, @ArticleTitle = articlesModel.ArticleTitle }, null)
+                @Html.ActionLink(title, "Details", "Articles", new { ID = articlesModel.ArticleID, Title = articlesModel.ArticleTitle.Replace(" ", "-") }, null)
 
             </td>
         </tr>

@@ -4,16 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data;
+using CodeAnalyzeMVC2015.Controllers;
 
 namespace CodeAnalyzeMVC2015.Models
 {
-    public class MasterController : Controller
+    [RoutePrefix("Master")]
+    public class MasterController : BaseController
     {
 
         [AllowAnonymous]
         [ChildActionOnly]
+        [Route("PopularPosts")]
         public ActionResult PopularPosts()
         {
+          //  CheckUserLogin();
             List<ArticleModel> articles = GetArticles("Select top 3 * from VwArticles order by thumbsup desc");
             return PartialView("PopularPosts", articles);
         }
@@ -48,8 +52,10 @@ namespace CodeAnalyzeMVC2015.Models
 
         [AllowAnonymous]
         [ChildActionOnly]
+        [Route("RecentPosts")]
         public ActionResult RecentPosts()
         {
+           // CheckUserLogin();
             List<ArticleModel> articles = GetArticles("Select top 3 * from VwArticles order by articleId desc");
             return PartialView("RecentPosts", articles);
         }
@@ -96,26 +102,23 @@ namespace CodeAnalyzeMVC2015.Models
         }
 
 
-        [AllowAnonymous]
-        [ChildActionOnly]
-        public ActionResult CheckUserLogin()
+
+        public void CheckUserLogin()
         {
             if (Session["User"] != null)
             {
-                //user = (Users)Session["User"];
-                //if (!string.IsNullOrEmpty(user.FirstName))
-                //    strFrom = user.FirstName;
-                //else
-                //    strFrom = user.Email;
-                //ViewBag.lblFirstName = user.FirstName;
-                //ViewBag.IsUserLoggedIn = false;
+                Users user = (Users)Session["User"];
+
+                ViewBag.lblFirstName = user.FirstName;
+                ViewBag.UserEmail = user.Email;
+                ViewBag.IsUserLoggedIn = false;
             }
             else
             {
+                ViewBag.UserEmail = "";
                 ViewBag.lblFirstName = "";
                 ViewBag.IsUserLoggedIn = true;
             }
-            return null;
         }
 
 

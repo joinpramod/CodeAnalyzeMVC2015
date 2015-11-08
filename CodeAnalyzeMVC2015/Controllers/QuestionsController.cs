@@ -4,19 +4,16 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
 
 namespace CodeAnalyzeMVC2015.Controllers
 {
-    public class QuestionsController : Controller
+    //[RoutePrefix("Questions")]
+    public class QuestionsController : BaseController
     {
         private Users user = new Users();
-
+        //[Route("")]
         public ActionResult UnAns(string txtQuesType)
         {
             List<QuestionModel> questions = new List<QuestionModel>();
@@ -41,6 +38,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             return View(model);
         }
 
+        //[Route("{Id}/{Title}")]
         public ActionResult Soln(string Id, string Title)
         {
             VwSolutionsModel model = SetDefaults();
@@ -384,7 +382,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                     model.QuestionDetails = "<table><tr><td>" + strQuestionDetails + "</td></tr></table>";
                     ViewBag.QuestionDetails = model.QuestionDetails;
 
-                    model.Views = "<b>" + dsQuestion.Rows[0]["Views"].ToString() + "<b>";
+                    model.QuestionViews = "<b>" + dsQuestion.Rows[0]["Views"].ToString() + "<b>";
 
                 }
             }
@@ -579,7 +577,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             string strUpVoteLink = string.Empty;
 
             if (Request.Url.ToString().Contains("localhost"))
-                strUpVoteLink = "<a href=\"http://localhost/CodeAnalyzeMVC2015/Questions/UpVote/" + quesID + "/" + Replyid + "/" + strTitle + " id=\"lnkThumpsUp" + i.ToString() + "\">";
+                strUpVoteLink = "<a href=\"/CodeAnalyzeMVC2015/Questions/UpVote/" + quesID + "/" + Replyid + "/" + strTitle + " id=\"lnkThumpsUp" + i.ToString() + "\">";
             else
                 strUpVoteLink = "<a href=\"http://codeanalyze.com/Questions/UpVote/" + quesID + "/" + Replyid + "/" + strTitle + " id=\"lnkThumpsUp" + i.ToString() + "\">";
 
@@ -594,7 +592,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
             string strDownVoteLink = string.Empty;
             if (Request.Url.ToString().Contains("localhost"))
-                strDownVoteLink = "<a href=\"http://localhost/CodeAnalyzeMVC2015/Questions/DownVote/" + quesID + "/" + Replyid + "/" + strTitle + " id=\"lnkThumpsUp" + i.ToString() + "\">";
+                strDownVoteLink = "<a href=\"/CodeAnalyzeMVC2015/Questions/DownVote/" + quesID + "/" + Replyid + "/" + strTitle + " id=\"lnkThumpsUp" + i.ToString() + "\">";
             else
                 strDownVoteLink = "<a href=\"http://codeanalyze.com/Questions/DownVote/" + quesID + "/" + Replyid + "/" + strTitle + " id=\"lnkThumpsUp" + i.ToString() + "\">";
 

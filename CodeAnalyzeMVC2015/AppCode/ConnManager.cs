@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Collections.Generic;
 using CodeAnalyzeMVC2015.Models;
+using System.Text.RegularExpressions;
 
 namespace CodeAnalyzeMVC2015
 {
@@ -99,7 +100,6 @@ namespace CodeAnalyzeMVC2015
             return dtArticle;
         }
 
-
         public DataTable GetQuestion(string sqlQuestionId)
         {
             DataTable dtQuestion = new DataTable();
@@ -117,7 +117,6 @@ namespace CodeAnalyzeMVC2015
             return dtQuestion;
         }
 
-
         public List<ArticleModel> GetArticles(string sqlQuery)
         {
             OpenConnection();
@@ -131,6 +130,7 @@ namespace CodeAnalyzeMVC2015
             {
                 article = new ArticleModel();
                 article.ArticleID = row["ArticleID"].ToString();
+                article.ArticleDetails = row["ArticleDetails"].ToString();
                 article.ArticleTitle = row["ArticleTitle"].ToString();
                 article.InsertedDate = row["InsertedDate"].ToString();
                 article.ThumbsUp = row["ThumbsUp"].ToString();
@@ -162,6 +162,12 @@ namespace CodeAnalyzeMVC2015
                 questions.Add(question);
             }
             return questions;
+        }
+
+        private string CleanTitle(string v)
+        {
+            Regex rgx = new Regex("[^a-zA-Z0-9 -]");
+            return rgx.Replace(v, "");
         }
 
         public void DeleteReply(string replyId)

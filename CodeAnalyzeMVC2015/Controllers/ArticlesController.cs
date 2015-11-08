@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.HtmlControls;
 
 namespace CodeAnalyzeMVC2015.Controllers
 {
-    public class ArticlesController : Controller
+    [RoutePrefix("Articles")]
+    public class ArticlesController : BaseController
     {
         private Users user = new Users();
+
+        //[Route("~/")]
+        //[Route("")]
         public ActionResult Index()
         {
             List<ArticleModel> articles = new List<ArticleModel>();
@@ -22,13 +23,13 @@ namespace CodeAnalyzeMVC2015.Controllers
                 ConnManager connManager = new ConnManager();
                 articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
 
-                HtmlMeta metaDescription = new HtmlMeta();
-                metaDescription.Name = "description";
-                metaDescription.Content = "Get Amazon gift cards of your respective country for code blogging as appreciation. Try now.";
+                //HtmlMeta metaDescription = new HtmlMeta();
+                //metaDescription.Name = "description";
+                //metaDescription.Content = "Get Amazon gift cards of your respective country for code blogging as appreciation. Try now.";
                 // Page.Header.Controls.Add(metaDescription);
-                HtmlMeta metaKeywords = new HtmlMeta();
-                metaKeywords.Name = "keywords";
-                metaKeywords.Content = "Java, C#, PHP, Android, JQuery, XCode, XML, SQL, ASP.NET, HTML5 n many more";
+                //HtmlMeta metaKeywords = new HtmlMeta();
+                //metaKeywords.Name = "keywords";
+                //metaKeywords.Content = "Java, C#, PHP, Android, JQuery, XCode, XML, SQL, ASP.NET, HTML5 n many more";
                 //  Page.Header.Controls.Add(metaKeywords);
 
             }
@@ -54,9 +55,11 @@ namespace CodeAnalyzeMVC2015.Controllers
             return View(articles);
         }
 
+        //[Route("{Id}/{Title}")]
         public ActionResult Details(string Id, string Title)
         {
-            return View();
+            VwArticlesModel model = SetDefaults();
+            return View(model);
         }
 
         private VwArticlesModel SetDefaults()
@@ -88,7 +91,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
             if (articleID != null)
             {
-                BindComments("Select * from VwSolutions where QuestionId =" + articleID.ToString(), ref model);
+                BindComments("Select * from VwArticleReplies where ArticleId =" + articleID.ToString(), ref model);
             }
 
             if (user.Email != null)
@@ -241,7 +244,10 @@ namespace CodeAnalyzeMVC2015.Controllers
                     model.ArticleViews = dsQuestion.Rows[0]["Views"].ToString();
 
 
-                    using (FileStream fs = new FileStream(Server.MapPath("Articles/" + dsQuestion.Rows[0]["WordFile"].ToString()), FileMode.Open, FileAccess.Read))
+
+                   string filepath =  Server.MapPath("/CodeAnalyzeMVC2015/Articles/" + dsQuestion.Rows[0]["WordFile"].ToString()).Replace("\\Details\\Articles", "");
+
+                    using (FileStream fs = new FileStream(filepath, FileMode.Open, FileAccess.Read))
                     {
                         using (TextReader tr = new StreamReader(fs))
                         {
@@ -385,7 +391,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             }
 
             tblReplies += "</table>";
-            model.ArticleDetails = tblReplies;
+            model.ArticleReplies = tblReplies;
             connManager.DisposeConn();
 
         }

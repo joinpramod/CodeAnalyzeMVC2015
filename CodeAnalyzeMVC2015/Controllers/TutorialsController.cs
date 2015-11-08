@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace CodeAnalyzeMVC2015.Controllers
 {
-    public class TutorialsController : Controller
+    public class TutorialsController : BaseController
     {
         //
         // GET: /Tutorials/

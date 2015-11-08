@@ -9,6 +9,7 @@ namespace CodeAnalyzeMVC2015.Models
     {
         public string ArticleID { get; set; }
         public string ArticleTitle { get; set; }
+        public string ArticleDetails { get; set; }
         public string InsertedDate { get; set; }
         public string ThumbsUp { get; set; }
         public string ThumbsDown { get; set; }
@@ -49,6 +50,7 @@ namespace CodeAnalyzeMVC2015.Models
     {
         public long ArticleID { get; set; }
         public string ArticleTitle { get; set; }
+        public string ArticleReplies { get; set; }         
         public string InsertedDate { get; set; }
         public string ThumbsUp { get; set; }
         public string ThumbsDown { get; set; }
