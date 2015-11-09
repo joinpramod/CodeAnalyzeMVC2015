@@ -180,25 +180,24 @@ namespace CodeAnalyzeMVC2015
             connManager.DisposeConn();
         }
 
-        //public List<QuestionType> GetQuestionType(string sqlQuery)
-        //{
-        //    OpenConnection();
-        //    DataTable DSQuestions = new DataTable();
-        //    DSQuestions = GetData(sqlQuery);
-        //    DisposeConn();
+        public List<QuestionType> GetQuestionType()
+        {
+            OpenConnection();
+            DataTable DSQuestions = new DataTable();
+            DSQuestions = GetDataTable("Select * from QuestionType");
+            DisposeConn();
 
-        //    List<QuestionType> types = new List<QuestionType>();
-        //    QuestionType type;
-        //    foreach (DataRow row in DSQuestions.Rows)
-        //    {
-        //        type = new QuestionType();
-        //        type.TypeId = row["QuestionID"].ToString();
-        //        type.TypeValue = row["QuestionTitle"].ToString();
-
-        //        types.Add(type);
-        //    }
-        //    return types;
-        //}
+            List<QuestionType> types = new List<QuestionType>();
+            QuestionType type;
+            foreach (DataRow row in DSQuestions.Rows)
+            {
+                type = new QuestionType();
+                type.TypeId = row["QuestionTypeId"].ToString();
+                type.Type = row["QuestionType"].ToString();
+                types.Add(type);
+            }
+            return types;
+        }
 
     }
 }

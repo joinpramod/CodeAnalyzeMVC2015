@@ -33,9 +33,12 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult Post()
         {
-            return View();
+            ConnManager conn = new ConnManager();
+            List<QuestionType> items = conn.GetQuestionType();
+            QuestionType types = new QuestionType();
+            types.Types = items;
+            return View(types);
         }
-
 
         //[Route("{Id}/{Title}")]
         public ActionResult Soln(string Id, string Title)
@@ -43,6 +46,91 @@ namespace CodeAnalyzeMVC2015.Controllers
             VwSolutionsModel model = SetDefaults();
             return View(model);
         }
+
+        public ActionResult InsertQuestion(string txtTitle, string ddType, string EditorAskQuestion)
+        {
+            if (Session["User"] != null)
+            {
+                user = (Users)Session["User"];
+                double dblQuestionID = 0;
+                Question question = new Question();
+                SqlConnection LclConn = new SqlConnection();
+                SqlTransaction SetTransaction = null;
+                bool IsinTransaction = false;
+                if (LclConn.State != ConnectionState.Open)
+                {
+                    question.SetConnection = question.OpenConnection(LclConn);
+                    SetTransaction = LclConn.BeginTransaction(IsolationLevel.ReadCommitted);
+                    IsinTransaction = true;
+                }
+                else
+                {
+                    question.SetConnection = LclConn;
+                }
+                question.QuestionTitle = txtTitle;
+                question.QuestionTypeId = int.Parse(ddType);
+                question.OptionID = 1;
+
+                EditorAskQuestion = EditorAskQuestion.Replace("&lt;", "<");
+                EditorAskQuestion = EditorAskQuestion.Replace("&gt;", ">");
+                EditorAskQuestion = EditorAskQuestion.Replace("&amp;", "&");
+                EditorAskQuestion = EditorAskQuestion.Replace("&apos;", "'");
+
+                if (EditorAskQuestion.Length > 10000)
+                {
+                    EditorAskQuestion = EditorAskQuestion.Substring(0, 10000);
+                }
+
+                question.QuestionDetails = Sanitizer.GetSafeHtml(EditorAskQuestion);
+                question.AskedDateTime = DateTime.Now;
+                question.AskedUser = user.UserId;
+
+                bool result = question.CreateQuestion(ref dblQuestionID, SetTransaction);
+
+                if (IsinTransaction && result)
+                {
+                    SetTransaction.Commit();
+                    Mail mail = new Mail();
+                    mail.Body = "<a>www.codeanalyze.com/Soln.aspx?QId=" + dblQuestionID.ToString() + "&QT=" + txtTitle + "</a>";
+                    mail.FromAdd = "admin@codeanalyze.com";
+                    mail.Subject = txtTitle;
+                    mail.ToAdd = "admin@codeanalyze.com";
+                    mail.IsBodyHtml = true;
+
+                    if (user.Email != "admin@codeanalyze.com")
+                    {
+                        mail.SendMail();
+                    }
+                }
+                else
+                {
+                    SetTransaction.Rollback();
+                }
+                question.CloseConnection(LclConn);
+
+
+                string title = txtTitle;
+                System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+                txtTitle = rgx.Replace(txtTitle, "");
+
+
+                string strAck = "Question posted successfully, we will email you when users post answers.<br /> View your posted question ";
+                if (Request.Url.ToString().Contains("localhost"))
+                    strAck += "<a style=\"color:blue;text-decoration:underline\" href=\"/CodeAnalyzeMVC2015/Questions/Soln/" + dblQuestionID.ToString() + "/" + txtTitle.ToString().Replace(" ", "-") + "\">here</a>";
+                else
+                    strAck += "<a style=\"color:blue;text-decoration:underline\" href=\"http://codeanalyze.com/Questions/Soln/" + dblQuestionID.ToString() + "/" + txtTitle.ToString().Replace(" ", "-") + "\">here</a>";
+                strAck += "<br />";
+
+                ViewBag.Ack = strAck;
+            }
+
+            ConnManager conn = new ConnManager();
+            List<QuestionType> items = conn.GetQuestionType();
+            QuestionType types = new QuestionType();
+            types.Types = items;
+            return View("../Questions/Post", types);
+        }
+
 
         public ActionResult InsertAns(string SolutionEditor, string hiddenId)
         {
@@ -172,7 +260,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         private VwSolutionsModel SetDefaults()
         {
-            if (user.Email != null)
+            if (Session["User"] != null)
             {
                 user = (Users)Session["User"];
                 ViewBag.UserEMail = user.Email;
@@ -219,6 +307,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             }
             return model;
         }
+
 
         //private void BindQuestionAskedUserData(string strQuery)
         //{
@@ -656,26 +745,5 @@ namespace CodeAnalyzeMVC2015.Controllers
             //BindQuestionAskedUserData("Select * from VwQuestions where QuestionId = " + quesID.ToString() + "");
         }
 
-        //public ActionResult QuestionTypeList()
-        //{
-        //    List<QuestionType> quesTypes = new List<QuestionType>();
-        //    if (ModelState.IsValid)
-        //    {
-        //        string strSQL = string.Empty;
-
-        //        strSQL = "Select  QuestionTypeId, QuestionType from QuestionType";
-
-        //        ConnManager connManager = new ConnManager();
-        //        quesTypes = connManager.GetQuestionType(strSQL);
-        //    }
-
-        //    QuestionType qt = new QuestionType();
-        //    qt.Types = new SelectList(quesTypes);
-
-        //    var model = qt;
-
-        //    return View(model);
-
-        //}
     }
 }

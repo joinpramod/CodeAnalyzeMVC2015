@@ -64,11 +64,12 @@ namespace CodeAnalyzeMVC2015.Models
         public string iframeVideoURL { get; set; }
     }
 
-    //public class ExampleClass
-    //{
-    //    [AllowHtml]
-    //    public string HtmlContent { get; set; }
-    //}
+    public class QuestionType
+    {
+        public string TypeId { get; set; }
+        public string Type { get; set; }
+        public List<QuestionType> Types { get; set; }
+    }
 
 
 }

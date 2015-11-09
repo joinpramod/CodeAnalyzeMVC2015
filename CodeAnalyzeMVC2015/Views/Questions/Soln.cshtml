@@ -35,12 +35,12 @@
 <script language="javascript" type="text/javascript">
     function ValidateText()
     {
-        var varcont = document.getElementById("SolutionEditor").innerHTML
-        var VarhfUserEMail = $("#hfUserEMail")[0].value;
+        var content = tinyMCE.get('SolutionEditor').getContent()
+        var VarEMail = document.getElementById('hfUserEMail').value;
 
-        if (VarhfUserEMail != "")
+        if (VarEMail != "")
         {
-            if (varcont == "")
+            if (content == "")
             {
                 alert("Please enter details");
                 return false;
@@ -125,6 +125,7 @@
         <tr>
             <td>
                 <table style="width: 100%">
+                    
                     <tr>
                         <td colspan="2" align="center">
                             <span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red">@ViewBag.lblAck</span>
@@ -135,6 +136,7 @@
                             <b style="font-family: Calibri;" />Post your answer<span style="font-family: Calibri; font-size: 16px; font-weight: bold; color: Red">*</span>
                         </td>
                     </tr>
+
                     <tr>
                         <td colspan="2" align="left">
                             Place your code between <b>#codestart</b> and <b>#codeend</b> tags mandatorily. If this not followed, code will not be properly highlighted.<br />

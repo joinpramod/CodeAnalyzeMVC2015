@@ -1,8 +1,9 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Post Question";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@model CodeAnalyzeMVC2015.Models.QuestionType
 
 <script type="text/javascript" src="~/Scripts/tinymce/tinymce.min.js"></script>
 <script type="text/javascript">
@@ -30,42 +31,38 @@
 
 <script language="javascript" type="text/javascript">
         function ValidateText() {
-            var varcont = '<%=EditorAskQuestion.ClientID %>' + '_ctl02_ctl00';
-            var varTitle = '<%=txtTitle.ClientID %>';
-            var VarType = '<%=ddType.ClientID %>';
-            var VarhfUserEMail = '<%=hfUserEMail.ClientID %>';
-
-            var content = document.getElementById(varcont).contentWindow.document.body.innerHTML;
-            var title = document.getElementById(varTitle).value;
-            var type = document.getElementById(VarType).value ;
-            var VarEMail = document.getElementById(VarhfUserEMail).value;
+            debugger;           
+            var title = document.getElementById('txtTitle').value;
+            var ddType = $("#ddType").val();            
+            var content = tinyMCE.get('EditorAskQuestion').getContent()
+            var VarEMail = document.getElementById('hfUserEMail').value;
 
             if (VarEMail != "") {
-                if (content == "<br>" && title == "" && type == "---Select---") {
+                if (content == "" && title == "" && type == "") {
                     alert("Please enter question title, type and details");
                     return false;
                 }
-                else if (content != "<br>" && title == "" && type == "---Select---") {
+                else if (content != "" && title == "" && type == "") {
                     alert("Please enter question title and type");
                     return false;
                 }
-                else if (content == "<br>" && title != "" && type == "---Select---") {
+                else if (content == "" && title != "" && type == "") {
                     alert("Please enter question type and details");
                     return false;
                 }
-                else if (content == "<br>" && title == "" && type != "---Select---") {
+                else if (content == "" && title == "" && type != "") {
                     alert("Please enter question title and content");
                     return false;
                 }
-                else if (content == "<br>" && title != "" && type != "---Select---") {
+                else if (content == "" && title != "" && type != "") {
                     alert("Please enter question title and content");
                     return false;
                 }
-                else if (content != "<br>" && title != "" && type == "---Select---") {
+                else if (content != "" && title != "" && type == "") {
                     alert("Please enter question title and content");
                     return false;
                 }
-                else if (content != "<br>" && title == "" && type != "---Select---") {
+                else if (content != "" && title == "" && type != "") {
                     alert("Please enter question title and content");
                     return false;
                 }
@@ -79,7 +76,7 @@
         }
 </script>
 
-@using (Html.BeginForm("ProcessLogin", "Account"))
+@using (Html.BeginForm("InsertQuestion", "Questions", FormMethod.Post))
 {
 <table style="width:100%; font-size:16px" cellpadding="0"
        cellspacing="0">
@@ -87,16 +84,14 @@
         <td>
             <table align="left" style="width: 100%">
                 <tr>
-                    <td colspan="2" align="center">
-                        <span style="color:#FF3300">@ViewBag.Ack</span>
-                        <br />
-                        <a href="@ViewBag.QuestionLink" />
-                       
+                    <td colspan="2" align="center" style="color:green;font-weight:bold">
+                        @Html.Raw(ViewBag.Ack)                                              
                     </td>
                 </tr>
+
                 <tr>
                     <td colspan="2" align="center">
-                        Post Your Question
+                        Post Your Question                        
                     </td>
                 </tr>
                 
@@ -105,7 +100,7 @@
                         Title:<span style="font-family:Calibri; font-size:16px;color:Red">*</span>
                     </td>
                     <td>
-                        @Html.TextBox("txtTitle", "", new { style = "width:90%;height:30px;border:groove;border-width:1px" })
+                        @Html.TextBox("txtTitle", "", new {style="width:90%;height:30px;border:groove;border-width:1px" })
                     </td>
                 </tr>
                 <tr>
@@ -113,11 +108,8 @@
                         Type:<span style="font-family:Calibri; font-size:16px;color:Red">*</span>
                     </td>
                     <td>
-                        @*@Html.DropDownList("ddType", "---Select---")*@
-                        @*<asp:DropDownList ID="ddType" runat="server" DataTextField="QuestionType" Font-Size="14px"
-                                          Font-Names="Calibri" AppendDataBoundItems="true" DataValueField="QuestionTypeId">
-                            <asp:ListItem Selected="True" Text="---Select---" Value="---Select---" />
-                        </asp:DropDownList>*@
+                        @Html.DropDownList("ddType", new SelectList(Model.Types, "TypeId", "Type"), "---Select---")
+                        
                     </td>
                 </tr>
                 <tr>

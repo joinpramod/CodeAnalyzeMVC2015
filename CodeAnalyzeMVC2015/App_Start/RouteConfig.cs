@@ -35,8 +35,8 @@ namespace CodeAnalyzeMVC2015
             url: "{controller}/{action}",
             defaults: new
             {
-                controller = "Articles",
-                action = "Index"
+                controller = "Questions",
+                action = "Post"
             });
         }
     }
