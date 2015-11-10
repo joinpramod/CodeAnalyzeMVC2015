@@ -41,10 +41,17 @@ namespace CodeAnalyzeMVC2015.Controllers
         }
 
         //[Route("{Id}/{Title}")]
-        public ActionResult Soln(string Id, string Title)
+        public ActionResult Soln(string SolutionEditor)
         {
-            VwSolutionsModel model = SetDefaults();
-            return View(model);
+            if (string.IsNullOrEmpty(SolutionEditor))
+            {
+                VwSolutionsModel model = SetDefaults();
+                return View(model);
+            }
+            else
+            {
+                return InsertAns(SolutionEditor);
+            }
         }
 
         public ActionResult InsertQuestion(string txtTitle, string ddType, string EditorAskQuestion)
@@ -132,7 +139,7 @@ namespace CodeAnalyzeMVC2015.Controllers
         }
 
 
-        public ActionResult InsertAns(string SolutionEditor, string hiddenId)
+        public ActionResult InsertAns(string SolutionEditor)
         {
             VwSolutionsModel model = new VwSolutionsModel();
             string strContent = SolutionEditor;
@@ -140,13 +147,10 @@ namespace CodeAnalyzeMVC2015.Controllers
             if (Session["User"] != null)
             {
                 user = (Users)Session["User"];
-
-                string quesID = hiddenId;
+                string quesID = RouteData.Values["id"].ToString(); 
 
                 ConnManager connManager = new ConnManager();
                 connManager.OpenConnection();
-              //connManager.GetData("");
-
 
                 double dblReplyID = 0;
                 Replies replies = new Replies();
@@ -167,6 +171,10 @@ namespace CodeAnalyzeMVC2015.Controllers
                 replies.OptionID = 1;
                 replies.QuestionId = double.Parse(quesID.ToString());
 
+                strContent = strContent.Replace("&lt;", "<");
+                strContent = strContent.Replace("&gt;", ">");
+                strContent = strContent.Replace("&amp;", "&");
+                strContent = strContent.Replace("&apos;", "'");
 
                 strContent = strContent.Replace("<div>", "");
                 strContent = strContent.Replace("</div>", "");
@@ -180,19 +188,14 @@ namespace CodeAnalyzeMVC2015.Controllers
                     replies.Reply = Sanitizer.GetSafeHtml(strContent);
                 }
 
-
                 replies.RepliedDate = DateTime.Now;
-
-
                 replies.RepliedUser = user.UserId;
-
                 bool result = replies.CreateReplies(ref dblReplyID, SetTransaction);
 
 
                 if (IsinTransaction && result)
                 {
                     SetTransaction.Commit();
-
                     if (!Session["AskedUserEMail"].ToString().Contains("codeanalyze.com"))
                     {
                         Mail mail = new Mail();
@@ -273,10 +276,13 @@ namespace CodeAnalyzeMVC2015.Controllers
             string quesID;
             string questionTitle = string.Empty;
 
-            quesID = RouteData.Values["id"].ToString();
+            quesID = RouteData.Values["id"].ToString();            
+
+            VwSolutionsModel model = new VwSolutionsModel();
+            GetQuestionData(quesID.ToString(), ref model);
 
             if (RouteData.Values["title"] != null)
-                questionTitle = RouteData.Values["title"].ToString();
+                questionTitle = model.QuestionTitle.ToString();
 
             if (!string.IsNullOrEmpty(questionTitle))
             {
@@ -285,10 +291,6 @@ namespace CodeAnalyzeMVC2015.Controllers
                 ViewBag.Description = strDetails;
                 ViewBag.keywords = strDetails;
             }
-
-            VwSolutionsModel model = new VwSolutionsModel();
-            GetQuestionData(quesID.ToString(), ref model);
-
 
             if (quesID != null)
             {
@@ -308,90 +310,6 @@ namespace CodeAnalyzeMVC2015.Controllers
             return model;
         }
 
-
-        //private void BindQuestionAskedUserData(string strQuery)
-        //{
-
-        //    ConnManager connManager = new ConnManager();
-        //    connManager.OpenConnection();
-        //    DataTable dsQuestion = connManager.GetDataTable(strQuery);
-        //    connManager.DisposeConn();
-        //    long quesID;
-        //    string strQuestionDetails = string.Empty;
-        //    VwSolutionsModel model = new VwSolutionsModel();
-
-        //    if (dsQuestion != null)
-        //    {
-        //        if (dsQuestion.Rows.Count > 0)
-        //        {
-        //            quesID = long.Parse(dsQuestion.Rows[0]["QuestionId"].ToString());
-
-        //            if (!dsQuestion.Rows[0]["EMail"].ToString().Contains("codeanalyze.com"))
-        //            {
-        //                if (!string.IsNullOrEmpty(dsQuestion.Rows[0]["FirstName"].ToString()))
-        //                {
-        //                    model.AskedUser = "Posted By: <b>" + dsQuestion.Rows[0]["FirstName"].ToString() + "<b>";
-        //                    if (!string.IsNullOrEmpty(dsQuestion.Rows[0]["LastName"].ToString()))
-        //                    {
-        //                        model.AskedUser = model.AskedUser + " <b>" + dsQuestion.Rows[0]["LastName"].ToString() + "<b>";
-        //                    }
-
-        //                }
-        //                if (!string.IsNullOrEmpty(dsQuestion.Rows[0]["ImageURL"].ToString()))
-        //                    model.ImageURL = dsQuestion.Rows[0]["ImageURL"].ToString();
-        //                //else
-        //                //    model.ImageURL = "~/Images/Person.JPG";
-        //            }
-
-
-        //            Session["AskedUserEMail"] = dsQuestion.Rows[0]["EMail"].ToString();
-
-        //            model.QuestionTitle = "<b>" + dsQuestion.Rows[0]["QuestionTitle"].ToString() + "<b>";
-
-        //            strQuestionDetails = dsQuestion.Rows[0]["Question"].ToString();//.Replace("font-size: x-small", "font-size: medium");
-
-        //            strQuestionDetails = strQuestionDetails.Replace("\r\n            #codestart", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
-        //            strQuestionDetails = strQuestionDetails.Replace("#codeend\r\n        ", "</pre>");
-
-        //            strQuestionDetails = strQuestionDetails.Replace("#codestart", "<pre>");
-        //            strQuestionDetails = strQuestionDetails.Replace("#codeend", "</pre>");
-
-        //            strQuestionDetails = strQuestionDetails.Replace("\r\n", "#####");
-
-        //            strQuestionDetails = strQuestionDetails.Replace("<br>", "<br />");
-
-        //            foreach (Match regExp in Regex.Matches(strQuestionDetails, @"\<pre\>(.*?)\<br />(.*?)\</pre\>", RegexOptions.IgnoreCase))
-        //            {
-        //                strQuestionDetails = strQuestionDetails.Replace(regExp.Value, regExp.Value.Replace("<br />", ""));
-        //            }
-
-        //            foreach (Match regExp in Regex.Matches(strQuestionDetails, @"\<pre\>(.*?)\&nbsp; (.*?)\</pre\>", RegexOptions.IgnoreCase))
-        //            {
-        //                strQuestionDetails = strQuestionDetails.Replace(regExp.Value, regExp.Value.Replace("&nbsp; ", " "));
-        //            }
-
-        //            foreach (Match regExp in Regex.Matches(strQuestionDetails, @"\<pre\>(.*?)\##########(.*?)\</pre\>", RegexOptions.IgnoreCase))
-        //            {
-        //                strQuestionDetails = strQuestionDetails.Replace(regExp.Value, regExp.Value.Replace("##########", "#####"));
-        //            }
-
-
-        //            strQuestionDetails = strQuestionDetails.Replace("<pre>", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
-        //            strQuestionDetails = strQuestionDetails.Replace("#####", "\r\n");
-        //            strQuestionDetails = strQuestionDetails.Replace("<html>", "");
-        //            strQuestionDetails = strQuestionDetails.Replace("</html>", "");
-        //            strQuestionDetails = strQuestionDetails.Replace("<body>", "");
-        //            strQuestionDetails = strQuestionDetails.Replace("</body>", "");
-
-        //            ViewBag.QuestionDetails = strQuestionDetails;
-
-        //           // model.Views = "24";
-
-        //           // BindSolution("Select * from VwSolutions where QuestionId =" + quesID.ToString(), null);
-        //        }
-        //    }
-        //}
-
         private void GetQuestionData(string strQuestionId, ref VwSolutionsModel model)
         {
             ConnManager connManager = new ConnManager();
@@ -407,7 +325,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 if (dsQuestion.Rows.Count > 0)
                 {
                     quesID = long.Parse(dsQuestion.Rows[0]["QuestionId"].ToString());
-
+                    model.QuestionID = quesID.ToString();
                     if (!dsQuestion.Rows[0]["EMail"].ToString().Contains("codeanalyze.com"))
                     {
                         model.AskedUser = "Posted By: <b>" + dsQuestion.Rows[0]["FirstName"].ToString() + "<b>";
@@ -630,15 +548,23 @@ namespace CodeAnalyzeMVC2015.Controllers
 
 
 
-                    if (ViewBag.ReplyId != null && strReplyId == ViewBag.ReplyId)
+                    if (ViewBag.ReplyId != null && strReplyId == Convert.ToString(ViewBag.ReplyId))
                     {
-                        strDeleteRow += "<tr><td align=\"right\">@Html.ActionLink(\"Delete\", \"DeleteReply\", \"Questions\",  new { id = " + quesID + ", rid = " + strReplyId + ", title = " + strTitle + "}, new { @style = \"color:red;font-weight:bold;font-family:Calibri;font-size:18px;\" })</td></tr>";
+                        strDeleteRow += "<tr><td align=\"right\" style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;\">";
+
+                        if (Request.Url.ToString().Contains("localhost"))
+                            strDeleteRow += "<a href=\"/CodeAnalyzeMVC2015/Questions/DeleteReply/" + quesID + "/" + strReplyId + "/" + strTitle + "\" style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;border:solid;border-width:1px;border-color:black\">Delete</a>";
+                        else
+                            strDeleteRow += "<a href=\"http://codeanalyze.com/Questions/DeleteReply/" + quesID + "/" + strReplyId + "/" + strTitle + "\"  style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;border:solid;border-width:1px;border-color:black\">Delete</a>";
+                     
+                        strDeleteRow += "</td></tr>";
+
                     }
 
-                    tblReplies += htrResponseNoByDetailsOuterRow + htmlRowSolutionContent + strDeleteRow;
+                    tblReplies += htrResponseNoByDetailsOuterRow + strDeleteRow + htmlRowSolutionContent;
 
                     tblReplies += "<tr><td><br /></td></tr>";
-
+                        
                 }
             }
 
