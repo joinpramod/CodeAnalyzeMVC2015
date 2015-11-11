@@ -278,22 +278,18 @@ namespace CodeAnalyzeMVC2015.Controllers
                 user = (Users)Session["User"];
                 ViewBag.UserEMail = user.Email;
             }
-            else
-            {
-                ViewBag.UserEMail = "test";
-            }
 
             string quesID;
             string questionTitle = string.Empty;
 
-            quesID = RouteData.Values["id"].ToString();            
+            quesID = RouteData.Values["id"].ToString();
 
             VwSolutionsModel model = new VwSolutionsModel();
             GetQuestionData(quesID.ToString(), ref model);
 
-                questionTitle = model.QuestionTitle.ToString();
+            questionTitle = model.QuestionTitle.ToString();
 
-                ViewBag.Description = questionTitle.Replace("-", " ");
+            ViewBag.Description = questionTitle.Replace("-", " ");
             ViewBag.keywords = questionTitle.Replace("-", " ");
 
             if (quesID != null)

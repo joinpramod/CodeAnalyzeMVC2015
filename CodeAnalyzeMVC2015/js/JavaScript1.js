@@ -26,8 +26,6 @@ SyntaxHighlighter.defaults.toolbar = false;
             }
         });
 
-
-
         function ValidateAnswer() {
             var content = tinyMCE.get('SolutionEditor').getContent()
             var VarEMail = document.getElementById('hfUserEMail').value;
