@@ -43,11 +43,18 @@ namespace CodeAnalyzeMVC2015.Controllers
         //[Route("{Id}/{Title}")]
         public ActionResult Soln(string SolutionEditor)
         {
-            if (string.IsNullOrEmpty(SolutionEditor))
+            if (Session["DeleteReply"] == "true")
+            {
+                string Id = RouteData.Values["Id"].ToString();
+                string RId = RouteData.Values["RId"].ToString();
+                string Title = RouteData.Values["Title"].ToString();
+                return DeleteReply(Id, RId, Title);
+            }
+            else if(string.IsNullOrEmpty(SolutionEditor))
             {
                 VwSolutionsModel model = SetDefaults();
                 return View(model);
-            }
+            }            
             else
             {
                 return InsertAns(SolutionEditor);
@@ -137,7 +144,6 @@ namespace CodeAnalyzeMVC2015.Controllers
             types.Types = items;
             return View("../Questions/Post", types);
         }
-
 
         public ActionResult InsertAns(string SolutionEditor)
         {
@@ -238,11 +244,15 @@ namespace CodeAnalyzeMVC2015.Controllers
         public ActionResult DeleteReply(string Id, string RId, string Title)
         {
             VwSolutionsModel model = new VwSolutionsModel();
-            if (Id != null)
+            if (Session["DeleteReply"] == "true")
             {
-                ConnManager conn = new ConnManager();
-                conn.DeleteReply(Id);
-                model = SetDefaults();
+                if (Id != null && RId != null)
+                {
+                    ConnManager conn = new ConnManager();
+                    conn.DeleteReply(RId);
+                    model = SetDefaults();
+                }
+                Session["DeleteReply"] = null;
             }
             return View("../Questions/Soln", model);
         }
@@ -281,16 +291,10 @@ namespace CodeAnalyzeMVC2015.Controllers
             VwSolutionsModel model = new VwSolutionsModel();
             GetQuestionData(quesID.ToString(), ref model);
 
-            if (RouteData.Values["title"] != null)
                 questionTitle = model.QuestionTitle.ToString();
 
-            if (!string.IsNullOrEmpty(questionTitle))
-            {
-                string strDetails = questionTitle.Replace("-", " ");
-                strDetails = questionTitle.Replace("-", " ");
-                ViewBag.Description = strDetails;
-                ViewBag.keywords = strDetails;
-            }
+                ViewBag.Description = questionTitle.Replace("-", " ");
+            ViewBag.keywords = questionTitle.Replace("-", " ");
 
             if (quesID != null)
             {
@@ -553,12 +557,12 @@ namespace CodeAnalyzeMVC2015.Controllers
                         strDeleteRow += "<tr><td align=\"right\" style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;\">";
 
                         if (Request.Url.ToString().Contains("localhost"))
-                            strDeleteRow += "<a href=\"/CodeAnalyzeMVC2015/Questions/DeleteReply/" + quesID + "/" + strReplyId + "/" + strTitle + "\" style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;border:solid;border-width:1px;border-color:black\">Delete</a>";
+                            strDeleteRow += "<a href=\"/CodeAnalyzeMVC2015/Questions/Soln/" + quesID + "/" + strReplyId + "/" + strTitle + "\" style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;border:solid;border-width:1px;border-color:black\">Delete</a>";
                         else
-                            strDeleteRow += "<a href=\"http://codeanalyze.com/Questions/DeleteReply/" + quesID + "/" + strReplyId + "/" + strTitle + "\"  style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;border:solid;border-width:1px;border-color:black\">Delete</a>";
+                            strDeleteRow += "<a href=\"http://codeanalyze.com/Questions/Soln/" + quesID + "/" + strReplyId + "/" + strTitle + "\"  style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;border:solid;border-width:1px;border-color:black\">Delete</a>";
                      
                         strDeleteRow += "</td></tr>";
-
+                        Session["DeleteReply"] = "true";
                     }
 
                     tblReplies += htrResponseNoByDetailsOuterRow + strDeleteRow + htmlRowSolutionContent;
