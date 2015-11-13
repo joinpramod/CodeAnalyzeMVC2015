@@ -273,11 +273,11 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         private VwSolutionsModel SetDefaults()
         {
-            if (Session["User"] != null)
-            {
-                user = (Users)Session["User"];
-                ViewBag.UserEMail = user.Email;
-            }
+            //if (Session["User"] != null)
+            //{
+            //    user = (Users)Session["User"];
+            //    ViewBag.UserEMail = user.Email;
+            //}
 
             string quesID;
             string questionTitle = string.Empty;

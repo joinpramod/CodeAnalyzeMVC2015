@@ -5,26 +5,7 @@
 
 @model CodeAnalyzeMVC2015.Models.VwArticlesModel
 
-<script language="javascript" type="text/javascript">
-    function ValidateText() {
-        var varcont = '<%=txtReply.ClientID %>';
-        var VarhfUserEMail = '<%=hfUserEMail.ClientID %>';
-        var content = document.getElementById(varcont).value;
-        var VarEMail = document.getElementById(VarhfUserEMail).value;
-        if (VarEMail != "") {
-            if (content == "<br>" || content == "") {
-                alert("Please enter details");
-                return false;
-            }
-            else
-                return true;
-        }
-        else {
-            alert("Please login to post");
-            return false;
-        }
-    }
-</script>
+<script type="text/javascript" src="~/js/JavaScript1.js"></script>
 
 <style>
     .element, .outer-container {
@@ -50,7 +31,7 @@
 
 
 
-@using (Html.BeginForm("InsertComment", "Articles"))
+@using (Html.BeginForm("Details", "Articles"))
 {
     <table style="width: 100%; font-family: Calibri">
         <tr>
@@ -193,12 +174,12 @@
         </tr>
         <tr>
             <td align="center">
-                <input type="submit" value="Submit" id="btnSubmit" onclick="return ValidateText()"
+                <input type="submit" value="Submit" id="btnSubmit" onclick="return ValidateComment()"
                        style="border: none; color: white; background-color: #4fa4d5; font-family: Calibri; font-size: 16px" />
             </td>
         </tr>
     </table>
 
-    @Html.Hidden("hfUserEMail")
+    @Html.Hidden("hfUserEMail", (object)ViewBag.UserEMail)
     @Html.Hidden("hfSourceFile")
 }

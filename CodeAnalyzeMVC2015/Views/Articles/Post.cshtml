@@ -6,44 +6,14 @@
 
 
 
-    <script language="javascript" type="text/javascript">
-
-    function ValidateText() {
-        var VarhfUserEMail = '<%=hfUserEMail.ClientID %>';
-        var VarEMail = document.getElementById(VarhfUserEMail).value;
-        var Upload_File = document.getElementById('<%= fileArticleWordFile.ClientID %>');
-        if (VarEMail != "") {
-            if (Upload_File.value == "") {
-                alert("Please select your article word file to post");
-                return false;
-            }
-            else {
-                if (Upload_File.value.indexOf("docx") < 0 && Upload_File.value.indexOf("doc") < 0 && Upload_File.value.indexOf("DOCX") < 0 && Upload_File.value.indexOf("DOC") < 0) {
-                    alert('Invalid Format, please select only word doc.');
-                    return false;
-                }
-                else {
-                    return true;
-                }
-            }
-
-        }
-        else {
-            alert("Please login to post");
-            return false;
-        }
-    }
-
-    </script>
-
-@using (Html.BeginForm("PostArticle", "Articles"))
+@using (Html.BeginForm("Post", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 
                 <table align="left" style="width: 100%; font-size:16px" cellpadding="2"
                        cellspacing="2">
                     <tr>
                         <td colspan="2" align="center" style="font-family:Calibri;color:#FF3300">
-                            @ViewBag.Acknowledgement                            
+                            @ViewBag.Acknowledgement
                         </td>
                     </tr>
                     <tr>
@@ -92,8 +62,7 @@
                             Upload article word file: <span style="font-family:Calibri; font-size:16px;font-weight:bold;color:Red">*</span>
                         </td>
                         <td>
-                            @*<asp:FileUpload ID="fileArticleWordFile" BorderStyle="None" Width="70%" runat="server" />*@
-                            <input type="file" id="fileArticleWordFile" style="width:70%;" name="files" />
+                            <input type="file" id="fileArticleWordFile" style="width:70%;" name="fileArticleWordFile" />
                         </td>
                     </tr>
                     <tr>
@@ -102,7 +71,7 @@
                         </td>
                         <td>
                             @*<asp:FileUpload ID="fileArticleSourceCode" BorderStyle="None" Width="70%" runat="server" />*@
-                            <input type="file" id="fileArticleSourceCode" style="width:70%;" name="files" />
+                            <input type="file" id="fileArticleSourceCode" style="width:70%;" name="fileArticleSourceCode" />
                         </td>
                     </tr>
                     <tr>
@@ -116,15 +85,12 @@
                     </tr>
                     <tr>
                         <td align="center" colspan="2">
-                            <input type="submit" value="Post Article" id="btnSubmit" style="border:none;color:white;background-color:#4fa4d5" />
+                            <input type="submit" value="Post Article" onclick="return ValidatePostArticle()" id="btnSubmit" style="border:none;color:white;background-color:#4fa4d5" />
 
-                            @*&nbsp;<asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClientClick="return ValidateText()" OnClick="PreviewButton_Click"
-                                              Font-Names="Calibri" Font-Size="Large" Font-Bold="True"
-                                              BorderStyle="None" BackColor="#4fa4d5" ForeColor="White" />*@
                         </td>
                     </tr>
                 </table>
-                @Html.Hidden("hfUserEMail")
+                @Html.Hidden("hfUserEMail", (object)ViewBag.UserEMail)
 
 }
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -23,22 +24,46 @@ namespace CodeAnalyzeMVC2015.Controllers
             {
                 ConnManager connManager = new ConnManager();
                 articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
-
-                //HtmlMeta metaDescription = new HtmlMeta();
-                //metaDescription.Name = "description";
-                //metaDescription.Content = "Get Amazon gift cards of your respective country for code blogging as appreciation. Try now.";
-                // Page.Header.Controls.Add(metaDescription);
-                //HtmlMeta metaKeywords = new HtmlMeta();
-                //metaKeywords.Name = "keywords";
-                //metaKeywords.Content = "Java, C#, PHP, Android, JQuery, XCode, XML, SQL, ASP.NET, HTML5 n many more";
-                //  Page.Header.Controls.Add(metaKeywords);
-
             }
             return View(articles);
         }
 
-        public ActionResult Post()
+        public ActionResult Post(string txtYouTubeLink, HttpPostedFileBase fileArticleWordFile, HttpPostedFileBase fileArticleSourceCode)
         {
+
+            if (Session["User"] != null && fileArticleWordFile != null)
+            {
+                Mail mail = new Mail();
+                mail.Body = "<a>New article from " + user.Email + ", file name is " + fileArticleWordFile.FileName + " Youtube URL - " + txtYouTubeLink + " </a>";
+                mail.FromAdd = "admin@codeanalyze.com";
+                mail.Subject = "New Article from " + user.Email;
+                mail.ToAdd = "articles@codeanalyze.com";
+
+
+                string strFileName = System.IO.Path.GetFileName(fileArticleWordFile.FileName);
+                Attachment attachFile = new Attachment(fileArticleWordFile.InputStream, strFileName);
+                mail.FileAttachment = attachFile;
+
+                if (fileArticleSourceCode != null)
+                {
+                    strFileName = System.IO.Path.GetFileName(fileArticleSourceCode.FileName);
+                    attachFile = new Attachment(fileArticleSourceCode.InputStream, strFileName);
+                    mail.SourceFileAttachment = attachFile;
+                }
+
+                mail.IsBodyHtml = true;
+
+                if (user.Email != "admin@codeanalyze.com")
+                {
+                    mail.SendMail();
+                }
+
+
+                ViewBag.Acknowledgement = "Article emailed successfully. We will get back to you if needed. Thanks much for your post. Appreciate it. ";
+            }
+
+
+
             return View();
         }
 
@@ -63,15 +88,22 @@ namespace CodeAnalyzeMVC2015.Controllers
         }
 
         //[Route("{Id}/{Title}")]
-        public ActionResult Details(string Id, string Title)
+        public ActionResult Details(string txtReply)
         {
-            VwArticlesModel model = SetDefaults();
-            return View(model);
+            if (string.IsNullOrEmpty(txtReply))
+            {
+                VwArticlesModel model = SetDefaults();
+                return View(model);
+            }
+            else
+            {
+                return InsertComment(txtReply);
+            }
         }
 
         private VwArticlesModel SetDefaults()
         {
-            if (user.Email != null)
+            if (Session["User"] != null)
             {
                 user = (Users)Session["User"];
             }
@@ -81,20 +113,12 @@ namespace CodeAnalyzeMVC2015.Controllers
 
             articleID = RouteData.Values["Id"].ToString();
 
-            if (RouteData.Values["Title"] != null)
-                articleTitle = RouteData.Values["Title"].ToString();
-
-            if (!string.IsNullOrEmpty(articleTitle))
-            {
-                string strDetails = articleTitle.Replace("-", " ");
-                strDetails = articleTitle.Replace("-", " ");
-                ViewBag.Description = strDetails;
-                ViewBag.keywords = strDetails;
-            }
-
             VwArticlesModel model = new VwArticlesModel();
             GetArticleData(articleID.ToString(), ref model);
 
+            articleTitle = model.ArticleTitle.ToString();
+            ViewBag.Description = articleTitle.Replace("-", " ");
+            ViewBag.keywords = articleTitle.Replace("-", " ");
 
             if (articleID != null)
             {
@@ -114,9 +138,9 @@ namespace CodeAnalyzeMVC2015.Controllers
             return model;
         }
 
-        public ActionResult InsertComment(string Comment, VwArticlesModel model)
+        public ActionResult InsertComment(string Comment)
         {
-
+            VwArticlesModel model = new VwArticlesModel();
             if (Session["User"] != null)
             {
                 if (!string.IsNullOrEmpty(Comment))
@@ -184,19 +208,19 @@ namespace CodeAnalyzeMVC2015.Controllers
             return View("../Articles/Details", model);
         }
 
-        [HttpPost]
-        public ActionResult PostArticle(string txtYouTubeLink, IEnumerable<HttpPostedFileBase> files)
-        {
-            foreach (var file in files)
-            {
-                if (file != null && file.ContentLength > 0)
-                {
-                    file.SaveAs(Path.Combine(Server.MapPath("/uploads"), Guid.NewGuid() + Path.GetExtension(file.FileName)));
-                }
-            }
-            ViewBag.Acknowledgement = "";
-            return View("Post");
-        }
+        //[HttpPost]
+        //public ActionResult PostArticle(string txtYouTubeLink, IEnumerable<HttpPostedFileBase> files)
+        //{
+        //    foreach (var file in files)
+        //    {
+        //        if (file != null && file.ContentLength > 0)
+        //        {
+        //            file.SaveAs(Path.Combine(Server.MapPath("/uploads"), Guid.NewGuid() + Path.GetExtension(file.FileName)));
+        //        }
+        //    }
+        //    ViewBag.Acknowledgement = "";
+        //    return View("Post");
+        //}
 
         //protected void lnkBtnSourceCode_Click(object sender, EventArgs e)
         //{
@@ -329,9 +353,19 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                     string htcUserImage = "<td>";
                     if (!string.IsNullOrEmpty(dsSolution.Rows[i]["ImageURL"].ToString()))
-                        htcUserImage += "<img src=\"" + dsSolution.Rows[i]["ImageURL"].ToString() + "\" style=\"height:25px;width:25px\" />";
+                    {
+                        if (Request.Url.ToString().Contains("localhost"))
+                            htcUserImage += "<img src=\"/CodeAnalyzeMVC2015/" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "") + "\" style=\"height:30px;width:30px\" />";
+                        else
+                            htcUserImage += "<img src=\"/codeanalyze.com/" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "") + "\" style=\"height:30px;width:30px\" />";
+                    }
                     else
-                        htcUserImage += "<img src=\"~/Images/Person.JPG\" style=\"height:25px;width:25px\" />";
+                    {
+                        if (Request.Url.ToString().Contains("localhost"))
+                            htcUserImage += "<img src=\"/CodeAnalyzeMVC2015/Images/Person.JPG\" style=\"height:25px;width:25px\" />";
+                        else
+                            htcUserImage += "<img src=\"/codeanalyze.com/Images/Person.JPG\" style=\"height:25px;width:25px\" />";
+                    }
                     htcUserImage += "</td>";
 
                     #region responseNoBy
@@ -405,6 +439,9 @@ namespace CodeAnalyzeMVC2015.Controllers
                     strReplyId = dsSolution.Rows[i]["ReplyId"].ToString();
                     htcReplyContent += "<td>" + dsSolution.Rows[i]["ReplyText"].ToString() + "</td>";
                     htmlRowSolutionContent += "<tr>" + htcReplyContent + "</tr>";
+
+
+                    tblReplies += htrResponseNoByDetailsOuterRow +  htmlRowSolutionContent;
 
                     tblReplies += "<tr><td><br /></td></tr>";
 

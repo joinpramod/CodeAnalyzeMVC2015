@@ -45,7 +45,6 @@ SyntaxHighlighter.defaults.toolbar = false;
             }
         }
 
-
         function ValidateQues() {
             debugger;
             var title = document.getElementById('txtTitle').value;
@@ -84,6 +83,52 @@ SyntaxHighlighter.defaults.toolbar = false;
                 }
                 else
                     return true;
+            }
+            else {
+                alert("Please login to post");
+                return false;
+            }
+        }
+
+
+        function ValidateComment() {
+                var content = document.getElementById('txtReply').value;
+                var VarEMail = document.getElementById('hfUserEMail').value;
+                if (VarEMail != "") {
+                    if (content == "" || content == "") {
+                        alert("Please enter details");
+                        return false;
+                    }
+                    else
+                        return true;
+                }
+                else {
+                    alert("Please login to post");
+                    return false;
+                }
+        }
+
+
+        function ValidatePostArticle() {
+            var VarEMail = document.getElementById('hfUserEMail').value;
+            var varArticleWordFile = document.getElementById('fileArticleWordFile').value;
+
+
+            if (VarEMail != "") {
+                if (varArticleWordFile == "") {
+                    alert("Please select your article word file to post");
+                    return false;
+                }
+                else {
+                    if (varArticleWordFile.indexOf("docx") < 0 && varArticleWordFile.indexOf("doc") < 0 && varArticleWordFile.indexOf("DOCX") < 0 && varArticleWordFile.indexOf("DOC") < 0) {
+                        alert('Invalid Format, please select only word doc.');
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+
             }
             else {
                 alert("Please login to post");
