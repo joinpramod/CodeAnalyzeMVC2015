@@ -174,6 +174,10 @@ namespace CodeAnalyzeMVC2015
             }
         }
 
+        public string ArticlesPosted { get; set; }
+        public string QuestionsPosted { get; set; }
+        public string AnswersPosted { get; set; }
+
 
         public System.DateTime CreatedDateTime
         {

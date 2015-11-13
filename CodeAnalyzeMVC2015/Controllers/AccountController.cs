@@ -2,12 +2,18 @@
 using CodeAnalyzeMVC2015.Models;
 using System.Data;
 using System.Collections.Generic;
+using CodeAnalyzeMVC2015.AppCode;
+using System;
+using System.Linq;
+using System.Web;
 
 namespace CodeAnalyzeMVC2015.Controllers
 {
 
     public class AccountController : BaseController
     {
+        private Users user = new Users();
+
         public ActionResult Login()
         {
             return View();
@@ -24,9 +30,6 @@ namespace CodeAnalyzeMVC2015.Controllers
            
             if (DSUserList.Rows.Count == 0)
             {
-                //   ClientScriptManager cr = Page.ClientScript;
-                //   string scriptStr = "alert('Invalid Username and Password');";
-                //   cr.RegisterStartupScript(this.GetType(), "test", scriptStr, true);
                 return null;
             }
             else
@@ -41,25 +44,103 @@ namespace CodeAnalyzeMVC2015.Controllers
                 Session["User"] = user;
                 Session["user.Email"] = user.Email;
                 ViewBag.UserEmail = user.Email;
-                //Label lblFirstName = (Label)this.Master.FindControl("lblFirstName");
-                //Panel pnlWelcome = (Panel)this.Master.FindControl("pnlWelcome");
-                //LinkButton lnkLogOut = (LinkButton)this.Master.FindControl("lnkLogOut");
-                //LinkButton lnkSignIn = (LinkButton)this.Master.FindControl("lnkSignIn");
 
-
-                //lblFirstName.Text = user.FirstName + " " + user.LastName + ", " + user.Details;
-                //pnlWelcome.Visible = true;
-                //lnkLogOut.Visible = true;
-                //lnkSignIn.Visible = false;
                 List<ArticleModel> articles = new List<ArticleModel>();
                 articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
                 connManager.DisposeConn();
-                return View("../Articles/Index", articles);
 
+                PagingInfo info = new PagingInfo();
+                info.SortField = " ";
+                info.SortDirection = " ";
+                info.PageSize = 10;
+                info.PageCount = Convert.ToInt32(Math.Ceiling((double)(articles.Count / info.PageSize)));
+                info.CurrentPageIndex = 0;
+                var query = articles.OrderBy(c => c.ArticleID).Take(info.PageSize);
+                ViewBag.PagingInfo = info;
+
+                return View("../Articles/Index", query.ToList());
+
+            }
+        }
+
+
+        [ReCaptcha]
+        public ActionResult Users(Users rm)
+        {
+            return View(rm);
+        }
+
+        public ActionResult CreateEditUser(Users user, HttpPostedFileBase fileUserPhoto)
+        {
+            //AddEdit user
+            Session["User"] = user;
+            return View("ViewUser", user);
+        }
+
+        public ActionResult ViewUser(Users user)
+        {
+            if (Session["User"] != null)
+            {
+                user = (Users)Session["User"];
+            }
+            return View(user);
+        }
+
+        public ActionResult ChangePassword(string txtNewPassword)
+        {
+            if (Session["User"] != null)
+            {
+                user = (Users)Session["User"];
+                ViewBag.OldPassword = user.Password;
+            }
+            return View(user);
+        }
+
+        public ActionResult MyQues()
+        {
+            List<QuestionModel> questions = new List<QuestionModel>();
+
+
+            QuestionModel ques;
+            for (int i = 0; i < 10; i++)
+            {
+                ques = new QuestionModel();
+                ques.QuestionID = i.ToString();
+                ques.QuestionTitle = "Question" + i.ToString();
+                questions.Add(ques);
             }
 
 
+            PagingInfo info = new PagingInfo();
+            info.SortField = " ";
+            info.SortDirection = " ";
+            info.PageSize = 10;
+            info.PageCount = Convert.ToInt32(Math.Ceiling((double)(questions.Count() / info.PageSize)));
+            info.CurrentPageIndex = 0;
+            var query = questions.OrderBy(c => c.QuestionID).Take(info.PageSize);
+            ViewBag.PagingInfo = info;
+
+            return View(query.ToList());
         }
 
+        [HttpPost]
+        public ActionResult MyQues(PagingInfo info)
+        {
+            List<QuestionModel> questions = new List<QuestionModel>();
+            QuestionModel ques;
+            for (int i = 0; i < 10; i++)
+            {
+                ques = new QuestionModel();
+                ques.QuestionID = i.ToString();
+                ques.QuestionTitle = "Question" + i.ToString();
+                questions.Add(ques);
+            }
+
+            IQueryable<QuestionModel> query = questions.AsQueryable();
+            query = query.Skip(info.CurrentPageIndex * info.PageSize).Take(info.PageSize);
+            ViewBag.PagingInfo = info;
+            List<QuestionModel> model = query.ToList();
+            return View(model);
+        }
     }
 }

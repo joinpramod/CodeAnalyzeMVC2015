@@ -3,6 +3,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="~/js/jquery-1.9.1.min.js"></script>
+
+<script>
+        $(document).ready(function () {
+            $(".pager").click(function (evt) {
+                var pageindex = $(evt.target).data("pageindex");
+                $("#CurrentPageIndex").val(pageindex);
+                evt.preventDefault();
+                $("form").submit();
+            });
+        });
+
+</script>
+
+@{
+    CodeAnalyzeMVC2015.Models.PagingInfo info = ViewBag.PagingInfo;
+}
+
 <table style="width: 100%;word-wrap: normal; word-break: break-word;">
     <tr>
         <td>
@@ -26,37 +44,62 @@
     <tr>
         <td>
 
-        @foreach (CodeAnalyzeMVC2015.Models.ArticleModel articleModel in Model)
-        {
-           
-                string title = articleModel.ArticleTitle;
-                System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
-                articleModel.ArticleTitle = rgx.Replace(articleModel.ArticleTitle, "");
-           
-            <section id="ccr-blog">
-                <article>
-                    <img id="imgArrow" src="~/Images/WriteArticle.png" style="height:10%;width:10%" />
-                    <div class="blog-text">
-                        <h1>
-                            @Html.ActionLink(title, "Details", "Articles", new{ Id = articleModel.ArticleID, Title = articleModel.ArticleTitle.Replace(" ", "-").Replace(".","-") }, new { style = "font-weight:bold;" })
-                        </h1>
-                        <p style="font-size:16px">
-                            @articleModel.ArticleDetails                             
-                        </p>
-                        <div>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-up"></i> @articleModel.ThumbsUp
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-down"></i> @articleModel.ThumbsDown
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <img id="ImageButton1" style="height:4%;width:4%" src="~/Images/eye.png" />@articleModel.Views
-                            <span class="read-more" style="padding-right:2%">
-                                @Html.ActionLink("Read More", "Details", "Articles", new { Id = articleModel.ArticleID, Title = articleModel.ArticleTitle.Replace(" ", "-").Replace(".", "-") }, null)
-                            </span>
-                        </div>
-                    </div>
-                </article>
-            </section>
-        }
+              @using (Html.BeginForm("Index", "Articles", FormMethod.Post))
+              {
+
+                    @Html.Hidden("SortField", info.SortField)
+                    @Html.Hidden("SortDirection", info.SortDirection)
+                    @Html.Hidden("PageCount", info.PageCount)
+                    @Html.Hidden("PageSize", info.PageSize)
+                    @Html.Hidden("CurrentPageIndex", info.CurrentPageIndex)
+                    foreach (CodeAnalyzeMVC2015.Models.ArticleModel articleModel in Model)
+                    {
+                        string title = articleModel.ArticleTitle;
+                        System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+                        articleModel.ArticleTitle = rgx.Replace(articleModel.ArticleTitle, "");
+
+                    <section id="ccr-blog">
+                        <article>
+                            <img id="imgArrow" src="~/Images/WriteArticle.png" style="height:10%;width:10%" />
+                            <div class="blog-text">
+                                <h1>
+                                    @Html.ActionLink(title, "Details", "Articles", new { Id = articleModel.ArticleID, Title = articleModel.ArticleTitle.Replace(" ", "-").Replace(".", "-") }, new { style = "font-weight:bold;" })
+                                </h1>
+                                <p style="font-size:16px">
+                                    @articleModel.ArticleDetails                             
+                                </p>
+                                <div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-up"></i> @articleModel.ThumbsUp
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-down"></i> @articleModel.ThumbsDown
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <img id="ImageButton1" style="height:4%;width:4%" src="~/Images/eye.png" />@articleModel.Views
+                                    <span class="read-more" style="padding-right:2%">
+                                        @Html.ActionLink("Read More", "Details", "Articles", new { Id = articleModel.ArticleID, Title = articleModel.ArticleTitle.Replace(" ", "-").Replace(".", "-") }, null)
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    </section>
+                    }
+              }
         </td>
     </tr>
+    <tr>
+        <td>
+            @for (var i = 0; i < info.PageCount; i++)
+            {
+                if (i == info.CurrentPageIndex)
+                {
+                    <span>@(i + 1)</span>
+                }
+                else
+                {
+                    <a href="#" data-pageindex="@i" class="pager">@(i + 1)</a>
+                }
+            }
+        </td>
+    </tr>
+
+
 
 </table>

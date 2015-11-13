@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
@@ -25,8 +26,38 @@ namespace CodeAnalyzeMVC2015.Controllers
                 ConnManager connManager = new ConnManager();
                 articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
             }
-            return View(articles);
+
+            PagingInfo info = new PagingInfo();
+            info.SortField = " ";
+            info.SortDirection = " ";
+            info.PageSize = 10;
+            info.PageCount = Convert.ToInt32(Math.Ceiling((double)(articles.Count/info.PageSize)));
+            info.CurrentPageIndex = 0;
+            var query = articles.OrderBy(c => c.ArticleID).Take(info.PageSize);
+            ViewBag.PagingInfo = info;
+
+
+            return View(query.ToList());
         }
+
+
+        [HttpPost]
+        public ActionResult Index(PagingInfo info)
+        {
+            List<ArticleModel> articles = new List<ArticleModel>();
+            if (ModelState.IsValid)
+            {
+                ConnManager connManager = new ConnManager();
+                articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
+            }
+
+            IQueryable<ArticleModel> query = articles.AsQueryable();
+            query = query.Skip(info.CurrentPageIndex * info.PageSize).Take(info.PageSize);
+            ViewBag.PagingInfo = info;
+            List<ArticleModel> model = query.ToList();
+            return View(model);
+        }
+
 
         public ActionResult Post(string txtYouTubeLink, HttpPostedFileBase fileArticleWordFile, HttpPostedFileBase fileArticleSourceCode)
         {

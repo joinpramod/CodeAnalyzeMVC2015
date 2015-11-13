@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "MyQues";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/js/jquery-1.9.1.min.js"></script>
+
+<script>
+        $(document).ready(function () {
+            $(".pager").click(function (evt) {
+                var pageindex = $(evt.target).data("pageindex");
+                $("#CurrentPageIndex").val(pageindex);
+                evt.preventDefault();
+                $("form").submit();
+            });
+        });
+
+</script>
+
+
+@{
+    CodeAnalyzeMVC2015.Models.PagingInfo info = ViewBag.PagingInfo;
+}
+
+
+@using (Html.BeginForm("MyQues", "Home", FormMethod.Post))
+{
+    @Html.Hidden("SortField", info.SortField)
+    @Html.Hidden("SortDirection", info.SortDirection)
+    @Html.Hidden("PageCount", info.PageCount)
+    @Html.Hidden("PageSize", info.PageSize)
+    @Html.Hidden("CurrentPageIndex", info.CurrentPageIndex)
+    <div>
+        <table style="width: 100%; font-size: 16px">
+            @foreach (CodeAnalyzeMVC2015.Models.QuestionModel questionModel in Model)
+            {
+                <tr>
+                    <td>
+                        <img id="imgArrow" src="~/Images/questions.png" style="width:20px;height:20px;" />
+                    </td>
+                    <td>
+                        @Html.ActionLink(questionModel.QuestionTitle, "Index", "Questions", new { ID = questionModel.QuestionID, Title = questionModel.QuestionTitle.ToString().Replace(" ", "-") }, null)
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    @for (var i = 0; i < info.PageCount; i++)
+                    {
+                        if (i == info.CurrentPageIndex)
+                        {
+                            <span>@(i + 1)</span>
+                        }
+                        else
+                        {
+                            <a href="#" data-pageindex="@i" class="pager">@(i + 1)</a>
+                        }
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+
+
+
+

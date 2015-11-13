@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CodeAnalyzeMVC2015.AppCode;
+using CodeAnalyzeMVC2015.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,8 @@ namespace CodeAnalyzeMVC2015.Controllers
 {
     public class HomeController : BaseController
     {
+        private Users user = new Users();
+
         public ActionResult Index()
         {
             //ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
@@ -49,5 +53,8 @@ namespace CodeAnalyzeMVC2015.Controllers
 
             return View();
         }
+
+       
+
     }
 }

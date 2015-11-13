@@ -40,6 +40,7 @@ namespace CodeAnalyzeMVC2015.Models
         public string ThumbsDown { get; set; }
         public string Views { get; set; }
         public string AskedUser { get; set; }
+        public string RepliedUser { get; set; }
         public string QuestionViews { get; set; }
         public string ImageURL { get; set; }
         public string QuestionDetails { get; set; }
@@ -71,5 +72,27 @@ namespace CodeAnalyzeMVC2015.Models
         public List<QuestionType> Types { get; set; }
     }
 
+    //public class UsersModel
+    //{
+    //    public string UserId { get; set; }
+    //    public string FirstName { get; set; }
+    //    public string Password { get; set; }
+    //    public string LastName { get; set; }
+    //    public string EMail { get; set; }
+    //    public string Address { get; set; }
+    //    public string ProfilePhoto { get; set; }
+    //    public string Details { get; set; }
+    //    public string ArticlesPosted { get; set; }
+    //    public string QuestionsPosted { get; set; }
+    //    public string AnswersPosted { get; set; }
+    //}
 
+    public class PagingInfo
+    {
+        public string SortField { get; set; }
+        public string SortDirection { get; set; }
+        public int PageSize { get; set; }
+        public int PageCount { get; set; }
+        public int CurrentPageIndex { get; set; }
+    }
 }

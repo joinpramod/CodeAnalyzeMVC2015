@@ -205,6 +205,7 @@
     <Compile Include="AppCode\oAuthBase2.cs" />
     <Compile Include="AppCode\oAuthLinkedIn.cs" />
     <Compile Include="AppCode\Question.cs" />
+    <Compile Include="AppCode\reCaptchaHelper.cs" />
     <Compile Include="AppCode\Replies.cs" />
     <Compile Include="AppCode\Suggestion.cs" />
     <Compile Include="AppCode\Users.cs" />
@@ -911,7 +912,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
@@ -930,8 +930,7 @@
     <Content Include="Views\Tutorials\AngularJS.cshtml" />
     <Content Include="Views\Tutorials\Hadoop.cshtml" />
     <Content Include="Views\Questions\UnAns.cshtml" />
-    <Content Include="Views\Home\Register.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Questions\Post.cshtml" />
     <Content Include="Views\Articles\Post.cshtml" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
@@ -945,7 +944,12 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Users.cshtml" />
+    <Content Include="Views\Account\ViewUser.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\MyQues.cshtml" />
+    <Content Include="Views\Account\MyAns.cshtml" />
+    <Content Include="Views\Account\MyArts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />
