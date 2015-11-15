@@ -64,7 +64,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             }
         }
 
-        [ReCaptcha]
+       
         public ActionResult Users()
         {
             if (Session["User"] != null)
@@ -74,120 +74,129 @@ namespace CodeAnalyzeMVC2015.Controllers
             return View(user);
         }
 
+        [ReCaptcha]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult CreateEditUser(Users user, HttpPostedFileBase fileUserPhoto)
         {
             //AddEdit user
 
-            if (fileUserPhoto.ContentLength > 1048576)
+            if (ModelState.IsValid)
             {
-                ViewBag.Ack = "Image file size should be less than 1 mb";
-                //return;
+                if (fileUserPhoto.ContentLength > 1048576)
+                {
+                    ViewBag.Ack = "Image file size should be less than 1 mb";
+                    //return;
+                }
+                else
+                {
+                    try
+                    {
+                        ConnManager con = new ConnManager();
+                        DataSet dsUser = con.GetData("Select * from Users where Email = '" + user.Email + "'");
+                        con.DisposeConn();
+                        if (dsUser.Tables[0].Rows.Count > 0)
+                        {
+                            if (Session["User"] == null)
+                            {
+                                ViewBag.Ack = "EMail id already exists. If you have forgotten password, please click forgot password link on the Sign In page.";
+                                //return;
+                            }
+                            user.UserId = double.Parse(dsUser.Tables[0].Rows[0]["UserId"].ToString());
+                        }
+
+
+                        double dblUserID = 0;
+                        SqlConnection LclConn = new SqlConnection();
+                        SqlTransaction SetTransaction = null;
+                        bool IsinTransaction = false;
+                        if (LclConn.State != ConnectionState.Open)
+                        {
+                            user.SetConnection = user.OpenConnection(LclConn);
+                            SetTransaction = LclConn.BeginTransaction(IsolationLevel.ReadCommitted);
+                            IsinTransaction = true;
+                        }
+                        else
+                        {
+                            user.SetConnection = LclConn;
+                        }
+
+                        if (fileUserPhoto.FileName != "")
+                        {
+                            try
+                            {
+                                string fileName = System.IO.Path.GetFileName(fileUserPhoto.FileName);
+
+                                user.ImageURL = "~/Images/" + fileName;
+                                if (!System.IO.File.Exists(Server.MapPath("~\\Images\\") + fileName))
+                                {
+                                    fileUserPhoto.SaveAs(Server.MapPath("~\\Images\\") + fileName);
+                                }
+                                else
+                                {
+
+                                    string userImageFileName = Server.MapPath("~\\Images\\1") + fileName;
+                                    while (!System.IO.File.Exists(userImageFileName))
+                                    {
+                                        userImageFileName = userImageFileName.Replace("~\\Images\\1", "~\\Images\\11");
+
+                                    }
+                                    fileUserPhoto.SaveAs(userImageFileName);
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+                                ViewBag.Ack = "Please try again";
+                            }
+                        }
+
+                        if (Session["User"] == null)
+                        {
+                            user.OptionID = 1;
+                            user.CreatedDateTime = DateTime.Now;
+                        }
+                        else //if (HFMode.Value == "Edit")
+                        {
+                            user.OptionID = 5;
+                            user.ModifiedDateTime = DateTime.Now;
+                            dblUserID = user.UserId;
+                        }
+
+                        bool result = user.CreateUsers(ref dblUserID, SetTransaction);
+                        if (IsinTransaction && result)
+                        {
+                            SetTransaction.Commit();
+                        }
+                        else
+                        {
+                            SetTransaction.Rollback();
+                        }
+                        user.CloseConnection(LclConn);
+
+
+
+                        if (Session["User"] == null)
+                        {
+                            ViewBag.Ack = "User Registered Successfully. Please login.";
+                            SendNewUserRegEMail();
+                            SendEMail(user.Email, user.FirstName, user.LastName);
+                        }
+                        else
+                            ViewBag.Ack = "User Updated Successfully.";
+                    }
+                    catch
+                    {
+
+                    }
+                }
+                Session["User"] = user;
+                return View("ViewUser", user);
             }
             else
             {
-                try
-                {
-                    ConnManager con = new ConnManager();
-                    DataSet dsUser = con.GetData("Select * from Users where Email = '" + user.Email + "'");
-                    con.DisposeConn();
-                    if (dsUser.Tables[0].Rows.Count > 0)
-                    {
-                        if (Session["User"] == null)
-                        {
-                            ViewBag.Ack = "EMail id already exists. If you have forgotten password, please click forgot password link on the Sign In page.";
-                            //return;
-                        }
-                        user.UserId = double.Parse(dsUser.Tables[0].Rows[0]["UserId"].ToString());
-                    }
-
-
-                    double dblUserID = 0;
-                    SqlConnection LclConn = new SqlConnection();
-                    SqlTransaction SetTransaction = null;
-                    bool IsinTransaction = false;
-                    if (LclConn.State != ConnectionState.Open)
-                    {
-                        user.SetConnection = user.OpenConnection(LclConn);
-                        SetTransaction = LclConn.BeginTransaction(IsolationLevel.ReadCommitted);
-                        IsinTransaction = true;
-                    }
-                    else
-                    {
-                        user.SetConnection = LclConn;
-                    }
-
-                    if (fileUserPhoto.FileName != "")
-                    {
-                        try
-                        {
-                            string fileName = System.IO.Path.GetFileName(fileUserPhoto.FileName);
-
-                            user.ImageURL = "~/Images/" + fileName;
-                            if (!System.IO.File.Exists(Server.MapPath("~\\Images\\") + fileName))
-                            {
-                                fileUserPhoto.SaveAs(Server.MapPath("~\\Images\\") + fileName);
-                            }
-                            else
-                            {
-
-                                string userImageFileName = Server.MapPath("~\\Images\\1") + fileName;
-                                while (!System.IO.File.Exists(userImageFileName))
-                                {
-                                    userImageFileName = userImageFileName.Replace("~\\Images\\1", "~\\Images\\11");
-
-                                }
-                                fileUserPhoto.SaveAs(userImageFileName);
-                            }
-
-                        }
-                        catch (Exception ex)
-                        {
-                            ViewBag.Ack = "Please try again";
-                        }
-                    }
-
-                    if (Session["User"] == null)
-                    {
-                        user.OptionID = 1;
-                        user.CreatedDateTime = DateTime.Now;
-                    }
-                    else //if (HFMode.Value == "Edit")
-                    {
-                        user.OptionID = 5;
-                        user.ModifiedDateTime = DateTime.Now;
-                        dblUserID = user.UserId;
-                    }
-
-                    bool result = user.CreateUsers(ref dblUserID, SetTransaction);
-                    if (IsinTransaction && result)
-                    {
-                        SetTransaction.Commit();
-                    }
-                    else
-                    {
-                        SetTransaction.Rollback();
-                    }
-                    user.CloseConnection(LclConn);
-
-
-
-                    if (Session["User"] == null)
-                    {
-                        ViewBag.Ack = "User Registered Successfully. Please login.";
-                        SendNewUserRegEMail();
-                        SendEMail(user.Email, user.FirstName, user.LastName);
-                    }
-                    else
-                        ViewBag.Ack = "User Updated Successfully.";                  
-                }
-                catch
-                {
-
-                }
-            }
-            Session["User"] = user;
-            return View("ViewUser", user);
+                ViewBag.Ack = ModelState["ReCaptcha"].Errors[0].ErrorMessage;
+                return View("Users", user);
+            }            
         }
 
         private void SendNewUserRegEMail()

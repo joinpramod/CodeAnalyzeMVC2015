@@ -16,9 +16,9 @@
 
 @using (Html.BeginForm("CreateEditUser", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    if (Model.Email == null)
+    if (Model.Email == null || ViewBag.Ack != null)
     {
-    <table width="100%">
+    <table width="80%">
         <tr>
             <td align="center">
                 <a href="~/UserProfileFB.aspx" id="btnLoginFB">
@@ -80,7 +80,7 @@
                                         @Html.TextBoxFor(m => m.Address, new { style = "border:groove;width:75%;border-width:1px" })
                                     </td>
                                 </tr>
-                               @if (Model.Email == null)
+                               @if (Model.Email == null || ViewBag.Ack != null)
                                 {
                                 <tr>
                                     <td align="left" style="font-family:Calibri;">
@@ -126,8 +126,7 @@
                                 <tr>
                                     <td colspan="2" align="center">
 
-                                        <div id="recaptcha_div"></div>
-                                        @Html.GenerateCaptcha(Theme.White)*
+                                        @Html.GenerateCaptcha(Theme.White)
                                     </td>
                                 </tr>
 
