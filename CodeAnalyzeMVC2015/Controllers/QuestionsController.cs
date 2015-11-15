@@ -431,14 +431,14 @@ namespace CodeAnalyzeMVC2015.Controllers
                         if (Request.Url.ToString().Contains("localhost"))
                             htcUserImage += "<img src=\"/CodeAnalyzeMVC2015/" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "") + "\" style=\"height:30px;width:30px\" />";
                         else
-                            htcUserImage += "<img src=\"/codeanalyze.com/" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "") + "\" style=\"height:30px;width:30px\" />";
+                            htcUserImage += "<img src=\"" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "") + "\" style=\"height:30px;width:30px\" />";
                     }
                     else
                     {
                         if (Request.Url.ToString().Contains("localhost"))
                             htcUserImage += "<img src=\"/CodeAnalyzeMVC2015/Images/Person.JPG\" style=\"height:25px;width:25px\" />";
                         else
-                            htcUserImage += "<img src=\"/codeanalyze.com/Images/Person.JPG\" style=\"height:25px;width:25px\" />";
+                            htcUserImage += "<img src=\"~/Images/Person.JPG\" style=\"height:25px;width:25px\" />";
                     }
                         htcUserImage += "</td>";
 
@@ -595,8 +595,9 @@ namespace CodeAnalyzeMVC2015.Controllers
             else
                 strUpVoteLink = "<a href=\"http://codeanalyze.com/Questions/UpVote/" + quesID + "/" + Replyid + "/" + strTitle + " id=\"lnkThumpsUp" + i.ToString() + "\">";
 
+            //string strThumpsUp = "<td align=\"right\">" + strUpVoteLink + "<img src=\"/CodeAnalyzeMVC2015/Images/ThumpsUp.png\" style=\"height:30px;width:30px\" /></a>";
 
-            string strThumpsUp = "<td align=\"right\">" + strUpVoteLink + "<img src=\"/CodeAnalyzeMVC2015/Images/ThumpsUp.png\" style=\"height:30px;width:30px\" /></a>";
+            string strThumpsUp = "<td align=\"right\">" + strUpVoteLink + "<img src=\"/Images/ThumpsUp.png\" style=\"height:30px;width:30px\" /></a>";
             strThumpsUp += "</td><td>" + lblUp + "&nbsp;&nbsp;&nbsp;&nbsp;</td>";
             htcThumpsUp += strThumpsUp;
 
@@ -610,7 +611,9 @@ namespace CodeAnalyzeMVC2015.Controllers
             else
                 strDownVoteLink = "<a href=\"http://codeanalyze.com/Questions/DownVote/" + quesID + "/" + Replyid + "/" + strTitle + " id=\"lnkThumpsUp" + i.ToString() + "\">";
 
-            string strThumpsDown = "<td align=\"right\">" + strDownVoteLink + "<img src=\"/CodeAnalyzeMVC2015/Images/ThumpsDown.png\" style=\"height:30px;width:30px\" /></a>";
+            //string strThumpsDown = "<td align=\"right\">" + strDownVoteLink + "<img src=\"/CodeAnalyzeMVC2015/Images/ThumpsDown.png\" style=\"height:30px;width:30px\" /></a>";
+
+            string strThumpsDown = "<td align=\"right\">" + strDownVoteLink + "<img src=\"/Images/ThumpsDown.png\" style=\"height:30px;width:30px\" /></a>";
             strThumpsDown += "</td><td>" + lblDown + "&nbsp;&nbsp;&nbsp;&nbsp;</td>";
             htcThumpsDown += strThumpsDown;
 

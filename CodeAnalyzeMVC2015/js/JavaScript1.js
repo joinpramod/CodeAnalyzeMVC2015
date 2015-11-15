@@ -176,4 +176,17 @@ SyntaxHighlighter.defaults.toolbar = false;
 
         }
         
+        function ValidateSuggestion() {
+            var txtEMail = document.getElementById('txtEMail').value;
+            var txtSuggestion = document.getElementById('txtSuggestion').value;
+
+
+            if (txtEMail == "" || txtSuggestion == "") {
+                alert("Please enter all details");
+                return false;
+            }
+            else
+                return true;
+
+        }
 
