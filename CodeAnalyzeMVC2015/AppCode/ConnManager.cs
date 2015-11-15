@@ -164,6 +164,27 @@ namespace CodeAnalyzeMVC2015
             return questions;
         }
 
+        public List<VwSolutionsModel> GetSolns(string sqlQuery)
+        {
+            OpenConnection();
+            DataTable DSQuestions = new DataTable();
+            DSQuestions = GetDataTable(sqlQuery);
+            DisposeConn();
+
+            List<VwSolutionsModel> solns = new List<VwSolutionsModel>();
+            VwSolutionsModel soln;
+            foreach (DataRow row in DSQuestions.Rows)
+            {
+                soln = new VwSolutionsModel();
+                soln.QuestionID = row["QuestionID"].ToString();
+                soln.QuestionTitle = row["QuestionTitle"].ToString();
+                soln.AskedUser = row["AskedUser"].ToString();
+                soln.RepliedUser = row["RepliedUser"].ToString();
+                solns.Add(soln);
+            }
+            return solns;
+        }
+
         private string CleanTitle(string v)
         {
             Regex rgx = new Regex("[^a-zA-Z0-9 -]");

@@ -8,14 +8,16 @@
 @using CodeAnalyzeMVC2015.AppCode
 
 
-
+<script src="~/js/JavaScript1.js"></script>
 <script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
 
 
 
-@using (Html.BeginForm("CreateEditUser", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
 
+@using (Html.BeginForm("CreateEditUser", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    if (Model.Email == null)
+    {
     <table width="100%">
         <tr>
             <td align="center">
@@ -33,8 +35,8 @@
     </table>
 
     <br />
-
-                <table style="font-size: 16px" width="100%">
+    }
+                <table style="font-size:16px" width="100%">
                     <tr>
                         <td align="center" style="font-weight: bold; color: red; font-size: 16px">
                             @ViewBag.Ack
@@ -50,40 +52,41 @@
                                     <td align="left" style="font-family: Calibri;">
                                         First Name:
                                     </td>
-                                    <td align="left" style="padding-left: 10px">
+                                    <td align="left" style="padding-left:10px">
                                         @Html.TextBoxFor(m => m.FirstName, new { style = "border:groove;width:55%;border-width:1px" })
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left" style="font-family: Calibri;">
+                                    <td align="left" style="font-family:Calibri;">
                                         Last Name
                                     </td>
-                                    <td align="left" style="padding-left: 10px">
+                                    <td align="left" style="padding-left:10px">
                                         @Html.TextBoxFor(m => m.LastName, new { style = "border:groove;width:55%;border-width:1px" })
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left" style="font-family: Calibri;">
+                                    <td align="left" style="font-family:Calibri;">
                                         E-Mail:
                                     </td>
-                                    <td align="left" style="padding-left: 10px">
+                                    <td align="left" style="padding-left:10px">
                                         @Html.TextBoxFor(m => m.Email, new { style = "border:groove;width:75%;border-width:1px" })
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left" style="font-family: Calibri;">
+                                    <td align="left" style="font-family:Calibri;">
                                        Address:
                                     </td>
                                     <td align="left" style="padding-left: 10px">
                                         @Html.TextBoxFor(m => m.Address, new { style = "border:groove;width:75%;border-width:1px" })
                                     </td>
                                 </tr>
-
+                               @if (Model.Email == null)
+                                {
                                 <tr>
-                                    <td align="left" style="font-family: Calibri;">
+                                    <td align="left" style="font-family:Calibri;">
                                         Password:
                                     </td>
-                                    <td align="left" style="padding-left: 10px">
+                                    <td align="left" style="padding-left:10px">
                                         <input type="password" id="txtPassword" style="border:groove;width:55%;border-width:1px"/>
                                         @*@Html.Password("txtPassword", new { style = "border:groove;width:55%;border-width:1px" })*@
                                     </td>
@@ -93,18 +96,18 @@
                                     <td align="left" style="font-family: Calibri;">
                                         Confirm Password:
                                     </td>
-                                    <td align="left" style="padding-left: 10px">
+                                    <td align="left" style="padding-left:10px">
                                         <input type="password" id="txtConfirmPassword" style="border:groove;width:55%;border-width:1px" />
                                         @*@Html.Password("txtConfirmPassword", new { style = "border:groove;width:55%;border-width:1px" })*@
                                     </td>
                                 </tr>
-
+                                }
 
                                 <tr>
-                                    <td align="left" style="font-family: Calibri;">
+                                    <td align="left" style="font-family:Calibri;">
                                        Upload Photo:
                                     </td>
-                                    <td align="left" style="padding-left: 10px">
+                                    <td align="left" style="padding-left:10px">
                                         <input type="file" style="width: 50%" id="fileUserPhoto" name="fileUserPhoto" />
                                     </td>
                                 </tr>
@@ -133,8 +136,8 @@
                                 </tr>
                                 <tr>
                                     <td align="center" colspan="2">
-                                        <input type="submit" id="btnRegister" value="Submit" onclick="return ValidateUserReg()" style="border: none; background-color: #4fa4d5; color: white; font-size: 16px" />
-                                       
+                                        <input type="submit" id="btnRegister" value="Submit" onclick="return ValidateUserReg()" style="border:none;background-color:#4fa4d5;color:white;font-size:16px" />
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -146,5 +149,5 @@
                     </tr>
                 </table>
 
-                @Html.Hidden("hfUserEMail", "")
+                @*@Html.Hidden("hfUserEMail", (object)ViewBag.UserEMail)*@
 }

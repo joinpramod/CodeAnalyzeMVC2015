@@ -21,6 +21,10 @@
     CodeAnalyzeMVC2015.Models.PagingInfo info = ViewBag.PagingInfo;
 }
 
+
+
+
+
 <table style="width: 100%;word-wrap: normal; word-break: break-word;">
     <tr>
         <td>
@@ -41,6 +45,27 @@
             }
         </td>
     </tr>
+    </table>
+
+<table>
+    <tr>
+        @for (var i = 0; i < info.PageCount; i++)
+            {
+                if (i == info.CurrentPageIndex)
+                {
+                <td><span>@(i + 1)</span></td>
+            }
+            else
+            {
+                <td>
+                    <a href="#" data-pageindex="@i" class="pager" style="font-weight:bold">@(i + 1)</a>
+                </td>
+            }
+        }
+    </tr>
+</table>
+
+    <table>
     <tr>
         <td>
 
@@ -84,22 +109,21 @@
               }
         </td>
     </tr>
+    </table>
+    <table>
     <tr>
-        <td>
             @for (var i = 0; i < info.PageCount; i++)
             {
                 if (i == info.CurrentPageIndex)
                 {
-                    <span>@(i + 1)</span>
+                    <td><span>@(i + 1)</span></td>
                 }
                 else
                 {
-                    <a href="#" data-pageindex="@i" class="pager">@(i + 1)</a>
+                    <td>
+                        <a href="#" data-pageindex="@i" class="pager" style="font-weight:bold">@(i + 1)</a>
+                    </td>
                 }
             }
-        </td>
     </tr>
-
-
-
-</table>
+    </table>

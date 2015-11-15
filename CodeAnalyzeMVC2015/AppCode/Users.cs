@@ -47,6 +47,7 @@ namespace CodeAnalyzeMVC2015
                 IntOptID = value;
             }
         }
+
         public double UserId
         {
             get
@@ -58,7 +59,6 @@ namespace CodeAnalyzeMVC2015
                 DblUserId = value;
             }
         }
-
 
         public string FirstName
         {
@@ -72,7 +72,6 @@ namespace CodeAnalyzeMVC2015
             }
         }
 
-
         public string LastName
         {
             get
@@ -84,7 +83,6 @@ namespace CodeAnalyzeMVC2015
                 StrLastName = value;
             }
         }
-
 
         public string Password
         {
@@ -98,7 +96,6 @@ namespace CodeAnalyzeMVC2015
             }
         }
 
-
         public string Email
         {
             get
@@ -110,7 +107,6 @@ namespace CodeAnalyzeMVC2015
                 StrEmail = value;
             }
         }
-
 
         public string ImageURL
         {
@@ -124,7 +120,6 @@ namespace CodeAnalyzeMVC2015
             }
         }
 
-
         public string Company
         {
             get
@@ -136,7 +131,6 @@ namespace CodeAnalyzeMVC2015
                 StrCompany = value;
             }
         }
-
 
         public string Details
         {
@@ -191,7 +185,6 @@ namespace CodeAnalyzeMVC2015
             }
         }
 
-
         public System.DateTime ModifiedDateTime
         {
             get
@@ -203,7 +196,6 @@ namespace CodeAnalyzeMVC2015
                 DtModifiedDateTime = value;
             }
         }
-
 
         public bool SetCommandUsers(ref SqlCommand CmdSent)
         {
@@ -276,7 +268,6 @@ namespace CodeAnalyzeMVC2015
             return true;
         }
 
-
         public bool CreateUsers(ref double NewMasterID, SqlTransaction TrTransaction)
         {
             if (SetCommandUsers(ref CmdExecute))
@@ -301,8 +292,6 @@ namespace CodeAnalyzeMVC2015
             }
             return true;
         }
-
-
 
         public Users CreateUser(string strEmail, string strFirstName, string strLastName)
         {

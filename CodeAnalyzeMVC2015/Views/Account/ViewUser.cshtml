@@ -7,33 +7,34 @@
 
 
 <div>
-
+@using (Html.BeginForm("Users", "Account", FormMethod.Post))
+{
     <table border="0" cellpadding="0" cellspacing="0" style="width: 70%; font-size: 16px">
         <tr align="center" style="width: 100%">
-            <td align="right" valign="middle" style="width: 33%">
-                @Html.ActionLink("My Questions", "MyQues", "Home");
+            <td align="right" valign="middle" style="width: 33%;">
+                @Html.ActionLink("My Questions", "MyQues", "Account", null, new { style = "text-decoration:underline;color:blue" })
             </td>
-            <td align="center" valign="middle" style="width: 33%">
-                @Html.ActionLink("My Answers", "MyAns", "Home");
+            <td align="center" valign="middle" style="width: 33%;text-decoration:underline;">
+                @Html.ActionLink("My Answers", "MyAns", "Account", null, new { style = "text-decoration:underline;color:blue" })
             </td>
-            <td align="left" valign="middle" style="width: 33%">
-                @Html.ActionLink("My Articles", "MyArts", "Home");
+            <td align="left" valign="middle" style="width: 33%;text-decoration:underline;">
+                @Html.ActionLink("My Articles", "MyArts", "Account", null, new { style = "text-decoration:underline;color:blue" })
             </td>
         </tr>
     </table>
-
+    <br />
     <table style="height: 230px; width: 100%; font-size: 16px" cellpadding="4" cellspacing="4">
         <tr>
             <td rowspan="8" valign="top">
 
-                <img id="imgProfile" src="@Model.ImageURL" style="height: 140px; width: 100%" />
+                <img id="imgProfile" src="@Model.ImageURL" style="height:50%;width:50%" />
 
             </td>
             <td align="left" valign="top" style="width: 25%; font-family: Calibri;">
                 <b>First Name:</b>
             </td>
             <td align="left" valign="top">
-                @Html.LabelFor(m => m.FirstName)
+                @Model.FirstName
             </td>
         </tr>
         <tr>
@@ -41,7 +42,7 @@
                 <b>Last Name:</b>
             </td>
             <td align="left" valign="top">
-                @Html.LabelFor(m => m.LastName)
+                @Model.LastName
             </td>
         </tr>
         <tr>
@@ -49,7 +50,7 @@
                 <b>EMail:</b>
             </td>
             <td align="left" valign="top">
-                @Html.LabelFor(m => m.Email)
+                @Model.Email
             </td>
         </tr>
         <tr>
@@ -57,7 +58,7 @@
                 <b>Address:</b>
             </td>
             <td align="left" valign="top">
-                @Html.LabelFor(m => m.Address)
+                @Model.Address
             </td>
         </tr>
         <tr>
@@ -65,7 +66,7 @@
                 <b>Articles Posted:</b>
             </td>
             <td align="left" valign="top">
-                @Html.LabelFor(m => m.ArticlesPosted)
+                @Model.ArticlesPosted
             </td>
         </tr>
         <tr>
@@ -73,7 +74,7 @@
                 <b>Questions Posted:</b>
             </td>
             <td align="left" valign="top">
-                @Html.LabelFor(m => m.QuestionsPosted)
+                @Model.QuestionsPosted
             </td>
         </tr>
         <tr>
@@ -81,7 +82,7 @@
                 <b>Replies Posted:</b>
             </td>
             <td align="left" valign="top">
-                @Html.LabelFor(m => m.AnswersPosted)
+                @Model.AnswersPosted
             </td>
         </tr>
         <tr>
@@ -89,34 +90,27 @@
                 <b>Details:</b>
             </td>
             <td align="left" valign="top">
-                @Html.LabelFor(m => m.Details)
+                @Model.Details
             </td>
         </tr>
         <tr>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td style="padding-left: 20%" colspan="3" valign="top">
-                <tabel>
+            <td colspan="2" style="padding-left:20%" valign="top">
+                <tabel style="width:80%">
                     <tr>
-                        <td colspan="2" align="center">
-                            @using (Html.BeginForm("Users", "Account", Model))
-                            {
-                                <input type="submit" value="Edit Profile" style="border: none; background-color: #4fa4d5; color: white; font-size: 16px; width: 35%" />
-                            }
+                        <td align="center">                            
+                                <input type="submit" value="Edit Profile" style="border: none; background-color: #4fa4d5; color: white; font-size: 16px; width: 30%" />
                         </td>
                         <td>
-                            @using (Html.BeginForm("ChangePassword", "Home"))
-                            {
-                                <input type="submit" value="Change Password" style="border: none; background-color: #4fa4d5; color: white; font-size: 16px; width: 30%" />
-                            }
+                                @Html.ActionLink("Change Password", "ChangePassword", "Account", null, new { @style="width:200px;height:10px;color:white;background-color:#4fa4d5" })
                         </td>
                     </tr> 
                 </tabel>
             </td>
         </tr>
     </table>
-
-
+}
 </div>
 

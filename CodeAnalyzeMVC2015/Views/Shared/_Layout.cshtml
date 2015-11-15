@@ -29,7 +29,7 @@
 
     <link href="~/css/prettify.css" type="text/css" rel="stylesheet" />
     <script type="text/javascript" src="~/js/prettify.js"></script>
-    <script src="~/js/JavaScript1.js"></script>
+    @*<script src="~/js/JavaScript1.js"></script>*@
 
     <script>
         (function (i, s, o, g, r, a, m) {
@@ -114,7 +114,8 @@
                                         @*@Html.ActionLink("Register", "Register", "Master", new { @style = "color:white;" })*@
                                         @*<a href="~/UserProfile.aspx" style="color:white">Register</a>*@ 
                                         @Html.ActionLink("Register", "Users", "Account", null, new { @style = "color:white;" })
-                                    </li>   <li>
+                                    </li>   
+                                    <li>
                                         @Html.ActionLink("Sign In", "Login", "Account", null, new { @style = "color:white;" })
                                         @*<a href="~/Login.aspx" style="color:white">Login</a>*@ 
                                     </li>
@@ -125,9 +126,9 @@
                                     <li>
                                         @Html.ActionLink("My Profile", "ViewUser", "Account", null, new { @style = "color:white;" })
                                     </li>
-                                <li>                                    
+                                    <li>                                    
                                         @Html.ActionLink("Log Out", "LogOut", "Master", null, new { @style = "color:white;" })                                    
-                                </li>
+                                    </li>
                                 }
                             <li>
 

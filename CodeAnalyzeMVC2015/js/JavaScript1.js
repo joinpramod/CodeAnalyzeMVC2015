@@ -137,47 +137,43 @@ SyntaxHighlighter.defaults.toolbar = false;
         function ValidateUserReg() {
             var varFirstName = document.getElementById('FirstName').value;
             var varLastName = document.getElementById('LastName').value;
-            var varEMail = document.getElementById('EMail').value;
+            var varEMail = document.getElementById('Email').value;
             var varDetails = document.getElementById('Details').value;
             var varPassword = document.getElementById('txtPassword').value;
             var varConfirmPassword = document.getElementById('txtConfirmPassword').value;
             var varAddress = document.getElementById('Address').value;
-            var VarEMail = document.getElementById('hfUserEMail').value;
 
-            if (VarEMail == "") {
-                if (varFirstName == null && varLastName == null && varEMail == "" && varDetails == null && varPassword == null && varConfirmPassword == "" && varAddress == "") {
-                    alert("Please enter First and Last names, EMail, Password, Addess and Details");
-                    return false;
-                }
-                else if (varFirstName == null && varLastName == null && varEMail == "" && varDetails == null && varPassword == null && varConfirmPassword == "") {
-                    alert("Please enter First and Last names, EMail, Password and Details");
-                    return false;
-                }
-                else if (varFirstName == null && varLastName == null && varEMail == "" && varPassword == null && varConfirmPassword == "") {
-                    alert("Please enter First and Last names, EMail, Password");
-                    return false;
-                }
-                else if (varFirstName == null && varLastName == null && varPassword == null && varConfirmPassword == "") {
-                    alert("Please enter First and Last names, EMail");
-                    return false;
-                }
-                else if (varFirstName == null && varPassword == null && varConfirmPassword == "") {
-                    alert("Please enter First and EMail"); return false;
-                    return false;
-                }
-                else if (varPassword != varConfirmPassword) {
-                    alert("Confirm password not matching with Password");
-                    return false;
-                }
-                else if (varPasswor.length < 8) {
-                    alert("Password is expected to be 8 charectors.");
-                    return false;
-                }
-                else
-                    return true;
-            }       
-            else
+            if (varFirstName == "" || varLastName == "" || varEMail == "" || varDetails == "" || varPassword == "" || varConfirmPassword == "" || varAddress == "") {
+                alert("Please enter all details. First and Last names, EMail, Password, Addess and Details");
                 return false;
+            }
+            //else if (varFirstName == "" && varLastName == "" && varEMail == "" && varDetails == "" && varPassword == "" && varConfirmPassword == "") {
+            //    alert("Please enter First and Last names, EMail, Password and Details");
+            //    return false;
+            //}
+            //else if (varFirstName == "" && varLastName == "" && varEMail == "" && varPassword == "" && varConfirmPassword == "") {
+            //    alert("Please enter First and Last names, EMail, Password");
+            //    return false;
+            //}
+            //else if (varFirstName == "" && varLastName == "" && varPassword == "" && varConfirmPassword == "") {
+            //    alert("Please enter First and Last names, EMail");
+            //    return false;
+            //}
+            //else if (varFirstName == "" && varPassword == "" && varConfirmPassword == "") {
+            //    alert("Please enter First and EMail"); return false;
+            //    return false;
+            //}
+            else if (varPassword != varConfirmPassword) {
+                alert("Confirm password not matching with Password");
+                return false;
+            }
+            else if (varPassword.length < 8) {
+                alert("Password is expected to be 8 charectors.");
+                return false;
+            }
+            else
+                return true;
+
         }
         
 

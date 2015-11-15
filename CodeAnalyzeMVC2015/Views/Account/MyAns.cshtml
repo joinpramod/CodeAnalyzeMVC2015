@@ -23,7 +23,7 @@
 }
 
 
-@using (Html.BeginForm("MyAns", "Home", FormMethod.Post))
+@using (Html.BeginForm("MyAns", "Account", FormMethod.Post))
 {
     @Html.Hidden("SortField", info.SortField)
     @Html.Hidden("SortDirection", info.SortDirection)
@@ -31,8 +31,27 @@
     @Html.Hidden("PageSize", info.PageSize)
     @Html.Hidden("CurrentPageIndex", info.CurrentPageIndex)
     <div>
+
+        <table>
+            <tr>
+                @for (var i = 0; i < info.PageCount; i++)
+                {
+                    if (i == info.CurrentPageIndex)
+                    {
+                        <td>@(i + 1)&nbsp; &nbsp;</td>
+                    }
+                    else
+                    {
+                        <td>
+                            <a href="#" data-pageindex="@i" class="pager" style="font-weight:bold">@(i + 1)</a>&nbsp; &nbsp; 
+                        </td>
+                    }
+                }
+            </tr>
+        </table>
+        <br />
         <table style="width: 100%; font-size: 16px">
-            @foreach (CodeAnalyzeMVC2015.Models.QuestionModel questionModel in Model)
+            @foreach (CodeAnalyzeMVC2015.Models.VwSolutionsModel questionModel in Model)
             {
                 <tr>
                     <td>
@@ -42,23 +61,27 @@
                         @Html.ActionLink(questionModel.QuestionTitle, "Index", "Questions", new { ID = questionModel.QuestionID, Title = questionModel.QuestionTitle.ToString().Replace(" ", "-") }, null)
                     </td>
                 </tr>
-            }
+            }            
+        </table>
+        <br />
+        <table>
             <tr>
-                <td>
-                    @for (var i = 0; i < info.PageCount; i++)
+                @for (var i = 0; i < info.PageCount; i++)
+                {
+                    if (i == info.CurrentPageIndex)
                     {
-                        if (i == info.CurrentPageIndex)
-                        {
-                            <span>@(i + 1)</span>
-                        }
-                        else
-                        {
-                            <a href="#" data-pageindex="@i" class="pager">@(i + 1)</a>
-                        }
+                        <td>@(i + 1)&nbsp; &nbsp;</td>
                     }
-                </td>
+                    else
+                    {
+                        <td>
+                            <a href="#" data-pageindex="@i" class="pager" style="font-weight:bold">@(i + 1)</a>&nbsp; &nbsp; 
+                        </td>
+                    }
+                }
             </tr>
         </table>
+
     </div>
 }
 
