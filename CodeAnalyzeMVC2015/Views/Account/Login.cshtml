@@ -4,37 +4,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script language="javascript" type="text/javascript">
 
-    function ValidateLogin() {
-
-        var varUserId = '<%=txtEMailId.ClientID %>';
-        var VarPwd = '<%=txtPassword.ClientID %>';
-
-
-        var userName = document.getElementById(varUserId).value;
-        var pwd = document.getElementById(VarPwd).value;
-
-
-        if (userName != "" && pwd != "") {
-            return true;
-        }
-        else {
-            alert("Please enter username and password");
-            return false;
-        }
-    }
-
-</script>
-
-
-
+<h2>Login</h2><br />
 
     <table width="100%">
         <tr>
-            <td align="center" style="border:1px solid black;">
+            <td align="center">
 
                 <table style="font-size:16px" width="80%">
+
+                    <tr>
+                        <td align="center">
+                            <span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red">@ViewBag.lblAck</span>
+                        </td>
+                    </tr>
                     <tr><td>&nbsp;</td></tr>
                         @using (Html.BeginForm("ProcessLogin", "Account"))
                         {
@@ -42,31 +25,19 @@
 
                         <td style="padding-left:4%;" align="center">
                             EMail:    @Html.TextBox("txtEMailId", "", new { style = "border:groove;width:34%;border-width:1px" })
-                            @*<asp:TextBox ID="txtEMailId" BorderStyle="Groove"  Text="" Width="34%"></asp:TextBox>*@
-                          
                         </td>
                     </tr>
                     <tr>
 
                         <td align="center">
                             Password:  @Html.Password("txtPassword", "", new { style = "border:groove;width:25%;border-width:1px" })
-                          
-                            
-                            @*<asp:TextBox ID="txtPassword"  BorderStyle="Groove" TextMode="Password" Width="25%"></asp:TextBox>*@
-                            @*<asp:Button ID="btnLogin" BackColor="#4fa4d5" ForeColor="White"  Font-Names="Calibri"
-                                        Text="Login" BorderStyle="None" OnClientClick="return ValidateLogin()" OnClick="btnLogin_Click" />*@
-                            
-                            <input type="submit" value="Login" id="btnLogin" style="border:none;color:white;background-color:#4fa4d5" />
+                            <input type="submit" value="Login" id="btnLogin" onclick="return ValidateLogin()" style="border:none;color:white;background-color:#4fa4d5" />
                         </td>
                     </tr>
                     }
-
                     <tr>
-
                         <td style="padding-left:56%;">
                         @Html.ActionLink("Forgot Password", "ForgotPassword", "Account", null, new {style="font-size:14px" })
-                            @*<asp:LinkButton ID="lnkForgotPwd"  Font-Names="Calibri" OnClick="lnkForgotPwd_Click"
-                                            Font-Size="14px">Forgot Password</asp:LinkButton>*@
                         </td>
                     </tr>
                     <tr><td>&nbsp;</td></tr>
@@ -75,18 +46,11 @@
                             <table width="100%">
                                 <tr>
                                     <td align="center">
-                                        @*<asp:ImageButton ID="ImageButton2"  Height="22px"
-                                                         ImageUrl="~/Images/SignInWithFacebook.png" PostBackUrl="~/UserProfileFB.aspx"
-                                                         ToolTip="Sign In With Facebook" Width="150px" />*@
-
                                         <a href="~/UserProfileFB.aspx" id="btnLoginFB">
                                             <img src="~/Images/SignInWithFacebook.png" style="height:22px;width:150px" />
                                         </a>
                                       </td>
                                       <td align="center">
-                                        @*<asp:ImageButton ID="ImageButton3"  Height="22px"
-                                                         ImageUrl="~/Images/SignInWithGoogle.png" PostBackUrl="~/UserProfileGoogle.aspx"
-                                                         ToolTip="Sign In With Google" Width="150px" />*@
                                           <a href="~/UserProfileGoogle.aspx" id="btnLoginGoogle">
                                               <img src="~/Images/SignInWithGoogle.png" style="height:22px;width:150px" />
                                           </a>

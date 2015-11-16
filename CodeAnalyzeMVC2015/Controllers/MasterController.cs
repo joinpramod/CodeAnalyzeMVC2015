@@ -70,6 +70,16 @@ namespace CodeAnalyzeMVC2015.Models
             ConnManager connManager = new ConnManager();
             articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
             connManager.DisposeConn();
+
+            PagingInfo info = new PagingInfo();
+            info.SortField = " ";
+            info.SortDirection = " ";
+            info.PageSize = 10;
+            info.PageCount = Convert.ToInt32(Math.Ceiling((double)(articles.Count / info.PageSize)));
+            info.CurrentPageIndex = 0;
+            var query = articles.OrderBy(c => c.ArticleID).Take(info.PageSize);
+            ViewBag.PagingInfo = info;
+            ViewBag.UserEmail = null;
             return View("../Articles/Index", articles);
             
         }

@@ -20,6 +20,44 @@ namespace CodeAnalyzeMVC2015.Controllers
             return View();
         }
 
+
+        public ActionResult ForgotPassword(string txtEMailId)
+        {
+            if (!string.IsNullOrEmpty(txtEMailId))
+            {
+                ConnManager con = new ConnManager();
+                DataSet dsUser = con.GetData("Select * from Users where Email = '" + txtEMailId + "'");
+                con.DisposeConn();
+                if (dsUser.Tables[0].Rows.Count <= 0)
+                {
+                    ViewBag.Ack = "No such EMail Id exists";
+                }
+                if (!string.IsNullOrEmpty(dsUser.Tables[0].Rows[0]["Password"].ToString()))
+                {
+                    Mail mail = new Mail();
+                    mail.IsBodyHtml = true;
+                    string EMailBody = System.IO.File.ReadAllText(Server.MapPath("EMailBody.txt"));
+
+                    mail.Body = string.Format(EMailBody, "Your CodeAnalyze account password is " + dsUser.Tables[0].Rows[0]["Password"].ToString());
+
+
+                    mail.FromAdd = "admin@codeanalyze.com";
+                    mail.Subject = "Code Analyze account password";
+                    mail.ToAdd = dsUser.Tables[0].Rows[0]["EMail"].ToString();
+                    mail.SendMail();
+
+                    ViewBag.Ack = "Password mailed successfully";
+                }
+                else
+                {
+
+                    ViewBag.Ack = "You have created your profile thorugh one of the social sites. Please use the same channel to login. Google Or Facebook Or LinkedIn";
+                }
+            }
+            return View();
+        }
+
+
         public ActionResult ProcessLogin(string txtEMailId, string txtPassword)
         {
 
@@ -30,7 +68,8 @@ namespace CodeAnalyzeMVC2015.Controllers
            
             if (DSUserList.Rows.Count == 0)
             {
-                return null;
+                ViewBag.lblAck = "Invalid login credentials, please try again";
+                return View("../Account/Login");
             }
             else
             {
@@ -58,7 +97,6 @@ namespace CodeAnalyzeMVC2015.Controllers
                 info.CurrentPageIndex = 0;
                 var query = articles.OrderBy(c => c.ArticleID).Take(info.PageSize);
                 ViewBag.PagingInfo = info;
-
                 return View("../Articles/Index", query.ToList());
 
             }

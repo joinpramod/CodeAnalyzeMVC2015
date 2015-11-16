@@ -29,7 +29,6 @@ namespace CodeAnalyzeMVC2015
             //name: "InsertAns",
             //url: "{controller}/{action}/{hiddenId}/{SolutionEditor}");
 
-
             routes.MapRoute(
             name: "Default",
             url: "{controller}/{action}",

@@ -69,6 +69,7 @@ public partial class UserProfile : System.Web.UI.Page
                 }
                 Session["User"] = user;
                 Session["user.Email"] = user.Email;
+                Response.Redirect("/Account/ViewUser");
             }
 
 
@@ -93,7 +94,8 @@ public partial class UserProfile : System.Web.UI.Page
 
                 Session["User"] = user;
                 Session["user.Email"] = user.Email;
-            }
+            Response.Redirect("/Account/ViewUser");
+        }
 
             if (!IsPostBack)
             {
@@ -114,8 +116,6 @@ public partial class UserProfile : System.Web.UI.Page
                     if (Session["User"] == null)
                     {
                         HFMode.Value = "New";
-                        //pnlPassword.Visible = true;
-                        //pnlChangePassword.Visible = false;
                         btnCancelChangePassword.Visible = false;
 
                         Panel _pnlLogin = (Panel)this.Master.FindControl("pnlLogin");

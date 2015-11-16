@@ -5,6 +5,7 @@
 }
 @model CodeAnalyzeMVC2015.Users
 
+<h2>My Profile</h2><br />
 
 <div>
 @using (Html.BeginForm("Users", "Account", FormMethod.Post))
@@ -101,7 +102,7 @@
                 <tabel style="width:80%">
                     <tr>
                         <td align="center">                            
-                                <input type="submit" value="Edit Profile" style="border: none; background-color: #4fa4d5; color: white; font-size: 16px; width: 30%" />
+                                <input type="submit" value="Edit Profile" style="border: none; background-color: #4fa4d5; color: white; font-size: 16px; width: 50%" />
                         </td>
                         <td>
                                 @Html.ActionLink("Change Password", "ChangePassword", "Account", null, new { @style="width:200px;height:10px;color:white;background-color:#4fa4d5" })

@@ -112,7 +112,11 @@ namespace CodeAnalyzeMVC2015.Controllers
             return View();
         }
 
-       
+        public ActionResult Error()
+        {
+            return View();
+        }
+
 
     }
 }

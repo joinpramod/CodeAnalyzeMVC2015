@@ -190,3 +190,59 @@ SyntaxHighlighter.defaults.toolbar = false;
 
         }
 
+        function ValidateLogin() {
+            var userName = document.getElementById('txtEMailId').value;
+            var pwd = document.getElementById('txtPassword').value;
+
+            if (userName != "" && pwd != "") {
+                return true;
+            }
+            else {
+                alert("Please enter username and password");
+                return false;
+            }
+        }
+
+
+        function ValidateForgotPassword() {
+            var userName = document.getElementById('txtEMailId').value;
+
+            if (userName != "") {
+                return true;
+            }
+            else {
+                alert("Please enter email");
+                return false;
+            }
+        }
+
+        function ValidatePasswords() {
+            var varHFOldPassword = document.getElementById('HFOldPassword').value;
+            var varOldPassword = document.getElementById('txtPassword').value;
+            var varNewPassword = document.getElementById('txtNewPassword').value;
+            var varConfirmPassword = document.getElementById('txtConfirmPassword').value;
+            var VarEMail = document.getElementById('hfUserEMail').value;
+
+            if (VarEMail != "") {
+                if (varHFOldPassword != varOldPassword) {
+                    alert("Please enter correct Old Password");
+                    return false;
+                }
+                else if (txtNewPassword != txtConfirmPassword) {
+                    alert("Password and ConfirmPassword does not match");
+                    return false;
+                }
+                else if (txtNewPassword.length < 8) {
+                    alert("Password is expected to be 8 charectors.");
+                    return false;
+                }
+                else
+                    return true;
+            }
+            else {
+                alert("Please login to post");
+                return false;
+            }
+        }
+
+
