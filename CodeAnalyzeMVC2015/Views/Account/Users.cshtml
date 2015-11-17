@@ -132,8 +132,10 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2" align="center">
-
-                                        @Html.GenerateCaptcha(Theme.White)
+                                        @if (Model.Email == null || ViewBag.Ack != null)
+                                        {
+                                            @Html.GenerateCaptcha(Theme.White)
+                                        }
                                     </td>
                                 </tr>
 
@@ -143,6 +145,7 @@
                                 <tr>
                                     <td align="center" colspan="2">
                                         <input type="submit" id="btnRegister" value="Submit" onclick="return ValidateUserReg()" style="border:none;background-color:#4fa4d5;color:white;font-size:16px" />
+                                        <input type="submit" id="btnCancel" name="Cancel" value="Cancel" style="border:none;background-color:#4fa4d5;color:white;font-size:16px" />
 
                                     </td>
                                 </tr>

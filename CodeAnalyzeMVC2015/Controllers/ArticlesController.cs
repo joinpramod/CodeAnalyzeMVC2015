@@ -33,7 +33,12 @@ namespace CodeAnalyzeMVC2015.Controllers
             info.PageSize = 10;
             info.PageCount = Convert.ToInt32(Math.Ceiling((double)(articles.Count/info.PageSize)));
             info.CurrentPageIndex = 0;
-            var query = articles.OrderBy(c => c.ArticleID).Take(info.PageSize);
+
+
+            // var query = articles.OrderByDescending(c => c.ArticleID).Take(info.PageSize);
+
+            var query = articles.AsQueryable();
+            query = query.Skip(info.CurrentPageIndex * info.PageSize).Take(info.PageSize);
             ViewBag.PagingInfo = info;
 
 

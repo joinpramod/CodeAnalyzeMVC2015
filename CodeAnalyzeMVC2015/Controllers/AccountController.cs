@@ -65,7 +65,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             connManager.OpenConnection();
             DataTable DSUserList = new DataTable();
             DSUserList = connManager.GetDataTable("select * from users where email = '" + txtEMailId + "' and Password = '" + txtPassword + "'");
-           
+
             if (DSUserList.Rows.Count == 0)
             {
                 ViewBag.lblAck = "Invalid login credentials, please try again";
@@ -102,14 +102,23 @@ namespace CodeAnalyzeMVC2015.Controllers
             }
         }
 
-       
+
         public ActionResult Users()
         {
             if (Session["User"] != null)
             {
                 user = (Users)Session["User"];
             }
-            return View(user);
+
+            if (Request.Form["Edit"] != null)
+            {
+                return View(user);
+            }
+            else if (Request.Form["ChangePassword"] != null)
+            {
+                return View("../Account/ChangePassword", user);
+            }
+            return null;
         }
 
         [ReCaptcha]
@@ -117,124 +126,134 @@ namespace CodeAnalyzeMVC2015.Controllers
         public ActionResult CreateEditUser(Users user, HttpPostedFileBase fileUserPhoto)
         {
             //AddEdit user
-
-            if (ModelState.IsValid)
+            if (Request.Form["Cancel"] == null)
             {
-                if (fileUserPhoto.ContentLength > 1048576)
+                if (ModelState.IsValid)
                 {
-                    ViewBag.Ack = "Image file size should be less than 1 mb";
-                    //return;
+                    if (fileUserPhoto.ContentLength > 1048576)
+                    {
+                        ViewBag.Ack = "Image file size should be less than 1 mb";
+                        //return;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            ConnManager con = new ConnManager();
+                            DataSet dsUser = con.GetData("Select * from Users where Email = '" + user.Email + "'");
+                            con.DisposeConn();
+                            if (dsUser.Tables[0].Rows.Count > 0)
+                            {
+                                if (Session["User"] == null)
+                                {
+                                    ViewBag.Ack = "EMail id already exists. If you have forgotten password, please click forgot password link on the Sign In page.";
+                                    //return;
+                                }
+                                user.UserId = double.Parse(dsUser.Tables[0].Rows[0]["UserId"].ToString());
+                            }
+
+
+                            double dblUserID = 0;
+                            SqlConnection LclConn = new SqlConnection();
+                            SqlTransaction SetTransaction = null;
+                            bool IsinTransaction = false;
+                            if (LclConn.State != ConnectionState.Open)
+                            {
+                                user.SetConnection = user.OpenConnection(LclConn);
+                                SetTransaction = LclConn.BeginTransaction(IsolationLevel.ReadCommitted);
+                                IsinTransaction = true;
+                            }
+                            else
+                            {
+                                user.SetConnection = LclConn;
+                            }
+
+                            if (fileUserPhoto.FileName != "")
+                            {
+                                try
+                                {
+                                    string fileName = System.IO.Path.GetFileName(fileUserPhoto.FileName);
+
+                                    user.ImageURL = "~/Images/" + fileName;
+                                    if (!System.IO.File.Exists(Server.MapPath("~\\Images\\") + fileName))
+                                    {
+                                        fileUserPhoto.SaveAs(Server.MapPath("~\\Images\\") + fileName);
+                                    }
+                                    else
+                                    {
+
+                                        string userImageFileName = Server.MapPath("~\\Images\\1") + fileName;
+                                        while (!System.IO.File.Exists(userImageFileName))
+                                        {
+                                            userImageFileName = userImageFileName.Replace("~\\Images\\1", "~\\Images\\11");
+
+                                        }
+                                        fileUserPhoto.SaveAs(userImageFileName);
+                                    }
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    ViewBag.Ack = "Please try again";
+                                }
+                            }
+
+                            if (Session["User"] == null)
+                            {
+                                user.OptionID = 1;
+                                user.CreatedDateTime = DateTime.Now;
+                            }
+                            else //if (HFMode.Value == "Edit")
+                            {
+                                user.OptionID = 5;
+                                user.ModifiedDateTime = DateTime.Now;
+                                dblUserID = user.UserId;
+                            }
+
+                            bool result = user.CreateUsers(ref dblUserID, SetTransaction);
+                            if (IsinTransaction && result)
+                            {
+                                SetTransaction.Commit();
+                            }
+                            else
+                            {
+                                SetTransaction.Rollback();
+                            }
+                            user.CloseConnection(LclConn);
+
+
+
+                            if (Session["User"] == null)
+                            {
+                                ViewBag.Ack = "User Registered Successfully. Please login.";
+                                SendNewUserRegEMail();
+                                SendEMail(user.Email, user.FirstName, user.LastName);
+                            }
+                            else
+                                ViewBag.Ack = "User Updated Successfully.";
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                    Session["User"] = user;
+                    return View("ViewUser", user);
                 }
                 else
                 {
-                    try
-                    {
-                        ConnManager con = new ConnManager();
-                        DataSet dsUser = con.GetData("Select * from Users where Email = '" + user.Email + "'");
-                        con.DisposeConn();
-                        if (dsUser.Tables[0].Rows.Count > 0)
-                        {
-                            if (Session["User"] == null)
-                            {
-                                ViewBag.Ack = "EMail id already exists. If you have forgotten password, please click forgot password link on the Sign In page.";
-                                //return;
-                            }
-                            user.UserId = double.Parse(dsUser.Tables[0].Rows[0]["UserId"].ToString());
-                        }
-
-
-                        double dblUserID = 0;
-                        SqlConnection LclConn = new SqlConnection();
-                        SqlTransaction SetTransaction = null;
-                        bool IsinTransaction = false;
-                        if (LclConn.State != ConnectionState.Open)
-                        {
-                            user.SetConnection = user.OpenConnection(LclConn);
-                            SetTransaction = LclConn.BeginTransaction(IsolationLevel.ReadCommitted);
-                            IsinTransaction = true;
-                        }
-                        else
-                        {
-                            user.SetConnection = LclConn;
-                        }
-
-                        if (fileUserPhoto.FileName != "")
-                        {
-                            try
-                            {
-                                string fileName = System.IO.Path.GetFileName(fileUserPhoto.FileName);
-
-                                user.ImageURL = "~/Images/" + fileName;
-                                if (!System.IO.File.Exists(Server.MapPath("~\\Images\\") + fileName))
-                                {
-                                    fileUserPhoto.SaveAs(Server.MapPath("~\\Images\\") + fileName);
-                                }
-                                else
-                                {
-
-                                    string userImageFileName = Server.MapPath("~\\Images\\1") + fileName;
-                                    while (!System.IO.File.Exists(userImageFileName))
-                                    {
-                                        userImageFileName = userImageFileName.Replace("~\\Images\\1", "~\\Images\\11");
-
-                                    }
-                                    fileUserPhoto.SaveAs(userImageFileName);
-                                }
-
-                            }
-                            catch (Exception ex)
-                            {
-                                ViewBag.Ack = "Please try again";
-                            }
-                        }
-
-                        if (Session["User"] == null)
-                        {
-                            user.OptionID = 1;
-                            user.CreatedDateTime = DateTime.Now;
-                        }
-                        else //if (HFMode.Value == "Edit")
-                        {
-                            user.OptionID = 5;
-                            user.ModifiedDateTime = DateTime.Now;
-                            dblUserID = user.UserId;
-                        }
-
-                        bool result = user.CreateUsers(ref dblUserID, SetTransaction);
-                        if (IsinTransaction && result)
-                        {
-                            SetTransaction.Commit();
-                        }
-                        else
-                        {
-                            SetTransaction.Rollback();
-                        }
-                        user.CloseConnection(LclConn);
-
-
-
-                        if (Session["User"] == null)
-                        {
-                            ViewBag.Ack = "User Registered Successfully. Please login.";
-                            SendNewUserRegEMail();
-                            SendEMail(user.Email, user.FirstName, user.LastName);
-                        }
-                        else
-                            ViewBag.Ack = "User Updated Successfully.";
-                    }
-                    catch
-                    {
-
-                    }
+                    ViewBag.Ack = ModelState["ReCaptcha"].Errors[0].ErrorMessage;
+                    return View("Users", user);
                 }
-                Session["User"] = user;
-                return View("ViewUser", user);
             }
             else
             {
-                ViewBag.Ack = ModelState["ReCaptcha"].Errors[0].ErrorMessage;
-                return View("Users", user);
-            }            
+                if (Session["User"] != null)
+                {
+                    user = (Users)Session["User"];
+                }
+                return View("../Account/ViewUser", user);
+            }
         }
 
         private void SendNewUserRegEMail()
@@ -284,14 +303,14 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                 if (Request.Url.ToString().Contains("localhost"))
                 {
-                    if (user.ImageURL!=null && !user.ImageURL.Contains("/CodeAnalyzeMVC2015/"))
+                    if (user.ImageURL != null && !user.ImageURL.Contains("/CodeAnalyzeMVC2015/"))
                     {
                         user.ImageURL = "/CodeAnalyzeMVC2015/" + user.ImageURL.Replace("~/", "");
                     }
                 }
-                else if (user.ImageURL != null && !user.ImageURL.Contains("/codeanalyze.com/"))
+                else //if (user.ImageURL != null && !user.ImageURL.Contains("/codeanalyze.com/"))
                 {
-                    user.ImageURL = "/codeanalyze.com/" + user.ImageURL.Replace("~/", "");
+                    user.ImageURL = user.ImageURL.Replace("~", "");
                 }
 
             }
@@ -300,47 +319,59 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult ChangePassword(string txtNewPassword)
         {
-            if (Session["User"] != null)
+
+            if (Request.Form["Cancel"] == null)
             {
-                user = (Users)Session["User"];
-                double dblUserID = 0;
-                SqlConnection LclConn = new SqlConnection();
-                SqlTransaction SetTransaction = null;
-                bool IsinTransaction = false;
-                if (LclConn.State != ConnectionState.Open)
+                if (Session["User"] != null && !string.IsNullOrEmpty(txtNewPassword))
                 {
-                    user.SetConnection = user.OpenConnection(LclConn);
-                    SetTransaction = LclConn.BeginTransaction(IsolationLevel.ReadCommitted);
-                    IsinTransaction = true;
-                }
-                else
-                {
-                    user.SetConnection = LclConn;
-                }
-                user.OptionID = 5;
-                 user.Password = txtNewPassword;
-                user.ModifiedDateTime = DateTime.Now;
-                dblUserID = user.UserId;
+                    user = (Users)Session["User"];
+                    double dblUserID = 0;
+                    SqlConnection LclConn = new SqlConnection();
+                    SqlTransaction SetTransaction = null;
+                    bool IsinTransaction = false;
+                    if (LclConn.State != ConnectionState.Open)
+                    {
+                        user.SetConnection = user.OpenConnection(LclConn);
+                        SetTransaction = LclConn.BeginTransaction(IsolationLevel.ReadCommitted);
+                        IsinTransaction = true;
+                    }
+                    else
+                    {
+                        user.SetConnection = LclConn;
+                    }
+                    user.OptionID = 5;
+                    user.Password = txtNewPassword;
+                    user.ModifiedDateTime = DateTime.Now;
+                    dblUserID = user.UserId;
 
-                bool result = user.CreateUsers(ref dblUserID, SetTransaction);
-                if (IsinTransaction && result)
-                {
-                    SetTransaction.Commit();
-                }
-                else
-                {
-                    SetTransaction.Rollback();
-                }
+                    bool result = user.CreateUsers(ref dblUserID, SetTransaction);
+                    if (IsinTransaction && result)
+                    {
+                        SetTransaction.Commit();
+                    }
+                    else
+                    {
+                        SetTransaction.Rollback();
+                    }
 
-                user.CloseConnection(LclConn);
-                //lblUserRegMsg.Visible = true;
-                ViewBag.Ack = "Password changed successfully";
-                //txtPassword.Text = "";
-                //txtConfirmPassword.Text = "";
+                    user.CloseConnection(LclConn);
+                    //lblUserRegMsg.Visible = true;
+                    ViewBag.Ack = "Password changed successfully";
+                    //txtPassword.Text = "";
+                    //txtConfirmPassword.Text = "";
 
-                ViewBag.OldPassword = user.Password;
+                    ViewBag.OldPassword = user.Password;
+                }
+                return View(user);
             }
-            return View(user);
+            else
+            {
+                if (Session["User"] != null)
+                {
+                    user = (Users)Session["User"];
+                }
+                return View("../Account/ViewUser", user);
+            }
         }
 
         public ActionResult MyQues()
@@ -374,20 +405,33 @@ namespace CodeAnalyzeMVC2015.Controllers
         [HttpPost]
         public ActionResult MyQues(PagingInfo info)
         {
-            List<QuestionModel> questions = new List<QuestionModel>();
-            questions = GetMyQues(questions);
+            if (Request.Form["Cancel"] == null)
+            {
+                List<QuestionModel> questions = new List<QuestionModel>();
+                questions = GetMyQues(questions);
 
-            IQueryable<QuestionModel> query = questions.AsQueryable();
-            query = query.Skip(info.CurrentPageIndex * info.PageSize).Take(info.PageSize);
-            ViewBag.PagingInfo = info;
-            List<QuestionModel> model = query.ToList();
-            return View(model);
+                IQueryable<QuestionModel> query = questions.AsQueryable();
+                query = query.Skip(info.CurrentPageIndex * info.PageSize).Take(info.PageSize);
+                ViewBag.PagingInfo = info;
+                List<QuestionModel> model = query.ToList();
+                return View(model);
+            }
+            else
+            {
+                if (Session["User"] != null)
+                {
+                    user = (Users)Session["User"];
+                }
+                return View("../Account/ViewUser", user);
+
+            }
         }
 
 
 
         public ActionResult MyAns()
         {
+
             List<VwSolutionsModel> solns = new List<VwSolutionsModel>();
             solns = GetMyAns(solns);
             PagingInfo info = new PagingInfo();
@@ -399,6 +443,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             var query = solns.OrderBy(c => c.QuestionID).Take(info.PageSize);
             ViewBag.PagingInfo = info;
             return View(query.ToList());
+
         }
 
         private List<VwSolutionsModel> GetMyAns(List<VwSolutionsModel> solns)
@@ -417,14 +462,26 @@ namespace CodeAnalyzeMVC2015.Controllers
         [HttpPost]
         public ActionResult MyAns(PagingInfo info)
         {
-            List<VwSolutionsModel> questions = new List<VwSolutionsModel>();
-            questions = GetMyAns(questions);
+            if (Request.Form["Cancel"] == null)
+            {
+                List<VwSolutionsModel> questions = new List<VwSolutionsModel>();
+                questions = GetMyAns(questions);
 
-            IQueryable<VwSolutionsModel> query = questions.AsQueryable();
-            query = query.Skip(info.CurrentPageIndex * info.PageSize).Take(info.PageSize);
-            ViewBag.PagingInfo = info;
-            List<VwSolutionsModel> model = query.ToList();
-            return View(model);
+                IQueryable<VwSolutionsModel> query = questions.AsQueryable();
+                query = query.Skip(info.CurrentPageIndex * info.PageSize).Take(info.PageSize);
+                ViewBag.PagingInfo = info;
+                List<VwSolutionsModel> model = query.ToList();
+                return View(model);
+            }
+            else
+            {
+                if (Session["User"] != null)
+                {
+                    user = (Users)Session["User"];
+                }
+                return View("../Account/ViewUser", user);
+
+            }
         }
 
 
@@ -432,6 +489,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult MyArts()
         {
+
             List<ArticleModel> solns = new List<ArticleModel>();
             solns = GetMyArts(solns);
             PagingInfo info = new PagingInfo();
@@ -443,6 +501,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             var query = solns.OrderBy(c => c.ArticleID).Take(info.PageSize);
             ViewBag.PagingInfo = info;
             return View(query.ToList());
+
         }
 
         private List<ArticleModel> GetMyArts(List<ArticleModel> solns)
@@ -461,14 +520,26 @@ namespace CodeAnalyzeMVC2015.Controllers
         [HttpPost]
         public ActionResult MyArts(PagingInfo info)
         {
-            List<ArticleModel> arts = new List<ArticleModel>();
-            arts = GetMyArts(arts);
+            if (Request.Form["Cancel"] == null)
+            {
+                List<ArticleModel> arts = new List<ArticleModel>();
+                arts = GetMyArts(arts);
 
-            IQueryable<ArticleModel> query = arts.AsQueryable();
-            query = query.Skip(info.CurrentPageIndex * info.PageSize).Take(info.PageSize);
-            ViewBag.PagingInfo = info;
-            List<ArticleModel> model = query.ToList();
-            return View(model);
+                IQueryable<ArticleModel> query = arts.AsQueryable();
+                query = query.Skip(info.CurrentPageIndex * info.PageSize).Take(info.PageSize);
+                ViewBag.PagingInfo = info;
+                List<ArticleModel> model = query.ToList();
+                return View(model);
+            }
+            else
+            {
+                if (Session["User"] != null)
+                {
+                    user = (Users)Session["User"];
+                }
+                return View("../Account/ViewUser", user);
+
+            }
         }
 
 

@@ -44,7 +44,7 @@
                     else
                     {
                         <td>
-                            <a href="#" data-pageindex="@i" class="pager" style="font-weight:bold">@(i + 1)</a>&nbsp; &nbsp; 
+                            <a href="#" data-pageindex="@i" class="pager" style="font-weight:bold">@(i + 1)</a>&nbsp; &nbsp;
                         </td>
                     }
                 }
@@ -62,7 +62,7 @@
                         @Html.ActionLink(questionModel.QuestionTitle, "Index", "Questions", new { ID = questionModel.QuestionID, Title = questionModel.QuestionTitle.ToString().Replace(" ", "-") }, null)
                     </td>
                 </tr>
-            }            
+            }
         </table>
         <br />
         <table>
@@ -76,13 +76,19 @@
                     else
                     {
                         <td>
-                            <a href="#" data-pageindex="@i" class="pager" style="font-weight:bold">@(i + 1)</a>&nbsp; &nbsp; 
+                            <a href="#" data-pageindex="@i" class="pager" style="font-weight:bold">@(i + 1)</a>&nbsp; &nbsp;
                         </td>
                     }
                 }
             </tr>
         </table>
-
+        <table width="100%">
+            <tr>
+                <td align="center">
+                    <input type="submit" value="Done" name="Cancel" style="border: none; background-color: #4fa4d5; color: white; font-size: 16px;" />
+                </td>
+            </tr>
+        </table>
     </div>
 }
 

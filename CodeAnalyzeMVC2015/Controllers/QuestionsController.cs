@@ -348,7 +348,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                     Session["AskedUserEMail"] = dsQuestion.Rows[0]["EMail"].ToString();
 
 
-                    model.QuestionTitle = "<b>" + dsQuestion.Rows[0]["QuestionTitle"].ToString() + "<b>";
+                    model.QuestionTitle = dsQuestion.Rows[0]["QuestionTitle"].ToString();
 
                     strQuestionDetails = dsQuestion.Rows[0]["Question"].ToString().Replace("font-size: x-small", "font-size: medium");
 
