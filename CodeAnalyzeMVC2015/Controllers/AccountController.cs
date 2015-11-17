@@ -108,17 +108,22 @@ namespace CodeAnalyzeMVC2015.Controllers
             if (Session["User"] != null)
             {
                 user = (Users)Session["User"];
+                if (Request.Form["Edit"] != null)
+                {
+                    return View(user);
+                }
+                else if (Request.Form["ChangePassword"] != null)
+                {
+                    return View("../Account/ChangePassword", user);
+                }
+                return null;
             }
-
-            if (Request.Form["Edit"] != null)
+            else
             {
+                user = new Users();
                 return View(user);
             }
-            else if (Request.Form["ChangePassword"] != null)
-            {
-                return View("../Account/ChangePassword", user);
-            }
-            return null;
+
         }
 
         [ReCaptcha]
@@ -248,11 +253,18 @@ namespace CodeAnalyzeMVC2015.Controllers
             }
             else
             {
+
                 if (Session["User"] != null)
                 {
                     user = (Users)Session["User"];
+                    return View("../Account/ViewUser", user);
                 }
-                return View("../Account/ViewUser", user);
+                else
+                {
+                    Response.Redirect("../Articles/Index");
+
+                }
+                return null;
             }
         }
 
