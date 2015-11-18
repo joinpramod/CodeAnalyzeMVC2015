@@ -80,40 +80,40 @@ namespace CodeAnalyzeMVC2015.Models
             var query = articles.OrderBy(c => c.ArticleID).Take(info.PageSize);
             ViewBag.PagingInfo = info;
             ViewBag.UserEmail = null;
-            return View("../Articles/Index", articles);
             
+            Response.Redirect("/Articles/Index");
+            return View("../Articles/Index", articles);
         }
 
 
         [AllowAnonymous]
         public ActionResult ReferFriend(string txtReferEMail)
         {
-            if (ModelState.IsValid)
-            {
                 string strFrom = " freinds";
-                if (Session["User"] != null)
-                {
+                //if (Session["User"] != null)
+                //{
                     //user = (Users)Session["User"];
                     //if (!string.IsNullOrEmpty(user.FirstName))
                     //    strFrom = user.FirstName;
                     //else
                     //    strFrom = user.Email;
-                }
+                //}
                 Mail mail = new Mail();
 
-                string EMailBody = System.IO.File.ReadAllText(Server.MapPath("EMailBody.txt"));
+                string EMailBody = System.IO.File.ReadAllText(Server.MapPath("../EMailBody.txt"));
                 string strCA = "<a id=HyperLink1 style=font-size: medium; font-weight: bold; color:White href=http://codeanalyze.com>CodeAnalyze</a>";
                 mail.Body = string.Format(EMailBody, "You have been refered to " + strCA + " by one of your " + strFrom + ". Get Rewards Amazon Gift Cards for code blogging. Do take a look");
 
                 mail.FromAdd = "admin@codeanalyze.com";
-               // mail.Subject = "Referred to CodeAnalyze -" + user.Email;
+                mail.Subject = "Referred to CodeAnalyze";
                 mail.ToAdd = txtReferEMail;
                 mail.IsBodyHtml = true;
                 mail.SendMail();
                 txtReferEMail = "Done";
-            }
-
+                Response.Redirect("../Articles/Index");
             return null;
+            //}
+
         }
 
 

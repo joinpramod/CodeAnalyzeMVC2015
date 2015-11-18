@@ -69,7 +69,7 @@ public partial class UserProfile : System.Web.UI.Page
                 }
                 Session["User"] = user;
                 Session["user.Email"] = user.Email;
-                Response.Redirect("/Account/ViewUser");
+                Response.Redirect("../Account/ViewUser");
             }
 
 
@@ -94,7 +94,7 @@ public partial class UserProfile : System.Web.UI.Page
 
                 Session["User"] = user;
                 Session["user.Email"] = user.Email;
-            Response.Redirect("/Account/ViewUser");
+                Response.Redirect("../Account/ViewUser");
         }
 
             if (!IsPostBack)

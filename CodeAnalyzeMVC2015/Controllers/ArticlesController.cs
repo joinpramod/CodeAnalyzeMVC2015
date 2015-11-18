@@ -395,7 +395,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                         if (Request.Url.ToString().Contains("localhost"))
                             htcUserImage += "<img src=\"/CodeAnalyzeMVC2015/" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "") + "\" style=\"height:30px;width:30px\" />";
                         else
-                            htcUserImage += "<img src=\"/" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "") + "\" style=\"height:30px;width:30px\" />";
+                            htcUserImage += "<img src=\"" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "") + "\" style=\"height:30px;width:30px\" />";
                     }
                     else
                     {
@@ -430,7 +430,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                             if (dsCount != null)
                                 strAnswers = dsCount.Rows[0][0].ToString();
                             else
-                                strAnswers = "<b>none</b>";
+                                strAnswers = "none";
 
 
                             if (!dsSolution.Rows[i]["EMail"].ToString().Contains("codeanalyze.com"))

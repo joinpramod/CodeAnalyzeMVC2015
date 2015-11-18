@@ -43,12 +43,12 @@ namespace CodeAnalyzeMVC2015.Controllers
         //[Route("{Id}/{Title}")]
         public ActionResult Soln(string SolutionEditor)
         {
-            if (Session["DeleteReply"] == "true")
+            if (Session["DeleteReplyId"] != null)
             {
                 string Id = RouteData.Values["Id"].ToString();
-                string RId = RouteData.Values["RId"].ToString();
+                string RId = Session["DeleteReplyId"].ToString(); // RouteData.Values["RId"].ToString();
                 string Title = RouteData.Values["Title"].ToString();
-                return DeleteReply(Id, RId, Title);
+                return DeleteReply(Id, Title);
             }
             else if(string.IsNullOrEmpty(SolutionEditor))
             {
@@ -206,7 +206,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                     {
                         Mail mail = new Mail();
 
-                        string EMailBody = System.IO.File.ReadAllText(Server.MapPath("EMailBody.txt"));
+                        string EMailBody = System.IO.File.ReadAllText(Server.MapPath("../../../EMailBody.txt"));
 
                         string strLink = "www.codeanalyze.com/Questions/Index/Title/" + quesID.ToString() + "/" + model.QuestionTitle + "";
 
@@ -241,18 +241,18 @@ namespace CodeAnalyzeMVC2015.Controllers
             return View("../Questions/Soln", model);
         }
 
-        public ActionResult DeleteReply(string Id, string RId, string Title)
+        public ActionResult DeleteReply(string Id, string Title)
         {
             VwSolutionsModel model = new VwSolutionsModel();
-            if (Session["DeleteReply"] == "true")
+            if (Session["DeleteReplyId"] != null)
             {
-                if (Id != null && RId != null)
+                if (Id != null)
                 {
                     ConnManager conn = new ConnManager();
-                    conn.DeleteReply(RId);
+                    conn.DeleteReply(Session["DeleteReplyId"].ToString());
                     model = SetDefaults();
                 }
-                Session["DeleteReply"] = null;
+                Session["DeleteReplyId"] = null;
             }
             return View("../Questions/Soln", model);
         }
@@ -328,10 +328,10 @@ namespace CodeAnalyzeMVC2015.Controllers
                     model.QuestionID = quesID.ToString();
                     if (!dsQuestion.Rows[0]["EMail"].ToString().Contains("codeanalyze.com"))
                     {
-                        model.AskedUser = "Posted By: <b>" + dsQuestion.Rows[0]["FirstName"].ToString() + "<b>";
+                        model.AskedUser = "Posted By: " + dsQuestion.Rows[0]["FirstName"].ToString() + " ";
                         if (!string.IsNullOrEmpty(dsQuestion.Rows[0]["LastName"].ToString()))
                         {
-                            model.AskedUser = model.AskedUser + " <b>" + dsQuestion.Rows[0]["LastName"].ToString() + "<b>";
+                            model.AskedUser = model.AskedUser + "" + dsQuestion.Rows[0]["LastName"].ToString() + "";
                         }
 
                         if (!string.IsNullOrEmpty(dsQuestion.Rows[0]["ImageURL"].ToString()))
@@ -362,21 +362,30 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                     strQuestionDetails = strQuestionDetails.Replace("<br>", "<br />");
 
-                    foreach (Match regExp in Regex.Matches(strQuestionDetails, @"\<pre\>(.*?)\<br />(.*?)\</pre\>", RegexOptions.IgnoreCase))
-                    {
-                        strQuestionDetails = strQuestionDetails.Replace(regExp.Value, regExp.Value.Replace("<br />", ""));
-                    }
+                    //strQuestionDetails = strQuestionDetails.Replace("<br>", "");
+                    //if (strQuestionDetails.Contains("<pre>"))
+                    //{
+                        foreach (Match regExp in Regex.Matches(strQuestionDetails, @"\<pre\>(.*?)\<br />(.*?)\</pre\>", RegexOptions.IgnoreCase))
+                        {
+                            strQuestionDetails = strQuestionDetails.Replace(regExp.Value, regExp.Value.Replace("<br />", ""));
+                        }
 
-                    foreach (Match regExp in Regex.Matches(strQuestionDetails, @"\<pre\>(.*?)\&nbsp; (.*?)\</pre\>", RegexOptions.IgnoreCase))
-                    {
-                        strQuestionDetails = strQuestionDetails.Replace(regExp.Value, regExp.Value.Replace("&nbsp; ", " "));
-                    }
+                        //foreach (Match regExp in Regex.Matches(strQuestionDetails, @"\<pre\>(.*?)\<br>(.*?)\</pre\>", RegexOptions.IgnoreCase))
+                        //{
+                        //    strQuestionDetails = strQuestionDetails.Replace(regExp.Value, regExp.Value.Replace("<br>", ""));
+                        //}
 
-                    foreach (Match regExp in Regex.Matches(strQuestionDetails, @"\<pre\>(.*?)\##########(.*?)\</pre\>", RegexOptions.IgnoreCase))
-                    {
-                        strQuestionDetails = strQuestionDetails.Replace(regExp.Value, regExp.Value.Replace("##########", "#####"));
-                    }
 
+                        foreach (Match regExp in Regex.Matches(strQuestionDetails, @"\<pre\>(.*?)\&nbsp; (.*?)\</pre\>", RegexOptions.IgnoreCase))
+                        {
+                            strQuestionDetails = strQuestionDetails.Replace(regExp.Value, regExp.Value.Replace("&nbsp; ", " "));
+                        }
+
+                        foreach (Match regExp in Regex.Matches(strQuestionDetails, @"\<pre\>(.*?)\##########(.*?)\</pre\>", RegexOptions.IgnoreCase))
+                        {
+                            strQuestionDetails = strQuestionDetails.Replace(regExp.Value, regExp.Value.Replace("##########", "#####"));
+                        }
+                    //}
 
                     strQuestionDetails = strQuestionDetails.Replace("<pre>", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
                     strQuestionDetails = strQuestionDetails.Replace("#####", "\r\n");
@@ -429,16 +438,16 @@ namespace CodeAnalyzeMVC2015.Controllers
                     if (!string.IsNullOrEmpty(dsSolution.Rows[i]["ImageURL"].ToString()))
                     {
                         if (Request.Url.ToString().Contains("localhost"))
-                            htcUserImage += "<img src=\"/CodeAnalyzeMVC2015/" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "") + "\" style=\"height:30px;width:30px\" />";
+                            htcUserImage += "<img src=\"/CodeAnalyzeMVC2015" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "") + "\" style=\"height:30px;width:30px\" />";
                         else
-                            htcUserImage += "<img src=\"" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "") + "\" style=\"height:30px;width:30px\" />";
+                            htcUserImage += "<img src=\"" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "").Replace("/CodeAnalyzeMVC2015", "") + "\" style=\"height:30px;width:30px\" />";
                     }
                     else
                     {
                         if (Request.Url.ToString().Contains("localhost"))
                             htcUserImage += "<img src=\"/CodeAnalyzeMVC2015/Images/Person.JPG\" style=\"height:25px;width:25px\" />";
                         else
-                            htcUserImage += "<img src=\"~/Images/Person.JPG\" style=\"height:25px;width:25px\" />";
+                            htcUserImage += "<img src=\"/Images/Person.JPG\" style=\"height:25px;width:25px\" />";
                     }
                         htcUserImage += "</td>";
 
@@ -522,21 +531,32 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                     strReply = strReply.Replace("\r\n", "#####");
 
+                    //strReply = strReply.Replace("<br>", "");
+                    strReply = strReply.Replace("<br>", "<br />");
 
-                    foreach (Match regExp in Regex.Matches(strReply, @"\<pre\>(.*?)\<br />(.*?)\</pre\>", RegexOptions.IgnoreCase))
-                    {
-                        strReply = strReply.Replace(regExp.Value, regExp.Value.Replace("<br />", ""));
-                    }
+                    //if (strReply.Contains("<pre>"))
+                    //{
+                        foreach (Match regExp in Regex.Matches(strReply, @"\<pre\>(.*?)\<br />(.*?)\</pre\>", RegexOptions.IgnoreCase))
+                        {
+                            strReply = strReply.Replace(regExp.Value, regExp.Value.Replace("<br />", ""));
+                        }
 
-                    foreach (Match regExp in Regex.Matches(strReply, @"\<pre\>(.*?)\&nbsp; (.*?)\</pre\>", RegexOptions.IgnoreCase))
-                    {
-                        strReply = strReply.Replace(regExp.Value, regExp.Value.Replace("&nbsp; ", " "));
-                    }
+                        //foreach (Match regExp in Regex.Matches(strReply, @"\<pre\>(.*?)\<br>(.*?)\</pre\>", RegexOptions.IgnoreCase))
+                        //{
+                        //    strReply = strReply.Replace(regExp.Value, regExp.Value.Replace("<br>", ""));
+                        //}
 
-                    foreach (Match regExp in Regex.Matches(strReply, @"\<pre\>(.*?)\##########(.*?)\</pre\>", RegexOptions.IgnoreCase))
-                    {
-                        strReply = strReply.Replace(regExp.Value, regExp.Value.Replace("##########", "#####"));
-                    }
+
+                        foreach (Match regExp in Regex.Matches(strReply, @"\<pre\>(.*?)\&nbsp; (.*?)\</pre\>", RegexOptions.IgnoreCase))
+                        {
+                            strReply = strReply.Replace(regExp.Value, regExp.Value.Replace("&nbsp; ", " "));
+                        }
+
+                        foreach (Match regExp in Regex.Matches(strReply, @"\<pre\>(.*?)\##########(.*?)\</pre\>", RegexOptions.IgnoreCase))
+                        {
+                            strReply = strReply.Replace(regExp.Value, regExp.Value.Replace("##########", "#####"));
+                        }
+                    //}
 
                     strReply = strReply.Replace("<pre>", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
 
@@ -553,12 +573,12 @@ namespace CodeAnalyzeMVC2015.Controllers
                         strDeleteRow += "<tr><td align=\"right\" style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;\">";
 
                         if (Request.Url.ToString().Contains("localhost"))
-                            strDeleteRow += "<a href=\"/CodeAnalyzeMVC2015/Questions/Soln/" + quesID + "/" + strReplyId + "/" + strTitle + "\" style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;border:solid;border-width:1px;border-color:black\">Delete</a>";
+                            strDeleteRow += "<a href=\"/CodeAnalyzeMVC2015/Questions/Soln/" + quesID + "/" + strTitle + "\" style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;border:solid;border-width:1px;border-color:black\">Delete</a>";
                         else
-                            strDeleteRow += "<a href=\"http://codeanalyze.com/Questions/Soln/" + quesID + "/" + strReplyId + "/" + strTitle + "\"  style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;border:solid;border-width:1px;border-color:black\">Delete</a>";
+                            strDeleteRow += "<a href=\"http://codeanalyze.com/Questions/Soln/" + quesID + "/" + strTitle + "\"  style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;border:solid;border-width:1px;border-color:black\">Delete</a>";
                      
                         strDeleteRow += "</td></tr>";
-                        Session["DeleteReply"] = "true";
+                        Session["DeleteReplyId"] = strReplyId;
                     }
 
                     tblReplies += htrResponseNoByDetailsOuterRow + strDeleteRow + htmlRowSolutionContent;
