@@ -20,6 +20,10 @@ namespace CodeAnalyzeMVC2015.Controllers
             return View();
         }
 
+        //public ActionResult Google()
+        //{
+        //    return View();
+        //}
 
         public ActionResult ForgotPassword(string txtEMailId)
         {
@@ -60,11 +64,24 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult ProcessLogin(string txtEMailId, string txtPassword)
         {
+            return CheckUserLogin(txtEMailId, txtPassword);
+        }
 
+        private ActionResult CheckUserLogin(string txtEMailId, string txtPassword)
+        {
             ConnManager connManager = new ConnManager();
             connManager.OpenConnection();
             DataTable DSUserList = new DataTable();
-            DSUserList = connManager.GetDataTable("select * from users where email = '" + txtEMailId + "' and Password = '" + txtPassword + "'");
+
+            if (!string.IsNullOrEmpty(txtPassword))
+            {
+                DSUserList = connManager.GetDataTable("select * from users where email = '" + txtEMailId + "' and Password = '" + txtPassword + "'");
+            }
+            else
+            {
+                DSUserList = connManager.GetDataTable("select * from users where email = '" + txtEMailId + "'");
+            }
+
 
             if (DSUserList.Rows.Count == 0)
             {
@@ -84,24 +101,25 @@ namespace CodeAnalyzeMVC2015.Controllers
                 Session["User"] = user;
                 Session["user.Email"] = user.Email;
                 ViewBag.UserEmail = user.Email;
+                return View("../Account/ViewUser", user);
 
-                List<ArticleModel> articles = new List<ArticleModel>();
-                articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
-                connManager.DisposeConn();
 
-                PagingInfo info = new PagingInfo();
-                info.SortField = " ";
-                info.SortDirection = " ";
-                info.PageSize = 10;
-                info.PageCount = Convert.ToInt32(Math.Ceiling((double)(articles.Count / info.PageSize)));
-                info.CurrentPageIndex = 0;
-                var query = articles.OrderBy(c => c.ArticleID).Take(info.PageSize);
-                ViewBag.PagingInfo = info;
-                return View("../Articles/Index", query.ToList());
+                //List<ArticleModel> articles = new List<ArticleModel>();
+                //articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
+                //connManager.DisposeConn();
+
+                //PagingInfo info = new PagingInfo();
+                //info.SortField = " ";
+                //info.SortDirection = " ";
+                //info.PageSize = 10;
+                //info.PageCount = Convert.ToInt32(Math.Ceiling((double)(articles.Count / info.PageSize)));
+                //info.CurrentPageIndex = 0;
+                //var query = articles.OrderBy(c => c.ArticleID).Take(info.PageSize);
+                //ViewBag.PagingInfo = info;
+                //return View("../Articles/Index", query.ToList());
 
             }
         }
-
 
         public ActionResult Users()
         {
@@ -309,6 +327,9 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult ViewUser(Users user)
         {
+
+            string email = string.Empty;
+
             if (Session["User"] != null)
             {
                 user = (Users)Session["User"];
@@ -326,8 +347,40 @@ namespace CodeAnalyzeMVC2015.Controllers
                 }
 
             }
-            return View(user);
+            else if (Request.Form.Keys.Count > 0)
+            {
+                email = Request.Form.Keys[0].ToString();
+                string name = Request.Form.Keys[1].ToString();
+                string imageurl = Request.Form.Keys[2].ToString();
+                string type = Request.Form.Keys[3].ToString();
+                double _userId = 0;
+
+                if (!user.UserExists(email, ref _userId))
+                {
+                     user = user.CreateUser(email, name, "", imageurl);
+                     SendNewUserRegEMail();
+                     SendEMail(email, name, "");
+                }
+                // else
+                //{
+                //    user.Email = email;
+                //    user.UserId = _userId;
+                //}
+
+               // Session["User"] = user;
+
+            }
+            return CheckUserLogin(email, null);
         }
+
+        //public ActionResult GoogleUser()
+        //{
+        //    // string txtEMailId = (string)this.RouteData.Values["id"].ToString();
+        //    // return CheckUserLogin(txtEMailId, null);
+        //    ViewBag.EMailId= Request.QueryString["id"].ToString();
+        //    Response.Redirect("../Account/ForgotPassword");
+        //    return null;
+        //}
 
         public ActionResult ChangePassword(string txtNewPassword)
         {

@@ -81,7 +81,9 @@ namespace CodeAnalyzeMVC2015.Models
             ViewBag.PagingInfo = info;
             ViewBag.UserEmail = null;
             
-            Response.Redirect("/Articles/Index");
+            Response.Redirect("../Articles/Index");
+
+
             return View("../Articles/Index", articles);
         }
 

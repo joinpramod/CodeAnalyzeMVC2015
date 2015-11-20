@@ -295,6 +295,11 @@ namespace CodeAnalyzeMVC2015
 
         public Users CreateUser(string strEmail, string strFirstName, string strLastName)
         {
+            return CreateUser(strEmail, strFirstName, strLastName, null);
+        }
+
+        public Users CreateUser(string strEmail, string strFirstName, string strLastName, string strImageURL)
+        {
             Users user = new Users();
             try
             {
@@ -316,6 +321,7 @@ namespace CodeAnalyzeMVC2015
                 user.Email = strEmail.Trim();
                 user.FirstName = strFirstName.Trim();
                 user.LastName = strLastName.Trim();
+                user.ImageURL = strImageURL.Trim();
                 user.OptionID = 1;
                 user.CreatedDateTime = DateTime.Now;
                 bool result = user.CreateUsers(ref dblUserID, SetTransaction);
