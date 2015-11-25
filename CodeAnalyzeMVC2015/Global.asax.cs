@@ -83,7 +83,7 @@ namespace CodeAnalyzeMVC2015
                                 strBody += "Type -- " + ex.GetType().ToString() + "<br />";
 
                             if (ex.GetType().ToString() == "System.Web.HttpException")
-                                Response.Redirect("Error.aspx");
+                                Response.Redirect("/Home/Error");
                         }
                         catch
                         {
@@ -107,8 +107,10 @@ namespace CodeAnalyzeMVC2015
                     mail.ToAdd = "admin@codeanalyze.com";
                     mail.IsBodyHtml = true;
                     mail.SendMail();
-                    Response.Redirect("Error.aspx");
-
+                    if (Request.Url.ToString().Contains("localhost"))
+                        HttpContext.Current.Response.Redirect("/CodeAnalyzeMVC2015/Home/Error");
+                    else
+                        HttpContext.Current.Response.Redirect("/Home/Error");
                 }
             }
         }
