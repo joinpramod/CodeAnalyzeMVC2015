@@ -7,6 +7,8 @@
 
 <script type="text/javascript" src="~/Scripts/tinymce/tinymce.min.js"></script>
 <script type="text/javascript" src="~/js/JavaScript1.js"></script>
+<script type="text/javascript" src="~/js/TinyMCE.js"></script>
+
 
 <h2>Post Question</h2><br />
 
@@ -50,8 +52,15 @@
                     <td style="font-family: Calibri;" align="center">
                         Details:<span style="font-family:Calibri; font-size:16px;color:Red">*</span>
                     </td>
-                    <td>
-                        <br />
+                    <td align="left">
+                        Place your code between <b>#codestart</b> and <b>#codeend</b> tags mandatorily. If this not followed, 
+                        code will not be properly highlighted.<br />
+                        For ex<br />
+                        <pre style="width:90%;">
+                            #codestart
+                            //your code here
+                            #codeend
+                        </pre>
                         @Html.TextArea("EditorAskQuestion")
                     </td>
                 </tr>
@@ -60,7 +69,7 @@
                         <input type="submit" value="Submit" id="btnSubmit" onclick="return ValidateQues()"
                                 style="border:none;color:white;background-color:#4fa4d5" />
                     </td>
-                </tr>
+                </tr>                
             </table>
         </td>
     </tr>

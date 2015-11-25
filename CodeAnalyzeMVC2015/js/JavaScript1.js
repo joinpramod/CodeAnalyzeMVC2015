@@ -59,8 +59,12 @@ SyntaxHighlighter.defaults.toolbar = false;
                     alert("Please enter question title and content");
                     return false;
                 }
-                else
-                    return true;
+                else {
+                    if (ValidateEMail(VarEMail))
+                        return true;
+                    else
+                        return false;
+                }
             }
             else {
                 alert("Please login to post");
@@ -76,8 +80,12 @@ SyntaxHighlighter.defaults.toolbar = false;
                         alert("Please enter details");
                         return false;
                     }
-                    else
-                        return true;
+                    else {
+                        if (ValidateEMail(VarEMail))
+                            return true;
+                        else
+                            return false;
+                    }
                 }
                 else {
                     alert("Please login to post");
@@ -149,9 +157,14 @@ SyntaxHighlighter.defaults.toolbar = false;
                 alert("Password is expected to be 8 charectors.");
                 return false;
             }
-            else
-                return true;
-
+            else{
+                if (ValidateEMail(varEMail))
+                    return true;
+                else {
+                    alert("Please enter valid email");
+                    return false;
+                }
+            }
         }
         
         function ValidateSuggestion() {
@@ -164,16 +177,27 @@ SyntaxHighlighter.defaults.toolbar = false;
                 return false;
             }
             else
-                return true;
-
+            {
+                if (ValidateEMail(txtEMail))
+                    return true;
+                else {
+                    alert("Please enter valid email");
+                    return false;
+                }
+            }              
         }
 
         function ValidateLogin() {
             var userName = document.getElementById('txtEMailId').value;
             var pwd = document.getElementById('txtPassword').value;
-
+            debugger;
             if (userName != "" && pwd != "") {
-                return true;
+                if (ValidateEMail(userName))
+                    return true;
+                else {
+                    alert("Please enter valid email");
+                    return false;
+            }
             }
             else {
                 alert("Please enter username and password");
@@ -181,12 +205,20 @@ SyntaxHighlighter.defaults.toolbar = false;
             }
         }
 
+        function ValidateEMail(strEMail)
+        {
+            var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+            return re.test(strEMail)
+        }
 
         function ValidateForgotPassword() {
             var userName = document.getElementById('txtEMailId').value;
 
             if (userName != "") {
-                return true;
+                if (ValidateEMail(userName))
+                    return true;
+                else
+                    return false;
             }
             else {
                 alert("Please enter email");

@@ -534,6 +534,8 @@
     <Content Include="Global.asax" />
     <Content Include="Images\ThumpsDown.png" />
     <Content Include="Images\ThumpsUp.png" />
+    <Content Include="js\Facebook.js" />
+    <Content Include="js\Google.js" />
     <Content Include="js\TinyMCE.js" />
     <Content Include="Scripts\tinymce\license.txt" />
     <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />
@@ -954,7 +956,7 @@
     <Content Include="Views\Account\MyArts.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\Google.cshtml" />
+    <Content Include="Views\Shared\_Layout_NoGoogle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

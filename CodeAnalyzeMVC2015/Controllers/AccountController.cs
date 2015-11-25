@@ -333,7 +333,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             if (Session["User"] != null)
             {
                 user = (Users)Session["User"];
-
+                email = user.Email;
                 if (Request.Url.ToString().Contains("localhost"))
                 {
                     if (user.ImageURL != null && !user.ImageURL.Contains("/CodeAnalyzeMVC2015/"))
