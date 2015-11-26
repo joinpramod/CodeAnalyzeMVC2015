@@ -23,14 +23,13 @@
  }
 
 
-@using (Html.BeginForm("CreateEditUser", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    if (Model.Email == null || ViewBag.Ack != null)
+
+    @if (Model.Email == null || ViewBag.Ack != null)
     {
     <table width="80%">
         <tr>
             <td align="center">
-                <input type="image" onclick="FaceBookLogin()" value="Test" style="height:35px;width:200px" src="~/Images/SignInWithFacebook.png" />
+                <input type="image" onclick="FaceBookLogin()" value="FaceBook" style="height:35px;width:200px" src="~/Images/SignInWithFacebook.png" />
 
             </td>
             <td align="center">
@@ -42,6 +41,9 @@
 
 
     }
+
+    @using (Html.BeginForm("CreateEditUser", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
                 <table style="font-size:16px" width="100%">
                     <tr>
                         <td align="center" style="font-weight: bold; color: red; font-size: 16px">

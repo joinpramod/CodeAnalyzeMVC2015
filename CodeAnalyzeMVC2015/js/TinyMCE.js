@@ -6,7 +6,7 @@
     statusbar: false,
     keep_styles: false,
     height: "300px",
-    width: "95%",
+    width: "90%",
     encoding: 'xml',
     force_br_newlines: true,
     force_p_newlines: false,

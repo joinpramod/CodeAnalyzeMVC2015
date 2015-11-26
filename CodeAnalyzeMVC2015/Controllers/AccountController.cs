@@ -352,7 +352,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 email = Request.Form.Keys[0].ToString();
                 string name = Request.Form.Keys[1].ToString();
                 string imageurl = Request.Form.Keys[2].ToString();
-                string type = Request.Form.Keys[3].ToString();
+                //string type = Request.Form.Keys[3].ToString();
                 double _userId = 0;
 
                 if (!user.UserExists(email, ref _userId))

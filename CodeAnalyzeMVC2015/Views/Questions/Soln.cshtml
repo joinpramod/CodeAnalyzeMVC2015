@@ -90,25 +90,30 @@
                             <span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red">@ViewBag.lblAck</span>
                         </td>
                     </tr>
-                    <tr>
+                    @*<tr>
                         <td colspan="2" style="background-color: #4fa4d5">
                             <b style="font-family: Calibri;" />Post your answer<span style="font-family: Calibri; font-size: 16px; font-weight: bold; color: Red">*</span>
+                        
+                        </td>
+                    </tr>*@
+                    <tr>
+                        <td colspan="2">
+                            <h1>Post your answer</h1><br/>
+
                         </td>
                     </tr>
-
                     <tr>
                         <td colspan="2" align="left">
-                            Place your code between <b>#codestart</b> and <b>#codeend</b> tags mandatorily. If this not followed, code will not be properly highlighted.<br />
-                            For ex<br/>
+                            Place your code between <b>#codestart</b> and <b>#codeend</b> tags to highlight it correctly.<br />
                             <pre style="width:90%;">
-                            &nbsp;&nbsp;&nbsp;#codestart<br />
-                            &nbsp;&nbsp;&nbsp;//your code here<br />
-                            &nbsp;&nbsp;&nbsp;#codeend<br />
+                            #codestart
+                            your code here
+                            #codeend
                             </pre>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="center">
+                        <td colspan="2" align="left">
                             @Html.TextArea("SolutionEditor")
                             <br />
                         </td>

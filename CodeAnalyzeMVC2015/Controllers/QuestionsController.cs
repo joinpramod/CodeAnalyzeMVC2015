@@ -304,7 +304,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             }
             else
             {
-                ViewBag.lblAck = "Please sign in to post your answer.";
+              //  ViewBag.lblAck = "Please sign in to post your answer.";
                 ViewBag.hfUserEMail = string.Empty;
             }
             return model;

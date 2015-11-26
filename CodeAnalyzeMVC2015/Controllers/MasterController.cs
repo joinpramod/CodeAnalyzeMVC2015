@@ -91,14 +91,16 @@ namespace CodeAnalyzeMVC2015.Models
         [AllowAnonymous]
         public ActionResult ReferFriend(string txtReferEMail)
         {
+            if (!string.IsNullOrEmpty(txtReferEMail))
+            {
                 string strFrom = " freinds";
                 //if (Session["User"] != null)
                 //{
-                    //user = (Users)Session["User"];
-                    //if (!string.IsNullOrEmpty(user.FirstName))
-                    //    strFrom = user.FirstName;
-                    //else
-                    //    strFrom = user.Email;
+                //user = (Users)Session["User"];
+                //if (!string.IsNullOrEmpty(user.FirstName))
+                //    strFrom = user.FirstName;
+                //else
+                //    strFrom = user.Email;
                 //}
                 Mail mail = new Mail();
 
@@ -112,10 +114,10 @@ namespace CodeAnalyzeMVC2015.Models
                 mail.IsBodyHtml = true;
                 mail.SendMail();
                 txtReferEMail = "Done";
-                Response.Redirect("../Articles/Index");
+            }
+            Response.Redirect("../Articles/Index");
             return null;
             //}
-
         }
 
 
