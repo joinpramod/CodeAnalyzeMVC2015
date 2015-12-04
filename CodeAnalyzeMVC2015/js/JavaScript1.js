@@ -4,8 +4,10 @@ SyntaxHighlighter.defaults.toolbar = false;
 
      
 
-        function ValidateAnswer() {
-            var content = tinyMCE.get('SolutionEditor').getContent()
+function ValidateAnswer() {
+    var content = tinyMCE.get('SolutionEditor').getContent();
+    content = content.replace("'", "");
+    tinyMCE.get('SolutionEditor').setContent(content);
             var VarEMail = document.getElementById('hfUserEMail').value;
 
             if (VarEMail != "") {
@@ -24,10 +26,13 @@ SyntaxHighlighter.defaults.toolbar = false;
         }
 
         function ValidateQues() {
-            debugger;
             var title = document.getElementById('txtTitle').value;
+            title = title.Replace("'", "");
+            document.getElementById('txtTitle').value = title;
             var ddType = $("#ddType").val();
-            var content = tinyMCE.get('EditorAskQuestion').getContent()
+            var content = tinyMCE.get('EditorAskQuestion').getContent();
+            content = content.replace("'", "");
+            tinyMCE.get('EditorAskQuestion').setContent(content);
             var VarEMail = document.getElementById('hfUserEMail').value;
 
             if (VarEMail != "") {
@@ -190,7 +195,6 @@ SyntaxHighlighter.defaults.toolbar = false;
         function ValidateLogin() {
             var userName = document.getElementById('txtEMailId').value;
             var pwd = document.getElementById('txtPassword').value;
-            debugger;
             if (userName != "" && pwd != "") {
                 if (ValidateEMail(userName))
                     return true;

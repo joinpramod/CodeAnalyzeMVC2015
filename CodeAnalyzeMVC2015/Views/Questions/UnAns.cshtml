@@ -3,24 +3,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
 <h2>Unanswered</h2><br />
 
-<table style="width: 100%; font-size: 16px; word-wrap: normal; word-break: break-all;" >
+@using (Html.BeginForm("UnAns", "Questions", FormMethod.Post))
+{
+    <table style="width: 80%; font-size: 16px; word-wrap: normal; word-break: break-all;">
+        <tr>
+            @*<td style="font-family: Calibri;" align="center">
+                Type:<span style="font-family:Calibri; font-size:16px;color:Red">*</span>
+            </td>*@
+            <td align="right">
+                @Html.DropDownList("ddType", new SelectList(ViewBag.DDItems, "TypeId", "Type"), "---Select---")
+            </td>
+            <td align="left">
+                <input type="submit" value="Search" id="btnSearch" 
+                       style="border:none;color:white;background-color:#4fa4d5" />
+            </td>
+        </tr>
+    </table>
+}
 
+
+<table style="width: 100%; font-size: 16px; word-wrap: normal; word-break: break-all;">
     @foreach (CodeAnalyzeMVC2015.Models.QuestionModel questionModel in Model)
     {
         <tr>
             <td>
-                <img id="imgArrow" src="~/Images/questions.png" style="width:20px;height:20px;"  />
+                <img id="imgArrow" src="~/Images/questions.png" style="width:20px;height:20px;" />
             </td>
             <td>
-                @{ 
+                @{
                     string title = questionModel.QuestionTitle;
                     System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
                     questionModel.QuestionTitle = rgx.Replace(questionModel.QuestionTitle, "");
                 }
-                @Html.ActionLink(title, "Soln", "Questions", new { id = questionModel.QuestionID, title = questionModel.QuestionTitle.ToString().Replace(" ","-") }, null)
+                @Html.ActionLink(title, "Soln", "Questions", new { id = questionModel.QuestionID, title = questionModel.QuestionTitle.ToString().Replace(" ", "-") }, null)
             </td>
         </tr>
-    }
+        }
 </table>
