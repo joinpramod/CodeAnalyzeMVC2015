@@ -13,11 +13,11 @@
 
 @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
 {
-    <table style="border-color:Black;border-width:1px;width:100%" cellpadding="0" cellspacing="0">
+    @*<table style="border-color:Black;border-width:1px;width:100%" cellpadding="0" cellspacing="0">
         <tr><td>&nbsp;</td></tr>
         <tr align="left">
-            <td align="left" style="padding-left:30px">
-                <table width="100%">
+            <td align="left" style="padding-left:30px">*@
+                <table style="width:100%;font-size:16px">
 
                     <tr>
                         <td align="center">
@@ -26,20 +26,20 @@
                         </td>
                     </tr>
 
-                    <asp:Panel ID="pnlEMail" runat="server">
+                    @*<asp:Panel ID="pnlEMail" runat="server">*@
                         <tr>
                             <td align="left" style="font-family: Calibri;width:200px">
-                                <b>EMail &nbsp;</b>
+                                EMail: <br />
                                 @Html.TextBox("txtEMail", "", new { style = "width:40%;height:30px;border:groove;border-width:1px" })
                                 @*<asp:TextBox ID="txtEMail" runat="server" Width="318px" BorderStyle="Groove"></asp:TextBox>*@
 
                             </td>
                         </tr>
-                    </asp:Panel>
+                    @*</asp:Panel>*@
 
                     <tr>
-                        <td style="font-family: Calibri;padding-left:43px">
-                            @Html.TextArea("txtSuggestion", "", new { style = "width:100%;height:200px;border:groove;border-width:1px" })
+                        <td style="font-family: Calibri;">Message: <br />
+                            @Html.TextArea("txtSuggestion", "", new { style = "width:90%;height:200px;border:groove;border-width:1px" })
                             @*<asp:TextBox runat="server" ID="EditorAskQuestion" Font-Names="Calibri" Font-Size="16px"
                                 BorderStyle="Groove" TextMode="MultiLine"
                                 Height="200px" Width="600px" /><br />*@
@@ -50,8 +50,8 @@
                         <td align="left" style="padding-left: 40%">
                             &nbsp;@*<asp:Button ID="btnSubmit" runat="server" Text="Submit"
                                 OnClick="PreviewButton_Click" BackColor="#4fa4d5" BorderStyle="None"  ForeColor="White"
-                                    Font-Bold="True" ValidationGroup="1" />*@
-                            <input type="submit" value="Suggest" id="btnSubmit" onclick="return ValidateSuggestion()" style="border:none;color:white;background-color:#4fa4d5" />
+                                    Font-Bold="True" ValidationGroup="1" />*@ <br />
+                            <input type="submit" value="Submit" id="btnSubmit" onclick="return ValidateSuggestion()" class="mysubmit" />
                         </td>
                     </tr>
                     <tr>
@@ -77,9 +77,9 @@
                     </tr>
                 </table>
 
-            </td>
+            @*</td>
         </tr>
-    </table>
+    </table>*@
 }
 
 </div>

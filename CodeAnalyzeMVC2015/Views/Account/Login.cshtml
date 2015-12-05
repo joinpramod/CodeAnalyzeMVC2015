@@ -10,66 +10,65 @@
 
 <h2>Login</h2><br />
 
-    <table width="100%">
+
+<div align="center" style="width:100%">
+
+    <table style="font-size:16px;width:35%">
+
         <tr>
             <td align="center">
+                <span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red">@ViewBag.lblAck</span>
+            </td>
+        </tr>
+        @using (Html.BeginForm("ProcessLogin", "Account"))
+                {
+            @*<tr>
+                    <td align="left">EMail:</td>
+                </tr>*@
+            <tr>
+                <td align="left">
+                    EMail:<br />
+                    @Html.TextBox("txtEMailId", "", new { style = "border:groove;width:92%;border-width:1px" })
+                </td>
+            </tr>
 
-                <table style="font-size:16px" width="80%">
+            <tr>
+                <td align="left">
+                    Password:<br />
+                    @Html.Password("txtPassword", "", new { style = "border:groove;width:70%;border-width:1px" })
+                    <input type="submit" value="Login" id="btnLogin" onclick="return ValidateLogin()" class="mysubmit" />
+                </td>
+            </tr>
+                                }
+        <tr>
+            <td align="left">
 
-                    <tr>
-                        <td align="center">
-                            <span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red">@ViewBag.lblAck</span>
-                        </td>
-                    </tr>
-                    <tr><td>&nbsp;</td></tr>
-                        @using (Html.BeginForm("ProcessLogin", "Account"))
-                        {
-                    <tr>
-
-                        <td style="padding-left:4%;" align="center">
-                            EMail:    @Html.TextBox("txtEMailId", "", new { style = "border:groove;width:34%;border-width:1px" })
-                        </td>
-                    </tr>
-                    <tr>
-
-                        <td align="center">
-                            Password:  @Html.Password("txtPassword", "", new { style = "border:groove;width:25%;border-width:1px" })
-                            <input type="submit" value="Login" id="btnLogin" onclick="return ValidateLogin()" style="border:none;color:white;background-color:#4fa4d5" />
-                        </td>
-                    </tr>
-                    }
-                    <tr>
-                        <td style="padding-left:56%;">
-                        @Html.ActionLink("Forgot Password", "ForgotPassword", "Account", null, new {style="font-size:14px" })
-                        </td>
-                    </tr>
-                    <tr><td>&nbsp;</td></tr>
-                    <tr>
-                        <td align="center">
-                            <table width="100%">
-                                <tr>
-                                    <td align="center">
-                                        <input type="image" onclick="FaceBookLogin()" value="Test" style="height:35px;width:200px" src="~/Images/SignInWithFacebook.png" />
-                                      </td>
-                                      <td align="center">
-                                          <div id="my-signin2"></div>
-                                      </td>
-                                      <td align="center">
-                             
-                                      </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr><td>&nbsp;</td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                </table>
-
+                @Html.ActionLink("Forgot Password", "ForgotPassword", "Account", null, new { style = "font-size:14px" })
 
             </td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td align="center">
+                @*<table width="100%">
+                    <tr>
+                        <td align="center">*@
+                            <input type="image" onclick="FaceBookLogin()" value="Test" style="height:35px;width:200px" src="~/Images/SignInWithFacebook.png" />
+                        @*</td>
+                        <td align="center">*@ <br />
+                            <div id="my-signin2"></div>
+                        </td>
+                        @*<td align="center"></td>*@
+                    </tr>
+                @*</table>
+            </td>
+        </tr>*@
+
     </table>
 
+
+
+</div>
 
 
 

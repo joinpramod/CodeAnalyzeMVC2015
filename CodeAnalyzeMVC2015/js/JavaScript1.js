@@ -260,3 +260,20 @@ function ValidateAnswer() {
         }
 
 
+        function ValidateRefer() {
+            var userName = document.getElementById('txtReferEMail').value;
+
+            if (userName != "") {
+                if (ValidateEMail(userName))
+                    return true;
+                else
+                    return false;
+            }
+            else {
+                alert("Please enter email");
+                return false;
+            }
+        }
+
+
+

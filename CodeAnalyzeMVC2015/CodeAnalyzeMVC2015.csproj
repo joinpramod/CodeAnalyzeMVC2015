@@ -531,6 +531,7 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Content Include="AskQuestions.aspx" />
+    <Content Include="css\mystyles.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\ThumpsDown.png" />
     <Content Include="Images\ThumpsUp.png" />

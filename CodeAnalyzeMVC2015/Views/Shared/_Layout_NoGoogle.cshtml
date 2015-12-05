@@ -30,7 +30,7 @@
     <link href="~/css/prettify.css" type="text/css" rel="stylesheet" />
     <script type="text/javascript" src="~/js/prettify.js"></script>
     <script src="~/js/JavaScript1.js"></script>
- 
+    <link href="~/css/mystyles.css" rel="stylesheet" />
 
     <script>
         (function (i, s, o, g, r, a, m) {
@@ -120,7 +120,7 @@
 
                                 @using (Html.BeginForm("ReferFriend", "Master"))
                                 {
-                                    <input type="submit" value="Refer Friend EMail" id="btnSubmit" style="border: none; width: 130px; height: 22px; color: white; background-color: #4fa4d5" />
+                                    <input type="submit" value="Refer Friend EMail" id="btnSubmit" onclick="return ValidateRefer()" style="border: none; width: 130px; height: 22px; color: white; background-color: #4fa4d5" />
                                     @Html.TextBox("txtReferEMail", "", new { @style = "border:groove;width:150px;height:24px;" })
                                 }
 
@@ -157,7 +157,9 @@
             <nav class="main-menu">
                 <div class="container">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".ccr-nav-main"></button>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".ccr-nav-main">
+                            <i class="fa fa-bars"></i>
+                        </button>
                     </div>
                     <div class="collapse navbar-collapse ccr-nav-main">
                         <ul class="nav navbar-nav">
