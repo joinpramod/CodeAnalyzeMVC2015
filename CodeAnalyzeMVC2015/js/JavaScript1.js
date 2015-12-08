@@ -1,13 +1,10 @@
 ﻿SyntaxHighlighter.all();
 SyntaxHighlighter.defaults.toolbar = false;
 
-
-     
-
-function ValidateAnswer() {
-    var content = tinyMCE.get('SolutionEditor').getContent();
-    content = content.replace("'", "");
-    tinyMCE.get('SolutionEditor').setContent(content);
+        function ValidateAnswer() {
+            var content = tinyMCE.get('SolutionEditor').getContent();
+            content = content.replace("'", "");
+            tinyMCE.get('SolutionEditor').setContent(content);
             var VarEMail = document.getElementById('hfUserEMail').value;
 
             if (VarEMail != "") {
@@ -259,7 +256,6 @@ function ValidateAnswer() {
             }
         }
 
-
         function ValidateRefer() {
             var userName = document.getElementById('txtReferEMail').value;
 
@@ -275,5 +271,36 @@ function ValidateAnswer() {
             }
         }
 
+        function PostVotes(questionId, replyId, voteType) {
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            //form.setAttribute("action", "/CodeAnalyzeMVC2015/Questions/Soln/" + questionId + "/");
+            form.setAttribute("action", "/Questions/Soln/" + questionId + "/");
 
+            var hfQuestionId = document.createElement("input");
+            hfQuestionId.setAttribute("type", "hidden");
+            hfQuestionId.setAttribute("name", questionId);
+            hfQuestionId.setAttribute("value", questionId);
+
+
+            var hfReplyId = document.createElement("input");
+            hfReplyId.setAttribute("type", "hidden");
+            hfReplyId.setAttribute("name", replyId);
+            hfReplyId.setAttribute("value", replyId);
+
+
+            var hfVoteType = document.createElement("input");
+            hfVoteType.setAttribute("type", "hidden");
+            hfVoteType.setAttribute("name", voteType);
+            hfVoteType.setAttribute("value", voteType);
+
+
+            form.appendChild(hfQuestionId);
+            form.appendChild(hfReplyId);
+            form.appendChild(hfVoteType);
+
+            document.body.appendChild(form);
+            form.submit();
+
+        }
 

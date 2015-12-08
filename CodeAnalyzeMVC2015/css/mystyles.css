@@ -13,8 +13,26 @@
 }
 
 
-.mysubmit:hover {
-    
-    background-color:#47cad4;
-   
+.mysubmit:hover {    
+    background-color:#47cad4;   
+}
+
+
+.mysearch {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    font-size:15px;
+    font-weight:bold;
+    font-family:Calibri;
+    color:white;
+    background-color:#4fa4d5;
+    border:none;
+    width:auto;
+    height:25px;
+}
+
+
+.mysearch:hover {    
+    background-color:#47cad4;   
 }

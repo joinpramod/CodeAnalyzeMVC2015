@@ -58,6 +58,21 @@ namespace CodeAnalyzeMVC2015.Controllers
                 string Title = RouteData.Values["Title"].ToString();                
                 return DeleteReply(Id, Title);
             }
+            else if(Request.Form.Keys.Count == 3)
+            {
+                string Id = Request.Form.Keys[0].ToString();
+                string RId = Request.Form.Keys[1].ToString();
+                string VoteType = Request.Form.Keys[2].ToString();
+
+                if (VoteType.Equals("UP"))
+                {
+                    return UpVote(Id, RId, null);
+                }
+                else //if (VoteType.Equals("DOWN"))
+                {
+                    return DownVote(Id, RId, null);
+                }
+            }
             else
             {
                 VwSolutionsModel model = SetDefaults();
@@ -275,6 +290,7 @@ namespace CodeAnalyzeMVC2015.Controllers
         public ActionResult UpVote(string Id, string RId, string Title)
         {
             ProcessVotes("Up", RId, Id);
+            RouteData.Values["id"] = Id;
             VwSolutionsModel model = SetDefaults();
             return View("../Questions/Soln", model);
         }
@@ -282,6 +298,7 @@ namespace CodeAnalyzeMVC2015.Controllers
         public ActionResult DownVote(string Id, string RId, string Title)
         {
             ProcessVotes("Down", RId, Id);
+            RouteData.Values["id"] = Id;
             VwSolutionsModel model = SetDefaults();
             return View("../Questions/Soln", model);
         }
@@ -302,7 +319,12 @@ namespace CodeAnalyzeMVC2015.Controllers
             VwSolutionsModel model = new VwSolutionsModel();
             GetQuestionData(quesID.ToString(), ref model);
 
-            questionTitle = model.QuestionTitle.ToString();
+            questionTitle = model.QuestionTitle;
+
+            if(string.IsNullOrEmpty(questionTitle))
+            {
+                questionTitle = RouteData.Values["title"].ToString();
+            }
 
             ViewBag.Description = questionTitle.Replace("-", " ");
             ViewBag.keywords = questionTitle.Replace("-", " ");
@@ -385,8 +407,16 @@ namespace CodeAnalyzeMVC2015.Controllers
             string lblUp, lblDown = "0";
             string tblReplies = "<table style=\"word-wrap:normal; word-break:break-all; width:98%\">";
             string strDeleteRow = string.Empty;
-            string strTitle = RouteData.Values["Title"].ToString();
+            string strTitle = string.Empty;
 
+            if (RouteData.Values["Title"]!=null )
+            { 
+                strTitle = RouteData.Values["Title"].ToString();
+            }
+            else
+            {
+                strTitle = model.QuestionTitle;
+            }
 
             if (dsSolution != null && dsSolution.Rows.Count > 0)
             {
@@ -575,22 +605,24 @@ namespace CodeAnalyzeMVC2015.Controllers
             string strThumbsUpDown = string.Empty;
             string htcThumpsUp = string.Empty;
             string htcThumpsDown = string.Empty;
-            string strTitle = RouteData.Values["Title"].ToString();
-
+            string upvote = "UP";
+            string downvote = "DOWN";
 
             if (string.IsNullOrEmpty(lblUp))
                 lblUp = "0";
 
             string strUpVoteLink = string.Empty;
 
-            if (Request.Url.ToString().Contains("localhost"))
-                strUpVoteLink = "<a href=\"/CodeAnalyzeMVC2015/Questions/UpVote/" + quesID + "/" + Replyid + "/" + strTitle + " id=\"lnkThumpsUp" + i.ToString() + "\">";
-            else
-                strUpVoteLink = "<a href=\"http://codeanalyze.com/Questions/UpVote/" + quesID + "/" + Replyid + "/" + strTitle + " id=\"lnkThumpsUp" + i.ToString() + "\">";
-
+            //if (Request.Url.ToString().Contains("localhost"))
+            //    strUpVoteLink = "<a href=\"/CodeAnalyzeMVC2015/Questions/Soln/" + quesID + "/" + Replyid + "/" + strTitle + " name=\"lnkThumpsUp" + i.ToString() + "\" id=\"lnkThumpsUp" + i.ToString() + "\">";
+            //else
+            //    strUpVoteLink = "<a href=\"http://codeanalyze.com/Questions/Soln/" + quesID + "/" + Replyid + "/" + strTitle + " name=\"lnkThumpsUp" + i.ToString() + "\" id=\"lnkThumpsUp" + i.ToString() + "\">";
             //string strThumpsUp = "<td align=\"right\">" + strUpVoteLink + "<img src=\"/CodeAnalyzeMVC2015/Images/ThumpsUp.png\" style=\"height:30px;width:30px\" /></a>";
 
-            string strThumpsUp = "<td align=\"right\">" + strUpVoteLink + "<img src=\"/Images/ThumpsUp.png\" style=\"height:30px;width:30px\" /></a>";
+            strUpVoteLink = "<input type=\"image\" onclick=\"PostVotes('" + quesID + "', '" + Replyid + "', '" + upvote + "')\" value=\"Test\" src=\"/CodeAnalyzeMVC2015/Images/ThumpsUp.png\" style=\"height:30px;width:30px\" name=\"lnkThumpsDown" + i.ToString() + "\" id=\"lnkThumpsDown" + i.ToString() + "\" />";
+
+
+            string strThumpsUp = "<td align=\"right\">" + strUpVoteLink;
             strThumpsUp += "</td><td>" + lblUp + "&nbsp;&nbsp;&nbsp;&nbsp;</td>";
             htcThumpsUp += strThumpsUp;
 
@@ -599,14 +631,16 @@ namespace CodeAnalyzeMVC2015.Controllers
                 lblDown = "0";
 
             string strDownVoteLink = string.Empty;
-            if (Request.Url.ToString().Contains("localhost"))
-                strDownVoteLink = "<a href=\"/CodeAnalyzeMVC2015/Questions/DownVote/" + quesID + "/" + Replyid + "/" + strTitle + " id=\"lnkThumpsUp" + i.ToString() + "\">";
-            else
-                strDownVoteLink = "<a href=\"http://codeanalyze.com/Questions/DownVote/" + quesID + "/" + Replyid + "/" + strTitle + " id=\"lnkThumpsUp" + i.ToString() + "\">";
+            //if (Request.Url.ToString().Contains("localhost"))
+            //    strDownVoteLink = "<a href=\"/CodeAnalyzeMVC2015/Questions/Soln/" + quesID + "/" + Replyid + "/" + strTitle + " name=\"lnkThumpsDown" + i.ToString() + "\" id=\"lnkThumpsDown" + i.ToString() + "\">";
+            //else
+            //    strDownVoteLink = "<a href=\"http://codeanalyze.com/Questions/Soln/" + quesID + "/" + Replyid + "/" + strTitle + " name=\"lnkThumpsDown" + i.ToString() + "\" id=\"lnkThumpsDown" + i.ToString() + "\">";
+
+            strDownVoteLink = "<input type=\"image\" onclick=\"PostVotes('" + quesID + "', '" + Replyid + "', '" + downvote + "')\" value=\"Test\" src=\"/CodeAnalyzeMVC2015/Images/ThumpsDown.png\" style=\"height:30px;width:30px\" name=\"lnkThumpsDown" + i.ToString() + "\" id=\"lnkThumpsDown" + i.ToString() + "\" />";
 
             //string strThumpsDown = "<td align=\"right\">" + strDownVoteLink + "<img src=\"/CodeAnalyzeMVC2015/Images/ThumpsDown.png\" style=\"height:30px;width:30px\" /></a>";
 
-            string strThumpsDown = "<td align=\"right\">" + strDownVoteLink + "<img src=\"/Images/ThumpsDown.png\" style=\"height:30px;width:30px\" /></a>";
+            string strThumpsDown = "<td align=\"right\">" + strDownVoteLink;
             strThumpsDown += "</td><td>" + lblDown + "&nbsp;&nbsp;&nbsp;&nbsp;</td>";
             htcThumpsDown += strThumpsDown;
 
