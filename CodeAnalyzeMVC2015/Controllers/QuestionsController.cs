@@ -51,27 +51,31 @@ namespace CodeAnalyzeMVC2015.Controllers
             {
                 return InsertAns(SolutionEditor);
             }
-            if (Request.Form["Delete"] != null)
+            if (Request.Form.GetValues("DeletePost") != null)
             {
-                string Id = RouteData.Values["Id"].ToString();
+                string Id = Request.Form.Keys[0].ToString();
+                RouteData.Values["id"] = Id;
                 string RId = Session["DeleteReplyId"].ToString(); // RouteData.Values["RId"].ToString();
-                string Title = RouteData.Values["Title"].ToString();                
-                return DeleteReply(Id, Title);
+                //string Title = RouteData.Values["Title"].ToString();                
+                return DeleteReply(Id);
             }
-            else if(Request.Form.Keys.Count == 3)
+            else if(Request.Form.GetValues("UP") !=null || Request.Form.GetValues("DOWN") != null)
             {
                 string Id = Request.Form.Keys[0].ToString();
                 string RId = Request.Form.Keys[1].ToString();
                 string VoteType = Request.Form.Keys[2].ToString();
 
-                if (VoteType.Equals("UP"))
+                if (Request.Form.GetValues("UP") != null)
                 {
-                    return UpVote(Id, RId, null);
+                    ProcessVotes("UP", RId, Id);
                 }
                 else //if (VoteType.Equals("DOWN"))
                 {
-                    return DownVote(Id, RId, null);
+                    ProcessVotes("DOWN", RId, Id);
                 }
+                RouteData.Values["id"] = Id;
+                VwSolutionsModel model = SetDefaults();
+                return View("../Questions/Soln", model);
             }
             else
             {
@@ -271,7 +275,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             return View("../Questions/Soln", model);
         }
 
-        public ActionResult DeleteReply(string Id, string Title)
+        public ActionResult DeleteReply(string Id)
         {
             VwSolutionsModel model = new VwSolutionsModel();
             if (Session["DeleteReplyId"] != null)
@@ -289,7 +293,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult UpVote(string Id, string RId, string Title)
         {
-            ProcessVotes("Up", RId, Id);
+            ProcessVotes("UP", RId, Id);
             RouteData.Values["id"] = Id;
             VwSolutionsModel model = SetDefaults();
             return View("../Questions/Soln", model);
@@ -297,7 +301,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult DownVote(string Id, string RId, string Title)
         {
-            ProcessVotes("Down", RId, Id);
+            ProcessVotes("DOWN", RId, Id);
             RouteData.Values["id"] = Id;
             VwSolutionsModel model = SetDefaults();
             return View("../Questions/Soln", model);
@@ -536,15 +540,8 @@ namespace CodeAnalyzeMVC2015.Controllers
                     if (ViewBag.ReplyId != null && strReplyId == Convert.ToString(ViewBag.ReplyId))
                     {
                         strDeleteRow += "<tr><td align=\"right\" style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;\">";
-
-                        //if (Request.Url.ToString().Contains("localhost"))
-                            // strDeleteRow += "<a href=\"/CodeAnalyzeMVC2015/Questions/Soln/" + quesID + "/" + strTitle + "\" style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;border:solid;border-width:1px;border-color:black\">Delete</a>";
-                            strDeleteRow += "<input type=\"submit\" name=\"Delete\" value=\"Delete\"; style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;border:solid;border-width:1px;border-color:black\">";
-                        //else
-
-                            // strDeleteRow += "<a href=\"http://codeanalyze.com/Questions/Soln/" + quesID + "/" + strTitle + "\"  style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;border:solid;border-width:1px;border-color:black\">Delete</a>";
-
-                            strDeleteRow += "</td></tr>";
+                        strDeleteRow += "<input type=\"submit\" name=\"Delete\" value=\"Delete\"; onClick=\"DeletePost('" + quesID + "')\" style=\"color:red;font-weight:bold;font-family:Calibri;font-size:18px;border:solid;border-width:1px;border-color:black\">";
+                        strDeleteRow += "</td></tr>";
                         Session["DeleteReplyId"] = strReplyId;
                     }
 
@@ -613,13 +610,8 @@ namespace CodeAnalyzeMVC2015.Controllers
 
             string strUpVoteLink = string.Empty;
 
-            //if (Request.Url.ToString().Contains("localhost"))
-            //    strUpVoteLink = "<a href=\"/CodeAnalyzeMVC2015/Questions/Soln/" + quesID + "/" + Replyid + "/" + strTitle + " name=\"lnkThumpsUp" + i.ToString() + "\" id=\"lnkThumpsUp" + i.ToString() + "\">";
-            //else
-            //    strUpVoteLink = "<a href=\"http://codeanalyze.com/Questions/Soln/" + quesID + "/" + Replyid + "/" + strTitle + " name=\"lnkThumpsUp" + i.ToString() + "\" id=\"lnkThumpsUp" + i.ToString() + "\">";
-            //string strThumpsUp = "<td align=\"right\">" + strUpVoteLink + "<img src=\"/CodeAnalyzeMVC2015/Images/ThumpsUp.png\" style=\"height:30px;width:30px\" /></a>";
 
-            strUpVoteLink = "<input type=\"image\" onclick=\"PostVotes('" + quesID + "', '" + Replyid + "', '" + upvote + "')\" value=\"Test\" src=\"/CodeAnalyzeMVC2015/Images/ThumpsUp.png\" style=\"height:30px;width:30px\" name=\"lnkThumpsDown" + i.ToString() + "\" id=\"lnkThumpsDown" + i.ToString() + "\" />";
+            strUpVoteLink = "<input type=\"image\" onclick=\"PostVotes('" + quesID + "', '" + Replyid + "', '" + upvote + "')\" value=\"Test\" src=\"/Images/ThumpsUp.png\" style=\"height:30px;width:30px\" name=\"lnkThumpsUp" + i.ToString() + "\" id=\"lnkThumpsUp" + i.ToString() + "\" />";
 
 
             string strThumpsUp = "<td align=\"right\">" + strUpVoteLink;
@@ -631,14 +623,8 @@ namespace CodeAnalyzeMVC2015.Controllers
                 lblDown = "0";
 
             string strDownVoteLink = string.Empty;
-            //if (Request.Url.ToString().Contains("localhost"))
-            //    strDownVoteLink = "<a href=\"/CodeAnalyzeMVC2015/Questions/Soln/" + quesID + "/" + Replyid + "/" + strTitle + " name=\"lnkThumpsDown" + i.ToString() + "\" id=\"lnkThumpsDown" + i.ToString() + "\">";
-            //else
-            //    strDownVoteLink = "<a href=\"http://codeanalyze.com/Questions/Soln/" + quesID + "/" + Replyid + "/" + strTitle + " name=\"lnkThumpsDown" + i.ToString() + "\" id=\"lnkThumpsDown" + i.ToString() + "\">";
 
-            strDownVoteLink = "<input type=\"image\" onclick=\"PostVotes('" + quesID + "', '" + Replyid + "', '" + downvote + "')\" value=\"Test\" src=\"/CodeAnalyzeMVC2015/Images/ThumpsDown.png\" style=\"height:30px;width:30px\" name=\"lnkThumpsDown" + i.ToString() + "\" id=\"lnkThumpsDown" + i.ToString() + "\" />";
-
-            //string strThumpsDown = "<td align=\"right\">" + strDownVoteLink + "<img src=\"/CodeAnalyzeMVC2015/Images/ThumpsDown.png\" style=\"height:30px;width:30px\" /></a>";
+            strDownVoteLink = "<input type=\"image\" onclick=\"PostVotes('" + quesID + "', '" + Replyid + "', '" + downvote + "')\" value=\"Test\" src=\"/Images/ThumpsDown.png\" style=\"height:30px;width:30px\" name=\"lnkThumpsDown" + i.ToString() + "\" id=\"lnkThumpsDown" + i.ToString() + "\" />";
 
             string strThumpsDown = "<td align=\"right\">" + strDownVoteLink;
             strThumpsDown += "</td><td>" + lblDown + "&nbsp;&nbsp;&nbsp;&nbsp;</td>";
@@ -670,7 +656,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                 if (dsVotes != null && dsVotes.Rows.Count > 0)
                 {
-                    if (LikeType.Equals("Up"))
+                    if (LikeType.Equals("UP"))
                     {
                         if (string.IsNullOrEmpty(dsVotes.Rows[0]["ThumbsUp"].ToString()))
                             votes = votes + 1;

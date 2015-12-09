@@ -274,8 +274,7 @@ SyntaxHighlighter.defaults.toolbar = false;
         function PostVotes(questionId, replyId, voteType) {
             var form = document.createElement("form");
             form.setAttribute("method", "post");
-            //form.setAttribute("action", "/CodeAnalyzeMVC2015/Questions/Soln/" + questionId + "/");
-            form.setAttribute("action", "/Questions/Soln/" + questionId + "/");
+            form.setAttribute("action", "/Questions/Soln");
 
             var hfQuestionId = document.createElement("input");
             hfQuestionId.setAttribute("type", "hidden");
@@ -304,3 +303,28 @@ SyntaxHighlighter.defaults.toolbar = false;
 
         }
 
+
+        function DeletePost(questionId) {
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "/Questions/Soln");
+
+
+            var hfQuestionId = document.createElement("input");
+            hfQuestionId.setAttribute("type", "hidden");
+            hfQuestionId.setAttribute("name", questionId);
+            hfQuestionId.setAttribute("value", questionId);
+
+
+            var hfDeletePost = document.createElement("input");
+            hfDeletePost.setAttribute("type", "hidden");
+            hfDeletePost.setAttribute("name", "DeletePost");
+            hfDeletePost.setAttribute("value", "DeletePost");
+
+            form.appendChild(hfQuestionId);
+            form.appendChild(hfDeletePost);
+
+            document.body.appendChild(form);
+            form.submit();
+
+        }

@@ -19,8 +19,7 @@
 
 
 
-@using (Html.BeginForm("Soln", "Questions", new { Id=Model.QuestionID, Title=Model.QuestionTitle}))
-{
+
 
     <table style="width: 100%; word-wrap: normal; word-break: break-all;">
         <tr>
@@ -83,9 +82,8 @@
     <br />
     <br />
     <br />
-    @*<table style="width: 95%; font-size: 16px" cellpadding="0" cellspacing="0">
-        <tr>
-            <td>*@
+    @using (Html.BeginForm("Soln", "Questions", new { Id = Model.QuestionID, Title = Model.QuestionTitle }))
+    {
                 <table style="width: 100%; font-size: 16px" cellpadding="0" cellspacing="0">
                     
                     <tr>
@@ -93,12 +91,6 @@
                             <span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red">@ViewBag.lblAck</span>
                         </td>
                     </tr>
-                    @*<tr>
-                        <td colspan="2" style="background-color: #4fa4d5">
-                            <b style="font-family: Calibri;" />Post your answer<span style="font-family: Calibri; font-size: 16px; font-weight: bold; color: Red">*</span>
-                        
-                        </td>
-                    </tr>*@
                     <tr>
                         <td colspan="2">
                             <h1>Post your answer</h1><br/>
@@ -115,6 +107,7 @@
                         </pre>
                         </td>
                     </tr>
+
                     <tr>
                         <td colspan="2" align="left">
                             @Html.TextArea("SolutionEditor")
@@ -128,13 +121,8 @@
                         </td>
                     </tr>
                 </table>
-            @*</td>
-        </tr>
-    </table>*@
-
     
         @Html.Hidden("hfUserEMail", (object)ViewBag.UserEMail)
         @Html.Hidden("hiddenQuesId", Model.QuestionID)
-
-}
+    }
 
