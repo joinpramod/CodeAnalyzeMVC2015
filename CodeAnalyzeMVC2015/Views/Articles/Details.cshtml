@@ -31,8 +31,7 @@
 
 
 
-@using (Html.BeginForm("Details", "Articles"))
-{
+
     <table style="width: 100%; font-family: Calibri">
         <tr>
             <td width="100%">
@@ -51,13 +50,13 @@
                             @Model.ArticleViews
                         </td>
                         <td align="right" style="width: 60px">
-                            <img id="btnThumbsUp" src="~/Images/ThumpsUp.png" style="height: 25px; width: 25px" />
+                            <input type="image" name="btnUp" onclick="PostArticleVotes('btnUp')" id="btnUp" src="~/Images/ThumpsUp.png" style="height: 25px; width: 25px" />
                         </td>
                         <td align="left" style="width: 60px">
                             @Model.ThumbsUp
                         </td>
                         <td align="right" style="width: 60px">
-                            <img id="btnThumbsDown" src="~/Images/ThumpsDown.png" style="height: 25px; width: 25px" />
+                            <input type="image" name="btnDown" onclick="PostArticleVotes('btnDown')" id="btnDown" src="~/Images/ThumpsDown.png" style="height: 25px; width: 25px" />
                         </td>
                         <td align="left" style="width: 60px">
                             @Model.ThumbsDown
@@ -77,6 +76,8 @@
         </tr>
     </table>
 
+@using (Html.BeginForm("Details", "Articles"))
+{
     <div class="outer-container">
         <div class="inner-container">
             <div id="divContent" class="element">
@@ -159,7 +160,7 @@
         </tr>
         <tr>
             <td>
-                <b style="font-family: Calibri;" />Post your comments
+                <h1>Post your comments</h1>
             </td>
         </tr>
         <tr>
@@ -173,13 +174,22 @@
             </td>
         </tr>
         <tr>
-            <td align="center">
+            <td align="center"><br />
                 <input type="submit" value="Submit" id="btnSubmit" onclick="return ValidateComment()"
-                       style="border: none; color: white; background-color: #4fa4d5; font-family: Calibri; font-size: 16px" />
+                       class="mysubmit" />
             </td>
         </tr>
     </table>
 
+
+    {
+        System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+        Model.ArticleTitle = rgx.Replace(Model.ArticleTitle, "").Replace("<b>", "").Replace("</b>", "").Replace(" ", "-");
+    }
+
     @Html.Hidden("hfUserEMail", (object)ViewBag.UserEMail)
     @Html.Hidden("hfSourceFile")
+    @Html.Hidden("hfArticleId", Model.ArticleID)
+    @Html.Hidden("hfArticleTitle", Model.ArticleTitle)
+    
 }

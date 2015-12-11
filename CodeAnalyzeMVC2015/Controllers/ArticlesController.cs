@@ -126,15 +126,24 @@ namespace CodeAnalyzeMVC2015.Controllers
         //[Route("{Id}/{Title}")]
         public ActionResult Details(string txtReply)
         {
-            if (string.IsNullOrEmpty(txtReply))
+            if (Request.Form.GetValues("btnUp") != null)
+            {
+                return UpVote();
+            }
+            else if (Request.Form.GetValues("btnDown") != null)
+            {
+                return DownVote();
+            }
+            else if (!string.IsNullOrEmpty(txtReply))
+            {
+                return InsertComment(txtReply);
+            }
+            else
             {
                 VwArticlesModel model = SetDefaults();
                 return View(model);
             }
-            else
-            {
-                return InsertComment(txtReply);
-            }
+
         }
 
         private VwArticlesModel SetDefaults()
@@ -168,7 +177,8 @@ namespace CodeAnalyzeMVC2015.Controllers
             }
             else
             {
-                ViewBag.lblAck = "Please sign in to post your answer.";
+                //ViewBag.lblAck = "Please sign in to post your answer.";
+                ViewBag.lblAck = "";
                 ViewBag.hfUserEMail = string.Empty;
             }
             return model;
@@ -382,7 +392,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                     //Response no user details
                     string htrResponseNoByDetailsOuterRow = "<tr>";
-                    string htcResponseNoByDetailsOuterCell = "<td style=\"background-color:#4fa4d5\">";
+                    string htcResponseNoByDetailsOuterCell = "<td style=\"background-color:#4fa4d5;color:white\">";
 
                     string htmlTblResponseNoByDetails = "<table style=\"width:100%\">";
 

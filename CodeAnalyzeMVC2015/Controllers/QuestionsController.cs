@@ -438,7 +438,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                     #region table
                     string htmlTblResponseNoByDetails = "<table style=\"width:100%\">";
 
-                    string htmlRowResponseNoByDetails = "<tr style=\"width:100%\">";
+                    string htmlRowResponseNoByDetails = "<tr style=\"width:100%;color:white\">";
 
                     string htcUserImage = "<td> ";
                     if (!string.IsNullOrEmpty(dsSolution.Rows[i]["ImageURL"].ToString()))
@@ -615,7 +615,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
 
             string strThumpsUp = "<td align=\"right\">" + strUpVoteLink;
-            strThumpsUp += "</td><td>" + lblUp + "&nbsp;&nbsp;&nbsp;&nbsp;</td>";
+            strThumpsUp += "</td><td style=\"color:white\"><b>" + lblUp + "&nbsp;&nbsp;&nbsp;&nbsp;<b></td>";
             htcThumpsUp += strThumpsUp;
 
 
@@ -627,7 +627,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             strDownVoteLink = "<input type=\"image\" onclick=\"PostVotes('" + quesID + "', '" + Replyid + "', '" + downvote + "')\" value=\"Test\" src=\"/Images/ThumpsDown.png\" style=\"height:30px;width:30px\" name=\"lnkThumpsDown" + i.ToString() + "\" id=\"lnkThumpsDown" + i.ToString() + "\" />";
 
             string strThumpsDown = "<td align=\"right\">" + strDownVoteLink;
-            strThumpsDown += "</td><td>" + lblDown + "&nbsp;&nbsp;&nbsp;&nbsp;</td>";
+            strThumpsDown += "</td><td style=\"color:white\"><b>" + lblDown + "&nbsp;&nbsp;&nbsp;&nbsp;<b></td>";
             htcThumpsDown += strThumpsDown;
 
             strThumbsUpDown += htcThumpsUp + htcThumpsDown;

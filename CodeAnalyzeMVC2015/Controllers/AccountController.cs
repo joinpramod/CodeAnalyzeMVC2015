@@ -97,6 +97,10 @@ namespace CodeAnalyzeMVC2015.Controllers
                 user.Email = DSUserList.Rows[0]["EMail"].ToString();
                 user.Address = DSUserList.Rows[0]["Address"].ToString();
                 user.ImageURL = DSUserList.Rows[0]["ImageURL"].ToString();
+
+                user.ImageURL = user.ImageURL.Replace("~", "");
+                user.ImageURL = user.ImageURL.Replace("/CodeAnalyzeMVC2015", "");
+
                 user.Details = DSUserList.Rows[0]["Details"].ToString();
                 Session["User"] = user;
                 Session["user.Email"] = user.Email;
@@ -344,6 +348,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 else //if (user.ImageURL != null && !user.ImageURL.Contains("/codeanalyze.com/"))
                 {
                     user.ImageURL = user.ImageURL.Replace("~", "");
+                    user.ImageURL = user.ImageURL.Replace("/CodeAnalyzeMVC2015", "");
                 }
 
             }
