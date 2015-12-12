@@ -5,6 +5,8 @@
 
 @model CodeAnalyzeMVC2015.Models.VwArticlesModel
 
+<meta name="description" content="@ViewBag.keywords" />
+
 <script type="text/javascript" src="~/js/JavaScript1.js"></script>
 
 <style>
@@ -35,7 +37,7 @@
     <table style="width: 100%; font-family: Calibri">
         <tr>
             <td width="100%">
-                <span style="width: 90%; font-weight: bold; font-family: Calibri; color: Black; font-size: 24px">@Model.ArticleTitle.Replace("<b>", "").Replace("</b>", "")</span>
+                <span style="width: 90%; font-weight: bold; font-family: Calibri; color: Black; font-size: 24px">@ViewBag.keywords.Replace("<b>", "").Replace("</b>", "")</span>
             </td>
         </tr>
         <tr>

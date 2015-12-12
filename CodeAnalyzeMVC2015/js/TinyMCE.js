@@ -27,7 +27,7 @@
         ed.addButton('mybutton', {
             text: 'INSERT CODE',
             onclick: function () {
-                tinymce.activeEditor.execCommand('mceInsertContent', false, "#codestart<br /><br />&nbsp;&nbsp;&nbsp;&nbsp; Type your code here <br /><br />#codeend");
+                tinymce.activeEditor.execCommand('mceInsertContent', false, "#codestart<br />&nbsp;&nbsp;&nbsp;&nbsp; Type your code here <br />#codeend");
             }
         });
     }

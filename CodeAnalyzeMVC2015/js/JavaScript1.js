@@ -3,8 +3,7 @@ SyntaxHighlighter.defaults.toolbar = false;
 
         function ValidateAnswer() {
             var content = tinyMCE.get('SolutionEditor').getContent();
-            content = content.replace("'", "");
-            tinyMCE.get('SolutionEditor').setContent(content);
+            tinyMCE.get('SolutionEditor').setContent(content.replace("'", ""));
             var VarEMail = document.getElementById('hfUserEMail').value;
 
             if (VarEMail != "") {
@@ -24,12 +23,10 @@ SyntaxHighlighter.defaults.toolbar = false;
 
         function ValidateQues() {
             var title = document.getElementById('txtTitle').value;
-            title = title.Replace("'", "");
-            document.getElementById('txtTitle').value = title;
+            document.getElementById('txtTitle').value = title.replace("'", "");
             var ddType = $("#ddType").val();
             var content = tinyMCE.get('EditorAskQuestion').getContent();
-            content = content.replace("'", "");
-            tinyMCE.get('EditorAskQuestion').setContent(content);
+            tinyMCE.get('EditorAskQuestion').setContent(content.replace("'", ""));
             var VarEMail = document.getElementById('hfUserEMail').value;
 
             if (VarEMail != "") {
