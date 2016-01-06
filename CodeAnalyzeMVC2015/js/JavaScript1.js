@@ -3,7 +3,7 @@ SyntaxHighlighter.defaults.toolbar = false;
 
         function ValidateAnswer() {
             var content = tinyMCE.get('SolutionEditor').getContent();
-            tinyMCE.get('SolutionEditor').setContent(content.replace("'", ""));
+            tinyMCE.get('SolutionEditor').setContent(content.replace(/'/g, ''));
             var VarEMail = document.getElementById('hfUserEMail').value;
 
             if (VarEMail != "") {
@@ -23,10 +23,10 @@ SyntaxHighlighter.defaults.toolbar = false;
 
         function ValidateQues() {
             var title = document.getElementById('txtTitle').value;
-            document.getElementById('txtTitle').value = title.replace("'", "");
+            document.getElementById('txtTitle').value = title.replace(/'/g, '');
             var ddType = $("#ddType").val();
             var content = tinyMCE.get('EditorAskQuestion').getContent();
-            tinyMCE.get('EditorAskQuestion').setContent(content.replace("'", ""));
+            tinyMCE.get('EditorAskQuestion').setContent(content.replace(/'/g, ''));
             var VarEMail = document.getElementById('hfUserEMail').value;
 
             if (VarEMail != "") {
@@ -272,7 +272,7 @@ SyntaxHighlighter.defaults.toolbar = false;
             var VarQuesTitle = document.getElementById('hiddenQuesTitle').value;
             var form = document.createElement("form");
             form.setAttribute("method", "post");
-            form.setAttribute("action", "/Questions/Soln/" + questionId + "/" + VarQuesTitle);
+            form.setAttribute("action", "/Que/Ans/" + questionId + "/" + VarQuesTitle);
 
             var hfQuestionId = document.createElement("input");
             hfQuestionId.setAttribute("type", "hidden");
@@ -306,7 +306,7 @@ SyntaxHighlighter.defaults.toolbar = false;
             var VarQuesTitle = document.getElementById('hiddenQuesTitle').value;
             var form = document.createElement("form");
             form.setAttribute("method", "post");
-            form.setAttribute("action", "/Questions/Soln/" + questionId + "/" + VarQuesTitle);
+            form.setAttribute("action", "/Que/Ans/" + questionId + "/" + VarQuesTitle);
 
 
             var hfQuestionId = document.createElement("input");

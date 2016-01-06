@@ -243,6 +243,7 @@
     </Compile>
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\QueController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\TutorialsController.cs" />
     <Compile Include="Credits.aspx.designer.cs">
@@ -958,6 +959,9 @@
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Shared\_Layout_NoGoogle.cshtml" />
+    <Content Include="Views\Que\Post.cshtml" />
+    <Content Include="Views\Que\Ans.cshtml" />
+    <Content Include="Views\Que\UnAns.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

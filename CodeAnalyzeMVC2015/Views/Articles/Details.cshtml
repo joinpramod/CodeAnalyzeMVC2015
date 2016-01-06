@@ -1,9 +1,11 @@
 ﻿@{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.ArticleTitle.Replace("<b>", "").Replace("</b>", "");
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @model CodeAnalyzeMVC2015.Models.VwArticlesModel
+
+<title>@Model.ArticleTitle.Replace("<b>", "").Replace("</b>", "")</title>
 
 <meta name="description" content="@ViewBag.keywords" />
 

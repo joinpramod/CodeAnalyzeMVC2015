@@ -32,7 +32,16 @@ namespace CodeAnalyzeMVC2015
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
+            if (Request.Url.ToString().ToLower().Contains("soln.aspx?qid="))
+            {
+                string strId = Request.QueryString["QId"];
+                string strTitle = Request.QueryString["QT"];
 
+                System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+                strTitle = rgx.Replace(strTitle, "");
+
+                Response.Redirect("/Que/Ans/" + strId + "/" + strTitle);
+            }
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)

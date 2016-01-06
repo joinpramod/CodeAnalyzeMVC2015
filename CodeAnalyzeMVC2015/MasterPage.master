@@ -236,7 +236,7 @@
 					<ul class="nav navbar-nav">
                         <li><asp:LinkButton ID="lnkViewArticles" Font-Underline="false" PostBackUrl="http://codeanalyze.com" runat="server">Articles</asp:LinkButton></li>
                         <li><asp:LinkButton ID="lnkPostArticle" Font-Underline="false" PostBackUrl="http://codeanalyze.com/Articles/Post" runat="server">Post Article</asp:LinkButton></li>
-                        <li><asp:LinkButton ID="btnAskQuestion" runat="server"  PostBackUrl="http://codeanalyze.com/Questions/Post" Text="Post Question" /></li>
+                        <li><asp:LinkButton ID="btnAskQuestion" runat="server"  PostBackUrl="http://codeanalyze.com/Que/Post" Text="Post Question" /></li>
                         <li class="dropdown">
 						    <a href="#">Tutorials<i class="fa fa-caret-down"></i></a>
 							<ul class="sub-menu">
@@ -245,7 +245,7 @@
 					          	 <li><asp:LinkButton ID="btnHadoop" runat="server" PostBackUrl="http://codeanalyze.com/Tutorials/Hadoop" Text="Hadoop" /></li>
 					        </ul>
 						</li>		
-                        <li><asp:LinkButton ID="btnUnanswered" runat="server" PostBackUrl="http://codeanalyze.com/Questions/UnAns" Text="Unanswered" /></li>
+                        <li><asp:LinkButton ID="btnUnanswered" runat="server" PostBackUrl="http://codeanalyze.com/Que/UnAns" Text="Unanswered" /></li>
                         <li><asp:LinkButton ID="btnCodeChat" Visible="false" runat="server" PostBackUrl="http://codeanalyze.com/Tutorials/Hadoop" Text="Code Chat" /></li>
                         <li><asp:LinkButton ID="btnInfo" runat="server"  PostBackUrl="http://codeanalyze.com/Home/About" Text="About Us" /></li>
                         <li> <asp:LinkButton ID="btnCredits" runat="server"  PostBackUrl="http://codeanalyze.com/Home/Rewards" Text="Rewards" /></li>                         
