@@ -1,8 +1,11 @@
 ﻿tinymce.init({
     mode: "textareas",
-    plugins: "paste",
+    plugins: [
+        'paste',
+        'autolink link',
+    ],
     menubar: false,
-    toolbar: 'mybutton',
+    toolbar: 'mybutton | undo redo | bold italic | bullist numlist outdent indent | link',
     statusbar: false,
     keep_styles: false,
     height: "300px",

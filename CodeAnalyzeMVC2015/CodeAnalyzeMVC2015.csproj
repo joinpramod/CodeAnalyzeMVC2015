@@ -375,6 +375,13 @@
     <Compile Include="VA.aspx.designer.cs">
       <DependentUpon>VA.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="xcode.aspx.cs">
       <DependentUpon>xcode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -536,9 +543,30 @@
     <Content Include="Global.asax" />
     <Content Include="Images\ThumpsDown.png" />
     <Content Include="Images\ThumpsUp.png" />
+    <Content Include="Images\Tools\android.png" />
+    <Content Include="Images\Tools\apache.jpg" />
+    <Content Include="Images\Tools\aspnet.jpg" />
+    <Content Include="Images\Tools\csharp.jpg" />
+    <Content Include="Images\Tools\iis.jpg" />
+    <Content Include="Images\Tools\java.png" />
+    <Content Include="Images\Tools\jquery.png" />
+    <Content Include="Images\Tools\linux.jpg" />
+    <Content Include="Images\Tools\mianframe.png" />
+    <Content Include="Images\Tools\mysql.jpg" />
+    <Content Include="Images\Tools\oracle.jpg" />
+    <Content Include="Images\Tools\perl.jpg" />
+    <Content Include="Images\Tools\php.png" />
+    <Content Include="Images\Tools\sharepoint.png" />
+    <Content Include="Images\Tools\sqlserver.png" />
+    <Content Include="Images\Tools\vbnet.jpg" />
+    <Content Include="Images\Tools\visualstudio.png" />
+    <Content Include="Images\Tools\windowsserver.jpg" />
+    <Content Include="Images\Tools\xcode.jpg" />
+    <Content Include="Scripts\tinymce\2stars.png" />
     <Content Include="js\Facebook.js" />
     <Content Include="js\Google.js" />
     <Content Include="js\TinyMCE.js" />
+    <Content Include="Scripts\tinymce\InsertCode.png" />
     <Content Include="Scripts\tinymce\license.txt" />
     <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />
     <Content Include="Scripts\tinymce\plugins\advlist\plugin.min.js" />
@@ -697,6 +725,7 @@
     <Content Include="Views\Articles\Details.cshtml" />
     <Content Include="Views\Questions\Soln.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="WebForm2.aspx" />
     <Content Include="xcode.aspx" />
   </ItemGroup>
   <ItemGroup>
