@@ -88,6 +88,9 @@ namespace CodeAnalyzeMVC2015.Controllers
         {
             if (Session["User"] != null)
             {
+                txtTitle = txtTitle.Replace("``", "<");
+                txtTitle = txtTitle.Replace("~~", "&#");
+
                 user = (Users)Session["User"];
                 double dblQuestionID = 0;
                 Question question = new Question();
@@ -255,9 +258,6 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                 bool result = replies.CreateReplies(ref dblReplyID, SetTransaction);
 
-                replies.CloseConnection(LclConn);
-                ViewBag.ReplyId = dblReplyID;
-                model = SetDefaults();
 
                 if (IsinTransaction && result)
                 {
@@ -270,7 +270,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                         string strLink = "www.codeanalyze.com/Que/Ans/" + quesID.ToString() + "/" + model.QuestionTitle + "";
 
-                        string strBody = "Your question on CodeAnalyse has been answered by one of the users. Check now <a href=" + strLink + "\\>" + model.QuestionTitle + "</a>";
+                        string strBody = "Your question on CodeAnalyse has been answered by one of the users. Check now <a href=" + strLink + "\\>here</a>";
 
                         mail.Body = string.Format(EMailBody, strBody);
 
@@ -287,7 +287,11 @@ namespace CodeAnalyzeMVC2015.Controllers
                 {
                     SetTransaction.Rollback();
                 }
-              
+
+                replies.CloseConnection(LclConn);
+                ViewBag.ReplyId = dblReplyID;
+                model = SetDefaults();
+
                 //GetQuestionData(quesID.ToString(), ref model);
                 //BindSolution("Select * from VwSolutions where QuestionId = " + quesID.ToString(), null);                
                 //ViewBag.lblAck = string.Empty;

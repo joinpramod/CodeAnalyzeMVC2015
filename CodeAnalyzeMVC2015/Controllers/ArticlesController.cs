@@ -120,7 +120,8 @@ namespace CodeAnalyzeMVC2015.Controllers
                 ConnManager connManager = new ConnManager();
                 articles = connManager.GetArticles(strSQL);
             }
-            return View(articles);
+            return View("../Articles/Index", articles);
+            //return View(articles);
         }
 
         //[Route("{Id}/{Title}")]

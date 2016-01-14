@@ -44,7 +44,7 @@ namespace CodeAnalyzeMVC2015
 
                     Response.Redirect("/Que/Ans/" + strId + "/" + strTitle);
                 }
-                else if (Request.Url.ToString().ToLower().Contains("/va.aspx?qid=8&qt="))
+                else if (Request.Url.ToString().ToLower().Contains("/va.aspx?qid="))
                 {
                     string strId = Request.QueryString["QId"];
                     string strTitle = Request.QueryString["QT"];

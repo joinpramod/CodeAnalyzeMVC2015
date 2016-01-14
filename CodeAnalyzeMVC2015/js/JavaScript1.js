@@ -23,38 +23,40 @@ SyntaxHighlighter.defaults.toolbar = false;
 
         function ValidateQues() {
             var title = document.getElementById('txtTitle').value;
-            document.getElementById('txtTitle').value = title.replace(/'/g, '');
+            title = title.replace(/</g, '``');
+            title = title.replace(/&#/g, '~~');
+            document.getElementById('txtTitle').value = title.replace(/'/g, '');         
             var ddType = $("#ddType").val();
             var content = tinyMCE.get('EditorAskQuestion').getContent();
             tinyMCE.get('EditorAskQuestion').setContent(content.replace(/'/g, ''));
             var VarEMail = document.getElementById('hfUserEMail').value;
 
             if (VarEMail != "") {
-                if (content == "" && title == "" && type == "") {
+                if (content == "" && title == "" && ddType == "") {
                     alert("Please enter question title, type and details");
                     return false;
                 }
-                else if (content != "" && title == "" && type == "") {
+                else if (content != "" && title == "" && ddType == "") {
                     alert("Please enter question title and type");
                     return false;
                 }
-                else if (content == "" && title != "" && type == "") {
+                else if (content == "" && title != "" && ddType == "") {
                     alert("Please enter question type and details");
                     return false;
                 }
-                else if (content == "" && title == "" && type != "") {
+                else if (content == "" && title == "" && ddType != "") {
                     alert("Please enter question title and content");
                     return false;
                 }
-                else if (content == "" && title != "" && type != "") {
+                else if (content == "" && title != "" && ddType != "") {
                     alert("Please enter question title and content");
                     return false;
                 }
-                else if (content != "" && title != "" && type == "") {
+                else if (content != "" && title != "" && ddType == "") {
                     alert("Please enter question title and content");
                     return false;
                 }
-                else if (content != "" && title == "" && type != "") {
+                else if (content != "" && title == "" && ddType != "") {
                     alert("Please enter question title and content");
                     return false;
                 }

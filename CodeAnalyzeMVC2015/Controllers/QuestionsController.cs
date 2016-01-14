@@ -256,9 +256,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                 bool result = replies.CreateReplies(ref dblReplyID, SetTransaction);
 
-                replies.CloseConnection(LclConn);
-                ViewBag.ReplyId = dblReplyID;
-                model = SetDefaults();
+
 
                 if (IsinTransaction && result)
                 {
@@ -271,7 +269,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                         string strLink = "www.codeanalyze.com/Questions/Index/Title/" + quesID.ToString() + "/" + model.QuestionTitle + "";
 
-                        string strBody = "Your question on CodeAnalyse has been answered by one of the users. Check now <a href=" + strLink + "\\>" + model.QuestionTitle + "</a>";
+                        string strBody = "Your question on CodeAnalyse has been answered by one of the users. Check now <a href=" + strLink + "\\>here</a>";
 
                         mail.Body = string.Format(EMailBody, strBody);
 
@@ -288,7 +286,10 @@ namespace CodeAnalyzeMVC2015.Controllers
                 {
                     SetTransaction.Rollback();
                 }
-              
+
+                replies.CloseConnection(LclConn);
+                ViewBag.ReplyId = dblReplyID;
+                model = SetDefaults();
                 //GetQuestionData(quesID.ToString(), ref model);
                 //BindSolution("Select * from VwSolutions where QuestionId = " + quesID.ToString(), null);                
                 //ViewBag.lblAck = string.Empty;

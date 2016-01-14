@@ -25,7 +25,7 @@
 <h2>Articles</h2>
 
 
-<table style="width: 100%;word-wrap: normal; word-break: break-word;">
+@*<table style="width: 100%;word-wrap: normal; word-break: break-word;">
     <tr>
         <td>
             @using (Html.BeginForm("Search", "Articles"))
@@ -45,7 +45,7 @@
             }
         </td>
     </tr>
-    </table>
+    </table>*@
 
 <table>
     <tr>
@@ -89,7 +89,7 @@
                             <div class="blog-text">
                                 <h1>
                                     @*@Html.ActionLink(title, "Details", "Articles", new { Id = articleModel.ArticleID, Title = articleModel.ArticleTitle.Replace(" ", "-").Replace(".", "-") }, new { style = "font-weight:bold;" })*@
-                                    <span style="font-weight:bold">@articleModel.ArticleTitle.Replace(" ", "-").Replace(".", "-")</span> 
+                                    <span style="font-weight:bold">@articleModel.ArticleTitle</span> 
                                 </h1>
                                 <p style="font-size:16px">
                                     @articleModel.ArticleDetails                             
