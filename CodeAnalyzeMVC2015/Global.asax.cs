@@ -32,15 +32,34 @@ namespace CodeAnalyzeMVC2015
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            if (Request.Url.ToString().ToLower().Contains("soln.aspx?qid="))
+            try
             {
-                string strId = Request.QueryString["QId"];
-                string strTitle = Request.QueryString["QT"];
+                if (Request.Url.ToString().ToLower().Contains("soln.aspx?qid="))
+                {
+                    string strId = Request.QueryString["QId"];
+                    string strTitle = Request.QueryString["QT"];
 
-                System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
-                strTitle = rgx.Replace(strTitle, "");
+                    System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+                    strTitle = rgx.Replace(strTitle, "");
 
-                Response.Redirect("/Que/Ans/" + strId + "/" + strTitle);
+                    Response.Redirect("/Que/Ans/" + strId + "/" + strTitle);
+                }
+                else if (Request.Url.ToString().ToLower().Contains("/va.aspx?qid=8&qt="))
+                {
+                    string strId = Request.QueryString["QId"];
+                    string strTitle = Request.QueryString["QT"];
+
+                    strTitle = strTitle.Replace(" ", "-");
+
+                    System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+                    strTitle = rgx.Replace(strTitle, "");
+
+                    Response.Redirect("/Articles/Details/" + strId + "/" + strTitle);
+                }
+            }
+            catch
+            {
+
             }
         }
 

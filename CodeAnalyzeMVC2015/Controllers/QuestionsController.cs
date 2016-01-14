@@ -127,7 +127,19 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                 question.QuestionDetails = Sanitizer.GetSafeHtml(EditorAskQuestion);
                 question.AskedDateTime = DateTime.Now;
-                question.AskedUser = user.UserId;
+
+                if (user.UserId == 1)
+                {
+                    int[] myy = new int[43] { 16, 17, 18, 19, 23, 24, 25, 26, 32, 34, 35, 37, 39, 40, 41, 42, 44, 45, 46, 47, 48, 51, 52, 54, 55, 56, 57, 58, 59, 63, 69, 70, 71, 72, 73, 82, 104, 106, 7533, 8079, 8080, 8083, 8087 };
+                    Random ran = new Random();
+                    int mynum = myy[ran.Next(0, myy.Length)];
+                    question.AskedUser = mynum;
+                }
+                else
+                {
+                    question.AskedUser = user.UserId;
+                }
+
 
                 bool result = question.CreateQuestion(ref dblQuestionID, SetTransaction);
 
@@ -229,9 +241,24 @@ namespace CodeAnalyzeMVC2015.Controllers
                 }
 
                 replies.RepliedDate = DateTime.Now;
-                replies.RepliedUser = user.UserId;
+
+                if (user.UserId == 1)
+                {
+                    int[] myy = new int[43] { 16, 17, 18, 19, 23, 24, 25, 26, 32, 34, 35, 37, 39, 40, 41, 42, 44, 45, 46, 47, 48, 51, 52, 54, 55, 56, 57, 58, 59, 63, 69, 70, 71, 72, 73, 82, 104, 106, 7533, 8079, 8080, 8083, 8087 };
+                    Random ran = new Random();
+                    int mynum = myy[ran.Next(0, myy.Length)];
+                    replies.RepliedUser = mynum;
+                }
+                else
+                {
+                    replies.RepliedUser = user.UserId;
+                }
+
                 bool result = replies.CreateReplies(ref dblReplyID, SetTransaction);
 
+                replies.CloseConnection(LclConn);
+                ViewBag.ReplyId = dblReplyID;
+                model = SetDefaults();
 
                 if (IsinTransaction && result)
                 {
@@ -261,9 +288,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 {
                     SetTransaction.Rollback();
                 }
-                replies.CloseConnection(LclConn);
-                ViewBag.ReplyId = dblReplyID;
-                model = SetDefaults();
+              
                 //GetQuestionData(quesID.ToString(), ref model);
                 //BindSolution("Select * from VwSolutions where QuestionId = " + quesID.ToString(), null);                
                 //ViewBag.lblAck = string.Empty;

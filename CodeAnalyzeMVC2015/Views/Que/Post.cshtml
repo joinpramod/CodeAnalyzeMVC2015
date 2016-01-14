@@ -11,8 +11,11 @@
 
 
 <h2>Post Question</h2>
-<span style="font-weight:bold;font-size:18px;color:orangered"> Join coders like you and keep getting Amazon Gift Card Emails from us</span>
-<br /><br />
+<a href="/Account/Users" style="text-decoration: none;">
+    <span style="color:#ff5b33;font-size:16px;font-weight:bold;font-family:Calibri">
+        Join to discuss code and also keep getting Amazon gift card emails as our appreciation.
+    </span>
+</a><br /><br />
 
 @using (Html.BeginForm("InsertQuestion", "Que", FormMethod.Post))
 {
@@ -55,7 +58,7 @@
                         Details:<span style="font-family:Calibri; font-size:16px;color:Red">*</span>
                     </td>
                     <td align="left">
-                        Insert code between <b>#codestart</b> and <b>#codeend</b> tags to highlight it correctly.<br />
+                        Enter code between <b>#codestart</b> and <b>#codeend</b> tags to highlight it correctly.<br />
                             <pre class="prettyprint" style="width:28%;text-align:left;white-space: pre-line;">
                             #codestart
                             your code here

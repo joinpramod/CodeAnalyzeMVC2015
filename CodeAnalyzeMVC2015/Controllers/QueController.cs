@@ -127,7 +127,18 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                 question.QuestionDetails = Sanitizer.GetSafeHtml(EditorAskQuestion);
                 question.AskedDateTime = DateTime.Now;
-                question.AskedUser = user.UserId;
+
+                if (user.UserId == 1)
+                {
+                    int[] myy = new int[38] { 16, 17, 18, 19, 23, 24, 25, 26, 32, 34, 35, 37, 39, 40, 41, 42, 44, 45, 46, 47, 48, 51, 52, 54, 55, 56, 57, 58, 59, 63, 69, 70, 71, 72, 73, 82, 104, 106 };
+                    Random ran = new Random();
+                    int mynum = myy[ran.Next(0, myy.Length)];
+                    question.AskedUser = mynum;
+                }
+                else
+                {
+                    question.AskedUser = user.UserId;
+                }
 
                 bool result = question.CreateQuestion(ref dblQuestionID, SetTransaction);
 
@@ -229,9 +240,24 @@ namespace CodeAnalyzeMVC2015.Controllers
                 }
 
                 replies.RepliedDate = DateTime.Now;
-                replies.RepliedUser = user.UserId;
+
+                if (user.UserId == 1)
+                {
+                    int[] myy = new int[38] { 16, 17, 18, 19, 23, 24, 25, 26, 32, 34, 35, 37, 39, 40, 41, 42, 44, 45, 46, 47, 48, 51, 52, 54, 55, 56, 57, 58, 59, 63, 69, 70, 71, 72, 73, 82, 104, 106 };
+                    Random ran = new Random();
+                    int mynum = myy[ran.Next(0, myy.Length)];
+                    replies.RepliedUser = mynum;
+                }
+                else
+                {
+                    replies.RepliedUser = user.UserId;
+                }
+
                 bool result = replies.CreateReplies(ref dblReplyID, SetTransaction);
 
+                replies.CloseConnection(LclConn);
+                ViewBag.ReplyId = dblReplyID;
+                model = SetDefaults();
 
                 if (IsinTransaction && result)
                 {
@@ -261,9 +287,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 {
                     SetTransaction.Rollback();
                 }
-                replies.CloseConnection(LclConn);
-                ViewBag.ReplyId = dblReplyID;
-                model = SetDefaults();
+              
                 //GetQuestionData(quesID.ToString(), ref model);
                 //BindSolution("Select * from VwSolutions where QuestionId = " + quesID.ToString(), null);                
                 //ViewBag.lblAck = string.Empty;
@@ -463,12 +487,16 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                     #region responseNoBy
                     string strFirstName = "";
+                    string strLastName = "";
                     string strAnswers = "";
                     string strRepliedDate = "";
 
                     string strUserId = dsSolution.Rows[i]["UserId"].ToString();
                     if (!string.IsNullOrEmpty(dsSolution.Rows[i]["FirstName"].ToString()))
+                    {
                         strFirstName = dsSolution.Rows[i]["FirstName"].ToString();
+                        strLastName = dsSolution.Rows[i]["LastName"].ToString();
+                    }
                     else
                         strFirstName = dsSolution.Rows[i]["EMail"].ToString().Split('@')[0];
                     strRepliedDate = dsSolution.Rows[i]["RepliedDate"].ToString().Split('@')[0];
@@ -489,20 +517,20 @@ namespace CodeAnalyzeMVC2015.Controllers
 
 
                             if (!dsSolution.Rows[i]["EMail"].ToString().Contains("codeanalyze.com"))
-                                htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + "</b>  ";// + strRepliedDate + "";   // Total replies by user: " + strAnswers + ".";
+                                htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + " " + strLastName + "</b>  ";// + strRepliedDate + "";   // Total replies by user: " + strAnswers + ".";
                             else
                                 htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + "</b>  ";// + strRepliedDate + "";
                             //htc4.InnerHtml = "Comment No <b>" + (i + 1).ToString();
                         }
                         else
                             if (!strFirstName.ToLower().Equals("admin"))
-                            htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + "</b>  ";// + strRepliedDate + "";
+                            htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + " " + strLastName + "</b>  ";// + strRepliedDate + "";
                         else
                             htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> " + strRepliedDate + "";
                     }
                     else
                         if (!strFirstName.ToLower().Equals("admin"))
-                        htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + "</b>  ";// + strRepliedDate + "";
+                        htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + " " + strLastName + "</b>  ";// + strRepliedDate + "";
                     else
                         htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> " + strRepliedDate + " ";
 

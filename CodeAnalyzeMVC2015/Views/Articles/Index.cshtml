@@ -88,7 +88,8 @@
                             <img id="imgArrow" src="~/Images/WriteArticle.png" style="height:10%;width:10%" />
                             <div class="blog-text">
                                 <h1>
-                                    @Html.ActionLink(title, "Details", "Articles", new { Id = articleModel.ArticleID, Title = articleModel.ArticleTitle.Replace(" ", "-").Replace(".", "-") }, new { style = "font-weight:bold;" })
+                                    @*@Html.ActionLink(title, "Details", "Articles", new { Id = articleModel.ArticleID, Title = articleModel.ArticleTitle.Replace(" ", "-").Replace(".", "-") }, new { style = "font-weight:bold;" })*@
+                                    <span style="font-weight:bold">@articleModel.ArticleTitle.Replace(" ", "-").Replace(".", "-")</span> 
                                 </h1>
                                 <p style="font-size:16px">
                                     @articleModel.ArticleDetails                             

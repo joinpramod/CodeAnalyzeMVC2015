@@ -2,10 +2,10 @@
     mode: "textareas",
     plugins: [
         'paste',
-        'autolink link',
+        'autolink',
     ],
     menubar: false,
-    toolbar: 'mybutton | undo redo | bold italic | bullist numlist outdent indent | link',
+    toolbar: 'mybutton | undo redo | bold italic | bullist numlist outdent indent',
     statusbar: false,
     keep_styles: false,
     height: "300px",
@@ -30,7 +30,10 @@
         ed.addButton('mybutton', {
             text: 'INSERT CODE',
             onclick: function () {
-                tinymce.activeEditor.execCommand('mceInsertContent', false, "#codestart<br />&nbsp;&nbsp;&nbsp;&nbsp; Type your code here <br />#codeend");
+                tinymce.activeEditor.execCommand('mceInsertContent', false, '#codestart<br /><br />');
+                var bm = tinyMCE.activeEditor.selection.getBookmark();
+                tinymce.activeEditor.execCommand('mceInsertContent', false, '<br />#codeend');
+                tinyMCE.activeEditor.selection.moveToBookmark(bm);
             }
         });
     }
