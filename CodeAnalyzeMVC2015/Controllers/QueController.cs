@@ -261,27 +261,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                 if (IsinTransaction && result)
                 {
-                    SetTransaction.Commit();
-                    if (!Session["AskedUserEMail"].ToString().Contains("codeanalyze.com"))
-                    {
-                        Mail mail = new Mail();
-
-                        string EMailBody = System.IO.File.ReadAllText(Server.MapPath("../../../EMailBody.txt"));
-
-                        string strLink = "www.codeanalyze.com/Que/Ans/" + quesID.ToString() + "/" + model.QuestionTitle + "";
-
-                        string strBody = "Your question on CodeAnalyse has been answered by one of the users. Check now <a href=" + strLink + "\\>here</a>";
-
-                        mail.Body = string.Format(EMailBody, strBody);
-
-
-                        mail.FromAdd = "admin@codeanalyze.com";
-                        mail.Subject = "Code Analyze - Received response for " + model.QuestionTitle;
-                        mail.ToAdd = Session["AskedUserEMail"].ToString();
-                        mail.CCAdds = "admin@codeanalyze.com";
-                        mail.IsBodyHtml = true;
-                        mail.SendMail();
-                    }
+                    SetTransaction.Commit();                   
                 }
                 else
                 {
@@ -291,6 +271,34 @@ namespace CodeAnalyzeMVC2015.Controllers
                 replies.CloseConnection(LclConn);
                 ViewBag.ReplyId = dblReplyID;
                 model = SetDefaults();
+
+                if (!Session["AskedUserEMail"].ToString().Contains("codeanalyze.com"))
+                {
+                    Mail mail = new Mail();
+
+                    string EMailBody = System.IO.File.ReadAllText(Server.MapPath("../../../EMailBody.txt"));
+
+                    System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+
+                    if (model.QuestionTitle != null)
+                    {
+                        model.QuestionTitle = rgx.Replace(model.QuestionTitle, "").Replace(" ", "-");
+                    }
+
+                    string strLink = "www.codeanalyze.com/Que/Ans/" + quesID.ToString() + "/" + model.QuestionTitle + "";
+
+                    string strBody = "Your question on CodeAnalyse has been answered by one of the users. Check now <a href=" + strLink + "\\>here</a>";
+
+                    mail.Body = string.Format(EMailBody, strBody);
+
+
+                    mail.FromAdd = "admin@codeanalyze.com";
+                    mail.Subject = "Code Analyze - Received response for " + model.QuestionTitle;
+                    mail.ToAdd = Session["AskedUserEMail"].ToString();
+                    mail.CCAdds = "admin@codeanalyze.com";
+                    mail.IsBodyHtml = true;
+                    mail.SendMail();
+                }
 
                 //GetQuestionData(quesID.ToString(), ref model);
                 //BindSolution("Select * from VwSolutions where QuestionId = " + quesID.ToString(), null);                
@@ -624,7 +632,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             }
 
             strReply = strReply.Replace("<pre>", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
-
+            strReply = strReply.Replace("<pre class=\"prettyprint\" style=\"font-size:14px;\"><br />", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
             strReply = strReply.Replace("#####", "\r\n");
             return strReply;
         }
