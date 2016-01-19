@@ -59,6 +59,11 @@
                         <img id="imgArrow" src="~/Images/questions.png" style="width:20px;height:20px;" />
                     </td>
                     <td>
+                        @{
+                            string title = questionModel.QuestionTitle;
+                            System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+                            questionModel.QuestionTitle = rgx.Replace(questionModel.QuestionTitle, "");
+                        }
                         @Html.ActionLink(questionModel.QuestionTitle, "Ans", "Que", new { ID = questionModel.QuestionID, Title = questionModel.QuestionTitle.ToString().Replace(" ", "-") }, null)
                     </td>
                 </tr>

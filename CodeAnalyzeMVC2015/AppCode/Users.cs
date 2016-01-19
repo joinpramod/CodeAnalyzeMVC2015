@@ -19,6 +19,9 @@ namespace CodeAnalyzeMVC2015
         private string StrDetails;
         private string StrAddress;
         private string StrStatus;
+        private string StrArticlesPosted;
+        private string StrQuestionsPosted;
+        private string StrAnswersPosted;
         private System.DateTime DtCreatedDateTime;
         private System.DateTime DtModifiedDateTime;
 

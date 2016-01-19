@@ -36,3 +36,22 @@
 .mysearch:hover {    
     background-color:#47cad4;   
 }
+
+
+
+.mylink {
+    font-size:20px;
+    font-weight:normal;
+    font-family:Calibri;
+    color:blue;
+    border:none;
+    width:auto;
+    height:40px;
+
+}
+
+
+.mylink:hover {    
+    background-color:#47cad4;   
+    color:white;
+}

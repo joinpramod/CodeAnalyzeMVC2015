@@ -445,7 +445,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             string quesID = RouteData.Values["id"].ToString();
             string strReplyId = "";
             string lblUp, lblDown = "0";
-            string tblReplies = "<table style=\"word-wrap:normal; word-break:break-all; width:98%\">";
+            string tblReplies = "<table style=\"word-wrap:break-word; width:98%\">";
             string strDeleteRow = string.Empty;
             string strTitle = string.Empty;
 

@@ -56,6 +56,11 @@ namespace CodeAnalyzeMVC2015
 
                     Response.Redirect("/Articles/Details/" + strId + "/" + strTitle);
                 }
+                else if (Request.Url.ToString().ToLower().Contains("/questions/soln/"))
+                {
+                    string strURL = Request.Url.ToString().ToLower().Replace("/questions/soln/", "/que/ans/");
+                    Response.Redirect(strURL);
+                }
             }
             catch
             {

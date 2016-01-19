@@ -182,16 +182,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Android.aspx.cs">
-      <DependentUpon>Android.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Android.aspx.designer.cs">
-      <DependentUpon>Android.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AngularJS.aspx.designer.cs">
-      <DependentUpon>AngularJS.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AppCode\ArticleComments.cs" />
     <Compile Include="AppCode\ChatEngine.cs" />
     <Compile Include="AppCode\ChatMessage.cs" />
@@ -210,335 +200,26 @@
     <Compile Include="AppCode\Suggestion.cs" />
     <Compile Include="AppCode\Users.cs" />
     <Compile Include="AppCode\Utilities.cs" />
-    <Compile Include="ArticleDetails.ascx.designer.cs">
-      <DependentUpon>ArticleDetails.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Articles.aspx.designer.cs">
-      <DependentUpon>Articles.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AskQuestions.aspx.cs">
-      <DependentUpon>AskQuestions.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AskQuestions.aspx.designer.cs">
-      <DependentUpon>AskQuestions.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ASPNet.aspx.designer.cs">
-      <DependentUpon>ASPNet.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Captcha.aspx.designer.cs">
-      <DependentUpon>Captcha.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CaptchaCheck.aspx.designer.cs">
-      <DependentUpon>CaptchaCheck.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ChangePassword.aspx.designer.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Chat.aspx.designer.cs">
-      <DependentUpon>Chat.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ChatRoom.aspx.designer.cs">
-      <DependentUpon>ChatRoom.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\QueController.cs" />
-    <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\TutorialsController.cs" />
-    <Compile Include="Credits.aspx.designer.cs">
-      <DependentUpon>Credits.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CSharp.aspx.designer.cs">
-      <DependentUpon>CSharp.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Disclaimer.aspx.designer.cs">
-      <DependentUpon>Disclaimer.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DotNet.aspx.designer.cs">
-      <DependentUpon>DotNet.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Error.aspx.designer.cs">
-      <DependentUpon>Error.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="FBLogin.aspx.designer.cs">
-      <DependentUpon>FBLogin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ForgotPassword.aspx.designer.cs">
-      <DependentUpon>ForgotPassword.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Hadoop.aspx.designer.cs">
-      <DependentUpon>Hadoop.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Info.aspx.designer.cs">
-      <DependentUpon>Info.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Java.aspx.designer.cs">
-      <DependentUpon>Java.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="JQuery.aspx.designer.cs">
-      <DependentUpon>JQuery.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LinkedIn.aspx.designer.cs">
-      <DependentUpon>LinkedIn.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MasterPage.master.designer.cs">
-      <DependentUpon>MasterPage.master</DependentUpon>
-    </Compile>
-    <Compile Include="MasterPageFB.master.designer.cs">
-      <DependentUpon>MasterPageFB.master</DependentUpon>
-    </Compile>
-    <Compile Include="MasterPageNoGoog.master.designer.cs">
-      <DependentUpon>MasterPageNoGoog.master</DependentUpon>
-    </Compile>
     <Compile Include="Models\ArticlesModel.cs" />
     <Compile Include="Controllers\MasterController.cs" />
-    <Compile Include="MVC.aspx.designer.cs">
-      <DependentUpon>MVC.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PostArticles.aspx.designer.cs">
-      <DependentUpon>PostArticles.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PostingGuidelines.aspx.designer.cs">
-      <DependentUpon>PostingGuidelines.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ProcessArticles.aspx.designer.cs">
-      <DependentUpon>ProcessArticles.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="QuestionAnswers.aspx.designer.cs">
-      <DependentUpon>QuestionAnswers.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SendEMail.aspx.designer.cs">
-      <DependentUpon>SendEMail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Soln.aspx.designer.cs">
-      <DependentUpon>Soln.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Solutions.ascx.designer.cs">
-      <DependentUpon>Solutions.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="sql.aspx.designer.cs">
-      <DependentUpon>sql.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Suggestions.aspx.cs">
-      <DependentUpon>Suggestions.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Suggestions.aspx.designer.cs">
-      <DependentUpon>Suggestions.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Topics.aspx.cs">
-      <DependentUpon>Topics.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Topics.aspx.designer.cs">
-      <DependentUpon>Topics.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UnAnswered.aspx.cs">
-      <DependentUpon>UnAnswered.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UnAnswered.aspx.designer.cs">
-      <DependentUpon>UnAnswered.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserProfile.aspx.cs">
-      <DependentUpon>UserProfile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserProfile.aspx.designer.cs">
-      <DependentUpon>UserProfile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserProfileFB.aspx.cs">
-      <DependentUpon>UserProfileFB.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserProfileFB.aspx.designer.cs">
-      <DependentUpon>UserProfileFB.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserProfileGoogle.aspx.cs">
-      <DependentUpon>UserProfileGoogle.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserProfileGoogle.aspx.designer.cs">
-      <DependentUpon>UserProfileGoogle.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="VA.aspx.cs">
-      <DependentUpon>VA.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="VA.aspx.designer.cs">
-      <DependentUpon>VA.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm2.aspx.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm2.aspx.designer.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="xcode.aspx.cs">
-      <DependentUpon>xcode.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="xcode.aspx.designer.cs">
-      <DependentUpon>xcode.aspx</DependentUpon>
-    </Compile>
-    <Content Include="Android.aspx" />
-    <Content Include="AngularJS.aspx" />
-    <Compile Include="AngularJS.aspx.cs">
-      <DependentUpon>AngularJS.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="ArticleDetails.ascx.cs">
-      <DependentUpon>ArticleDetails.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Articles.aspx.cs">
-      <DependentUpon>Articles.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ASPNet.aspx.cs">
-      <DependentUpon>ASPNet.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Captcha.aspx.cs">
-      <DependentUpon>Captcha.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CaptchaCheck.aspx.cs">
-      <DependentUpon>CaptchaCheck.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ChangePassword.aspx.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Chat.aspx.cs">
-      <DependentUpon>Chat.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ChatRoom.aspx.cs">
-      <DependentUpon>ChatRoom.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Credits.aspx.cs">
-      <DependentUpon>Credits.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CSharp.aspx.cs">
-      <DependentUpon>CSharp.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Disclaimer.aspx.cs">
-      <DependentUpon>Disclaimer.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DotNet.aspx.cs">
-      <DependentUpon>DotNet.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Error.aspx.cs">
-      <DependentUpon>Error.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FBLogin.aspx.cs">
-      <DependentUpon>FBLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ForgotPassword.aspx.cs">
-      <DependentUpon>ForgotPassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Hadoop.aspx.cs">
-      <DependentUpon>Hadoop.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Info.aspx.cs">
-      <DependentUpon>Info.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Java.aspx.cs">
-      <DependentUpon>Java.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="JQuery.aspx.cs">
-      <DependentUpon>JQuery.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LinkedIn.aspx.cs">
-      <DependentUpon>LinkedIn.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MasterPage.master.cs">
-      <DependentUpon>MasterPage.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MasterPageFB.master.cs">
-      <DependentUpon>MasterPageFB.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MasterPageNoGoog.master.cs">
-      <DependentUpon>MasterPageNoGoog.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="MVC.aspx.cs">
-      <DependentUpon>MVC.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PostArticles.aspx.cs">
-      <DependentUpon>PostArticles.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PostingGuidelines.aspx.cs">
-      <DependentUpon>PostingGuidelines.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ProcessArticles.aspx.cs">
-      <DependentUpon>ProcessArticles.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuestionAnswers.aspx.cs">
-      <DependentUpon>QuestionAnswers.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SendEMail.aspx.cs">
-      <DependentUpon>SendEMail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Soln.aspx.cs">
-      <DependentUpon>Soln.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Solutions.ascx.cs">
-      <DependentUpon>Solutions.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="sql.aspx.cs">
-      <DependentUpon>sql.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Startup.cs" />
-    <Content Include="AskQuestions.aspx" />
     <Content Include="css\mystyles.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\ThumpsDown.png" />
@@ -723,14 +404,9 @@
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Controllers\EMailBody.txt" />
     <Content Include="Views\Articles\Details.cshtml" />
-    <Content Include="Views\Questions\Soln.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="WebForm2.aspx" />
-    <Content Include="xcode.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ArticleDetails.ascx" />
-    <Content Include="Articles.aspx" />
     <Content Include="Articles\Add get firstname lastname to identity.htm" />
     <Content Include="Articles\ASP.NET MVC 5 Drag and Drop.htm" />
     <Content Include="Articles\ASP.NET MVC implement Accordion jQuery.htm" />
@@ -780,17 +456,9 @@
     <Content Include="Articles\Web API and JQuery to GET or POST.htm" />
     <Content Include="Articles\WebGrid implement Paging Sorting Filtering.htm" />
     <Content Include="Articles\xSecurity Validations in MVC ASP.NET.htm" />
-    <Content Include="ASPNet.aspx" />
     <Content Include="BingSiteAuth.xml" />
-    <Content Include="Captcha.aspx" />
-    <Content Include="CaptchaCheck.aspx" />
-    <Content Include="ChangePassword.aspx" />
-    <Content Include="Chat.aspx" />
-    <Content Include="ChatRoom.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Credits.aspx" />
-    <Content Include="CSharp.aspx" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\CodeDecorate.css" />
@@ -798,20 +466,14 @@
     <Content Include="css\prettify.css" />
     <Content Include="css\sCodeCSS.css" />
     <Content Include="css\style.css" />
-    <Content Include="Disclaimer.aspx" />
-    <Content Include="DotNet.aspx" />
     <Content Include="EMailBody.txt" />
-    <Content Include="Error.aspx" />
     <Content Include="eye.png" />
     <Content Include="eyesol.png" />
     <Content Include="favicon.ico" />
-    <Content Include="FBLogin.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="ForgotPassword.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="google.png" />
     <Content Include="google860c85c8b2699245.html" />
-    <Content Include="Hadoop.aspx" />
     <Content Include="HTMLPage.htm" />
     <Content Include="Images\001_0221-JAN-Musicezee-icon_CD1_001.JPG" />
     <Content Include="Images\100_0759.JPG" />
@@ -877,9 +539,6 @@
     <Content Include="Images\WriteArticle.png" />
     <Content Include="Images\xx.jpg" />
     <Content Include="Images\xyellow-star.jpg" />
-    <Content Include="Info.aspx" />
-    <Content Include="Java.aspx" />
-    <Content Include="JQuery.aspx" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\custom.js" />
     <Content Include="js\JavaScript1.js" />
@@ -888,22 +547,12 @@
     <Content Include="js\sCode.js" />
     <Content Include="js\sCodeCSharp.js" />
     <Content Include="js\sCodeJScript.js" />
-    <Content Include="LinkedIn.aspx" />
-    <Content Include="Login.aspx" />
     <Content Include="logo.JPG" />
-    <Content Include="MVC.aspx" />
-    <Content Include="PostArticles.aspx" />
-    <Content Include="PostingGuidelines.aspx" />
-    <Content Include="ProcessArticles.aspx" />
-    <Content Include="QuestionAnswers.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Images\images.jpg1" />
     <Content Include="js\html5shiv.js.exclude" />
     <Content Include="ArticleTemplate.docx" />
-    <Content Include="MasterPage.master" />
-    <Content Include="MasterPageFB.master" />
-    <Content Include="MasterPageNoGoog.master" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -916,21 +565,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="SendEMail.aspx" />
     <Content Include="SignInWithGoogle.png" />
-    <Content Include="Soln.aspx" />
-    <Content Include="Solutions.ascx" />
-    <Content Include="sql.aspx" />
-    <Content Include="StyleSheet.css" />
-    <Content Include="Suggestions.aspx" />
-    <Content Include="ThumpsDown.png" />
-    <Content Include="ThumpsUp.png" />
-    <Content Include="Topics.aspx" />
-    <Content Include="UnAnswered.aspx" />
-    <Content Include="UserProfile.aspx" />
-    <Content Include="UserProfileFB.aspx" />
-    <Content Include="UserProfileGoogle.aspx" />
-    <Content Include="VA.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -964,9 +599,7 @@
     <Content Include="Views\Tutorials\Basics.cshtml" />
     <Content Include="Views\Tutorials\AngularJS.cshtml" />
     <Content Include="Views\Tutorials\Hadoop.cshtml" />
-    <Content Include="Views\Questions\UnAns.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Questions\Post.cshtml" />
     <Content Include="Views\Articles\Post.cshtml" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.ttf" />
