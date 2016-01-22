@@ -105,6 +105,8 @@ namespace CodeAnalyzeMVC2015
             }
         }
 
+        public string UpVotes { get; set; }
+        public string DownVotes { get; set; }
 
         public bool SetCommandReplies(ref SqlCommand CmdSent)
         {

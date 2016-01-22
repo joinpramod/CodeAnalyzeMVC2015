@@ -250,6 +250,12 @@ namespace CodeAnalyzeMVC2015.Controllers
                     Random ran = new Random();
                     int mynum = myy[ran.Next(0, myy.Length)];
                     replies.RepliedUser = mynum;
+
+                    int[] myvotes = new int[12] { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
+                    Random ran2 = new Random();
+                    int mynum2 = myy[ran.Next(0, myvotes.Length)];
+                    replies.UpVotes = mynum2.ToString();
+
                 }
                 else
                 {
@@ -272,34 +278,41 @@ namespace CodeAnalyzeMVC2015.Controllers
                 ViewBag.ReplyId = dblReplyID;
                 model = SetDefaults();
 
-                if (!Session["AskedUserEMail"].ToString().Contains("codeanalyze.com"))
+                try
                 {
-                    Mail mail = new Mail();
-
-                    string EMailBody = System.IO.File.ReadAllText(Server.MapPath("../../../EMailBody.txt"));
-
-                    System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
-
-                    if (model.QuestionTitle != null)
+                    if (!Session["AskedUserEMail"].ToString().Contains("codeanalyze.com"))
                     {
-                        model.QuestionTitle = rgx.Replace(model.QuestionTitle, "").Replace(" ", "-");
+                        Mail mail = new Mail();
+
+                        string EMailBody = System.IO.File.ReadAllText(Server.MapPath("../../../EMailBody.txt"));
+
+                        System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+
+                        if (model.QuestionTitle != null)
+                        {
+                            model.QuestionTitle = rgx.Replace(model.QuestionTitle, "").Replace(" ", "-");
+                        }
+
+                        string strLink = "www.codeanalyze.com/Que/Ans/" + quesID.ToString() + "/" + model.QuestionTitle + "";
+
+                        string strBody = "Your question on CodeAnalyse has been answered by one of the users. Check now <a href=" + strLink + "\\>here</a>";
+
+                        mail.Body = string.Format(EMailBody, strBody);
+
+
+                        mail.FromAdd = "admin@codeanalyze.com";
+                        mail.Subject = "Code Analyze - Received response for " + model.QuestionTitle;
+                        mail.ToAdd = Session["AskedUserEMail"].ToString();
+                        mail.CCAdds = "admin@codeanalyze.com";
+                        mail.IsBodyHtml = true;
+                        mail.SendMail();
                     }
-
-                    string strLink = "www.codeanalyze.com/Que/Ans/" + quesID.ToString() + "/" + model.QuestionTitle + "";
-
-                    string strBody = "Your question on CodeAnalyse has been answered by one of the users. Check now <a href=" + strLink + "\\>here</a>";
-
-                    mail.Body = string.Format(EMailBody, strBody);
-
-
-                    mail.FromAdd = "admin@codeanalyze.com";
-                    mail.Subject = "Code Analyze - Received response for " + model.QuestionTitle;
-                    mail.ToAdd = Session["AskedUserEMail"].ToString();
-                    mail.CCAdds = "admin@codeanalyze.com";
-                    mail.IsBodyHtml = true;
-                    mail.SendMail();
                 }
+                catch(Exception ex)
+                {
 
+
+                }
                 //GetQuestionData(quesID.ToString(), ref model);
                 //BindSolution("Select * from VwSolutions where QuestionId = " + quesID.ToString(), null);                
                 //ViewBag.lblAck = string.Empty;
@@ -717,7 +730,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 }
 
                 SqlCommand command = new SqlCommand(strQuery, connManager.DataCon);
-
+                command.CommandText = strQuery;
                 command.ExecuteNonQuery();
                 connManager.DisposeConn();
 

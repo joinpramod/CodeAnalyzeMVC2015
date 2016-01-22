@@ -200,12 +200,41 @@
     <Compile Include="AppCode\Suggestion.cs" />
     <Compile Include="AppCode\Users.cs" />
     <Compile Include="AppCode\Utilities.cs" />
+    <Compile Include="ArticleDetails.ascx.cs">
+      <DependentUpon>ArticleDetails.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ArticleDetails.ascx.designer.cs">
+      <DependentUpon>ArticleDetails.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AskQuestions.aspx.cs">
+      <DependentUpon>AskQuestions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AskQuestions.aspx.designer.cs">
+      <DependentUpon>AskQuestions.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\QueController.cs" />
+    <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\TutorialsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage.master.cs">
+      <DependentUpon>MasterPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage.master.designer.cs">
+      <DependentUpon>MasterPage.master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPageNoGoog.master.cs">
+      <DependentUpon>MasterPageNoGoog.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPageNoGoog.master.designer.cs">
+      <DependentUpon>MasterPageNoGoog.master</DependentUpon>
     </Compile>
     <Compile Include="Models\ArticlesModel.cs" />
     <Compile Include="Controllers\MasterController.cs" />
@@ -219,7 +248,30 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Soln.aspx.cs">
+      <DependentUpon>Soln.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Soln.aspx.designer.cs">
+      <DependentUpon>Soln.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Solutions.ascx.cs">
+      <DependentUpon>Solutions.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Solutions.ascx.designer.cs">
+      <DependentUpon>Solutions.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="VA.aspx.cs">
+      <DependentUpon>VA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VA.aspx.designer.cs">
+      <DependentUpon>VA.aspx</DependentUpon>
+    </Compile>
+    <Content Include="ArticleDetails.ascx" />
+    <Content Include="AskQuestions.aspx" />
     <Content Include="css\mystyles.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\ThumpsDown.png" />
@@ -243,6 +295,7 @@
     <Content Include="Images\Tools\visualstudio.png" />
     <Content Include="Images\Tools\windowsserver.jpg" />
     <Content Include="Images\Tools\xcode.jpg" />
+    <Content Include="MasterPageNoGoog.master" />
     <Content Include="Scripts\tinymce\2stars.png" />
     <Content Include="js\Facebook.js" />
     <Content Include="js\Google.js" />
@@ -403,6 +456,9 @@
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Controllers\EMailBody.txt" />
+    <Content Include="Soln.aspx" />
+    <Content Include="Solutions.ascx" />
+    <Content Include="VA.aspx" />
     <Content Include="Views\Articles\Details.cshtml" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
@@ -467,14 +523,10 @@
     <Content Include="css\sCodeCSS.css" />
     <Content Include="css\style.css" />
     <Content Include="EMailBody.txt" />
-    <Content Include="eye.png" />
-    <Content Include="eyesol.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Site.css" />
-    <Content Include="google.png" />
     <Content Include="google860c85c8b2699245.html" />
-    <Content Include="HTMLPage.htm" />
     <Content Include="Images\001_0221-JAN-Musicezee-icon_CD1_001.JPG" />
     <Content Include="Images\100_0759.JPG" />
     <Content Include="Images\111images.jpg" />
@@ -547,12 +599,12 @@
     <Content Include="js\sCode.js" />
     <Content Include="js\sCodeCSharp.js" />
     <Content Include="js\sCodeJScript.js" />
-    <Content Include="logo.JPG" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Images\images.jpg1" />
     <Content Include="js\html5shiv.js.exclude" />
     <Content Include="ArticleTemplate.docx" />
+    <Content Include="MasterPage.master" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -565,7 +617,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="SignInWithGoogle.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -633,7 +684,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <PropertyGroup>
