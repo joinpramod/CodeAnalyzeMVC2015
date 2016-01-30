@@ -14,6 +14,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult Basics()
         {
+            ViewBag.keywords = "C#, ASP.NET Basic Tutorial - CodeAnalyze";
             List<QuestionModel> questions = new List<QuestionModel>();
 
             if (ModelState.IsValid)
@@ -27,12 +28,45 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult AngularJS()
         {
+            ViewBag.keywords = "AngularJS Basic Tutorial Complete - CodeAnalyze";
             return View();
         }
 
         public ActionResult Hadoop()
         {
+            ViewBag.keywords = "Hadoop Basic Commands Tutorial - CodeAnalyze";
             return View();
         }
+
+        public ActionResult XCode()
+        {
+            ViewBag.keywords = "XCode Basic Intro Tutorial - CodeAnalyze";
+            return View();
+        }
+
+        public ActionResult Android()
+        {
+            ViewBag.keywords = "Android Basic Intro Tutorial - CodeAnalyze";
+            return View();
+        }
+
+        public ActionResult HadoopInt()
+        {
+            ViewBag.keywords = "Hadoop Interview Questions and Answers";
+            return View();
+        }
+
+        public ActionResult XCodeInt()
+        {
+            ViewBag.keywords = "XCode Interview Questions and Answers";
+            return View();
+        }
+
+        public ActionResult AndroidInt()
+        {
+            ViewBag.keywords = "Android Interview Questions and Answers";
+            return View();
+        }
+
     }
 }

@@ -1,0 +1,295 @@
+﻿
+@{
+    ViewBag.Title = "Android Basic Intro Tutorial - CodeAnalyze";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<meta name="description" content="Android Basic Intro Tutorial - CodeAnalyze"/>
+
+<h2>Android Basics</h2>
+<br/>
+<table style="width: 100%;font-size:16px">
+    <tr>
+        <td>
+            <strong>Environment Setup </strong>
+            <br />
+            1. Setup Java Development Kit (JDK) - Download the latest version of Java JDK from Oracle&#39;s Java site: <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>
+            <br />
+            2. Setup Android SDK - Download the latest version of Android SDK from Android website : <a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a>
+            <br />
+            3. Setup Eclipse IDE - Download the latest Eclipse binaries from <a href="http://www.eclipse.org/downloads/">http://www.eclipse.org/downloads/</a> to install Eclipse IDE<br />
+            4. Setup Android Development Tools (ADT) Plugin choose Help &gt; Software Updates &gt; Install New Software Click Add to add ADT Plugin from <a href="https://dl-ssl.google.com/android/eclipse/%20as%20the%20location">https://dl-ssl.google.com/android/eclipse/</a>
+            <br />
+            5. Click OK to add this location, Eclipse starts searching for the plug-in available the link and lists down the found plugins. <br />
+            6. Select all the listed plug-ins using Select All button and click Next button to install all plugins required.<br />
+            7. Create Android Virtual Device Launch Android AVD Manager using Eclipse menu options Window &gt; AVD Manager&gt; which will launch Android AVD Manager.
+            <br />
+            8. Use New button to create a new Android Virtual Device and enter the required information, before clicking Create AVD button
+        </td>
+    </tr>
+
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+        <td>
+            <strong>Folder Structure of Android Application </strong>
+            <br />
+            <span >1. src</span> - contains .java source files of project.
+            <br />
+            <span >2. MainActivity.javasource</span> file has an activity class that runs when app is launched using the app icon. <br />
+            <span >3. gen</span> - Contains the .R file, a compiler-generated file that references all the resources in project. <br />
+            <span >4. bin</span> - This folder contains Android package files .apk built by the ADT during the build process and everything else needed to run an Android application.
+            <br />
+            <span >5. res/drawable-hdpi</span> - directory for drawable objects that are designed for high-density screens.
+            <br />
+            <span >6. res/layout</span> - directory for files that define app&#39;s user interface.
+            <br />
+            <span >7. res/values</span> - directory for other various XML files that contain a collection of resources, such as strings and colors definitions.
+            <br />
+            <span >8. AndroidManifest.xml</span> - manifest file which describes the fundamental characteristics of the app and defines each of its components.
+            <br />
+            <span >9. Main Activity File</span> -
+            The main activity code is a Java file MainActivity.java.
+            This is the actual application file which ultimately gets converted to a Dalvik executable and runs your application.
+            <br />
+            <span >10. Manifest File</span> - All the components developed as a part of application, must be declared in a manifest file called AndroidManifest.xml which ressides at the root of the application project directory.
+            This file works as an interface between Android OS and application, so if its not declared&nbsp; in this file, then it will not be considered by the OS. <br />
+            <span >11. strings.xml</span> - is located in the res/values folder and it contains all the text that your application uses. <br />
+            <span >12. The R File</span> - The gen/com.example.helloworld/R.java file is the glue between the activity Java files likeMainActivity.java and the resources like strings.xml. It is an automatically generated file and content should not modified.
+            <br />
+            <span >13. activity_main.xml</span> - is a layout file available in res/layout directory, that is referenced by your application when building its interface.
+        </td>
+    </tr>
+
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+        <td>
+            <strong>Activities</strong>
+            <br />
+            An activity represents a single screen with a user interface.
+            <br />
+            If an application has more than one activity then one of them should be selected as the activity that is presented when the application is launched.
+            <br />
+            <strong>ACTION</strong> This is mandatory part of the Intent object and is a string naming the action to be performed —
+            <br />
+            ACTION_ALL_APPS Lists all the applications available on the device.
+            <br />
+            ACTION_ANSWER handles an incoming phone call. <br />
+            ACTION_ATTACH_DATA indicates that some piece of data should be attached to some other place<br />
+            ACTION_BATTERY_CHANGED shows the charging state, level, and other information about the battery. <br />
+            ACTION_BATTERY_LOW &quot;Low battery warning&quot; system dialog. <br />
+            ACTION_BATTERY_OKAY This will be sent after
+            <br />
+            ACTION_BATTERY_LOW once the battery has gone back up to an okay state.
+            <br />
+            ACTION_BOOT_COMPLETED action after the system has finished booting.
+            <br />
+            ACTION_BUG_REPORT Displays activity for reporting a bug.
+            <br />
+            ACTION_CALL Call to someone specified by the data.
+            <br />
+            ACTION_CALL_BUTTON The user pressed the &quot;call&quot; button to go to the dialer or other appropriate UI for placing a call.
+            <br />
+            ACTION_CAMERA_BUTTON&nbsp; for&quot;Camera Button&quot; click action.
+            <br />
+            ACTION_CHOOSER Display an activity chooser, allowing the user to pick what they want to before proceeding.
+            <br />
+            ACTION_CONFIGURATION_CHANGED The current device Configuration like orientation, locale, etc has changed.
+            <br />
+            ACTION_DATE_CHANGED when date has changed.
+            <br />
+            ACTION_DEFAULT similar to ACTION_VIEW, the action that is performed on a piece of data.
+            <br />
+            ACTION_DELETE Deletes the given data from its container.
+            <br />
+            ACTION_DEVICE_STORAGE_LOW indicates low memory condition on the device. <br />
+            ACTION_DEVICE_STORAGE_OK Indicates low memory condition on the device no longer exists.
+            <br />
+            ACTION_DIAL Dial a number as specified by the data.
+            <br />
+            ACTION_DOCK_EVENT action for changes in the physical docking state of the device.
+            <br />
+            ACTION_DREAMING_STARTED action sent after the system starts dreaming.
+            <br />
+            ACTION_DREAMING_STOPPED action sent after the system stops dreaming.
+            <br />
+            ACTION_EDIT Provide explicit editable access to the given data.
+            <br />
+            ACTION_FACTORY_TEST entry point for factory tests.
+            <br />
+            ACTION_GET_CONTENT to select a particular kind of data and return it.
+            <br />
+            ACTION_GTALK_SERVICE_CONNECTED A GTalk connection has been established.
+            <br />
+            ACTION_GTALK_SERVICE_DISCONNECTED A GTalk connection has been disconnected.
+            <br />
+            ACTION_HEADSET_PLUG Wired Headset plugged in or unplugged.
+            <br />
+            ACTION_INPUT_METHOD_CHANGED An input method has been changed.
+            <br />
+            ACTION_INSERT Insert an empty item into the given container.
+            <br />
+            ACTION_INSERT_OR_EDIT Pick an existing item, or insert a new item, and then edit it.
+            <br />
+            ACTION_INSTALL_PACKAGE Launch application installer.
+            <br />
+            ACTION_LOCALE_CHANGED current device&#39;s locale has changed.
+            <br />
+            ACTION_MAIN Start as a main entry point, does not expect to receive data.
+            <br />
+            ACTION_MEDIA_BUTTON The &quot;Media Button&quot; was pressed.
+            <br />
+            ACTION_MEDIA_CHECKING External media is present, and being disk-checked.
+            <br />
+            ACTION_MEDIA_EJECT User has expressed the desire to remove the external storage media. <br />
+            ACTION_MEDIA_REMOVED External media has been removed.
+            <br />
+            ACTION_NEW_OUTGOING_CALL An outgoing call is about to be placed.
+            <br />
+            ACTION_PASTE Create a new item in the given container, initializing it from the current contents of the clipboard.
+            <br />
+            ACTION_POWER_CONNECTED External power has been connected to the device.
+            <br />
+            ACTION_REBOOT Have the device reboot. This is only for use by system code.
+            <br />
+            ACTION_RUN Run the data, whatever that means.
+            <br />
+            ACTION_SCREEN_OFF Sent after the screen turns off.
+            <br />
+            ACTION_SCREEN_ON Sent after the screen turns on.
+            <br />
+            ACTION_SEARCH Perform a search.
+            <br />
+            ACTION_SEND Deliver some data to someone else.
+            <br />
+            ACTION_SENDTO Send a message to someone specified by the data.
+            <br />
+            ACTION_SEND_MULTIPLE Deliver multiple data to someone else.
+            <br />
+            ACTION_SET_WALLPAPER Show settings for choosing wallpaper.
+            <br />
+            ACTION_SHUTDOWN Device is shutting down.
+            <br />
+            ACTION_SYNC Perform a data synchronization.
+            <br />
+            ACTION_TIMEZONE_CHANGED The timezone has changed.
+            <br />
+            ACTION_TIME_CHANGED The time was set.
+            <br />
+            ACTION_VIEW Display the data to the user
+            <br />
+            ACTION_VIEW content://contacts/people/1 Display information about the person whose identifier is &quot;1&quot;.
+            <br />
+            ACTION_DIAL content://contacts/people/1 Display the phone dialer with the person filled in.
+            <br />
+            ACTION_VIEW tel:123 Display the phone dialer with the given number filled in.
+            <br />
+            ACTION_DIAL tel:123 Display the phone dialer with the given number filled in.
+            <br />
+            ACTION_EDIT content://contacts/people/1 Edit information about the person whose identifier is &quot;1&quot;.
+            <br />
+            ACTION_VIEW content://contacts/people/ Display a list of people, which the user can browse through.
+        </td>
+    </tr>
+
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+        <td>
+            <strong>Android Layout Types</strong><br />
+            1. Linear Layout is a view group that aligns all children in a single direction, vertically or horizontally.
+            <br />
+            2. Relative Layout is a view group that displays child views in relative positions.
+            <br />
+            3. Table Layout is a view that groups views into rows and columns.
+            <br />
+            4. Absolute Layout enables you to specify the exact location of itAbsolute Layout enables to specify the exact location of its children.
+            <br />
+            5. Frame Layout is a placeholder on screen that can use to display a single view.
+            <br />
+            6. List View is a view group that displays a list of scrollable items. ays items in a two-dimensional, scrollable grid
+        </td>
+    </tr>
+
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+        <td>
+            <strong>
+                Android UI Controls
+                <br />
+            </strong>1. TextView
+            - Used to display text to the user.
+            <br />
+            2. EditText
+            - Predefined subclass of TextView that includes rich editing capabilities.
+            <br />
+            3. AutoCompleteTextView
+            - view that is similar to EditText, except that it shows a list of completion
+            <br />
+            4. Button
+            - clicked by the user to perform an action.
+            <br />
+            5. ImageButton
+            - enables you to specify the eImageButton
+            - enables to specify the exact location of its children.
+            <br />
+            6. CheckBox
+            -
+            An on/off switch that can be toggled by the user. Use checkboxes when presenting users with a group of selectable options that are not mutually exclusive.
+            <br />
+            7. ToggleButton
+            -
+            An on/off button with a light indicator.
+            r checked or unchecked.
+            <br />
+            8. RadioGroup
+            - used to group together one or more RadioButtons. <br />
+            9. ProgressBar
+            - provides visual feedback about some ongoing tasks, such as when you are performing a task in the background. <br />
+            10. Spinner
+            -
+            A drop-down list that allows users to select one value from a set.
+            <br />
+            11. TimePicker
+            - enables users to select a time of the day, in either 24-hour mode or AM/PM mode.
+            <br />
+            12. DatePicker
+            - enables users to select a date of the day.
+        </td>
+    </tr>
+
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+        <td>
+            <strong>Event Handling </strong>
+            <br />
+            1. OnClickListener() This is called when the user either clEvent Handling </strong>
+            <br />
+            OnClickListener()&nbsp; called when the user either clicks or touches or focuses upon any widget like button, text, image etc. Need to use onClick() event handler to handle such event.
+            <br />
+            <br />
+            2. OnLongClickListener() This is called when the user either clicks or touches or focuses upon any widget like button, text, image etc. for one or more seconds. Need to use onLongClick() event handler to handle such event. <br />
+            <br />
+            3. OnFocusChangeListener() This is called when the widget looses its focus ie. user goes away from the view item. Need to use onFocusChange() event handler to handle such event. <br />
+            <br />
+            4. OnFocusChangeListener() This is called when the user is focused on the item and presses or releases a hardware key on the device. Need to use onKey() event handler to handle such event.
+            <br />
+            <br />
+            5. OnTouchListener() This is called when the user presses the key, releases the key, or any movement gesture on the screen. Need to use onTouch() event handler to handle such event.<br />
+            <br />
+            6. OnMenuItemClickListener() This is called when the user selects a menu item. Need to use onMenuItemClick() event handler to handle such event.
+        </td>
+    </tr>
+</table>

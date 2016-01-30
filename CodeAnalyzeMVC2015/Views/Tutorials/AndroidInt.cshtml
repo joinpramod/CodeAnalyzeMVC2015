@@ -1,0 +1,538 @@
+﻿
+@{
+    ViewBag.Title = "Android Interview Questions and Answers - CodeAnalyze";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<meta name="description" content="Android Interview Questions and Answers" />
+
+
+<h2>Android Interview Questions and Answers</h2>
+
+<br />
+
+<table style="width:100%;font-size:16px">
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is activityCreator? </strong>
+            <br />
+            It is internally a shell script which used to create new file system structure necessary for writing codes within the IDE.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is Android? </strong>
+            <br />
+            It is a Linux kernel-based system and an open-sourced operating system that is used primarily on mobile devices, such as cell phones and tablets.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What Is Google Android SDK? </strong>
+            <br />
+            The Google Android SDK is the toolkit that developers need in order to create apps on Android platform. It contains a graphical interface that emulates an Android driven handheld environment, allowing to test and debug codes.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is Android Asset Packaging Tool? </strong>
+            <br />
+            AAPT is the toll used to handle zip-compatible archives, which includes creating, extracting as well as viewing its contents.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Why do we need emulator within the Android environment? </strong>
+            <br />
+            Emulator is like virtual mobile which helps developers to create and test android mobile applications.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What are Activities.
+                <br />
+            </strong>Activities are the interface or the window to the user action similar to events we create while taking input from user or displaying output.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What are Intents? </strong>
+            <br />
+            Intents can be said as actions which show notification messages to the user from inside Android enabled device. It will alert the user when there is state update. To this users can be made to respond to intents.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What is the difference between Activities and Services. <br />
+            </strong>Services keep running in the background and act independently even though activities are executed or not. But Activites can be stopped or killed anytime when the user wants.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What are the different states of an activity? </strong>
+            <br />
+            Active – when the activity is at the foreground
+            <br />
+            Paused – when the activity is at the background and still visible<br />
+            Stopped – when the activity is not visible and therefore is hidden or obscured by another activity
+            <br />
+            Destroyed – when the activity process is killed or completed terminated
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is ANR? </strong>
+            <br />
+            Application Not Responding. When the application is not responding for long time then this dialog is displayed.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Which is the mandatory element in Android? </strong>
+            <br />
+            The and element should be present and occur only once.Rest of the elements are not madatory and can be used as many times as we want.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What is the function of an intent filter?
+                <br />
+            </strong>intent fileters helps to filter the intents that a component responds to or willing to receive. This is because every component may respond to many intents. More than one intent filters can be applied based on the services and activites using it.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Which are the phases of component?</strong><br />
+            Entire lifetime – all the activity that is happening between onCreate and onDestroy
+            <br />
+            Visible lifetime – all the activity that is happening between onStart and onStop
+            <br />
+            Foreground lifetime – all the activity that is happening between onResume and onPause
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+
+
+    <tr>
+        <td>
+            <strong>What folders and files are mandatory in Android project folder hirarchy? </strong>
+            <br />
+            AndroidManifest.xml
+            <br />
+            – build.xml
+            <br />
+            – bin/
+            <br />
+            – src/
+            <br />
+            – res/
+            <br />
+            – assets/
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What are containers? </strong>
+            <br />
+            Containers&nbsp; holds objects and widgets together based on the items and the positions needed intact. Containers may hold labels, fields, buttons, or even child containers, as examples.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What is Orientation?
+                <br />
+            </strong>Orientation lets user to arrange objects in tabular format i.e. rows and columns. It can be set with setOrientation() method. Values are set as either HORIZONTAL or VERTICAL<br />
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What do you think are some disadvantages of Android?
+                <br />
+            </strong>Due to the OS version update there might be chances that apps may not run properly in some versions.<br />
+            Since android is used in vast majority of mobile phones, size might be an issue while creating applications.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is adb? </strong>
+            <br />
+            Android Debug Bridge. Developers can execute remote shell commands. This will mainly control the communication to and from the emulator port.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>When is the onStop() method invoked?</strong>
+            <br />
+            When an activity is no longer visible&nbsp; to the user because of another activity being active then this method is called.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                Can other activity be given gigher priority for accessing resources if there is a need?<br />
+            </strong>Yes, MCC (mobile country code) and MNC (mobile network code) can be given preference over local qualifiers.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Which are the different states a process is based? </strong>
+            <br />
+            There are 4 possible states: – foreground activity – visible activity – background activity – empty process
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                Can ANR be prevented?
+                <br />
+            </strong>This can be prevented by creating multiple child processes or threads, these child threads can do much of the process and actual tasks keeping the main thread running with minimal period of unresponsive times.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What is Dalvik?
+                <br />
+            </strong>It is a virtual machine on which Android application runs. With better memory management device can execute multiple virtual machines.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What is the AndroidManifest.xml?
+                <br />
+            </strong>This file has the data which is necessary to start and run the application. This is similar to xml config file we have in other applications.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>How to set up Android device for app development?</strong><br />
+            1.&nbsp; In Android manifest make the application as debuggable.<br />
+            2. Turn on “USB Debugging” on your device.
+            <br />
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                Why do we need DefaulWhy do we need Default Resources?
+                <br />
+            </strong>These contain the default strings and files without which app will not run. These are placed insice res/directory.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Which has got the highest priority while working on multiple resources? </strong>
+            <br />
+            &#39;locale’ qualifier almost always takes the highest precedence over the others.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What are all the scenarios ANR occur?<br />
+            </strong>1. For 5 seconds if there is no response to an input event<br />
+            2.&nbsp; If the execution of a braodcast receiver take more than 10 seconds.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is AIDL? </strong>
+            <br />
+            Android Interface Definition Language is responsible for the communication between client and service so that so that both are
+            in sync through Interace Commnunication or IPC. It breaks down objects into base types so that android can understand
+            This is required to access the memory another objects.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                How many data types are there in AIDL?           <br />
+            </strong>-string
+            <br />
+            -charSequence
+            <br />
+            -List
+            <br />
+            -Map
+            <br />
+            -all native Java data types like int,long, char and Boolean
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is a Fragment? </strong>
+            <br />
+            Fragment is a part of the activity. We combine with other fragments or move it within the activity. They are also reusable.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is a visible activity? </strong>
+            <br />
+            An activity that is visible to the user which may or may not be on the foreground but behind it also.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>When to kill or stop a foreground activity? </strong>
+            <br />
+            Mostly foreground activity is killed only when it is consuming too much of memory. This is necessary to continue the device being
+            resposive to the user.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>How to add a fragment without using its interface? </strong>
+            <br />
+            This can be done with add(Fragment,string) method to add a fragment from the activity.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Which are the key components in Android application architecture? </strong>
+            <br />
+            – services
+            <br />
+            – intent
+            <br />
+            – resource externalization
+            <br />
+            – notifications
+            <br />
+            – content providers
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is an .apk file? </strong>
+            <br />
+            .apk file is like a zip file which contains AndroidManifest.xml file, application code, resource files, and other related files.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is Sticky Intent? </strong>
+            <br />
+            A Sticky Intent is a broadcast from sendStickyBroadcast() method such that the intent floats around even after
+            the broadcast, allowing others to collect data from it.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is an action? </strong>
+            <br />
+            Every intent sender does an action or expects a action as a response.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is the difference between a regular bitmap and a nine-patch image?</strong>
+            <br />
+            Main advantage of nine-patch image is image can be resized based on the requirement and image size for the device.
+            We can customize the image as we want like corner and axis scaling.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is a ContentProvider and what is it typically used for? </strong>
+            <br />
+            ContentProvider mainly connects data in one process with code running in another process by encapsulating the data and
+            providing a mechanism for security and maintains data structure.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What are the uses of an Intent.
+                <br />
+            </strong>
+            To start an activity: start a new instance of an Activity by passing
+            an Intent to startActivity() method.
+            <br />
+            To start a service: start a service to perform a one-time operation
+            by passing an Intent to startService().
+            <br />
+            To deliver a broadcast: You can deliver a broadcast to
+            other apps by passing an Intent to sendBroadcast(), sendOrderedBroadcast(), or sendStickyBroadcast().
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+   
+    @*<tr>
+        <td>
+            <strong>
+                What is the relationship between the life cycle of an AsyncTask and an Activity? What problems can this result in? How can these problems be avoided?
+                <br />
+            </strong>An AsyncTask is not tied to the life cycle of the Activity that contains it. So, for example, if you start an AsyncTask inside an Activity and the user rotates the device, the Activity will be destroyed but the AsyncTask will not die but instead goes on living until it completes. Then, when the AsyncTask does complete, rather than updating the UI of the new Activity, it updates the former instance of the Activity (i.e., the one in which it was created but that is not displayed anymore!). This can lead to an Exception (of the type java.lang.IllegalArgumentException: View not attached to window manager if you use, for instance, findViewById to retrieve a view inside the Activity). There’s also the potential for this to result in a memory leak since the AsyncTask maintains a reference to the Activty, which prevents the Activity from being garbage collected as long as the AsyncTask remains alive. For these reasons, using AsyncTasks
+            for long-running background tasks is generally a bad idea . Rather, for long-running background tasks, a different mechanism (such as a service) should be employed.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is an Intent? Can it be used to provide data to a ContentProvider? Why or why not? </strong>
+            <br />
+            The Intent object is a common mechanism for starting new activity and transferring data from one activity to another. However, you cannot start a ContentProvider using an Intent. When you want to access data in a ContentProvider, you must instead use the ContentResolver object in your application’s Context to communicate with the provider as a client. The ContentResolver object communicates with the provider object, an instance of a class that implements ContentProvider. The provider object receives data requests from clients, performs the requested action, and returns the results.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What is the difference between a fragment and an activity? Explain the relationship between the two<br />
+            </strong>An activity is typically a single, focused operation that a user can perform (such as dial a number, take a picture, send an email, view a map, etc.). Yet at the same time, there is nothing that precludes a developer from creating an activity that is arbitrarily complex. Activity implementations can optionally make use of the Fragment class for purposes such as producing more modular code, building more sophisticated user interfaces for larger screens, helping scale applications between small and large screens, and so on. Multiple fragments can be combined within a single activity and, conversely, the same fragment can often be reused across multiple activities. This structure is largely intended to foster code reuse and facilitate economies of scale. A fragment is essentially a modular section of an activity, with its own lifecycle and input events, and which can be added or removed at will. It is important to remember, though, that a fragment’s lifecycle is directly
+            affected by its host activity’s lifecycle; i.e., when the activity is paused, so are all fragments in it, and when the activity is destroyed, so are all of its fragments.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What is difference between Serializable and Parcelable ? Which is best approach in Android ?
+                <br />
+            </strong>Serializable is a standard Java interface. You simply mark a class Serializable by implementing the interface, and Java will automatically serialize it in certain situations.
+            <br />
+            Parcelable is an Android specific interface where you implement the serialization yourself. It was created to be far more efficient than Serializable, and to get around some problems with the default Java serialization scheme.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>*@
+</table>
+

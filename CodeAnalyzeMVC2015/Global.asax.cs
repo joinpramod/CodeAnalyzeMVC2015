@@ -34,7 +34,19 @@ namespace CodeAnalyzeMVC2015
         {
             try
             {
-                if (Request.Url.ToString().ToLower().Contains("soln.aspx?qid="))
+                if (Request.Url.ToString().ToLower().Contains("soln.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("xcode.aspx?qid=") ||
+                      Request.Url.ToString().ToLower().Contains("android.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("angularjs.aspx?qid=") ||
+
+                        Request.Url.ToString().ToLower().Contains("csharp.aspx?qid=") ||
+                      Request.Url.ToString().ToLower().Contains("dotnet.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("jquery.aspx?qid=") ||
+
+                    Request.Url.ToString().ToLower().Contains("mvc.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("aspnet.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("java.aspx?qid=") 
+                    )
                 {
                     string strId = Request.QueryString["QId"];
                     string strTitle = Request.QueryString["QT"];
@@ -65,6 +77,14 @@ namespace CodeAnalyzeMVC2015
                 {
                     string strURL = Request.Url.ToString().ToLower().Replace("/questions/unans", "/que/unans");
                     Response.Redirect(strURL);
+                }
+                else if (Request.Url.ToString().ToLower().Contains("/unanswered.aspx"))
+                {
+                    Response.Redirect("/que/unans");
+                }
+                else if (Request.Url.ToString().ToLower().Contains("/postingguidelines.aspx"))
+                {
+                    Response.Redirect("/home/postingguidelines");
                 }
             }
             catch

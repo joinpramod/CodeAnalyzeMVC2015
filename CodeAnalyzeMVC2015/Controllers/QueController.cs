@@ -305,7 +305,11 @@ namespace CodeAnalyzeMVC2015.Controllers
                         mail.ToAdd = Session["AskedUserEMail"].ToString();
                         mail.CCAdds = "admin@codeanalyze.com";
                         mail.IsBodyHtml = true;
-                        mail.SendMail();
+
+                        if (!mail.ToAdd.ToString().ToLower().Equals("pramodh.suresh@yahoo.com"))
+                        {
+                            mail.SendMail();
+                        }
                     }
                 }
                 catch(Exception ex)
@@ -426,8 +430,8 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                         if (!string.IsNullOrEmpty(dsQuestion.Rows[0]["ImageURL"].ToString()))
                             model.ImageURL = dsQuestion.Rows[0]["ImageURL"].ToString();
-                        //else
-                        //    model.ImageURL = "~/Images/Person.JPG";
+                        else
+                            model.ImageURL = "~/Images/Person.JPG";
                     }
                     //else
                     //{
@@ -489,7 +493,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                     string htmlRowResponseNoByDetails = "<tr style=\"width:100%;color:white\">";
 
-                    string htcUserImage = "<td> ";
+                    string htcUserImage = "<td align=\"right\"> ";
                     if (!string.IsNullOrEmpty(dsSolution.Rows[i]["ImageURL"].ToString()))
                     {
                         if (Request.Url.ToString().Contains("localhost"))

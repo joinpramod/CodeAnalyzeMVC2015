@@ -675,6 +675,11 @@
     <Content Include="Views\Que\Post.cshtml" />
     <Content Include="Views\Que\Ans.cshtml" />
     <Content Include="Views\Que\UnAns.cshtml" />
+    <Content Include="Views\Tutorials\XCode.cshtml" />
+    <Content Include="Views\Tutorials\Android.cshtml" />
+    <Content Include="Views\Tutorials\XCodeInt.cshtml" />
+    <Content Include="Views\Tutorials\AndroidInt.cshtml" />
+    <Content Include="Views\Tutorials\HadoopInt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

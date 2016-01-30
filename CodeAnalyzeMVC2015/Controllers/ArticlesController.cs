@@ -322,9 +322,13 @@ namespace CodeAnalyzeMVC2015.Controllers
                         {
                             model.ImageURL = dsQuestion.Rows[0]["ImageURL"].ToString();
                         }
+                        else
+                        {
+                            model.ImageURL = "~/Images/Person.JPG";
+                        }
 
 
-                        if (!string.IsNullOrEmpty(dsQuestion.Rows[0]["ImageURL"].ToString()))
+                        if (!string.IsNullOrEmpty(dsQuestion.Rows[0]["Details"].ToString()))
                         {
                             model.AskedUserDetails = dsQuestion.Rows[0]["Details"].ToString();
                         }

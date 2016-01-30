@@ -166,19 +166,30 @@
                             <li>@Html.ActionLink("Articles", "Index", "Articles")</li>
                             <li>@Html.ActionLink("Post Articles", "Post", "Articles")</li>
                             <li>@Html.ActionLink("Post Question", "Post", "Que")</li>
+                            <li>@Html.ActionLink("UnAnswered", "UnAns", "Que")</li>
                             <li class="dropdown">
                                 <a href="#">Tutorials<i class="fa fa-caret-down"></i></a>
                                 <ul class="sub-menu">
                                     <li>@Html.ActionLink("Basics", "Basics", "Tutorials")</li>
                                     <li>@Html.ActionLink("AngularJS", "AngularJS", "Tutorials")</li>
+                                    <li>@Html.ActionLink("XCode", "XCode", "Tutorials")</li>
+                                    <li>@Html.ActionLink("Android", "Android", "Tutorials")</li>
                                     <li>@Html.ActionLink("Hadoop", "Hadoop", "Tutorials")</li>
                                 </ul>
                             </li>
-                            <li>@Html.ActionLink("UnAnswered", "UnAns", "Que")</li>
+                            <li class="dropdown">
+                                <a href="#">Interview QA<i class="fa fa-caret-down"></i></a>
+                                <ul class="sub-menu">
+                                    <li>@Html.ActionLink("XCode", "XCodeInt", "Tutorials")</li>
+                                    <li>@Html.ActionLink("Android", "AndroidInt", "Tutorials")</li>
+                                    <li>@Html.ActionLink("Hadoop", "HadoopInt", "Tutorials")</li>
+                                </ul>
+                            </li>
                             @* <li><a href="~/Chat.aspx">Chat</a> </li>*@
                             <li> @Html.ActionLink("About Us", "About", "Home")</li>
                             <li> @Html.ActionLink("Rewards", "Rewards", "Home")</li>
                         </ul>
+
                     </div>
                 </div>
             </nav>
@@ -212,23 +223,7 @@
 
 
             <aside id="ccr-right-section" class="col-md-4">
-                <section id="social-buttons">
-                    <ul>
-                        <li>
-                            <div class="fb-like" data-href="https://codeanalyze.com" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
-                        </li>
-                        <li>
-                            <div class="g-plusone" data-annotation="none"></div>
-                        </li>
-                        <li>
-                            <a class="twitter-share-button" href="https://twitter.com/codeanalyze_">Tweet</a>
-                            <script>
-                                window.twttr = (function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); t._e = []; t.ready = function (f) { t._e.push(f); }; return t; }(document, "script", "twitter-wjs"));
-                            </script>
-                        </li>
-                    </ul>
 
-                </section>
 
                 <section id="sidebar-popular-post">
                     <div class="ccr-gallery-ttile">
@@ -271,6 +266,25 @@
                     </ul>
 
                 </section>
+
+                <section id="social-buttons">
+                    <ul>
+                        <li>
+                            <div class="fb-like" data-href="https://codeanalyze.com" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+                        </li>
+                        <li>
+                            <div class="g-plusone" data-annotation="none"></div>
+                        </li>
+                        <li>
+                            <a class="twitter-share-button" href="https://twitter.com/codeanalyze_">Tweet</a>
+                            <script>
+                                window.twttr = (function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); t._e = []; t.ready = function (f) { t._e.push(f); }; return t; }(document, "script", "twitter-wjs"));
+                            </script>
+                        </li>
+                    </ul>
+
+                </section>
+
 
                 @*<section id="ccr-sidebar-add-place">
                     <div class="sidebar-add-place">

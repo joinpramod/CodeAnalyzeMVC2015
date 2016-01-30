@@ -1,0 +1,229 @@
+﻿
+@{
+    ViewBag.Title = "XCode Basic Intro Tutorial - CodeAnalyze";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<meta name="description" content="XCode Basic Intro Tutorial - CodeAnalyze" />
+
+<h2>XCode Basics</h2>
+
+<table style="width:100%;font-size:16px">
+    <tr>
+        <td>
+            <strong>Register as Apple Developer </strong>
+            <br />
+            If you want to develop apple applications then Apple ID is most necessary if you are having any Apple device and being a developer. <br />
+            Use the following steps to register as Apple Developer:
+            <br />
+            1. Click the link (<a href="https://developer.apple.com/programs/register/">https://developer.apple.com/programs/register/</a>) and select &quot;Create Apple ID&quot;.
+            <br />
+            2. Enter the required information which are self explanatory as given in the page.
+            <br />
+            3. Account becomes active after you verify your account with your email
+            <br />
+            4. Now you will be able to download the developer tools like Xcode, which is packaged with iOS simulator and iOS SDK and other developer resources.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        &nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>iOS –Xcode Installation </strong>
+            <br />
+            1. Download the latest version of Xcode from (<a href="https://developer.apple.com/downloads/">https://developer.apple.com/downloads/</a>)
+            <br />
+            2. Select and double click the Xcode dmg file. <br />
+            3. This will get a device mounted and it will be opened.<br />
+            4. Xcode application and Application folder&#39;s shortcut will be displayed in the new window.<br />
+            5. Drag the Xcode to application and it will be copied to your applications.
+            <br />
+            6. Xcode will be now available as a part of other applications from which can be selected and run.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                Interface and Implementation
+                <br />
+            </strong>XCode mainly uses Objective C language<br />
+            In Objective C, the interface file is where the declaration of class is made and the implementation file is where the class is defined.
+            <br />
+            <span class="auto-style1">Class Methods</span> - These can be access directly accessed directly without creating an object and these dont have variables.
+            <br />
+            <span class="auto-style1">Instance Methods</span> -&nbsp; These can be accessed only after creating an object for the class. Memory is allocated to the instance variables.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Data Types in Objective C</strong>
+            <br />
+            NSString
+            <br />
+            CGfloat
+            <br />
+            NSInteger
+            <br />
+            BOOL
+            <br />
+            Printing Logs NSLog - used for printing a statement. It will be printed in the device logs and debug console in release and debug modes respectively.
+            <br />
+            Categories - Categories are used to add methods to the existing classes. We can add method to classes for which we don&#39;t have even implementation files where the actual class is defined.<br />
+            Arrays - NSMutableArray and NSArray are the array classes used in objective C. <br />
+            Dictionary - NSMutableDictionary and NSDictionary are the dictionary classes used in objective C.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    &nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Creating the First App</strong>
+            <br />
+            Open Xcode and select Create a new Xcode project.
+            <br />
+            Select Single View Application
+            <br />
+            Enter the name of the application, organization name, and then the company identifier.
+            <br />
+            Select Use Automatic Reference Counting in order to automatically release the resources allocated once it goes out of scope.
+            <br />
+            Click Next.
+            <br />
+            Select the directory for the project and Select create.
+            <br />
+            Select iPhone simulator in the drop down near Run button and Select run.<br />
+            Five different files that would have been generated for your application. <br />
+            AppDelegate.h
+            <br />
+            AppDelegate.m
+            <br />
+            ViewController.h
+            <br />
+            ViewController.m
+            <br />
+            ViewController.xib
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>List of UI Elements </strong>
+            <br />
+            1 Text Fields <br />
+            2 Input types - TextFields
+            <br />
+            3 Buttons
+            <br />
+            4 Label
+            <br />
+            5 Toolbar
+            <br />
+            6 Status Bar
+            <br />
+            7 Navigation Bar
+            <br />
+            8 Tab bar
+            <br />
+            9 Image View
+            <br />
+            10 Scroll View
+            <br />
+            11 Table View
+            <br />
+            12 Split View
+            <br />
+            13 Text View
+            <br />
+            14 View Transition
+            <br />
+            15 Pickers
+            <br />
+            16 Switches
+            <br />
+            17 Sliders
+            <br />
+            18 Alerts
+            <br />
+            19 Icons
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>SQLite</strong> can be used in iOS for handling data.
+            <br />
+            It uses sqlite queries, which makes it easier for those who know SQL.
+            <br />
+            Steps Involved
+            <br />
+            1. Create a simple View based application.
+            <br />
+            2. Select project file, then select targets and then add libsqlite3.dylib library in frameworks.
+            <br />
+            3. Create a new file by selecting File-&gt; New -&gt; File -&gt; select Objective C class and click next.
+            <br />
+            4. Name the class as DBManager with &quot;sub class of&quot; as NSObject.
+            <br />
+            5. Select create.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><strong>Memory management</strong> in iOS now supports ARC (Automatic Reference Counting) and we don&#39;t have to retain and release the objects. Xcode takes care of the job automatically in compile time.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Memory Management Issues</strong>
+            <br />
+            Two major issues in memory management are:
+            <br />
+            • Freeing or overwriting data that is still in use. It causes memory corruption and typically results in your application crashing, or worse, corrupted user data.
+            <br />
+            • Not freeing data that is no longer in use causes memory leaks. When allocated memory is not freed even though it is never going to be used again, it is known as memory leak. Leaks cause your application to use ever-increasing amounts of memory, which in turn may result in poor system performance then application might be terminated.
+            <br />
+            <br />
+            <strong>Memory Management Rules </strong>
+            <br />
+            • We need to subsequently release objects when they are no longer needed. <br />
+            • Use Retain to gain ownership of an object that you did not create. Release these objects too when they are not needed.
+            <br />
+            • Don&#39;t release the objects that you don&#39;t own. Handling Memory in ARC You don&#39;t need to use release and retain in ARC. So, all the view controller&#39;s objects will be released when the view controller is removed. Similarly, any object’s sub-objects will be released when they are released. Note that if other classes have a strong reference to an object of a class, then the whole class won&#39;t be released. So, it is recommended to use weak properties for delegates. Memory Management Tools We can analyze the usage of memory with the help of Xcode tool instruments. It includes tools such as Activity Monitor, Allocations, Leaks, Zombies, and so on.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Steps for Analyzing Memory Allocations </strong>
+            <br />
+            1. Open an existing application. <br />
+            2. Select Product and then Profile as shown below.
+            <br />
+            3. Select Allocations in the next screen shown below and select Profile.
+            <br />
+            4. We will see the allocation of memory for different objects as shown below.
+            <br />
+            5. You can switch between view controllers and check whether the memory is released properly.
+        </td>
+    </tr>   
+</table>
