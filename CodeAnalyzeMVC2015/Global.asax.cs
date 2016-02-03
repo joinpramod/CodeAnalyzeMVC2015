@@ -86,6 +86,45 @@ namespace CodeAnalyzeMVC2015
                 {
                     Response.Redirect("/home/postingguidelines");
                 }
+                else if (Request.Url.ToString().ToLower().Contains("/questions/upvote") ||
+                    Request.Url.ToString().ToLower().Contains("/questions/downvote"))
+                {
+                    //try
+                    //{
+                    //    string[] strVals = Request.Url.ToString().Split('/');
+                    //    int i = 0;
+                    //    string strId = "";
+                    //    string strTitle = "";
+
+                    //    foreach (string str in strVals)
+                    //    {
+                    //        if(str.ToLower().Equals("upvote") || str.ToLower().Equals("downvote"))
+                    //        {
+                    //             strId = strVals[i+1];
+                    //             strTitle = strVals[i+2];
+                    //            break;
+                    //        }
+                    //        i += 1;
+                    //    }                     
+
+                    //    System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+                    //    strTitle = rgx.Replace(strTitle, "");
+
+                    //    Response.Redirect("/Que/Ans/" + strId + "/" + strTitle);
+                    //}
+                    //catch
+                    //{
+                        Response.Redirect("/Articles/Index");
+                    //}
+                }
+                else if (Request.Url.ToString().ToLower().Contains("/credits.aspx"))
+                {
+                    Response.Redirect("/Home/Rewards");
+                }
+                else if (Request.Url.ToString().ToLower().Contains("/topics.aspx"))
+                {
+                    Response.Redirect("/Tutorials/Basics");
+                }
             }
             catch
             {

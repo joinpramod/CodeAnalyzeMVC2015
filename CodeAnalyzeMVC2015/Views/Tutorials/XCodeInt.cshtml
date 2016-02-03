@@ -7,7 +7,563 @@
 <meta name="description" content="XCode Interview Questions and Answers" />
 
 <h2>XCode Interview Questions and Answers</h2>
-
+<br/>
 <br />
+<table style="width:100%;font-size:16px">
+    <tr>
+        <td>
+            <strong>
+                From which iOS version does apple support multitasking?
+                <br />
+            </strong>iOS 4 and above supports multi-tasking. Until the apps are launched again or they are terminated apps run in background.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                Which JSON framework is used in iOS?
+                <br />
+            </strong>SBJson framework is supported by iOS.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What is the framework used to create UI in iOS.
+                <br />
+            </strong>The UIKit framework is used to develop UI for iOS. UIKit framework provides event handling, drawing model, windows, views, and controls specifically designed for a touch screen interface.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
 
-<h2>coming very soon</h2>
+    <tr>
+        <td>
+            <strong>What is the API used to create test scripts to test UI elements? </strong>
+            <br />
+            UI Automation API. Tests scripts are written in JavaScript to the UI Automation API.
+            This in turn simulates user interaction with the application and returns log information to the host computer.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Can the app behave differently when running in background than foreground? </strong>
+            <br />
+            Yes, this is because of lack of resources in background.
+        </td>
+    </tr>
+
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>When app is in foreground which framework delivers event to custom object? </strong>
+            <br />
+            Custom objects are delivered by UIKit infrastructure. To process events, override methods into appropriate objects.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What state will the app be if it is said to be running but not receiving events. </strong>
+            <br />
+            InActive state. App is said to be in active state when it is running in foreground and is receiving events.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>InActive state examples</strong>
+            <br />
+            When the user locks the screen or if user has to respond to some event e.g. SMS message, incoming call etc.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is the state of app while being suspended. </strong>
+            <br />
+            An app enters background state briefly while being suspended.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is the state of the app if its not on foreground but accepting events and executing code.</strong>
+            <br />
+            Background state.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is Suspended state </strong>
+            <br />
+            Suspended state when app is in memory but is not executing any code.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>While app is launching how is main function invoked </strong>
+            <br />
+            System OS calls the main function of the app when launched and from there control is handed over to the UIKit framework which
+            initiates the UI.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Why do we need controller object UIApplication? </strong>
+            <br />
+            https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplication_Class/
+            The UIApplication class provides a centralized point of control and coordination for apps running in iOS. Every app has exactly one instance of UIApplication (or, very rarely, a subclass of UIApplication). When an app is launched, the system calls the UIApplicationMain function; among its other tasks, this function creates a singleton UIApplication object. Thereafter you access the object by calling the sharedApplication class method.
+            <br />
+            A major role of your app’s application object is to handle the initial routing of incoming user events. It dispatches action messages forwarded to it by control objects (instances of the UIControl class) to appropriate target objects. The application object maintains a list of open windows (UIWindow objects) and through those can retrieve any of the app’s UIView objects.
+            <br />
+            The UIApplication class defines a delegate that conforms to the UIApplicationDelegate protocol and must implement some of the protocol’s methods. The application object informs the delegate of significant runtime events—for example, app launch, low-memory warnings, and app termination—giving it an opportunity to respond appropriately.
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>At launch time which object is created by UIApplicationMain? </strong>
+            <br />
+            app delegate object . This mainly handles state transitions within the app.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>How is the app delegate is declared by Xcode project templates? </strong>
+            <br />
+            App delegate is declared as a subclass of UIResponder by Xcode project templates.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>When IApplication object does not handle an event, how is it managed? </strong>
+            <br />
+            Event will be dispatched to app delegate for processing.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Where is the app&#39;s content stored? </strong>
+            <br />
+            App's content are stored in Data model objects which are app specific.
+            Document objects can also be used to manage the data model objects.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is the use of document objects?</strong>
+            <br />
+            Document objects are not mandatory, but can be used in grouping data belonging to a single file or file package.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Presentation of app&#39;s content on the screen is maintained by which object? </strong>
+            <br />
+            View controller objects takes care of the presentation of app&#39;s content on the screen.
+            A view controller is used to manage a single view along with the collection of subviews.
+            It makes its views visible by installing them in the app’s window.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Which is the super class of all view controller objects? </strong>
+            <br />
+            UIViewController class. The functionality for loading views, presenting them, rotating them in response to device rotations, and several other standard system behaviors are provided by UIViewController class.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What object handles the presentation of one or more views on a screen coordination ? </strong>
+            <br />
+            UIWindow object.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Define view object. </strong>
+            <br />
+            View is an object that draws content in a designated rectangular area and it responds to events within that are
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>To define custom view which class should be subclassed? </strong>
+            <br />
+            UIView.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What all things can app incorporate? </strong>
+            <br />
+            Views, Controls, Core Animation layers into its view and Control hierarchies.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What are layer objects and what do they represent? </strong>
+            <br />
+            Layer objects are data objects which represent visual content.
+            Layer objects are used by views to render their content.
+            Custom layer objects can also be added to the interface to implement complex animations and other
+            types of sophisticated visual effects.
+        </td>
+    </tr>
+
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What does accelerometer do in an iPhone ? </strong>
+            <br />
+            iPhone responds to motion using a built-in accelerometer. The accelerometer detects the movement and changes the
+            display accordingly.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Difference between categories and extensions? </strong>
+            <br />
+            In extension, methods has to be implemented within main @@implementation,
+            but in category there is separate @@implementation block.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is difference between NSNotification and delegate? </strong>
+            <br />
+            Delegate passes message from one object to another which is like one to one.
+            nsnotification is like one to many i.e. passing message to multiple objects at the same time.
+            Delegates are more frequently used where as Notifications are used less because of complexity.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is push notification? </strong>
+            <br />
+            Push notification is like an alert machanism where in messages are received by subscribers on new changes.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What is Automatic Reference Counting (ARC)? </strong>
+            <br />
+            ARC is a inbuilt feature of the systems which takes care of cleaning the memory i.e. to retain or release an object,
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What’s a struct? </strong>
+            <br />
+            A structure is like a basic datatype in C language similar to C++ class but here defnite memory is allocated for each object
+            It is complex datatype which has multiple objects of different datatype within in.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What’s the difference between frame and bounds? </strong>
+            <br />
+            The frame of a view is the rectangle, expressed as a location (x, y) and size (width, height) relative
+            to the super view it is contained within.
+            The bounds of a view are the rectangle, expressed as a location (x, y) and size (width, height) relative
+            to its own coordinate system (0, 0).
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>How can an operating system improve battery life while running an app? </strong>
+            <br />
+            An app is notified whenever the operating system moves the apps between foreground and background.
+            The operating system improves battery life while it bounds what app can do in the background.
+            This also improves the user experience with foreground app.
+        </td>
+    </tr>
+
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                Whats the difference between NSArray and NSMutableArray?<br />
+            </strong>NSArrayʼs contents can not be modified once itʼs been created whereas a
+            NSMutableArray can be modified as needed, i.e items can be added/removed from it.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What is App Bundle?
+                <br />
+            </strong>App bundle is similar to zip file or dll file or assembly in .net.
+            When iOS app is build then Xcode packages it as a bundle.
+            An iOS app bundle contains the app executable file and supporting resource files such as app icons, image files,
+            and localized content.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What are the App states. Explain them?
+                <br />
+            </strong><span class="auto-style1">Not running State</span>: The app has not been launched or was running but was terminated by the system.
+            <br />
+            Inactive state: The app is running in the foreground but is currently not receiving events. (It may be executing other code though.) An app usually stays in this state only briefly as it transitions to a different state. The only time it stays inactive for any period of time is when the user locks the screen or the system prompts the user to respond to some event, such as an incoming phone call or SMS message.
+            <br />
+            <span class="auto-style1">Active state</span>: The app is running in the foreground and is receiving events. This is the normal mode for foreground apps.
+            <br />
+            <span class="auto-style1">Background state</span>: The app is in the background and executing code. Most apps enter this state briefly on their way to being suspended. However, an app that requests extra execution time may remain in this state for a period of time. In addition, an app being launched directly into the background enters this state instead of the inactive state. For information about how to execute code while in the background, see “Background Execution and Multitasking.”
+            <br />
+            <span class="auto-style1">Suspended state</span>:The app is in the background but is not executing code. The system moves apps to this state automatically and does not notify them before doing so. While suspended, an app remains in memory but does not execute any code. When a low-memory condition occurs, the system may purge suspended apps without notice to make more space for the foreground app.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Explain how you can add frameworks in Xcode project? </strong>
+            <br />
+            To add frameworks in Xcode project <br />
+            Select the project file from the project navigator on the
+            left side of the project window <br />
+            Select the target where new frameworks in the project to be added in settings editor <br />
+            Choose the “Build Phases” tab, and select the small
+            triangle next to “Link Binary With Libraries” to view all of the frameworks in your application  <br />
+            To add frameworks click on “+” sign below the list of frameworks
+            Press and hold the command key while choosing the framework to choose multiple frameworks
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What is the use of Xcode command line tools package?
+                <br />
+            </strong>
+            It enables you to do command line development in OS X.
+            It consists of two components like command line tools such as Clang and OS X SDK.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>What are the new features in Xcode 6? </strong>
+            <br />
+            In Xcode 6, new features include
+            <br />
+            <span class="auto-style1">Swift:</span> It is very simple and easy to make a brand new app using 100%
+            swift code to existing frameworks. <br />
+            <span class="auto-style1">Playgrounds:</span> It enables the interactive experience of a scripting language, like you can show variables in a graph,
+            watch an animated SpriteKit Scene or inspect each step when drawing a view.  <br />
+            <span class="auto-style1">Command Line:</span>  Swift syntax can be used to interact and evaluate the running app or write new code in a
+            script like environment <br />
+            <span class="auto-style1">Performance Testing:</span> The XCTest framework is extended to support performance test, and is
+            completely synchronized with Xcode and Xcode Server. It also raises alerts for regression when test
+            results change <br />
+            <span class="auto-style1">View Debugging:</span> Xcode allows easy debugging and includes new debugging tools like debug gauges
+            to monitor I/O usage and enhance iCloud gauge
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What is the use of PO command in Xcode?
+                <br />
+            </strong>While debugging with PO command, object can be printed by using the command “PO variable name” in output window.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                Which are the different smart groups in Xcode?
+                <br />
+            </strong>
+            <span class="auto-style1">Simple filter smart group:</span> It matches files based on file name “globbing” used in the shell <br />
+            <span class="auto-style1">Simple expression smart group:</span> It matches files using regular expression
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                How to delete a smart group created in Xcode?
+                <br />
+            </strong>Smart groups cannot be deleted individually, it can be done by Deleting all the smart groups
+            saved in an individual project Or by deleting all the global smart groups
+            available in the project
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What are the source items used by Xcode?
+                <br />
+            </strong>Source File  <br />
+            Source Group <br />
+            Source Folder <br />
+            Framework
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What are the build phases available in Xcode?
+                <br />
+            </strong>
+            Compile Sources <br />
+            Link binary with libraries <br />
+            Copy bundle resources
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                Explain how app delegate is declared by Xcode project templates?
+                <br />
+            </strong>App delegate is defined as a sub-class of UIResponder by Xcode project templates.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What are all instruments available in Xcode?
+                <br />
+            </strong>To trace and profile Mac OS X and iOS code an application is used referred as Instruments.
+            It allows you to track one or more than one processes and analyze the collected data
+            It helps you to understand the behavior of both operating system and the user programs.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                What does @@synthesize do?
+                <br />
+            </strong>Keyword @@synthesize tell the compiler that it should create the setter or getter for the property
+            if you do not supply them with the @@implementation block.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+</table>

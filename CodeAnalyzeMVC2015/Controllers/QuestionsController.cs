@@ -13,7 +13,15 @@ namespace CodeAnalyzeMVC2015.Controllers
     public class QuestionsController : BaseController
     {
 
+        public ActionResult UpVote(string Id, string RId, string Title)
+        {
+            return null;
+        }
 
-  
+        public ActionResult DownVote(string Id, string RId, string Title)
+        {
+            return null;
+        }
+
     }
 }
