@@ -112,12 +112,12 @@
                     </tr>
                     <tr>
                         <td colspan="2" align="left">
-                            Enter code between <b>#codestart</b> and <b>#codeend</b> tags to highlight it correctly.<br />
-                            <pre class="prettyprint" style="width:28%;text-align:left;white-space: pre-line;">
-                            #codestart
-                            your code here
-                            #codeend
-                        </pre>
+                            Click "INSERT CODE" and write between <b>#codestart</b> and <b>#codeend</b> tags to highlight it correctly.<br />
+                            @*<pre class="prettyprint" style="width:28%;text-align:left;white-space: pre-line;">
+                                #codestart
+                                your code
+                                #codeend
+                            </pre>*@
                         </td>
                     </tr>
 
@@ -133,6 +133,12 @@
                                    class="mysubmit"  />
                         </td>
                     </tr>
+                    <tr><td colspan="2">&nbsp;</td></tr>
+                    <tr>                       
+                        <td colspan="2">
+                            <div id="divPreview"></div>
+                        </td>
+                    </tr>     
                 </table>
     
         @Html.Hidden("hfUserEMail", (object)ViewBag.UserEMail)

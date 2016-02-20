@@ -23,7 +23,7 @@
        cellspacing="0">
     <tr>
         <td>
-            <table align="left" style="width: 100%">
+            <table align="left" style="width: 100%" cellpadding="6" cellspacing="6">
                 <tr>
                     <td colspan="2" align="center" style="color:green;font-weight:bold">
                         @Html.Raw(ViewBag.Ack)                                              
@@ -58,12 +58,12 @@
                         Details:<span style="font-family:Calibri; font-size:16px;color:Red">*</span>
                     </td>
                     <td align="left">
-                        Enter code between <b>#codestart</b> and <b>#codeend</b> tags to highlight it correctly.<br />
-                            <pre class="prettyprint" style="width:28%;text-align:left;white-space: pre-line;">
+                        Click "INSERT CODE" and write between <b>#codestart</b> and <b>#codeend</b> tags to highlight it correctly.<br />
+                            @*<pre class="prettyprint" style="width:28%;text-align:left;white-space: pre-line;">
                             #codestart
-                            your code here
+                            your code
                             #codeend
-                        </pre>
+                        </pre>*@
                         @Html.TextArea("EditorAskQuestion")
                     </td>
                 </tr>
@@ -72,7 +72,14 @@
                         <input type="submit" value="Post Question" id="btnSubmit" onclick="return ValidateQues()"
                                 class="mysubmit" />
                     </td>
-                </tr>                
+                </tr> 
+                <tr><td colspan="2">&nbsp;</td></tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>
+                        <div id="divPreview"></div>
+                    </td>
+                </tr>               
             </table>
         </td>
     </tr>

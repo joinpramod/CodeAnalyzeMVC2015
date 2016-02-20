@@ -36,15 +36,16 @@ namespace CodeAnalyzeMVC2015
             {
                 if (Request.Url.ToString().ToLower().Contains("soln.aspx?qid=") ||
                     Request.Url.ToString().ToLower().Contains("xcode.aspx?qid=") ||
-                      Request.Url.ToString().ToLower().Contains("android.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("android.aspx?qid=") ||
                     Request.Url.ToString().ToLower().Contains("angularjs.aspx?qid=") ||
 
-                        Request.Url.ToString().ToLower().Contains("csharp.aspx?qid=") ||
-                      Request.Url.ToString().ToLower().Contains("dotnet.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("csharp.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("dotnet.aspx?qid=") ||
                     Request.Url.ToString().ToLower().Contains("jquery.aspx?qid=") ||
 
                     Request.Url.ToString().ToLower().Contains("mvc.aspx?qid=") ||
                     Request.Url.ToString().ToLower().Contains("aspnet.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("sql.aspx?qid=") ||
                     Request.Url.ToString().ToLower().Contains("java.aspx?qid=") 
                     )
                 {
@@ -80,11 +81,19 @@ namespace CodeAnalyzeMVC2015
                 }
                 else if (Request.Url.ToString().ToLower().Contains("/unanswered.aspx"))
                 {
-                    Response.Redirect("/que/unans");
+                    Response.Redirect("/Que/Unans");
+                }
+                else if (Request.Url.ToString().ToLower().Contains("/articles.aspx"))
+                {
+                    Response.Redirect("/Articles/Index");
+                }
+                else if (Request.Url.ToString().ToLower().Contains("/mvc.aspx"))
+                {
+                    Response.Redirect("/Que/Unans");
                 }
                 else if (Request.Url.ToString().ToLower().Contains("/postingguidelines.aspx"))
                 {
-                    Response.Redirect("/home/postingguidelines");
+                    Response.Redirect("/Home/Postingguidelines");
                 }
                 else if (Request.Url.ToString().ToLower().Contains("/questions/upvote") ||
                     Request.Url.ToString().ToLower().Contains("/questions/downvote"))
@@ -114,7 +123,7 @@ namespace CodeAnalyzeMVC2015
                     //}
                     //catch
                     //{
-                        Response.Redirect("/Articles/Index");
+                        Response.Redirect("/Que/Unans");
                     //}
                 }
                 else if (Request.Url.ToString().ToLower().Contains("/credits.aspx"))
@@ -124,6 +133,14 @@ namespace CodeAnalyzeMVC2015
                 else if (Request.Url.ToString().ToLower().Contains("/topics.aspx"))
                 {
                     Response.Redirect("/Tutorials/Basics");
+                }
+                else if (Request.Url.ToString().ToLower().Contains("/info.aspx"))
+                {
+                    Response.Redirect("/Home/About");
+                }
+                else if (Request.Url.ToString().ToLower().Contains("/userprofile.aspx"))
+                {
+                    Response.Redirect("/Account/Register");
                 }
             }
             catch
@@ -141,7 +158,14 @@ namespace CodeAnalyzeMVC2015
         {
             Exception ex = new Exception();
             ex = Server.GetLastError();
-            if (!ex.Message.Contains("This is an invalid script resource request"))
+
+            if (ex.Message.ToLower().Contains("the controller for path")
+                && ex.Message.ToLower().Contains("was not found or does not implement icontroller"))
+            {
+                Response.Redirect("/Que/Unans/");
+
+            }
+            else if (!ex.Message.Contains("This is an invalid script resource request"))
             {
                 if (!ex.Message.Contains("File does not exist"))
                 {

@@ -1,0 +1,9 @@
+G:\CodeAnalyzeMVC2015\CodeAnalyzeMVC2015\js\New folder>java -jar yuicompressor-2.4.8.jar JavaScript1.js -o JavaScript1-min.js
+
+G:\CodeAnalyzeMVC2015\CodeAnalyzeMVC2015\js\New folder>java -jar yuicompressor-2.4.8.jar JavaScript1.js -o JavaScript1-min.js
+
+G:\CodeAnalyzeMVC2015\CodeAnalyzeMVC2015\js\New folder>java -jar yuicompressor-2.4.8.jar TinyMCE-max.js -o TinyMCE.js
+
+G:\CodeAnalyzeMVC2015\CodeAnalyzeMVC2015\js\New folder>java -jar yuicompressor-2.4.8.jar Facebook-max.js -o Facebook.js
+
+G:\CodeAnalyzeMVC2015\CodeAnalyzeMVC2015\js\New folder>java -jar yuicompressor-2.4.8.jar Google-max.js -o Google.js
