@@ -5,7 +5,7 @@
         'autolink',
     ],
     menubar: false,
-    toolbar: 'mybutton | undo redo | bold italic | bullist numlist outdent indent',
+    toolbar: 'mybutton | bold italic | numlist | undo redo',
     statusbar: false,
     keep_styles: false,
     height: "300px",
@@ -66,7 +66,11 @@ function StringClean(strInput) {
 
     strReply = strReply.replace(/<pre>/g, "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
     strReply = strReply.replace(/<pre class=\"prettyprint\" style=\"font-size:14px;\"><br \/>/g, "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+    strReply = strReply.replace(/<pre class=\"prettyprint\" style=\"font-size:14px;\"><br\/>/g, "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+
     strReply = strReply.replace(/#####/g, "\r\n");
+    strReply = strReply.replace(/<\/pre><br \/>/g, "<\/pre>");
+    strReply = strReply.replace(/<\/pre><br\/>/g, "<\/pre>");
 
     return strReply;
 };

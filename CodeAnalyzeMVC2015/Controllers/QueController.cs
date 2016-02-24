@@ -86,6 +86,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult InsertQuestion(string txtTitle, string ddType, string EditorAskQuestion)
         {
+            string strTemp = "";
             if (Session["User"] != null)
             {
                 txtTitle = txtTitle.Replace("``", "<");
@@ -122,13 +123,24 @@ namespace CodeAnalyzeMVC2015.Controllers
                 EditorAskQuestion = EditorAskQuestion.Replace("</html>", "");
                 EditorAskQuestion = EditorAskQuestion.Replace("<body>", "");
                 EditorAskQuestion = EditorAskQuestion.Replace("</body>", "");
+                EditorAskQuestion = EditorAskQuestion.Replace("<br>", "<br />");
 
                 if (EditorAskQuestion.Length > 10000)
                 {
                     EditorAskQuestion = EditorAskQuestion.Substring(0, 10000);
                 }
 
-                question.QuestionDetails = Sanitizer.GetSafeHtml(EditorAskQuestion);
+
+                strTemp = Sanitizer.GetSafeHtml(EditorAskQuestion);
+                strTemp = strTemp.Replace("<html>", "");
+                strTemp = strTemp.Replace("</html>", "");
+                strTemp = strTemp.Replace("<body>", "");
+                strTemp = strTemp.Replace("</body>", "");
+                strTemp = strTemp.Replace("\r\n", "");
+                strTemp = strTemp.Replace("<br>", "<br />");
+
+
+                question.QuestionDetails = strTemp;
                 question.AskedDateTime = DateTime.Now;
 
                 if (user.UserId == 1)
@@ -189,10 +201,12 @@ namespace CodeAnalyzeMVC2015.Controllers
             return View("../Que/Post", types);
         }
 
+
         public ActionResult InsertAns(string SolutionEditor)
         {
             VwSolutionsModel model = new VwSolutionsModel();
             string strContent = SolutionEditor;
+            string strTemp = "";
 
             if (Session["User"] != null)
             {
@@ -232,15 +246,18 @@ namespace CodeAnalyzeMVC2015.Controllers
                 strContent = strContent.Replace("</html>", "");
                 strContent = strContent.Replace("<body>", "");
                 strContent = strContent.Replace("</body>", "");
+                strContent = strContent.Replace("<br>", "<br />");
 
-                if (user.FirstName.Equals("Admin"))
-                {
-                    replies.Reply = strContent;
-                }
-                else
-                {
-                    replies.Reply = Sanitizer.GetSafeHtml(strContent);
-                }
+
+                strTemp = Sanitizer.GetSafeHtml(strContent);
+                strTemp = strTemp.Replace("<html>", "");
+                strTemp = strTemp.Replace("</html>", "");
+                strTemp = strTemp.Replace("<body>", "");
+                strTemp = strTemp.Replace("</body>", "");
+                strTemp = strTemp.Replace("\r\n", "");
+                strTemp = strTemp.Replace("<br>", "<br />");
+                replies.Reply = strTemp;
+
 
                 replies.RepliedDate = DateTime.Now;
 
@@ -650,7 +667,11 @@ namespace CodeAnalyzeMVC2015.Controllers
 
             strReply = strReply.Replace("<pre>", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
             strReply = strReply.Replace("<pre class=\"prettyprint\" style=\"font-size:14px;\"><br />", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"prettyprint\" style=\"font-size:14px;\"><br/>", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+
             strReply = strReply.Replace("#####", "\r\n");
+            strReply = strReply.Replace("</pre><br />", "</pre>");
+            strReply = strReply.Replace("</pre><br/>", "</pre>");
             return strReply;
         }
 

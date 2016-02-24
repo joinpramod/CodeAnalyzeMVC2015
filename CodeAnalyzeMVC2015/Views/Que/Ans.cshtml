@@ -22,7 +22,10 @@
     }
     else
     {
-        Model.QuestionTitle = rgx.Replace(ViewBag.keywords, "").Replace(" ", "-");
+        if (ViewBag.keywords != null)
+        {
+            Model.QuestionTitle = rgx.Replace(ViewBag.keywords, "").Replace(" ", "-");
+        }
     }
 }
 
@@ -112,7 +115,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" align="left">
-                            Click "INSERT CODE" and write between <b>#codestart</b> and <b>#codeend</b> tags to highlight it correctly.<br />
+                            Use "INSERT CODE" and write code between <b>#codestart</b> and <b>#codeend</b> tags to highlight it. 10k chars max.<br />
                             @*<pre class="prettyprint" style="width:28%;text-align:left;white-space: pre-line;">
                                 #codestart
                                 your code
@@ -133,7 +136,11 @@
                                    class="mysubmit"  />
                         </td>
                     </tr>
-                    <tr><td colspan="2">&nbsp;</td></tr>
+                    <tr>
+                        <td  colspan="2" align="left" style="font-size:24px">
+                            Preview
+                        </td>
+                    </tr> 
                     <tr>                       
                         <td colspan="2">
                             <div id="divPreview"></div>
