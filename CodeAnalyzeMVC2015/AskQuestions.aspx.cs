@@ -36,7 +36,7 @@ public partial class AskQuestions : System.Web.UI.Page
                     hfUserEMail.Value = "";
                 }
 
-                BindQuestionType("Select * from QuestionType");
+                //BindQuestionType("Select * from QuestionType");
 
                 LinkButton btnAskQuestion = (LinkButton)this.Master.FindControl("btnAskQuestion");
                 //btnAskQuestion.Font.Size = 24;
@@ -94,232 +94,232 @@ public partial class AskQuestions : System.Web.UI.Page
 
 
 
-        private void BindQuestionType(string strQuery)
-        {
-            ConnManager connManager = new ConnManager();
-            connManager.OpenConnection();
-            DataSet DSQuestions = new DataSet();
-            DSQuestions = connManager.GetData(strQuery);
-            connManager.DisposeConn();
-            if (DSQuestions != null)
-            {
-                if (DSQuestions.Tables[0].Rows.Count > 0)
-                {
-                    ddType.DataSource = DSQuestions;
-                    ddType.DataBind();
-                }
-            }
+        //private void BindQuestionType(string strQuery)
+        //{
+        //    ConnManager connManager = new ConnManager();
+        //    connManager.OpenConnection();
+        //    DataSet DSQuestions = new DataSet();
+        //    DSQuestions = connManager.GetData(strQuery);
+        //    connManager.DisposeConn();
+        //    if (DSQuestions != null)
+        //    {
+        //        if (DSQuestions.Tables[0].Rows.Count > 0)
+        //        {
+        //            ddType.DataSource = DSQuestions;
+        //            ddType.DataBind();
+        //        }
+        //    }
 
-        }
-
-
-        protected void BtnSearch_Click(object sender, EventArgs e)
-        {
-            //string strDateCheck = "";
-            //if (!string.IsNullOrEmpty(txtAskedDate.Text))
-            //{
-            //    DateTime dateTime = DateTime.Parse(txtAskedDate.Text);
-            //    dateTime = dateTime.AddDays(1);
-
-            //if (ddDateType.SelectedValue == "On" && !string.IsNullOrEmpty(txtAskedDate.Text))
-            //    strDateCheck = " ((AskedDateTime > '" + txtAskedDate.Text + " 00:00:00') and (AskedDateTime < '" + dateTime.ToShortDateString() + " 00:00:00'))";
-            //else
-            //    strDateCheck = " (AskedDateTime > '" + txtAskedDate.Text + " 00:00:00')";
-            //}
-
-            //if (!string.IsNullOrEmpty(strDateCheck) && !string.IsNullOrEmpty(txtQuestionTitle.Text))
-            //BindQuestions("Select * from Question where QuestionTitle like '%" + txtQuestionTitle.Text + "%' and " + strDateCheck + "");
-            //else if (string.IsNullOrEmpty(strDateCheck) && !string.IsNullOrEmpty(txtQuestionTitle.Text))
-            //    BindQuestions("Select * from Question where QuestionTitle like '%" + txtQuestionTitle.Text + "%'");
-            //else if (!string.IsNullOrEmpty(strDateCheck) && string.IsNullOrEmpty(txtQuestionTitle.Text))
-            //    BindQuestions("Select * from Question where " + strDateCheck + "");
+        //}
 
 
-            BindQuestions("Select * from Question where QuestionTitle like '%" + txtQuestionTitle.Text + "%'");
-            GVQuestions.Visible = true;
-            //GVQuestions.AllowPaging = false;
-            //GVQuestions.PageSize = 50;
+        //protected void BtnSearch_Click(object sender, EventArgs e)
+        //{
+        //    //string strDateCheck = "";
+        //    //if (!string.IsNullOrEmpty(txtAskedDate.Text))
+        //    //{
+        //    //    DateTime dateTime = DateTime.Parse(txtAskedDate.Text);
+        //    //    dateTime = dateTime.AddDays(1);
 
-        }
+        //    //if (ddDateType.SelectedValue == "On" && !string.IsNullOrEmpty(txtAskedDate.Text))
+        //    //    strDateCheck = " ((AskedDateTime > '" + txtAskedDate.Text + " 00:00:00') and (AskedDateTime < '" + dateTime.ToShortDateString() + " 00:00:00'))";
+        //    //else
+        //    //    strDateCheck = " (AskedDateTime > '" + txtAskedDate.Text + " 00:00:00')";
+        //    //}
 
-        protected void PreviewButton_Click(object sender, EventArgs e)
-        {
-
-            if (Session["User"] != null)
-            {
-                //if (!EditorAskQuestion.Content.Equals("&lt;br&gt;"))
-                //{
-
-                double dblQuestionID = 0;
-                Question question = new Question();
-                SqlConnection LclConn = new SqlConnection();
-                SqlTransaction SetTransaction = null;
-                bool IsinTransaction = false;
-                if (LclConn.State != ConnectionState.Open)
-                {
-                    question.SetConnection = question.OpenConnection(LclConn);
-                    SetTransaction = LclConn.BeginTransaction(IsolationLevel.ReadCommitted);
-                    IsinTransaction = true;
-                }
-                else
-                {
-                    question.SetConnection = LclConn;
-                }
-                //string strTitle = txtTitle.Text.Replace("<", " < ");
-                //strTitle = strTitle.Replace(">", " > ");
-                //strTitle = strTitle.Replace(":", " : ");
-                //strTitle = strTitle.Replace("<", " < ");
-                //question.QuestionTitle = strTitle;
-
-                question.QuestionTitle = txtTitle.Text;
-
-                question.QuestionTypeId = int.Parse(ddType.SelectedValue);
-                question.OptionID = 1;
-
-            //EditorAskQuestion.Content = EditorAskQuestion.Content.Replace("&amp;", "&")
-            //    .Replace("&lt;", "<")
-            //    .Replace("&gt;", ">")
-            //    .Replace("&apos;", "'")
-            //    .Replace("&quot;", "\"");
-
-            //question.QuestionDetails = customEditor2.Content;
-            //question.QuestionDetails = Utilities.ExpandUrls(EditorAskQuestion.Content);
-
-            EditorAskQuestion.Content = EditorAskQuestion.Content.Replace("<div>", "");
-            EditorAskQuestion.Content = EditorAskQuestion.Content.Replace("</div>", "");
-
-            if (EditorAskQuestion.Content.Length > 10000)
-                {
-                    EditorAskQuestion.Content = EditorAskQuestion.Content.Substring(0, 10000);
-                }
-
-                question.QuestionDetails = Sanitizer.GetSafeHtml(EditorAskQuestion.Content);
-                // question.QuestionDetails = EditorAskQuestion.Content;
+        //    //if (!string.IsNullOrEmpty(strDateCheck) && !string.IsNullOrEmpty(txtQuestionTitle.Text))
+        //    //BindQuestions("Select * from Question where QuestionTitle like '%" + txtQuestionTitle.Text + "%' and " + strDateCheck + "");
+        //    //else if (string.IsNullOrEmpty(strDateCheck) && !string.IsNullOrEmpty(txtQuestionTitle.Text))
+        //    //    BindQuestions("Select * from Question where QuestionTitle like '%" + txtQuestionTitle.Text + "%'");
+        //    //else if (!string.IsNullOrEmpty(strDateCheck) && string.IsNullOrEmpty(txtQuestionTitle.Text))
+        //    //    BindQuestions("Select * from Question where " + strDateCheck + "");
 
 
-                question.AskedDateTime = DateTime.Now;
+        //    BindQuestions("Select * from Question where QuestionTitle like '%" + txtQuestionTitle.Text + "%'");
+        //    GVQuestions.Visible = true;
+        //    //GVQuestions.AllowPaging = false;
+        //    //GVQuestions.PageSize = 50;
 
-                //if (Session["User"] != null)
-                // {
-                //if (string.IsNullOrEmpty(user.Email))
-                //{
-                //    LinkedInUser(user.UserId, user);
-                //    user.Email = txtEMail.Text;
-                //}
-                question.AskedUser = user.UserId;
-                //}
-                //else
-                //{
-                //    double dblUser = 0;
-                //    //if (!UserExists(ref dblUser))
-                //    //    question.AskedUser = CreateUser(txtEMail.Text);
-                //    //else
-                //        question.AskedUser = dblUser;
-                //}
+        //}
 
-                bool result = question.CreateQuestion(ref dblQuestionID, SetTransaction);
+        //protected void PreviewButton_Click(object sender, EventArgs e)
+        //{
 
-                if (IsinTransaction && result)
-                {
-                    SetTransaction.Commit();
-                    Mail mail = new Mail();
-                    mail.Body = "<a>www.codeanalyze.com/Soln.aspx?QId=" + dblQuestionID.ToString() + "&QT=" + txtTitle.Text + "</a>";
-                    mail.FromAdd = "admin@codeanalyze.com";
-                    mail.Subject = txtTitle.Text;
-                    mail.ToAdd = "admin@codeanalyze.com";
-                    mail.IsBodyHtml = true;
+        //    if (Session["User"] != null)
+        //    {
+        //        //if (!EditorAskQuestion.Content.Equals("&lt;br&gt;"))
+        //        //{
 
-                    if (user.Email != "admin@codeanalyze.com")
-                    {
-                        mail.SendMail();
-                    }
-                }
-                else
-                {
-                    SetTransaction.Rollback();
-                }
-                question.CloseConnection(LclConn);
-                lblAck.Visible = true;
-                lblAck.Text = "Question posted successfully, you will emailed when users post answers.";
-                lnkSolution.Visible = true;
-                lnkSolution.Text = "View your posted question";
-                //lnkSolution.PostBackUrl = "~/Soln.aspx?QId=" + dblQuestionID.ToString() + "&QT=" + txtTitle.Text;
+        //        double dblQuestionID = 0;
+        //        Question question = new Question();
+        //        SqlConnection LclConn = new SqlConnection();
+        //        SqlTransaction SetTransaction = null;
+        //        bool IsinTransaction = false;
+        //        if (LclConn.State != ConnectionState.Open)
+        //        {
+        //            question.SetConnection = question.OpenConnection(LclConn);
+        //            SetTransaction = LclConn.BeginTransaction(IsolationLevel.ReadCommitted);
+        //            IsinTransaction = true;
+        //        }
+        //        else
+        //        {
+        //            question.SetConnection = LclConn;
+        //        }
+        //        //string strTitle = txtTitle.Text.Replace("<", " < ");
+        //        //strTitle = strTitle.Replace(">", " > ");
+        //        //strTitle = strTitle.Replace(":", " : ");
+        //        //strTitle = strTitle.Replace("<", " < ");
+        //        //question.QuestionTitle = strTitle;
 
-                //lnkSolution.PostBackUrl = string.Format("Soln.aspx/{0}/{1}", dblQuestionID.ToString(), txtTitle.Text.ToString().Replace(" ", "-"));
-                lnkSolution.PostBackUrl = string.Format("Soln.aspx?QId={0}&QT={1}", dblQuestionID.ToString(), txtTitle.Text.ToString().Replace(" ", "-"));
-                //}
-                //lblAck.Text = "Question posted successfully, our experts will answer your question shortly, you will be informed by a email.";
-                lblAck.Visible = true;
-            }
-            else
-            {
-                lblAck.Visible = true;
-                //   lblAck.Font.Bold = true;
-                //   lblAck.Text = "Please sign in to post your question.";
-            }
-        }
+        //        question.QuestionTitle = txtTitle.Text;
 
-        private double CreateUser(string strEmail)
-        {
-            double dblUserID = 0;
-            user = new Users();
-            SqlConnection LclConn = new SqlConnection();
-            SqlTransaction SetTransaction = null;
-            bool IsinTransaction = false;
-            if (LclConn.State != ConnectionState.Open)
-            {
-                user.SetConnection = user.OpenConnection(LclConn);
-                SetTransaction = LclConn.BeginTransaction(IsolationLevel.ReadCommitted);
-                IsinTransaction = true;
-            }
-            else
-            {
-                user.SetConnection = LclConn;
-            }
-            user.Email = strEmail.Trim();
-            user.OptionID = 1;
-            user.CreatedDateTime = DateTime.Now;
-            bool result = user.CreateUsers(ref dblUserID, SetTransaction);
-            if (IsinTransaction && result)
-            {
-                SetTransaction.Commit();
-            }
-            else
-            {
-                SetTransaction.Rollback();
-            }
-            user.CloseConnection(LclConn);
-            return dblUserID;
-        }
+        //        question.QuestionTypeId = int.Parse(ddType.SelectedValue);
+        //        question.OptionID = 1;
 
-        private bool UserExists(ref double userId)
-        {
-            ConnManager connManager = new ConnManager();
-            connManager.OpenConnection();
-            //DataSet dsUserExists = connManager.GetData("Select * from Users where EMail = '" + txtEMail.Text + "'");
-            DataSet dsUserExists = new DataSet();
-            connManager.DisposeConn();
-            if (dsUserExists.Tables[0].Rows.Count > 0)
-            {
-                userId = double.Parse(dsUserExists.Tables[0].Rows[0]["Userid"].ToString());
-                return true;
-            }
-            else
-                return false;
-        }
+        //    //EditorAskQuestion.Content = EditorAskQuestion.Content.Replace("&amp;", "&")
+        //    //    .Replace("&lt;", "<")
+        //    //    .Replace("&gt;", ">")
+        //    //    .Replace("&apos;", "'")
+        //    //    .Replace("&quot;", "\"");
 
-        private void LinkedInUser(double userId, Users user)
-        {
-            ConnManager connManager = new ConnManager();
-            connManager.OpenConnection();
-            DataSet LinkedInUserExists = connManager.GetData("Select * from Users where FirstName = '" + user.FirstName + "' and LastName = '" + user.LastName + "' and Details = '" + user.Details + "'");
-            connManager.DisposeConn();
-            if (LinkedInUserExists.Tables[0].Rows.Count > 0)
-            {
-                DataSet updateDS = new DataSet();  // connManager.GetData("Update Users set EMail = '" + txtEMail.Text + "' where UserId = " + userId.ToString());
-            }
-            connManager.DisposeConn();
-        }
+        //    //question.QuestionDetails = customEditor2.Content;
+        //    //question.QuestionDetails = Utilities.ExpandUrls(EditorAskQuestion.Content);
+
+        //    EditorAskQuestion.Content = EditorAskQuestion.Content.Replace("<div>", "");
+        //    EditorAskQuestion.Content = EditorAskQuestion.Content.Replace("</div>", "");
+
+        //    if (EditorAskQuestion.Content.Length > 10000)
+        //        {
+        //            EditorAskQuestion.Content = EditorAskQuestion.Content.Substring(0, 10000);
+        //        }
+
+        //        question.QuestionDetails = Sanitizer.GetSafeHtml(EditorAskQuestion.Content);
+        //        // question.QuestionDetails = EditorAskQuestion.Content;
+
+
+        //        question.AskedDateTime = DateTime.Now;
+
+        //        //if (Session["User"] != null)
+        //        // {
+        //        //if (string.IsNullOrEmpty(user.Email))
+        //        //{
+        //        //    LinkedInUser(user.UserId, user);
+        //        //    user.Email = txtEMail.Text;
+        //        //}
+        //        question.AskedUser = user.UserId;
+        //        //}
+        //        //else
+        //        //{
+        //        //    double dblUser = 0;
+        //        //    //if (!UserExists(ref dblUser))
+        //        //    //    question.AskedUser = CreateUser(txtEMail.Text);
+        //        //    //else
+        //        //        question.AskedUser = dblUser;
+        //        //}
+
+        //        bool result = question.CreateQuestion(ref dblQuestionID, SetTransaction);
+
+        //        if (IsinTransaction && result)
+        //        {
+        //            SetTransaction.Commit();
+        //            Mail mail = new Mail();
+        //            mail.Body = "<a>www.codeanalyze.com/Soln.aspx?QId=" + dblQuestionID.ToString() + "&QT=" + txtTitle.Text + "</a>";
+        //            mail.FromAdd = "admin@codeanalyze.com";
+        //            mail.Subject = txtTitle.Text;
+        //            mail.ToAdd = "admin@codeanalyze.com";
+        //            mail.IsBodyHtml = true;
+
+        //            if (user.Email != "admin@codeanalyze.com")
+        //            {
+        //                mail.SendMail();
+        //            }
+        //        }
+        //        else
+        //        {
+        //            SetTransaction.Rollback();
+        //        }
+        //        question.CloseConnection(LclConn);
+        //        lblAck.Visible = true;
+        //        lblAck.Text = "Question posted successfully, you will emailed when users post answers.";
+        //        lnkSolution.Visible = true;
+        //        lnkSolution.Text = "View your posted question";
+        //        //lnkSolution.PostBackUrl = "~/Soln.aspx?QId=" + dblQuestionID.ToString() + "&QT=" + txtTitle.Text;
+
+        //        //lnkSolution.PostBackUrl = string.Format("Soln.aspx/{0}/{1}", dblQuestionID.ToString(), txtTitle.Text.ToString().Replace(" ", "-"));
+        //        lnkSolution.PostBackUrl = string.Format("Soln.aspx?QId={0}&QT={1}", dblQuestionID.ToString(), txtTitle.Text.ToString().Replace(" ", "-"));
+        //        //}
+        //        //lblAck.Text = "Question posted successfully, our experts will answer your question shortly, you will be informed by a email.";
+        //        lblAck.Visible = true;
+        //    }
+        //    else
+        //    {
+        //        lblAck.Visible = true;
+        //        //   lblAck.Font.Bold = true;
+        //        //   lblAck.Text = "Please sign in to post your question.";
+        //    }
+        //}
+
+        //private double CreateUser(string strEmail)
+        //{
+        //    double dblUserID = 0;
+        //    user = new Users();
+        //    SqlConnection LclConn = new SqlConnection();
+        //    SqlTransaction SetTransaction = null;
+        //    bool IsinTransaction = false;
+        //    if (LclConn.State != ConnectionState.Open)
+        //    {
+        //        user.SetConnection = user.OpenConnection(LclConn);
+        //        SetTransaction = LclConn.BeginTransaction(IsolationLevel.ReadCommitted);
+        //        IsinTransaction = true;
+        //    }
+        //    else
+        //    {
+        //        user.SetConnection = LclConn;
+        //    }
+        //    user.Email = strEmail.Trim();
+        //    user.OptionID = 1;
+        //    user.CreatedDateTime = DateTime.Now;
+        //    bool result = user.CreateUsers(ref dblUserID, SetTransaction);
+        //    if (IsinTransaction && result)
+        //    {
+        //        SetTransaction.Commit();
+        //    }
+        //    else
+        //    {
+        //        SetTransaction.Rollback();
+        //    }
+        //    user.CloseConnection(LclConn);
+        //    return dblUserID;
+        //}
+
+        //private bool UserExists(ref double userId)
+        //{
+        //    ConnManager connManager = new ConnManager();
+        //    connManager.OpenConnection();
+        //    //DataSet dsUserExists = connManager.GetData("Select * from Users where EMail = '" + txtEMail.Text + "'");
+        //    DataSet dsUserExists = new DataSet();
+        //    connManager.DisposeConn();
+        //    if (dsUserExists.Tables[0].Rows.Count > 0)
+        //    {
+        //        userId = double.Parse(dsUserExists.Tables[0].Rows[0]["Userid"].ToString());
+        //        return true;
+        //    }
+        //    else
+        //        return false;
+        //}
+
+        //private void LinkedInUser(double userId, Users user)
+        //{
+        //    ConnManager connManager = new ConnManager();
+        //    connManager.OpenConnection();
+        //    DataSet LinkedInUserExists = connManager.GetData("Select * from Users where FirstName = '" + user.FirstName + "' and LastName = '" + user.LastName + "' and Details = '" + user.Details + "'");
+        //    connManager.DisposeConn();
+        //    if (LinkedInUserExists.Tables[0].Rows.Count > 0)
+        //    {
+        //        DataSet updateDS = new DataSet();  // connManager.GetData("Update Users set EMail = '" + txtEMail.Text + "' where UserId = " + userId.ToString());
+        //    }
+        //    connManager.DisposeConn();
+        //}
 
         protected void GVQuestions_RowCommand(object sender, GridViewCommandEventArgs e)
         {

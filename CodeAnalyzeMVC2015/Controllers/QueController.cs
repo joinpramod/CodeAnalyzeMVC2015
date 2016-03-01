@@ -125,6 +125,11 @@ namespace CodeAnalyzeMVC2015.Controllers
                 EditorAskQuestion = EditorAskQuestion.Replace("</body>", "");
                 EditorAskQuestion = EditorAskQuestion.Replace("<br>", "<br />");
 
+                EditorAskQuestion = EditorAskQuestion.Replace("<a href=&quot;", "~~~~");
+                EditorAskQuestion = EditorAskQuestion.Replace("&quot;>", "~~~");
+                EditorAskQuestion = EditorAskQuestion.Replace("</a>", "~~");
+
+
                 if (EditorAskQuestion.Length > 10000)
                 {
                     EditorAskQuestion = EditorAskQuestion.Substring(0, 10000);
@@ -139,6 +144,9 @@ namespace CodeAnalyzeMVC2015.Controllers
                 strTemp = strTemp.Replace("\r\n", "");
                 strTemp = strTemp.Replace("<br>", "<br />");
 
+                strTemp = strTemp.Replace("~~~~", "<a href=\"");
+                strTemp = strTemp.Replace("~~~", "\">");
+                strTemp = strTemp.Replace("~~", "</a>");
 
                 question.QuestionDetails = strTemp;
                 question.AskedDateTime = DateTime.Now;
@@ -248,6 +256,9 @@ namespace CodeAnalyzeMVC2015.Controllers
                 strContent = strContent.Replace("</body>", "");
                 strContent = strContent.Replace("<br>", "<br />");
 
+                strContent = strContent.Replace("<a href=&quot;", "~~~~");
+                strContent = strContent.Replace("&quot;>", "~~~");
+                strContent = strContent.Replace("</a>", "~~");
 
                 strTemp = Sanitizer.GetSafeHtml(strContent);
                 strTemp = strTemp.Replace("<html>", "");
@@ -256,6 +267,11 @@ namespace CodeAnalyzeMVC2015.Controllers
                 strTemp = strTemp.Replace("</body>", "");
                 strTemp = strTemp.Replace("\r\n", "");
                 strTemp = strTemp.Replace("<br>", "<br />");
+
+                strTemp = strTemp.Replace("~~~~", "<a href=\"");
+                strTemp = strTemp.Replace("~~~", "\">");
+                strTemp = strTemp.Replace("~~", "</a>");
+
                 replies.Reply = strTemp;
 
 

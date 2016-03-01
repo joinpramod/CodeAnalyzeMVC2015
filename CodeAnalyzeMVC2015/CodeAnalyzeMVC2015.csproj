@@ -759,6 +759,7 @@
     <Content Include="Views\Tutorials\XCodeInt.cshtml" />
     <Content Include="Views\Tutorials\AndroidInt.cshtml" />
     <Content Include="Views\Tutorials\HadoopInt.cshtml" />
+    <Content Include="Views\Account\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

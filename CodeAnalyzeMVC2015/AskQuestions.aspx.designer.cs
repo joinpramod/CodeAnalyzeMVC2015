@@ -57,60 +57,6 @@ public partial class AskQuestions {
     protected global::System.Web.UI.WebControls.GridView GVQuestions;
     
     /// <summary>
-    /// lblAck control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label lblAck;
-    
-    /// <summary>
-    /// lnkSolution control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.LinkButton lnkSolution;
-    
-    /// <summary>
-    /// txtTitle control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.TextBox txtTitle;
-    
-    /// <summary>
-    /// ddType control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.DropDownList ddType;
-    
-    /// <summary>
-    /// EditorAskQuestion control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::CodeAnalyzeMVC2015.CustomEditor EditorAskQuestion;
-    
-    /// <summary>
-    /// btnSubmit control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Button btnSubmit;
-    
-    /// <summary>
     /// hfUserEMail control.
     /// </summary>
     /// <remarks>
