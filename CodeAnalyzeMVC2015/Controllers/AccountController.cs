@@ -231,7 +231,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                                         fileName = fileName + DateTime.Now.ToString("HHmmss");
                                         fullFileName = fileName + fileExt;
                                     }
-                                    fileUserPhoto.SaveAs(fullFileName);
+                                    fileUserPhoto.SaveAs(Server.MapPath("~\\Images\\") + fullFileName);
                                 }
                                 user.ImageURL = "~/Images/" + fullFileName;
                             }
@@ -272,7 +272,8 @@ namespace CodeAnalyzeMVC2015.Controllers
                         //}
                     }
                     Session["User"] = user;
-                    return View("ViewUser", user);
+                    //return View("ViewUser", user);
+                    return Redirect("../Account/ViewUser");
                 }
                 else
                 {
@@ -365,7 +366,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                                             fileName = fileName + DateTime.Now.ToString("HHmmss");
                                             fullFileName = fileName + fileExt;
                                         }
-                                        fileUserPhoto.SaveAs(fullFileName);
+                                        fileUserPhoto.SaveAs(Server.MapPath("~\\Images\\") + fullFileName);
                                     }
                                     user.ImageURL = "~/Images/" + fullFileName;
                                 }
@@ -410,7 +411,8 @@ namespace CodeAnalyzeMVC2015.Controllers
                         //}
                     }
                     Session["User"] = user;
-                    return View("ViewUser", user);
+                    //return View("ViewUser", user);
+                    return Redirect("../Account/ViewUser");
                 }
                 else
                 {
@@ -436,7 +438,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 mail.Body = string.Format(email, "Welcome to CodeAnalyze. We appreciate your time for posting code that help many.");
                 mail.FromAdd = "admin@codeanalyze.com";
                 mail.Subject = "Welcome to CodeAnalyze - Blogger Rewards";
-                mail.ToAdd = user.Email;
+                mail.ToAdd = email;
                 mail.IsBodyHtml = true;
                 mail.SendMail();
             }

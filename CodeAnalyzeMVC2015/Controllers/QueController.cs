@@ -286,7 +286,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                     int[] myvotes = new int[12] { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
                     Random ran2 = new Random();
-                    int mynum2 = myy[ran.Next(0, myvotes.Length)];
+                    int mynum2 = myvotes[ran2.Next(0, myvotes.Length)];
                     replies.UpVotes = mynum2.ToString();
 
                 }
@@ -455,7 +455,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                     model.QuestionID = quesID.ToString();
                     if (!dsQuestion.Rows[0]["EMail"].ToString().Contains("codeanalyze.com"))
                     {
-                        model.AskedUser = "Posted By: " + dsQuestion.Rows[0]["FirstName"].ToString() + " ";
+                        model.AskedUser = dsQuestion.Rows[0]["FirstName"].ToString() + " ";
                         if (!string.IsNullOrEmpty(dsQuestion.Rows[0]["LastName"].ToString()))
                         {
                             model.AskedUser = model.AskedUser + "" + dsQuestion.Rows[0]["LastName"].ToString() + "";
@@ -579,23 +579,30 @@ namespace CodeAnalyzeMVC2015.Controllers
 
 
                             if (!dsSolution.Rows[i]["EMail"].ToString().Contains("codeanalyze.com"))
-                                htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + " " + strLastName + "</b>  ";// + strRepliedDate + "";   // Total replies by user: " + strAnswers + ".";
+                                //htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + " " + strLastName + "</b>  ";// + strRepliedDate + "";   // Total replies by user: " + strAnswers + ".";
+                            htcResponseNoByDetails += "<b>" + strFirstName + " " + strLastName + "</b>  " + strRepliedDate + "";   // Total replies by user: " + strAnswers + ".";
+
                             else
-                                htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + "</b>  ";// + strRepliedDate + "";
+                                //htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + "</b>  ";// + strRepliedDate + "";
+                            htcResponseNoByDetails += "<b>" + strFirstName + "</b>  " + strRepliedDate + "";
                             //htc4.InnerHtml = "Comment No <b>" + (i + 1).ToString();
                         }
                         else
                             if (!strFirstName.ToLower().Equals("admin"))
-                            htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + " " + strLastName + "</b>  ";// + strRepliedDate + "";
+                        //    htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + " " + strLastName + "</b>  ";// + strRepliedDate + "";
+                        htcResponseNoByDetails += "<b>" + strFirstName + " " + strLastName + "</b>  " + strRepliedDate + "";
                         else
-                            htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> " + strRepliedDate + "";
+                            //htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> " + strRepliedDate + "";
+                        htcResponseNoByDetails += " " + strRepliedDate;
                     }
                     else
                         if (!strFirstName.ToLower().Equals("admin"))
-                        htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + " " + strLastName + "</b>  ";// + strRepliedDate + "";
-                    else
-                        htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> " + strRepliedDate + " ";
+                        //htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + " " + strLastName + "</b>  ";// + strRepliedDate + "";
+                    htcResponseNoByDetails += "<b>" + strFirstName + " " + strLastName + "</b>  " + strRepliedDate + "";
 
+                    else
+                        //htcResponseNoByDetails += "Response No <b>" + (i + 1).ToString() + "</b> " + strRepliedDate + " ";
+                    htcResponseNoByDetails += " " + strRepliedDate + " ";
                     #endregion
                     htcResponseNoByDetails += "</td>";
 
