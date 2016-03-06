@@ -48,19 +48,19 @@
                 <table style="font-size: 14px">
                     <tr>
                         <td align="right" style="width: 60px">
-                            <img id="ImageButton1" src="~/Images/eye.png" style="height: 30px; width: 30px" />
+                            <img id="ImageButton1" title="Views" src="~/Images/eye.png" style="height: 30px; width: 30px" />
                         </td>
                         <td align="left" style="width: 60px">
                             @Model.ArticleViews
                         </td>
                         <td align="right" style="width: 60px">
-                            <input type="image" name="btnUp" onclick="PostArticleVotes('btnUp')" id="btnUp" src="~/Images/ThumpsUp.png" style="height: 25px; width: 25px" />
+                            <input type="image" title="Yes, this helped me" name="btnUp" onclick="PostArticleVotes('btnUp')" id="btnUp" src="~/Images/ThumpsUp.png" style="height: 25px; width: 25px" />
                         </td>
                         <td align="left" style="width: 60px">
                             @Model.ThumbsUp
                         </td>
                         <td align="right" style="width: 60px">
-                            <input type="image" name="btnDown" onclick="PostArticleVotes('btnDown')" id="btnDown" src="~/Images/ThumpsDown.png" style="height: 25px; width: 25px" />
+                            <input type="image" title="No, this did not help me" name="btnDown" onclick="PostArticleVotes('btnDown')" id="btnDown" src="~/Images/ThumpsDown.png" style="height: 25px; width: 25px" />
                         </td>
                         <td align="left" style="width: 60px">
                             @Model.ThumbsDown

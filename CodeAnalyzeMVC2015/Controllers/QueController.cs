@@ -287,7 +287,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                     int[] myvotes = new int[12] { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
                     Random ran2 = new Random();
                     int mynum2 = myvotes[ran2.Next(0, myvotes.Length)];
-                    replies.UpVotes = mynum2.ToString();
+                    replies.UpVotes = mynum2;
 
                 }
                 else
@@ -712,7 +712,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             string strUpVoteLink = string.Empty;
 
 
-            strUpVoteLink = "<input type=\"image\" onclick=\"PostVotes('" + quesID + "', '" + Replyid + "', '" + upvote + "')\" value=\"Test\" src=\"/Images/ThumpsUp.png\" style=\"height:30px;width:30px\" name=\"lnkThumpsUp" + i.ToString() + "\" id=\"lnkThumpsUp" + i.ToString() + "\" />";
+            strUpVoteLink = "<input type=\"image\" title=\"Yes, this answer helped me\" onclick=\"PostVotes('" + quesID + "', '" + Replyid + "', '" + upvote + "')\" value=\"Test\" src=\"/Images/ThumpsUp.png\" style=\"height:30px;width:30px\" name=\"lnkThumpsUp" + i.ToString() + "\" id=\"lnkThumpsUp" + i.ToString() + "\" />";
 
 
             string strThumpsUp = "<td align=\"right\">" + strUpVoteLink;
@@ -725,7 +725,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
             string strDownVoteLink = string.Empty;
 
-            strDownVoteLink = "<input type=\"image\" onclick=\"PostVotes('" + quesID + "', '" + Replyid + "', '" + downvote + "')\" value=\"Test\" src=\"/Images/ThumpsDown.png\" style=\"height:30px;width:30px\" name=\"lnkThumpsDown" + i.ToString() + "\" id=\"lnkThumpsDown" + i.ToString() + "\" />";
+            strDownVoteLink = "<input type=\"image\" title=\"No, this answer did not help me\" onclick=\"PostVotes('" + quesID + "', '" + Replyid + "', '" + downvote + "')\" value=\"Test\" src=\"/Images/ThumpsDown.png\" style=\"height:30px;width:30px\" name=\"lnkThumpsDown" + i.ToString() + "\" id=\"lnkThumpsDown" + i.ToString() + "\" />";
 
             string strThumpsDown = "<td align=\"right\">" + strDownVoteLink;
             strThumpsDown += "</td><td style=\"color:white\"><b>" + lblDown + "&nbsp;&nbsp;&nbsp;&nbsp;<b></td>";

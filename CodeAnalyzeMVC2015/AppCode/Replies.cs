@@ -105,8 +105,8 @@ namespace CodeAnalyzeMVC2015
             }
         }
 
-        public string UpVotes { get; set; }
-        public string DownVotes { get; set; }
+        public int UpVotes { get; set; }
+        public int DownVotes { get; set; }
 
         public bool SetCommandReplies(ref SqlCommand CmdSent)
         {
@@ -120,6 +120,8 @@ namespace CodeAnalyzeMVC2015
             SqlParameter ParamQuestionId = Cmd.Parameters.Add("@QuestionId", SqlDbType.Float);
             SqlParameter ParamRepliedUser = Cmd.Parameters.Add("@RepliedUser", SqlDbType.Float);
             SqlParameter ParamRepliedDate = Cmd.Parameters.Add("@RepliedDate", SqlDbType.DateTime);
+            SqlParameter ParamThumbsUp = Cmd.Parameters.Add("@ThumbsUp", SqlDbType.Int);
+            SqlParameter ParamThumbsDown = Cmd.Parameters.Add("@ThumbsDown", SqlDbType.Int);
 
             ParamOptID.Value = IntOptID;
             ParamOptID.Direction = ParameterDirection.Input;
@@ -133,6 +135,13 @@ namespace CodeAnalyzeMVC2015
             ParamRepliedUser.Direction = ParameterDirection.Input;
             ParamRepliedDate.Value = DtRepliedDate;
             ParamRepliedDate.Direction = ParameterDirection.Input;
+
+            ParamThumbsUp.Value = UpVotes;
+            ParamThumbsUp.Direction = ParameterDirection.Input;
+            ParamThumbsDown.Value = DownVotes;
+            ParamThumbsDown.Direction = ParameterDirection.Input;
+
+
             //if (DtCreatedDate < DateTime.Parse("1-1-2000"))
             //{
             //    ParamCreatedDate.Value = DBNull.Value;

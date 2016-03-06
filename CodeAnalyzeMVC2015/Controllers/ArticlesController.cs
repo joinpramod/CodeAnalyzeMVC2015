@@ -449,28 +449,35 @@ namespace CodeAnalyzeMVC2015.Controllers
 
 
                             if (!dsSolution.Rows[i]["EMail"].ToString().Contains("codeanalyze.com"))
-                                htcResponseNoByDetails += "Comment No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + "</b>  " + strRepliedDate + "";   // Total replies by user: " + strAnswers + ".";
+                                //htcResponseNoByDetails += "Comment No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + "</b>  " + strRepliedDate + "";   // Total replies by user: " + strAnswers + ".";
+                            htcResponseNoByDetails += "<b>" + strFirstName + "</b>  " + strRepliedDate + "";   // Total replies by user: " + strAnswers + ".";
                             else
                             {
                                 if (!strFirstName.ToLower().Equals("admin"))
-                                    htcResponseNoByDetails += "Comment No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + "</b>  " + strRepliedDate + "";
+                                    //htcResponseNoByDetails += "Comment No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + "</b>  " + strRepliedDate + "";
+                                htcResponseNoByDetails += "<b>" + strFirstName + "</b>  " + strRepliedDate + "";
                                 else
-                                    htcResponseNoByDetails += "Comment No <b>" + (i + 1).ToString() + "</b> " + strRepliedDate + "";
+                                    //htcResponseNoByDetails += "Comment No <b>" + (i + 1).ToString() + "</b> " + strRepliedDate + "";
+                                htcResponseNoByDetails += "</b> " + strRepliedDate + "";
 
                             }
                         }
                         else
                             if (!strFirstName.ToLower().Equals("admin"))
-                            htcResponseNoByDetails += "Comment No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + "</b>  " + strRepliedDate + "";
+                            //htcResponseNoByDetails += "Comment No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + "</b>  " + strRepliedDate + "";
+                        htcResponseNoByDetails += "<b>" + strFirstName + "</b>  " + strRepliedDate + "";
+
                         else
-                            htcResponseNoByDetails += "Comment No <b>" + (i + 1).ToString() + "</b> " + strRepliedDate + "";
+                            //htcResponseNoByDetails += "Comment No <b>" + (i + 1).ToString() + "</b> " + strRepliedDate + "";
+                        htcResponseNoByDetails += "</b> " + strRepliedDate + "";
                     }
                     else
                         if (!strFirstName.ToLower().Equals("admin"))
-                        htcResponseNoByDetails += "Comment No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + "</b>  " + strRepliedDate + "";
+                        //htcResponseNoByDetails += "Comment No <b>" + (i + 1).ToString() + "</b> by <b>" + strFirstName + "</b>  " + strRepliedDate + "";
+                    htcResponseNoByDetails += "<b>" + strFirstName + "</b>  " + strRepliedDate + "";
                     else
-                        htcResponseNoByDetails += "Comment No <b>" + (i + 1).ToString() + "</b> " + strRepliedDate + " ";
-
+                        //htcResponseNoByDetails += "Comment No <b>" + (i + 1).ToString() + "</b> " + strRepliedDate + " ";
+                    htcResponseNoByDetails += "</b> " + strRepliedDate + " ";
 
                     htcResponseNoByDetails += "</td>";
 
