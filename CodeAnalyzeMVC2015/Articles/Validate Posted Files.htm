@@ -1,501 +1,95 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<div style="font-size:16px;width:100%;font-family:Calibri">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
 
-    <style type="text/css">
+<p style="width:80%">
+    Create a viewmodel as shown below, here FileSize and FileTypes are custom attributes not inbuilt 
+</p>
 
-p.MsoNoSpacing
-	{margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	        margin-left: 0in;
-            margin-right: 0in;
-            margin-top: 0in;
-        }
-table.MsoTableGrid
-	{border:solid windowtext 1.0pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	}
- p.MsoNormal
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	}
-        .style1
+  
+    <pre class="brush: csharp">
+        public class ValidateFiles
         {
-            font-size: 11pt;
+            [FileSize(10240)]
+            [FileTypes("doc,docx,xlsx")]
+            public HttpPostedFileBase File { get; set; }
         }
-    </style>
+    </pre>
 
-</head>
-<body>
+    <p>Create the custom FileSize and FileTypes by inheriting ValidationAttribute as shown below FileSize</p>
+    <pre class="brush: csharp">
+        public class FileSizeAttribute : ValidationAttribute
+        {
+            private readonly int _maxSize;
+ 
+            public FileSizeAttribute(int maxSize)
+            {
+                _maxSize = maxSize;
+            }
+ 
+            public override bool IsValid(object value)
+            {
+                if (value == null) return true;
+ 
+                return _maxSize > (value as HttpPostedFile).ContentLength;
+            }
+ 
+            public override string FormatErrorMessage(string name)
+            {
+                return string.Format("File size should be within {0}", _maxSize);
+            }
+        }
+    </pre>
 
-    <p class="MsoNoSpacing" style="font-size: 11pt">
-        <b style="mso-bidi-font-weight:normal">Create a viewmodel as shown below, here 
-        FileSize and FileTypes are custom attributes not inbuilt</b><o:p>&nbsp;</o:p></p>
-    <table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
- mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt" width="100%">
-        <tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes">
-            <td style="width: 6.65in; border: none; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; padding: 0in 5.4pt 0in 5.4pt" 
-                valign="top" width="638">
-                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                    <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:black"><span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                    public</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    </span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                    class</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    </span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-                    ValidateFiles</span><span style="font-size:10.0pt;font-family:
-  Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
-                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span>
-                    <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:black">{<o:p></o:p></span></p>
-                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    [FileSize(10240)]<o:p></o:p></span></p>
-                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    [FileTypes(</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;doc,docx,xlsx&quot;</span><span 
-                        class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">)]<o:p></o:p></span></p>
-                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                    <span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                    public</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    </span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-                    HttpPostedFileBase</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                    File { </span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                    get</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">;
-                    </span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                    set</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">; 
-                    }<o:p></o:p></span></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas; color: black"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                    </span><span style="font-size:10.0pt;font-family:Consolas;
-  color:black">}<o:p></o:p></span></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt">
-                    <b style="mso-bidi-font-weight:normal">
-                    <span style="mso-bidi-font-family:Consolas"><o:p>&nbsp;</o:p></span></b></p>
-            </td>
-        </tr>
-    </table>
-    <p class="MsoNoSpacing" style="font-size: 11pt">
-        <o:p>&nbsp;</o:p></p>
-    <p class="MsoNoSpacing" 
-        style="font-size: 11pt; font-family: Consolas; color: black">
-        <o:p>&nbsp;</o:p></p>
-    <p class="MsoNoSpacing" 
-        style="font-size: 11pt; font-family: Consolas; color: black">
-        <o:p>&nbsp;</o:p></p>
-    <p class="MsoNoSpacing" style="font-size: 11pt">
-        <b style="mso-bidi-font-weight:normal">
-        <span style="mso-bidi-font-family:Consolas;color:black">Create the custom 
-        FileSize and FileTypes by inheriting ValidationAttribute as shown below<o:p>&nbsp;</o:p></span></b></p>
-    <p class="MsoNoSpacing" style="font-size: 11pt">
-        <b style="mso-bidi-font-weight:normal">
-        <span style="mso-bidi-font-family:Consolas;color:black">FileSize<o:p></o:p></span></b></p>
-    <table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
- mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt" width="100%">
-        <tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes">
-            <td style="width: 6.65in; border: none; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; padding: 0in 5.4pt 0in 5.4pt" 
-                valign="top" width="638">
-                <p class="MsoNoSpacing" style="text-indent:.5in">
-                    <span class="style1" style="font-family: Consolas; color: blue">public</span><span style="font-size:10.0pt;
-  font-family:Consolas"> </span><span class="style1" style="font-family: Consolas">
-                    <span style="color:blue">class</span> <span style="color:#2B91AF">
-                    FileSizeAttribute</span></span><span style="font-size:10.0pt;
-  font-family:Consolas"><span class="style1" style="font-family: Consolas"> : ValidationAttribute<o:p></o:p></span></span></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                    </span><span style="font-size:10.0pt;font-family:Consolas">{<o:p></o:p></span></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span><span style="color:blue">private</span> <span style="color:blue">readonly</span>
-                    <span style="color:blue">int</span> _maxSize;<o:p></o:p></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <o:p>&nbsp;</o:p></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span><span style="color:blue">public</span> FileSizeAttribute(<span 
-                        style="color:blue">int</span> maxSize)<o:p></o:p></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span style="font-size:10.0pt;font-family:Consolas">{<o:p></o:p></span></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span class="style1" style="font-family: Consolas">_maxSize = 
-                    maxSize;<o:p></o:p></span></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span style="font-size:10.0pt;font-family:Consolas">}<o:p></o:p></span></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <o:p>&nbsp;</o:p></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span><span style="color:blue">public</span> <span style="color:blue">override</span>
-                    <span style="color:blue">bool</span> IsValid(<span style="color:blue">object</span> 
-                    value)<o:p></o:p></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span style="font-size:10.0pt;font-family:Consolas">{<o:p></o:p></span></p>
-                <p class="MsoNoSpacing">
-                    <span class="style1" style="font-family: Consolas">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span><span style="color:blue">if</span> (value == <span style="color:blue">
-                    null</span>) <span style="color:blue">return</span> <span style="color:blue">
-                    true</span></span><span style="font-size:10.0pt;font-family:Consolas">;<o:p></o:p></span></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <o:p>&nbsp;</o:p></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span><span style="color:blue">return</span> _maxSize &gt; (value
-                    <span style="color:blue">as</span> <span style="color:#2B91AF">HttpPostedFile</span>).ContentLength;<o:p></o:p></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span style="font-size:10.0pt;font-family:Consolas">}<o:p></o:p></span></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <o:p>&nbsp;</o:p></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span><span style="color:blue">public</span> <span style="color:blue">override</span>
-                    <span style="color:blue">string</span> FormatErrorMessage(<span 
-                        style="color:blue">string</span> name)<o:p></o:p></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span style="font-size:10.0pt;font-family:Consolas">{<o:p></o:p></span></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span><span style="color:blue">return</span> <span style="color:blue">string</span>.Format(<span 
-                        style="color:#A31515">&quot;File size should be within {0}&quot;</span>, _maxSize);<o:p></o:p></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span style="font-size:10.0pt;font-family:Consolas">}<o:p></o:p></span></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                    </span><span style="font-size:10.0pt;font-family:Consolas">}<o:p></o:p></span></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt">
-                    <b style="mso-bidi-font-weight:normal">
-                    <span style="mso-bidi-font-family:Consolas"><o:p>&nbsp;</o:p></span></b></p>
-            </td>
-        </tr>
-    </table>
-    <p class="MsoNoSpacing" style="font-size: 11pt">
-        <b style="mso-bidi-font-weight:normal">
-        <span style="mso-bidi-font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></b></p>
-    <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-        <o:p>&nbsp;</o:p></p>
-    <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-        <o:p>&nbsp;</o:p></p>
-    <p class="MsoNoSpacing" style="font-size: 11pt">
-        <b style="mso-bidi-font-weight:normal">
-        <span style="mso-bidi-font-family:Consolas">FileTypes<o:p></o:p></span></b></p>
-    <table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
- mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt" width="100%">
-        <tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes">
-            <td style="width: 6.65in; border: none; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; padding: 0in 5.4pt 0in 5.4pt" 
-                valign="top" width="638">
-                <p class="MsoNoSpacing">
-                    <span class="style1" style="font-family: Consolas; color: blue">public</span><span 
-                        style="font-size:10.0pt;font-family:Consolas"> </span><span class="style1" 
-                        style="font-family: Consolas"><span style="color:blue">class</span>
-                    <span style="color:#2B91AF">FileTypesAttribute</span></span><span 
-                        style="font-size:10.0pt;font-family:Consolas"><span class="style1" 
-                        style="font-family: Consolas"> : ValidationAttribute<o:p></o:p></span></span></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                    </span><span style="font-size:10.0pt;font-family:Consolas">{<o:p></o:p></span></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span><span style="color:blue">private</span> <span style="color:blue">readonly</span>
-                    <span style="color:#2B91AF">List</span>&lt;<span style="color:blue">string</span>&gt; 
-                    _types;<o:p></o:p></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <o:p>&nbsp;</o:p></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span><span style="color:blue">public</span> FileTypesAttribute(<span 
-                        style="color:blue">string</span> types)<o:p></o:p></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span style="font-size:10.0pt;font-family:Consolas">{<o:p></o:p></span></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span class="style1" style="font-family: Consolas">_types = 
-                    types.Split(<span style="color:#A31515">&#39;,&#39;</span>).ToList();<o:p></o:p></span></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span style="font-size:10.0pt;font-family:Consolas">}<o:p></o:p></span></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <o:p>&nbsp;</o:p></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span><span style="color:blue">public</span> <span style="color:blue">override</span>
-                    <span style="color:blue">bool</span> IsValid(<span style="color:blue">object</span> 
-                    value)<o:p></o:p></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span style="font-size:10.0pt;font-family:Consolas">{<o:p></o:p></span></p>
-                <p class="MsoNoSpacing">
-                    <span class="style1" style="font-family: Consolas">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span><span style="color:blue">if</span> (value == <span style="color:blue">
-                    null</span>) <span style="color:blue">return</span> <span style="color:blue">
-                    true</span></span><span style="font-size:10.0pt;font-family:Consolas">;<o:p></o:p></span></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <o:p>&nbsp;</o:p></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span><span style="color:blue">var</span> fileExt = System.IO.<span 
-                        style="color:#2B91AF">Path</span>.GetExtension((value
-                    <span style="color:blue">as</span> <span style="color:#2B91AF">HttpPostedFile</span>).FileName).Substring(1);<o:p></o:p></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span><span style="color:blue">return</span> _types.Contains(fileExt,
-                    <span style="color:#2B91AF">StringComparer</span>.OrdinalIgnoreCase);<o:p></o:p></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span style="font-size:10.0pt;font-family:Consolas">}<o:p></o:p></span></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <o:p>&nbsp;</o:p></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span><span style="color:blue">public</span> <span style="color:blue">override</span>
-                    <span style="color:blue">string</span> FormatErrorMessage(<span 
-                        style="color:blue">string</span> name)<o:p></o:p></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span style="font-size:10.0pt;font-family:Consolas">{<o:p></o:p></span></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span><span style="color:blue">return</span> <span style="color:blue">string</span>.Format(<span 
-                        style="color:#A31515">&quot;Invalid file type. File Types supported are &quot;</span>,
-                    <span style="color:#2B91AF">String</span>.Join(<span style="color:#A31515">&quot;, &quot;</span>, 
-                    _types));<o:p></o:p></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span style="font-size:10.0pt;font-family:Consolas">}<o:p></o:p></span></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                    </span><span style="font-size:10.0pt;font-family:Consolas">}<o:p></o:p></span></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt">
-                    <b style="mso-bidi-font-weight:normal">
-                    <span style="mso-bidi-font-family:Consolas"><o:p>&nbsp;</o:p></span></b></p>
-            </td>
-        </tr>
-    </table>
-    <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-        <o:p>&nbsp;</o:p></p>
-    <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-        <o:p>&nbsp;</o:p></p>
-    <p class="MsoNoSpacing" style="font-size: 11pt; font-family: Consolas">
-        <o:p>&nbsp;</o:p></p>
-    <p class="MsoNoSpacing" style="font-size: 11pt">
-        <b style="mso-bidi-font-weight:normal">
-        <span style="mso-bidi-font-family:Consolas">Then create the Controller as shown 
-        below<o:p></o:p></span></b></p>
-    <table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
- mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt" width="100%">
-        <tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes">
-            <td style="width: 6.65in; border: none; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; padding: 0in 5.4pt 0in 5.4pt" 
-                valign="top" width="638">
-                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                    <b style="mso-bidi-font-weight:
-  normal"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
-  Consolas"><span class="style1" style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span></b>
-                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    <span class="style1" style="mso-spacerun:yes">&nbsp; </span></span>
-                    <span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    [</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">HttpPost</span><span style="font-size:10.0pt;font-family:Consolas;
-  mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">]<o:p></o:p></span></p>
-                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                    <span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                    </span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                    public</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    </span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-                    ActionResult</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                    UploadFiles(</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">ValidateFiles</span><span 
-                        class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                    fileModel)<o:p></o:p></span></p>
-                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span>
-                    <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:black">{<o:p></o:p></span></p>
-                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                    <span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                    string</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                    path = </span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
-                    @&quot;C:\Files\&quot;</span><span style="font-size:10.0pt;
-  font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">;<o:p></o:p></span></p>
-                <p class="MsoNormal" 
-                    style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 11pt;">
-                    <o:p>&nbsp;</o:p></p>
-                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                    <span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                    if</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                    (ModelState.IsValid)<o:p></o:p></span></p>
-                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span>
-                    <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:black">{<o:p></o:p></span></p>
-                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                    <span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                    if</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                    (fileModel != </span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                    null</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                    &amp;&amp; fileModel.File != </span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                    null</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:black">)<o:p></o:p></span></p>
-                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    files.SaveAs(path + fileModel.File.FileName);<o:p></o:p></span></p>
-                <p class="MsoNormal" 
-                    style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 11pt;">
-                    <o:p>&nbsp;</o:p></p>
-                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                    <span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                    return</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                    RedirectToAction(</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;Index&quot;</span><span 
-                        class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">);<o:p></o:p></span></p>
-                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                    <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span>
-                    <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:black">}<o:p></o:p></span></p>
-                <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                    <span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                    <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span></span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                    return</span><span class="style1" 
-                        style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                    View();<o:p></o:p></span></p>
-                <p class="MsoNoSpacing">
-                    <span style="font-family: Consolas; color: black"><span class="style1" 
-                        style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                    </span><span style="font-size:10.0pt;font-family:Consolas;
-  color:black">}<o:p></o:p></span></p>
-                <p class="MsoNoSpacing" style="font-size: 11pt">
-                    <b style="mso-bidi-font-weight:normal">
-                    <span style="mso-bidi-font-family:Consolas"><o:p>&nbsp;</o:p></span></b></p>
-            </td>
-        </tr>
-    </table>
-    <p class="MsoNoSpacing">
-        <span style="mso-bidi-font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
 
-</body>
-</html>
+     <p>FileTypes</p>
+    <pre class="brush: csharp">
+        public class FileTypesAttribute : ValidationAttribute
+        {
+            private readonly List<string> _types;
+ 
+            public FileTypesAttribute(string types)
+            {
+                _types = types.Split(',').ToList();
+            }
+ 
+            public override bool IsValid(object value)
+            {
+                if (value == null) return true;
+ 
+                var fileExt = System.IO.Path.GetExtension((value as HttpPostedFile).FileName).Substring(1);
+                return _types.Contains(fileExt, StringComparer.OrdinalIgnoreCase);
+            }
+ 
+            public override string FormatErrorMessage(string name)
+            {
+                return string.Format("Invalid file type. File Types supported are ", String.Join(", ", _types));
+            }
+        }
+ 
+    </pre>
+
+
+     <p>Then create the Controller as shown below</p>
+    <pre class="brush: csharp">
+        [HttpPost]
+        public ActionResult UploadFiles(ValidateFiles fileModel)
+        {
+            string path = @"C:\Files\";
+ 
+            if (ModelState.IsValid)
+            {
+                if (fileModel != null && fileModel.File != null)
+                    files.SaveAs(path + fileModel.File.FileName);
+ 
+                return RedirectToAction("Index");
+            }
+            return View();
+        } 
+    </pre>
+    <br />
+    <br />
+
+
+
+
+</div>
