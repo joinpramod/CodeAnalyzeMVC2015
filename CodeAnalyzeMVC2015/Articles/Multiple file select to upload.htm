@@ -1,786 +1,99 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<div style="font-size:16px;width:100%;font-family:Calibri">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-  
-</body>
-    <style type="text/css">
 
-p.MsoNoSpacing
-	{margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	        margin-left: 0in;
-            margin-right: 0in;
-            margin-top: 0in;
-        }
-table.MsoTableGrid
-	{border:solid windowtext 1.0pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	}
- p.MsoNormal
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	}
-        .style1
-        {
-            font-size: 10pt;
-        }
-    </style>
-
-<p class="MsoNoSpacing" style="font-size: 10pt">
-    <b style="mso-bidi-font-weight:normal">
-    <span style="mso-bidi-font-family:Consolas;color:black">Sample View code for 
-    multiple file upload<o:p></o:p></span></b></p>
-<table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
- mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt" width="100%">
-    <tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes">
-        <td style="width: 6.65in; border: none; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; padding: 0in 5.4pt 0in 5.4pt" 
-            valign="top" width="638">
-            <p class="MsoNoSpacing">
-                <span style="font-size:10.0pt;font-family:Consolas">&lt;</span><span 
-                    class="style1" style="font-family: Consolas"><span style="color:maroon">script</span><span 
-                    style="color:black"> </span><span style="color:red">src</span></span><span 
-                    style="font-size:10.0pt;font-family:Consolas"><span class="style1" 
-                    style="font-family: Consolas">=&quot;~/Scripts/jquery-1.7.1.js&quot;&gt;&lt;/<span 
-                    style="color:maroon">script</span></span>&gt;<span style="color:black"><o:p></o:p></span></span></p>
-            <p class="MsoNoSpacing" 
-                style="font-size: 10pt; font-family: Consolas; color: black">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNoSpacing" 
-                style="font-size: 10pt; font-family: Consolas; color: black">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                &lt;</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: maroon">script</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">&gt;</span><span style="font-size:10.0pt;font-family:Consolas;
-  mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                var</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                files;<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                var</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                storedFiles = [];<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                var</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                fileCount = 0;<span style="mso-spacerun:yes">&nbsp;&nbsp; </span><o:p></o:p>
-                </span>
-            </p>
-            <p class="MsoNormal" 
-                style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 10pt;">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                $(</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">function</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                () {<o:p></o:p></span></p>
-            <p class="MsoNormal" 
-                style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 10pt;">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                $(</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;input[id^=&#39;multiplefileUpload&#39;]&quot;</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">).change(</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">function</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                (e) {<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                processMultiFileUpload(e);<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                });<o:p></o:p></span></p>
-            <p class="MsoNormal" 
-                style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 10pt;">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                selDiv = $(</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;#filesSelected&quot;</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">);<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                });<o:p></o:p></span></p>
-            <p class="MsoNormal" 
-                style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 10pt;">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                function</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                processMultiFileUpload(e) {<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                fileCount = fileCount + 1;<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                addSelectedFile(e);<o:p></o:p></span></p>
-            <p class="MsoNormal" 
-                style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 10pt;">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                $(</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;input[id^=&#39;multiplefileUpload&#39;]&quot;</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">).hide();<o:p></o:p></span></p>
-            <p class="MsoNormal" 
-                style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 10pt;">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                $(</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&#39;&lt;input&gt;&#39;</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">).attr({<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                type: </span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
-                &#39;file&#39;</span><span style="font-size:10.0pt;font-family:Consolas;
-  mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">,<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                multiple: </span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
-                &#39;multiple&#39;</span><span style="font-size:10.0pt;font-family:
-  Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">,<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                id: </span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
-                &#39;fileToUpload&#39;</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                + fileCount,<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                name: </span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
-                &#39;fileUpload&#39;</span><span style="font-size:10.0pt;font-family:
-  Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">,<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                title: </span>
-                <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:#A31515">&#39;</span><span 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515"><span 
-                    class="style1" style="mso-spacerun:yes">&nbsp; </span></span>
-                <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:#A31515"><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
-                &#39;</span></span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:black">,<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                onchange: </span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
-                &quot;processMultiFileUpload(event)&quot;</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:black"><o:p></o:p></span></p>
-            <p class="MsoNormal" 
-                style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 10pt;">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                }).appendTo(</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&#39;#uploaders&#39;</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">);<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:black">}<o:p></o:p></span></p>
-            <p class="MsoNormal" 
-                style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 10pt;">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                function</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                addSelectedFile(e) {<o:p></o:p></span></p>
-            <p class="MsoNormal" 
-                style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 10pt;">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                selDiv = document.querySelector(</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;#filesSelected&quot;</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">);<o:p></o:p></span></p>
-            <p class="MsoNormal" 
-                style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 10pt;">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                files = e.target.files;<o:p></o:p></span></p>
-            <p class="MsoNormal" 
-                style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 10pt;">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                </span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                for</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                (</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">var</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                i = 0; i &lt; files.length; i++) {<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                var</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                f = files[i];<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                &nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">selDiv.innerHTML 
-                += </span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
-                &quot;&lt;a onclick=&#39;removeFile(this)&#39;&gt; Remove &lt;/a&gt; &quot;</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                + f.name + </span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
-                &quot;&quot;</span><span style="font-size:10.0pt;font-family:
-  Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">;<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                storedFiles.push(f.name);<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span>
-                <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:black">}<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                $(</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&#39;#</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">@Html.IdFor(i 
-                =&gt; i.hfSelectedFilesToUpload)</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&#39;</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">).val(storedFiles);<span 
-                    style="mso-spacerun:yes">&nbsp; </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: green">
-                // hfSelectedFilesToUpload object should be present in the model of this view</span><span style="font-size:10.0pt;font-family:Consolas;
-  mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:black">}<o:p></o:p></span></p>
-            <p class="MsoNormal" 
-                style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 10pt;">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                function</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                removeFile(t) {<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                </span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                var</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                sel = $(t).parent().text().slice(0, -3);<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                </span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                var</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                index = storedFiles.indexOf(sel);<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                </span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                if</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                (index !== -1) {<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                storedFiles.splice(index, 1);<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span>
-                <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:black">}<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                $(t).parent().remove();<o:p></o:p></span></p>
-            <p class="MsoNormal" 
-                style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 10pt;">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                $(</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&#39;#</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">@Html.IdFor(i 
-                =&gt; i.hfSelectedFilesToUpload)</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&#39;</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">).val(storedFiles);<span 
-                    style="mso-spacerun:yes">&nbsp;&nbsp; </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: green">
-                // hfSelectedFilesToUpload object should be present in the model of this view</span><span style="font-size:10.0pt;font-family:Consolas;
-  mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
-            <p class="MsoNormal" 
-                style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; font-size: 10pt;">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:black">}<o:p></o:p></span></p>
-            <p class="MsoNoSpacing">
-                <span class="style1" style="font-family: Consolas; color: blue">&lt;/</span><span 
-                    class="style1" style="font-family: Consolas; color: maroon">script</span><span 
-                    class="style1" style="font-family: Consolas; color: blue">&gt;</span><span style="font-size:10.0pt;font-family:Consolas;
-  color:black"><o:p></o:p></span></p>
-            <p class="MsoNoSpacing" 
-                style="font-size: 10pt; font-family: Consolas; color: black">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNoSpacing" 
-                style="font-size: 10pt; font-family: Consolas; color: black">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNoSpacing">
-                <span class="style1" style="font-family: Consolas; color: black">@</span><span 
-                    class="style1" style="font-family: Consolas">using<span style="color:black"> 
-                (Html.BeginForm(</span><span style="color:#A31515">&quot;MultipleUpload&quot;</span><span 
-                    style="color:black">, </span><span style="color:#A31515">&quot;Home&quot;</span><span 
-                    style="color:black">, </span><span style="color:#2B91AF">FormMethod</span><span 
-                    style="color:black">.Post))<o:p></o:p></span></span></p>
-            <p class="MsoNoSpacing">
-                <span style="font-size:10.0pt;font-family:Consolas;
-  color:black">{<o:p></o:p></span></p>
-            <p class="MsoNoSpacing" 
-                style="font-size: 10pt; font-family: Consolas; color: black">
-                <span style="mso-spacerun:yes">&nbsp; </span><o:p></o:p>
-            </p>
-            <p class="MsoNoSpacing">
-                <span class="style1" style="font-family: Consolas; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span style="font-size:10.0pt;font-family:Consolas">&lt;</span><span 
-                    class="style1" style="font-family: Consolas"><span style="color:maroon">div</span><span 
-                    style="color:black"> </span><span style="color:red">id</span></span><span 
-                    style="font-size:10.0pt;font-family:Consolas"><span class="style1" 
-                    style="font-family: Consolas">=&quot;uploaders&quot;&gt;</span><span style="color:black"><o:p></o:p></span></span></p>
-            <p class="MsoNoSpacing">
-                <span class="style1" style="font-family: Consolas; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                </span><span style="font-size:10.0pt;font-family:Consolas">&lt;</span><span 
-                    class="style1" style="font-family: Consolas"><span style="color:maroon">input</span><span 
-                    style="color:black"> </span><span style="color:red">type</span></span><span 
-                    style="font-size:10.0pt;font-family:Consolas"><span class="style1" 
-                    style="font-family: Consolas">=&quot;file&quot;<span style="color:black"> </span>
-                <span style="color:red">id</span>=&quot;multiplefileUpload&quot;<span style="color:black">
-                </span><span style="color:red">name</span>=&quot;multiplefileUpload&quot;<span 
-                    style="color:black"> </span><span style="color:red">multiple</span>=&quot;multiple&quot;<span 
-                    style="color:black"> </span>/&gt;</span><span style="color:black"><o:p></o:p></span></span></p>
-            <p class="MsoNoSpacing" 
-                style="font-size: 10pt; font-family: Consolas; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p>
-            </p>
-            <p class="MsoNoSpacing">
-                <span class="style1" style="font-family: Consolas; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span class="style1" style="font-family: Consolas">&lt;/<span style="color:maroon">div</span></span><span 
-                    style="font-size:10.0pt;font-family:Consolas">&gt;<span style="color:black"><o:p></o:p></span></span></p>
-            <p class="MsoNoSpacing">
-                <span class="style1" style="font-family: Consolas; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span style="font-size:10.0pt;font-family:Consolas">&lt;</span><span 
-                    class="style1" style="font-family: Consolas"><span style="color:maroon">br</span><span 
-                    style="color:black"> </span></span>
-                <span style="font-size:10.0pt;font-family:Consolas"><span class="style1" 
-                    style="font-family: Consolas">/&gt;</span><span style="color:black"><o:p></o:p></span></span></p>
-            <p class="MsoNoSpacing">
-                <span class="style1" style="font-family: Consolas; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span style="font-size:10.0pt;font-family:Consolas">&lt;</span><span 
-                    style="font-family: Consolas"><span class="style1" style="color:maroon">div</span></span><span 
-                    style="font-size:10.0pt;font-family:Consolas">&gt;<span style="color:black"><o:p></o:p></span></span></p>
-            <p class="MsoNoSpacing">
-                <span class="style1" style="font-family: Consolas; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                </span><span style="font-size:10.0pt;font-family:Consolas">&lt;</span><span 
-                    class="style1" style="font-family: Consolas"><span style="color:maroon">button</span><span 
-                    style="color:black"> </span><span style="color:red">id</span></span><span 
-                    style="font-size:10.0pt;font-family:Consolas"><span class="style1" 
-                    style="font-family: Consolas">=&quot;btnSelectFile&quot;<span style="color:black">
-                </span><span style="color:red">type</span>=&quot;submit&quot;&gt;<span style="color:black">Submit</span>&lt;/<span 
-                    style="color:maroon">button</span></span>&gt;<span style="color:black"><o:p></o:p></span></span></p>
-            <p class="MsoNoSpacing">
-                <span class="style1" style="font-family: Consolas; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span class="style1" style="font-family: Consolas">&lt;/<span style="color:maroon">div</span></span><span 
-                    style="font-size:10.0pt;font-family:Consolas">&gt;<span style="color:black"><o:p></o:p></span></span></p>
-            <p class="MsoNoSpacing">
-                <span class="style1" style="font-family: Consolas; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span style="font-size:10.0pt;font-family:Consolas">&lt;</span><span 
-                    class="style1" style="font-family: Consolas"><span style="color:maroon">br</span><span 
-                    style="color:black"> </span></span>
-                <span style="font-size:10.0pt;font-family:Consolas"><span class="style1" 
-                    style="font-family: Consolas">/&gt;</span><span style="color:black"><o:p></o:p></span></span></p>
-            <p class="MsoNoSpacing">
-                <span class="style1" style="font-family: Consolas; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span style="font-size:10.0pt;font-family:Consolas">&lt;</span><span 
-                    style="font-family: Consolas"><span class="style1" style="color:maroon">div</span></span><span 
-                    style="font-size:10.0pt;font-family:Consolas">&gt;<span style="color:black"><o:p></o:p></span></span></p>
-            <p class="MsoNoSpacing">
-                <span class="style1" style="font-family: Consolas; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                </span><span style="font-size:10.0pt;font-family:Consolas">&lt;</span><span 
-                    class="style1" style="font-family: Consolas"><span style="color:maroon">div</span><span 
-                    style="color:black"> </span><span style="color:red">id</span></span><span 
-                    style="font-size:10.0pt;font-family:Consolas"><span class="style1" 
-                    style="font-family: Consolas">=&quot;filesSelected&quot;&gt;&lt;/<span style="color:maroon">div</span></span>&gt;<span 
-                    style="color:black"><o:p></o:p></span></span></p>
-            <p class="MsoNoSpacing">
-                <span class="style1" style="font-family: Consolas; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span class="style1" style="font-family: Consolas">&lt;/<span style="color:maroon">div</span></span><span 
-                    style="font-size:10.0pt;font-family:Consolas">&gt;<span style="color:black"><o:p></o:p></span></span></p>
-            <p class="MsoNoSpacing" 
-                style="font-size: 10pt; font-family: Consolas; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span><o:p></o:p>
-            </p>
-            <p class="MsoNoSpacing">
-                <span style="font-family: Consolas; color: black"><span class="style1" 
-                    style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-                <span class="style1" style="font-family: Consolas; color: black">
-                @Html.HiddenFor(i =&gt; i.hfSelectedFilesToUpload)<span style="mso-spacerun:yes">&nbsp;&nbsp;
-                </span></span><span class="style1" style="font-family: Consolas; color: green">
-                // hfSelectedFilesToUpload object should be present in the model of this view</span><span 
-                    style="font-size:10.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
-            <p class="MsoNoSpacing" 
-                style="font-size: 10pt; font-family: Consolas; color: black">
-                <o:p>&nbsp;</o:p></p>
-            <p class="MsoNoSpacing">
-                <span style="font-size:10.0pt;font-family:Consolas;
-  color:black">}<o:p></o:p></span></p>
-            <p class="MsoNoSpacing" style="font-size: 10pt">
-                <b style="mso-bidi-font-weight:normal">
-                <span style="mso-bidi-font-family:Consolas"><o:p>&nbsp;</o:p></span></b></p>
-        </td>
-    </tr>
-</table>
-<p class="MsoNoSpacing" style="font-size: 10pt">
-    <b style="mso-bidi-font-weight:normal">
-    <span style="mso-bidi-font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></b></p>
-<p class="MsoNoSpacing" style="font-size: 10pt">
-    <b style="mso-bidi-font-weight:normal">
-    <span style="mso-bidi-font-family:Consolas;color:black"><o:p>&nbsp;</o:p></span></b></p>
-<p class="MsoNoSpacing" 
-    style="font-size: 10pt; font-family: Consolas; color: black">
-    <o:p>&nbsp;</o:p></p>
-<p class="MsoNoSpacing">
-    <b style="mso-bidi-font-weight:normal">
-    <span style="font-size:12.0pt;mso-bidi-font-family:Consolas;color:black">
-    Controller code is as below<o:p></o:p></span></b></p>
-<table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
- mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt" width="100%">
-    <tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes">
-        <td style="width: 6.65in; border: none; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; padding: 0in 5.4pt 0in 5.4pt" 
-            valign="top" width="638">
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                [</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">HttpPost</span><span style="font-size:10.0pt;font-family:Consolas;
-  mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">]<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                </span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                public</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                </span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-                ActionResult</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                MultipleUpload(</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">List</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">&lt;</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">HttpPostedFileBase</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">&gt; 
-                fileUpload)<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span>
-                <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:black">{<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                foreach</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                (</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">HttpPostedFileBase</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                item </span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                in</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                fileUpload)<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span>
-                <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:black">{<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                item.SaveAs(</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;...give 
-                file name&quot;</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">);<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span class="style1" style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span>
-                <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-  color:black">}<o:p></o:p></span></p>
-            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal;mso-layout-grid-align:none;text-autospace:none">
-                <span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-                <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span></span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-                return</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-                View(</span><span class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;Index&quot;</span><span 
-                    class="style1" 
-                    style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">);<o:p></o:p></span></p>
-            <p class="MsoNoSpacing">
-                <span style="font-family: Consolas; color: black"><span class="style1" 
-                    style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                </span><span style="font-size:10.0pt;font-family:Consolas;
-  color:black">}<o:p></o:p></span></p>
-            <p class="MsoNoSpacing" style="font-size: 10pt">
-                <b style="mso-bidi-font-weight:normal">
-                <span style="mso-bidi-font-family:Consolas"><o:p>&nbsp;</o:p></span></b></p>
-        </td>
-    </tr>
-</table>
-<p class="MsoNoSpacing" 
-    style="font-size: 10pt; font-family: Consolas; color: black">
-    <o:p>&nbsp;</o:p></p>
-<p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal;mso-layout-grid-align:none;text-autospace:none">
-    <span class="style1" 
-        style="font-family: Consolas; color: black; background: white; mso-highlight: white">
-    <span style="mso-spacerun:yes">&nbsp;&nbsp; </span></span>
-    <span style="font-size:10.0pt;
-font-family:Consolas;color:black"><o:p></o:p></span>
+<p style="width:80%">
+    Sample View code for multiple file upload
 </p>
-<p class="MsoNoSpacing">
-    <span style="font-size:10.0pt;font-family:Consolas;
-color:black"><o:p>&nbsp;</o:p></span></p>
-</html>
+
+
+    <pre class="brush: csharp">
+        <script src="~/Scripts/jquery-1.7.1.js"></script> 
+ 
+        <script>
+            var files;
+            var storedFiles = [];
+            var fileCount = 0;
+
+            $(function () {
+
+                $("input[id^='multiplefileUpload']").change(function (e) {
+                    processMultiFileUpload(e);
+                });
+
+                selDiv = $("#filesSelected");
+            });
+
+            function processMultiFileUpload(e) {
+                fileCount = fileCount + 1;
+                addSelectedFile(e);
+
+                $("input[id^='multiplefileUpload']").hide();
+
+                $('<input>').attr({
+                    type: 'file',
+                    multiple: 'multiple',
+                    id: 'fileToUpload' + fileCount,
+                    name: 'fileUpload',
+                    title: '  ',
+                    onchange: "processMultiFileUpload(event)"
+
+                }).appendTo('#uploaders');
+            }
+
+            function addSelectedFile(e) {
+
+                selDiv = document.querySelector("#filesSelected");
+
+                files = e.target.files;
+
+                for (var i = 0; i < files.length; i++) {
+                    var f = files[i];
+                    selDiv.innerHTML += "<a onclick='removeFile(this)'> Remove </a> " + f.name + "";
+                    storedFiles.push(f.name);
+                }
+                $('#@Html.IdFor(i => i.hfSelectedFilesToUpload)').val(storedFiles);  // hfSelectedFilesToUpload object should be present in the model of this view
+            }
+
+            function removeFile(t) {
+                var sel = $(t).parent().text().slice(0, -3);
+                var index = storedFiles.indexOf(sel);
+                if (index !== -1) {
+                    storedFiles.splice(index, 1);
+                }
+                $(t).parent().remove();
+
+                $('#@Html.IdFor(i => i.hfSelectedFilesToUpload)').val(storedFiles);   // hfSelectedFilesToUpload object should be present in the model of this view
+
+            }
+        </script>
+ 
+ 
+        @using (Html.BeginForm("MultipleUpload", "Home", FormMethod.Post))
+        {
+ 
+            <div id="uploaders">
+                <input type="file" id="multiplefileUpload" name="multiplefileUpload" multiple="multiple" />
+      
+            </div>
+            <br />
+            <div>
+                <button id="btnSelectFile" type="submit">Submit</button>
+            </div>
+            <br />
+            <div>
+                <div id="filesSelected"></div>
+            </div>
+   
+            @Html.HiddenFor(i => i.hfSelectedFilesToUpload)   // hfSelectedFilesToUpload object should be present in the model of this view
+ 
+        }
+    </pre>
+   
+  
+    <br />
+    <br />
+
+
+
+
+</div>
