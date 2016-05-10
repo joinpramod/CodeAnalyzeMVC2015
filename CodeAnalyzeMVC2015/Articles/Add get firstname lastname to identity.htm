@@ -1,578 +1,88 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<div style="font-size:16px;width:100%;font-family:Calibri">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-    <style type="text/css">
+<p style="width:80%">
+    Below code shows to add firstname and lastname to the default project template which we get in visual studio with Account Module, customization might be necessary for your code.
+</p>
 
- p.MsoNormal
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	}
-    </style>
+
+<p><b> Add 2 new properties to IdentityModels in ApplicationUser class as shown below</b></p>
+    <pre class="brush: csharp">
+      public class ApplicationUser : IdentityUser
+        {
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+ 
+            public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
+            {
+                var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+               
+                return userIdentity;
+            }
+        }
     
+    </pre>
+<p><b>Add two properties  to the RegisterViewModel class in  AccountViewModels. MODEL</b></p>
 
-</head>
-<body>
+    <pre class="brush: csharp">
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+ 
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+    </pre>
 
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
-&quot;Times New Roman&quot;">Below code shows to add firstname and lastname to the 
-        default project template which we get in visual studio with Account Module, 
-        customization might be necessary for your code. <o:p></o:p></span>
-    </p>
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <b style="mso-bidi-font-weight:normal">
-        <span style="mso-fareast-font-family:
-&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></b></p>
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
-&quot;Times New Roman&quot;">Add 2 new properties to IdentityModels in ApplicationUser 
-        class as shown below<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">public</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">class</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:#2B91AF">ApplicationUser</span><span style="font-size:10.0pt;font-family:
-Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> : </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:#2B91AF">IdentityUser</span><span style="font-size:10.0pt;font-family:
-Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>{<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">public</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">string</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> FirstName { </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">get</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">; </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">set</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">; }<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">public</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">string</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> LastName { </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">get</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">; </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">set</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">; }<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><o:p>&nbsp;</o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">public</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">async</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:#2B91AF">Task&lt;ClaimsIdentity&gt;</span><span style="font-size:10.0pt;
-font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> 
-        GenerateUserIdentityAsync(UserManager&lt;</span><span 
-            style="font-size:10.0pt;
-font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:#2B91AF">ApplicationUser</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black">&gt; manager)<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>{<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">var</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> userIdentity = </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">await</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> 
-        manager.CreateIdentityAsync(</span><span style="font-size:10.0pt;font-family:
-Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:blue">this</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black">, DefaultAuthenticationTypes.ApplicationCookie);<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span><o:p></o:p></span>
-    </p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">return</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> userIdentity;<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>}<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>}</span><span style="font-size:10.0pt;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
-&quot;Times New Roman&quot;"><o:p></o:p></span></p>
-    <p class="MsoNormal">
-        <span style="font-size:10.0pt;line-height:115%;mso-fareast-font-family:
-&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
-&quot;Times New Roman&quot;">Add two properties<span style="mso-spacerun:yes">&nbsp;
-        </span>to the RegisterViewModel class in <span style="mso-spacerun:yes">&nbsp;</span>AccountViewModels<span 
-            style="mso-spacerun:yes">&nbsp; </span>
-        <br />
-        <b style="mso-bidi-font-weight:normal">MODEL</b><o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>[</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:#2B91AF">Required</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">]<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>[</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:#2B91AF">DataType</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">(</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:#2B91AF">DataType</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">.Text)]<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>[</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:#2B91AF">Display</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">(Name = </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:#A31515">&quot;First Name&quot;</span><span style="font-size:10.0pt;
-font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">)]<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">public</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">string</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> FirstName { </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">get</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">; </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">set</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">; }<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><o:p>&nbsp;</o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>[</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:#2B91AF">Required</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">]<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>[</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:#2B91AF">DataType</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">(</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:#2B91AF">DataType</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">.Text)]<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>[</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:#2B91AF">Display</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">(Name = </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:#A31515">&quot;Last Name&quot;</span><span style="font-size:10.0pt;
-font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">)]<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
-        <span style="font-size:10.0pt;line-height:115%;
-font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-        </span>
-        <span style="font-size:10.0pt;
-line-height:115%;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">public</span><span style="font-size:10.0pt;line-height:115%;
-font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
-        </span>
-        <span style="font-size:10.0pt;line-height:115%;font-family:Consolas;mso-fareast-font-family:
-&quot;Times New Roman&quot;;color:blue">string</span><span style="font-size:10.0pt;
-line-height:115%;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"> LastName { </span>
-        <span style="font-size:10.0pt;line-height:115%;
-font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:blue">get</span><span style="font-size:10.0pt;line-height:115%;font-family:Consolas;mso-fareast-font-family:
-&quot;Times New Roman&quot;;color:black">; </span>
-        <span style="font-size:10.0pt;
-line-height:115%;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">set</span><span style="font-size:10.0pt;line-height:115%;
-font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">; 
-        }</span><span style="font-size:10.0pt;line-height:115%;mso-fareast-font-family:&quot;Times New Roman&quot;;
-mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
-    <p class="MsoNormal">
-        <span style="font-size:10.0pt;line-height:115%;mso-fareast-font-family:
-&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <b style="mso-bidi-font-weight:normal">
-        <span style="mso-fareast-font-family:
-&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">View<o:p></o:p></span></b></p>
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <b style="mso-bidi-font-weight:normal">
-        <span style="mso-fareast-font-family:
-&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></b></p>
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
-&quot;Times New Roman&quot;">Update view as shown below<o:p></o:p></span></p>
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
-&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">&lt;</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:maroon">div</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>@Html.LabelFor(m =&gt; m.FirstName, </span>
-        <span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:blue">new</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"> { @class = </span>
-        <span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:#A31515">&quot;CSS1&quot;</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"> })<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">&lt;</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:maroon">div</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"> </span>
-        <span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:red">class</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">=&quot;col-md-10&quot;&gt;</span><span style="font-size:10.0pt;
-font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>@Html.TextBoxFor(m =&gt; m.FirstName, </span>
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">new</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> { @class = </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:#A31515">&quot;formcontrol&quot;</span><span style="font-size:10.0pt;
-font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> 
-        })<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">&lt;/</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:maroon">div</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">&gt;</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">&lt;/</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:maroon">div</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">&gt;</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">&lt;</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:maroon">div</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"> </span>
-        <span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:red">class</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">=&quot;form-group&quot;&gt;</span><span style="font-size:10.0pt;
-font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>@Html.LabelFor(m =&gt; m.LastName, </span>
-        <span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:blue">new</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"> { @class = </span>
-        <span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:#A31515">&quot;CSS1&quot;</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"> })<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">&lt;</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:maroon">div</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"> </span>
-        <span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:red">class</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">=&quot;col-md-10&quot;&gt;</span><span style="font-size:10.0pt;
-font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>@Html.TextBoxFor(m =&gt; m.LastName, </span>
-        <span style="font-size:10.0pt;
-font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:blue">new</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"> { @class = </span>
-        <span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:#A31515">&quot;formcontrol&quot;</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"> })<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">&lt;/</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:maroon">div</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">&gt;</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:
-&quot;Times New Roman&quot;;color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">&lt;/</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:maroon">div</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">&gt;</span><span style="font-size:10.0pt;mso-fareast-font-family:
-&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
-    <p class="MsoNormal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
-mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
-    <p class="MsoNormal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
-mso-bidi-font-family:&quot;Times New Roman&quot;">Now the actual part we need to save 
-        this info in database, so we need to update the account controller IN Register 
-        Action method as shown below<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp; </span></span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">public</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">async</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> Task&lt;</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:#2B91AF">ActionResult</span><span style="font-size:10.0pt;font-family:
-Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&gt; 
-        Register(RegisterViewModel model)<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>{<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">if</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> (ModelState.IsValid)<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>{<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><o:p>&nbsp;</o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">var</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> user = </span>
-        <span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">new</span><span style="font-size:10.0pt;font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> ApplicationUser<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>{<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>UserName = model.Email,<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>Email = model.Email,<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>FirstName = model.FirstName,<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>LastName = model.LastName<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>};<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black"><o:p>&nbsp;</o:p></span></p>
-    <p class="MsoNormal" 
-        style="background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
-        <span style="font-size:10.0pt;line-height:115%;
-font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-size:
-10.0pt;line-height:115%;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">var</span><span style="font-size:10.0pt;line-height:115%;
-font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"> 
-        result = </span>
-        <span style="font-size:10.0pt;line-height:115%;font-family:
-Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:blue">await</span><span style="font-size:10.0pt;line-height:115%;font-family:Consolas;mso-fareast-font-family:
-&quot;Times New Roman&quot;;color:black"> UserManager.CreateAsync(user, model.Password);</span><span style="font-size:10.0pt;line-height:115%;mso-fareast-font-family:&quot;Times New Roman&quot;;
-mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
-    <p class="MsoNormal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
-mso-bidi-font-family:&quot;Times New Roman&quot;">Now you should have 2 new fields in 
-        the database<span style="mso-spacerun:yes">&nbsp; </span>of table AspNetUsers<o:p></o:p></span></p>
-    <p class="MsoNormal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
-mso-bidi-font-family:&quot;Times New Roman&quot;">Now you have 2 new properties to the 
-        user FirstName and LastName to the user.<o:p></o:p></span></p>
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
-&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p><b>View. Update view as shown below</b></p>
 
-</body>
-</html>
+
+    <pre class="brush: csharp">
+       <div
+        @Html.LabelFor(m => m.FirstName, new { @class = "CSS1" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "formcontrol" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName, new { @class = "CSS1" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.LastName, new { @class = "formcontrol" })
+        </div>
+    </div>
+
+    </pre>
+
+
+    <p>Now the actual part we need to save this info in database, so we need to update the account controller IN Register Action method as shown below</p>
+
+    <pre class="brush: csharp">
+        public async Task<ActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+ 
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName
+                };
+ 
+                var result = await UserManager.CreateAsync(user, model.Password);
+
+    </pre>
+
+    <p>Now you should have 2 new fields in the database  of table AspNetUsers</p>
+
+<p>Now you have 2 new properties to the user FirstName and LastName to the user.</p>
+
+    <br />
+    <br />
+
+
+
+
+</div>
