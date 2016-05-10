@@ -1,0 +1,107 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+
+
+    <p style="width:80%">
+        Here is a sample code to execute asynchronous task using threads and then updating UI in android app.
+        We will be doing the following
+        Start a separate Thread
+        Execute all expense jobs in the run() method of the started Thread.
+        To update the UI, within the separate Thread, call the sendEmptyMessage(int) or sendMessage(Message) method of a
+        special Handler. This Handler comes from the package android.os.Handler. Within the sendEmptyMessage(int) or sendMessage(Message) method one can, and should, update the required UI elements.
+    </p>
+
+
+    <pre class="brush: csharp">
+        import android.app.Activity;
+        import android.os.Bundle;
+        import android.os.Handler;
+        import android.widget.ProgressBar;
+ 
+        public class MainActivity extends Activity
+        {
+            private ProgressBar mProgress;
+            private int mProgressStatus = 0;
+ 
+            /** Called when the activity is first created. */
+            @Override
+            public void onCreate(Bundle savedInstanceState)
+            {
+                super.onCreate(savedInstanceState);
+                setContentView(R.layout.main);
+ 
+                // Get the progress bar which will be the UI element updated while
+                // executing another task.
+                mProgress = (ProgressBar) findViewById(R.id.progressBar);
+ 
+                // Start lengthy operation in a background thread
+                Thread lenghtyTask = new Thread(new BackgroundThread());
+                lenghtyTask.start();
+            }
+ 
+            // Thread which executes the lengthy operation in a separate thread
+            // and update the UI - a progress bar.
+            private final class BackgroundThread implements Runnable
+            {
+                public void run()
+                {
+                    while (mProgressStatus < 10)
+                    {
+                        // execute hard work/expensive task and update progress
+                        mProgressStatus = doWork();
+ 
+                        // Update the progress bar - update UI
+                        // One can use sendMessage(Message msg) in order to send an
+                        // specific message to the method where the UI will be updated.
+                        mHandler.sendEmptyMessage(0);
+                    }
+                }
+            }
+ 
+            // handler which updates the UI (Progress Bar)
+            private Handler mHandler = new Handler()
+            {
+                // This method should be implemented in order to update the UI. Any data
+                // that must be passed, should be put in the attribute Message msg.
+                public void handleMessage(android.os.Message msg)
+                {
+                    if (mProgressStatus < 5)
+                    {// update progress bar for some time
+                        mProgress.setProgress(mProgressStatus);
+                    } else
+                    {
+                        // stop progress bar
+                        mProgress.setVisibility(ProgressBar.GONE);
+                    }
+                };
+            };
+ 
+            // counter
+            private int counter = 0;
+ 
+            // method which performs hard work
+            private int doWork()
+            {
+                try
+                {
+                    Thread.sleep(100);
+                } catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+                return counter++;
+            }
+        }   
+    
+    
+    </pre>
+
+
+
+
+    <br />
+    <br />
+
+
+
+
+</div>

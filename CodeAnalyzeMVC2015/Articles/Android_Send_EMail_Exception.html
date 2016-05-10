@@ -1,0 +1,39 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+
+    <p style="width:80%">
+        By adding a method to a "Utils" class in your app, you can keep track of exceptions users are getting
+    </p>
+
+
+    <p><b>RateReview.h</b></p>
+    <pre class="brush: csharp">
+    public void sendEmail(String emailAddress, String emailSubject, String emailBody) {
+    final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+    emailIntent.setType("plain/html");
+    emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {emailAddress});
+    emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, emailSubject);
+    emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, emailBody);
+    startActivity(Intent.createChooser(emailIntent, "Sending email..."));
+    }
+    
+    
+    </pre>
+    <p><b>In catch exception use the send email function as shown below</b></p>
+
+    <pre class="brush: csharp">
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        String errHTML = String.format("<h2>EXCEPTIONAL</h2>", e.getMessage());
+        utils.sendEmail(utils.EMAIL_ADDRESS, "Exception occured in functionname", errHTML);
+        return e.getMessage();
+    }
+    </pre>
+
+
+    <br />
+    <br />
+
+
+
+
+</div>

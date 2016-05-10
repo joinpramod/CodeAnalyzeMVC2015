@@ -247,6 +247,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="ProcessArticles.aspx.cs">
+      <DependentUpon>ProcessArticles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProcessArticles.aspx.designer.cs">
+      <DependentUpon>ProcessArticles.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Soln.aspx.cs">
       <DependentUpon>Soln.aspx</DependentUpon>
@@ -271,6 +278,10 @@
       <DependentUpon>VA.aspx</DependentUpon>
     </Compile>
     <Content Include="ArticleDetails.ascx" />
+    <Content Include="Articles\Android_Send_EMail_Exception.html" />
+    <Content Include="Articles\Executing_Asynchronous_Task_Thread.html" />
+    <Content Include="Articles\XCode_Display_Loading_Msg.html" />
+    <Content Include="Articles\XCode_Periodically_Rate_Review.html" />
     <Content Include="AskQuestions.aspx" />
     <Content Include="css\mystyles.css" />
     <Content Include="Global.asax" />
@@ -373,6 +384,7 @@
     <Content Include="js\javacriptCompressor\TinyMCE.js" />
     <Content Include="js\javacriptCompressor\yuicompressor-2.4.8.jar" />
     <Content Include="MasterPageNoGoog.master" />
+    <Content Include="ProcessArticles.aspx" />
     <Content Include="Scripts\tinymce\2stars.png" />
     <Content Include="js\Facebook.js" />
     <Content Include="js\Google.js" />

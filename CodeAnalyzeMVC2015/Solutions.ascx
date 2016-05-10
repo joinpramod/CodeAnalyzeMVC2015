@@ -106,7 +106,7 @@
                         </td>
                     </tr>
                     <tr >
-                        <td colspan="2" style="background-color:#4fa4d5">
+                        <td colspan="2" style="background-color:#F5E8AA">
                             <b style="font-family: Calibri;" />Post your answer<span style="font-family:Calibri; font-size:16px;font-weight:bold;color:Red">*</span>
                         </td>
                     </tr>
@@ -164,7 +164,7 @@
                         <td align="center" colspan="2">
                             &nbsp;<asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClientClick="return ValidateText()" OnClick="PreviewButton_Click"
                                 Font-Names="Calibri" Font-Size="Large" Font-Bold="True" 
-                                 BorderStyle="None" BackColor="#4fa4d5" ForeColor="White"
+                                 BorderStyle="None" BackColor="#F5E8AA" ForeColor="White"
                                 ValidationGroup="1" />
                         </td>
                     </tr>

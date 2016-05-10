@@ -5,16 +5,16 @@
     font-size:20px;
     font-weight:bold;
     font-family:Calibri;
-    color:white;
-    background-color:#4fa4d5;
-    border:none;
+    color:black;
+    background-color:#F5E8AA;
+    border:1;
     width:auto;
     height:40px;
 }
 
 
 .mysubmit:hover {    
-    background-color:#47cad4;   
+    background-color:#F3CD50;   
 }
 
 
@@ -26,16 +26,16 @@
     font-size:20px;
     font-weight:bold;
     font-family:Calibri;
-    color:white;
-    background-color:#4fa4d5;
+    color:black;
+    background-color:#F5E8AA;
     border:none;
     width:auto;
     height:35px;
 }
-
+ 
 
 .mysubmitsmall:hover {    
-    background-color:#47cad4;   
+    background-color:#F3CD50;   
 }
 
 
@@ -47,8 +47,8 @@
     font-size:15px;
     font-weight:bold;
     font-family:Calibri;
-    color:white;
-    background-color:#4fa4d5;
+    color:black;
+    background-color:#F5E8AA;
     border:none;
     width:auto;
     height:25px;
@@ -56,7 +56,7 @@
 
 
 .mysearch:hover {    
-    background-color:#47cad4;   
+    background-color:#F3CD50;   
 }
 
 
@@ -74,8 +74,16 @@
 
 
 .mylink:hover {    
-    background-color:#47cad4;   
+    background-color:#F3CD50;   
     color:white;
 }
 
 
+.generalbutton {
+    background-color:#F5E8AA;
+}
+
+
+.generalbutton:hover {    
+    background-color:#F3CD50;   
+}

@@ -11,67 +11,72 @@
 <h2>Login</h2><br />
 
 
-<div align="center" style="width:100%">
+<div align="center" style="width:100%;">
 
-    <table style="font-size:16px;width:35%">
 
+
+
+    <table style="border-radius:6%;background-color:#b3e6ff;width:40%;height:380px">
         <tr>
             <td align="center">
-                <span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red">@ViewBag.lblAck</span>
-            </td>
-        </tr>
-        @using (Html.BeginForm("ProcessLogin", "Account"))
-                {
-            @*<tr>
-                    <td align="left">EMail:</td>
-                </tr>*@
-            <tr>
-                <td align="left">
-                    EMail:<br />
-                    @Html.TextBox("txtEMailId", "", new { style = "border:groove;width:92%;border-width:1px" })
-                </td>
-            </tr>
+                <table style="font-size:16px;width:90%" cellpadding="5">
 
-            <tr>
-                <td align="left">
-                    Password:<br />
-                    @Html.Password("txtPassword", "", new { style = "border:groove;width:70%;border-width:1px" })
-                    <input type="submit" value="Login" id="btnLogin" onclick="return ValidateLogin()" class="mysubmit" />
-                </td>
-            </tr>
-                                }
-        <tr>
-            <td align="left">
-
-                @Html.ActionLink("Forgot Password", "ForgotPassword", "Account", null, new { style = "font-size:14px" })
-
-            </td>
-        </tr>
-        <tr>
-            <td align="left">
-
-                @Html.ActionLink("New User? Register", "Users", "Account", null, new { style = "font-size:14px" })
-
-            </td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
-            <td align="center">
-                @*<table width="100%">
                     <tr>
-                        <td align="center">*@
+                        <td>
+                            <span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red">@ViewBag.lblAck</span>
+                        </td>
+                    </tr>
+                    @using (Html.BeginForm("ProcessLogin", "Account"))
+                    {
+
+                        <tr>
+                            <td>
+                                @Html.TextBox("txtEMailId", "", new { style = "border:groove;width:100%;border-width:1px;border-radius:5px;height:40px", placeholder = "EMail" })
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                @Html.Password("txtPassword", "", new { style = "border:groove;width:100%;border-width:1px;border-radius:5px;height:40px", placeholder = "Password" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" value="Login" id="btnLogin" onclick="return ValidateLogin()" style="width:100%;height:40px;border-radius:10px" class="mysubmit" />
+                            </td>
+                        </tr>
+
+                    }
+                    <tr>
+                        <td>
+
+                            @Html.ActionLink("Forgot Password", "ForgotPassword", "Account", null, new { style = "font-size:14px" })
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                            @Html.ActionLink("New User? Register", "Users", "Account", null, new { style = "font-size:14px" })
+
+                        </td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <td align="center">
                             <input type="image" onclick="FaceBookLogin()" value="Test" style="height:35px;width:200px" src="~/Images/SignInWithFacebook.png" />
-                        @*</td>
-                        <td align="center">*@ <br />
                             <div id="my-signin2"></div>
                         </td>
-                        @*<td align="center"></td>*@
                     </tr>
-                @*</table>
-            </td>
-        </tr>*@
+                </table>
 
+            </td>
+        </tr>
     </table>
+
+
+
+
 
 
 

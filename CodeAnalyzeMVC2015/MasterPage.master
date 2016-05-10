@@ -105,7 +105,7 @@
 						<li> <asp:LinkButton ID="lnkLogOut" runat="server" ForeColor="White" OnClick="btnLogOut_Click">Log Out</asp:LinkButton></li>
 						<li>
 							<%--<form class="form-inline" role="form" action="#">--%>
-                                               <asp:Button runat="server" Width="130px" Height="22px" ValidationGroup="Refer" OnClick="btnReferFriend_Click" BorderStyle="None" BackColor="#4fa4d5" ForeColor="White" Text="Refer Friend EMail" ID="btnReferFriend"/>
+                                               <asp:Button runat="server" Width="130px" Height="22px" ValidationGroup="Refer" OnClick="btnReferFriend_Click" BorderStyle="None" BackColor="#F5E8AA" ForeColor="White" Text="Refer Friend EMail" ID="btnReferFriend"/>
 							                    <asp:TextBox ID="txtReferEMail"  runat="server" ValidationGroup="Refer" Width="150px" Height="24px" BorderStyle="Groove" />
                                              <%--   <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
                                                     ControlToValidate="txtReferEMail" ErrorMessage="*" ForeColor="White"
@@ -163,7 +163,7 @@
                                             <td >Password:
                                             <asp:TextBox ID="txtPassword" runat="server" BorderStyle="Groove" TextMode="Password" Width="50%"></asp:TextBox>
                                  
-                                                    <asp:Button ID="btnLogin" BackColor="#4fa4d5" ForeColor="White" runat="server" Font-Names="Calibri"
+                                                    <asp:Button ID="btnLogin" BackColor="#F5E8AA" ForeColor="White" runat="server" Font-Names="Calibri"
                                                      Text="Login" BorderStyle="None"  OnClientClick="return ValidateLogin()" ValidationGroup="login" OnClick="btnLogin_Click"/>
 
                                                                   <%--  <asp:RequiredFieldValidator ID="RegularExpressionValidator2" runat="server"

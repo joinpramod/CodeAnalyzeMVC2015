@@ -204,7 +204,7 @@ display: none;
                     <tr>
                         <td align="center">
                             &nbsp;<asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="PreviewButton_Click" 
-                            BorderStyle="None" BackColor="#4fa4d5" ForeColor="White" OnClientClick="return ValidateText()"
+                            BorderStyle="None" BackColor="#F5E8AA" ForeColor="White" OnClientClick="return ValidateText()"
                                 Font-Names="Calibri" Font-Size="Large" Font-Bold="True"
                                 ValidationGroup="ArticleComment" />
                         </td>

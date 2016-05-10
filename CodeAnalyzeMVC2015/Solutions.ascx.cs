@@ -589,7 +589,7 @@ public partial class Solutions : System.Web.UI.UserControl
 
                 htmlTblResponseNoByDetails.Rows.Add(htmlRowResponseNoByDetails);
                 htcResponseNoByDetailsOuterCell.Controls.Add(htmlTblResponseNoByDetails);
-                htcResponseNoByDetailsOuterCell.Style.Add(HtmlTextWriterStyle.BackgroundColor, "#4fa4d5");
+                htcResponseNoByDetailsOuterCell.Style.Add(HtmlTextWriterStyle.BackgroundColor, "#F5E8AA");
 
                 htrResponseNoByDetailsOuterRow.Cells.Add(htcResponseNoByDetailsOuterCell);
 

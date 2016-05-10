@@ -73,7 +73,7 @@
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="searchQue" ControlToValidate="txtQuestionTitle"
                                     runat="server" ErrorMessage="*" />
                             <asp:Button ID="btnSearch" runat="server" Font-Names="Calibri" OnClick="BtnSearch_Click"
-                            BorderStyle="None" BackColor="#4fa4d5" ForeColor="White" Font-Size="Medium" ValidationGroup="searchQue"
+                            BorderStyle="None" BackColor="#F5E8AA" ForeColor="White" Font-Size="Medium" ValidationGroup="searchQue"
                                 Text="Search" />
                         </td>
                     </tr>

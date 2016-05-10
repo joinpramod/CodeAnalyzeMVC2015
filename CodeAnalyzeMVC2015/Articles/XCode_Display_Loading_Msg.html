@@ -1,0 +1,66 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+
+    <p style="width:80%">
+        Normally most of the time we will need a Loading message to be displayed to the user during time consuming operations, especially while making a server request. In this example we will see how we can get a Loading.. message during such request and also show an Overlay.
+    </p>
+    <p style="width:80%">
+        We will use UIActivityIndicatorView to achive this.
+    </p>
+
+    <p><b>Lets create a UI control with Overlay</b></p>
+    <pre class="brush: csharp">
+     let overlay = UIView(frame: overlayTarget.frame)
+    overlay.center = overlayTarget.center 		//align it center
+    overlay.alpha = 0                                   //Set overlay alpha to 0 and increase later
+    overlay.backgroundColor = UIColor.blackColor()
+    overlayTarget.addSubview(overlay)                   //Now set this overlay to the target tow hich overlay should be displayed
+    overlayTarget.bringSubviewToFront(overlay)          //Bring it to front to disbale other user interactions
+    
+    UIView.beginAnimations(nil, context: nil)            // 
+    UIView.setAnimationDuration(0.5)
+    overlay.alpha = overlay.alpha => 0 ? 0 : 0.5
+    UIView.commitAnimations()
+    
+    
+    </pre>
+    <p><b>Create a UIActivityIndicatorView</b></p>
+
+    <pre class="brush: csharp">
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
+        indicator.center = overlay.center
+        indicator.startAnimating()
+        overlay.addSubview(indicator)
+        //create a label
+        if let textString = loadingText {
+        let label = UILabel()
+        label.text = textString
+        label.textColor = UIColor.whiteColor()
+        label.sizeToFit()
+        label.center = CGPoint(x: indicator.center.x, y: indicator.center.y + 30)
+        overlay.addSubview(label)
+        }
+    </pre>
+
+    <p><b>Usage</b></p>
+
+    <pre class="brush: csharp">
+        //Include the LoadingIndicatorView.swift file.
+        //Call one of the show() methods to show the loading indicator before the long running task.
+        // Show indicator to cover entire screen
+        LoadingIndicatorView.show()
+        // Show indicator to cover entire screen with custom text
+        LoadingIndicatorView.show("Loading")
+        // Show indicator to cover target view
+        LoadingIndicatorView.show(target)
+        // Show indicator to cover target view with custom text
+        LoadingIndicatorView.show(target, "Loading")
+        //Call the hide() method to hide the loading indicator after long running task.
+        LoadingIndicatorView.hide()
+    </pre>
+    <br />
+    <br />
+
+
+
+
+</div>

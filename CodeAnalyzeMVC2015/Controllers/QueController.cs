@@ -495,7 +495,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             string quesID = RouteData.Values["id"].ToString();
             string strReplyId = "";
             string lblUp, lblDown = "0";
-            string tblReplies = "<table style=\"word-wrap:break-word; width:98%\">";
+            string tblReplies = "<table style=\"word-wrap:break-word; width:98%; \">";
             string strDeleteRow = string.Empty;
             string strTitle = string.Empty;
 
@@ -519,12 +519,12 @@ namespace CodeAnalyzeMVC2015.Controllers
                     strReplyId = dsSolution.Rows[i]["ReplyID"].ToString();
                     //Response no user details
                     string htrResponseNoByDetailsOuterRow = "<tr>";
-                    string htcResponseNoByDetailsOuterCell = "<td style=\"background-color:#4fa4d5\">";
+                    string htcResponseNoByDetailsOuterCell = "<td style=\"background-color:#F5E8AA; border-radius:15%;\">";
 
                     #region table
                     string htmlTblResponseNoByDetails = "<table style=\"width:100%\">";
 
-                    string htmlRowResponseNoByDetails = "<tr style=\"width:100%;color:white\">";
+                    string htmlRowResponseNoByDetails = "<tr style=\"width:100%;\">";
 
                     string htcUserImage = "<td align=\"right\"> ";
                     if (!string.IsNullOrEmpty(dsSolution.Rows[i]["ImageURL"].ToString()))
@@ -716,7 +716,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
 
             string strThumpsUp = "<td align=\"right\">" + strUpVoteLink;
-            strThumpsUp += "</td><td style=\"color:white\"><b>" + lblUp + "&nbsp;&nbsp;&nbsp;&nbsp;<b></td>";
+            strThumpsUp += "</td><td><b>" + lblUp + "&nbsp;&nbsp;&nbsp;&nbsp;<b></td>";
             htcThumpsUp += strThumpsUp;
 
 
@@ -728,7 +728,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             strDownVoteLink = "<input type=\"image\" title=\"No, this answer did not help me\" onclick=\"PostVotes('" + quesID + "', '" + Replyid + "', '" + downvote + "')\" value=\"Test\" src=\"/Images/ThumpsDown.png\" style=\"height:30px;width:30px\" name=\"lnkThumpsDown" + i.ToString() + "\" id=\"lnkThumpsDown" + i.ToString() + "\" />";
 
             string strThumpsDown = "<td align=\"right\">" + strDownVoteLink;
-            strThumpsDown += "</td><td style=\"color:white\"><b>" + lblDown + "&nbsp;&nbsp;&nbsp;&nbsp;<b></td>";
+            strThumpsDown += "</td><td><b>" + lblDown + "&nbsp;&nbsp;&nbsp;&nbsp;<b></td>";
             htcThumpsDown += strThumpsDown;
 
             strThumbsUpDown += htcThumpsUp + htcThumpsDown;

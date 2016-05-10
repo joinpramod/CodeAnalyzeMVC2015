@@ -1,0 +1,102 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+
+    <p style="width:80%">
+        Here is the sample code to ask user to rate and review the app periodically in iPhone
+    </p>
+    
+
+    <p><b>RateReview.h</b></p>
+    <pre class="brush: csharp">
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+    @interface RateReview : NSObject {
+        int m_appleID;
+    }
+    +(RateReview*)sharedReview;
+    -(void) reviewFor:(int)appleID;
+    -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+    @end
+    
+    
+    </pre>
+    <p><b>RateReview.m</b></p>
+
+    <pre class="brush: csharp">
+        #import "RateReview.h"
+        @implementation RateReview
+        static RateReview* _sharedReview = nil;
+        +(RateReview*)sharedReview
+        {
+            @synchronized([RateReview class])
+            {
+                if (!_sharedReview)
+                    [[self alloc] init];
+        
+                return _sharedReview;
+            }
+    
+            return nil;
+        }
+        +(id)alloc
+        {
+            @synchronized([RateReview class])
+            {
+                NSAssert(_sharedReview == nil, 
+                    @"Attempted to allocate a second instance of a singleton.");
+                _sharedReview = [super alloc];
+                return _sharedReview;
+            }
+    
+            return nil;
+        }
+        -(void)reviewFor:(int)appleID
+        {
+            m_appleID = appleID;
+            BOOL neverRate = [[NSUserDefaults standardUserDefaults] boolForKey:@"neverRate"];
+            if(neverRate != YES) {
+                //Show alert here
+                UIAlertView *alert;
+                alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"rate_title",@"Rate My Appication")
+                             message:NSLocalizedString(@"rate_main",@"Please Rate my Application")
+                             delegate: self
+                             cancelButtonTitle:NSLocalizedString(@"rate_cancel",@"Cancel")
+                             otherButtonTitles: NSLocalizedString(@"rate_now",@"Rate Now"),
+                         NSLocalizedString(@"rate_never",@"Never Rate"), nil];
+                [alert show];
+                [alert release];
+            }
+        }
+        -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+        {
+            // Never Review Button
+            if (buttonIndex == 2)
+            {
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"neverRate"];
+            }
+            // Review Button
+            else if (buttonIndex == 1)
+            {
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"neverRate"];
+                NSString *str = [NSString stringWithFormat:
+                        @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore" + 
+                        @".woa/wa/viewContentsUserReviews?type=Purple+Software&id=%d",
+                        m_appleID ]; 
+                NSLog(str);
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+            }
+        }
+        @end 
+    </pre>
+
+    <p><b>Usage</b></p>
+
+    <pre class="brush: csharp">
+        [[RateReview sharedReview]reviewFor:1234656789];
+    </pre>
+    <br />
+    <br />
+
+
+
+
+</div>
