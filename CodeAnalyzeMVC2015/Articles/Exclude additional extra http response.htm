@@ -1,184 +1,41 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<div style="font-size:16px;width:100%;font-family:Calibri">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-    <style type="text/css">
 
- p.MsoNormal
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	}
-    </style>
-</head>
-<body>
+<p style="width:80%">
+    Add the below line in global.ascx file in Application_Start event
+    MvcHandler.DisableMvcResponseHeader = true;
+</p>
 
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <i style="mso-bidi-font-style:normal">
-        <span style="mso-fareast-font-family:
-&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">Add the 
-        below line in global.ascx file in Application_Start event</span></i><span style="mso-fareast-font-family:
-&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <i style="mso-bidi-font-style:normal">
-        <span style="mso-fareast-font-family:
-&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">
-        MvcHandler.DisableMvcResponseHeader = true; <o:p></o:p></span></i>
-    </p>
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
-&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
-&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <i style="mso-bidi-font-style:normal">
-        <span style="mso-fareast-font-family:
-&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">Remove the 
-        below line from web.config</span></i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
-mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family:
-Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:blue">
-        <span style="mso-spacerun:yes">&nbsp; </span>&lt;</span><span style="font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:#A31515">httpRuntime</span><span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue"> </span>
-        <span style="font-family:Consolas;mso-fareast-font-family:
-&quot;Times New Roman&quot;;color:red">enableVersionHeader</span><span style="font-family:
-Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:blue">=</span><span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black">&quot;</span><span style="font-family:Consolas;mso-fareast-font-family:
-&quot;Times New Roman&quot;;color:blue">false</span><span style="font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&quot;</span><span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue"> /&gt;<o:p></o:p></span></p>
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
-&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <i style="mso-bidi-font-style:normal">
-        <span style="mso-fareast-font-family:
-&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">Add below 
-        code in web.config file<o:p></o:p></span></i></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family:
-Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:blue">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>&lt;</span><span style="font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:#A31515">httpProtocol</span><span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">&gt;</span><span style="font-family:Consolas;mso-fareast-font-family:
-&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family:
-Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:blue">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>&lt;</span><span style="font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:#A31515">customHeaders</span><span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">&gt;</span><span style="font-family:Consolas;mso-fareast-font-family:
-&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family:
-Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:blue">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-        &lt;</span><span style="font-family:
-Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:#A31515">remove</span><span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue"> </span>
-        <span style="font-family:Consolas;mso-fareast-font-family:
-&quot;Times New Roman&quot;;color:red">name</span><span style="font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:blue">=</span><span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black">&quot;</span><span style="font-family:Consolas;mso-fareast-font-family:
-&quot;Times New Roman&quot;;color:blue">X-Powered-By</span><span style="font-family:Consolas;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&quot;</span><span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue"> /&gt;</span><span style="font-family:Consolas;mso-fareast-font-family:
-&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family:
-Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:blue">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>&lt;/</span><span style="font-family:
-Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;color:#A31515">customHeaders</span><span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue">&gt;</span><span style="font-family:Consolas;mso-fareast-font-family:
-&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
-        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:blue"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>&lt;/</span><span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:#A31515">httpProtocol</span><span style="font-family:Consolas;mso-fareast-font-family:
-&quot;Times New Roman&quot;;color:blue">&gt;</span><span style="mso-fareast-font-family:
-&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="mso-fareast-font-family:
-&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <i style="mso-bidi-font-style:normal">
-        <span style="mso-fareast-font-family:
-&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">Along with 
-        the above listed things we can add the following in global.ascx file<o:p></o:p></span></i></p>
-    <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
-&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
-        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-        <span style="color:blue">protected</span> <span style="color:blue">void</span> 
-        Application_PreSendRequestHeaders(<span style="color:blue">object</span> sender,
-        <span style="color:#2B91AF">EventArgs</span> e)<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
-        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-        {<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
-        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span><span style="color:#2B91AF">HttpApplication</span> app = sender
-        <span style="color:blue">as</span> <span style="color:#2B91AF">HttpApplication</span>;<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
-        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span><span style="color:blue">if</span> (app != <span style="color:blue">null</span> 
-        &amp;&amp; app.Context != <span style="color:blue">null</span>)<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
-        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>{<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
-        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>app.Context.Response.Headers.Remove(<span style="color:#A31515">&quot;Server&quot;</span>);<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
-        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>}<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
-        <span style="font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-        }<o:p></o:p></span></p>
-    <p class="MsoNormal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
-mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
+    <p>Remove the below line from web.config</p>
+    <pre class="brush: csharp">
+        <httpRuntime enableVersionHeader="false" />
+    </pre>
+   
+  
+   <p>Add below code in web.config file</p>
+    <pre class="brush: csharp">
+        <httpProtocol>
+            <customHeaders>
+                <remove name="X-Powered-By" />
+            </customHeaders>
+        </httpProtocol>
+    </pre>
 
-</body>
-</html>
+    <p>Along with the above listed things we can add the following in global.ascx file</p>
+    <pre class="brush: csharp">
+        protected void Application_PreSendRequestHeaders(object sender, EventArgs e)
+        {
+            HttpApplication app = sender as HttpApplication;
+            if (app != null && app.Context != null)
+            {
+                app.Context.Response.Headers.Remove("Server");
+            }
+        }
+    </pre>
+    <br />
+    <br />
+
+
+
+
+</div>
