@@ -1,136 +1,48 @@
 <div style="font-size:16px;width:100%;font-family:Calibri">
 
 <p style="width:80%">
-    Get jquery grid nugget package from https://www.nuget.org/packages/jQuery.Grid/ 
+    Cross Site Request Forgery Attacks is mainly the requests used by the hackers to enter into our website and perform harmful actions. Normally this happens with Session mixup. When we are logged into multiple websites in the web browser there are chances that session of one website mix up with the another website. So in order to recognize and identify the client correctly we need to use anti forgery token.
 </p>
 
 
-<p><b> Add reference to javascripts</b></p>
+<p><b> Cookies have to be enabled by the client else this method will not work because server uses cookie to identify the request. Controller looks like this</b></p>
     <pre class="brush: csharp">
-      <script src="~/Content/bootstrap-theme.min.css" type="text/css"></script>
-      <script src="~/Content/bootstrap.min.css" type="text/css"></script>
-      <script src="~/Content/grid-0.4.3.min.css" type="text/css"></script>
- 
-      <script src="~/Scripts/jQuery-1.4.4.min.js" type="text/javascript"></script>
-      <script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
-      <script src="~/Scripts/grid-0.4.3.js" type="text/javascript"></script>
-    
+      [ValidateAntiForgeryToken]
+        public class AccountUpdate : Controller
+        {
+            public ActionResult DeleteTransaction()
+            {
+                var transactionId = (int)Session["transactionId"];
+                DeleteTransaction(transactionId);
+                return View();
+            }
+        }    
     </pre>
 <p><b>View Code</b></p>
 
     <pre class="brush: csharp">
-        <table id="grid" data-source="@Url.Action("GetEmployees")"></table>
- 
-            grid = $("#grid").grid({
-                dataKey: "ID",
-                uiLibrary: "bootstrap",
-                columns: [
-                  { field: "ID", width: 50, sortable: true },
-                  { field: "Name", title: "Name", sortable: true },
-                  { field: "Designation", title: "Designation", sortable: false },
-                  { field: "Address", title: "Address", sortable: false },
-                  {
-                      field: "Edit", title: "", width: 34, type: "icon",
-                      icon: "glyphicon-pencil", tooltip: "Edit", events: { "click": Edit }
-                  },
-                  {
-                      field: "Delete", title: "", width: 34, type: "icon",
-                      icon: "glyphicon-remove", tooltip: "Delete", events: { "click": Remove }
-                  }
-                ],
-                pager: { enable: true, limit: 5, sizes: [2, 5, 10, 20] }
-            });
+      @using (Html.BeginForm("DeleteTransaction", "User"))
+      { 
+            @Html.AntiForgeryToken()
+            <input type="submit" value="Transfer Amount" />
+      }
 
     </pre>
 
-    <p><b>Code for CRUD operations</b></p>
+    <p><b>If the request is not valid then below error is thrown</b></p>
 
 
     <pre class="brush: csharp">
-        function Add() {
-                $("#employeeId").val("");
-                $("#name").val("");
-                $("#designation").val("");
-                $("#address").val("");
-                $("#playerModal").modal("show");
-            }
-            function Edit(e) {
-                $("#employeeId").val(e.data.id);
-                $("#name").val(e.data.record.Name);
-                $("#designation").val(e.data.record.Designation);
-                $("#address").val(e.data.record.Address);
-                $("#employeeModal").modal("show");
-            }
-            function Save() {
-                var player = {
-                    ID: $("#employeeId").val(),
-                    Name: $("#name").val(),
-                    Designation: $("#designation").val(),
-                    Address: $("#address").val()
-                };
-                $.ajax({ url: "Home/Save", type: "POST", data: { player: player } })
-                  .done(function () {
-                      grid.reload();
-                      $("#employeeModal").modal("hide");
-                  })
-                  .fail(function () {
-                      alert("Unable to save.");
-                      $("#employeeModal").modal("hide");
-                  });
-            }
-            function Remove(e) {
-                $.ajax({ url: "Home/Delete", type: "POST", data: { id: e.data.id } })
-                  .done(function () {
-                      grid.reload();
-                  })
-                  .fail(function () {
-                      alert("Unable to delete.");
-                  });
-            }
-            function Search() {
-                grid.reload({ searchString: $("#search").val() });
-            }
+        The required anti-forgery cookie "__RequestVerificationToken" is not present.
+ 
+        Description: An unhandled exception occurred during the execution of the current web request.
+        Please review the stack trace for more information about the error and where it originated in the code.
+ 
+        Exception Details: System.Web.Mvc.HttpAntiForgeryException:
+        The required anti-forgery cookie "__RequestVerificationToken" is not present.
 
     </pre>
 
-
-    <p><b>Controller code to perform CRUD operations</b></p>
-
-    <pre class="brush: csharp">
-        public class HomeController : Controller
-        {
-            public ActionResult Index()
-            {
-              return View();
-            }
- 
- 
-            [HttpGet]
-            public JsonResult GetEmployees(int? page, int? limit,
-            string sortBy, string direction, string searchString = null)
-            {
-                int total;
-                var records = new GridModel().GetEmployees
-                (page, limit, sortBy, direction, searchString, out total);
-                return Json(new { records, total }, JsonRequestBehavior.AllowGet);
-            }
- 
-            [HttpPost]
-            public JsonResult Save(Employee employee)
-            {
-                new GridModel().Save(employee);
-                return Json(true);
-            }
- 
-            [HttpPost]
-            public JsonResult Remove(int id)
-            {
-                new GridModel().Remove(id);
-                return Json(true);
-            }
-        }
-
-    </pre>
 
     <br />
     <br />
