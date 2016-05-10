@@ -1,263 +1,44 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<div style="font-size:16px;width:100%;font-family:Calibri">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-    <style type="text/css">
 
- p.MsoNormal
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	}
-        .style1
-        {
-            font-size: 11pt;
-        }
-    </style>
-</head>
-<body>
+<p style="width:80%">
+   In classic asp.net we used to use GridView to convert data in to xlsx Excel file. We can use the similar approach here as shown below
+</p>
 
-    <p class="MsoNormal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
-mso-bidi-font-family:&quot;Times New Roman&quot;"><span style="mso-spacerun:yes">&nbsp;
-        </span>In classic asp.net we used to use GridView to convert data in to xlsx 
-        Excel file. We can use the similar approach here as shown below<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
-        <span style="line-height: 115%; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; background: yellow; mso-highlight: yellow">
-        @</span><span 
-            style="line-height: 115%; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">Html.ActionLink(</span><span 
-            style="line-height: 115%; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;Download 
-        File&quot;</span><span 
-            style="line-height: 115%; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">,
-        </span>
-        <span style="line-height: 115%; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
-        &quot;Download&quot;</span><span 
-            style="line-height: 115%; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">)</span><span style="font-size:10.0pt;
-line-height:115%;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
-&quot;Times New Roman&quot;"><o:p></o:p></span></p>
-    <p class="MsoNormal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
-mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></p>
-    <p class="MsoNormal">
-        <b style="mso-bidi-font-weight:normal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">
-        Controller is as shown below<o:p></o:p></span></b></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black; background: #D9D9D9; mso-shading-themecolor: background1; mso-shading-themeshade: 217">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-        </span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-        public</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        </span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-        ActionResult</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-        DownloadExcelFile()<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-        </span>
-        <span style="font-size:
-10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black">{<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-        HttpContext</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-        curContext = System.Web.</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">HttpContext</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">.Current;<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>curContext.Response.Clear();<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>curContext.Response.AddHeader(</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">&quot;content-disposition&quot;</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">,
-        </span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
-        &quot;attachment;filename=&quot;</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-        + fileName);<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>curContext.Response.Charset = </span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
-        &quot;&quot;</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black">;<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>curContext.Response.Cache.SetCacheability(</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">HttpCacheability</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">.NoCache);<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>curContext.Response.ContentType = </span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #A31515">
-        &quot;application/vnd.ms-excel&quot;</span><span style="font-size:10.0pt;font-family:Consolas;mso-fareast-font-family:&quot;Times New Roman&quot;;
-color:black">;<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"><o:p>
-        &nbsp;</o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-        StringWriter</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-        sw = </span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-        new</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        </span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-        StringWriter</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">();<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-        HtmlTextWriter</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-        htw = </span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-        new</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        </span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-        HtmlTextWriter</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">(sw);<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-        GridView</span><span class="style1" 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-        gv =<span style="mso-spacerun:yes">&nbsp; </span></span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-        new</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        </span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-        GridView</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">();<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>gv.RenderControl(htw);<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"><o:p>
-        &nbsp;</o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-        byte</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">[] 
-        byteArray = </span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-        Encoding</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">.ASCII.GetBytes(sw.ToString());<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-        MemoryStream</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-        s = </span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-        new</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        </span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-        MemoryStream</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">(byteArray);<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span></span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-        StreamReader</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"> 
-        sr = </span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: blue">
-        new</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        </span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-        StreamReader</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">(s,
-        </span>
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: #2B91AF">
-        Encoding</span><span 
-            style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">.ASCII);<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"><o:p>
-        &nbsp;</o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>curContext.Response.Write(sr.ReadToEnd());<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>curContext.Response.End();<o:p></o:p></span></p>
-    <p class="MsoNormal" 
-        style="margin-bottom: 0in; margin-bottom: .0001pt; line-height: normal; background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217; mso-layout-grid-align: none; text-autospace: none">
-        <span style="font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black"><o:p>
-        &nbsp;</o:p></span></p>
-    <p class="MsoNormal" 
-        style="background: #D9D9D9; mso-background-themecolor: background1; mso-background-themeshade: 217">
-        <span style="line-height: 115%; font-family: Consolas; mso-fareast-font-family: &quot;Times New Roman&quot;; color: black">
-        <span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-        }</span><b style="mso-bidi-font-weight:
-normal"><span style="font-size:10.0pt;line-height:115%;mso-fareast-font-family:
-&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></b></p>
-    <p class="MsoNormal">
-        <b style="mso-bidi-font-weight:normal">
-        <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
-        &nbsp;</o:p></span></b></p>
 
-</body>
-</html>
+    <pre class="brush: csharp">
+       @Html.ActionLink("Download File", "Download")
+    </pre>
+   <p><b>Controller is as shown below</b></p>
+  
+    <br />
+    <br />
+
+        <pre class="brush: csharp">
+            public ActionResult DownloadExcelFile()
+            {
+                HttpContext curContext = System.Web.HttpContext.Current;
+                curContext.Response.Clear();
+                curContext.Response.AddHeader("content-disposition", "attachment;filename=" + fileName);
+                curContext.Response.Charset = "";
+                curContext.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                curContext.Response.ContentType = "application/vnd.ms-excel";
+ 
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter htw = new HtmlTextWriter(sw);
+                GridView gv =  new GridView();
+                gv.RenderControl(htw);
+ 
+                byte[] byteArray = Encoding.ASCII.GetBytes(sw.ToString());
+                MemoryStream s = new MemoryStream(byteArray);
+                StreamReader sr = new StreamReader(s, Encoding.ASCII);
+ 
+                curContext.Response.Write(sr.ReadToEnd());
+                curContext.Response.End();
+ 
+            }
+
+            </pre> 
+
+
+</div>
