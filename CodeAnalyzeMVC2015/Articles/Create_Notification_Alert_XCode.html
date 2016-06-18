@@ -1,0 +1,74 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+
+
+    <p style="width:80%">
+        There are 2 different things here, Alert and Notification. <br />
+        Alert is like a dialogue box asking user for confirmation with Yes and No kind of messages which has user input option.<br />
+        Notification alert is for notifying the user about anything with a popup kind of message
+    </p>
+
+    <p style="width:80%">
+        <b>Alert</b>&nbsp; -Let us first see to create an Alert with Yes and No option
+    </p>
+
+
+    <p>
+        Create the NSAlert object though the standard Objective-C alloc-and-init procedure. <br />
+        Send the required NSAlert “setter” messages to initialize the alert
+
+    </p>
+    <pre class="prettyprint" style="font-size:15px">
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert addButtonWithTitle:@"Cancel"];
+        [alert setMessageText:@"Are you sure?"];
+        [alert setInformativeText:@"Once done cannot be reverted."];
+        [alert setAlertStyle:NSWarningAlertStyle];
+</pre>
+    <p style="width:80%">
+        Now invoke the runModal method on the NSAlert object and process as per user choice.
+    </p>
+
+    <pre class="prettyprint" style="font-size:15px">
+     if ([alert runModal] == NSAlertFirstButtonReturn) {
+            // OK clicked, delete the record
+            [self deleteRecord:currentRec];
+        }
+        [alert release];
+</pre>
+
+
+
+
+
+    <p style="width:80%">
+        &nbsp;
+    </p>
+    <p style="width:80%">
+        <b>NotificationAlert</b>&nbsp; -Let us see how to create only a local notification alert which is required for many purposes, one of them may be to
+        ask user review
+
+    </p>
+    <p style="width:80%">
+        Below is code to create a simple local notification.<br />
+        fireDate - to mention when the notification should be shown.<br />
+        We can either mention the interval about when the notification should appear or this can be made a user input by selecting date and time using date and time picker <br />
+        alertBody - to specify the notification message<br />
+        timeZone -  mention timeZone if needed.<br />
+
+    </p>
+
+    <pre  class="prettyprint" style="font-size:15px">
+    
+        UILocalNotification* localNotification = [[UILocalNotificationalloc] init]; 
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:60];
+        localNotification.alertBody = @"Notification message";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    </pre>
+
+    <br />
+    <br />
+
+
+</div>

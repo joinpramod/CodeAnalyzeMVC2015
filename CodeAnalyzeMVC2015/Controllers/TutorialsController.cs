@@ -14,13 +14,13 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult Basics()
         {
-            ViewBag.keywords = "C#, ASP.NET Basic Tutorial - CodeAnalyze";
+            ViewBag.keywords = "C# tutorial for beginners quick and easy";
             List<QuestionModel> questions = new List<QuestionModel>();
 
             if (ModelState.IsValid)
             {
                 ConnManager connManager = new ConnManager();
-                questions = connManager.GetQuestions("Select top 200 * from Question order by questionid");
+                questions = connManager.GetQuestions("Select top 190 * from Question order by questionid");
             }
             return View(questions);
 
@@ -28,7 +28,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult AngularJS()
         {
-            ViewBag.keywords = "AngularJS Basic Tutorial Complete - CodeAnalyze";
+            ViewBag.keywords = "AngularJS tutorial for beginners quick and complete";
             return View();
         }
 
@@ -40,7 +40,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult XCode()
         {
-            ViewBag.keywords = "XCode Basic Intro Tutorial - CodeAnalyze";
+            ViewBag.keywords = "XCode tutorial for beginners quick and easy";
             return View();
         }
 

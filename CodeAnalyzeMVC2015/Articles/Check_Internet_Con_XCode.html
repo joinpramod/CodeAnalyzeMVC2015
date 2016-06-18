@@ -1,0 +1,55 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+
+
+    <p style="width:80%">
+        Add SystemConfiguration framework to the project <br />
+        Add Tony Million's version of Reachability.h and Reachability.m to the project  from <a href="https://github.com/tonymillion/Reachability">https://github.com/tonymillion/Reachability</a><br />
+        Update the interface section<br />
+    </p>
+
+<pre class="prettyprint" style="font-size:15px">
+    #import "Reachability.h"
+    // Add this to the interface in the .m file of your view controller
+    @interface MyViewController ()
+    {
+        Reachability *internetReachableFoo;
+    }
+    @end
+</pre>
+
+
+    <p style="width:80%">
+        Implement below method in the .m file of your view controller which can be called
+    </p>
+
+    <pre class="prettyprint" style="font-size:15px">
+         // Checks if we have an internet connection or not
+        - (void)testInternetConnection
+        {   
+            internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+            // Internet is reachable
+            internetReachableFoo.reachableBlock = ^(Reachability*reach)
+            {
+                // Update the UI on the main thread
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"Yayyy, we have the interwebs!");
+                });
+            };
+            // Internet is not reachable
+            internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+            {
+                // Update the UI on the main thread
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"Someone broke the internet :(");
+                });
+            };
+            [internetReachableFoo startNotifier];
+        }
+</pre>
+
+
+    <br />
+    <br />
+
+
+</div>

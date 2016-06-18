@@ -222,6 +222,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterPage.master.cs">
       <DependentUpon>MasterPage.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -279,6 +286,11 @@
     </Compile>
     <Content Include="ArticleDetails.ascx" />
     <Content Include="Articles\Android_Send_EMail_Exception.html" />
+    <Content Include="Articles\Check_Internet_Con_Android.html" />
+    <Content Include="Articles\Check_Internet_Con_XCode.html" />
+    <Content Include="Articles\Create_AutoComplete_Android.html" />
+    <Content Include="Articles\Create_Notification_Alert_Android.html" />
+    <Content Include="Articles\Create_Notification_Alert_XCode.html" />
     <Content Include="Articles\Executing_Asynchronous_Task_Thread.html" />
     <Content Include="Articles\XCode_Display_Loading_Msg.html" />
     <Content Include="Articles\XCode_Periodically_Rate_Review.html" />
@@ -383,6 +395,7 @@
     <Content Include="js\javacriptCompressor\TinyMCE-max.js" />
     <Content Include="js\javacriptCompressor\TinyMCE.js" />
     <Content Include="js\javacriptCompressor\yuicompressor-2.4.8.jar" />
+    <Content Include="Manage.aspx" />
     <Content Include="MasterPageNoGoog.master" />
     <Content Include="ProcessArticles.aspx" />
     <Content Include="Scripts\tinymce\2stars.png" />

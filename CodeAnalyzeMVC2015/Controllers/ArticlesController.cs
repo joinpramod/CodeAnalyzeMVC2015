@@ -24,7 +24,7 @@ namespace CodeAnalyzeMVC2015.Controllers
            // if (ModelState.IsValid)
            // {
                 ConnManager connManager = new ConnManager();
-                articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
+                articles = connManager.GetArticles("Select * from VwArticles where articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc");
            // }
 
             PagingInfo info = new PagingInfo();
@@ -53,7 +53,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             if (ModelState.IsValid)
             {
                 ConnManager connManager = new ConnManager();
-                articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
+                articles = connManager.GetArticles("Select * from VwArticles where articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc");
             }
 
             IQueryable<ArticleModel> query = articles.AsQueryable();
@@ -163,8 +163,8 @@ namespace CodeAnalyzeMVC2015.Controllers
             GetArticleData(articleID.ToString(), ref model);
 
             articleTitle = model.ArticleTitle.ToString();
-            ViewBag.Description = articleTitle.Replace("-", " ");
-            ViewBag.keywords = articleTitle.Replace("-", " ");
+            ViewBag.Description = articleTitle.Replace("-", " ").Replace("<b>", "").Replace("<b>", "");
+            ViewBag.keywords = articleTitle.Replace("-", " ").Replace("<b>", "").Replace("<b>", "");
 
             if (articleID != null)
             {

@@ -115,7 +115,18 @@ public partial class ProcessArticles : System.Web.UI.Page
                         article.YouTubeURL = txtYoutTube.Text;
                         article.ArticleDetails = txtDetails.Text;
 
-                        article.OptionID = 1;
+                    int[] myy = new int[8] { 23451,65431,54362,21334, 53432,13234, 343322, 22344 };
+                    Random ran = new Random();
+                    int mynum = myy[ran.Next(0, myy.Length)];
+                    article.Views = mynum;
+
+                    int[] myy2 = new int[38] { 16, 17, 18, 19, 23, 24, 25, 26, 32, 34, 35, 37, 39, 40, 41, 42, 44, 45, 46, 47, 48, 51, 52, 54, 55, 56, 57, 58, 59, 63, 69, 70, 71, 72, 73, 82, 104, 106 };
+                    Random ran2 = new Random();
+                    int mynum2 = myy2[ran2.Next(0, myy2.Length)];
+                    article.ThumbsUp = mynum2;
+
+
+                    article.OptionID = 1;
                         article.CreatedDateTime = DateTime.Now;
 
 

@@ -21,9 +21,9 @@ namespace CodeAnalyzeMVC2015.Controllers
             //{
                 string strSQL = string.Empty;
                 if (!string.IsNullOrEmpty(ddType))
-                    strSQL = "Select * from Question Where QuestionId > 37861 and QuestionTypeId = " + ddType;
+                    strSQL = "Select top 75 * from Question Where QuestionId > 37861 and QuestionTypeId = " + ddType;
                 else
-                    strSQL = "Select * from Question Where QuestionId > 37861 order by questionid desc";
+                    strSQL = "Select top 75 * from Question Where QuestionId > 37861 order by questionid";
 
                 ConnManager connManager = new ConnManager();
                 questions = connManager.GetQuestions(strSQL);

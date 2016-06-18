@@ -1,0 +1,95 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+
+
+
+    <p style="width:80%">
+        There are 2 different things here, Alert and Notification. <br />
+        Alert is like a dialogue box asking user for confirmation with Yes and No kind of messages which has user input option.<br />
+        Notification alert is for notifying the user about anything with a popup kind of message
+    </p>
+
+    <p style="width:80%">
+        <b>Alert</b>&nbsp; -Let us first see to create an Alert with Yes and No option
+    </p>
+
+
+    <p> On button click use the below code to display an alert </p>
+    <pre class="prettyprint" style="font-size:15px">
+public void onClick(View arg0) {
+	AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
+	// set title
+	alertBuilder.setTitle("Alert Dialog Title");
+	// set dialog message
+	alertBuilder
+		.setMessage("Are you sure you want to perform this action")
+		.setCancelable(false)
+		.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,int id) {
+				// if Yes is hit then perform the required action here
+				MainActivity.this.finish();
+			}
+			})
+		.setNegativeButton("No",new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,int id) {
+				// if No is clicked perform the action here
+				dialog.cancel();
+			}
+		});
+		// create alert dialog
+		AlertDialog alertDialog = alertBuilder.create();
+		// show it
+		alertDialog.show();
+	}
+    
+    </pre>
+
+
+    <p style="width:80%">
+        <b>Notification Alert</b>&nbsp; -Let us see how to create only a notification alert which is required for many purposes, one of them may be to
+        ask user review. Use the below code to create a notification.
+    </p>
+
+    <pre class="prettyprint" style="font-size:15px">
+import android.os.Bundle;
+import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+ 
+        public class NotificationAlert extends Activity {
+ 
+            private static final int NOTIFICATION_ID=1337;
+     
+            @Override
+            protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.notification_alert);
+         
+           
+            //Create NotificationManager object to handle notification objects
+            final NotificationManager manager=(NotificationManager)this.getSystemService(Context.NOTIFICATION_SERVICE);
+            Notification _notification=new Notification(R.drawable.stat_notify_chat,
+                                                            "Android Example Status message!",
+                                                            System.currentTimeMillis());
+         
+            //Opens after create notification button click, this can also be invoked periodically by using a timer
+            PendingIntent i=PendingIntent.getActivity(this, 0,
+                                                    new Intent(this, NotifyMessage.class),
+                                                    0);
+         
+            _notification.setLatestEventInfo(this, "Notification Title", "This is the notification details", i);
+         
+            manager.notify(NOTIFY_ME_ID, _notification);
+         
+         
+    }
+}
+    </pre>
+
+    <br />
+    <br />
+
+
+</div>

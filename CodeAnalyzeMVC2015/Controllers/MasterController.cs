@@ -56,7 +56,7 @@ namespace CodeAnalyzeMVC2015.Models
         public ActionResult RecentPosts()
         {
            // CheckUserLogin();
-            List<ArticleModel> articles = GetArticles("Select top 5 * from VwArticles order by articleId desc");
+            List<ArticleModel> articles = GetArticles("Select top 5 * from VwArticles where articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc");
             return PartialView("RecentPosts", articles);
         }
 
@@ -68,7 +68,7 @@ namespace CodeAnalyzeMVC2015.Models
             Session.RemoveAll();
             List<ArticleModel> articles = new List<ArticleModel>();
             ConnManager connManager = new ConnManager();
-            articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
+            articles = connManager.GetArticles("Select * from VwArticles where articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc");
             connManager.DisposeConn();
 
             PagingInfo info = new PagingInfo();

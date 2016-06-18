@@ -23,6 +23,8 @@ namespace CodeAnalyzeMVC2015
         private System.DateTime DtModifiedDateTime;
         private string StrYouTubeURL;
 
+        public int Views { get; set; }
+
         public SqlConnection SetConnection
         {
             get
@@ -219,6 +221,7 @@ namespace CodeAnalyzeMVC2015
             SqlParameter ParamThumbsDown = Cmd.Parameters.Add("@ThumbsDown", SqlDbType.Int);
             SqlParameter ParamCreatedDateTime = Cmd.Parameters.Add("@InsertedDate", SqlDbType.DateTime);
             SqlParameter ParamModifiedDateTime = Cmd.Parameters.Add("@UpdatedDate", SqlDbType.DateTime);
+            SqlParameter ParamViews = Cmd.Parameters.Add("@Views", SqlDbType.Int);
 
             ParamOptID.Value = IntOptID;
             ParamOptID.Direction = ParameterDirection.Input;
@@ -242,7 +245,8 @@ namespace CodeAnalyzeMVC2015
             ParamThumbsUp.Direction = ParameterDirection.Input;
             ParamThumbsDown.Value = IntThumbsDown;
             ParamThumbsDown.Direction = ParameterDirection.Input;
-
+            ParamViews.Value = Views;
+            ParamViews.Direction = ParameterDirection.Input;
 
 
 

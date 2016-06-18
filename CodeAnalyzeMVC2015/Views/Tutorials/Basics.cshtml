@@ -2,9 +2,12 @@
     ViewBag.Title = "C#, ASP.NET Basic Tutorial - CodeAnalyze";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<meta name="description" content="C#, ASP.NET Basic Tutorial - CodeAnalyze" />
+<meta name="description" content="Basic C# tutorial for beginners quick and complete" />
 
-<h2>Basics</h2><br />
+<h2>Basic C# tutorial for beginners quick and complete</h2><br />
+
+
+
 
 <table style="width: 100%; font-size: 16px">
     @foreach (CodeAnalyzeMVC2015.Models.QuestionModel questionModel in Model)
@@ -14,6 +17,13 @@
                 <img id="imgArrow" src="~/Images/Info.png" style="width:20px;height:20px;"  />
             </td>
             <td>
+                @{
+                    string title = questionModel.QuestionTitle;
+                    System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+                    questionModel.QuestionTitle = rgx.Replace(questionModel.QuestionTitle, "");
+                }
+
+
                 @Html.ActionLink(questionModel.QuestionTitle, "Ans", "Que", new { ID = questionModel.QuestionID, Title = questionModel.QuestionTitle.ToString().Replace(" ", "-") }, null)
             </td>
         </tr>

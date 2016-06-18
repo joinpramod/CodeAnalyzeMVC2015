@@ -1,0 +1,42 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+
+    
+
+    <p style="width:80%">
+        We will need following permission in AndroidManifest.xml file
+    </p>
+
+<pre class="prettyprint" style="font-size:15px">
+    uses-permission android:name="android.permission.INTERNET"     
+    uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"
+</pre>
+
+
+    <p style="width:80%">
+        Use the below code to check connection. <br />
+        Note: By checking we cannot confirm that device has internet connection as this check will succeed even if its connected to wifi.
+    </p>
+
+    <pre class="prettyprint" style="font-size:15px">
+         private Context _context = getApplicationContext()
+         ConnectivityManager connectivity = (ConnectivityManager) _context.getSystemService(Context.CONNECTIVITY_SERVICE);
+          if (connectivity != null) 
+          {
+              NetworkInfo[] info = connectivity.getAllNetworkInfo();
+              if (info != null) 
+                  for (int i = 0; i < info.length; i++) 
+                      if (info[i].getState() == NetworkInfo.State.CONNECTED)
+                      {
+                          return true;
+                      }
+ 
+          }
+          return false;
+</pre>
+
+
+    <br />
+    <br />
+
+
+</div>

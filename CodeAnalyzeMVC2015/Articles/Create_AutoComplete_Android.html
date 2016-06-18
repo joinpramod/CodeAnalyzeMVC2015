@@ -1,0 +1,103 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+   
+    
+
+<p style="width:80%">
+    In this example we will see how to create autocomplete suggestions for TextView in Android from a string array.
+    Normally we will be in need of autocompleting TextView after user enters few charectors with 
+    list of words in string format that matches the charectors the user enters. This will help the user to interact
+    faster with the app and ease him from typing the whole thing by just taping and selecting one of the options available
+    in the list.
+</p>
+    
+<p style="width:80%">
+    Consider we have a TextView and AutoCompleteTextView
+    </p> 
+<pre class="prettyprint" style="font-size:15px">
+< TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20px"
+            android:text="Enter Employee Name"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="10dip"></ TextView>
+
+
+< AutoCompleteTextView
+        android:id="@+id/EmpNames"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:textStyle="bold"
+        android:width="250dip" />
+</pre>
+
+<p style="width:80%">
+    Now we will see the contents of java file which will handle everything. This will create a string array and 
+    assign it to AutoCompleteTextView to display the list and assign the selected item to TextView
+</p> 
+
+<pre class="prettyprint" style="font-size:15px">
+      
+AutoCompleteTextView textView=null;
+private ArrayAdapter<String> adapter;
+     
+//String array to be populated in autocomplete
+String item[]={
+            "James", "Mathew", "Mike", "Andy",
+            "Bob", "Daniel", "Alex", "Olive",
+            "Cindy", "Jim Wheeler", "Jeff", "Donald"
+        };
+     
+
+@Override
+public void onCreate(Bundle bundle) {
+    super.onCreate(bundle);
+         
+    setContentView(R.layout.auto_complete_string);
+         
+          
+    // Initialize AutoCompleteTextView values
+         
+    // Get AutoCompleteTextView reference from xml
+    textView = (AutoCompleteTextView) findViewById(R.id.EmpNames);
+             
+    //Create adapter    
+    adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, item);
+             
+    textView.setThreshold(1);
+             
+    //Set adapter to AutoCompleteTextView
+    textView.setAdapter(adapter);
+    textView.setOnItemSelectedListener(this);
+    textView.setOnItemClickListener(this);        
+           
+}
+ 
+     
+@Override
+public void onItemSelected(AdapterView<?> arg0, View arg1, int position,
+        long arg3) {
+  
+}
+ 
+
+@Override
+public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {       
+    // Alert       
+    Toast.makeText(getBaseContext(), "Position:"+arg2+" Month:"+arg0.getItemAtPosition(arg2),
+            Toast.LENGTH_LONG).show();
+         
+        
+}
+     
+
+</pre>
+
+
+<br />
+<br />
+    
+
+</div>
