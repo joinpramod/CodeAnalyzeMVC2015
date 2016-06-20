@@ -202,6 +202,10 @@ namespace CodeAnalyzeMVC2015
         }
 
 
+        public int IsDisplay { get; set; }
+
+
+
         public bool SetCommandArtcles(ref SqlCommand CmdSent)
         {
             SqlCommand Cmd = new SqlCommand("Articles_Sp", CmdLCLDBConn);
@@ -222,6 +226,7 @@ namespace CodeAnalyzeMVC2015
             SqlParameter ParamCreatedDateTime = Cmd.Parameters.Add("@InsertedDate", SqlDbType.DateTime);
             SqlParameter ParamModifiedDateTime = Cmd.Parameters.Add("@UpdatedDate", SqlDbType.DateTime);
             SqlParameter ParamViews = Cmd.Parameters.Add("@Views", SqlDbType.Int);
+            SqlParameter ParamIsDisplay = Cmd.Parameters.Add("@IsDisplay", SqlDbType.Int);
 
             ParamOptID.Value = IntOptID;
             ParamOptID.Direction = ParameterDirection.Input;
@@ -248,7 +253,8 @@ namespace CodeAnalyzeMVC2015
             ParamViews.Value = Views;
             ParamViews.Direction = ParameterDirection.Input;
 
-
+            ParamIsDisplay.Value = IsDisplay;
+            ParamIsDisplay.Direction = ParameterDirection.Input;
 
 
             if (DtCreatedDateTime < DateTime.Parse("1-1-2000"))

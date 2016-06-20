@@ -21,11 +21,16 @@ namespace CodeAnalyzeMVC2015.Controllers
         public ActionResult Index()
         {
             List<ArticleModel> articles = new List<ArticleModel>();
-           // if (ModelState.IsValid)
-           // {
-                ConnManager connManager = new ConnManager();
-                articles = connManager.GetArticles("Select * from VwArticles where articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc");
-           // }
+            user = (Users)Session["User"];
+            // if (ModelState.IsValid)
+            // {
+            ConnManager connManager = new ConnManager();
+            if(user!= null && user.UserId != 0)
+                articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
+            else
+                articles = connManager.GetArticles("Select * from VwArticles where IsDisplay =1 and articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc");
+
+            // }
 
             PagingInfo info = new PagingInfo();
             info.SortField = " ";
@@ -53,7 +58,12 @@ namespace CodeAnalyzeMVC2015.Controllers
             if (ModelState.IsValid)
             {
                 ConnManager connManager = new ConnManager();
-                articles = connManager.GetArticles("Select * from VwArticles where articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc");
+                user = (Users)Session["User"];
+                if (user != null && user.UserId != 0)
+                    articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
+                else
+                    articles = connManager.GetArticles("Select * from VwArticles where IsDisplay =1 and articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc");
+
             }
 
             IQueryable<ArticleModel> query = articles.AsQueryable();

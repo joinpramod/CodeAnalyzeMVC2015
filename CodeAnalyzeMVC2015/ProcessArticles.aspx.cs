@@ -75,17 +75,18 @@ public partial class ProcessArticles : System.Web.UI.Page
 
                 if (user != null && user.Email != null && user.Email == "admin@codeanalyze.com")
                 {
-                    if (fileUploadWordFile.HasFile || fileUploadSourceFile.HasFile)
+                    if (fileUploadWordFile.HasFile || fileUploadSourceFile.HasFile || chkSkipSave.Checked)
                     {
                         string targetFolder = HttpContext.Current.Server.MapPath("~/Articles/");
                         string targetPath = Path.Combine(targetFolder, fileUploadWordFile.FileName);
 
-                        if (fileUploadWordFile.HasFile)
+
+                        if (fileUploadWordFile.HasFile && !chkSkipSave.Checked)
                             fileUploadWordFile.SaveAs(targetPath);
 
                         targetPath = Path.Combine(targetFolder, fileUploadSourceFile.FileName);
 
-                        if (fileUploadSourceFile.HasFile)
+                        if (fileUploadSourceFile.HasFile && !chkSkipSave.Checked)
                             fileUploadSourceFile.SaveAs(targetPath);
 
 
@@ -114,6 +115,10 @@ public partial class ProcessArticles : System.Web.UI.Page
                         article.WordFile = fileUploadWordFile.FileName;
                         article.YouTubeURL = txtYoutTube.Text;
                         article.ArticleDetails = txtDetails.Text;
+
+                    if (chkIsDisplay.Checked)
+                        article.IsDisplay = 0;
+                    
 
                     int[] myy = new int[8] { 23451,65431,54362,21334, 53432,13234, 343322, 22344 };
                     Random ran = new Random();

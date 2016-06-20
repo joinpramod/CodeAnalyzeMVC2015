@@ -70,6 +70,25 @@
                 </td>
             </tr>
             <tr>
+                <td align="left"  style="font-family: Calibri; width: 123px;">
+                    <%--<b>Skip File Save: </b>--%>
+                </td>
+                <td align="left">
+                     <asp:CheckBox ID="chkSkipSave" runat="server" Text="Skil Save"></asp:CheckBox>
+
+                </td>
+            </tr>
+             <tr>
+                <td align="left"  style="font-family: Calibri; width: 123px;">
+                   <%-- <b>Is Display: </b>--%>
+                </td>
+                <td align="left">
+                     <asp:CheckBox ID="chkIsDisplay" runat="server" Text="Don't Display"></asp:CheckBox>
+
+                </td>
+            </tr>
+            <tr>
+
                 <td align="left" valign="top" style="padding-left: 160px" colspan="2">
                     <asp:Button ID="btnSubmit" runat="server" Font-Bold="True" Font-Size="16px" Font-Names="Calibri" OnClick="btnSubmit_Click"
                         Text="Submit" ValidationGroup="1" />
