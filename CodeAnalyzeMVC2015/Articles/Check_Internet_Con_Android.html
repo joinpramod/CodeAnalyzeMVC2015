@@ -6,7 +6,7 @@
         We will need following permission in AndroidManifest.xml file
     </p>
 
-<pre class="prettyprint" style="font-size:15px">
+<pre class="brush: java">
     uses-permission android:name="android.permission.INTERNET"     
     uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"
 </pre>
@@ -17,7 +17,7 @@
         Note: By checking we cannot confirm that device has internet connection as this check will succeed even if its connected to wifi.
     </p>
 
-    <pre class="prettyprint" style="font-size:15px">
+    <pre class="brush: java">
          private Context _context = getApplicationContext()
          ConnectivityManager connectivity = (ConnectivityManager) _context.getSystemService(Context.CONNECTIVITY_SERVICE);
           if (connectivity != null) 
