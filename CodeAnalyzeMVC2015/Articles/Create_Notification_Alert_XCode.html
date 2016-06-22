@@ -17,7 +17,7 @@
         Send the required NSAlert “setter” messages to initialize the alert
 
     </p>
-    <pre class="brush: swift">
+    <pre class="brush: csharp">
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"OK"];
         [alert addButtonWithTitle:@"Cancel"];
@@ -29,7 +29,7 @@
         Now invoke the runModal method on the NSAlert object and process as per user choice.
     </p>
 
-    <pre class="brush: swift">
+    <pre class="brush: csharp">
      if ([alert runModal] == NSAlertFirstButtonReturn) {
             // OK clicked, delete the record
             [self deleteRecord:currentRec];
@@ -58,7 +58,7 @@
 
     </p>
 
-    <pre  class="brush: swift">
+    <pre  class="brush: csharp">
     
         UILocalNotification* localNotification = [[UILocalNotificationalloc] init]; 
         localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:60];
