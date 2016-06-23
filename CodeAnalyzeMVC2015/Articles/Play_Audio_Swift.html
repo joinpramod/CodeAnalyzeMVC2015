@@ -1,0 +1,106 @@
+﻿
+<html>
+    <body>
+<script type="text/javascript" src="sCodeJava.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="sCodeCSS.css" />
+    <link type="text/css" rel="stylesheet" href="CodeDecorate.css" />
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                To use AVFoundation Framework we need to import it first. So after creating an XCode project import the framework.
+                Create ViewController swift class by creating a new file and add below code. The method shown below get the audio first using 
+                NSURL and creates the AVAudioPlayer object and assings it to audio play and play the audio using play method.                 
+            </p>
+               <pre class="brush: java">
+import AVFoundation
+
+func playAudio()
+{
+        // this is to set the url of the audio
+        let audioURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("chime_bell_ding", ofType: "wav")!)
+        
+        do
+        {
+            audioPlayer = try AVAudioPlayer(contentsOfURL: audioURL)
+            audioPlayer!.delegate = self         
+            
+            if (audioPlayer!.prepareToPlay())
+            {
+                audioPlayer!.play()
+            }
+        }
+        catch
+        { }
+}
+
+//Function to stop playing the audio
+func stopAudio()
+{
+audioPlayer!.stop()
+btnPlayAudioRepeatedly.enabled = true
+btnStopAudio.enabled = false
+}
+            </pre>
+        </li>
+
+        <li>
+            <p style="width:80%">
+               To play video file, drag and drop AVKitPlayerViewController to the StoryBoard. Similar to audio, create a swift class say 
+                AVVideoPlayerViewController of subclass AVPlayerViewController.
+            </p>
+        </li>
+
+        <li>
+            <p style="width:80%">
+                Use UIImagePickerConroller control to browse videos and select the video. AVVideoPlayer has inbuilt controls of play, stop, forward and backword options. 
+             </p>
+            <pre class="brush: java">
+import AVFoundation
+//this function is to get videos from UIImagePickerController
+func getVideos()
+{
+        let _imagePickerController = UIImagePickerController()
+        _imagePickerController.sourceType = .SavedPhotosAlbum
+        _imagePickerController.mediaTypes = [kUTTypeMovie as String]
+        _imagePickerController.delegate = self
+        
+        self.presentViewController(_imagePickerController, animated: true, completion: nil)
+}
+
+
+//After fecthing the video following delegate method of UIImagePickerController is called.
+func _imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])
+{
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        let _videoPlayerViewController = self.storyboard!.instantiateViewControllerWithIdentifier("VideoPlayerViewController") as! VideoPlayerViewController
+        _videoPlayerViewController.videoURL = info[UIImagePickerControllerMediaURL] as? NSURL
+        
+        self.navigationController!.pushViewController(_videoPlayerViewController, animated: true)
+}
+
+
+//Finally to load selected video following method is called. 
+func loadVideo()
+{
+videoPlayer = AVPlayer(URL: videoURL!)
+let playerViewController = AVPlayerViewController()
+playerViewController.player = videoPlayer
+NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerDidReachEndNotificationHandler:", name: AVPlayerItemDidPlayToEndTimeNotification, object: videoPlayer!.currentItem)
+self.presentViewController(playerViewController, animated: true)
+{
+playerViewController.player!.play()
+}
+}
+            </pre>
+        </li>
+</ol>
+    
+  
+
+</div>
+        </body>
+    </html>    
