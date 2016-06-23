@@ -583,7 +583,7 @@ line-height: 40px;
 ---------------------------------------------------------------------- */
 #ccr-main-section #ccr-right-section.col-md-4{
 	padding-left: 15px;
-	margin-top: 40px;
+	margin-top: 10px;
 }
 #ccr-main-section #ccr-right-section.col-md-4.ccr-home{
 	margin-top: 15px;
@@ -669,7 +669,7 @@ line-height: 40px;
 #sidebar-popular-post li:last-child, 
 #sidebar-older-post li:last-child {
 	border-bottom: 1px solid  #e3e2e2;
-	margin-bottom: 0px;
+	margin-bottom: 10px;
 
 }
 #sidebar-popular-post li:nth-child(even), 
