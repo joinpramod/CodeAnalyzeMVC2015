@@ -1,0 +1,121 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+   
+    1. Upload file to FTP server from iOS client app in  Objective C XCode
+    <br />
+    2. Download file from FTP server from iOS client app in Objective C XCode<p style="width:80%">
+    There are many components available in the market to upload file to FTP server, download file from ftp server from iOS client app like<br />
+    ASIHttpRequest <br />
+    Black Raccoon <br />
+    ConnectionKit and so on <br />
+    This article explains about using Black Raccoon to do the job. This is because after comparing all Black Raccoon seems to be most simple and straight forward.
+    Also this has been maintained properly. 
+
+</p>
+    
+<p style="width:80%">
+    Add the below code in the header
+</p> 
+<pre class="brush: csharp">
+     BRRequestDownload *downloadFile;
+    BRRequestUpload *uploadFile;
+    BRRequestDelete *deleteFile;
+
+    NSMutableData *downloadData;
+    NSData *uploadData;
+</pre> 
+    <p style="width:80%">
+Code to download a file from FTP server from iOS client app in objective-C XCode
+        </p> 
+<pre class="brush: csharp">
+    - (IBAction) downloadFile :(id)sender
+{
+    downloadData = [NSMutableData dataWithCapacity: 1];
+
+    downloadFile = [[BRRequestDownload alloc] initWithDelegate: self];
+
+    //----- for anonymous login just leave the username and password nil
+    downloadFile.path = @"/home/user/myfile.txt";   
+    downloadFile.hostname = @"192.168.1.100";
+    downloadFile.username = @"yourusername";
+    downloadFile.password = @"yourpassword";
+
+    //we start the request
+    [downloadFile start];
+}
+</pre> 
+Here is the delegate that is required to download the file
+<pre class="brush: csharp">
+- (void) requestDataAvailable: (BRRequestDownload *) request;
+{
+    [downloadData appendData: request.receivedData];
+}
+</pre> 
+    <p style="width:80%">
+Code to upload a file to FTP server from iOS client app in objective-C XCode
+        </p> 
+
+    <pre class="brush: csharp">
+- (IBAction) uploadFile :(id)sender
+{
+    //----- get the file to upload as an NSData object
+    NSString *applicationDocumentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *filepath = [NSString stringWithFormat: @"%@/%@", applicationDocumentsDir, @"file.text"];
+    uploadData = [NSData dataWithContentsOfFile: filepath];
+
+    uploadFile = [[BRRequestUpload alloc] initWithDelegate: self];
+
+    //----- for anonymous login just leave the username and password nil
+    uploadFile.path = @"/home/user/myfile.txt";     
+    uploadFile.hostname = @"154.34.1.35";
+    uploadFile.username = @"yourusername";
+    uploadFile.password = @"yourpassword";
+
+    //we start the request
+    [uploadFile start];
+}
+</pre> 
+
+<p style="width:80%">
+    Delegate callback to determine if something should be overwritten REQUIRED
+ </p>
+      <pre class="brush: csharp">
+-(BOOL) shouldOverwriteFileWithRequest: (BRRequest *) request
+{
+    //----- set this as appropriate if you want the file to be overwritten
+    if (request == uploadFile)
+    {
+        //----- if uploading a file, we set it to YES
+        return YES;
+    }
+
+    //----- anything else (directories, etc) we set to NO
+    return NO;
+}
+</pre> 
+<p style="width:80%">
+Delegate callback to get percent upload, download or directory OPTIONAL
+ </p>
+     <pre class="brush: csharp">
+- (void) percentCompleted: (BRRequest *) request
+{
+    NSLog(@"%f completed...", request.percentCompleted);
+}
+ 
+</pre>
+<p style="width:80%">
+    Refer <a href="https://github.com/lloydsargent/BlackRaccoon">Black Reccoon</a> for more of such functionality as listed below<br />
+    1. Create Directory on FTP server from IOS Client app in Objective C XCode<br />
+    2. Delete Directory on FTP server from IOS Client app in Objective C XCode<br />
+    3. List Directory on FTP server from IOS Client app in Objective C XCode<br />
+    4. Cancel Upload or Download file on FTP server from IOS Client app in Objective C XCode<br />
+       Handling failed request on ftp server.
+
+
+    </p> 
+
+
+<br />
+<br />
+    
+
+</div>

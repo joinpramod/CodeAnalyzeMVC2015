@@ -1,4 +1,4 @@
-﻿<table>
+﻿<table cellpadding="0" cellspacing="0">
 
     @foreach (CodeAnalyzeMVC2015.Models.ArticleModel articlesModel in Model)
     {
@@ -7,7 +7,7 @@
         articlesModel.ArticleTitle = rgx.Replace(articlesModel.ArticleTitle, "");
 
         <tr>
-            <td colspan="5">
+            <td colspan="4">
                 <img id="imgArrow" src="~/Images/WriteArticle.png" style="width:25px;height:25px;" />
                 @Html.ActionLink(title, "Details", "Articles", new { ID = articlesModel.ArticleID, Title = articlesModel.ArticleTitle.Replace(" ", "-") }, null)
 
@@ -26,7 +26,7 @@
             
             
         </tr>
-        <tr><td>&nbsp;</td></tr>
+        @*<tr><td>&nbsp;</td></tr>*@
 
     }
 </table>

@@ -118,9 +118,10 @@ public partial class ProcessArticles : System.Web.UI.Page
 
                     if (chkIsDisplay.Checked)
                         article.IsDisplay = 0;
-                    
+                    else
+                        article.IsDisplay = 1;
 
-                    int[] myy = new int[8] { 23451,65431,54362,21334, 53432,13234, 343322, 22344 };
+                    int[] myy = new int[8] { 23451,45431,14362,21334, 43432,13234, 34332, 22344 };
                     Random ran = new Random();
                     int mynum = myy[ran.Next(0, myy.Length)];
                     article.Views = mynum;

@@ -6,7 +6,7 @@
 
 
     <p><b>RateReview.h</b></p>
-    <pre class="brush: csharp">
+    <pre class="brush: java">
     public void sendEmail(String emailAddress, String emailSubject, String emailBody) {
     final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
     emailIntent.setType("plain/html");
@@ -20,7 +20,7 @@
     </pre>
     <p><b>In catch exception use the send email function as shown below</b></p>
 
-    <pre class="brush: csharp">
+    <pre class="brush: java">
     } catch (Exception e) {
         System.out.println(e.getMessage());
         String errHTML = String.format("<h2>EXCEPTIONAL</h2>", e.getMessage());

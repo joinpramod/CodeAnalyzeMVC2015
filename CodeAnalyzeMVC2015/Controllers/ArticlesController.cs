@@ -28,7 +28,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             if(user!= null && user.UserId != 0)
                 articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
             else
-                articles = connManager.GetArticles("Select * from VwArticles where IsDisplay =1 and articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc");
+                articles = connManager.GetArticles("Select * from VwArticles where IsDisplay =1 order by articleId desc");
 
             // }
 
@@ -62,7 +62,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 if (user != null && user.UserId != 0)
                     articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
                 else
-                    articles = connManager.GetArticles("Select * from VwArticles where IsDisplay =1 and articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc");
+                    articles = connManager.GetArticles("Select * from VwArticles where IsDisplay =1 order by articleId desc");
 
             }
 

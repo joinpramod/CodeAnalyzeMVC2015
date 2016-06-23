@@ -1,0 +1,117 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+   
+    <ol>
+        <li>
+            <p style="width:80%">
+                Create an XCode project
+            </p>
+        </li>
+        <li>
+            <p style="width:80%">
+                If you haven't created Facebook app id then please create an App Id here <a href="https://developers.facebook.com/">https://developers.facebook.com/</a>&nbsp;
+       Follow the instructions on the site and create a new app and ID.
+                <br />
+                While creating the app in Facebook, we will be asked for Bundle Identifier. Update the Bundle ID with the ID created in the previous step in XCode.</p>
+        </li>
+        <li>
+            <p style="width:80%">
+                Come back to XCode project and include FBSDKLoginKit &amp; FBSDKCoreKit frameworks.<br />To do this go to File --> Add files to Project. 
+                <br />
+                Select FBSDKLoginKit.framework &amp; FBSDKCoreKit.framework from directory list. (if these are not available then follow the procedure here to add sdk&#39;s <a href="https://developers.facebook.com/docs/ios/getting-started#sdk">https://developers.facebook.com/docs/ios/getting-started#sdk</a>)<br />
+                Check &quot;Copy Item If Needed&quot; and click on Add</p>
+        </li>
+        <li>
+            <p style="width:80%">
+                Now lets go to the info.plist file. Add 2 keys here FacebookAppID and FacebookDisplayName. Values will be the Facebook App ID created on facebook.com and name can be anything. Create a new key named URL Types, and set its type to array with one item only. Give it the URL Schemes title and make it an array too. In the one and only item that should be contained, set the app ID value you copied from the Facebook dashboard, prefixing it with the fb.</p>
+        </li>
+        <li>
+            <p style="width:80%">
+                Add the following in briding header file<br />
+                <pre class="brush: csharp">
+#import &lt;FBSDKCoreKit/FBSDKCoreKit.h&gt; 
+#import &lt;FBSDKLoginKit/FBSDKLoginKit.h&gt;</pre>
+        </li>
+           <li>
+            <p style="width:80%">
+                Update the following methods in AppDelegate.swift file 
+                  <pre class="brush: csharp">
+func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool
+{
+return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+}
+</pre>
+        </li>
+        <li>
+            Add Facebook login button to ViewController.swift and Set "FBSDKLoginButton" as a custom class of UIButton.
+            Update view controller to check for an existing token at load. This removes the overhead of unnecessary app switch to Facebook if user already granted permissions. Add a label and image view control to display the data after successful user login.
+            <pre class="brush: csharp">
+import UIKit
+
+class ViewController: UIViewController, FBSDKLoginButtonDelegate {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if (FBSDKAccessToken.currentAccessToken() != nil)
+        {
+            // User already logged in so proceed.
+        }
+        else
+        {
+            let loginView : FBSDKLoginButton = FBSDKLoginButton()
+            self.view.addSubview(loginView)
+            loginView.center = self.view.center
+            loginView.readPermissions = ["public_profile", "email", "user_friends"]
+            loginView.delegate = self
+        }
+        
+    }
+
+   func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        println("User Logged In")
+        
+        if ((error) != nil)
+        {
+            // Process error
+        }
+        else if result.isCancelled {
+            // Handle cancellations
+        }
+        else {
+            // If you ask for multiple permissions at once, you
+            // should check if specific permissions missing
+            if result.grantedPermissions.contains("email")
+            {
+                 // Do work
+            }
+        }   
+    }
+
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!)
+    {
+    FBSDKGraphRequest.init(graphPath: "me", parameters: ["fields":"first_name, last_name, picture.type(large)"]).startWithCompletionHandler 
+                { (connection, result, error) -> Void in
+                    let strFirstName: String = (result.objectForKey("first_name") as? String)!
+                    let strLastName: String = (result.objectForKey("last_name") as? String)!
+                    let strPictureURL: String = (result.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)!
+                    self.lblName.text = "Welcome, \(strFirstName) \(strLastName)"
+                    self.ivUserProfileImage.image = UIImage(data: NSData(contentsOf<a href="URL:%20NSURL(string:%20strPictureURL)!)!">URL: NSURL(string: strPictureURL)!)!</a>)
+                }
+    }
+
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        let loginManager: FBSDKLoginManager = FBSDKLoginManager()
+        loginManager.logOut()
+        ivUserProfileImage.image = nil
+        lblName.text = ""
+    }   
+}
+      </pre>
+
+        </li>
+
+</ol>
+    
+  
+
+</div>

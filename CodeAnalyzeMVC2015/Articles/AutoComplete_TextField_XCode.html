@@ -1,0 +1,34 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+   
+    
+
+<p style="width:80%">
+    In this example we will see how to create view controls dynamically at runtime in XCode Objective C or 
+    create view controls programmatically in XCode Objective C.  We will create XCode Objective C UI elements in a loop.        
+    Inside the loop we will create UILabel using UIViewController programmatically at run time. 
+</p>
+    
+
+<pre class="brush: csharp">
+NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithCapacity:0];
+
+
+// Inside a loop
+UIViewController *vc = [[UIViewController alloc] init];
+vc.view.backgroundColor = [UIColor whiteColor];
+
+UILabel *myLabel =[[UILabel alloc] initWithFrame:CGRectMake(220, 50, 130, 80)];
+myLabel.backgroundColor = [UIColor clearColor];
+myLabel.textColor = [UIColor blackColor];
+myLabel.text = @"Hi";
+
+[viewControllers addObject:vc];
+
+</pre>
+
+
+    <br />
+    <br />
+    
+
+</div>

@@ -286,12 +286,19 @@
     </Compile>
     <Content Include="ArticleDetails.ascx" />
     <Content Include="Articles\Android_Send_EMail_Exception.html" />
+    <Content Include="Articles\AutoComplete_TextField_XCode.html" />
+    <Content Include="Articles\AutoComplete_TextField_XCode_1.html" />
     <Content Include="Articles\Check_Internet_Con_Android.html" />
     <Content Include="Articles\Check_Internet_Con_XCode.html" />
     <Content Include="Articles\Create_AutoComplete_Android.html" />
+    <Content Include="Articles\Create_Controls_Dynamically_Android.html" />
+    <Content Include="Articles\Create_Controls_Dynamically_XCode.html" />
     <Content Include="Articles\Create_Notification_Alert_Android.html" />
     <Content Include="Articles\Create_Notification_Alert_XCode.html" />
+    <Content Include="Articles\Download_and Upload_File_FTP_XCode.html" />
     <Content Include="Articles\Executing_Asynchronous_Task_Thread.html" />
+    <Content Include="Articles\Login_With_Facebook_Swift2.html" />
+    <Content Include="Articles\Use_GoogleMaps_SDK_Swift_2.html" />
     <Content Include="Articles\XCode_Display_Loading_Msg.html" />
     <Content Include="Articles\XCode_Periodically_Rate_Review.html" />
     <Content Include="AskQuestions.aspx" />
@@ -395,6 +402,12 @@
     <Content Include="js\javacriptCompressor\TinyMCE-max.js" />
     <Content Include="js\javacriptCompressor\TinyMCE.js" />
     <Content Include="js\javacriptCompressor\yuicompressor-2.4.8.jar" />
+    <Content Include="js\sCodeCPP.js" />
+    <Content Include="js\sCodeJava.js" />
+    <Content Include="js\sCodePowerShell.js" />
+    <Content Include="js\sCodeSQL.js" />
+    <Content Include="js\sCodeSwift.js" />
+    <Content Include="js\sCodeVB.js" />
     <Content Include="Manage.aspx" />
     <Content Include="MasterPageNoGoog.master" />
     <Content Include="ProcessArticles.aspx" />

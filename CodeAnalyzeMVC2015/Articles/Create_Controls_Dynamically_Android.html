@@ -1,0 +1,86 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+   
+    
+
+<p style="width:80%">
+    In this example we will see how to create view controls dynamically at runtime in Android or 
+    create view controls programmatically in Android.  We will create Android UI elements in a loop.        
+    Inside the loop we will create LinearLayout, TextView and Button programmatically at run time.
+</p>
+    
+
+<pre class="brush: java">
+import android.os.Bundle;
+import android.app.Activity;
+import android.app.ActionBar.LayoutParams;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+ 
+public class MainActivity extends Activity {
+ 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.dynamically_create_view_element);
+         
+        final LinearLayout _linearLayout = (LinearLayout) findViewById(R.id.linearMain);
+         
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+         
+        //Creating 5 set of dynamic UI elements in Android
+        for(int j=0;j<=5;j++) 
+        {   
+            // Dynamic creation of  LinearLayout
+            LinearLayout _dynamicLinearLayout = new LinearLayout(this);
+            ll.setOrientation(LinearLayout.HORIZONTAL);
+             
+            // this is to create dynamic TextView
+            TextView product = new TextView(this);
+            product.setText(" Product"+j+"    ");
+            _dynamicLinearLayout.addView(product);
+             
+            // this is to create dynamic TextView
+            TextView price = new TextView(this);
+            price.setText("  $"+j+"     ");
+            _dynamicLinearLayout.addView(price);
+             
+            // Create Button
+            final Button btn = new Button(this);
+                // Set button an ID
+                btn.setId(j+1);
+                btn.setText("Add To Cart");
+                // set the layoutParams on the button
+                btn.setLayoutParams(params);
+                 
+                final int index = j;
+                // add a simple click listener for button
+                btn.setOnClickListener(new OnClickListener() {
+                    public void onClick(View v) {                         
+                        Log.i("TAG", "index :" + index);                         
+                        Toast.makeText(getApplicationContext(), 
+                                "Now clicked button index is :" + index, 
+                                Toast.LENGTH_LONG).show();
+                         
+                    }
+                });
+                 
+               //Button is added to LinearLayout
+                _dynamicLinearLayout.addView(btn);
+               //Finally add button to LinearLayout defined above in XML
+                _linearLayout.addView(ll);  
+        }
+    }
+}
+</pre>
+
+
+    <br />
+    <br />
+    
+
+</div>
