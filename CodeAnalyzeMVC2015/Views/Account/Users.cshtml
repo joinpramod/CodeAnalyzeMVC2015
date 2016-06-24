@@ -23,141 +23,107 @@
  }
 
 
-
+<table style="font-size:16px;font-family:Calibri;width:100%">
     @if (Model.Email == null || ViewBag.Ack != null)
     {
-    <table width="80%">
-        <tr>
-            <td align="center">
-                <input type="image" onclick="FaceBookLogin()" value="FaceBook" style="height:35px;width:200px" src="~/Images/SignInWithFacebook.png" />
-
-            </td>
-            <td align="center">
-                <div id="my-signin2"></div>
-            </td>
-            <td align="center"></td>
-        </tr>
-    </table>
-
-
-    }
-
-    @using (Html.BeginForm("CreateEditUser", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-                <table style="font-size:16px" width="100%">
+                    <tr>    
+                        <td style="padding-top: 5px;"> 
+                            <b>Register by any of the following methods</b><br /><br />
+                         </td>
+                    </tr> 
                     <tr>
-                        <td align="center" style="font-weight: bold; color: red; font-size: 16px">
-                            @ViewBag.Ack
+                        <td style="padding-top: 5px;padding-left:30px">                           
+                            <input type="image" onclick="FaceBookLogin()" value="FaceBook" style="height:35px;width:200px" src="~/Images/SignInWithFacebook.png" />
+                        </td>
+                    </tr> 
+                    <tr><td>&nbsp</td></tr>
+                    <tr>
+                        <td style="padding-top: 5px;padding-left:30px">                           
+                            <div id="my-signin2"></div>
                         </td>
                     </tr>
+    }
                     <tr>
-                        <td align="center" style="padding-top: 5px;">
-                            <table style="height: 250px; width: 80%;">
+                        <td style="padding-top: 5px;padding-left:20px">
+                            @using (Html.BeginForm("CreateEditUser", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                            <table style="height: 250px; width: 80%;" cellpadding=5; cellspacing=5>
                                 <tr>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td align="left" style="font-family: Calibri;">
-                                        First Name:
-                                    </td>
-                                    <td align="left" style="padding-left:10px">
-                                        @Html.TextBoxFor(m => m.FirstName, new { style = "border:groove;width:55%;border-width:1px" })
+                                    <td align="center" style="font-weight: bold; color: red; font-size: 16px">
+                                        @ViewBag.Ack
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left" style="font-family:Calibri;">
-                                        Last Name
-                                    </td>
-                                    <td align="left" style="padding-left:10px">
-                                        @Html.TextBoxFor(m => m.LastName, new { style = "border:groove;width:55%;border-width:1px" })
+                                    <td>
+                                        @Html.TextBoxFor(m => m.FirstName, new { style = "width:55%;", placeholder="First Name", @class="myText"})
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left" style="font-family:Calibri;">
-                                        E-Mail:
-                                    </td>
-                                    <td align="left" style="padding-left:10px">
-                                        @Html.TextBoxFor(m => m.Email, new { style = "border:groove;width:75%;border-width:1px" })
+                                    <td>
+                                        @Html.TextBoxFor(m => m.LastName, new { style = "width:55%;", placeholder="Last Name", @class="myText"})
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left" style="font-family:Calibri;">
-                                       Address:
-                                    </td>
-                                    <td align="left" style="padding-left: 10px">
-                                        @Html.TextBoxFor(m => m.Address, new { style = "border:groove;width:75%;border-width:1px" })
+                                    <td>
+                                        @Html.TextBoxFor(m => m.Email, new { style = "width:75%;", placeholder="EMail", @class="myText" })
                                     </td>
                                 </tr>
-                               @if (Model.Email == null || ViewBag.Ack != null)
+                                <tr>
+                                    <td>
+                                        @Html.TextBoxFor(m => m.Address, new { style = "width:75%;", placeholder="Address", @class="myText"})
+                                    </td>
+                                </tr>
+                                 @if (Model.Email == null || ViewBag.Ack != null)
                                 {
                                 <tr>
-                                    <td align="left" style="font-family:Calibri;">
-                                        Password:
-                                    </td>
-                                    <td align="left" style="padding-left:10px">
-                                        @*<input type="password" id="txtPassword" style="border:groove;width:55%;border-width:1px"/>*@
-                                        @Html.Password("txtPassword", "", new { style = "border:groove;width:55%;border-width:1px" })
+                                    <td>
+                                        @Html.Password("txtPassword", "", new { style = "width:55%;", placeholder="Password", @class="myText"})
                                     </td>
                                 </tr>
-
                                 <tr>
-                                    <td align="left" style="font-family: Calibri;">
-                                        Confirm Password:
-                                    </td>
-                                    <td align="left" style="padding-left:10px">
-                                        @*<input type="password" id="txtConfirmPassword" style="border:groove;width:55%;border-width:1px" />*@
-                                        @Html.Password("txtConfirmPassword", "", new { style = "border:groove;width:55%;border-width:1px" })
+                                    <td>
+                                        @Html.Password("txtConfirmPassword", "", new { style = "width:55%;", placeholder="Confirm Password", @class="myText"})
                                     </td>
                                 </tr>
                                 }
-
                                 <tr>
-                                    <td align="left" style="font-family:Calibri;">
-                                       Upload Photo:
-                                    </td>
-                                    <td align="left" style="padding-left:10px">
-                                        <input type="file" style="width: 50%" id="fileUserPhoto" name="fileUserPhoto" />
+                                    <td>
+                                        <input type="file" style="width: 50%" class="myText" id="fileUserPhoto" name="fileUserPhoto" />
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left" colspan="2" style="font-family: Calibri;">
-                                        Brief details on your experience, work and expertiece
-                                        <br />
-                                        @Html.TextAreaFor(m => m.Details, new { style = "border:groove;width:75%;border-width:1px;height:80px;width:90%" })
+                                    <td>
+                                        @Html.TextAreaFor(m => m.Details, new {style="width:75%;height:160px;width:90%;border-radius:10px;font-size:14px;border:groove;", 
+                                                 placeholder="Brief details on your experience, work and expertiece"})
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" align="center">
+                                    <td align="center">
                                         <img id="imgcaptcha" alternatetext="Captcha" />
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" align="center">
+                                    <td align="center">
                                         @if (Model.Email == null || ViewBag.Ack != null)
                                         {
                                             @Html.GenerateCaptcha(Theme.White)
                                         }
                                     </td>
                                 </tr>
-
+                                 <tr><td>&nbsp;</td></tr>
                                 <tr>
-                                    <td colspan="2">&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td align="center" colspan="2">
+                                    <td align="center">
                                         <input type="submit" id="btnRegister" value="Submit" onclick="return ValidateUserReg()" class="mysubmit" />
                                         <input type="submit" id="btnCancel" name="Cancel" value="Cancel" class="mysubmit" />
 
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
+                                 <tr><td>&nbsp;</td></tr>
                             </table>
+                            }
                         </td>
-
                     </tr>
                 </table>
-
-                @*@Html.Hidden("hfUserEMail", (object)ViewBag.UserEMail)*@
-}
