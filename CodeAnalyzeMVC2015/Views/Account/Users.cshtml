@@ -47,10 +47,7 @@
                         <td style="padding-top: 5px;padding-left:20px">
                             @using (Html.BeginForm("CreateEditUser", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
-                            <table style="height: 250px; width: 80%;" cellpadding=5; cellspacing=5>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
+                            <table style="height: 250px; width: 80%;border:solid;border-radius:10px;border-width:1px;border-color:lightgrey" cellpadding=5; cellspacing=5>
                                 <tr>
                                     <td align="center" style="font-weight: bold; color: red; font-size: 16px">
                                         @ViewBag.Ack
@@ -96,7 +93,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        @Html.TextAreaFor(m => m.Details, new {style="width:75%;height:160px;width:90%;border-radius:10px;font-size:14px;border:groove;", 
+                                        @Html.TextAreaFor(m => m.Details, new {style="height:160px;width:90%", @class="myText" 
                                                  placeholder="Brief details on your experience, work and expertiece"})
                                     </td>
                                 </tr>
