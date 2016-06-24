@@ -92,6 +92,7 @@
     height:30px;
     font-size:14px;
     border-radius:5px;
-    border:groove;
+    border:solid;
+    border-color:grey;
     border-width:1px;
 }
