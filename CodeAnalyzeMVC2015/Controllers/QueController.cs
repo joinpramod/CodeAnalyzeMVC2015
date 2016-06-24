@@ -19,12 +19,23 @@ namespace CodeAnalyzeMVC2015.Controllers
             List<QuestionModel> questions = new List<QuestionModel>();
             //if (ModelState.IsValid)
             //{
-                string strSQL = string.Empty;
-                if (!string.IsNullOrEmpty(ddType))
-                    strSQL = "Select top 75 * from Question Where QuestionId > 37861 and QuestionTypeId = " + ddType;
-                else
-                    strSQL = "Select top 75 * from Question Where QuestionId > 37861 order by questionid";
+            string strSQL = string.Empty;
+            user = (Users)Session["User"];
 
+            if (!string.IsNullOrEmpty(ddType))
+            {
+                if (user != null && user.UserId == 1)
+                    strSQL = "Select * from Question Where QuestionId > 37861 and QuestionTypeId = " + ddType + " order by questionid desc";
+                else
+                    strSQL = "Select top 75  * from Question Where QuestionId > 37861 and QuestionTypeId = " + ddType + " order by questionid desc";
+            }
+            else
+            {
+                if (user != null && user.UserId == 1)
+                    strSQL = "Select * from Question Where QuestionId > 37861 order by questionid desc";
+                else
+                    strSQL = "Select top 75 * from Question Where QuestionId > 37861 order by questionid desc";
+            }
                 ConnManager connManager = new ConnManager();
                 questions = connManager.GetQuestions(strSQL);
             //}

@@ -91,7 +91,7 @@
     </div>
 
     <table style="width: 100%; font-family: Calibri">
-        <tr>
+        @*<tr>
             <td>
                 <br />
                 @if (Model.HasVideo)
@@ -107,12 +107,13 @@
                     </section>
                 }
             </td>
-        </tr>
+        </tr>*@
 
 
         <tr>
             <td width="100%">
-                <br />
+                if(@Html.Raw(Model.AskedUser)!=null && Html.Raw(Model.AskedUser)!=1)
+                {
                 <table style="width: 100%; font-size: 16px">
                     <tr>
                         <td style="width: 25%" align="center">
@@ -137,11 +138,10 @@
                         </td>
                     </tr>
                 </table>
-
+                }
             </td>
         </tr>
     </table>
-    <br />
     <table id="tblReplies" style="width: 100%">
         <tr>
             <td>

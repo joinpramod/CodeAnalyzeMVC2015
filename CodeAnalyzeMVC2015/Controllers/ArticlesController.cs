@@ -25,7 +25,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             // if (ModelState.IsValid)
             // {
             ConnManager connManager = new ConnManager();
-            if(user!= null && user.UserId != 0)
+            if(user!= null && user.UserId == 1)
                 articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
             else
                 articles = connManager.GetArticles("Select * from VwArticles where IsDisplay =1 order by articleId desc");
@@ -59,7 +59,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             {
                 ConnManager connManager = new ConnManager();
                 user = (Users)Session["User"];
-                if (user != null && user.UserId != 0)
+                if (user != null && user.UserId == 1)
                     articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
                 else
                     articles = connManager.GetArticles("Select * from VwArticles where IsDisplay =1 order by articleId desc");

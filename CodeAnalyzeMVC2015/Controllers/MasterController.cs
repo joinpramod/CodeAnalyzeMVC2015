@@ -18,7 +18,7 @@ namespace CodeAnalyzeMVC2015.Models
         public ActionResult PopularPosts()
         {
           //  CheckUserLogin();
-            List<ArticleModel> articles = GetArticles("Select top 5 * from VwArticles order by thumbsup desc");
+            List<ArticleModel> articles = GetArticles("Select top 3 * from VwArticles order by thumbsup desc");
             return PartialView("PopularPosts", articles);
         }
 

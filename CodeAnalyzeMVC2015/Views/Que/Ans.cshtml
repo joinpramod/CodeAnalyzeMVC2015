@@ -92,8 +92,6 @@
     </table>
     <br />
     <br />
-    <br />
-    <br />
     @using (Html.BeginForm("Ans", "Que", new { Id = Model.QuestionID, Title = Model.QuestionTitle }))
     {
                 <table style="width: 100%; font-size: 16px" cellpadding="0" cellspacing="0">
@@ -143,7 +141,7 @@
                     </tr> 
                     <tr>                       
                         <td colspan="2">
-                            <div id="divPreview"></div><br/><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                            <div id="divPreview"></div><br/><br /><br /><br /><br /><br /><br /><br />@*<br /><br /><br /><br /><br /><br />*@
                         </td>
                     </tr>     
                 </table>
