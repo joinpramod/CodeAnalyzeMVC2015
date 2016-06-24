@@ -28,7 +28,7 @@
     {
                     <tr>    
                         <td style="padding-top: 5px;"> 
-                            <b>Register by any of the following methods</b><br /><br />
+                            <b>Register by any of the following options</b><br /><br />
                          </td>
                     </tr> 
                     <tr>
@@ -44,15 +44,15 @@
                     </tr>
     }
                     <tr>
+                        <td style="font-weight: bold; color: red;padding-left:30px">
+                            @ViewBag.Ack
+                        </td>
+                    </tr>
+                    <tr>
                         <td style="padding-top: 5px;padding-left:20px">
                             @using (Html.BeginForm("CreateEditUser", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                             <table style="height: 250px; width: 80%;border:solid;border-radius:10px;border-width:1px;border-color:lightgrey" cellpadding=5; cellspacing=5>
-                                <tr>
-                                    <td align="center" style="font-weight: bold; color: red; font-size: 16px">
-                                        @ViewBag.Ack
-                                    </td>
-                                </tr>
                                 <tr>
                                     <td>
                                         @Html.TextBoxFor(m => m.FirstName, new { style = "width:55%;", placeholder="First Name", @class="myText"})
