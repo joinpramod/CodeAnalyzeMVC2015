@@ -87,3 +87,11 @@
 .generalbutton:hover {    
     background-color:#F3CD50;   
 }
+
+.myText {
+    height:30px;
+    font-size:14px;
+    border-radius:5px;
+    border:groove;
+    border-width:1px;
+}
