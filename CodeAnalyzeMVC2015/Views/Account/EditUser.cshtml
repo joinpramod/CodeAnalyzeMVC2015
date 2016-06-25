@@ -7,87 +7,70 @@
 @using CodeAnalyzeMVC2015.AppCode
 
 
-<h2>Edit Profile</h2><br /><br />
+<h2>Edit Profile</h2><br />
 
 
 @using (Html.BeginForm("EditUser", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <table style="font-size:16px" width="100%">
         <tr>
-            <td align="center" style="font-weight: bold; color: red; font-size: 16px">
-                @ViewBag.Ack
+            <td style="font-weight: bold; color: red;padding-left:30px">
+                @ViewBag.Ack<br />
             </td>
         </tr>
         <tr>
-            <td align="center" style="padding-top: 5px;">
-                <table style="height: 250px; width: 80%;">
-                    <tr>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td align="left" style="font-family: Calibri;">
-                            First Name:
-                        </td>
-                        <td align="left" style="padding-left:10px">
-                            @Html.TextBoxFor(m => m.FirstName, new { style = "border:groove;width:55%;border-width:1px" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="left" style="font-family:Calibri;">
-                            Last Name
-                        </td>
-                        <td align="left" style="padding-left:10px">
-                            @Html.TextBoxFor(m => m.LastName, new { style = "border:groove;width:55%;border-width:1px" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="left" style="font-family:Calibri;">
-                            E-Mail:
-                        </td>
-                        <td align="left" style="padding-left:10px">
-                            @Html.TextBoxFor(m => m.Email, new { style = "border:groove;width:75%;border-width:1px" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="left" style="font-family:Calibri;">
-                            Address:
-                        </td>
-                        <td align="left" style="padding-left: 10px">
-                            @Html.TextBoxFor(m => m.Address, new { style = "border:groove;width:75%;border-width:1px" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="left" style="font-family:Calibri;">
-                            Upload Photo:
-                        </td>
-                        <td align="left" style="padding-left:10px">
-                            <input type="file" style="width: 50%" id="fileUserPhoto" name="fileUserPhoto" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="left" colspan="2" style="font-family: Calibri;">
-                            Brief details on your experience, work and expertiece
-                            <br />
-                            @Html.TextAreaFor(m => m.Details, new { style = "border:groove;width:75%;border-width:1px;height:80px;width:90%" })
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="2">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td align="center" colspan="2">
-                            <input type="submit" id="btnRegister" value="Submit" onclick="return ValidateUserReg()" class="mysubmit" />
-                            <input type="submit" id="btnCancel" name="Cancel" value="Cancel" class="mysubmit" />
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                    </tr>
-                </table>
+            <td style="padding-top: 5px;padding-left:20px">
+                @using (Html.BeginForm("CreateEditUser", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <table style="height: 250px; width: 80%;border:solid;border-radius:20px;border-width:0px;border-color:lightgrey;background-color:#EFF0ED" cellpadding=5; cellspacing=5>
+                        <tr>
+                            <td style="padding-left:5%">
+                                <br />
+                                @Html.TextBoxFor(m => m.FirstName, new { style = "width:55%;", placeholder = "First Name", @class = "myText" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left:5%">
+                                @Html.TextBoxFor(m => m.LastName, new { style = "width:55%;", placeholder = "Last Name", @class = "myText" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left:5%">
+                                @Html.TextBoxFor(m => m.Email, new { style = "width:75%;", placeholder = "EMail", @class = "myText" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left:5%">
+                                @Html.TextBoxFor(m => m.Address, new { style = "width:75%;", placeholder = "Address", @class = "myText" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left:5%">
+                                <input type="file" style="width: 50%" class="myText" id="fileUserPhoto" name="fileUserPhoto" />
+                            </td>
+                        </tr>
+                        <tr>
+                                    <td style="padding-left:5%">
+                                @Html.TextAreaFor(m => m.Details, new
+                                   {
+                                       style = "height:160px;width:90%",
+                                       @class = "myText",
+                                       placeholder = "Brief details on your experience, work and expertiece"
+                                   })
+                            </td>
+                        </tr>
+                        @*<tr><td>&nbsp;</td></tr>*@
+                        <tr>
+                            <td align="center">
+                                <input type="submit" id="btnRegister" value="Submit" onclick="return ValidateUserReg()" class="mysubmit" />
+                                <input type="submit" id="btnCancel" name="Cancel" value="Cancel" class="mysubmit" />
+                                <br />
+                            </td>
+                        </tr>
+                        <tr><td>&nbsp;</td></tr>
+                    </table>
+                }
             </td>
-
         </tr>
     </table>
 
