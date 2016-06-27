@@ -27,29 +27,29 @@
     @if (Model.Email == null || ViewBag.Ack != null)
     {
                     <tr>
-                        <td style="padding-top: 5px;">
+                        <td style="padding-top: 2%;">
                             <b>Use any of the following options</b><br /><br />
                          </td>
                     </tr>
                     <tr>
-                        <td style="padding-top: 5px;padding-left:30px">
+                        <td style="padding-top: 5px;padding-left:15%">
                             <input type="image" onclick="FaceBookLogin()" value="FaceBook" style="height:35px;width:200px" src="~/Images/SignInWithFacebook.png" />
                         </td>
                     </tr>
                     <tr><td>&nbsp</td></tr>
                     <tr>
-                        <td style="padding-top: 5px;padding-left:30px">
+                        <td style="padding-top: 5px;padding-left:15%">
                             <div id="my-signin2"></div>
                         </td>
                     </tr>
     }
                     <tr>
-                        <td style="font-weight: bold; color: red;padding-left:30px">
+                        <td style="font-weight: bold; color: red;padding-left:15%">
                             @ViewBag.Ack<br />
                         </td>
                     </tr>
                     <tr>
-                        <td style="padding-top: 5px;padding-left:20px">
+                        <td style="padding-top: 5px;padding-left:10%">
                             @using (Html.BeginForm("CreateEditUser", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                             <table style="height: 250px; width: 80%;border:solid;border-radius:20px;border-width:0px;border-color:lightgrey;background-color:#EFF0ED" cellpadding=5; cellspacing=5>
