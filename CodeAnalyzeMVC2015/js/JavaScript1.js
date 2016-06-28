@@ -238,11 +238,11 @@ SyntaxHighlighter.defaults.toolbar = false;
                     alert("Please enter correct Old Password");
                     return false;
                 }
-                else if (txtNewPassword != txtConfirmPassword) {
+                else if (varNewPassword != varConfirmPassword) {
                     alert("Password and ConfirmPassword does not match");
                     return false;
                 }
-                else if (txtNewPassword.length < 8) {
+                else if (varNewPassword.length < 8) {
                     alert("Password is expected to be 8 charectors.");
                     return false;
                 }

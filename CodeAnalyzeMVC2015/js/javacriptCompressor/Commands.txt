@@ -1,4 +1,4 @@
-G:\CodeAnalyzeMVC2015\CodeAnalyzeMVC2015\js\javacriptCompressor>java -jar yuicompressor-2.4.8.jar JavaScript1.js -o JavaScript1-min.js
+G:\CodeAnalyzeMVC2015\CodeAnalyzeMVC2015\js\javacriptCompressor>java -jar yuicompressor-2.4.8.jar JavaScript1-max.js -o JavaScript1.js
 
 G:\CodeAnalyzeMVC2015\CodeAnalyzeMVC2015\js\javacriptCompressor>java -jar yuicompressor-2.4.8.jar JavaScript1.js -o JavaScript1-min.js
 

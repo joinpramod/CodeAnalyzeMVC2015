@@ -97,6 +97,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 user.Email = DSUserList.Rows[0]["EMail"].ToString();
                 user.Address = DSUserList.Rows[0]["Address"].ToString();
                 user.ImageURL = DSUserList.Rows[0]["ImageURL"].ToString();
+                user.Password = DSUserList.Rows[0]["Password"].ToString();
 
                 user.ImageURL = user.ImageURL.Replace("~", "");
                 user.ImageURL = user.ImageURL.Replace("/CodeAnalyzeMVC2015", "");
@@ -156,6 +157,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 }
                 else if (Request.Form["ChangePassword"] != null)
                 {
+                    ViewBag.OldPassword = user.Password;
                     return View("../Account/ChangePassword", user);
                 }
                 return null;
@@ -569,7 +571,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                     //txtPassword.Text = "";
                     //txtConfirmPassword.Text = "";
 
-                    ViewBag.OldPassword = user.Password;
+                    ViewBag.OldPassword = txtNewPassword;
                 }
                 return View(user);
             }
