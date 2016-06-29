@@ -31,9 +31,17 @@ namespace CodeAnalyzeMVC2015.Controllers
         public ActionResult Contact(string txtEMail, string txtSuggestion)
         {
             //ViewBag.Message = "Your contact page.";
-            if (!string.IsNullOrEmpty(txtEMail) && !string.IsNullOrEmpty(txtSuggestion))
+            if (!string.IsNullOrEmpty(txtSuggestion))
             {
-
+                if(string.IsNullOrEmpty(txtEMail) && (Session["User"] != null))
+                {
+                       user = (Users)Session["User"];
+                       txtEMail = user.Email;
+                }
+                else
+                {
+                     return View();
+                }
                 //double dblQuestionID = 0;
                 //ClsSuggestion suggestion = new ClsSuggestion();
                 //SqlConnection LclConn = new SqlConnection();
@@ -86,8 +94,16 @@ namespace CodeAnalyzeMVC2015.Controllers
                 // lblSuggestion.Visible = true;
                 ViewBag.Ack = "Thank you very much.";
 
-
+                return View();
             }
+            
+             if(Session["User"] != null)
+             {
+                user = (Users)Session["User"];
+                ViewBag.UserEMail = user.Email;
+             }
+             
+            
             return View();
         }
 
