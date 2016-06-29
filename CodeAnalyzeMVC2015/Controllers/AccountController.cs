@@ -169,7 +169,7 @@ namespace CodeAnalyzeMVC2015.Controllers
         }
 
         [ReCaptcha]
-        [AcceptVerbs(HttpVerbs.Post)]
+        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public ActionResult CreateEditUser(Users user, HttpPostedFileBase fileUserPhoto, string txtPassword)
         {
             //AddEdit user
@@ -300,7 +300,7 @@ namespace CodeAnalyzeMVC2015.Controllers
         }
 
 
-        [AcceptVerbs(HttpVerbs.Post)]
+        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public ActionResult EditUser(Users user, HttpPostedFileBase fileUserPhoto)
         {
             //AddEdit user
