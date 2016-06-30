@@ -21,16 +21,25 @@ namespace CodeAnalyzeMVC2015
                 {
                     ConnManager connManager = new ConnManager();
                     connManager.OpenConnection();
-                    DataSet DSQuestions = new DataSet();
-                    DSQuestions = connManager.GetData(txtSQL.Text);
-                    connManager.DisposeConn();
-                    if (DSQuestions != null)
+                    
+                    if(txtSQL.Text.ToLower().StartsWith("select"))
                     {
-                        if (DSQuestions.Tables[0].Rows.Count > 0)
+                        DataSet DSQuestions = new DataSet();
+                        DSQuestions = connManager.GetData(txtSQL.Text);
+                        connManager.DisposeConn();
+                        if (DSQuestions != null)
                         {
-                            GridView1.DataSource = DSQuestions;
-                            GridView1.DataBind();
+                            if (DSQuestions.Tables[0].Rows.Count > 0)
+                            {
+                                GridView1.DataSource = DSQuestions;
+                                GridView1.DataBind();
+                            }
                         }
+                    }
+                    else
+                    {
+                        SqlCommand comm = new SqlCommand(txtSQL.Text, connManager);
+                        comm.ExecuteNonQuery();
                     }
                 }
             }
