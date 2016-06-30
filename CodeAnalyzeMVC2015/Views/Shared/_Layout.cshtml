@@ -276,7 +276,6 @@
                 </section>
                 
                 <section>
-                    @*<iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=12&l=ur1&category=computers_accesories&banner=19KA014JRX72FW0QJ7R2&f=ifr&linkID=1dfa41ed234fa5fc9606d2adad432b54&t=codeanalyze-20&tracking_id=codeanalyze-20" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>*@
                     <iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=12&l=ur1&category=computers_accesories&banner=11QFGEMTACDKP7H8G8G2&f=ifr&linkID=a7cde29cc2a8d70738dc5ed57718cccc&t=codeanalyze-20&tracking_id=codeanalyze-20" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
                 </section>
                 @*<br/><br />*@
@@ -295,30 +294,21 @@
 
 
                 <section id="sidebar-video-post">
-                    @*<div class="ccr-gallery-ttile">
-                        <span></span>
-                        <p><strong>Video Post</strong></p>
-                    </div>
-                    <div class="sidebar-video">
-                        <iframe width="100%" height="195" src="//www.youtube.com/embed?listType=playlist&list=PLr5xM_46LGUtyEyyGilUu3YH5FTNo7SMH" frameborder="0" allowfullscreen></iframe>
-
-
-                    </div>
-                    <div class="date-like-comment">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-up"></i>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-down"></i>
-                    </div>*@
-
-                    @*<iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=12&l=ur1&category=topratedproducts&banner=07RAS6ASA4P1TSE0B602&f=ifr&linkID=894d011f860c071c6b5ca332a923b212&t=codeanalyze-20&tracking_id=codeanalyze-20" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>*@
-                    @*<iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=12&l=ur1&category=giftswishlists&banner=1F9DDR2B1S02Q44F26R2&f=ifr&linkID=e4d045b53325d63ac57b8e3671cebf5e&t=codeanalyze-20&tracking_id=codeanalyze-20" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>*@
                     <iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=12&l=ur1&category=camera&banner=0RSEDJSA14KNYHDNVK02&f=ifr&linkID=83c5288187c3b5f06be9fc10e22ed7ad&t=codeanalyze-20&tracking_id=codeanalyze-20" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
                 </section>
 
-
-                @*<section id="ccr-sidebar-add-place">
-                    <div class="sidebar-add-place">
+                <section id="sidebar-popular-post">
+                    <div class="ccr-gallery-ttile">
+                        <span></span>
+                        <p><strong>Most Viewed</strong></p>
                     </div>
-                </section>*@
+                    <ul>
+                        <li>
+                            @Html.Action("MostViewed", "Master")
+                        </li>
+                    </ul>
+
+                </section>
             </aside>
         </div>
     </section>

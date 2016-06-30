@@ -55,10 +55,22 @@ namespace CodeAnalyzeMVC2015.Models
         [Route("RecentPosts")]
         public ActionResult RecentPosts()
         {
-           // CheckUserLogin();
-            List<ArticleModel> articles = GetArticles("Select top 4 * from VwArticles where articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc");
+            // CheckUserLogin();
+            List<ArticleModel> articles = GetArticles("Select top 3 * from VwArticles where articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc");
             return PartialView("RecentPosts", articles);
         }
+
+
+        [AllowAnonymous]
+        [ChildActionOnly]
+        [Route("PopularPosts")]
+        public ActionResult MostViewed()
+        {
+            //  CheckUserLogin();
+            List<ArticleModel> articles = GetArticles("Select top 3 * from VwArticles order by views desc");
+            return PartialView("PopularPosts", articles);
+        }
+
 
         [AllowAnonymous]
         public ActionResult LogOut()

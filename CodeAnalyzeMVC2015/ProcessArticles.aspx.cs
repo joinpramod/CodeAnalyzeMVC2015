@@ -121,12 +121,12 @@ public partial class ProcessArticles : System.Web.UI.Page
                     else
                         article.IsDisplay = 1;
 
-                    int[] myy = new int[8] { 15431, 14362, 21334, 25432, 13234, 18332, 9344, 3453, 6555, 7643, 2343, 1243, 5644, 1234, 2342, 3276,1752, 2845, 1945, 986, 5898, 9123 };
+                    int[] myy = new int[22] { 15431, 14362, 21334, 25432, 13234, 18332, 9344, 3453, 6555, 7643, 2343, 1243, 5644, 1234, 2342, 3276,1752, 2845, 1945, 986, 5898, 9123 };
                     Random ran = new Random();
                     int mynum = myy[ran.Next(0, myy.Length)];
                     article.Views = mynum;
 
-                    int[] myy2 = new int[38] { 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 };
+                    int[] myy2 = new int[30] { 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 };
                     Random ran2 = new Random();
                     int mynum2 = myy2[ran2.Next(0, myy2.Length)];
                     article.ThumbsUp = mynum2;

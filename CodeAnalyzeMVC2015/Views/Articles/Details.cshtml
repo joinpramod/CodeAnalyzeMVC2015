@@ -112,8 +112,9 @@
 
         <tr>
             <td width="100%">
-                if(@Html.Raw(Model.AskedUser)!=null && Html.Raw(Model.AskedUser)!=1)
+                @if(Html.Raw(Model.AskedUser).ToString() != null && Html.Raw(Model.AskedUser.ToString()).ToString() != "1")
                 {
+
                 <table style="width: 100%; font-size: 16px">
                     <tr>
                         <td style="width: 25%" align="center">
@@ -138,7 +139,7 @@
                         </td>
                     </tr>
                 </table>
-                }
+                    }
             </td>
         </tr>
     </table>
