@@ -14,8 +14,6 @@ namespace CodeAnalyzeMVC2015
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            try
-            {
                 user = (Users)Session["User"];
                 if (user != null && user.Email != null && user.Email == "admin@codeanalyze.com")
                 {
@@ -42,11 +40,10 @@ namespace CodeAnalyzeMVC2015
                         comm.ExecuteNonQuery();
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Response.Write(ex.ToString());
-            }
+                else
+                {
+                    Response.Redirect("http://www.codeanalyze.com");
+                }
         }
     }
 }
