@@ -171,7 +171,7 @@ namespace CodeAnalyzeMVC2015.Controllers
         }
 
         [ReCaptcha]
-        [AcceptVerbs(HttpVerbs.Post)]
+        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public ActionResult CreateEditUser(Users user, HttpPostedFileBase fileUserPhoto, string txtPassword)
         {
             //AddEdit user
@@ -302,7 +302,7 @@ namespace CodeAnalyzeMVC2015.Controllers
         }
 
 
-        [AcceptVerbs(HttpVerbs.Post)]
+        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public ActionResult EditUser(Users user, HttpPostedFileBase fileUserPhoto)
         {
             //AddEdit user
@@ -436,8 +436,9 @@ namespace CodeAnalyzeMVC2015.Controllers
             try
             {
                 Mail mail = new Mail();
-                string EMailBody = System.IO.File.ReadAllText(Server.MapPath("EMailBody.txt"));
-                mail.Body = string.Format(email, "Welcome to CodeAnalyze. We appreciate your time for posting code that help many.");
+                string EMailBody = System.IO.File.ReadAllText(Server.MapPath("../EMailBody.txt"));
+                string strCA = "<a id=HyperLink1 style=font-size: medium; font-weight: bold; color:White href=http://codeanalyze.com>CodeAnalyze</a>";
+                mail.Body = string.Format(email, "Welcome to " + strCA + ". We appreciate your time for posting code that help many.");
                 mail.FromAdd = "admin@codeanalyze.com";
                 mail.Subject = "Welcome to CodeAnalyze - Blogger Rewards";
                 mail.ToAdd = email;

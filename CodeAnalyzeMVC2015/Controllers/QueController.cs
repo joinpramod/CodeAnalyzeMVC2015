@@ -530,7 +530,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                     strReplyId = dsSolution.Rows[i]["ReplyID"].ToString();
                     //Response no user details
                     string htrResponseNoByDetailsOuterRow = "<tr>";
-                    string htcResponseNoByDetailsOuterCell = "<td style=\"background-color:#F5E8AA; border-radius:15%;\">";
+                    string htcResponseNoByDetailsOuterCell = "<td style=\"background-color:#F5E8AA; border-radius:10%;\">";
 
                     #region table
                     string htmlTblResponseNoByDetails = "<table style=\"width:100%\">";
