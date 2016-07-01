@@ -207,13 +207,6 @@
     <Compile Include="ArticleDetails.ascx.designer.cs">
       <DependentUpon>ArticleDetails.ascx</DependentUpon>
     </Compile>
-    <Compile Include="AskQuestions.aspx.cs">
-      <DependentUpon>AskQuestions.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AskQuestions.aspx.designer.cs">
-      <DependentUpon>AskQuestions.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\QueController.cs" />
@@ -229,19 +222,19 @@
     <Compile Include="Manage.aspx.designer.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterPage.master.cs">
-      <DependentUpon>MasterPage.master</DependentUpon>
+    <Compile Include="ManageContent.aspx.cs">
+      <DependentUpon>ManageContent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterPage.master.designer.cs">
-      <DependentUpon>MasterPage.master</DependentUpon>
+    <Compile Include="ManageContent.aspx.designer.cs">
+      <DependentUpon>ManageContent.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterPageNoGoog.master.cs">
-      <DependentUpon>MasterPageNoGoog.master</DependentUpon>
+    <Compile Include="ManageWeb.aspx.cs">
+      <DependentUpon>ManageWeb.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterPageNoGoog.master.designer.cs">
-      <DependentUpon>MasterPageNoGoog.master</DependentUpon>
+    <Compile Include="ManageWeb.aspx.designer.cs">
+      <DependentUpon>ManageWeb.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\ArticlesModel.cs" />
     <Compile Include="Controllers\MasterController.cs" />
@@ -262,20 +255,6 @@
       <DependentUpon>ProcessArticles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Soln.aspx.cs">
-      <DependentUpon>Soln.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Soln.aspx.designer.cs">
-      <DependentUpon>Soln.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Solutions.ascx.cs">
-      <DependentUpon>Solutions.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Solutions.ascx.designer.cs">
-      <DependentUpon>Solutions.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="VA.aspx.cs">
       <DependentUpon>VA.aspx</DependentUpon>
@@ -301,7 +280,6 @@
     <Content Include="Articles\Use_GoogleMaps_SDK_Swift_2.html" />
     <Content Include="Articles\XCode_Display_Loading_Msg.html" />
     <Content Include="Articles\XCode_Periodically_Rate_Review.html" />
-    <Content Include="AskQuestions.aspx" />
     <Content Include="css\mystyles.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\ThumpsDown.png" />
@@ -409,7 +387,8 @@
     <Content Include="js\sCodeSwift.js" />
     <Content Include="js\sCodeVB.js" />
     <Content Include="Manage.aspx" />
-    <Content Include="MasterPageNoGoog.master" />
+    <Content Include="ManageContent.aspx" />
+    <Content Include="ManageWeb.aspx" />
     <Content Include="ProcessArticles.aspx" />
     <Content Include="Scripts\tinymce\2stars.png" />
     <Content Include="js\Facebook.js" />
@@ -571,8 +550,6 @@
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Controllers\EMailBody.txt" />
-    <Content Include="Soln.aspx" />
-    <Content Include="Solutions.ascx" />
     <Content Include="VA.aspx" />
     <Content Include="Views\Articles\Details.cshtml" />
     <Content Include="Views\Web.config" />
@@ -719,7 +696,6 @@
     <Content Include="Images\images.jpg1" />
     <Content Include="js\html5shiv.js.exclude" />
     <Content Include="ArticleTemplate.docx" />
-    <Content Include="MasterPage.master" />
     <Content Include="js\javacriptCompressor\bin\client\classes.jsa" />
     <Content Include="js\javacriptCompressor\bin\jpicpl32.cpl" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

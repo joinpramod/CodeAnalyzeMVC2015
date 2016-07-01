@@ -1,7 +1,24 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPageNoGoog.master" AutoEventWireup="true" Inherits="ProcessArticles" Codebehind="ProcessArticles.aspx.cs" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="ProcessArticles" Codebehind="ProcessArticles.aspx.cs" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<!DOCTYPE html>
 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+       <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Code Analyze - Blogger Rewards</title>
+    <link id="Link1" runat="server" rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link id="Link2" runat="server" rel="icon" href="~/favicon.ico" type="image/ico" />
+
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Language" content="en-us" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
 
         <asp:Label ID="lblUserRegMsg" runat="server" Visible="false" Font-Bold="true" Font-Names="Calibri" Font-Size="16px" ForeColor="Red" />
         <table style="height: 250px; width: 700px;">
@@ -102,5 +119,7 @@
 
        <asp:HiddenField runat="server" ID="hfName" />
        <asp:HiddenField runat="server" ID="hfUserEMail" />
-
-</asp:Content>
+   </div>
+    </form>
+</body>
+</html>

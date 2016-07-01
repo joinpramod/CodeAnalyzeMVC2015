@@ -18,12 +18,22 @@ public partial class ProcessArticles : System.Web.UI.Page
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (!IsPostBack)
+        Users user = new Users();
+        user = (Users)Session["User"];
+        if (user != null && user.Email != null && user.Email == "admin@codeanalyze.com")
+        {
+
+        }
+
+        else
+        {
+            Response.Redirect("http://www.codeanalyze.com");
+        }
+
+        if (!IsPostBack)
             {
                 BindQuestionType("Select * from QuestionType");
                 BindUserEmail("Select * from Users");
-                LinkButton btnUserProfile = (LinkButton)this.Master.FindControl("btnUserProfile");
-                btnUserProfile.ForeColor = Color.Yellow;
             }
         }
 

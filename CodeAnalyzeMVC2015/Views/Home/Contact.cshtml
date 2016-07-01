@@ -31,18 +31,18 @@
                     {
                         <tr>
                             <td align="left" style="font-family: Calibri;width:200px">
-                                EMail: <br />
-                                @Html.TextBox("txtEMail", "", new { style = "width:40%;height:30px;border:groove;border-width:1px", @class = "myText" })
+                                
+                                @Html.TextBox("txtEMail", "", new { style = "width:40%;height:30px;", placeholder = "EMail Id", @class = "myText" })
                                 @*<asp:TextBox ID="txtEMail" runat="server" Width="318px" BorderStyle="Groove"></asp:TextBox>*@
-
+                                <br/>
                             </td>
                         </tr>
                     }
                     @*</asp:Panel>*@
-
+                    <tr><td>&nbsp;</td></tr>
                     <tr>
-                        <td style="font-family: Calibri;">Message: <br />
-                            @Html.TextArea("txtSuggestion", "", new { style = "width:90%;height:200px;border:groove;border-width:1px", @class = "myText" })
+                        <td style="font-family: Calibri;">
+                            @Html.TextArea("txtSuggestion", "", new { style = "width:90%;height:200px;", placeholder = "Message", @class = "myText" })
                             @*<asp:TextBox runat="server" ID="EditorAskQuestion" Font-Names="Calibri" Font-Size="16px"
                                 BorderStyle="Groove" TextMode="MultiLine"
                                 Height="200px" Width="600px" /><br />*@

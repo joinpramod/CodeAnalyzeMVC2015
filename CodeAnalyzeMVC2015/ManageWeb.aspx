@@ -25,17 +25,17 @@
             </tr>
             <tr>
                 <td>
-                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="Manage.aspx">Manage DB</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Manage.aspx">Manage DB</asp:HyperLink>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="ManageContent.aspx">Manage Content</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/ManageContent.aspx">Manage Content</asp:HyperLink>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="ProcessArticles.aspx">Process Articles</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/ProcessArticles.aspx">Process Articles</asp:HyperLink>
                 </td>
             </tr>
         </table>

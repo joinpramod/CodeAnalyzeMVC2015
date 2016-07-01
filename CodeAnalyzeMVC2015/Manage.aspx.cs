@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -36,7 +37,7 @@ namespace CodeAnalyzeMVC2015
                     }
                     else
                     {
-                        SqlCommand comm = new SqlCommand(txtSQL.Text, connManager);
+                        SqlCommand comm = new SqlCommand(txtSQL.Text, connManager.DataCon);
                         comm.ExecuteNonQuery();
                     }
                 }

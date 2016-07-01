@@ -7,6 +7,7 @@ using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.UI.WebControls;
+using CodeAnalyzeMVC2015;
 
 namespace CodeAnalyzeMVC2015
 {
@@ -14,7 +15,17 @@ namespace CodeAnalyzeMVC2015
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Users user = new Users();
+            user = (Users)Session["User"];
+            if (user != null && user.Email != null && user.Email == "admin@codeanalyze.com")
+            {
 
+            }
+
+            else
+            {
+                Response.Redirect("http://www.codeanalyze.com");
+            }
         }
 
         protected void btnShowFiles_Click(object sender, EventArgs e)

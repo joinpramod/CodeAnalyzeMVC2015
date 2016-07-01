@@ -4,12 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            height: 23px;
-        }
-    </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Code Analyze - Blogger Rewards</title>
+    <link id="Link1" runat="server" rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link id="Link2" runat="server" rel="icon" href="~/favicon.ico" type="image/ico" />
+
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Language" content="en-us" />
+    <meta name="robots" content="noindex" />
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -21,18 +26,18 @@
             </tr>
             <tr>
                 <td>Server:</td>
-                <td><asp:TextBox ID="txtServer" runat="server" Width="191px"></asp:TextBox>
+                <td><asp:TextBox ID="txtServer" runat="server" Text="web-16.znetlive.in" Width="191px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td>Username:&nbsp;&nbsp;</td>
-                <td><asp:TextBox ID="txtUsername" runat="server" Width="162px"></asp:TextBox>
+                <td><asp:TextBox ID="txtUsername" runat="server" Text="ftpadmin" Width="162px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td>Password:</td>
                 <td>
-                    <asp:TextBox ID="txtPassword" runat="server" Width="163px"></asp:TextBox>
+                    <asp:TextBox ID="txtPassword" runat="server" Text="ftpadmin@123" Width="163px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
