@@ -32,6 +32,8 @@
     <script src="~/js/JavaScript1.js"></script>
     <link href="~/css/mystyles.css" rel="stylesheet" />
 
+@if (!Request.Url.ToString().Contains("localhost"))
+{
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
@@ -42,8 +44,8 @@
 
         ga('create', 'UA-58993626-1', 'auto');
         ga('send', 'pageview');
-
     </script>
+}
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="expires" content="0" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />

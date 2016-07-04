@@ -757,7 +757,6 @@
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Users.cshtml" />
-    <Content Include="Views\Account\ViewUser.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\MyQues.cshtml" />
     <Content Include="Views\Account\MyAns.cshtml" />
@@ -774,6 +773,7 @@
     <Content Include="Views\Tutorials\AndroidInt.cshtml" />
     <Content Include="Views\Tutorials\HadoopInt.cshtml" />
     <Content Include="Views\Account\EditUser.cshtml" />
+    <Content Include="Views\Account\ViewUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />
