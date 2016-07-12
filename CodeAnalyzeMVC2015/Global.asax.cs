@@ -180,8 +180,8 @@ namespace CodeAnalyzeMVC2015
                         {
                             var varURL = HttpContext.Current.Request.Url;
                             strBody += "URL -- " + varURL + "<br /><br />";
-                            var varPage = HttpContext.Current.Handler as System.Web.UI.Page;
-                            strBody += "Page -- " + varPage + "<br /><br />";
+                            //var varPage = HttpContext.Current.Handler as System.Web.UI.Page;
+                            //strBody += "Page -- " + varPage + "<br /><br />";
                         }
 
                         if (!string.IsNullOrEmpty(ex.Message))
