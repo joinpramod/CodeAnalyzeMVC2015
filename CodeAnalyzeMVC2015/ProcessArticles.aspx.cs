@@ -85,13 +85,16 @@ public partial class ProcessArticles : System.Web.UI.Page
 
                 if (user != null && user.Email != null && user.Email == "admin@codeanalyze.com")
                 {
-                    if (fileUploadWordFile.HasFile || fileUploadSourceFile.HasFile || chkSkipSave.Checked)
+                    string targetFolder = HttpContext.Current.Server.MapPath("~/Articles/");
+                    string targetPath = Path.Combine(targetFolder, fileUploadWordFile.FileName);
+                    
+                    if (fileUploadWordFile.HasFile && chkOverwrite.Checked)
                     {
-                        string targetFolder = HttpContext.Current.Server.MapPath("~/Articles/");
-                        string targetPath = Path.Combine(targetFolder, fileUploadWordFile.FileName);
-
-
-                        if (fileUploadWordFile.HasFile && !chkSkipSave.Checked)
+                           fileUploadWordFile.SaveAs(targetPath);
+                    }
+                    else (fileUploadWordFile.HasFile)
+                    {
+                        if (!chkSkipSave.Checked)
                             fileUploadWordFile.SaveAs(targetPath);
 
                         targetPath = Path.Combine(targetFolder, fileUploadSourceFile.FileName);
@@ -165,7 +168,7 @@ public partial class ProcessArticles : System.Web.UI.Page
                 }
                 else
                 {
-                    Response.Redirect("Topics.aspx");
+                    Response.Redirect("/Tutorials/Basics");
                 }
             }
 
