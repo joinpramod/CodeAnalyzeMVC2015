@@ -1,5 +1,8 @@
-﻿@{
-    ViewBag.Title = Model.ArticleTitle.Replace("<b>", "").Replace("</b>", "");
+@{
+    if (Model!=null && Model.ArticleTitle != null)
+    {
+        ViewBag.Title = Model.ArticleTitle.Replace("<b>", "").Replace("</b>", "");
+    }
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
