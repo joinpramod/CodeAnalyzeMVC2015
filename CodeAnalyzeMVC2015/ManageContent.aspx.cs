@@ -31,15 +31,15 @@ namespace CodeAnalyzeMVC2015
         protected void btnShowFiles_Click(object sender, EventArgs e)
         {
             //FTP Server URL.
-            string ftp = txtServer.Text;
+            //string ftp = txtServer.Text;
 
             //FTP Folder name. Leave blank if you want to list files from root folder.
-            string ftpFolder = txtPath.Text;
+            //string ftpFolder = txtPath.Text;
 
             try
             {
                 //Create FTP Request.
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + ftpFolder);
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(txtServer.Text + txtPath.Text);
                 request.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
 
                 //Enter FTP Server credentials.
