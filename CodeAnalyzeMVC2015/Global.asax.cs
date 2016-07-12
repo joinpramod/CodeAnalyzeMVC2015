@@ -169,10 +169,20 @@ namespace CodeAnalyzeMVC2015
             {
                 if (!ex.Message.Contains("File does not exist"))
                 {
+                    // Code that runs when an unhandled error occurs
+                    
                     Mail mail = new Mail();
                     try
                     {
                         string strBody = "";
+                        
+                        if (HttpContext.Current != null)
+                        {
+                            var varURL = HttpContext.Current.Request.Url;
+                            strBody += "URL -- " + varURL + "<br /><br />";
+                            var varPage = HttpContext.Current.Handler as System.Web.UI.Page;
+                            strBody += "Page -- " + varPage + "<br /><br />";
+                        }
 
                         if (!string.IsNullOrEmpty(ex.Message))
                             strBody += "Message -- " + ex.Message + "<br /><br />";
