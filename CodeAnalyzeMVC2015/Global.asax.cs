@@ -123,7 +123,8 @@ namespace CodeAnalyzeMVC2015
                     //}
                     //catch
                     //{
-                        Response.Redirect("/Que/Unans");
+                        //Response.Redirect("/Que/Unans");
+                         Response.Redirect("/Home/NotFound");
                     //}
                 }
                 else if (Request.Url.ToString().ToLower().Contains("/credits.aspx"))
@@ -140,7 +141,13 @@ namespace CodeAnalyzeMVC2015
                 }
                 else if (Request.Url.ToString().ToLower().Contains("/userprofile.aspx"))
                 {
-                    Response.Redirect("/Account/Register");
+                    Response.Redirect("/Account/Users");
+                }
+                else if (Request.Url.ToString().ToLower().Contains("/questions/post") || 
+                Request.Url.ToString().ToLower().Contains("/account/register"))
+                {
+                    //Response.Redirect("/Home/Postingguidelines");
+                    Response.Redirect("/Home/NotFound");
                 }
             }
             catch
