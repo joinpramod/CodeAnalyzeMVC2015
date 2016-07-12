@@ -133,6 +133,12 @@ namespace CodeAnalyzeMVC2015.Controllers
             return View();
         }
 
+        public ActionResult NotFound()
+        {
+            Response.StatusCode = 404;
+            Response.StatusDescription = "Page not found";
+            return View();
+        }
 
     }
 }
