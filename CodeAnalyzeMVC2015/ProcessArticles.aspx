@@ -91,7 +91,7 @@
                     <%--<b>Skip File Save: </b>--%>
                 </td>
                 <td align="left">
-                     <asp:CheckBox ID="chkSkipSave" runat="server" Text="Skil Save"></asp:CheckBox>
+                     <asp:CheckBox ID="chkSkipSave" runat="server" Text="Skip Save"></asp:CheckBox>
 
                 </td>
             </tr>
@@ -101,6 +101,15 @@
                 </td>
                 <td align="left">
                      <asp:CheckBox ID="chkIsDisplay" runat="server" Text="Don't Display"></asp:CheckBox>
+
+                </td>
+            </tr>
+            <tr>
+                <td align="left"  style="font-family: Calibri; width: 123px;">
+                   <%-- <b>Is Display: </b>--%>
+                </td>
+                <td align="left">
+                     <asp:CheckBox ID="chkOverwrite" runat="server" Text="Overwrite file"></asp:CheckBox>
 
                 </td>
             </tr>
