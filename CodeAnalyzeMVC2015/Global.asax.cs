@@ -166,15 +166,14 @@ namespace CodeAnalyzeMVC2015
             Exception ex = new Exception();
             ex = Server.GetLastError();
 
-            if (ex.Message.ToLower().Contains("the controller for path")
-                && ex.Message.ToLower().Contains("was not found or does not implement icontroller"))
-            {
-                Response.Redirect("/Que/Unans/");
-
-            }
-            else if (!ex.Message.Contains("This is an invalid script resource request"))
-            {
-                if (!ex.Message.Contains("File does not exist"))
+            //if (ex.Message.ToLower().Contains("the controller for path")
+            //    && ex.Message.ToLower().Contains("was not found or does not implement icontroller"))
+            //{
+            //    Response.Redirect("/Que/Unans/");
+            //}
+            //else if (!ex.Message.Contains("This is an invalid script resource request"))
+            //{
+                if (!ex.Message.Contains("This is an invalid script resource request"))
                 {
                     // Code that runs when an unhandled error occurs
                     
@@ -250,7 +249,7 @@ namespace CodeAnalyzeMVC2015
                     else
                         HttpContext.Current.Response.Redirect("/Home/Error");
                 }
-            }
+           // }
         }
 
         protected void Session_End(object sender, EventArgs e)
