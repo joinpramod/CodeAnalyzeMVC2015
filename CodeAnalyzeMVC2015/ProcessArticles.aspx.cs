@@ -92,7 +92,7 @@ public partial class ProcessArticles : System.Web.UI.Page
                     {
                            fileUploadWordFile.SaveAs(targetPath);
                     }
-                    else (fileUploadWordFile.HasFile)
+                    else
                     {
                         if (!chkSkipSave.Checked)
                             fileUploadWordFile.SaveAs(targetPath);

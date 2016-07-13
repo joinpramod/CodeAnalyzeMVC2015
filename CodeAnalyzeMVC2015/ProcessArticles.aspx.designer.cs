@@ -127,7 +127,16 @@ public partial class ProcessArticles {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.CheckBox chkIsDisplay;
-    
+
+    /// <summary>
+    /// chkIsDisplay control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.CheckBox chkOverwrite;
+
     /// <summary>
     /// btnSubmit control.
     /// </summary>

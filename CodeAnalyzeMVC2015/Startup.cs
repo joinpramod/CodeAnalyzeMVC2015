@@ -1,7 +1,7 @@
-﻿using Microsoft.Owin;
+﻿//using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(CodeAnalyzeMVC2015.Startup))]
+//[assembly: OwinStartupAttribute(typeof(CodeAnalyzeMVC2015.Startup))]
 namespace CodeAnalyzeMVC2015
 {
     public partial class Startup
