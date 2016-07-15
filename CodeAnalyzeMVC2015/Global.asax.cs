@@ -170,6 +170,15 @@ namespace CodeAnalyzeMVC2015
                         {
                             var varURL = HttpContext.Current.Request.Url;
                             strBody += "URL -- " + varURL + "<br /><br />";
+                            try
+                            {
+                            string strReferer = Request.UrlReferrer.ToString();
+                            strBody += "Previous URL -- " + strReferer + "<br /><br />";
+                            }
+                            catch()
+                            {
+                                
+                            }
                             //var varPage = HttpContext.Current.Handler as System.Web.UI.Page;
                             //strBody += "Page -- " + varPage + "<br /><br />";
                         }
