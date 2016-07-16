@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <td>Server:</td>
-                <td><asp:TextBox ID="txtServer" runat="server" Text="web-16.znetlive.in" Width="191px"></asp:TextBox>
+                <td><asp:TextBox ID="txtServer" runat="server" Text="ftp://web-16.znetlive.in" Width="191px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -37,7 +37,7 @@
             <tr>
                 <td>Password:</td>
                 <td>
-                    <asp:TextBox ID="txtPassword" runat="server" Text="ftpadmin@123" Width="163px"></asp:TextBox>
+                    <asp:TextBox ID="txtPassword" runat="server" Text="" Width="163px"></asp:TextBox>
                 </td>
             </tr>
             <tr>

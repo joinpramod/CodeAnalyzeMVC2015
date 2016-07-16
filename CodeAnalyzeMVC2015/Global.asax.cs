@@ -175,7 +175,7 @@ namespace CodeAnalyzeMVC2015
                             string strReferer = Request.UrlReferrer.ToString();
                             strBody += "Previous URL -- " + strReferer + "<br /><br />";
                             }
-                            catch()
+                            catch
                             {
                                 
                             }
