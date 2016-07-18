@@ -91,7 +91,7 @@ namespace CodeAnalyzeMVC2015
                 //{
                 //    Response.Redirect("/Que/Unans");
                 //}
-                else if (Request.Url.ToString().ToLower().Contains("/postingguidelines.aspx"))
+                if (Request.Url.ToString().ToLower().Contains("/postingguidelines.aspx"))
                 {
                     Response.Redirect("/Home/Postingguidelines");
                 }
