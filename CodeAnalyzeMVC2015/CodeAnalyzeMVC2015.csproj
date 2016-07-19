@@ -133,13 +133,6 @@
     <Compile Include="AppCode\Suggestion.cs" />
     <Compile Include="AppCode\Users.cs" />
     <Compile Include="AppCode\Utilities.cs" />
-    <Compile Include="ArticleDetails.ascx.cs">
-      <DependentUpon>ArticleDetails.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ArticleDetails.ascx.designer.cs">
-      <DependentUpon>ArticleDetails.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\QueController.cs" />
@@ -185,7 +178,6 @@
       <DependentUpon>ProcessArticles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="ArticleDetails.ascx" />
     <Content Include="Articles\Android_Send_EMail_Exception.html" />
     <Content Include="Articles\AutoComplete_TextField_XCode.html" />
     <Content Include="Articles\AutoComplete_TextField_XCode_1.html" />

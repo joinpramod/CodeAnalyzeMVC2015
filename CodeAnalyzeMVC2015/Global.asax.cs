@@ -34,40 +34,40 @@ namespace CodeAnalyzeMVC2015
         {
             try
             {
-                //if (Request.Url.ToString().ToLower().Contains("soln.aspx?qid=") ||
-                //    Request.Url.ToString().ToLower().Contains("xcode.aspx?qid=") ||
-                //    Request.Url.ToString().ToLower().Contains("android.aspx?qid=") ||
-                //    Request.Url.ToString().ToLower().Contains("angularjs.aspx?qid=") ||
+                if (Request.Url.ToString().ToLower().Contains("soln.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("xcode.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("android.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("angularjs.aspx?qid=") ||
 
-                //    Request.Url.ToString().ToLower().Contains("csharp.aspx?qid=") ||
-                //   Request.Url.ToString().ToLower().Contains("dotnet.aspx?qid=") ||
-                //    Request.Url.ToString().ToLower().Contains("jquery.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("csharp.aspx?qid=") ||
+                   Request.Url.ToString().ToLower().Contains("dotnet.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("jquery.aspx?qid=") ||
 
-                //    Request.Url.ToString().ToLower().Contains("mvc.aspx?qid=") ||
-                //    Request.Url.ToString().ToLower().Contains("aspnet.aspx?qid=") ||
-                //    Request.Url.ToString().ToLower().Contains("sql.aspx?qid=") ||
-                //    Request.Url.ToString().ToLower().Contains("java.aspx?qid=")
-                //    )
-                //{
-                //    string strId = Request.QueryString["QId"];
-                //   string strTitle = Request.QueryString["QT"];
+                    Request.Url.ToString().ToLower().Contains("mvc.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("aspnet.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("sql.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("java.aspx?qid=")
+                    )
+                {
+                    string strId = Request.QueryString["QId"];
+                    string strTitle = Request.QueryString["QT"];
 
-                //    System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
-                //    strTitle = rgx.Replace(strTitle, "");
+                    System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+                    strTitle = rgx.Replace(strTitle, "");
 
-                //    Response.Redirect("/Que/Ans/" + strId + "/" + strTitle);
-                //}
+                    Response.Redirect("/Que/Ans/" + strId + "/" + strTitle);
+                }
                 //else if (Request.Url.ToString().ToLower().Contains("/va.aspx?qid="))
                 //{
-                    //string strId = Request.QueryString["QId"];
-                    //string strTitle = Request.QueryString["QT"];
+                //string strId = Request.QueryString["QId"];
+                //string strTitle = Request.QueryString["QT"];
 
-                    //strTitle = strTitle.Replace(" ", "-");
+                //strTitle = strTitle.Replace(" ", "-");
 
-                    //System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
-                    //strTitle = rgx.Replace(strTitle, "");
+                //System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+                //strTitle = rgx.Replace(strTitle, "");
 
-                    //Response.Redirect("/Articles/Details/" + strId + "/" + strTitle);
+                //Response.Redirect("/Articles/Details/" + strId + "/" + strTitle);
                 //}
                 //if (Request.Url.ToString().ToLower().Contains("/questions/soln/"))
                 //{
@@ -91,7 +91,7 @@ namespace CodeAnalyzeMVC2015
                 //{
                 //    Response.Redirect("/Que/Unans");
                 //}
-                if (Request.Url.ToString().ToLower().Contains("/postingguidelines.aspx"))
+                else if (Request.Url.ToString().ToLower().Contains("/postingguidelines.aspx"))
                 {
                     Response.Redirect("/Home/Postingguidelines");
                 }
