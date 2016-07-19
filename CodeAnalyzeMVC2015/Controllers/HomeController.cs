@@ -92,7 +92,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 // suggestion.CloseConnection(LclConn);
 
                 // lblSuggestion.Visible = true;
-                ViewBag.Ack = "Thank you very much.";
+                ViewBag.Ack = "Thank you!! We appreciate your patience and your time in reaching out to us, we will get back to you soon if needed.";
 
                 return View();
             }
