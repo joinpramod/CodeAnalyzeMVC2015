@@ -1,14 +1,11 @@
 @{
-    try {
-        ViewBag.Title = Model.ArticleTitle.Replace("<b>", "").Replace("</b>", "");
-    }
-    catch { }
+        ViewBag.Title = Model.ArticleTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @model CodeAnalyzeMVC2015.Models.VwArticlesModel
 
-<title>@Model.ArticleTitle.Replace("<b>", "").Replace("</b>", "")</title>
+<title>@Model.ArticleTitle</title>
 
 <meta name="description" content="@ViewBag.keywords" />
 
@@ -42,7 +39,7 @@
     <table style="width: 100%; font-family: Calibri">
         <tr>
             <td width="100%">
-                <span style="width: 90%; font-weight: bold; font-family: Calibri; color: Black; font-size: 24px">@ViewBag.keywords.Replace("<b>", "").Replace("</b>", "")</span>
+                <span style="width: 90%; font-weight: bold; font-family: Calibri; color: Black; font-size: 24px">@ViewBag.keywords</span>
             </td>
         </tr>
         <tr>
@@ -212,7 +209,7 @@
 
     {
         System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
-        Model.ArticleTitle = rgx.Replace(Model.ArticleTitle, "").Replace("<b>", "").Replace("</b>", "").Replace(" ", "-");
+        Model.ArticleTitle = rgx.Replace(Model.ArticleTitle, "").Replace(" ", "-");
     }
 
     @Html.Hidden("hfUserEMail", (object)ViewBag.UserEMail)

@@ -173,8 +173,8 @@ namespace CodeAnalyzeMVC2015.Controllers
             GetArticleData(articleID.ToString(), ref model);
 
             articleTitle = model.ArticleTitle.ToString();
-            ViewBag.Description = articleTitle.Replace("-", " ").Replace("<b>", "").Replace("<b>", "");
-            ViewBag.keywords = articleTitle.Replace("-", " ").Replace("<b>", "").Replace("<b>", "");
+            ViewBag.Description = articleTitle.Replace("-", " ");
+            ViewBag.keywords = articleTitle.Replace("-", " ");
 
             if (articleID != null)
             {
@@ -346,7 +346,8 @@ namespace CodeAnalyzeMVC2015.Controllers
 
 
                     Session["AskedUserEMail"] = dsQuestion.Rows[0]["EMail"].ToString();
-                    model.ArticleTitle = "<b>" + dsQuestion.Rows[0]["ArticleTitle"].ToString() + "<b>";
+                    //model.ArticleTitle = "<b>" + dsQuestion.Rows[0]["ArticleTitle"].ToString() + "<b>";
+                    model.ArticleTitle = dsQuestion.Rows[0]["ArticleTitle"].ToString();
                     model.ArticleViews = dsQuestion.Rows[0]["Views"].ToString();
 
                     string filepath = string.Empty;
