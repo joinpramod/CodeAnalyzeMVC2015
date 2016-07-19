@@ -13,47 +13,35 @@
 
 @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
 {
-    @*<table style="border-color:Black;border-width:1px;width:100%" cellpadding="0" cellspacing="0">
-        <tr><td>&nbsp;</td></tr>
-        <tr align="left">
-            <td align="left" style="padding-left:30px">*@
+   
                 <table style="width:100%;font-size:16px">
 
                     <tr>
                         <td align="center">
-                            @Html.Raw(ViewBag.Ack)                           
-
+                            <span style="font-weight:bold;color:green;font-size:14px">@Html.Raw(ViewBag.Ack)</span>                         
                         </td>
                     </tr>
 
-                    @*<asp:Panel ID="pnlEMail" runat="server">*@
+                   
                     @if(string.IsNullOrEmpty(ViewBag.UserEMail))
                     {
                         <tr>
                             <td align="left" style="font-family: Calibri;width:200px">
-                                
                                 @Html.TextBox("txtEMail", "", new { style = "width:40%;height:30px;", placeholder = "EMail Id", @class = "myText" })
-                                @*<asp:TextBox ID="txtEMail" runat="server" Width="318px" BorderStyle="Groove"></asp:TextBox>*@
                                 <br/>
                             </td>
                         </tr>
                     }
-                    @*</asp:Panel>*@
+                   
                     <tr><td>&nbsp;</td></tr>
                     <tr>
                         <td style="font-family: Calibri;">
                             @Html.TextArea("txtSuggestion", "", new { style = "width:90%;height:200px;", placeholder = "Message", @class = "myText" })
-                            @*<asp:TextBox runat="server" ID="EditorAskQuestion" Font-Names="Calibri" Font-Size="16px"
-                                BorderStyle="Groove" TextMode="MultiLine"
-                                Height="200px" Width="600px" /><br />*@
-
                         </td>
                     </tr>
                     <tr>
                         <td align="left" style="padding-left: 40%">
-                            &nbsp;@*<asp:Button ID="btnSubmit" runat="server" Text="Submit" 
-                                OnClick="PreviewButton_Click" BackColor="#F5E8AA" BorderStyle="None"  ForeColor="White"
-                                    Font-Bold="True" ValidationGroup="1" />*@ <br />
+                            &nbsp;<br />
                             <input type="submit" value="Submit" id="btnSubmit" onclick="return ValidateSuggestion()" class="mysubmit" />
                         </td>
                     </tr>
