@@ -30,80 +30,42 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult Contact(string txtEMail, string txtSuggestion)
         {
-            //ViewBag.Message = "Your contact page.";
             if (!string.IsNullOrEmpty(txtSuggestion))
             {
-                if(string.IsNullOrEmpty(txtEMail) && (Session["User"] != null))
+                if (string.IsNullOrEmpty(txtEMail))
                 {
-                       user = (Users)Session["User"];
-                       txtEMail = user.Email;
-                }
-                else
-                {
-                     return View();
-                }
-                //double dblQuestionID = 0;
-                //ClsSuggestion suggestion = new ClsSuggestion();
-                //SqlConnection LclConn = new SqlConnection();
-                //SqlTransaction SetTransaction = null;
-                //bool IsinTransaction = false;
-                //if (LclConn.State != ConnectionState.Open)
-                //{
-                //    suggestion.SetConnection = suggestion.OpenConnection(LclConn);
-                //    SetTransaction = LclConn.BeginTransaction(IsolationLevel.ReadCommitted);
-                //    IsinTransaction = true;
-                //}
-                //else
-                //{
-                //    suggestion.SetConnection = LclConn;
-                //}
-                //suggestion.OptionID = 1;
-                //suggestion.Suggestion = txtSuggestion;
-                //suggestion.CreatedDate = DateTime.Now;
-
-                //if (Session["User"] != null)
-                //    suggestion.CreatedUser = user.UserId;
-                //else
-                //{
-                //    double dblUser = 0;
-                //    suggestion.CreatedUser = dblUser;
-                //}
-
-                //bool result = suggestion.CreateSuggestion(ref dblQuestionID, SetTransaction);
-
-              //  if (IsinTransaction && result)
-                //{
-                  //  SetTransaction.Commit();
-                    Mail mail = new Mail();
-                    mail.Body = txtSuggestion;
                     if (Session["User"] != null)
-                        mail.FromAdd = "admin@codeanalyze.com";
-                    else
-                        mail.FromAdd = txtEMail;
-                    mail.Subject = "Suggestion";
-                    mail.ToAdd = "admin@codeanalyze.com";
-
-                    mail.SendMail();
+                    {
+                        user = (Users)Session["User"];
+                        txtEMail = user.Email;
+                    }
+                }
+                //else
+                //{
+                //    return View();
                 //}
+                Mail mail = new Mail();
+                mail.Body = txtSuggestion + " from " + txtEMail;
+                //if (Session["User"] != null)
+                mail.FromAdd = "admin@codeanalyze.com";
                 // else
-                // {
-                //     SetTransaction.Rollback();
-                //  }
-                // suggestion.CloseConnection(LclConn);
+                   // mail.FromAdd = txtEMail;
+                mail.Subject = "Suggestion";
+                mail.ToAdd = "admin@codeanalyze.com";
 
-                // lblSuggestion.Visible = true;
+                mail.SendMail();
                 ViewBag.Ack = "Thank you!! We appreciate your patience and your time in reaching out to us, we will get back to you soon if needed.";
 
                 return View();
             }
-            
-             if(Session["User"] != null)
-             {
+
+            if (Session["User"] != null)
+            {
                 user = (Users)Session["User"];
                 ViewBag.UserEMail = user.Email;
-             }
-             
-            
+            }
+
+
             return View();
         }
 
