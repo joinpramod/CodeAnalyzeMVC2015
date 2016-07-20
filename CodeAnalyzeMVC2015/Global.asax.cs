@@ -32,8 +32,8 @@ namespace CodeAnalyzeMVC2015
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 if (Request.Url.ToString().ToLower().Contains("soln.aspx?qid=") ||
                     Request.Url.ToString().ToLower().Contains("xcode.aspx?qid=") ||
                     Request.Url.ToString().ToLower().Contains("android.aspx?qid=") ||
@@ -141,11 +141,11 @@ namespace CodeAnalyzeMVC2015
                 //    else
                 //       HttpContext.Current.Response.Redirect("/Home/NotFound");
                 //}
-            }
-            catch
-            {
+            //}
+            //catch
+            //{
 
-            }
+            //}
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
