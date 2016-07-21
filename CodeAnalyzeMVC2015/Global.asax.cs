@@ -75,69 +75,6 @@ namespace CodeAnalyzeMVC2015
                 Exception ex = new Exception();
                 ex = Server.GetLastError();
     
-                // Code that runs when an unhandled error occurs
-                Mail mail = new Mail();
-                string strBody = "";
-                
-                if (HttpContext.Current != null)
-                {
-                    var varURL = HttpContext.Current.Request.Url;
-                    strBody += "URL -- " + varURL + "<br /><br />";
-                    try
-                    {
-                    string strReferer = Request.UrlReferrer.ToString();
-                    strBody += "Previous URL -- " + strReferer + "<br /><br />";
-                    }
-                    catch
-                    {
-                        
-                    }
-                }
-
-                if (!string.IsNullOrEmpty(ex.Message))
-                    strBody += "Message -- " + ex.Message + "<br /><br />";
-                if (!string.IsNullOrEmpty(ex.Source))
-                    strBody += "Source -- " + ex.Source + "<br /><br />";
-                if (ex.TargetSite != null)
-                    strBody += "TargetSite -- " + ex.TargetSite + "<br /><br />";
-                if (ex.Data != null)
-                    strBody += "Data -- " + ex.Data + "<br /><br />";
-                if (ex.InnerException != null)
-                    strBody += "InnerException -- " + ex.InnerException + "<br /><br />";
-                if (!string.IsNullOrEmpty(ex.Source))
-                    strBody += "Source -- " + ex.Source + "<br /><br />";
-
-                try
-                {
-                    strBody += "IP - " + Utilities.GetUserIP() + "<br /><br />";
-                }
-                catch
-                {
-
-                }
-
-                try
-                {
-                    if (ex.GetType().ToString() != null)
-                        strBody += "Type -- " + ex.GetType().ToString() + "<br />";
-                    //if (ex.GetType().ToString() == "System.Web.HttpException")
-                        //Response.Redirect("/Home/Error");
-                }
-                catch
-                {
-
-                }
-                
-                if (ex.StackTrace != null)
-                strBody += " Stack Trace -- " + ex.StackTrace + " <br /><br />";
-                
-                mail.Body = strBody;
-                mail.FromAdd = "admin@codeanalyze.com";
-                mail.Subject = "Error";
-                mail.ToAdd = "admin@codeanalyze.com";
-                mail.IsBodyHtml = true;
-                mail.SendMail();
-
                 if (ex.Message.ToLower().Contains("the controller for path")
                     && ex.Message.ToLower().Contains("was not found or does not implement icontroller"))
                 {
@@ -171,6 +108,70 @@ namespace CodeAnalyzeMVC2015
                 }
                 else
                 {
+                    
+                    // Code that runs when an unhandled error occurs
+                    Mail mail = new Mail();
+                    string strBody = "";
+                    
+                    if (HttpContext.Current != null)
+                    {
+                        var varURL = HttpContext.Current.Request.Url;
+                        strBody += "URL -- " + varURL + "<br /><br />";
+                        try
+                        {
+                        string strReferer = Request.UrlReferrer.ToString();
+                        strBody += "Previous URL -- " + strReferer + "<br /><br />";
+                        }
+                        catch
+                        {
+                            
+                        }
+                    }
+    
+                    if (!string.IsNullOrEmpty(ex.Message))
+                        strBody += "Message -- " + ex.Message + "<br /><br />";
+                    if (!string.IsNullOrEmpty(ex.Source))
+                        strBody += "Source -- " + ex.Source + "<br /><br />";
+                    if (ex.TargetSite != null)
+                        strBody += "TargetSite -- " + ex.TargetSite + "<br /><br />";
+                    if (ex.Data != null)
+                        strBody += "Data -- " + ex.Data + "<br /><br />";
+                    if (ex.InnerException != null)
+                        strBody += "InnerException -- " + ex.InnerException + "<br /><br />";
+                    if (!string.IsNullOrEmpty(ex.Source))
+                        strBody += "Source -- " + ex.Source + "<br /><br />";
+    
+                    try
+                    {
+                        strBody += "IP - " + Utilities.GetUserIP() + "<br /><br />";
+                    }
+                    catch
+                    {
+    
+                    }
+    
+                    try
+                    {
+                        if (ex.GetType().ToString() != null)
+                            strBody += "Type -- " + ex.GetType().ToString() + "<br />";
+                        //if (ex.GetType().ToString() == "System.Web.HttpException")
+                            //Response.Redirect("/Home/Error");
+                    }
+                    catch
+                    {
+    
+                    }
+                    
+                    if (ex.StackTrace != null)
+                    strBody += " Stack Trace -- " + ex.StackTrace + " <br /><br />";
+                    
+                    mail.Body = strBody;
+                    mail.FromAdd = "admin@codeanalyze.com";
+                    mail.Subject = "Error";
+                    mail.ToAdd = "admin@codeanalyze.com";
+                    mail.IsBodyHtml = true;
+                    mail.SendMail();
+                    
                     if (Request.Url.ToString().Contains("localhost"))
                         HttpContext.Current.Response.Redirect("/CodeAnalyzeMVC2015/Home/Error");
                     else
