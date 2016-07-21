@@ -115,7 +115,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 if (dsAnswers.Tables.Count > 0 && dsAnswers.Tables[0].Rows.Count > 0)
                     user.AnswersPosted = dsAnswers.Tables[0].Rows[0][0].ToString();
 
-                dsArticles = connManager.GetData("Select Count(*) from Articles where UserId = " + user.UserId + "");
+                dsArticles = connManager.GetData("Select Count(*) from CodeArticles where UserId = " + user.UserId + "");
                 if (dsArticles.Tables.Count > 0 && dsArticles.Tables[0].Rows.Count > 0)
                     user.ArticlesPosted = dsArticles.Tables[0].Rows[0][0].ToString();
                 else
