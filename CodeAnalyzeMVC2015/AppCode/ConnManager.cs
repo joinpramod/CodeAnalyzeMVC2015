@@ -27,9 +27,9 @@ namespace CodeAnalyzeMVC2015
         {
             if (DataCon.State == ConnectionState.Open)
             {
-                DataCon.Close();
-                DataCon.Dispose();
+                DataCon.Close();            
             }
+            DataCon.Dispose();
         }
 
         public SqlConnection OpenConnection(SqlConnection DbConn)
@@ -47,7 +47,7 @@ namespace CodeAnalyzeMVC2015
         {
             if (DbConn.State == ConnectionState.Open)
             {
-                DbConn.Close();
+                DbConn.Close();             
             }
             DbConn.Dispose();
         }
@@ -55,31 +55,16 @@ namespace CodeAnalyzeMVC2015
         public DataSet GetData(string sqlQuery)
         {
             DataSet DS = new DataSet();
-            try
-            {
-                SqlDataAdapter DA = new SqlDataAdapter(sqlQuery, DataCon);
-                DA.Fill(DS);
-                return DS;
-            }
-            catch (System.Exception ex)
-            {
-
-            }
+            SqlDataAdapter DA = new SqlDataAdapter(sqlQuery, DataCon);
+            DA.Fill(DS);
             return DS;
         }
 
         public DataTable GetDataTable(string sqlQuery)
         {
             DataSet DS = new DataSet();
-            try
-            {
-                SqlDataAdapter DA = new SqlDataAdapter(sqlQuery, DataCon);
-                DA.Fill(DS);
-            }
-            catch (System.Exception ex)
-            {
-
-            }
+            SqlDataAdapter DA = new SqlDataAdapter(sqlQuery, DataCon);
+            DA.Fill(DS);
             return DS.Tables[0];
         }
 

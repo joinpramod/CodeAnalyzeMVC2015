@@ -125,6 +125,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 Session["User"] = user;
                 Session["user.Email"] = user.Email;
                 ViewBag.UserEmail = user.Email;
+                connManager.DisposeConn();
                 return View("../Account/ViewUser", user);
 
 

@@ -275,8 +275,6 @@ namespace CodeAnalyzeMVC2015
         {
             if (SetCommandUsers(ref CmdExecute))
             {
-                try
-                {
                     if (TrTransaction != null)
                     {
                         CmdExecute.Transaction = TrTransaction;
@@ -287,11 +285,6 @@ namespace CodeAnalyzeMVC2015
                         NewMasterID = double.Parse(DATReader[0].ToString());
                     }
                     DATReader.Close();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
             }
             return true;
         }
@@ -304,8 +297,6 @@ namespace CodeAnalyzeMVC2015
         public Users CreateUser(string strEmail, string strFirstName, string strLastName, string strImageURL)
         {
             Users user = new Users();
-            try
-            {
                 double dblUserID = 0;
 
                 SqlConnection LclConn = new SqlConnection();
@@ -338,11 +329,6 @@ namespace CodeAnalyzeMVC2015
                     SetTransaction.Rollback();
                 }
                 user.CloseConnection(LclConn);
-            }
-            catch
-            {
-
-            }
             return user;
         }
 
