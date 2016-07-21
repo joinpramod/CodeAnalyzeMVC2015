@@ -21,8 +21,6 @@ namespace CodeAnalyzeMVC2015
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls;
-           // System.Threading.Timer ChatRoomsCleanerTimer = new System.Threading.Timer(new TimerCallback(ChatEngine.CleanChatRooms), null, 1200000, 1200000);
-
         }
 
         protected void Session_Start(object sender, EventArgs e)
@@ -32,15 +30,13 @@ namespace CodeAnalyzeMVC2015
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            //try
-            //{
                 if (Request.Url.ToString().ToLower().Contains("soln.aspx?qid=") ||
                     Request.Url.ToString().ToLower().Contains("xcode.aspx?qid=") ||
                     Request.Url.ToString().ToLower().Contains("android.aspx?qid=") ||
                     Request.Url.ToString().ToLower().Contains("angularjs.aspx?qid=") ||
 
                     Request.Url.ToString().ToLower().Contains("csharp.aspx?qid=") ||
-                   Request.Url.ToString().ToLower().Contains("dotnet.aspx?qid=") ||
+                    Request.Url.ToString().ToLower().Contains("dotnet.aspx?qid=") ||
                     Request.Url.ToString().ToLower().Contains("jquery.aspx?qid=") ||
 
                     Request.Url.ToString().ToLower().Contains("mvc.aspx?qid=") ||
@@ -57,40 +53,6 @@ namespace CodeAnalyzeMVC2015
 
                     Response.Redirect("/Que/Ans/" + strId + "/" + strTitle);
                 }
-                //else if (Request.Url.ToString().ToLower().Contains("/va.aspx?qid="))
-                //{
-                //string strId = Request.QueryString["QId"];
-                //string strTitle = Request.QueryString["QT"];
-
-                //strTitle = strTitle.Replace(" ", "-");
-
-                //System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
-                //strTitle = rgx.Replace(strTitle, "");
-
-                //Response.Redirect("/Articles/Details/" + strId + "/" + strTitle);
-                //}
-                //if (Request.Url.ToString().ToLower().Contains("/questions/soln/"))
-                //{
-                //    string strURL = Request.Url.ToString().ToLower().Replace("/questions/soln/", "/que/ans/");
-                //    Response.Redirect(strURL);
-                //}
-                //else if (Request.Url.ToString().ToLower().Contains("/questions/unans"))
-                //{
-                //    string strURL = Request.Url.ToString().ToLower().Replace("/questions/unans", "/que/unans");
-                //    Response.Redirect(strURL);
-                //}
-                //else if (Request.Url.ToString().ToLower().Contains("/unanswered.aspx"))
-                //{
-                //    Response.Redirect("/Que/Unans");
-                //}
-                //else if (Request.Url.ToString().ToLower().Contains("/articles.aspx"))
-                //{
-                //    Response.Redirect("/Articles/Index");
-                //}
-                //else if (Request.Url.ToString().ToLower().Contains("/mvc.aspx"))
-                //{
-                //    Response.Redirect("/Que/Unans");
-                //}
                 else if (Request.Url.ToString().ToLower().Contains("/postingguidelines.aspx"))
                 {
                     Response.Redirect("/Home/Postingguidelines");
@@ -99,53 +61,6 @@ namespace CodeAnalyzeMVC2015
                 {
                     Response.Redirect("/Que/Unans");
                 }
-                //else if (Request.Url.ToString().ToLower().Contains("/questions/upvote") ||
-                //    Request.Url.ToString().ToLower().Contains("/questions/downvote"))
-                //{
-                //    if (Request.Url.ToString().Contains("localhost"))
-                //       HttpContext.Current.Response.Redirect("/CodeAnalyzeMVC2015/Home/NotFound");
-                //   else
-                //        HttpContext.Current.Response.Redirect("/Home/NotFound");
-                //}
-                //else if (Request.Url.ToString().ToLower().Contains("/credits.aspx"))
-                //{
-                //    Response.Redirect("/Home/Rewards");
-                //}
-                //else if (Request.Url.ToString().ToLower().Contains("/topics.aspx"))
-                //{
-                //    Response.Redirect("/Tutorials/Basics");
-                //}
-                //else if (Request.Url.ToString().ToLower().Contains("/info.aspx"))
-                //{
-                //    Response.Redirect("/Home/About");
-                //}
-                //else if (Request.Url.ToString().ToLower().Contains("/userprofile.aspx"))
-                //{
-                //    Response.Redirect("/Account/Users");
-                //}
-                //else if (Request.Url.ToString().ToLower().Contains("/suggestions.aspx"))
-                //{
-                //    Response.Redirect("/Home/Contact");
-                //}
-                //if (Request.Url.ToString().ToLower().Contains("/questions/post") ||
-                //    Request.Url.ToString().ToLower().Contains("/account/register") ||
-                //    Request.Url.ToString().ToLower().Contains("va.aspx") ||
-                //    Request.Url.ToString().ToLower().Contains("soln.aspx")||
-                //    Request.Url.ToString().ToLower().Contains("/artilces/details/home/rewards")||
-                //    Request.Url.ToString().ToLower().Contains("codeanalyze.com/wp")||
-                //    Request.Url.ToString().ToLower().Contains("codeanalyze.com/blog")||
-                //    Request.Url.ToString().ToLower().Contains("codeanalyze.com/webresource.axd?"))
-                //{
-                //    if (Request.Url.ToString().Contains("localhost"))
-                //        HttpContext.Current.Response.Redirect("/CodeAnalyzeMVC2015/Home/NotFound");
-                //    else
-                //       HttpContext.Current.Response.Redirect("/Home/NotFound");
-                //}
-            //}
-            //catch
-            //{
-
-            //}
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
@@ -247,14 +162,13 @@ namespace CodeAnalyzeMVC2015
                     else
                         HttpContext.Current.Response.Redirect("/Home/NotFound");
                 }
-                //else if (Request.Url.ToString().ToLower().Contains("/questions/upvote") ||
-                //    Request.Url.ToString().ToLower().Contains("/questions/downvote"))
-                //{
-                //    if (Request.Url.ToString().Contains("localhost"))
-                //       HttpContext.Current.Response.Redirect("/CodeAnalyzeMVC2015/Home/NotFound");
-                //   else
-                //        HttpContext.Current.Response.Redirect("/Home/NotFound");
-                //}
+                else if (ex.Message.ToLower().Contains("the file '/va.aspx' does not exist"))
+                {
+                    if (Request.Url.ToString().Contains("localhost"))
+                        HttpContext.Current.Response.Redirect("/CodeAnalyzeMVC2015/Home/NotFound");
+                    else
+                        HttpContext.Current.Response.Redirect("/Home/NotFound");
+                }
                 else
                 {
                     if (Request.Url.ToString().Contains("localhost"))
