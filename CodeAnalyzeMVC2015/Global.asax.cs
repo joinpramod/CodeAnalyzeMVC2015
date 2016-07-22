@@ -30,37 +30,38 @@ namespace CodeAnalyzeMVC2015
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-                if (Request.Url.ToString().ToLower().Contains("soln.aspx?qid=") ||
-                    Request.Url.ToString().ToLower().Contains("xcode.aspx?qid=") ||
-                    Request.Url.ToString().ToLower().Contains("android.aspx?qid=") ||
-                    Request.Url.ToString().ToLower().Contains("angularjs.aspx?qid=") ||
+                //if (Request.Url.ToString().ToLower().Contains("soln.aspx?qid=") ||
+                    //Request.Url.ToString().ToLower().Contains("xcode.aspx?qid=")||
+                    //Request.Url.ToString().ToLower().Contains("android.aspx?qid=") ||
+                    //Request.Url.ToString().ToLower().Contains("angularjs.aspx?qid=") ||
 
-                    Request.Url.ToString().ToLower().Contains("csharp.aspx?qid=") ||
-                    Request.Url.ToString().ToLower().Contains("dotnet.aspx?qid=") ||
-                    Request.Url.ToString().ToLower().Contains("jquery.aspx?qid=") ||
+                    //Request.Url.ToString().ToLower().Contains("csharp.aspx?qid=") ||
+                    //Request.Url.ToString().ToLower().Contains("dotnet.aspx?qid=") ||
+                    //Request.Url.ToString().ToLower().Contains("jquery.aspx?qid=") ||
 
-                    Request.Url.ToString().ToLower().Contains("mvc.aspx?qid=") ||
-                    Request.Url.ToString().ToLower().Contains("aspnet.aspx?qid=") ||
-                    Request.Url.ToString().ToLower().Contains("sql.aspx?qid=") ||
-                    Request.Url.ToString().ToLower().Contains("java.aspx?qid=")
-                    )
-                {
-                    string strId = Request.QueryString["QId"];
-                    string strTitle = Request.QueryString["QT"];
+                    //Request.Url.ToString().ToLower().Contains("mvc.aspx?qid=") ||
+                    //Request.Url.ToString().ToLower().Contains("aspnet.aspx?qid=") ||
+                    //Request.Url.ToString().ToLower().Contains("sql.aspx?qid=") ||
+                    //Request.Url.ToString().ToLower().Contains("java.aspx?qid=")
+                //    )
+                //{
+                //    string strId = Request.QueryString["QId"];
+                //    string strTitle = Request.QueryString["QT"];
 
-                    System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
-                    strTitle = rgx.Replace(strTitle, "");
+                //   System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+                //    strTitle = rgx.Replace(strTitle, "");
 
-                    Response.Redirect("/Que/Ans/" + strId + "/" + strTitle);
-                }
-                else if (Request.Url.ToString().ToLower().Contains("/postingguidelines.aspx"))
-                {
-                    Response.Redirect("/Home/Postingguidelines");
-                }
-                else if (Request.Url.ToString().ToLower().Contains("eval(chr(100).chr(105).chr(101).chr(40).chr(39).chr(49).chr(55).chr(73).chr(53).chr(51).chr(48).chr(86).chr(65).chr(117).chr(52).chr(39).chr(41).chr(59)"))
-                {
-                    Response.Redirect("/Que/Unans");
-                }
+                //    Response.Redirect("/Que/Ans/" + strId + "/" + strTitle);
+                //}
+                //else 
+                //if (Request.Url.ToString().ToLower().Contains("/postingguidelines.aspx"))
+                //{
+                //    Response.Redirect("/Home/Postingguidelines");
+                //}
+                //else if (Request.Url.ToString().ToLower().Contains("eval(chr(100).chr(105).chr(101).chr(40).chr(39).chr(49).chr(55).chr(73).chr(53).chr(51).chr(48).chr(86).chr(65).chr(117).chr(52).chr(39).chr(41).chr(59)"))
+                //{
+                //    Response.Redirect("/Que/Unans");
+                //}
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
