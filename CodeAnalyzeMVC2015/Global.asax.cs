@@ -30,6 +30,14 @@ namespace CodeAnalyzeMVC2015
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
+                if (Request.Url.ToString().ToLower().Contains("/que/ans?id"))
+                {
+                     if (Request.Url.ToString().Contains("localhost"))
+                        HttpContext.Current.Response.Redirect("/CodeAnalyzeMVC2015/Home/NotFound");
+                    else
+                        HttpContext.Current.Response.Redirect("/Home/NotFound");
+                }
+                
                 //if (Request.Url.ToString().ToLower().Contains("soln.aspx?qid=") ||
                     //Request.Url.ToString().ToLower().Contains("xcode.aspx?qid=")||
                     //Request.Url.ToString().ToLower().Contains("android.aspx?qid=") ||
