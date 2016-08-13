@@ -139,7 +139,7 @@ namespace CodeAnalyzeMVC2015
             //SMTPClnt.EnableSsl = false;
             //SMTPClnt.UseDefaultCredentials = false;
             //SMTPClnt.DeliveryMethod = SmtpDeliveryMethod.Network;
-            SMTPClnt.Credentials = new System.Net.NetworkCredential("admin@codeanalyze.com", "$only4Shamu");
+            SMTPClnt.Credentials = new System.Net.NetworkCredential("admin@codeanalyze.com", "Shamu@123");
             try
             {
                 //if(!MlMessage.To.ToString().Contains("codeanalyze.com") &&
