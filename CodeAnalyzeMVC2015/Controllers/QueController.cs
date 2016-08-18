@@ -21,9 +21,18 @@ namespace CodeAnalyzeMVC2015.Controllers
             //{
             string strSQL = string.Empty;
             user = (Users)Session["User"];
+            long val = 0;
 
             if (!string.IsNullOrEmpty(ddType))
             {
+                try
+                {
+                    val = Convert.ToInt64(ddType);
+                }
+                catch 
+                {
+                    return View("../Que/UnAns");
+                }
                 if (user != null && user.UserId == 1)
                     strSQL = "Select * from Question Where QuestionId > 37861 and QuestionTypeId = " + ddType + " order by questionid desc";
                 else
