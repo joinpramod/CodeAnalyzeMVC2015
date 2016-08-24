@@ -408,7 +408,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                     //Response no user details
                     string htrResponseNoByDetailsOuterRow = "<tr>";
-                    string htcResponseNoByDetailsOuterCell = "<td style=\"background-color:#F5E8AA;border-radius:10%;\">";
+                    string htcResponseNoByDetailsOuterCell = "<td style=\"background-color:#F5E8AA;border-radius:10px;\">";
 
                     string htmlTblResponseNoByDetails = "<table style=\"width:100%\">";
 
