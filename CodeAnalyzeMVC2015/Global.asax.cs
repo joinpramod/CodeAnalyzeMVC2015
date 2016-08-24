@@ -41,13 +41,34 @@ namespace CodeAnalyzeMVC2015
                (Request.Url.ToString().ToLower().Equals("http://codeanalyze.com/que/ans/home/rewards")) ||
                (Request.Url.ToString().ToLower().Equals("http://codeanalyze.com/que/ans/48360/")) ||
                (Request.Url.ToString().ToLower().Equals("http://codeanalyze.com/articles/details/20073/")) ||
-               (Request.Url.ToString().ToLower().Equals("http://codeanalyze.com/que/ans/38198/")))
+               (Request.Url.ToString().ToLower().Equals("http://codeanalyze.com/que/ans/38198/")) ||
+               (Request.Url.ToString().ToLower().Contains("codeanalyze.com/soln.aspx")) ||
+               (Request.Url.ToString().ToLower().Contains("codeanalyze.com/questions/soln")))
             {
                 if (Request.Url.ToString().Contains("localhost"))
                     HttpContext.Current.Response.Redirect("/CodeAnalyzeMVC2015/Home/NotFound");
                 else
                     HttpContext.Current.Response.Redirect("/Home/NotFound");
             }
+            
+            
+             if (Request.Url.ToString().ToLower().Contains("codeanalyze.com/que/ans") ||
+                Request.Url.ToString().ToLower().Contains("codeanalyze.com/articles/details"))
+            {
+                if (HttpContext.Current.Request.RequestContext.RouteData.Values["Id"] == null)
+                {
+                    HttpContext.Current.Response.Redirect("/Home/NotFound");
+                }
+
+                if (HttpContext.Current.Request.RequestContext.RouteData.Values["Title"] != null)
+                {
+                    string strTitle = HttpContext.Current.Request.RequestContext.RouteData.Values["Title"].ToString();
+                    System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+                    HttpContext.Current.Request.RequestContext.RouteData.Values["Title"] = rgx.Replace(strTitle, "");
+                }
+            }           
+            
+            
             //if (Request.Url.ToString().ToLower().Contains("soln.aspx?qid=") ||
             //Request.Url.ToString().ToLower().Contains("xcode.aspx?qid=")||
             //Request.Url.ToString().ToLower().Contains("android.aspx?qid=") ||
