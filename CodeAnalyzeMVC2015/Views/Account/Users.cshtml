@@ -32,68 +32,68 @@
                          </td>
                     </tr>
                     <tr>
-                        <td style="padding-top: 5px;padding-left:10%">
+                        <td style="padding-top: 5px">
                             <input type="image" onclick="FaceBookLogin()" value="FaceBook" style="height:35px;width:200px" src="~/Images/SignInWithFacebook.png" />
                         </td>
                     </tr>
                     <tr><td>&nbsp</td></tr>
                     <tr>
-                        <td style="padding-top: 5px;padding-left:10%">
+                        <td style="padding-top: 5px">
                             <div id="my-signin2"></div>
                         </td>
                     </tr>
     }
                     <tr>
-                        <td style="font-weight: bold; color: red;padding-left:15%">
+                        <td style="font-weight: bold; color: red">
                             @ViewBag.Ack<br />
                         </td>
                     </tr>
                     <tr>
-                        <td style="padding-top: 5px;padding-left:10%">
+                        <td style="padding-top: 5px">
                             @using (Html.BeginForm("CreateEditUser", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                             <table style="height: 250px; width: 80%;border:solid;border-radius:20px;border-width:0px;border-color:lightgrey;background-color:#EFF0ED" cellpadding=5; cellspacing=5>
                                 <tr>
-                                    <td style="padding-left:5%">
+                                    <td>
                                         <br/>
                                         @Html.TextBoxFor(m => m.FirstName, new { style = "width:55%;", placeholder="First Name", @class="myText"})
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding-left:5%">
+                                    <td>
                                         @Html.TextBoxFor(m => m.LastName, new { style = "width:55%;", placeholder = "Last Name", @class = "myText" })
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding-left:5%">
+                                    <td>
                                         @Html.TextBoxFor(m => m.Email, new { style = "width:75%;", placeholder = "EMail", @class = "myText" })
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding-left:5%">
+                                    <td>
                                         @Html.TextBoxFor(m => m.Address, new { style = "width:75%;", placeholder = "Address", @class = "myText" })
                                     </td>
                                 </tr>
                                  @if (Model.Email == null || ViewBag.Ack != null)
                                 {
                                 <tr>
-                                    <td style="padding-left:5%">
+                                    <td>
                                         @Html.Password("txtPassword", "", new { style = "width:55%;", placeholder = "Password", @class = "myText" })
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding-left:5%">
+                                    <td>
                                         @Html.Password("txtConfirmPassword", "", new { style = "width:55%;", placeholder = "Confirm Password", @class = "myText" })
                                     </td>
                                 </tr>
                                 }
                                 <tr>
-                                    <td style="padding-left:5%">
+                                    <td>
                                         <input type="file" style="width: 50%" class="myText" id="fileUserPhoto" name="fileUserPhoto" />
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding-left:5%">
+                                    <td>
                                         @Html.TextAreaFor(m => m.Details, new {style="height:160px;width:90%", @class="myText",
                                                  placeholder="Brief details on your experience, work and expertiece"})
                                     </td>
