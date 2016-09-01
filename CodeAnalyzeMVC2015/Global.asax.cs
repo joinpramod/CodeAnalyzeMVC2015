@@ -147,7 +147,14 @@ namespace CodeAnalyzeMVC2015
                     else
                         HttpContext.Current.Response.Redirect("/Home/NotFound");
                 }
-               
+               else if  ((Request.Url.ToString().ToLower().Contains("codeanalyze.com/soln.aspx")) ||
+                    (Request.Url.ToString().ToLower().Contains("codeanalyze.com/questions/soln")))
+               {
+                    if (Request.Url.ToString().Contains("localhost"))
+                        HttpContext.Current.Response.Redirect("/CodeAnalyzeMVC2015/Home/NotFound");
+                    else
+                        HttpContext.Current.Response.Redirect("/Home/NotFound");
+               }
                 else
                 {
                     
