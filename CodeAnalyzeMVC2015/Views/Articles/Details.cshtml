@@ -117,13 +117,13 @@
 
                 <table style="width: 100%; font-size: 16px">
                     <tr>
-                        <td style="width: 25%" align="right">
+                        <td align="left">
                             @if (!string.IsNullOrEmpty(Model.ImageURL))
                             {
                                 <img id="imgAskedUser" src="@Url.Content("~/Images/" + System.IO.Path.GetFileName(Model.ImageURL))" style="height:70px;width:80px" />
                             }
                         </td>
-                        <td align="left" valign="top" style="width: 75%">
+                        <td align="left" valign="top">
                             <table style="width: 100%;">
                                 <tr>
                                     <td align="left" valign="top">
