@@ -6,14 +6,14 @@
 <script src="~/js/jquery-1.9.1.min.js"></script>
 
 <script>
-        $(document).ready(function () {
-            $(".pager").click(function (evt) {
-                var pageindex = $(evt.target).data("pageindex");
-                $("#CurrentPageIndex").val(pageindex);
-                evt.preventDefault();
-                $("form").submit();
-            });
+    $(document).ready(function () {
+        $(".pager").click(function (evt) {
+            var pageindex = $(evt.target).data("pageindex");
+            $("#CurrentPageIndex").val(pageindex);
+            evt.preventDefault();
+            $("form").submit();
         });
+    });
 
 </script>
 
@@ -47,41 +47,47 @@
     </tr>
     </table>*@
 
-@* <table>
+<table style="width:100%;float:right;font-size:16px">
     <tr>
-        @for (var i = 0; i < info.PageCount; i++)
+        <td style="float:right;">
+            <table>
+                <tr>
+                    @for (var i = 0; i < info.PageCount; i++)
             {
                 if (i == info.CurrentPageIndex)
                 {
-                <td><span>@(i + 1)</span></td>
-            }
-            else
-            {
-                <td>
-                    <a href="#" data-pageindex="@i" class="pager" style="font-weight:bold">@(i + 1)</a>
-                </td>
-            }
-        }
+                            <td><span>@(i + 1)</span>&nbsp;&nbsp;</td>
+                        }
+                        else
+                        {
+                            <td>
+                                <a href="#" data-pageindex="@i" class="pager" style="font-weight:bold">@(i + 1)&nbsp;&nbsp;</a>
+                            </td>
+                        }
+                    }
+                </tr>
+            </table>
+        </td>
     </tr>
-</table>*@
+</table>    
 
-    <table>
+<table>
     <tr>
         <td>
 
-              @using (Html.BeginForm("Index", "Articles", FormMethod.Post))
-              {
+            @using (Html.BeginForm("Index", "Articles", FormMethod.Post))
+            {
 
-                    @Html.Hidden("SortField", info.SortField)
-                    @Html.Hidden("SortDirection", info.SortDirection)
-                    @Html.Hidden("PageCount", info.PageCount)
-                    @Html.Hidden("PageSize", info.PageSize)
-                    @Html.Hidden("CurrentPageIndex", info.CurrentPageIndex)
-                    foreach (CodeAnalyzeMVC2015.Models.ArticleModel articleModel in Model)
-                    {
-                        string title = articleModel.ArticleTitle;
-                        System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
-                        articleModel.ArticleTitle = rgx.Replace(articleModel.ArticleTitle, "");
+                @Html.Hidden("SortField", info.SortField)
+                @Html.Hidden("SortDirection", info.SortDirection)
+                @Html.Hidden("PageCount", info.PageCount)
+                @Html.Hidden("PageSize", info.PageSize)
+                @Html.Hidden("CurrentPageIndex", info.CurrentPageIndex)
+                foreach (CodeAnalyzeMVC2015.Models.ArticleModel articleModel in Model)
+                {
+                    string title = articleModel.ArticleTitle;
+                    System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+                    articleModel.ArticleTitle = rgx.Replace(articleModel.ArticleTitle, "");
 
                     <section id="ccr-blog">
                         <article>
@@ -89,10 +95,10 @@
                             <div class="blog-text">
                                 <h1>
                                     @Html.ActionLink(title, "Details", "Articles", new { Id = articleModel.ArticleID, Title = articleModel.ArticleTitle.Replace(" ", "-").Replace(".", "-") }, new { style = "font-weight:bold;color:Black" })
-                                    @*<span style="font-weight:bold">@articleModel.ArticleTitle</span>*@ 
+                                    @*<span style="font-weight:bold">@articleModel.ArticleTitle</span>*@
                                 </h1>
                                 <p style="font-size:16px">
-                                    @articleModel.ArticleDetails                             
+                                    @articleModel.ArticleDetails
                                 </p>
                                 <div>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-up"></i> @articleModel.ThumbsUp
@@ -106,25 +112,31 @@
                             </div>
                         </article>
                     </section>
-                    }
-              }
+                }
+            }
         </td>
     </tr>
-    </table>
-    <table>
+</table>
+<table style="width:100%;float:right;font-size:16px">
     <tr>
-            @for (var i = 0; i < info.PageCount; i++)
+        <td style="float:right;">
+            <table>
+                <tr>
+                    @for (var i = 0; i < info.PageCount; i++)
             {
                 if (i == info.CurrentPageIndex)
                 {
-                    <td><span>@(i + 1)</span></td>
-                }
-                else
-                {
-                    <td>
-                        <a href="#" data-pageindex="@i" class="pager" style="font-weight:bold">@(i + 1)</a>
-                    </td>
-                }
-            }
+                            <td><span>@(i + 1)</span>&nbsp;&nbsp;</td>
+                        }
+                        else
+                        {
+                            <td>
+                                <a href="#" data-pageindex="@i" class="pager" style="font-weight:bold">@(i + 1)&nbsp;&nbsp;</a>
+                            </td>
+                        }
+                    }
+                </tr>
+            </table>
+        </td>
     </tr>
-    </table>
+</table>
