@@ -273,7 +273,18 @@
                     </ul>
                 </section>*@
 
-                
+                <section id="sidebar-older-post">
+                    <div class="ccr-gallery-ttile">
+                        <span></span>
+                        <p><strong>Recent Post</strong></p>
+                    </div>
+                    <ul>
+                        <li>
+                            @Html.Action("RecentPosts", "Master")
+                        </li>
+                    </ul>
+
+                </section>
        
                 
                 <section>
@@ -315,18 +326,7 @@
                     </script>
                 </section>
 
-                @*<section id="sidebar-older-post">
-                    <div class="ccr-gallery-ttile">
-                        <span></span>
-                        <p><strong>Recent Post</strong></p>
-                    </div>
-                    <ul>
-                        <li>
-                            @Html.Action("RecentPosts", "Master")
-                        </li>
-                    </ul>
-
-                </section>*@
+               
 
 
 

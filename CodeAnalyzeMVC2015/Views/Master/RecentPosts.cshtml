@@ -1,4 +1,4 @@
-﻿<table cellpadding="0" cellspacing="0">
+﻿<table cellpadding="2" cellspacing="2">
 
     @foreach (CodeAnalyzeMVC2015.Models.ArticleModel articlesModel in Model)
     {
@@ -7,17 +7,16 @@
         articlesModel.ArticleTitle = rgx.Replace(articlesModel.ArticleTitle, "");
 
         <tr>
-            <td colspan="4">
+            <td colspan="3">
                 <img id="imgArrow" src="~/Images/WriteArticle.png" style="width:25px;height:25px;" />
                 @Html.ActionLink(title, "Details", "Articles", new { ID = articlesModel.ArticleID, Title = articlesModel.ArticleTitle.Replace(" ", "-") }, null)
 
             </td>
         </tr>
-        <tr>
-            <td style="width: 80px; padding-left: 0"><span class="date">@*@DateTime.Parse(@articlesModel.InsertedDate).ToShortDateString()*@</span></td>
-            <td style="width: 80px; padding-left: 0"><i class="fa fa-thumbs-o-up"></i>@articlesModel.ThumbsUp</td>
-            <td style="width: 80px; padding-left: 0"><i class="fa fa-thumbs-o-down"></i>@articlesModel.ThumbsDown</td>
-            <td style="width: 50px; padding-left: 0">
+        <tr style="float:right">
+            <td style="width: 60px; padding-left: 0"><i class="fa fa-thumbs-o-up"></i>@articlesModel.ThumbsUp</td>
+            <td style="width: 60px; padding-left: 0"><i class="fa fa-thumbs-o-down"></i>@articlesModel.ThumbsDown</td>
+            <td style="width: 80px; padding-left: 0">
                 <img id="ImageButton1" src="~/Images/eye.png" style="width:20px;height:20px;" />@articlesModel.Views
             </td>
 
