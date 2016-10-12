@@ -1158,11 +1158,11 @@ line-height: 15px;
 	width: 100%;
 }
 #ccr-blog .blog-text{
-	margin-left: 2%;
+	margin-left: 0%;
 	padding-right: 0;
 	min-height: 125px;
 	position: relative;
-	width: 85.66%;
+	width: 90.66%;
 	float: right;
 }
 #ccr-blog .blog-text .meta-data {
