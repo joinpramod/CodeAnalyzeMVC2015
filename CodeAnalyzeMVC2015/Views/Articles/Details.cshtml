@@ -21,16 +21,22 @@
         position: relative;
         overflow: hidden;
     }
-
+    
     .inner-container {
+        overflow-y:auto;
+        width: 100%;
+        height: 1000px;
+    }
+
+    @*.inner-container {
         position: absolute;
         overflow-y: scroll;
         width: 100%;
     }
-
-        .inner-container::-webkit-scrollbar {
+    
+     .inner-container::-webkit-scrollbar {
             display: none;
-        }
+        }*@
 </style>
 
 
@@ -82,13 +88,13 @@
 
 @using (Html.BeginForm("Details", "Articles"))
 {
-    <div class="outer-container">
+    @*<div class="outer-container">*@
         <div class="inner-container">
             <div id="divContent" class="element">
                 @Html.Raw(Model.ArticleDetails)
             </div>
         </div>
-    </div>
+    @*</div>*@
 
     <table style="width: 100%; font-family: Calibri">
         @*<tr>
