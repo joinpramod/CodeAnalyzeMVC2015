@@ -99,10 +99,14 @@
            var divHeader = $('#ccr-header').height();
            var divFooter = $('#ccr-footer-sidebar').height();
 
-           if (pageWidth > 600) {
+           if (pageWidth > 1000) {
                if ((myScrollHeight > divHeader + 10) && (myScrollHeight < (pageHeight - (divHeight + divFooter + 150)))) {
                    $('#ccr-right-section').css('margin-top', myScrollHeight - divHeader + 10 + 'px');
                }
+               if ($(window).scrollTop() < 230) {
+                   $("#ccr-right-section").css('margin-top', 10 + 'px');
+               }
+
            }
        });
     </script>
@@ -264,44 +268,10 @@
                 </div>
             </section>
 
-
             <aside id="ccr-right-section" class="col-md-4">
 
-                @*<section id="social-buttons">
-                    <ul>
-                        <li>
-                            <div class="fb-like" data-href="https://codeanalyze.com" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
-                        </li>
-                        <li>
-                            <div class="g-plusone" data-annotation="none"></div>
-                        </li>
-                        <li>
-                            <a class="twitter-share-button" href="https://twitter.com/codeanalyze_">Tweet</a>
-                            <script>
-                                window.twttr = (function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); t._e = []; t.ready = function (f) { t._e.push(f); }; return t; }(document, "script", "twitter-wjs"));
-                            </script>
-                        </li>
-                    </ul>
-
-                </section>*@
-
-                <section id="sidebar-older-post">
-            <div class="ccr-gallery-ttile">
-                <span></span>
-                <p><strong>Recent Post</strong></p>
-            </div>
-            <ul>
-                <li>
-                    @Html.Action("RecentPosts", "Master")
-                </li>
-            </ul>
-
-        </section>
-
                 <section>
-                    @*<iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=12&l=ur1&category=computers_accesories&banner=11QFGEMTACDKP7H8G8G2&f=ifr&linkID=a7cde29cc2a8d70738dc5ed57718cccc&t=codeanalyze-20&tracking_id=codeanalyze-20" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>*@
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- LargeRect -->
                     <ins class="adsbygoogle"
                          style="display:inline-block;width:336px;height:280px"
                          data-ad-client="ca-pub-3767148792604115"
@@ -310,10 +280,31 @@
                     (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </section>
-                @*<br/><br />*@
-                <section id="sidebar-popular-post">
+
+                <section style="vertical-align:top">
                     <div class="ccr-gallery-ttile">
-                        <span></span>
+                        <p><strong>Recent Post</strong></p>
+                    </div>
+                    <ul>
+                        <li>
+                            @Html.Action("RecentPosts", "Master")
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:336px;height:280px"
+                         data-ad-client="ca-pub-3767148792604115"
+                         data-ad-slot="2216957987"></ins>
+                    <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </section>
+
+                <section>
+                    <div class="ccr-gallery-ttile">
                         <p><strong>Popular Post</strong></p>
                     </div>
                     <ul>
@@ -321,25 +312,10 @@
                             @Html.Action("PopularPosts", "Master")
                         </li>
                     </ul>
-
                 </section>
 
-                <section id="sidebar-video-post">
-                    @*<iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=12&l=ur1&category=camera&banner=0RSEDJSA14KNYHDNVK02&f=ifr&linkID=83c5288187c3b5f06be9fc10e22ed7ad&t=codeanalyze-20&tracking_id=codeanalyze-20" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>*@
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-                    <ins class="adsbygoogle"
-                         style="display:inline-block;width:336px;height:280px"
-                         data-ad-client="ca-pub-3767148792604115"
-                         data-ad-slot="2216957987"></ins>
-                    <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                </section>
-
-                <section id="sidebar-popular-post">
+                <section>
                     <div class="ccr-gallery-ttile">
-                        <span></span>
                         <p><strong>Most Viewed</strong></p>
                     </div>
                     <ul>
@@ -347,8 +323,9 @@
                             @Html.Action("MostViewed", "Master")
                         </li>
                     </ul>
-
                 </section>
+
+
             </aside>
         </div>
     </section>

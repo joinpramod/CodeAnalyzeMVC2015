@@ -583,10 +583,10 @@ line-height: 15px;
 ---------------------------------------------------------------------- */
 #ccr-main-section #ccr-right-section.col-md-4{
 	padding-left: 15px;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 #ccr-main-section #ccr-right-section.col-md-4.ccr-home{
-	margin-top: 15px;
+	margin-top: 10px;
 }
 #social-buttons {
 	overflow: hidden;
