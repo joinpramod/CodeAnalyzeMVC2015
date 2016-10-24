@@ -82,23 +82,35 @@
 <body>
 
     <script type="text/javascript">
-        $(window).scroll(function () {
-           var pageHeight = $(document).height();
-           var pageWidth = $(document).width();
-           var divHeight = $('#ccr-right-section').height();
-           var myScrollHeight = $(document).scrollTop();
-           var divHeader = $('#ccr-header').height();
-           var divFooter = $('#ccr-footer-sidebar').height();
+       $(window).scroll(function () {
+            var pageHeight = $(document).height();
+            var pageWidth = $(document).width();
+            var divHeight = $('#ccr-right-section').height();
+            var myScrollHeight = $(document).scrollTop();
+            var divHeader = $('#ccr-header').height();
+            var divFooter = $('#ccr-footer-sidebar').height();
+            var divNavMain = $('#ccr-nav-main').height();
 
-           if (pageWidth > 1000) {
-               if ((myScrollHeight > divHeader + 10) && (myScrollHeight < (pageHeight - (divHeight + divFooter + 150)))) {
-                   $('#ccr-right-section').css('margin-top', myScrollHeight - divHeader + 10 + 'px');
-               }
-               if ($(window).scrollTop() < 230) {
-                   $("#ccr-right-section").css('margin-top', 10 + 'px');
-               }
-           }
-       });
+            if (pageWidth > 1000) {
+                if ((myScrollHeight > divHeader + 10) && (myScrollHeight < (pageHeight - (divHeight + divFooter + 150)))) {
+                    $('#ccr-right-section').css('margin-top', myScrollHeight - divHeader + divNavMain + 10 + 'px');
+                }
+                if ($(window).scrollTop() < 210) {
+                    $("#ccr-right-section").css('margin-top', 10 + 'px');
+                }
+            }
+
+            if ((myScrollHeight > divHeader + 10) && (myScrollHeight < (pageHeight - (divHeight + divFooter + 150)))) {
+                $('#ccr-nav-main').css('position', 'fixed');
+                $('#ccr-nav-main').css('top', 0 + 'px');
+                $("#menuSiteTitle").css('display', 'inline');
+            }
+            if ($(window).scrollTop() < 200) {
+                $("#ccr-nav-main").css('top', 'auto');
+                $('#ccr-nav-main').css('position', 'relative');
+                $("#menuSiteTitle").css('display', 'none');                
+            }
+        });
     </script>
 
     <header id="ccr-header">
@@ -182,7 +194,7 @@
             </div>
         </section>
 
-        <section id="ccr-nav-main">
+        <section id="ccr-nav-main" style="z-index:99">
             <nav class="main-menu">
                 <div class="container">
                     <div class="navbar-header">
@@ -192,6 +204,9 @@
                     </div>
                     <div class="collapse navbar-collapse ccr-nav-main">
                         <ul class="nav navbar-nav">
+                            <li id="menuSiteTitle" style="display:none">
+                                <a href="../Home/Rewards"><span style="color:green;font-size:30px;font-weight:bold;padding-right:24px;">Code Analyze</span></a>
+                            </li>
                             <li>@Html.ActionLink("Articles", "Index", "Articles")</li>
                             <li>@Html.ActionLink("Post Articles", "Post", "Articles")</li>
                             <li>@Html.ActionLink("Post Question", "Post", "Que")</li>
