@@ -826,9 +826,9 @@ line-height: 15px;
 #ccr-footer-sidebar{
 	background-color: #282c2d;
 	background-image: url(../img/footer-sidebar-bg.png);
-	padding: 0 0 40px 0;
+	padding: 0 0 20px 0;
 	width: 100%;
-	min-height:400px;
+	min-height:00px;
 }
 #ccr-footer-sidebar h5{
 	font-size: 1.15em;
