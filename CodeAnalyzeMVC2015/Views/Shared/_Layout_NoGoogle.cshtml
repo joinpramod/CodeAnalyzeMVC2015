@@ -114,11 +114,14 @@
                 $('#ccr-nav-main').css('position', 'fixed');
                 $('#ccr-nav-main').css('top', 0 + 'px');
                 $("#menuSiteTitle").css('display', 'inline');
+                $("#menuLogo").css('display', 'inline');
             }
             if ($(window).scrollTop() < 200) {
                 $("#ccr-nav-main").css('top', 'auto');
                 $('#ccr-nav-main').css('position', 'relative');
-                $("#menuSiteTitle").css('display', 'none');                
+                $("#menuSiteTitle").css('display', 'none');
+                $("#menuLogo").css('display', 'none');
+
             }
         });
     </script>
@@ -223,6 +226,9 @@
                     </div>
                     <div class="collapse navbar-collapse ccr-nav-main">
                         <ul class="nav navbar-nav">
+                            <li id="menuLogo" style="display:none">
+                                <img src="~/Images/cblogo.PNG" style="height:40px;width:40px" />
+                            </li>
                             <li id="menuSiteTitle" style="display:none">
                                 <a href="../Home/Rewards"><span style="color:black;font-size:30px;font-weight:bold;padding-right:24px;">Code Analyze</span></a>
                             </li>
