@@ -43,7 +43,9 @@ namespace CodeAnalyzeMVC2015
                (Request.Url.ToString().ToLower().Equals("http://codeanalyze.com/articles/details/20073/")) ||
                (Request.Url.ToString().ToLower().Equals("http://codeanalyze.com/que/ans/38198/")) ||
                (Request.Url.ToString().ToLower().Contains("codeanalyze.com/soln.aspx")) ||
-               (Request.Url.ToString().ToLower().Contains("codeanalyze.com/questions/soln")))
+               (Request.Url.ToString().ToLower().Contains("codeanalyze.com/questions/soln"))||
+               (Request.Url.ToString().ToLower().Contains("codeanalyze.com/Articles/Details/Home/Rewards"))||
+               (Request.Url.ToString().ToLower().Contains("codeanalyze.com/que/ans/Home/Rewards")))
             {
                 if (Request.Url.ToString().Contains("localhost"))
                     HttpContext.Current.Response.Redirect("/CodeAnalyzeMVC2015/Home/NotFound");
