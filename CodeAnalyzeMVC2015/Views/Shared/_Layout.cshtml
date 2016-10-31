@@ -103,12 +103,14 @@
                 $('#ccr-nav-main').css('top', 0 + 'px');
                 $("#menuSiteTitle").css('display', 'inline');
                 $("#menuLogo").css('display', 'inline');
+                $("#menuRegister").css('display', 'none');    
             }
             if ($(window).scrollTop() < 200) {
                 $("#ccr-nav-main").css('top', 'auto');
                 $('#ccr-nav-main').css('position', 'relative');
                 $("#menuSiteTitle").css('display', 'none');
                 $("#menuLogo").css('display', 'none');
+                $("#menuRegister").css('display', 'none');                
             }
         });
     </script>
@@ -235,6 +237,12 @@
                             @* <li><a href="~/Chat.aspx">Chat</a> </li>*@
                             <li> @Html.ActionLink("About Us", "About", "Home")</li>
                             <li> @Html.ActionLink("Rewards", "Rewards", "Home")</li> 
+                            @if (string.IsNullOrEmpty(ViewBag.UserEmail))
+                            {
+                                <li id="menuRegister" style="display:none">
+                                    <a style="background-color:#ff5b33;color:white;width:70px;padding:0px;text-align:center;font-size:20px" href="/Account/Rewards">Register</a>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>
