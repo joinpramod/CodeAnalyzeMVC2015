@@ -194,6 +194,8 @@
                     <br />
                     @*<iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=26&l=ur1&category=mostwishforitem&banner=1M2GXANPMRX5Z7KV4202&f=ifr&linkID=5a976d26ab2f0f41d2bc3dfd808a2326&t=codeanalyze-20&tracking_id=codeanalyze-20" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>*@
                     @*<iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=26&l=ur1&category=computers_accesories&banner=1DC51PP2W2Z5BTJSY6R2&f=ifr&linkID=9da32c3f664866ef1289ce8a59b236d5&t=codeanalyze-20&tracking_id=codeanalyze-20" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>*@
+                    @if ((string.IsNullOrEmpty(ViewBag.UserEmail)) || (!string.IsNullOrEmpty(ViewBag.UserEmail) && ViewBag.UserEmail != "admin@codeanalyze.com"))
+                    {
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- MyLeaderboard -->
                     <ins class="adsbygoogle"
@@ -203,7 +205,7 @@
                     <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
-
+                    }
                 </ul>
             </div>
         </section>
@@ -295,7 +297,8 @@
             </section>
 
             <aside id="ccr-right-section" class="col-md-4">
-
+                    @if ((string.IsNullOrEmpty(ViewBag.UserEmail)) || (!string.IsNullOrEmpty(ViewBag.UserEmail) && ViewBag.UserEmail != "admin@codeanalyze.com"))
+                    {
                 <section>
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <ins class="adsbygoogle"
@@ -306,7 +309,7 @@
                     (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </section>
-
+                    }
                 <section style="vertical-align:top">
                     <div class="ccr-gallery-ttile">
                         <p><strong>Recent Post</strong></p>
@@ -317,7 +320,8 @@
                         </li>
                     </ul>
                 </section>
-
+                    @if ((string.IsNullOrEmpty(ViewBag.UserEmail)) || (!string.IsNullOrEmpty(ViewBag.UserEmail) && ViewBag.UserEmail != "admin@codeanalyze.com"))
+                    {
                 <section>
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <ins class="adsbygoogle"
@@ -328,7 +332,7 @@
                     (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </section>
-
+                    }
                 @*<section>
                     <div class="ccr-gallery-ttile">
                         <p><strong>Popular Post</strong></p>
