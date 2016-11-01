@@ -17,7 +17,7 @@ namespace CodeAnalyzeMVC2015.Models
         [Route("PopularPosts")]
         public ActionResult PopularPosts()
         {
-          //  CheckUserLogin();
+            //CheckUserLogin();        
             List<ArticleModel> articles = GetArticles("Select top 2 * from VwArticles order by thumbsup desc");
             return PartialView("PopularPosts", articles);
         }
@@ -55,7 +55,7 @@ namespace CodeAnalyzeMVC2015.Models
         [Route("RecentPosts")]
         public ActionResult RecentPosts()
         {
-            // CheckUserLogin();
+            //CheckUserLogin();           
             List<ArticleModel> articles = GetArticles("Select top 2 * from VwArticles where articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc");
             return PartialView("RecentPosts", articles);
         }
@@ -66,8 +66,9 @@ namespace CodeAnalyzeMVC2015.Models
         [Route("PopularPosts")]
         public ActionResult MostViewed()
         {
-            //  CheckUserLogin();
+            //CheckUserLogin();            
             List<ArticleModel> articles = GetArticles("Select top 4 * from VwArticles order by views desc");
+            ViewBag.AdsBlocked = false;
             return PartialView("PopularPosts", articles);
         }
 
