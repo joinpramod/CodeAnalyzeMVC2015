@@ -55,8 +55,13 @@ namespace CodeAnalyzeMVC2015.Models
         [Route("RecentPosts")]
         public ActionResult RecentPosts()
         {
-            //CheckUserLogin();           
-            List<ArticleModel> articles = GetArticles("Select top 2 * from VwArticles where articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc");
+            //CheckUserLogin();   
+            string strSql = string.Empty;
+            //if (ViewBag.AdsBlocked)
+                //strSql = "Select top 4 * from VwArticles where articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc";
+            //else
+            strSql = "Select top 2 * from VwArticles where articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc";
+            List<ArticleModel> articles = GetArticles(strSql);        
             return PartialView("RecentPosts", articles);
         }
 
@@ -67,8 +72,7 @@ namespace CodeAnalyzeMVC2015.Models
         public ActionResult MostViewed()
         {
             //CheckUserLogin();            
-            List<ArticleModel> articles = GetArticles("Select top 4 * from VwArticles order by views desc");
-            ViewBag.AdsBlocked = false;
+            List<ArticleModel> articles = GetArticles("Select top 4 * from VwArticles order by views desc");            
             return PartialView("PopularPosts", articles);
         }
 
