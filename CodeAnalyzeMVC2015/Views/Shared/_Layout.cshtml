@@ -76,6 +76,19 @@
            } (document, 'script', 'facebook-jssdk'));
     </script>
  
+    <script type="text/javascript">       
+        @{ViewBag.AdsBlocked = false;};  
+        var testAd = document.createElement('div');
+        testAd.innerHTML = '&nbsp;';
+        testAd.className = 'adsbox';
+        document.body.appendChild(testAd);
+        window.setTimeout(function () {
+            if (testAd.offsetHeight === 0) {
+                @{ViewBag.AdsBlocked = true;};               
+            }
+        }, 100);
+    </script>    
+        
 </head>
 <body>
 
