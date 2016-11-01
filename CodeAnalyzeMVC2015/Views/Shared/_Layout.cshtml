@@ -267,7 +267,17 @@
                     </ul>
                 </section>       
                 
-                
+                    
+                 @* @if(ViewBag.AdsBlocked){       
+                   <br/><br/>
+                    <section>
+                     <span style="font-size:20px;font-weight:bold;color:#ff5b33">We request your support by just disabling Adblocker 
+                       to make “Coder Rewards” possible and we’ll make sure Ads don’t annoy you. </span>
+                    </section>
+                   <br/><br/>
+                 }*@
+                        
+                        
                 @if ((string.IsNullOrEmpty(ViewBag.UserEmail)) || (!string.IsNullOrEmpty(ViewBag.UserEmail) && ViewBag.UserEmail != "admin@codeanalyze.com"))
                 {
                     <section>
