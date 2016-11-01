@@ -27,7 +27,7 @@
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
     <script type="text/javascript" src="~/js/prettify.js"></script>
-    <script type="text/javascript" src="~/js/JavaScript1.js"></script>   
+    <script type="text/javascript" src="~/js/JavaScript.1.1.js"></script>   
 
 @if (!Request.Url.ToString().Contains("localhost"))
 {
@@ -74,56 +74,8 @@
            } (document, 'script', 'facebook-jssdk'));
     </script>
  
-    @*<script type="text/javascript">
-    amzn_assoc_ad_type = "link_enhancement_widget";
-    amzn_assoc_tracking_id = "codeanalyze-20";
-    amzn_assoc_linkid = "1ff227899b9eb70edcf11c771cf337ae";
-    amzn_assoc_placement = "";d
-    amzn_assoc_marketplace = "amazon";
-    amzn_assoc_region = "US";
-    </script>
-    <script src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1&MarketPlace=US"></script>*@
-
 </head>
 <body>
-
-    <script type="text/javascript">
-        $(window).scroll(function () {
-            var pageHeight = $(document).height();
-            var pageWidth = $(document).width();
-            var divHeight = $('#ccr-right-section').height();
-            var myScrollHeight = $(document).scrollTop();
-            var divHeader = $('#ccr-header').height();
-            var divFooter = $('#ccr-footer-sidebar').height();
-            var divNavMain = $('#ccr-nav-main').height();
-
-            if (pageWidth > 1000) {
-                if ((myScrollHeight > divHeader + 10) && (myScrollHeight < (pageHeight - (divHeight + divFooter + 150)))) {
-                    $('#ccr-right-section').css('margin-top', myScrollHeight - divHeader + divNavMain + 10 + 'px');
-                }
-                if ($(window).scrollTop() < 210) {
-                    $("#ccr-right-section").css('margin-top', 10 + 'px');
-                }
-            }
-
-
-            if (myScrollHeight > (divHeader + 10)) {
-                $('#ccr-nav-main').css('position', 'fixed');
-                $('#ccr-nav-main').css('top', 0 + 'px');
-                $("#menuSiteTitle").css('display', 'inline');
-                $("#menuLogo").css('display', 'inline');
-                $("#menuRegister").css('display', 'none'); 
-            }
-            if ($(window).scrollTop() < 200) {
-                $("#ccr-nav-main").css('top', 'auto');
-                $('#ccr-nav-main').css('position', 'relative');
-                $("#menuSiteTitle").css('display', 'none');
-                $("#menuLogo").css('display', 'none');
-                $("#menuRegister").css('display', 'none');    
-
-            }
-        });
-    </script>
 
     <header id="ccr-header">
         <section id="ccr-nav-top" class="fullwidth">
@@ -192,8 +144,6 @@
 
                 <ul class="right-top-menu pull-right">
                     <br />
-                    @*<iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=26&l=ur1&category=mostwishforitem&banner=1M2GXANPMRX5Z7KV4202&f=ifr&linkID=5a976d26ab2f0f41d2bc3dfd808a2326&t=codeanalyze-20&tracking_id=codeanalyze-20" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>*@
-                    @*<iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=26&l=ur1&category=computers_accesories&banner=1DC51PP2W2Z5BTJSY6R2&f=ifr&linkID=9da32c3f664866ef1289ce8a59b236d5&t=codeanalyze-20&tracking_id=codeanalyze-20" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>*@
                     @if ((string.IsNullOrEmpty(ViewBag.UserEmail)) || (!string.IsNullOrEmpty(ViewBag.UserEmail) && ViewBag.UserEmail != "admin@codeanalyze.com"))
                     {
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

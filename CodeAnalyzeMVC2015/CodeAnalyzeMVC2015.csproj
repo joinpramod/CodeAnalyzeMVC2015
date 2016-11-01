@@ -290,10 +290,9 @@
     <Content Include="js\javacriptCompressor\Google-max.js" />
     <Content Include="js\javacriptCompressor\Google.js" />
     <Content Include="js\javacriptCompressor\JavaScript1-max.js" />
-    <Content Include="js\javacriptCompressor\JavaScript1.js" />
     <Content Include="js\javacriptCompressor\TinyMCE-max.js" />
-    <Content Include="js\javacriptCompressor\TinyMCE.js" />
     <Content Include="js\javacriptCompressor\yuicompressor-2.4.8.jar" />
+    <Content Include="js\JavaScript.1.1.js" />
     <Content Include="js\sCodeCPP.js" />
     <Content Include="js\sCodeJava.js" />
     <Content Include="js\sCodePowerShell.js" />
@@ -307,7 +306,7 @@
     <Content Include="Scripts\tinymce\2stars.png" />
     <Content Include="js\Facebook.js" />
     <Content Include="js\Google.js" />
-    <Content Include="js\TinyMCE.js" />
+    <Content Include="js\TinyMCE.1.0.js" />
     <Content Include="Scripts\tinymce\InsertCode.png" />
     <Content Include="Scripts\tinymce\license.txt" />
     <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />
@@ -598,7 +597,6 @@
     <Content Include="Images\xyellow-star.jpg" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\custom.js" />
-    <Content Include="js\JavaScript1.js" />
     <Content Include="js\jquery-1.9.1.min.js" />
     <Content Include="js\prettify.js" />
     <Content Include="js\sCode.js" />
