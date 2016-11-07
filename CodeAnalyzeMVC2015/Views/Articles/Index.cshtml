@@ -49,25 +49,21 @@
 
 <table style="width:100%;float:right;font-size:16px">
     <tr>
-        <td style="float:right;">
-            <table>
-                <tr>
-                    @for (var i = 0; i < info.PageCount; i++)
-            {
-                if (i == info.CurrentPageIndex)
+            <td style="float:left;"> 
+                @if(info.CurrentPageIndex > 0)
                 {
-                            <td><span>@(i + 1)</span>&nbsp;&nbsp;</td>
-                        }
-                        else
-                        {
-                            <td>
-                                <a href="#" data-pageindex="@i" class="pager" style="font-weight:bold">@(i + 1)&nbsp;&nbsp;</a>
-                            </td>
-                        }
-                    }
-                </tr>
-            </table>
-        </td>
+                     <span class="read-more"><a href="#" class="pager" data-pageindex="@(info.CurrentPageIndex - 1)" style="font-weight:bold"><< Newer Articles</a></span>   
+                }
+            </td>
+
+
+            <td style="float:right;">
+                @if (info.CurrentPageIndex < info.PageCount)
+                {
+                    <span class="read-more"><a href="#" class="pager" data-pageindex="@(info.CurrentPageIndex + 1)" style="font-weight:bold">Older Articles >></a></span>
+                }
+
+            </td>
     </tr>
 </table>    
 
@@ -119,24 +115,20 @@
 </table>
 <table style="width:100%;float:right;font-size:16px">
     <tr>
-        <td style="float:right;">
-            <table>
-                <tr>
-                    @for (var i = 0; i < info.PageCount; i++)
-            {
-                if (i == info.CurrentPageIndex)
+            <td style="float:left;"> 
+                @if(info.CurrentPageIndex > 0)
                 {
-                            <td><span>@(i + 1)</span>&nbsp;&nbsp;</td>
-                        }
-                        else
-                        {
-                            <td>
-                                <a href="#" data-pageindex="@i" class="pager" style="font-weight:bold">@(i + 1)&nbsp;&nbsp;</a>
-                            </td>
-                        }
-                    }
-                </tr>
-            </table>
-        </td>
+                     <span class="read-more"><a href="#" class="pager" data-pageindex="@(info.CurrentPageIndex - 1)" style="font-weight:bold"><< Newer Articles</a></span>   
+                }
+            </td>
+
+
+            <td style="float:right;">
+                @if (info.CurrentPageIndex < info.PageCount)
+                {
+                    <span class="read-more"><a href="#" class="pager" data-pageindex="@(info.CurrentPageIndex + 1)" style="font-weight:bold">Older Articles >></a></span>
+                }
+
+            </td>
     </tr>
-</table>
+</table> 
