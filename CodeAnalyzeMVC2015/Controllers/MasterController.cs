@@ -12,16 +12,44 @@ namespace CodeAnalyzeMVC2015.Models
     public class MasterController : BaseController
     {
 
+
+        [AllowAnonymous]
+        [ChildActionOnly]
+        [Route("RecentPosts")]
+        public ActionResult RecentPosts()
+        {
+            //CheckUserLogin();   
+            string strSql = string.Empty;
+            //if (ViewBag.AdsBlocked)
+                //strSql = "Select top 4 * from VwArticles where IsDisplay = 1 and articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc";
+            //else
+            strSql = "Select top 4 * from VwArticles where IsDisplay = 1 and articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc";
+            List<ArticleModel> articles = GetArticles(strSql);        
+            return PartialView("RecentPosts", articles);
+        }
+        
+        
         [AllowAnonymous]
         [ChildActionOnly]
         [Route("PopularPosts")]
         public ActionResult PopularPosts()
         {
             //CheckUserLogin();        
-            List<ArticleModel> articles = GetArticles("Select top 2 * from VwArticles order by thumbsup desc");
+            List<ArticleModel> articles = GetArticles("Select top 2 * from VwArticles where IsDisplay = 1 order by thumbsup desc");
             return PartialView("PopularPosts", articles);
         }
+     
 
+
+        [AllowAnonymous]
+        [ChildActionOnly]
+        [Route("PopularPosts")]
+        public ActionResult MostViewed()
+        {
+            //CheckUserLogin();            
+            List<ArticleModel> articles = GetArticles("Select top 4 * from VwArticles where IsDisplay = 1 order by views desc");            
+            return PartialView("PopularPosts", articles);
+        }
 
 
         public List<ArticleModel> GetArticles(string strQuery)
@@ -50,32 +78,7 @@ namespace CodeAnalyzeMVC2015.Models
 
 
 
-        [AllowAnonymous]
-        [ChildActionOnly]
-        [Route("RecentPosts")]
-        public ActionResult RecentPosts()
-        {
-            //CheckUserLogin();   
-            string strSql = string.Empty;
-            //if (ViewBag.AdsBlocked)
-                //strSql = "Select top 4 * from VwArticles where IsDisplay = 1 and articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc";
-            //else
-            strSql = "Select top 2 * from VwArticles where IsDisplay = 1 and articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc";
-            List<ArticleModel> articles = GetArticles(strSql);        
-            return PartialView("RecentPosts", articles);
-        }
-
-
-        [AllowAnonymous]
-        [ChildActionOnly]
-        [Route("PopularPosts")]
-        public ActionResult MostViewed()
-        {
-            //CheckUserLogin();            
-            List<ArticleModel> articles = GetArticles("Select top 4 * from VwArticles order by views desc");            
-            return PartialView("PopularPosts", articles);
-        }
-
+      
 
         [AllowAnonymous]
         public ActionResult LogOut()
