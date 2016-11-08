@@ -2,10 +2,11 @@
     mode: "textareas",
     plugins: [
         'paste',
-        'autolink',
+        'autolink', 'codesample',
     ],
     menubar: false,
-    toolbar: 'mybutton | bold italic | numlist | undo redo',
+    toolbar1: 'mybutton | bold italic | numlist | undo redo',
+    toolbar2: 'codesample',
     statusbar: false,
     keep_styles: false,
     height: "300px",
@@ -27,15 +28,7 @@
             tinyMCE.activeEditor.setContent('');
         });
         ed.pasteAsPlainText = true;
-        ed.addButton('mybutton', {
-            text: 'INSERT CODE',
-            onclick: function () {
-                tinymce.activeEditor.execCommand('mceInsertContent', false, '#codestart<br /><br />');
-                var bm = tinyMCE.activeEditor.selection.getBookmark();
-                tinymce.activeEditor.execCommand('mceInsertContent', false, '<br />#codeend');
-                tinyMCE.activeEditor.selection.moveToBookmark(bm);
-            }
-        });
+        
         ed.on('keyup', function (e) {
             var strPost = StringClean(tinyMCE.activeEditor.getContent())
             document.getElementById("divPreview").innerHTML = strPost;
@@ -65,11 +58,22 @@ function StringClean(strInput) {
     var strReply = strInput;
     strReply = strReply.replace(/'/g, '')
 
-    strReply = strReply.replace(/\r\n            #codestart/g, "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
-    strReply = strReply.replace(/#codeend\r\n        /g, "</pre>");
+    strReply = strReply.replace("pre class=\"language-markup\"", "pre class=\"prettyprint\" style=\"font-size:14px;\"");
+    strReply = strReply.replace("pre class=\"language-javascript\"", "pre class=\"prettyprint\" style=\"font-size:14px;\"");
+    strReply = strReply.replace("pre class=\"language-css\"", "pre class=\"prettyprint\" style=\"font-size:14px;\"");
+    strReply = strReply.replace("pre class=\"language-php\"", "pre class=\"prettyprint\" style=\"font-size:14px;\"");
+    strReply = strReply.replace("pre class=\"language-runy\"", "pre class=\"prettyprint\" style=\"font-size:14px;\"");
+    strReply = strReply.replace("pre class=\"language-python\"", "pre class=\"prettyprint\" style=\"font-size:14px;\"");
+    strReply = strReply.replace("pre class=\"language-java\"", "pre class=\"prettyprint\" style=\"font-size:14px;\"");
+    strReply = strReply.replace("pre class=\"language-c\"", "pre class=\"prettyprint\" style=\"font-size:14px;\"");
+    strReply = strReply.replace("pre class=\"language-cpp\"", "pre class=\"prettyprint\" style=\"font-size:14px;\"");
+    strReply = strReply.replace("pre class=\"language-csharp\"", "pre class=\"prettyprint\" style=\"font-size:14px;\"");
 
-    strReply = strReply.replace(/#codestart/g, "<pre>");
-    strReply = strReply.replace(/#codeend/g, "</pre>");
+
+    //strReply = strReply.replace(/#codeend\r\n        /g, "</pre>");
+
+    //strReply = strReply.replace(/#codestart/g, "<pre>");
+    //strReply = strReply.replace(/#codeend/g, "</pre>");
 
     strReply = strReply.replace(/<br>\r\n/g, "\r\n");
     strReply = strReply.replace(/\r\n/g, "#####");

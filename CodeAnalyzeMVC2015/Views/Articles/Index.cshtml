@@ -47,12 +47,12 @@
     </tr>
     </table>*@
 
-<table style="width:100%;float:right;font-size:16px">
-    <tr>
+<table style="width:100%;font-size:16px;line-height:10px">
+    <tr style="height:10px;line-height:10px">
             <td style="float:left;"> 
                 @if(info.CurrentPageIndex > 0)
                 {
-                     <span class="read-more"><a href="#" class="pager" data-pageindex="@(info.CurrentPageIndex - 1)" style="font-weight:bold"><< Newer Articles</a></span>   
+                     <span class="read-more"><a href="#" class="pager" data-pageindex="@(info.CurrentPageIndex - 1)" style="font-weight:bold;margin:5px 0"><< Newer Articles</a></span>   
                 }
             </td>
 
@@ -60,7 +60,7 @@
             <td style="float:right;">
                 @if (info.CurrentPageIndex < info.PageCount)
                 {
-                    <span class="read-more"><a href="#" class="pager" data-pageindex="@(info.CurrentPageIndex + 1)" style="font-weight:bold">Older Articles >></a></span>
+                    <span class="read-more"><a href="#" class="pager" data-pageindex="@(info.CurrentPageIndex + 1)" style="font-weight:bold;margin:5px 0">Older Articles >></a></span>
                 }
 
             </td>
@@ -118,7 +118,7 @@
             <td style="float:left;"> 
                 @if(info.CurrentPageIndex > 0)
                 {
-                     <span class="read-more"><a href="#" class="pager" data-pageindex="@(info.CurrentPageIndex - 1)" style="font-weight:bold"><< Newer Articles</a></span>   
+                     <span class="read-more"><a href="#" class="pager" data-pageindex="@(info.CurrentPageIndex - 1)" style="font-weight:bold;margin:5px 0"><< Newer Articles</a></span>   
                 }
             </td>
 
@@ -126,7 +126,7 @@
             <td style="float:right;">
                 @if (info.CurrentPageIndex < info.PageCount)
                 {
-                    <span class="read-more"><a href="#" class="pager" data-pageindex="@(info.CurrentPageIndex + 1)" style="font-weight:bold">Older Articles >></a></span>
+                    <span class="read-more"><a href="#" class="pager" data-pageindex="@(info.CurrentPageIndex + 1)" style="font-weight:bold;margin:5px 0">Older Articles >></a></span>
                 }
 
             </td>

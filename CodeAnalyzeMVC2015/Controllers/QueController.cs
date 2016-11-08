@@ -683,6 +683,20 @@ namespace CodeAnalyzeMVC2015.Controllers
         private static string StringClean(string strReply)
         {
 
+            strReply = strReply.Replace("class=\"&quot;language-csharp\">&lt;code\"", "class=\"prettyprint\"");
+
+            //strReply = strReply.Replace("class=\"language-markup\"", "class=\"prettyprint\"");
+            //strReply = strReply.Replace("class=\"language-javascript\"", "class=\"prettyprint\"");
+            //strReply = strReply.Replace("class=\"language-css\"", "class=\"prettyprint\"");
+            //strReply = strReply.Replace("class=\"language-php\"", "class=\"prettyprint\"");
+            //strReply = strReply.Replace("class=\"language-runy\"", "class=\"prettyprint\"");
+            //strReply = strReply.Replace("class=\"language-python\"", "class=\"prettyprint\"");
+            //strReply = strReply.Replace("class=\"language-java\"", "class=\"prettyprint\"");
+            //strReply = strReply.Replace("class=\"language-c\"", "class=\"prettyprint\"");
+            //strReply = strReply.Replace("class=\"language-cpp\"", "class=\"prettyprint\"");
+            //strReply = strReply.Replace("class=\"language-csharp\"", "class=\"prettyprint\"");
+
+
             strReply = strReply.Replace("\r\n            #codestart", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
             strReply = strReply.Replace("#codeend\r\n        ", "</pre>");
 
