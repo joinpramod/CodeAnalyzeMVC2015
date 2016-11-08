@@ -132,41 +132,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 question.QuestionTypeId = int.Parse(ddType);
                 question.OptionID = 1;
 
-                EditorAskQuestion = EditorAskQuestion.Replace("&lt;", "<");
-                EditorAskQuestion = EditorAskQuestion.Replace("&gt;", ">");
-                EditorAskQuestion = EditorAskQuestion.Replace("&amp;", "&");
-                EditorAskQuestion = EditorAskQuestion.Replace("&apos;", "'");
-
-                EditorAskQuestion = EditorAskQuestion.Replace("<div>", "");
-                EditorAskQuestion = EditorAskQuestion.Replace("</div>", "");
-                EditorAskQuestion = EditorAskQuestion.Replace("<html>", "");
-                EditorAskQuestion = EditorAskQuestion.Replace("</html>", "");
-                EditorAskQuestion = EditorAskQuestion.Replace("<body>", "");
-                EditorAskQuestion = EditorAskQuestion.Replace("</body>", "");
-                EditorAskQuestion = EditorAskQuestion.Replace("<br>", "<br />");
-
-                EditorAskQuestion = EditorAskQuestion.Replace("<a href=&quot;", "~~~~");
-                EditorAskQuestion = EditorAskQuestion.Replace("&quot;>", "~~~");
-                EditorAskQuestion = EditorAskQuestion.Replace("</a>", "~~");
-
-
-                if (EditorAskQuestion.Length > 10000)
-                {
-                    EditorAskQuestion = EditorAskQuestion.Substring(0, 10000);
-                }
-
-
-                strTemp = Sanitizer.GetSafeHtml(EditorAskQuestion);
-                strTemp = strTemp.Replace("<html>", "");
-                strTemp = strTemp.Replace("</html>", "");
-                strTemp = strTemp.Replace("<body>", "");
-                strTemp = strTemp.Replace("</body>", "");
-                strTemp = strTemp.Replace("\r\n", "");
-                strTemp = strTemp.Replace("<br>", "<br />");
-
-                strTemp = strTemp.Replace("~~~~", "<a href=\"");
-                strTemp = strTemp.Replace("~~~", "\">");
-                strTemp = strTemp.Replace("~~", "</a>");
+                CleanBeforeInsert(ref EditorAskQuestion, ref strTemp);
 
                 question.QuestionDetails = strTemp;
                 question.AskedDateTime = DateTime.Now;
@@ -263,34 +229,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 replies.OptionID = 1;
                 replies.QuestionId = double.Parse(quesID.ToString());
 
-                strContent = strContent.Replace("&lt;", "<");
-                strContent = strContent.Replace("&gt;", ">");
-                strContent = strContent.Replace("&amp;", "&");
-                strContent = strContent.Replace("&apos;", "'");
-
-                strContent = strContent.Replace("<div>", "");
-                strContent = strContent.Replace("</div>", "");
-                strContent = strContent.Replace("<html>", "");
-                strContent = strContent.Replace("</html>", "");
-                strContent = strContent.Replace("<body>", "");
-                strContent = strContent.Replace("</body>", "");
-                strContent = strContent.Replace("<br>", "<br />");
-
-                strContent = strContent.Replace("<a href=&quot;", "~~~~");
-                strContent = strContent.Replace("&quot;>", "~~~");
-                strContent = strContent.Replace("</a>", "~~");
-
-                strTemp = Sanitizer.GetSafeHtml(strContent);
-                strTemp = strTemp.Replace("<html>", "");
-                strTemp = strTemp.Replace("</html>", "");
-                strTemp = strTemp.Replace("<body>", "");
-                strTemp = strTemp.Replace("</body>", "");
-                strTemp = strTemp.Replace("\r\n", "");
-                strTemp = strTemp.Replace("<br>", "<br />");
-
-                strTemp = strTemp.Replace("~~~~", "<a href=\"");
-                strTemp = strTemp.Replace("~~~", "\">");
-                strTemp = strTemp.Replace("~~", "</a>");
+                CleanBeforeInsert(ref SolutionEditor, ref strTemp);
 
                 replies.Reply = strTemp;
 
@@ -680,22 +619,60 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         }
 
+
+        private static void CleanBeforeInsert(ref string EditorAskQuestion, ref string strTemp)
+        {
+            EditorAskQuestion = EditorAskQuestion.Replace("&lt;", "<");
+            EditorAskQuestion = EditorAskQuestion.Replace("&gt;", ">");
+            EditorAskQuestion = EditorAskQuestion.Replace("&amp;", "&");
+            EditorAskQuestion = EditorAskQuestion.Replace("&apos;", "'");
+
+            EditorAskQuestion = EditorAskQuestion.Replace("<div>", "");
+            EditorAskQuestion = EditorAskQuestion.Replace("</div>", "");
+            EditorAskQuestion = EditorAskQuestion.Replace("<html>", "");
+            EditorAskQuestion = EditorAskQuestion.Replace("</html>", "");
+            EditorAskQuestion = EditorAskQuestion.Replace("<body>", "");
+            EditorAskQuestion = EditorAskQuestion.Replace("</body>", "");
+            EditorAskQuestion = EditorAskQuestion.Replace("<br>", "<br />");
+
+            EditorAskQuestion = EditorAskQuestion.Replace("<a href=&quot;", "~~~~");
+            EditorAskQuestion = EditorAskQuestion.Replace("&quot;>", "~~~");
+            EditorAskQuestion = EditorAskQuestion.Replace("</a>", "~~");
+            EditorAskQuestion = EditorAskQuestion.Replace("&quot;", "\"");
+
+            strTemp = Sanitizer.GetSafeHtml(EditorAskQuestion);
+
+            strTemp = strTemp.Replace("<div>", "");
+            strTemp = strTemp.Replace("</div>", "");
+            strTemp = strTemp.Replace("<html>", "");
+            strTemp = strTemp.Replace("</html>", "");
+            strTemp = strTemp.Replace("<body>", "");
+            strTemp = strTemp.Replace("</body>", "");
+            strTemp = strTemp.Replace("\r\n", "");
+            strTemp = strTemp.Replace("<br>", "<br />");
+
+            strTemp = strTemp.Replace("~~~~", "<a href=\"");
+            strTemp = strTemp.Replace("~~~", "\">");
+            strTemp = strTemp.Replace("~~", "</a>");
+        }
+
+
+
         private static string StringClean(string strReply)
         {
 
-            strReply = strReply.Replace("class=\"&quot;language-csharp\">&lt;code\"", "class=\"prettyprint\"");
-
-            //strReply = strReply.Replace("class=\"language-markup\"", "class=\"prettyprint\"");
-            //strReply = strReply.Replace("class=\"language-javascript\"", "class=\"prettyprint\"");
-            //strReply = strReply.Replace("class=\"language-css\"", "class=\"prettyprint\"");
-            //strReply = strReply.Replace("class=\"language-php\"", "class=\"prettyprint\"");
-            //strReply = strReply.Replace("class=\"language-runy\"", "class=\"prettyprint\"");
-            //strReply = strReply.Replace("class=\"language-python\"", "class=\"prettyprint\"");
-            //strReply = strReply.Replace("class=\"language-java\"", "class=\"prettyprint\"");
-            //strReply = strReply.Replace("class=\"language-c\"", "class=\"prettyprint\"");
-            //strReply = strReply.Replace("class=\"language-cpp\"", "class=\"prettyprint\"");
-            //strReply = strReply.Replace("class=\"language-csharp\"", "class=\"prettyprint\"");
-
+            //strReply = strReply.Replace("class=\"&quot;language-csharp\">&lt;code\"", "class=\"prettyprint\"");
+            //<pre class="&quot;language-csharp">&lt;code"&gt;         
+            strReply = strReply.Replace("<pre class=\"\"language-csharp\"><code\">",  "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"\"language-markup\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"\"language-javascript\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"\"language-css\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"\"language-php\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"\"language-ruby\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"\"language-python\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"\"language-java\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"\"language-c\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"\"language-cpp\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
 
             strReply = strReply.Replace("\r\n            #codestart", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
             strReply = strReply.Replace("#codeend\r\n        ", "</pre>");
