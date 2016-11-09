@@ -277,7 +277,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                         Mail mail = new Mail();
 
                         string EMailBody = System.IO.File.ReadAllText(Server.MapPath("../../../EMailBody.txt"));
-
+                        
                         System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
 
                         if (model.QuestionTitle != null)
@@ -634,9 +634,11 @@ namespace CodeAnalyzeMVC2015.Controllers
             EditorAskQuestion = EditorAskQuestion.Replace("<body>", "");
             EditorAskQuestion = EditorAskQuestion.Replace("</body>", "");
             EditorAskQuestion = EditorAskQuestion.Replace("<br>", "<br />");
+            EditorAskQuestion = EditorAskQuestion.Replace("<code>", "");
+            EditorAskQuestion = EditorAskQuestion.Replace("</code>", "");
 
             EditorAskQuestion = EditorAskQuestion.Replace("<a href=&quot;", "~~~~");
-            EditorAskQuestion = EditorAskQuestion.Replace("&quot;>", "~~~");
+            //EditorAskQuestion = EditorAskQuestion.Replace("&quot;>", "~~~");
             EditorAskQuestion = EditorAskQuestion.Replace("</a>", "~~");
             EditorAskQuestion = EditorAskQuestion.Replace("&quot;", "\"");
 
@@ -648,12 +650,15 @@ namespace CodeAnalyzeMVC2015.Controllers
             strTemp = strTemp.Replace("</html>", "");
             strTemp = strTemp.Replace("<body>", "");
             strTemp = strTemp.Replace("</body>", "");
-            strTemp = strTemp.Replace("\r\n", "");
+            //strTemp = strTemp.Replace("\r\n", "");
             strTemp = strTemp.Replace("<br>", "<br />");
 
             strTemp = strTemp.Replace("~~~~", "<a href=\"");
-            strTemp = strTemp.Replace("~~~", "\">");
+            //strTemp = strTemp.Replace("~~~", "\">");
             strTemp = strTemp.Replace("~~", "</a>");
+            strTemp = strTemp.Replace("&quot;", "\"");
+            strTemp = strTemp.Replace("&gt;", ">");
+            strTemp = strTemp.Replace("&lt;", "<");
         }
 
 
@@ -663,16 +668,16 @@ namespace CodeAnalyzeMVC2015.Controllers
 
             //strReply = strReply.Replace("class=\"&quot;language-csharp\">&lt;code\"", "class=\"prettyprint\"");
             //<pre class="&quot;language-csharp">&lt;code"&gt;         
-            strReply = strReply.Replace("<pre class=\"\"language-csharp\"><code\">",  "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
-            strReply = strReply.Replace("<pre class=\"\"language-markup\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
-            strReply = strReply.Replace("<pre class=\"\"language-javascript\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
-            strReply = strReply.Replace("<pre class=\"\"language-css\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
-            strReply = strReply.Replace("<pre class=\"\"language-php\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
-            strReply = strReply.Replace("<pre class=\"\"language-ruby\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
-            strReply = strReply.Replace("<pre class=\"\"language-python\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
-            strReply = strReply.Replace("<pre class=\"\"language-java\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
-            strReply = strReply.Replace("<pre class=\"\"language-c\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
-            strReply = strReply.Replace("<pre class=\"\"language-cpp\"><code\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"language-csharp\">",  "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"language-markup\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"language-javascript\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"language-css\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"language-php\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"language-ruby\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"language-python\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"language-java\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"language-c\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("<pre class=\"language-cpp\">", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
 
             strReply = strReply.Replace("\r\n            #codestart", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
             strReply = strReply.Replace("#codeend\r\n        ", "</pre>");
