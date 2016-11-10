@@ -24,38 +24,21 @@
         <td>
             <table align="left" style="width: 100%" cellpadding="6" cellspacing="6">
                 <tr>
-                    <td colspan="2" align="center" style="color:green;font-weight:bold">
+                    <td align="center" style="color:green;font-weight:bold">
                         @Html.Raw(ViewBag.Ack)                                              
                     </td>
-                </tr>
-
-                @*<tr>
-                    <td colspan="2" align="center">
-                        Post Your Question                        
-                    </td>
-                </tr>*@
-                
+                </tr>  
                 <tr>
-                    <td style="font-family: Calibri;" align="center">
-                        Title:<span style="font-family:Calibri; font-size:16px;color:Red">*</span>
-                    </td>
                     <td>
-                        @Html.TextBox("txtTitle", "", new {style="width:98%;height:30px;border:groove;border-width:1px" })
+                        @Html.TextBox("txtTitle", "", new {style="width:98%;height:35px;border:groove;border-width:1px;border-radius:5px;font-size:20px", placeholder = "Title" })
                     </td>
                 </tr>
                 <tr>
-                    <td style="font-family: Calibri;" align="center">
-                        Type:<span style="font-family:Calibri; font-size:16px;color:Red">*</span>
-                    </td>
                     <td>
-                        @Html.DropDownList("ddType", new SelectList(Model.Types, "TypeId", "Type"), "---Select---")
-                        
+                        @Html.DropDownList("ddType", new SelectList(Model.Types, "TypeId", "Type"), "---Select Type---", new { style="height:30px;border-width:1px;border-radius:5px;font-size:16px;width:150px;" })
                     </td>
                 </tr>
                 <tr>
-                    <td style="font-family: Calibri;" align="center">
-                        Details:<span style="font-family:Calibri; font-size:16px;color:Red">*</span>
-                    </td>
                     <td align="left">
                         Use "{;}" to enter code. 10K chars max.<br />
                             @*<pre class="prettyprint" style="width:28%;text-align:left;white-space: pre-line;">
@@ -67,19 +50,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="center" colspan="2"><br/>
+                    <td align="center"><br/>
                         <input type="submit" value="Post Question" id="btnSubmit" onclick="return ValidateQues()"
                                 class="mysubmit" />
                     </td>
                 </tr> 
                 <tr>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                    <td colspan="2" align="left" style="font-size:24px;border-bottom-width:1px;border-bottom-color:black;border-bottom-style:dashed">
+                    <td align="left" style="font-size:24px;border-bottom-width:1px;border-bottom-color:black;border-bottom-style:dashed">
                         Preview
                     </td>
                 </tr> 
                 <tr>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td>
                         <div id="divPreview"></div>
                     </td>
