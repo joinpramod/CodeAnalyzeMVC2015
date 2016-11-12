@@ -2,11 +2,10 @@
     mode: "textareas",
     plugins: [
         'paste',
-        'autolink', 'codesample',
+        'autolink', 'codesample', 'link',
     ],
     menubar: false,
-    toolbar1: 'bold italic | numlist | undo redo',
-    toolbar2: 'codesample',
+    toolbar1: 'bold | numlist | undo redo | link | codesample',
     statusbar: false,
     keep_styles: false,
     height: "300px",
