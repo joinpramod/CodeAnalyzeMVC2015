@@ -291,6 +291,7 @@
     <Content Include="js\javacriptCompressor\Google.js" />
     <Content Include="js\javacriptCompressor\JavaScript1-max.js" />
     <Content Include="js\javacriptCompressor\TinyMCE-max.js" />
+    <Content Include="js\javacriptCompressor\TinyMCE.1.2.js" />
     <Content Include="js\javacriptCompressor\yuicompressor-2.4.8.jar" />
     <Content Include="js\JavaScript.1.1.js" />
     <Content Include="js\sCodeCPP.js" />
@@ -299,13 +300,13 @@
     <Content Include="js\sCodeSQL.js" />
     <Content Include="js\sCodeSwift.js" />
     <Content Include="js\sCodeVB.js" />
+    <Content Include="js\TinyMCE.1.2.js" />
     <Content Include="Manage.aspx" />
     <Content Include="ManageContent.aspx" />
     <Content Include="ManageWeb.aspx" />
     <Content Include="ProcessArticles.aspx" />
     <Content Include="js\Facebook.js" />
     <Content Include="js\Google.js" />
-    <Content Include="js\TinyMCE.1.1.js" />
     <Content Include="Scripts\tinymce\plugins\autolink\plugin.js" />
     <Content Include="Scripts\tinymce\plugins\autolink\plugin.min.js" />
     <Content Include="Scripts\tinymce\plugins\code\plugin.js" />

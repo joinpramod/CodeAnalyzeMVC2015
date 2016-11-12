@@ -5,7 +5,7 @@
         'autolink', 'codesample',
     ],
     menubar: false,
-    toolbar1: 'mybutton | bold italic | numlist | undo redo',
+    toolbar1: 'bold italic | numlist | undo redo',
     toolbar2: 'codesample',
     statusbar: false,
     keep_styles: false,
