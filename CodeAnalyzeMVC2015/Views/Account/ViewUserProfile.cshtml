@@ -36,7 +36,8 @@
                     <b>Articles Posted:</b>
                 </td>
                 <td align="left" valign="top">
-                    @Html.ActionLink(Model.ArticlesPosted, "UserArticles", "Account", new { UserId = Model.UserId }, new { id = "UserArticles" })
+                    @Model.ArticlesPosted
+                    @*@Html.ActionLink(Model.ArticlesPosted, "UserArticles", "Account", new { UserId = Model.UserId }, new { id = "UserArticles" })*@
                 </td>
             </tr>
             <tr>
@@ -44,7 +45,8 @@
                     <b>Questions Posted:</b>
                 </td>
                 <td align="left" valign="top">
-                     @Html.ActionLink(Model.QuestionsPosted, "UserQuestions", "Account", new { UserId = Model.UserId }, new { id = "UserQuestions" })
+                    @Model.QuestionsPosted
+                     @*@Html.ActionLink(Model.QuestionsPosted, "UserQuestions", "Account", new { UserId = Model.UserId }, new { id = "UserQuestions" })*@
                 </td>
             </tr>
             <tr>
@@ -52,7 +54,8 @@
                     <b>Replies Posted:</b>
                 </td>
                 <td align="left" valign="top">
-                     @Html.ActionLink(Model.AnswersPosted, "UserAnswers", "Account", new { UserId = Model.UserId }, new { id = "UserAnswers" })
+                    @Model.AnswersPosted
+                     @*@Html.ActionLink(Model.AnswersPosted, "UserAnswers", "Account", new { UserId = Model.UserId }, new { id = "UserAnswers" })*@
                 </td>
             </tr>
             <tr>
