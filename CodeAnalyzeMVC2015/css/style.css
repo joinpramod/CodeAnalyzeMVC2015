@@ -53,16 +53,16 @@ img {
 	width:100%;
 	height:40px;
 	line-height:40px;
-	background:#F5E8AA;
-	border-right:5px solid #F5E8AA;
-	border-left:8px solid #F5E8AA;
+	background:#f8f3b5;
+	border-right:5px solid #f8f3b5;
+	border-left:8px solid #f8f3b5;
 }
 .ccr-gallery-ttile span{
 	margin: 13px 0;
 	float: left;
 	border-top: 7px solid transparent;
 	border-bottom: 7px solid transparent; 
-	border-left:5px solid #F5E8AA;
+	border-left:5px solid #f8f3b5;
 	margin-right:10px;
 }
 .ccr-gallery-ttile p{
@@ -100,7 +100,7 @@ img {
 .like-comment-readmore .read-more,
 .read-more a{
 	color: black;
-	background-color: #F5E8AA;
+	background-color: #f8f3b5;
 	display: inline-block;
 	padding: 0px 10px;
 	line-height: 30px;
@@ -162,8 +162,8 @@ li:hover .ccr-thumbnail p{
 }
 .ccr-thumbnail a:hover{
 	color: #FFF;
-	background-color: #F5E8AA;
-	border:1px solid #F5E8AA;
+	background-color: #f8f3b5;
+	border:1px solid #f8f3b5;
 }
 
 .current-page{
@@ -180,7 +180,7 @@ line-height: 15px;
 }
 .nav-paging i{
 	color: #FFF;
-	background-color: #F5E8AA;
+	background-color: #f8f3b5;
 	height: 40px;
 	width: 40px;
 	line-height: 40px;
@@ -203,11 +203,11 @@ line-height: 15px;
 	font-size: 1em;
 }
 .nav-paging a:hover{
-	color: #F5E8AA;
+	color: #f8f3b5;
 	font-size: 1.35em;
 	}
 .nav-paging span{
-	color: #F5E8AA;
+	color: #f8f3b5;
 	font-size: 1.35em;
 }
 .nav-paging{
@@ -290,12 +290,12 @@ line-height: 15px;
 	line-height: 40px;
 }
 #ccr-nav-top ul li a:hover{
-	color: #F5E8AA;
+	color: #f8f3b5;
 	text-decoration: none;
 	font-size: 1em;
 }
 #ccr-nav-top ul li:hover{
-	border-bottom: 2px solid #F5E8AA;
+	border-bottom: 2px solid #f8f3b5;
 }
 #ccr-nav-top ul:last-child li:last-child{
 	margin-top: 5px;
@@ -308,7 +308,7 @@ line-height: 15px;
 	background-color:#dadada;
 	outline-style: none;
 	border: none;
-	border-left: 5px solid #F5E8AA;
+	border-left: 5px solid #f8f3b5;
 	padding: 0 10px;
 	margin-right: 0px;
 	width: 225px;
@@ -319,7 +319,7 @@ line-height: 15px;
 	color: black;
 	margin: 0px;
 	margin-left: -5px;
-	background-color:#F5E8AA;
+	background-color:#f8f3b5;
 	outline-style: none;
 	width: 30px;
 	height: 30px;
@@ -388,7 +388,7 @@ line-height: 15px;
 /* 2.3 - ccr-nav-main 
 ---------------------------------------------------------------------- */
 #ccr-nav-main{
-	background-color: #F5E8AA;
+	background-color: #f8f3b5;
 	width: 100%;
 	height: 40px;
 }
@@ -404,7 +404,7 @@ line-height: 15px;
 	color: black;
 	font-weight:bold;
 	font-size: 1.225em;
-	background-color: #F5E8AA;
+	background-color: #f8f3b5;
 	padding: 0px 20px;
 	line-height: 40px;
 	height: 40px;
@@ -469,7 +469,7 @@ line-height: 15px;
 }
 
 .dropdown-menu{
-	background-color:#F5E8AA;
+	background-color:#f8f3b5;
 }
 .dropdown-menu>li>a:hover, 
 .dropdown-menu>li>a:focus, 
@@ -499,7 +499,7 @@ line-height: 15px;
 	line-height: 40px;
 }
 #ccr-nav-below-main .nav li a:hover{
-	color:#F5E8AA;
+	color:#f8f3b5;
 }
 #ccr-nav-below-main .ccr-language{
 	float: right;
@@ -548,7 +548,7 @@ line-height: 15px;
 	color:#FFF;
 	font-size: 1.142857142857143em;
 	line-height: 40px;
-	background-color: #F5E8AA;
+	background-color: #f8f3b5;
 	width: 115px;
 	height: 100%;
 	padding:0 5px 0 10px;
@@ -559,7 +559,7 @@ line-height: 15px;
 	height: 0; 
 	border-top: 20px solid transparent;
 	border-bottom: 20px solid transparent; 
-	border-left:15px solid #F5E8AA;
+	border-left:15px solid #f8f3b5;
 	float: left;
 }
 #ccr-left-section .update-news-text{ 
@@ -572,7 +572,7 @@ line-height: 15px;
 #ccr-left-section .update-right-border{
 	width: 0;
 	height: 40px;
-	border-right:5px solid #F5E8AA;
+	border-right:5px solid #f8f3b5;
 	float: right;
 }
 
@@ -727,17 +727,17 @@ line-height: 15px;
 #calendar th,
 #calendar #today{
 	color: #FFF;
-	background-color:#F5E8AA;
+	background-color:#f8f3b5;
 }
 #calendar a{
-	color: #F5E8AA;
+	color: #f8f3b5;
 	display: inline-block;
 	line-height: 40px;
 	width: 100%;
 }
 #calendar a:hover{
 	color: #FFF;
-	background-color:#F5E8AA;
+	background-color:#f8f3b5;
 }
 /* 4.4 - ccr-sidebar-add-place
 ---------------------------------------------------------------------- */
@@ -780,7 +780,7 @@ line-height: 15px;
 #ccr-sidebar-newslater button{
 	color: #FFF;
 	font-weight: 700;
-	background-color: #F5E8AA;
+	background-color: #f8f3b5;
 	outline-style: none;
 	margin: 0;
 	padding: 0;
@@ -897,12 +897,12 @@ line-height: 15px;
 	margin-right: 10px;
 }
 #ccr-footer-sidebar .col-md-3 li a:hover{
-	color: #F5E8AA;
+	color: #f8f3b5;
 }
 #ccr-footer-sidebar .tagcloud a{
 	color: black;
 	line-height: 40px;
-	background-color: #F5E8AA;
+	background-color: #f8f3b5;
 	padding: 5px 10px;
 	margin-right: 7px;
 }
@@ -915,7 +915,7 @@ line-height: 15px;
 /* 6.0 - ccr-footer
 ---------------------------------------------------------------------- */
 #ccr-footer{
-	background-color: #F5E8AA;
+	background-color: #f8f3b5;
 	min-height: 40px;
 }
  .container{
@@ -979,12 +979,12 @@ line-height: 15px;
 	border-radius: 0px;
 }
 #ccr-slide-main .carousel-indicators .active{
-	background-color: #F5E8AA;
+	background-color: #f8f3b5;
 }
 #ccr-slide-main .carousel-control{
 	text-shadow:none;
 	display: inline-block;
-	background: #F5E8AA;
+	background: #f8f3b5;
 	line-height:36px!important;
 	-moz-line-height:36px!important;
 	height:40px;
@@ -1246,7 +1246,7 @@ line-height: 15px;
 	text-align: center;
 	color: #FFF;
 	font-size: 1em;
-	background-color: #F5E8AA;
+	background-color: #f8f3b5;
 	line-height: 40px;
 	display: inline-block;
 	width: 60px;
@@ -1543,7 +1543,7 @@ line-height: 15px;
 #commentform button[type="submit"]
 {
 	color: #FFF;
-	background-color: #F5E8AA;
+	background-color: #f8f3b5;
 	height: 40px;
 	line-height:20px;
 	padding: 10px 20px;
@@ -1637,7 +1637,7 @@ line-height: 15px;
 .error-404 button{
 	font-weight: 700;
 	color: #FFF;
-	background-color: #F5E8AA;
+	background-color: #f8f3b5;
 	outline-style: none;
 	margin: 0;
 	padding: 0;
@@ -1876,7 +1876,7 @@ line-height: 15px;
 	#ccr-latest-post-gallery  li h4 a:hover,
 	#ccr-categpry-latest-post a:hover{
 		color: #FFF;
-		background-color: #F5E8AA;
+		background-color: #f8f3b5;
 	}
 }
 /* 16.7 - media screen and (max-width: 500px)
