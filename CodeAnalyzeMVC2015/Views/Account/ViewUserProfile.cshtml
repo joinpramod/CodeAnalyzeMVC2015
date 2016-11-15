@@ -17,7 +17,7 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td rowspan="8" valign="top" style="width: 35%; padding-left: 5%">
+                    <td rowspan="8" valign="middle" style="width: 35%; padding-left: 5%">
                         <img id="imgProfile" src="@Model.ImageURL" style="height:180px; width:180px" />
                     </td>
                     <td align="left" valign="top" style="width: 25%; font-family: Calibri; padding-left: 5%">
@@ -40,7 +40,8 @@
                         <b>Articles Posted:</b>
                     </td>
                     <td align="left" valign="top">
-                        @Html.ActionLink(Model.ArticlesPosted, "UserArticles", "Account", new { UserId = Model.UserId }, new { id = "UserArticles" })
+                        @Model.ArticlesPosted
+                        @*@Html.ActionLink(Model.ArticlesPosted, "UserArticles", "Account", new { UserId = Model.UserId }, new { id = "UserArticles" })*@
                     </td>
                 </tr>
                 <tr>
@@ -48,6 +49,7 @@
                         <b>Questions Posted:</b>
                     </td>
                     <td align="left" valign="top">
+                        @Model.QuestionsPosted
                         @*@Html.ActionLink(Model.QuestionsPosted, "UserQuestions", "Account", new { UserId = Model.UserId }, new { id = "UserQuestions" })*@
                     </td>
                 </tr>
@@ -56,7 +58,8 @@
                         <b>Replies Posted:</b>
                     </td>
                     <td align="left" valign="top">
-                        @Html.ActionLink(Model.AnswersPosted, "UserAnswers", "Account", new { UserId = Model.UserId }, new { id = "UserAnswers" })
+                        @Model.AnswersPosted
+                        @*@Html.ActionLink(Model.AnswersPosted, "UserAnswers", "Account", new { UserId = Model.UserId }, new { id = "UserAnswers" })*@
                     </td>
                 </tr>
                 <tr>
