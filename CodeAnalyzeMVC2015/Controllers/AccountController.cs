@@ -756,6 +756,25 @@ namespace CodeAnalyzeMVC2015.Controllers
         }
 
 
+        //public ActionResult ViewUserProfile(string UserId)
+        //{
+        //    Users userProfile = new Users();
+        //    string strSQL = string.Empty;
+        //    strSQL = "SELECT * FROM Users WHERE UserId = " + user.UserId;
+        //    ConnManager connManager = new ConnManager();
+        //    solns = connManager.GetArticles(strSQL);
+
+        //    userProfile.UserId = double.Parse(DSUserList.Rows[0]["UserId"].ToString());
+        //    userProfile.FirstName = DSUserList.Rows[0]["FirstName"].ToString();
+        //    userProfile.LastName = DSUserList.Rows[0]["LastName"].ToString();
+        //    //userProfile.Email = DSUserList.Rows[0]["EMail"].ToString();
+        //    userProfile.Address = DSUserList.Rows[0]["Address"].ToString();
+        //    userProfile.ImageURL = DSUserList.Rows[0]["ImageURL"].ToString();
+        //    user.ImageURL = user.ImageURL.Replace("~", "");
+        //    user.ImageURL = user.ImageURL.Replace("/CodeAnalyzeMVC2015", "");
+
+        //    return View(userProfile);
+        //}
 
 
     }
