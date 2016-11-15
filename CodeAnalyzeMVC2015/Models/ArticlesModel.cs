@@ -63,6 +63,7 @@ namespace CodeAnalyzeMVC2015.Models
         public bool HasVideo { get; set; }
         public string AskedUserDetails { get; set; }
         public string iframeVideoURL { get; set; }
+        public string Stars { get; set; }
     }
 
     public class QuestionType

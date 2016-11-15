@@ -342,6 +342,16 @@ namespace CodeAnalyzeMVC2015.Controllers
                         {
                             model.AskedUserDetails = dsQuestion.Rows[0]["Details"].ToString();
                         }
+
+                        if (!string.IsNullOrEmpty(dsQuestion.Rows[0]["Stars"].ToString()))
+                        {
+                            model.Stars = dsQuestion.Rows[0]["Stars"].ToString();
+                        }
+                        else
+                        {
+                            model.Stars = "0";
+                        }
+                        
                     }
 
 
