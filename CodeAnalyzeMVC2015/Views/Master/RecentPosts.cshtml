@@ -6,7 +6,7 @@
         System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
         articlesModel.ArticleTitle = rgx.Replace(articlesModel.ArticleTitle, "");
 
-        <tr style="border-top: groove 1px lightgrey;">
+        <tr style="border-top: groove 1px #eff0f1;">
             <td colspan="3">
                 <img id="imgArrow" src="~/Images/WriteArticle.png" style="width:25px;height:25px;" />
                 @Html.ActionLink(title, "Details", "Articles", new { ID = articlesModel.ArticleID, Title = articlesModel.ArticleTitle.Replace(" ", "-") }, null)
@@ -25,7 +25,7 @@
             
             
         </tr>
-          @*<tr style="border-bottom: groove 1px lightgrey;"><td></td></tr>*@
+          @*<tr style="border-bottom: groove 1px #eff0f1;"><td></td></tr>*@
 
     }
 </table>
