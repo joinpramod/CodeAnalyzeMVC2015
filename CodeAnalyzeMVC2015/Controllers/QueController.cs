@@ -489,16 +489,16 @@ namespace CodeAnalyzeMVC2015.Controllers
                     if (!string.IsNullOrEmpty(dsSolution.Rows[i]["ImageURL"].ToString()))
                     {
                         if (Request.Url.ToString().Contains("localhost"))
-                            htcUserImage += "<img src=\"/CodeAnalyzeMVC2015" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "") + "\" style=\"height:30px;width:30px\" />";
+                            htcUserImage += "<img title=\"User Avatar\" src=\"/CodeAnalyzeMVC2015" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "") + "\" style=\"height:30px;width:30px\" />";
                         else
-                            htcUserImage += "<img src=\"" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "").Replace("/CodeAnalyzeMVC2015", "") + "\" style=\"height:30px;width:30px\" />";
+                            htcUserImage += "<img  title=\"User Avatar\" src=\"" + dsSolution.Rows[i]["ImageURL"].ToString().Replace("~", "").Replace("/CodeAnalyzeMVC2015", "") + "\" style=\"height:30px;width:30px\" />";
                     }
                     else
                     {
                         if (Request.Url.ToString().Contains("localhost"))
-                            htcUserImage += "<img src=\"/CodeAnalyzeMVC2015/Images/Person.JPG\" style=\"height:25px;width:25px\" />";
+                            htcUserImage += "<img title=\"User Avatar\" src=\"/CodeAnalyzeMVC2015/Images/Person.JPG\" style=\"height:25px;width:25px\" />";
                         else
-                            htcUserImage += "<img src=\"/Images/Person.JPG\" style=\"height:25px;width:25px\" />";
+                            htcUserImage += "<img title=\"User Avatar\" src=\"/Images/Person.JPG\" style=\"height:25px;width:25px\" />";
                     }
                     htcUserImage += "</td>";
 

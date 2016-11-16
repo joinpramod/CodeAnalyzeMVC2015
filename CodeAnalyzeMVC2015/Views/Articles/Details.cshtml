@@ -1,5 +1,5 @@
 @{
-        ViewBag.Title = Model.ArticleTitle;
+    ViewBag.Title = Model.ArticleTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,115 +11,116 @@
 
 <script type="text/javascript" src="~/js/JavaScript1.js"></script>
 
-    <table style="width: 100%; font-family: Calibri">
-        <tr>
-            <td width="100%">
-                <span style="width: 90%; font-weight: bold; font-family: Calibri; color: Black; font-size: 24px">@ViewBag.keywords</span>
-            </td>
-        </tr>
-        <tr>
-            <td width="100%" align="left">
+<table style="width: 100%; font-family: Calibri">
+    <tr>
+        <td width="100%">
+            <span style="width: 90%; font-weight: bold; font-family: Calibri; color: Black; font-size: 24px">@ViewBag.keywords</span>
+        </td>
+    </tr>
+    <tr>
+        <td width="100%" align="left">
 
-                <table style="font-size: 14px">
-                    <tr>
-                        <td align="right" style="width: 60px">
-                            <img id="ImageButton1" title="Views" src="~/Images/eye.png" style="height: 30px; width: 30px" />
-                        </td>
-                        <td align="left" style="width: 60px">
-                            @Model.ArticleViews
-                        </td>
-                        <td align="right" style="width: 60px">
-                            <input type="image" title="Yes, this helped me" name="btnUp" onclick="PostArticleVotes('btnUp')" id="btnUp" src="~/Images/ThumpsUp.png" style="height: 25px; width: 25px" />
-                        </td>
-                        <td align="left" style="width: 60px">
-                            @Model.ThumbsUp
-                        </td>
-                        <td align="right" style="width: 60px">
-                            <input type="image" title="No, this did not help me" name="btnDown" onclick="PostArticleVotes('btnDown')" id="btnDown" src="~/Images/ThumpsDown.png" style="height: 25px; width: 25px" />
-                        </td>
-                        <td align="left" style="width: 60px">
-                            @Model.ThumbsDown
-                        </td>
-                    </tr>
-                </table>
+            <table style="font-size: 14px">
+                <tr>
+                    <td align="right" style="width: 60px">
+                        <img id="ImageButton1" title="Views" src="~/Images/eye.png" style="height: 30px; width: 30px" />
+                    </td>
+                    <td align="left" style="width: 60px">
+                        @Model.ArticleViews
+                    </td>
+                    <td align="right" style="width: 60px">
+                        <input type="image" title="Yes, this helped me" name="btnUp" onclick="PostArticleVotes('btnUp')" id="btnUp" src="~/Images/ThumpsUp.png" style="height: 25px; width: 25px" />
+                    </td>
+                    <td align="left" style="width: 60px">
+                        @Model.ThumbsUp
+                    </td>
+                    <td align="right" style="width: 60px">
+                        <input type="image" title="No, this did not help me" name="btnDown" onclick="PostArticleVotes('btnDown')" id="btnDown" src="~/Images/ThumpsDown.png" style="height: 25px; width: 25px" />
+                    </td>
+                    <td align="left" style="width: 60px">
+                        @Model.ThumbsDown
+                    </td>
+                </tr>
+            </table>
 
-            </td>
-        </tr>
-        <tr>
-            <td align="left">
+        </td>
+    </tr>
+    <tr>
+        <td align="left">
 
-                @*<asp:LinkButton Font-Bold="true" ID="lnkBtnSourceCode" OnClick="lnkBtnSourceCode_Click" runat="server" Font-Underline="true"
-                    ForeColor="Blue"  Text="Download Source Code" Font-Size="Medium"/>*@
+            @*<asp:LinkButton Font-Bold="true" ID="lnkBtnSourceCode" OnClick="lnkBtnSourceCode_Click" runat="server" Font-Underline="true"
+                ForeColor="Blue"  Text="Download Source Code" Font-Size="Medium"/>*@
 
-            </td>
-        </tr>
-    </table>
+        </td>
+    </tr>
+</table>
 
 @using (Html.BeginForm("Details", "Articles"))
 {
     @*<div class="outer-container">*@
-        @*<div class="inner-container">*@
-            @*<div id="divContent" class="element">*@
-                @Html.Raw(Model.ArticleDetails)
-            @*</div>*@
-        @*</div>*@
+    @*<div class="inner-container">*@
+    @*<div id="divContent" class="element">*@
+    @Html.Raw(Model.ArticleDetails)
+    @*</div>*@
+    @*</div>*@
     @*</div>*@
 
     <table style="width: 100%; font-family: Calibri">
         @*<tr>
-            <td>
-                <br />
-                @if (Model.HasVideo)
-                {
-                    <section id="sidebar-video-post">
-                        <div class="ccr-gallery-ttile">
-                            <span></span>
-                            <p><strong>Video Post</strong></p>
-                        </div>
-                        <div class="sidebar-video">
-                            <iframe width="340" height="195" id="iframeVideo" src="@Model.ImageURL" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    </section>
-                }
-            </td>
-        </tr>*@
-        <br/>
+                <td>
+                    <br />
+                    @if (Model.HasVideo)
+                    {
+                        <section id="sidebar-video-post">
+                            <div class="ccr-gallery-ttile">
+                                <span></span>
+                                <p><strong>Video Post</strong></p>
+                            </div>
+                            <div class="sidebar-video">
+                                <iframe width="340" height="195" id="iframeVideo" src="@Model.ImageURL" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        </section>
+                    }
+                </td>
+            </tr>*@
+        <br />
 
         <tr>
             <td width="100%">
-                @if(Html.Raw(Model.AskedUser).ToString() != null && Html.Raw(Model.AskedUser.ToString()).ToString() != "1")
+                @if (Html.Raw(Model.AskedUser).ToString() != null && Html.Raw(Model.AskedUser.ToString()).ToString() != "1")
                 {
 
-                <table style="width: 100%; font-size: 16px">
-                    <tr>
-                        <td align="left" style="width:81px">
-                            @if (!string.IsNullOrEmpty(Model.ImageURL))
-                            {
-                                <img id="imgAskedUser" src="@Url.Content("~/Images/" + System.IO.Path.GetFileName(Model.ImageURL))" style="height:70px;width:80px" />
-                            }
-                        </td>
-                        <td align="left" valign="top">
-                            <table style="width: 100%;">
-                                <tr>
-                                    <td align="left" valign="top">
-                                       @Html.Raw(Model.AskedUser)
-                                    </td>
-                                </tr>
-                                <tr>
-                                     <td>
-                                         <b>@Html.Raw(Model.Stars)</b><a href="/Home/Rewards"> <img src="~/Images/MedalFilled2.png" id="Medal2" title="Rewards" style="height:25px;width:20px;"></a>
-                                     </td>
-                                </tr>
-                                <tr>
-                                    <td align="left" valign="top">
-                                        @Model.AskedUserDetails
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-                    }
+                    <table style="width: 100%; font-size: 16px">
+                        <tr>
+                            <td align="left" style="width:81px">
+                                @if (!string.IsNullOrEmpty(Model.ImageURL))
+                                {
+                                    <img id="imgAskedUser" title="User Avatar" src="@Url.Content("~/Images/" + System.IO.Path.GetFileName(Model.ImageURL))" style="height:80px;width:80px" />
+                                    <br /><span style="font-size:12px;padding-left:8px">User Avatar</span>
+                                }
+                            </td>
+                            <td align="left" valign="top">
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td align="left" valign="top">
+                                            @Html.Raw(Model.AskedUser)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>@Html.Raw(Model.Stars)</b><a href="/Home/Rewards"> <img src="~/Images/MedalFilled2.png" id="Medal2" title="Rewards" style="height:25px;width:20px;"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign="top">
+                                            @Model.AskedUserDetails
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                }
             </td>
         </tr>
     </table>
@@ -158,13 +159,14 @@
         </tr>
         <tr>
             <td>
-                @Html.TextArea("txtReply", "", new { style= "width:100%;height:120px;border:solid;border-width:1px;border-radius:15px" })
+                @Html.TextArea("txtReply", "", new { style = "width:100%;height:120px;border:solid;border-width:1px;border-radius:15px" })
                 <br />
 
             </td>
         </tr>
         <tr>
-            <td align="center"><br />
+            <td align="center">
+                <br />
                 <input type="submit" value="Submit" id="btnSubmit" onclick="return ValidateComment()"
                        class="mysubmit" />
             </td>
@@ -172,29 +174,29 @@
     </table>
 
     @*<script type="text/javascript">
-                    amzn_assoc_placement = "adunit0";
-                    amzn_assoc_enable_interest_ads = "true";
-                    amzn_assoc_tracking_id = "codeanalyze-20";
-                    amzn_assoc_ad_mode = "auto";
-                    amzn_assoc_ad_type = "smart";
-                    amzn_assoc_marketplace = "amazon";
-                    amzn_assoc_region = "US";
-                    amzn_assoc_linkid = "af698f70d6e43836cc75908ead464f55";
-                    amzn_assoc_emphasize_categories = "172282";
-                    amzn_assoc_fallback_mode = {"type":"search","value":"smartphone"};
-                    amzn_assoc_default_category = "Electronics";
-    </script>
-                <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>*@
+                        amzn_assoc_placement = "adunit0";
+                        amzn_assoc_enable_interest_ads = "true";
+                        amzn_assoc_tracking_id = "codeanalyze-20";
+                        amzn_assoc_ad_mode = "auto";
+                        amzn_assoc_ad_type = "smart";
+                        amzn_assoc_marketplace = "amazon";
+                        amzn_assoc_region = "US";
+                        amzn_assoc_linkid = "af698f70d6e43836cc75908ead464f55";
+                        amzn_assoc_emphasize_categories = "172282";
+                        amzn_assoc_fallback_mode = {"type":"search","value":"smartphone"};
+                        amzn_assoc_default_category = "Electronics";
+        </script>
+                    <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>*@
 
 
-    {
-        System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
-        Model.ArticleTitle = rgx.Replace(Model.ArticleTitle, "").Replace(" ", "-");
-    }
+{
+    System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+    Model.ArticleTitle = rgx.Replace(Model.ArticleTitle, "").Replace(" ", "-");
+}
 
     @Html.Hidden("hfUserEMail", (object)ViewBag.UserEMail)
     @Html.Hidden("hfSourceFile")
     @Html.Hidden("hfArticleId", Model.ArticleID)
     @Html.Hidden("hfArticleTitle", Model.ArticleTitle)
-    
+
 }

@@ -35,7 +35,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             PagingInfo info = new PagingInfo();
             info.SortField = " ";
             info.SortDirection = " ";
-            info.PageSize = 6;
+            info.PageSize = 7;
             info.PageCount = Convert.ToInt32(Math.Ceiling((double)(articles.Count/info.PageSize)));
             info.CurrentPageIndex = 0;
 

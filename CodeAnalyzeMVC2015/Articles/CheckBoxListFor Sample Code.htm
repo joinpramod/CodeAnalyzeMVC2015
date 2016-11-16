@@ -1,4 +1,4 @@
-<div style="font-size:16px;width:100%;font-family:Calibri">
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
 
 <p style="width:80%">
     In Visual Studio download the package from Package Manager
@@ -19,37 +19,32 @@
      <p style="width:80%">
         View code is shown below to select Employees.</p>
 
-    <pre class="brush: csharp">
+    <pre class="brush: java">
         @using MvcCheckBoxList.Model
         @model CheckBoxListForApp.Models.EmployeeViewModel
  
-        @{
-            ViewBag.Title = "Home Page";
-        }
- 
-        <p>
-            <span>Select Employees</span>
+            &lt;span&gt;Select Employees&lt;/span&gt;
             @using (Html.BeginForm("Index", "Home", FormMethod.Post))
             {
-                @Html.CheckBoxListFor(model => model.SelectedEmployees.EmpIds,
-                                        model => model.TotalEmployees,
-                                        emp => emp.Id,
-                                        emp => emp.Name,
-                                        model => model.SelectedEmployees,
+                @Html.CheckBoxListFor(model =&gt; model.SelectedEmployees.EmpIds,
+                                        model =&gt; model.TotalEmployees,
+                                        emp =&gt; emp.Id,
+                                        emp =&gt; emp.Name,
+                                        model =&gt; model.SelectedEmployees,
                                         Position.Horizontal)
-                <input type="submit" value="Select Employees" />
+                &lt;input type="submit" value="Select Employees" /&gt;
             }
-        </p>
+     
     
     </pre>
 <p style="width:80%">Controller is as given below</p>
 
-    <pre class="brush: csharp">
+    <pre class="brush: java">
         [HttpGet]
         public ActionResult Index()
         {
             var model = new EmployeeViewModel();
-            var selectedEmployees = new List<Employee>();
+            var selectedEmployees = new List&lt;Employee&gt;();
  
             model.AvailableEmployees = EmployeeRepository.GetAll().ToList();
             model.SelectedEmployees = selectedEmployees;
@@ -61,7 +56,7 @@
         {
  
             var model = new EmployeeViewModel();
-            var selectedEmployees = new List<Employee>();
+            var selectedEmployees = new List&lt;Employee&gt;();
             var postedEmployeeIds = new string[0];
             if (postedEmployees == null) postedEmployees = new PostedEmployees();
  
@@ -73,11 +68,11 @@
             if (postedEmployeeIds.Any())
             {
                 selectedEmployees = EmployeeRepository.GetAll()
-                 .Where(x => postedEmployeeIds.Any(s => x.Id.ToString().Equals(s)))
+                 .Where(x =&gt; postedEmployeeIds.Any(s =&gt; x.Id.ToString().Equals(s)))
                  .ToList();
             }
  
-            model.AvailableEmployees = EmployeeRepository. new List<Employee> {
+            model.AvailableEmployees = EmployeeRepository. new List&lt;Employee&gt; {
                                                 new Employee {Name = "Emp1", Id = 1 },
                                                 new Employee {Name = "Emp2", Id = 2}};.ToList();
             model.SelectedEmployees = selectedEmployees;
@@ -89,11 +84,11 @@
     <p><b>Employee ViewModel</b></p>
 
 
-    <pre class="brush: csharp">
+    <pre class="brush: java">
        public class Employee ViewModel
         {
-            public IEnumerable<Employee> AvailableEmployee { get; set; }
-            public IEnumerable<Employee> SelectedEmployee { get; set; }
+            public IEnumerable&lt;Employee&gt; AvailableEmployee { get; set; }
+            public IEnumerable&lt;Employee&gt; SelectedEmployee { get; set; }
             public string[] PostedEmployees { get; set; }
         }
 
