@@ -1147,7 +1147,7 @@ line-height: 15px;
 /* 8.1 - ccr-blog
 ---------------------------------------------------------------------- */
 #ccr-blog article{
-	border-top: 1px solid #e3e2e2;
+	/*border-top: 1px solid #e3e2e2;*/
 	padding: 20px 0 15px 0;
 	overflow: hidden;
 }
