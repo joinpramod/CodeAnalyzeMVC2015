@@ -57,6 +57,7 @@ img {
 	border-right:5px solid #f8f3b5;
 	border-left:8px solid #f8f3b5;
 	border: groove 1px lightgrey;
+	padding-left: 15px;
 }
 .ccr-gallery-ttile span{
 	margin: 13px 0;
