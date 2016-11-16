@@ -393,6 +393,7 @@ line-height: 15px;
 	background-color: #f8f3b5;
 	width: 100%;
 	height: 40px;
+	border: groove 1px lightgrey;
 }
 #ccr-nav-main .navbar-collapse{
 	padding-left: 0px;
@@ -415,6 +416,7 @@ line-height: 15px;
 	    -ms-transition: all .15s ease-in;
 	     -o-transition: all .15s ease-in;
 	        transition: all .15s ease-in;
+	border-bottom: groove 1px grey;
 }
 #ccr-nav-main .nav li:first-child{
 	border-left: none;
