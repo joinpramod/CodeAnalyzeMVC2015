@@ -7,7 +7,7 @@
     background: transparent;
     text-decoration: none;
     color: #333;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Calibri",Helvetica,Arial,sans-serif;
     font-size: 14px;
     text-shadow: none;
     float: none;
@@ -1035,14 +1035,14 @@ body .mce-abs-layout-item, .mce-abs-end {
 }
 
 .mce-primary {
-    color: #fff;
+    color: black;
     border: 1px solid transparent;
-    border-color: transparent;
-    background-color: #2d8ac7;
+    /*border-color: transparent;*/
+    background-color: #f8f3b5;
 }
 
     .mce-primary:hover, .mce-primary:focus {
-        background-color: #257cb6;
+        background-color: #F3CD50;
         border-color: transparent;
     }
 
@@ -1058,8 +1058,9 @@ body .mce-abs-layout-item, .mce-abs-end {
     }
 
     .mce-primary button, .mce-primary button i {
-        color: #fff;
+        /*color: black;*/
         text-shadow: 1px 1px none;
+        border: 1px solid lightgrey;
     }
 
 .mce-btn .mce-txt {
@@ -1758,7 +1759,7 @@ i.mce-i-checkbox {
 }
 
 .mce-menu-item-normal.mce-active {
-    background-color: #3498db;
+    background-color: #f8f3b5;
 }
 
 .mce-menu-item-preview.mce-active {
@@ -1766,21 +1767,21 @@ i.mce-i-checkbox {
 }
 
 .mce-menu-item-normal.mce-active .mce-text {
-    color: white;
+   /*color: white;*/
 }
 
 .mce-menu-item-normal.mce-active:hover .mce-text, .mce-menu-item-normal.mce-active:hover .mce-ico {
-    color: white;
+     /*color: white;*/
 }
 
 .mce-menu-item-normal.mce-active:focus .mce-text, .mce-menu-item-normal.mce-active:focus .mce-ico {
-    color: white;
+     /*color: white;*/
 }
 
 .mce-menu-item:hover, .mce-menu-item.mce-selected, .mce-menu-item:focus {
     text-decoration: none;
     color: white;
-    background-color: #2d8ac7;
+    background-color: #f8f3b5;
 }
 
 div.mce-menu .mce-menu-item-sep, .mce-menu-item-sep:hover {
