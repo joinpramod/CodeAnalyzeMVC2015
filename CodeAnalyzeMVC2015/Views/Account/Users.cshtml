@@ -56,34 +56,34 @@
                                 <tr>
                                     <td>
                                         <br/>
-                                        @Html.TextBoxFor(m => m.FirstName, new { style = "width:55%;", placeholder="First Name", @class="myText"})
+                                        @Html.TextBoxFor(m => m.FirstName, new { style = "width:55%;border:1px solid grey;", placeholder="First Name", @class="myText"})
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        @Html.TextBoxFor(m => m.LastName, new { style = "width:55%;", placeholder = "Last Name", @class = "myText" })
+                                        @Html.TextBoxFor(m => m.LastName, new { style = "width:55%;border:1px solid grey;", placeholder = "Last Name", @class = "myText" })
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        @Html.TextBoxFor(m => m.Email, new { style = "width:75%;", placeholder = "EMail", @class = "myText" })
+                                        @Html.TextBoxFor(m => m.Email, new { style = "width:75%;border:1px solid grey;", placeholder = "EMail", @class = "myText" })
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        @Html.TextBoxFor(m => m.Address, new { style = "width:75%;", placeholder = "Address", @class = "myText" })
+                                        @Html.TextBoxFor(m => m.Address, new { style = "width:75%;border:1px solid grey;", placeholder = "Address", @class = "myText" })
                                     </td>
                                 </tr>
                                  @if (Model.Email == null || ViewBag.Ack != null)
                                 {
                                 <tr>
                                     <td>
-                                        @Html.Password("txtPassword", "", new { style = "width:55%;", placeholder = "Password", @class = "myText" })
+                                        @Html.Password("txtPassword", "", new { style = "width:55%;border:1px solid grey;", placeholder = "Password", @class = "myText" })
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        @Html.Password("txtConfirmPassword", "", new { style = "width:55%;", placeholder = "Confirm Password", @class = "myText" })
+                                        @Html.Password("txtConfirmPassword", "", new { style = "width:55%;border:1px solid grey;", placeholder = "Confirm Password", @class = "myText" })
                                     </td>
                                 </tr>
                                 }
@@ -94,7 +94,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        @Html.TextAreaFor(m => m.Details, new {style="height:160px;width:90%", @class="myText",
+                                        @Html.TextAreaFor(m => m.Details, new {style="height:160px;width:90%;border:1px solid grey;", @class="myText",
                                                  placeholder="Brief details on your experience, work and expertiece"})
                                     </td>
                                 </tr>
