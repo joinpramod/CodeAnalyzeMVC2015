@@ -31,7 +31,7 @@
     border:none;
     width:auto;
     height:35px;
-    border: solid 1px #eff0f1;
+    border: solid 1px lightgrey;
 }
  
 
@@ -53,7 +53,7 @@
     border:none;
     width:auto;
     height:25px;
-     border: solid 1px #eff0f1;
+     border: solid 1px lightgrey;
 }
 
 
@@ -95,6 +95,6 @@
     font-size:14px;
     border-radius:5px;
     border:solid;
-    border-color:#eff0f1;
+    border-color:lightgrey;
     border-width:1px;
 }
