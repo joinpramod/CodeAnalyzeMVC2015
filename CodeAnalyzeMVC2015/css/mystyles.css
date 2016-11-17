@@ -7,7 +7,7 @@
     font-family:Calibri;
     color:black;
     background-color:#F5E8AA;
-    border: groove 1px lightgrey;
+    border: solid 1px lightgrey;
     width:auto;
     height:40px;
 }
@@ -31,7 +31,7 @@
     border:none;
     width:auto;
     height:35px;
-    border: groove 1px #eff0f1;
+    border: solid 1px #eff0f1;
 }
  
 
@@ -53,7 +53,7 @@
     border:none;
     width:auto;
     height:25px;
-     border: groove 1px #eff0f1;
+     border: solid 1px #eff0f1;
 }
 
 
