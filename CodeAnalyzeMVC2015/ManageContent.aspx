@@ -43,7 +43,7 @@
             <tr>
                 <td>Path:</td>
                 <td>
-                    <asp:TextBox ID="txtPath" runat="server" Width="466px"></asp:TextBox>
+                    <asp:TextBox ID="txtPath" runat="server" Width="466px" Text="/ftpadmin/codeanalyze.com/wwwroot/"></asp:TextBox>
 &nbsp;<asp:Button ID="btnShowFiles" runat="server" OnClick="btnShowFiles_Click" Text="Show Files" />
                 </td>
             </tr>

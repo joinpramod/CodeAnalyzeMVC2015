@@ -39,7 +39,7 @@ namespace CodeAnalyzeMVC2015
             try
             {
                 //Create FTP Request.
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(txtServer.Text + txtPath.Text);
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(txtServer.Text + "/" + txtPath.Text);
                 request.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
 
                 //Enter FTP Server credentials.
@@ -61,31 +61,57 @@ namespace CodeAnalyzeMVC2015
                 //Create a DataTable.
                 DataTable dtFiles = new DataTable();
                 dtFiles.Columns.AddRange(new DataColumn[3] { new DataColumn("Name", typeof(string)),
-                                                    new DataColumn("Size", typeof(decimal)),
+                                                    new DataColumn("Size", typeof(string)),
                                                     new DataColumn("Date", typeof(string))});
-
+                DataRow dr;
                 //Loop and add details of each File to the DataTable.
                 foreach (string entry in entries)
                 {
                     string[] splits = entry.Split(new string[] { " ", }, StringSplitOptions.RemoveEmptyEntries);
 
                     //Determine whether entry is for File or Directory.
-                    bool isFile = splits[0].Substring(0, 1) != "d";
-                    bool isDirectory = splits[0].Substring(0, 1) == "d";
+                    bool isFile = false;  // splits[0].Substring(0, 1).ToLower() != "d";
+                    bool isDirectory = false;   // splits[0].Substring(0, 1).ToLower() == "d";
 
-                    //If entry is for File, add details to DataTable.
-                    if (isFile)
+
+                    if (splits.Contains("<DIR>"))
                     {
-                        dtFiles.Rows.Add();
-                        dtFiles.Rows[dtFiles.Rows.Count - 1]["Size"] = decimal.Parse(splits[4]) / 1024;
-                        dtFiles.Rows[dtFiles.Rows.Count - 1]["Date"] = string.Join(" ", splits[5], splits[6], splits[7]);
-                        string name = string.Empty;
-                        for (int i = 8; i < splits.Length; i++)
-                        {
-                            name = string.Join(" ", name, splits[i]);
-                        }
-                        dtFiles.Rows[dtFiles.Rows.Count - 1]["Name"] = name.Trim();
+                        isDirectory = true;
+                        isFile = false;
                     }
+                    else
+                    {
+                        isDirectory = false;
+                        isFile = true;
+                    }
+
+                    dr = dtFiles.NewRow();
+
+                    dr[0] = splits[3].Trim();
+                    dr[1] = "";
+
+                    dr[2] = splits[0].ToString() + " " + splits[1].ToString();
+                    dtFiles.Rows.Add(dr);
+
+
+                    ////If entry is for File, add details to DataTable.
+                    //if (isFile)
+                    //{
+                    //    DataRow dr = dtFiles.NewRow();
+                    //    dr[1] = (decimal.Parse(splits[4]) / 1024).ToString();
+                    //    dr[2] = string.Join(" ", splits[5], splits[6], splits[7]);
+                    //    string name = string.Empty;
+                    //    for (int i = 8; i < splits.Length; i++)
+                    //    {
+                    //        name = string.Join(" ", name, splits[i]);
+                    //    }
+                    //    dr[0] = name.Trim();
+                    //    dtFiles.Rows.Add(dr);
+                    //}
+                    //else
+                    //{
+
+                    //}
                 }
 
                 //Bind the GridView.
@@ -94,7 +120,7 @@ namespace CodeAnalyzeMVC2015
             }
             catch (WebException ex)
             {
-                throw new Exception((ex.Response as FtpWebResponse).StatusDescription);
+               // throw new Exception((ex.Response as FtpWebResponse).StatusDescription);
             }
         }
 
@@ -111,7 +137,7 @@ namespace CodeAnalyzeMVC2015
             try
             {
                 //Create FTP Request.
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + ftpFolder + fileName);
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + "/" + ftpFolder + fileName);
                 request.Method = WebRequestMethods.Ftp.DownloadFile;
 
                 //Enter FTP Server credentials.
@@ -134,7 +160,7 @@ namespace CodeAnalyzeMVC2015
             }
             catch (WebException ex)
             {
-                throw new Exception((ex.Response as FtpWebResponse).StatusDescription);
+                //throw new Exception((ex.Response as FtpWebResponse).StatusDescription);
             }
         }
 
@@ -161,7 +187,7 @@ namespace CodeAnalyzeMVC2015
             try
             {
                 //Create FTP Request.
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + ftpFolder + fileName);
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + "/" + ftpFolder + fileName);
                 request.Method = WebRequestMethods.Ftp.UploadFile;
 
                 //Enter FTP Server credentials.
@@ -185,7 +211,7 @@ namespace CodeAnalyzeMVC2015
             }
             catch (WebException ex)
             {
-                throw new Exception((ex.Response as FtpWebResponse).StatusDescription);
+                //throw new Exception((ex.Response as FtpWebResponse).StatusDescription);
             }
         }
 
