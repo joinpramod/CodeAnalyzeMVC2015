@@ -11,7 +11,7 @@
     font-weight:bold;
     font-family:Calibri;
     color:black;
-    background-color:#F5E8AA;
+    background-color:#f8f3b5;
     border: solid 1px lightgrey;
     width:auto;
     height:40px;
@@ -32,7 +32,7 @@
     font-weight:bold;
     font-family:Calibri;
     color:black;
-    background-color:#F5E8AA;
+    background-color:#f8f3b5;
     border:none;
     width:auto;
     height:35px;
@@ -54,7 +54,7 @@
     font-weight:bold;
     font-family:Calibri;
     color:black;
-    background-color:#F5E8AA;
+    background-color:#f8f3b5;
     border:none;
     width:auto;
     height:25px;
@@ -87,7 +87,7 @@
 
 
 .generalbutton {
-    background-color:#F5E8AA;
+    background-color:#f8f3b5;
 }
 
 
