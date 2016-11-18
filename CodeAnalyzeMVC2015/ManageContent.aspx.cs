@@ -60,9 +60,8 @@ namespace CodeAnalyzeMVC2015
 
                 //Create a DataTable.
                 DataTable dtFiles = new DataTable();
-                dtFiles.Columns.AddRange(new DataColumn[3] { new DataColumn("Name", typeof(string)),
-                                                    new DataColumn("Size", typeof(string)),
-                                                    new DataColumn("Date", typeof(string))});
+                dtFiles.Columns.AddRange(new DataColumn[2] { new DataColumn("Name", typeof(string)),
+                                                   new DataColumn("Date", typeof(string))});
                 DataRow dr;
                 //Loop and add details of each File to the DataTable.
                 foreach (string entry in entries)
@@ -88,9 +87,7 @@ namespace CodeAnalyzeMVC2015
                     dr = dtFiles.NewRow();
 
                     dr[0] = splits[3].Trim();
-                    dr[1] = "";
-
-                    dr[2] = splits[0].ToString() + " " + splits[1].ToString();
+                    dr[1] = splits[0].ToString() + " " + splits[1].ToString();
                     dtFiles.Rows.Add(dr);
 
 
@@ -120,7 +117,7 @@ namespace CodeAnalyzeMVC2015
             }
             catch (WebException ex)
             {
-               // throw new Exception((ex.Response as FtpWebResponse).StatusDescription);
+                throw new Exception((ex.Response as FtpWebResponse).StatusDescription);
             }
         }
 
@@ -160,7 +157,7 @@ namespace CodeAnalyzeMVC2015
             }
             catch (WebException ex)
             {
-                //throw new Exception((ex.Response as FtpWebResponse).StatusDescription);
+                throw new Exception((ex.Response as FtpWebResponse).StatusDescription);
             }
         }
 
@@ -211,7 +208,7 @@ namespace CodeAnalyzeMVC2015
             }
             catch (WebException ex)
             {
-                //throw new Exception((ex.Response as FtpWebResponse).StatusDescription);
+                throw new Exception((ex.Response as FtpWebResponse).StatusDescription);
             }
         }
 

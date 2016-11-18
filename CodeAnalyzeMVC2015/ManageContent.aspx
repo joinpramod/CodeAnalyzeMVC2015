@@ -37,7 +37,7 @@
             <tr>
                 <td>Password:</td>
                 <td>
-                    <asp:TextBox ID="txtPassword" runat="server" Text="" Width="163px"></asp:TextBox>
+                    <asp:TextBox ID="txtPassword" runat="server" Text="" TextMode="Password" Width="163px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -45,6 +45,27 @@
                 <td>
                     <asp:TextBox ID="txtPath" runat="server" Width="466px" Text="/ftpadmin/codeanalyze.com/wwwroot/"></asp:TextBox>
 &nbsp;<asp:Button ID="btnShowFiles" runat="server" OnClick="btnShowFiles_Click" Text="Show Files" />
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+                     <tr>
+                <td class="auto-style1" colspan="2"><strong>Upload</strong></td>
+            </tr>
+            <tr>
+                <td>Select File:</td>
+                <td>&nbsp;
+                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                &nbsp;<asp:Button ID="btnUpload" runat="server" OnClick="btnUpload_Click" Text="Upload" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
                 </td>
             </tr>
             <tr>
@@ -60,9 +81,7 @@
                 <td><asp:GridView ID="gvFiles" runat="server" AutoGenerateColumns="false">
 <Columns>
     <asp:BoundField DataField="Name" HeaderText="Name" ItemStyle-Width="100" />
-    <asp:BoundField DataField="Size" HeaderText="Size (KB)" DataFormatString="{0:N2}"
-        ItemStyle-Width="100" />
-    <asp:BoundField DataField="Date" HeaderText="Created Date" ItemStyle-Width="100" />
+    <asp:BoundField DataField="Date" HeaderText="Created Date" ItemStyle-Width="200" />
     <asp:TemplateField>
         <ItemTemplate>
                     <asp:LinkButton ID="lnkDownload" runat="server" Text="Download" OnClick="DownloadFile"
@@ -84,27 +103,7 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
-            <tr>
-                <td class="auto-style1" colspan="2"><strong>Upload</strong></td>
-            </tr>
-            <tr>
-                <td>Select File:</td>
-                <td>&nbsp;
-                    <asp:FileUpload ID="FileUpload1" runat="server" />
-                &nbsp;<asp:Button ID="btnUpload" runat="server" OnClick="btnUpload_Click" Text="Upload" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    &nbsp;</td>
-                <td>
-                    <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
+   
         </table>
     
     </div>
