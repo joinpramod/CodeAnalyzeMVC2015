@@ -102,9 +102,9 @@
                         <ul class="left-top-menu">
                             <li>@Html.ActionLink("Home", "Index", "Articles", null, new { style="color:white;" })</li>
                             @*<li></li>*@
-                            <li>
+                            @*<li>
                                 @Html.ActionLink("Contact Us", "Contact", "Home", null, new { style="color:white;" })
-                            </li>
+                            </li>*@
                         </ul>
 
                         <ul class="right-top-menu pull-right">
@@ -148,8 +148,8 @@
                 <div class="site-logo">
                     <a href="~/Home/Rewards" class="navbar-brand">
                         <img src="~/Images/cblogo.PNG" />
-                        <h1><span>Code Analyze</span></h1>
-                        <h3><span style="font-weight:bold;color:#ff5b33;font-style:italic" title="Get Amazon Gift Card Emails for discussing code and helping each other as Rewards.">Coder Rewards</span></h3>
+                        <h1><span style="padding-top:15px" title="Get Amazon Gift Card Emails for discussing code and helping each other as Rewards.">Code Analyze</span></h1>
+                        @*<h3><span style="font-weight:bold;color:#ff5b33;font-style:italic" title="Get Amazon Gift Card Emails for discussing code and helping each other as Rewards.">Coder Rewards</span></h3>*@
                     </a>
                 </div>
 
@@ -186,7 +186,7 @@
                             <li id="menuLogo" style="display:none">
                                 <img src="~/Images/cblogo.PNG" style="height:40px;width:40px" />
                             </li>
-                            <li id="menuSiteTitle" style="display:none">
+                            <li id="menuSiteTitle" style="display:none;">
                                 <a href="../Home/Rewards"><span style="color:black;font-size:30px;font-weight:bold;">Code Analyze</span></a>
                             </li>
                             <li>@Html.ActionLink("Articles", "Index", "Articles")</li>
@@ -212,7 +212,7 @@
                                 </ul>
                             </li>*@
                             @* <li><a href="~/Chat.aspx">Chat</a> </li>*@
-                            <li> @Html.ActionLink("About Us", "About", "Home")</li>
+                            <li> @Html.ActionLink("Contact Us", "Contact", "Home")</li>
                             <li> @Html.ActionLink("Rewards", "Rewards", "Home")</li> 
                             @if (string.IsNullOrEmpty(ViewBag.UserEmail))
                             {
@@ -329,9 +329,9 @@
                 <li class="col-md-3">
                     <h5 style="color: White">Support</h5>
                     <ul>
-                        <li>
-                            @Html.ActionLink("Suggestion", "Contact", "Home")
-                        </li>
+                        @*<li>
+                            @Html.ActionLink("About Us", "About", "Home")
+                        </li>*@
                         <li>
                             @Html.ActionLink("Posting Guidlines", "PostingGuidelines", "Home")
                         </li>
@@ -350,9 +350,9 @@
                         <li>
                             @Html.ActionLink("Rewards", "Rewards", "Home")
                         </li>
-                        <li>
+                        @*<li>
                             @Html.ActionLink("About Us", "About", "Home")
-                        </li>
+                        </li>*@
                     </ul>
 
                 </li>
