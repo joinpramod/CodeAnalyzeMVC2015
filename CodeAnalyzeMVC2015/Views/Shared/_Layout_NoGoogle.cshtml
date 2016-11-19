@@ -132,9 +132,9 @@
                 <div class="site-logo">
                     <a href="~/Home/Rewards" class="navbar-brand">
                         <img src="~/Images/cblogo.PNG" />
-                        <h1><span>Code Analyze</span></h1>
+                        <h1><span style="padding-top:15px" title="Get Amazon Gift Card Emails for discussing code and helping each other as Rewards.">Code Analyze</span></h1>
 
-                        <h3><span style="font-weight:bold;color:#ff5b33;font-style:italic" title="Get Amazon Gift Card Emails for discussing code and helping each other as Rewards.">Coder Rewards</span></h3>
+                        @*<h3><span style="font-weight:bold;color:#ff5b33;font-style:italic" title="Get Amazon Gift Card Emails for discussing code and helping each other as Rewards.">Coder Rewards</span></h3>*@
                     </a>
                 </div>
 
@@ -202,7 +202,7 @@
                                 </ul>
                             </li>*@
                             @* <li><a href="~/Chat.aspx">Chat</a> </li>*@
-                            <li> @Html.ActionLink("About Us", "About", "Home")</li>
+                            <li> @Html.ActionLink("Contact Us", "Contact", "Home")</li>
                             <li> @Html.ActionLink("Rewards", "Rewards", "Home")</li>
                             @if (string.IsNullOrEmpty(ViewBag.UserEmail))
                             {
@@ -320,9 +320,9 @@ CodeAnalyze is a code blogger rewarding platform intended to reward users for po
                 <li class="col-md-3">
                     <h5 style="color: White">Support</h5>
                     <ul>
-                        <li>
+                        @*<li>
                             @Html.ActionLink("Suggestion", "Contact", "Home")
-                        </li>
+                        </li>*@
                         <li>
                             @Html.ActionLink("Posting Guidlines", "PostingGuidelines", "Home")
                         </li>
@@ -341,9 +341,9 @@ CodeAnalyze is a code blogger rewarding platform intended to reward users for po
                         <li>
                             @Html.ActionLink("Rewards", "Rewards", "Home")
                         </li>
-                        <li>
+                        @*<li>
                             @Html.ActionLink("About Us", "About", "Home")
-                        </li>
+                        </li>*@
                     </ul>
 
                 </li>
