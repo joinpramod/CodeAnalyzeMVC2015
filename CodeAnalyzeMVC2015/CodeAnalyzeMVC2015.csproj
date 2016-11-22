@@ -553,6 +553,7 @@
     <Content Include="Views\Account\EditUser.cshtml" />
     <Content Include="Views\Account\ViewUser.cshtml" />
     <Content Include="Views\Home\NotFound.cshtml" />
+    <Content Include="Views\Tutorials\EBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />
