@@ -1,5 +1,4 @@
 
-
 /*My Styles*/
 
 
@@ -10,7 +9,7 @@
     font-size:20px;
     font-weight:bold;
     font-family:Calibri;
-    color:black;
+    color:#333;
     background-color:#f8f3b5;
     border: solid 1px lightgrey;
     width:auto;
@@ -31,7 +30,7 @@
     font-size:20px;
     font-weight:bold;
     font-family:Calibri;
-    color:black;
+    color:#333;
     background-color:#f8f3b5;
     border:none;
     width:auto;
@@ -53,7 +52,7 @@
     font-size:15px;
     font-weight:bold;
     font-family:Calibri;
-    color:black;
+    color:#333;
     background-color:#f8f3b5;
     border:none;
     width:auto;
@@ -126,7 +125,7 @@ body, h1, h2, h3, h4, h5, h6, a, p, div, article,
 aside, details, figcaption, figure, footer,
 header, hgroup, nav, section, summary{
 	font-family: "Calibri",sans-serif;
-	color: black;
+	color: #333;
 	margin: 0;
 	padding: 0;
 }
@@ -215,7 +214,7 @@ img {
 }
 .like-comment-readmore .read-more,
 .read-more a{
-	color: black;
+	color: #333;
 	background-color: #f8f3b5;
 	display: inline-block;
 	padding: 0px 10px;
@@ -225,7 +224,7 @@ img {
 .like-comment-readmore .read-more:hover,
 .read-more a:hover{
 	background-color: #F3CD50;
-	color: black;
+	color: #333;
 	-webkit-transition: all .15s ease-in;
 	   -moz-transition: all .15s ease-in;
 	    -ms-transition: all .15s ease-in;
@@ -273,7 +272,7 @@ li:hover .ccr-thumbnail p{
 	top: 0;
 }
 .ccr-thumbnail a{
-	color:black;
+	color:#333;
 	border:1px solid #FFF;
 	padding:5px 10px;
 }
@@ -284,7 +283,7 @@ li:hover .ccr-thumbnail p{
 }
 
 .current-page{
-color: black;
+color: #333;
 height: 15px;
 line-height: 15px;
 }
@@ -421,7 +420,7 @@ line-height: 15px;
 	border-bottom: none;
 }
 #ccr-nav-top ul input{
-	color: black;
+	color: #333;
 	background-color:#dadada;
 	outline-style: none;
 	border: none;
@@ -433,7 +432,7 @@ line-height: 15px;
 	
 }
 #ccr-nav-top ul button{
-	color: black;
+	color: #333;
 	margin: 0px;
 	margin-left: -5px;
 	background-color:#f8f3b5;
@@ -519,7 +518,7 @@ line-height: 15px;
 	border-right:1px solid rgba(0,0,0,.1); 
 }
 #ccr-nav-main .nav li a{
-	color: black;
+	color: #333;
 	font-weight:bold;
 	font-size: 1.225em;
 	background-color: #f8f3b5;
@@ -544,7 +543,7 @@ line-height: 15px;
 }
 
 #ccr-nav-main .current-time {
-	color: black;
+	color: #333;
 	font-weight: 400;
 	font-size: 1.125em;
 	padding: 0px 20px;
@@ -611,7 +610,7 @@ line-height: 15px;
 }
 #ccr-nav-below-main .nav li a{
 	height: 40px;
-	color: black;
+	color: #333;
 	font-weight: 400;
 	font-size: 1.07142857em;
 	padding: 0px 20px;
@@ -1019,7 +1018,7 @@ line-height: 15px;
 	color: #f8f3b5;
 }
 #ccr-footer-sidebar .tagcloud a{
-	color: black;
+	color: #333;
 	line-height: 40px;
 	background-color: #f8f3b5;
 	padding: 5px 10px;
@@ -1041,7 +1040,7 @@ line-height: 15px;
 	position: relative;
 }
 .copyright, .copyright a{
-	color: black;
+	color: #333;
 	line-height: 40px;
 	text-align: center;
 }
@@ -1054,7 +1053,7 @@ line-height: 15px;
 }
 .footer-social-icons li a{
 	font-size: 1.35em;
-	color: black;
+	color: #333;
 	float: left;
 	line-height: 40px;
 	text-align: center;
@@ -1083,7 +1082,7 @@ line-height: 15px;
 	margin-bottom: 0px;
 }
 #ccr-slide-main p a{
-	color: black;
+	color: #333;
 	font-size: 1.71428571em;
 	padding-left: 30px;
 }
@@ -1112,7 +1111,7 @@ line-height: 15px;
 	opacity: 1;
 }
 #ccr-slide-main .carousel-control:hover{
-	background-color: black;
+	background-color: #333;
 }
 
 /* 7.2 - ccr-latest-post-gallery    
@@ -1375,7 +1374,7 @@ line-height: 15px;
 	background-color: #F3CD50;
 }
 #ccr-blog-s2 .like{
-	border-bottom:1px solid black;
+	border-bottom:1px solid #333;
 }
 #ccr-blog-s2 .nav-paging li{
 	float: left;
@@ -1727,7 +1726,7 @@ line-height: 15px;
 	overflow: hidden;
 }
 .error-404{
-	color: black;
+	color: #333;
 	width:350px;
 	text-align:center;
 	margin:20px auto;
@@ -2044,4 +2043,3 @@ line-height: 15px;
 }
 
 #iframecontainer{width: 100%; height: 700px; overflow: hidden;}
-
