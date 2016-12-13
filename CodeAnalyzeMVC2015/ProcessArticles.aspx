@@ -86,6 +86,15 @@
 
                 </td>
             </tr>
+               <tr>
+                <td align="left"  style="font-family: Calibri; width: 123px;">
+                    <%--<b>Skip File Save: </b>--%>
+                </td>
+                <td align="left">
+                     <asp:CheckBox ID="chkhasDemo" runat="server" Text="Has Demo"></asp:CheckBox>
+
+                </td>
+            </tr>
             <tr>
                 <td align="left"  style="font-family: Calibri; width: 123px;">
                     <%--<b>Skip File Save: </b>--%>
