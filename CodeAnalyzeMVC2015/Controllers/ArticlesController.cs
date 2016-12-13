@@ -398,6 +398,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                     model.ThumbsUp = dsQuestion.Rows[0]["ThumbsUp"].ToString();
                     model.ThumbsDown = dsQuestion.Rows[0]["ThumbsDown"].ToString();
+                    model.HasDemo = dsQuestion.Rows[0]["HasDemo"].ToString();
 
                 }
             }
