@@ -11,7 +11,7 @@ namespace MvcApplication2.Controllers
         //
         // GET: /CodeDemos/
 
-        public ActionResult Index(string articleId)
+        public ActionResult Articles(string articleId)
         {
             if (string.IsNullOrEmpty(articleId))
                 articleId = "20174";
