@@ -134,6 +134,12 @@ public partial class ProcessArticles : System.Web.UI.Page
                     else
                         article.IsDisplay = 1;
 
+
+                     if (chkHasDemo.Checked)
+                        article.HasDemo = 1;
+                    else
+                        article.HasDemo = 0;
+
                     int[] myy = new int[22] { 15431, 14362, 21334, 25432, 13234, 18332, 9344, 3453, 6555, 7643, 2343, 1243, 5644, 1234, 2342, 3276,1752, 2845, 1945, 986, 5898, 9123 };
                     Random ran = new Random();
                     int mynum = myy[ran.Next(0, myy.Length)];
