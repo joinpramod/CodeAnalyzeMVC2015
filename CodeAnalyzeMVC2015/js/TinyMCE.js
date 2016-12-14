@@ -60,6 +60,7 @@ function StringClean(a)
 {
     var b = a;
     b = b.replace(/'/g, "");
+    b = b.replace('pre class="language-none"', 'pre class="prettyprint" style="font-size:14px;"');
     b = b.replace('pre class="language-markup"', 'pre class="prettyprint" style="font-size:14px;"');
     b = b.replace('pre class="language-javascript"', 'pre class="prettyprint" style="font-size:14px;"');
     b = b.replace('pre class="language-css"', 'pre class="prettyprint" style="font-size:14px;"');
