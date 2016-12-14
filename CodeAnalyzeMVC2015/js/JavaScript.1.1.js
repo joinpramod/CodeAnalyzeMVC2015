@@ -3,7 +3,15 @@ SyntaxHighlighter.defaults.toolbar = false;
 
 function ValidateAnswer() {
     var content = tinyMCE.get('SolutionEditor').getContent();
-    tinyMCE.get('SolutionEditor').setContent(content.replace(/'/g, ''));
+    
+    content = content.replace("&", "&amp;");
+    content = content.replace("<", "&lt;");
+    content = content.replace(">", "&gt;");
+    content = content.replace("'", "&apos;");       
+    content = content.replace("\"", "&quot;");
+    content = content.replace(/'/g, '');
+    
+    tinyMCE.get('SolutionEditor').setContent(content);
     var VarEMail = document.getElementById('hfUserEMail').value;
 
     if (VarEMail != "") {
@@ -28,7 +36,15 @@ function ValidateQues() {
     document.getElementById('txtTitle').value = title.replace(/'/g, '');
     var ddType = $("#ddType").val();
     var content = tinyMCE.get('EditorAskQuestion').getContent();
-    tinyMCE.get('EditorAskQuestion').setContent(content.replace(/'/g, ''));
+    
+    content = content.replace("&", "&amp;");
+    content = content.replace("<", "&lt;");
+    content = content.replace(">", "&gt;");
+    content = content.replace("'", "&apos;");       
+    content = content.replace("\"", "&quot;");
+    content = content.replace(/'/g, '');  
+    
+    tinyMCE.get('EditorAskQuestion').setContent(content);
     var VarEMail = document.getElementById('hfUserEMail').value;
 
     if (VarEMail != "") {
