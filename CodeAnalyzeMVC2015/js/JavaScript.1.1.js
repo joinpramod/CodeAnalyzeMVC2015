@@ -4,12 +4,15 @@ SyntaxHighlighter.defaults.toolbar = false;
 function ValidateAnswer() {
     var content = tinyMCE.get('SolutionEditor').getContent();
     
-    content = content.replace("&", "&amp;");
-    content = content.replace("<", "&lt;");
-    content = content.replace(">", "&gt;");
-    content = content.replace("'", "&apos;");       
-    content = content.replace("\"", "&quot;");
-    content = content.replace(/'/g, '');
+    content = content.replace(/ class="language-none"/g, "");         
+    content = content.replace(/<code>/g, "");
+    content = content.replace(/<\/code>/g, "");
+    // content = content.replace("&", "&amp;");
+    content = content.replace(/</g, "&lt;");      //to replaceall we need use / /g
+    content = content.replace(/>/g, "&gt;");             
+    content = content.replace(/\"/g, "&quot;");
+    content = content.replace(/'/g, "~~");
+    content = content.replace(/\n/g, "#~");
     
     tinyMCE.get('SolutionEditor').setContent(content);
     var VarEMail = document.getElementById('hfUserEMail').value;
@@ -37,12 +40,15 @@ function ValidateQues() {
     var ddType = $("#ddType").val();
     var content = tinyMCE.get('EditorAskQuestion').getContent();
     
-    content = content.replace("&", "&amp;");
-    content = content.replace("<", "&lt;");
-    content = content.replace(">", "&gt;");
-    content = content.replace("'", "&apos;");       
-    content = content.replace("\"", "&quot;");
-    content = content.replace(/'/g, '');  
+    content = content.replace(/ class="language-none"/g, "");         
+    content = content.replace(/<code>/g, "");
+    content = content.replace(/<\/code>/g, "");
+    // content = content.replace("&", "&amp;");
+    content = content.replace(/</g, "&lt;");      //to replaceall we need use / /g
+    content = content.replace(/>/g, "&gt;");             
+    content = content.replace(/\"/g, "&quot;");
+    content = content.replace(/'/g, "~~");
+    content = content.replace(/\n/g, "#~");
     
     tinyMCE.get('EditorAskQuestion').setContent(content);
     var VarEMail = document.getElementById('hfUserEMail').value;
