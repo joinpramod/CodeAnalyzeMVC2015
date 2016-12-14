@@ -65,12 +65,18 @@
     @*</div>*@
     @*</div>*@
 <br/>  
-    @if (Model.HasDemo)
-    { 
-        <a href="/CodeDemos/Articles/" style="font-weight:bold;font-size:26px"> View Demo</a>            
-       <br/><br/>    
+    {
+        System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
+        Model.ArticleTitle = rgx.Replace(Model.ArticleTitle, "").Replace(" ", "-");
     }
-                
+
+    if (Model.HasDemo == 1)
+    {
+        string strURL = "/CodeDemos/Articles/" + Model.ArticleID + "/" + Model.ArticleTitle;
+        <a href=@strURL class="mylink" style="font-weight:bold;font-size:26px"> View Demo</a>            
+        <br/><br/>    
+    }
+
     <table style="width: 100%; font-family: Calibri">
         @*<tr>
                 <td>
@@ -195,10 +201,7 @@
                     <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>*@
 
 
-{
-    System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
-    Model.ArticleTitle = rgx.Replace(Model.ArticleTitle, "").Replace(" ", "-");
-}
+
 
     @Html.Hidden("hfUserEMail", (object)ViewBag.UserEMail)
     @Html.Hidden("hfSourceFile")

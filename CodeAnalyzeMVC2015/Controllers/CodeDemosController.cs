@@ -13,8 +13,6 @@ namespace MvcApplication2.Controllers
 
         public ActionResult Articles(string articleId)
         {
-            if (string.IsNullOrEmpty(articleId))
-                articleId = "20174";
             return View(articleId);
         }
 

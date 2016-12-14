@@ -135,6 +135,7 @@
     <Compile Include="AppCode\Utilities.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CodeDemosController.cs" />
     <Compile Include="Controllers\QueController.cs" />
     <Compile Include="Controllers\TutorialsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -554,6 +555,8 @@
     <Content Include="Views\Account\ViewUser.cshtml" />
     <Content Include="Views\Home\NotFound.cshtml" />
     <Content Include="Views\Tutorials\EBook.cshtml" />
+    <Content Include="Views\CodeDemos\20174.cshtml" />
+    <Content Include="Views\CodeDemos\General.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

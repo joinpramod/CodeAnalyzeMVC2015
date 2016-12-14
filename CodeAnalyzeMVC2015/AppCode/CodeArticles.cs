@@ -227,7 +227,7 @@ namespace CodeAnalyzeMVC2015
             SqlParameter ParamModifiedDateTime = Cmd.Parameters.Add("@UpdatedDate", SqlDbType.DateTime);
             SqlParameter ParamViews = Cmd.Parameters.Add("@Views", SqlDbType.Int);
             SqlParameter ParamIsDisplay = Cmd.Parameters.Add("@IsDisplay", SqlDbType.Int);
-            SqlParameter ParamIsDisplay = Cmd.Parameters.Add("@HasDemo", SqlDbType.Int);
+            SqlParameter ParamHasDemo = Cmd.Parameters.Add("@HasDemo", SqlDbType.Int);
 
             ParamOptID.Value = IntOptID;
             ParamOptID.Direction = ParameterDirection.Input;
