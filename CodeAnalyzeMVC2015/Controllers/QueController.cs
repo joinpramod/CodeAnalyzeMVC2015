@@ -665,6 +665,13 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         private static string StringClean(string strReply)
         {
+            strReply = strReply.Replace("&amp;lt;", "&lt;");
+            strReply = strReply.Replace("&amp;gt;", "&gt;");
+            strReply = strReply.Replace("&lt;pre&gt;", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("&lt;/pre&gt;", "</pre>");
+            strReply = strReply.Replace("&quot;", "\"");
+            strReply = strReply.Replace("~~", "'");
+            strReply = strReply.Replace("#~", "\n");
 
             //strReply = strReply.Replace("class=\"&quot;language-csharp\">&lt;code\"", "class=\"prettyprint\"");
             //<pre class="&quot;language-csharp">&lt;code"&gt;         
