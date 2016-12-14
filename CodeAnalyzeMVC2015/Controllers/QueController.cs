@@ -132,9 +132,9 @@ namespace CodeAnalyzeMVC2015.Controllers
                 question.QuestionTypeId = int.Parse(ddType);
                 question.OptionID = 1;
 
-                CleanBeforeInsert(ref EditorAskQuestion, ref strTemp);
+                //CleanBeforeInsert(ref EditorAskQuestion, ref strTemp);
 
-                question.QuestionDetails = strTemp;
+                question.QuestionDetails = EditorAskQuestion;
                 question.AskedDateTime = DateTime.Now;
 
                 if (user.UserId == 1)
@@ -229,9 +229,9 @@ namespace CodeAnalyzeMVC2015.Controllers
                 replies.OptionID = 1;
                 replies.QuestionId = double.Parse(quesID.ToString());
 
-                CleanBeforeInsert(ref SolutionEditor, ref strTemp);
+                //CleanBeforeInsert(ref SolutionEditor, ref strTemp);
 
-                replies.Reply = strTemp;
+                replies.Reply = SolutionEditor;
 
 
                 replies.RepliedDate = DateTime.Now;
