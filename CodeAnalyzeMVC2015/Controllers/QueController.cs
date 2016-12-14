@@ -673,6 +673,17 @@ namespace CodeAnalyzeMVC2015.Controllers
             strReply = strReply.Replace("~~", "'");
             strReply = strReply.Replace("#~", "\n");
 
+            //this is to replace xml charectors inside anchor tag <a> </a>
+            foreach (Match regExp in Regex.Matches(EditorAskQuestion, @"\<a href(.*?)\&lt;(.*?)\</a\>", RegexOptions.IgnoreCase))
+            {
+                EditorAskQuestion = EditorAskQuestion.Replace(regExp.Value, regExp.Value.Replace("&lt;", "<"));                    
+            }
+
+            foreach (Match regExp in Regex.Matches(EditorAskQuestion, @"\<a href(.*?)\&gt;(.*?)\</a\>", RegexOptions.IgnoreCase))
+            {                    
+                EditorAskQuestion = EditorAskQuestion.Replace(regExp.Value, regExp.Value.Replace("&gt;", ">"));
+            }
+
             //strReply = strReply.Replace("class=\"&quot;language-csharp\">&lt;code\"", "class=\"prettyprint\"");
             //<pre class="&quot;language-csharp">&lt;code"&gt;         
             strReply = strReply.Replace("<pre class=\"language-csharp\">",  "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
