@@ -60,17 +60,17 @@ function StringClean(a)
 {
     var b = a;
     b = b.replace(/'/g, "");
-    b = b.replace('pre class="language-none"', 'pre class="prettyprint" style="font-size:14px;"');
-    b = b.replace('pre class="language-markup"', 'pre class="prettyprint" style="font-size:14px;"');
-    b = b.replace('pre class="language-javascript"', 'pre class="prettyprint" style="font-size:14px;"');
-    b = b.replace('pre class="language-css"', 'pre class="prettyprint" style="font-size:14px;"');
-    b = b.replace('pre class="language-php"', 'pre class="prettyprint" style="font-size:14px;"');
-    b = b.replace('pre class="language-runy"', 'pre class="prettyprint" style="font-size:14px;"');
-    b = b.replace('pre class="language-python"', 'pre class="prettyprint" style="font-size:14px;"');
-    b = b.replace('pre class="language-java"', 'pre class="prettyprint" style="font-size:14px;"');
-    b = b.replace('pre class="language-c"', 'pre class="prettyprint" style="font-size:14px;"');
-    b = b.replace('pre class="language-cpp"', 'pre class="prettyprint" style="font-size:14px;"');
-    b = b.replace('pre class="language-csharp"', 'pre class="prettyprint" style="font-size:14px;"');
+    b = b.replace(/pre class="language-none"/g, 'pre class="prettyprint" style="font-size:14px;"');
+    b = b.replace(/pre class="language-markup"/g, 'pre class="prettyprint" style="font-size:14px;"');
+    b = b.replace(/pre class="language-javascript"/g, 'pre class="prettyprint" style="font-size:14px;"');
+    b = b.replace(/pre class="language-css"/g, 'pre class="prettyprint" style="font-size:14px;"');
+    b = b.replace(/pre class="language-php"/g, 'pre class="prettyprint" style="font-size:14px;"');
+    b = b.replace(/pre class="language-runy"/g, 'pre class="prettyprint" style="font-size:14px;"');
+    b = b.replace(/pre class="language-python"/g, 'pre class="prettyprint" style="font-size:14px;"');
+    b = b.replace(/pre class="language-java"/g, 'pre class="prettyprint" style="font-size:14px;"');
+    b = b.replace(/pre class="language-c"/g, 'pre class="prettyprint" style="font-size:14px;"');
+    b = b.replace(/pre class="language-cpp"/g, 'pre class="prettyprint" style="font-size:14px;"');
+    b = b.replace(/pre class="language-csharp"/g, 'pre class="prettyprint" style="font-size:14px;"');
     b = b.replace(/<br>\r\n/g, "\r\n");
     b = b.replace(/\r\n/g, "#####");
     b = b.replace(/<br>/g, "<br />");
