@@ -135,7 +135,7 @@ public partial class ProcessArticles : System.Web.UI.Page
                         article.IsDisplay = 1;
 
 
-                     if (chkHasDemo.Checked)
+                     if (chkhasDemo.Checked)
                         article.HasDemo = 1;
                     else
                         article.HasDemo = 0;
