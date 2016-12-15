@@ -132,9 +132,9 @@ namespace CodeAnalyzeMVC2015.Controllers
                 question.QuestionTypeId = int.Parse(ddType);
                 question.OptionID = 1;
 
-                CleanBeforeInsert(ref EditorAskQuestion, ref strTemp);
+                //CleanBeforeInsert(ref EditorAskQuestion, ref strTemp);
 
-                question.QuestionDetails = strTemp;
+                question.QuestionDetails = EditorAskQuestion;
                 question.AskedDateTime = DateTime.Now;
 
                 if (user.UserId == 1)
@@ -229,9 +229,9 @@ namespace CodeAnalyzeMVC2015.Controllers
                 replies.OptionID = 1;
                 replies.QuestionId = double.Parse(quesID.ToString());
 
-                CleanBeforeInsert(ref SolutionEditor, ref strTemp);
+                //CleanBeforeInsert(ref SolutionEditor, ref strTemp);
 
-                replies.Reply = strTemp;
+                replies.Reply = SolutionEditor;
 
 
                 replies.RepliedDate = DateTime.Now;
@@ -665,6 +665,24 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         private static string StringClean(string strReply)
         {
+            strReply = strReply.Replace("&amp;lt;", "&lt;");
+            strReply = strReply.Replace("&amp;gt;", "&gt;");
+            strReply = strReply.Replace("&lt;pre&gt;", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
+            strReply = strReply.Replace("&lt;/pre&gt;", "</pre>");
+            strReply = strReply.Replace("&quot;", "\"");
+            strReply = strReply.Replace("~~", "'");
+            strReply = strReply.Replace("#~", "\n");
+
+            //this is to replace xml charectors inside anchor tag <a> </a>
+            foreach (Match regExp in Regex.Matches(EditorAskQuestion, @"\<a href(.*?)\&lt;(.*?)\</a\>", RegexOptions.IgnoreCase))
+            {
+                EditorAskQuestion = EditorAskQuestion.Replace(regExp.Value, regExp.Value.Replace("&lt;", "<"));                    
+            }
+
+            foreach (Match regExp in Regex.Matches(EditorAskQuestion, @"\<a href(.*?)\&gt;(.*?)\</a\>", RegexOptions.IgnoreCase))
+            {                    
+                EditorAskQuestion = EditorAskQuestion.Replace(regExp.Value, regExp.Value.Replace("&gt;", ">"));
+            }
 
             //strReply = strReply.Replace("class=\"&quot;language-csharp\">&lt;code\"", "class=\"prettyprint\"");
             //<pre class="&quot;language-csharp">&lt;code"&gt;         
