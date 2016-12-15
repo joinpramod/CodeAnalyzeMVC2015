@@ -72,13 +72,11 @@
 
     if (Model.HasDemo == 1)
     {
-        string strURL = "/CodeDemos/Articles/" + Model.ArticleID + "/" + Model.ArticleTitle;
+         string strURL = "/CodeDemos/Articles/" + Model.ArticleID + "/" + Model.ArticleTitle;
         <div style="text-align:center;width:100%">
-            <a href=@strURL style="font-weight:bold;font-size:28px">
-                <input value="View Demo" id="btnSubmit" class="mysubmit" type="submit">
-            </a>  
+            <a href=@strURL style="font-weight:bold;font-size:26px;width:100px;height:40px" class="mysubmit">View Demo </a>
         </div>                    
-        <br/><br/>         
+        <br/><br/>           
     }
 
     <table style="width: 100%; font-family: Calibri">
