@@ -1,9 +1,7 @@
-G:\CodeAnalyzeMVC2015\CodeAnalyzeMVC2015\js\javacriptCompressor>java -jar yuicompressor-2.4.8.jar JavaScript1-max.js -o JavaScript1.js
+G:\CodeAnalyze\CodeAnalyzeMVC2015\CodeAnalyzeMVC2015\js\javacriptCompressor>java -jar yuicompressor-2.4.8.jar JavaScript1-max.js -o JavaScript.1.2.js
 
-G:\CodeAnalyzeMVC2015\CodeAnalyzeMVC2015\js\javacriptCompressor>java -jar yuicompressor-2.4.8.jar JavaScript1.js -o JavaScript1-min.js
+G:\CodeAnalyze\CodeAnalyzeMVC2015\CodeAnalyzeMVC2015\js\javacriptCompressor>java -jar yuicompressor-2.4.8.jar TinyMCE-max.js -o TinyMCE.1.4.js
 
-G:\CodeAnalyzeMVC2015\CodeAnalyzeMVC2015\js\javacriptCompressor>java -jar yuicompressor-2.4.8.jar TinyMCE-max.js -o TinyMCE.js
+G:\CodeAnalyze\CodeAnalyzeMVC2015\CodeAnalyzeMVC2015\js\javacriptCompressor>java -jar yuicompressor-2.4.8.jar Facebook-max.js -o Facebook.js
 
-G:\CodeAnalyzeMVC2015\CodeAnalyzeMVC2015\js\javacriptCompressor>java -jar yuicompressor-2.4.8.jar Facebook-max.js -o Facebook.js
-
-G:\CodeAnalyzeMVC2015\CodeAnalyzeMVC2015\js\javacriptCompressor>java -jar yuicompressor-2.4.8.jar Google-max.js -o Google.js
+G:\CodeAnalyze\CodeAnalyzeMVC2015\CodeAnalyzeMVC2015\js\javacriptCompressor>java -jar yuicompressor-2.4.8.jar Google-max.js -o Google.js
