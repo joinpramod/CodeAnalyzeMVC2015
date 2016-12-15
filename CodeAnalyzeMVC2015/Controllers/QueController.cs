@@ -669,20 +669,47 @@ namespace CodeAnalyzeMVC2015.Controllers
             strReply = strReply.Replace("&amp;gt;", "&gt;");
             strReply = strReply.Replace("&lt;pre&gt;", "<pre class=\"prettyprint\" style=\"font-size:14px;\">");
             strReply = strReply.Replace("&lt;/pre&gt;", "</pre>");
+
+            strReply = strReply.Replace("&lt;a href=", "<a href=");
+            strReply = strReply.Replace("&lt;/a&gt;", "</a>");
+
+            strReply = strReply.Replace("&lt;br /&gt;", "<br />");
+
+            strReply = strReply.Replace("&lt;p&gt;", "<p>");
+            strReply = strReply.Replace("&lt;/p&gt;", "</p>");
+
             strReply = strReply.Replace("&quot;", "\"");
             strReply = strReply.Replace("~~", "'");
             strReply = strReply.Replace("#~", "\n");
 
             //this is to replace xml charectors inside anchor tag <a> </a>
-            foreach (Match regExp in Regex.Matches(EditorAskQuestion, @"\<a href(.*?)\&lt;(.*?)\</a\>", RegexOptions.IgnoreCase))
+            foreach (Match regExp in Regex.Matches(strReply, @"\<a href(.*?)\&lt;(.*?)\</a\>", RegexOptions.IgnoreCase))
             {
-                EditorAskQuestion = EditorAskQuestion.Replace(regExp.Value, regExp.Value.Replace("&lt;", "<"));                    
+                strReply = strReply.Replace(regExp.Value, regExp.Value.Replace("&lt;", "<"));                    
             }
 
-            foreach (Match regExp in Regex.Matches(EditorAskQuestion, @"\<a href(.*?)\&gt;(.*?)\</a\>", RegexOptions.IgnoreCase))
-            {                    
-                EditorAskQuestion = EditorAskQuestion.Replace(regExp.Value, regExp.Value.Replace("&gt;", ">"));
+            foreach (Match regExp in Regex.Matches(strReply, @"\<a href(.*?)\&gt;(.*?)\</a\>", RegexOptions.IgnoreCase))
+            {
+                strReply = strReply.Replace(regExp.Value, regExp.Value.Replace("&gt;", ">"));
             }
+
+
+            foreach (Match regExp in Regex.Matches(strReply, @"\<pre\>(.*?)\<br /\>(.*?)\</pre\>", RegexOptions.IgnoreCase))
+            {
+                strReply = strReply.Replace(regExp.Value, regExp.Value.Replace("<br />", "&lt;br /&gt;"));
+            }
+
+            foreach (Match regExp in Regex.Matches(strReply, @"\<pre\>(.*?)\<p\>(.*?)\</pre\>", RegexOptions.IgnoreCase))
+            {
+                strReply = strReply.Replace(regExp.Value, regExp.Value.Replace("<p>", "&lt;p&gt;"));
+            }
+
+            foreach (Match regExp in Regex.Matches(strReply, @"\<pre\>(.*?)\</p\>(.*?)\</pre\>", RegexOptions.IgnoreCase))
+            {
+                strReply = strReply.Replace(regExp.Value, regExp.Value.Replace("</p>", "&lt;/p&gt;"));
+            }
+
+
 
             //strReply = strReply.Replace("class=\"&quot;language-csharp\">&lt;code\"", "class=\"prettyprint\"");
             //<pre class="&quot;language-csharp">&lt;code"&gt;         
