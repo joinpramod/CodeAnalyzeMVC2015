@@ -196,6 +196,7 @@
     <Content Include="Articles\XCode_Display_Loading_Msg.html" />
     <Content Include="Articles\XCode_Periodically_Rate_Review.html" />
     <Content Include="css\mystyles.css" />
+    <Content Include="css\style.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\ThumpsDown.png" />
     <Content Include="Images\ThumpsUp.png" />
@@ -395,7 +396,6 @@
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\prettify.css" />
     <Content Include="css\sCodeCSS.css" />
-    <Content Include="css\style.css" />
     <Content Include="EMailBody.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
