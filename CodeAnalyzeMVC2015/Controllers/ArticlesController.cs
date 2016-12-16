@@ -352,6 +352,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                             model.Stars = "0";
                         }
                         
+
                     }
 
 
@@ -400,6 +401,11 @@ namespace CodeAnalyzeMVC2015.Controllers
                     model.ThumbsDown = dsQuestion.Rows[0]["ThumbsDown"].ToString();
                     model.HasDemo = Convert.ToInt32(dsQuestion.Rows[0]["HasDemo"].ToString());
 
+
+                    if (dsQuestion.Rows[0]["DemoURL"]!=null)
+                    {
+                        model.DemoURL = dsQuestion.Rows[0]["DemoURL"].ToString();
+                    }
                 }
             }
         }
