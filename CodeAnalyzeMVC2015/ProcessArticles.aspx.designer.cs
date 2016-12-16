@@ -111,16 +111,15 @@ public partial class ProcessArticles {
     protected global::System.Web.UI.WebControls.TextBox txtYoutTube;
     
     /// <summary>
-    /// chkSkipSave control.
+    /// txtDemoURL control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.CheckBox chkSkipSave;
+    protected global::System.Web.UI.WebControls.TextBox txtDemoURL;
     
-    
-        /// <summary>
+    /// <summary>
     /// chkhasDemo control.
     /// </summary>
     /// <remarks>
@@ -130,14 +129,14 @@ public partial class ProcessArticles {
     protected global::System.Web.UI.WebControls.CheckBox chkhasDemo;
     
     /// <summary>
-    /// chkIsDisplay control.
+    /// chkSkipSave control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.CheckBox chkIsDisplay;
-
+    protected global::System.Web.UI.WebControls.CheckBox chkSkipSave;
+    
     /// <summary>
     /// chkIsDisplay control.
     /// </summary>
@@ -145,8 +144,17 @@ public partial class ProcessArticles {
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
+    protected global::System.Web.UI.WebControls.CheckBox chkIsDisplay;
+    
+    /// <summary>
+    /// chkOverwrite control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
     protected global::System.Web.UI.WebControls.CheckBox chkOverwrite;
-
+    
     /// <summary>
     /// btnSubmit control.
     /// </summary>

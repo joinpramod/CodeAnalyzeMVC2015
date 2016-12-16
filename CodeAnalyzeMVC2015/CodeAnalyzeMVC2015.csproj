@@ -557,6 +557,7 @@
     <Content Include="Views\Tutorials\EBook.cshtml" />
     <Content Include="Views\CodeDemos\20174.cshtml" />
     <Content Include="Views\CodeDemos\General.cshtml" />
+    <Content Include="Views\CodeDemos\20168.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

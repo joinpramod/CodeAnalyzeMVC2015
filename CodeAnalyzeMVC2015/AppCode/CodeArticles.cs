@@ -205,6 +205,8 @@ namespace CodeAnalyzeMVC2015
         public int IsDisplay { get; set; }
 
         public int HasDemo { get; set; }
+        
+        public string DemoURL { get; set; }
 
         public bool SetCommandArtcles(ref SqlCommand CmdSent)
         {
@@ -228,6 +230,7 @@ namespace CodeAnalyzeMVC2015
             SqlParameter ParamViews = Cmd.Parameters.Add("@Views", SqlDbType.Int);
             SqlParameter ParamIsDisplay = Cmd.Parameters.Add("@IsDisplay", SqlDbType.Int);
             SqlParameter ParamHasDemo = Cmd.Parameters.Add("@HasDemo", SqlDbType.Int);
+            SqlParameter ParamDemoURL = Cmd.Parameters.Add("@DemoURL", SqlDbType.VarChar);
 
             ParamOptID.Value = IntOptID;
             ParamOptID.Direction = ParameterDirection.Input;
@@ -257,7 +260,9 @@ namespace CodeAnalyzeMVC2015
             ParamIsDisplay.Value = IsDisplay;
             ParamIsDisplay.Direction = ParameterDirection.Input;
             ParamHasDemo.Value = HasDemo;
-            ParamHasDemo.Direction = ParameterDirection.Input;
+            ParamHasDemo.Direction = ParameterDirection.Input;            
+            ParamDemoURL.Value = DemoURL;
+            ParamDemoURL.Direction = ParameterDirection.Input;
 
             if (DtCreatedDateTime < DateTime.Parse("1-1-2000"))
             {

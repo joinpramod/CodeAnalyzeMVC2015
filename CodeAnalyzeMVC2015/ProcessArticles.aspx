@@ -86,6 +86,15 @@
 
                 </td>
             </tr>
+              <tr>
+                <td align="left"  style="font-family: Calibri; width: 123px;">
+                    <b>Demo URL: </b>
+                </td>
+                <td align="left">
+                     <asp:TextBox ID="txtDemoURL" runat="server" BorderStyle="Groove" Width="480px"></asp:TextBox>
+
+                </td>
+            </tr>
                <tr>
                 <td align="left"  style="font-family: Calibri; width: 123px;">
                     <%--<b>Skip File Save: </b>--%>
