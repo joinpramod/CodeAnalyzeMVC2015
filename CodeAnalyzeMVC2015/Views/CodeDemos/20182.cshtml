@@ -1,0 +1,66 @@
+﻿<script type="text/javascript" src="~/Scripts/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init(
+        {
+            mode: "textareas",
+            statusbar: false,
+            height: "300px",
+            width: "98%"
+        });
+</script>
+
+<table style="width: 100%; font-family: Calibri">
+    <tbody>
+        <tr>
+            <td style="width:100%">
+                <span style="width: 90%; font-weight: bold; font-family: Calibri; color: #333; font-size: 24px">Demo - Rich text editor control in asp.net mvc using javascript free</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br><br>
+                @Html.TextArea("MyMVCEditor")
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br><br>
+                <div>
+                    <p style="font-size:18px;font-weight:bold">
+                        Quick information
+
+<pre style="font-size:16px;background-color:transparent;font-family:calibri">
+More information on the following can be found on the live website
+
+Integration and Setup - Essential editor configuration, including `selector` and `plugins` keys.
+
+Editor Appearance - Configure the editor's appearance, including menu and toolbar controls.
+
+Content Appearance - Configure the appearance of content inside TinyMCe's editable area.
+
+Content Filtering - Learn how to create clean, maintainable and readable content.
+
+Content Formatting - Learn how to create clean, maintainable and readable content.
+
+Spelling - These settings affect whether the browser's internal spell checker should be used.
+
+File &amp; Image Upload - These settings affect TinyMCE's image and file upload capabilities.
+
+Localization - Localize TinyMCE for your language, including directionality.
+
+URL Handling - These settings affect the way URLs are handled by the editor.
+
+Advanced Editing Behaviors - Learn about some edge case editor behavior.
+
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <br>
+                <input value="Back to article" id="btnSubmit" onclick="history.go(-1);" class="mysubmit" type="submit">
+            </td>
+        </tr>
+    </tbody>
+</table>

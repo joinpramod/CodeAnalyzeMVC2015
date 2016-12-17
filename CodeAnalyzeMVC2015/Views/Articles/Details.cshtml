@@ -9,6 +9,31 @@
 
 <meta name="description" content="@ViewBag.keywords" />
 
+
+@*<script type="text/javascript">
+    $(function () {
+        debugger;
+            $("#btnGet").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "@Model.DemoURL",
+                    //data: '{name: "' + $("#txtName").val() + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    //dataType: "json",
+                    success: function (response) {
+                        //alert("Hello: " + response.Name + " .\nCurrent Date and Time: " + response.DateTime);
+                    },
+                    failure: function (response) {
+                        //alert(response.responseText);
+                    },
+                    error: function (response) {
+                        //alert(response.responseText);
+                    }
+                });
+            });
+        });
+</script>*@
+
 <script type="text/javascript" src="~/js/JavaScript1.js"></script>
 
 <table style="width: 100%; font-family: Calibri">
@@ -57,14 +82,8 @@
 
 @using (Html.BeginForm("Details", "Articles"))
 {
-    @*<div class="outer-container">*@
-    @*<div class="inner-container">*@
-    @*<div id="divContent" class="element">*@
     @Html.Raw(Model.ArticleDetails)
-    @*</div>*@
-    @*</div>*@
-    @*</div>*@
-<br/>  <br/>
+    <br/><br/>
     {
         System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
         Model.ArticleTitle = rgx.Replace(Model.ArticleTitle, "").Replace(" ", "-");
@@ -75,6 +94,7 @@
         //string strURL = "/CodeDemos/Articles/" + Model.ArticleID + "/" + Model.ArticleTitle;
         <div style="text-align:center;width:100%">
             <a href='@Model.DemoURL' style="font-weight:bold;font-size:26px;width:100px;height:40px" class="mysubmit">View Demo of Code</a>
+            @*<input type="button" id="btnGet" value="View Demo of Code" style="font-weight:bold;font-size:26px;height:40px" class="mysubmit"/>*@
         </div>                    
         <br/><br/>           
     }
