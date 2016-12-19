@@ -36,6 +36,15 @@ namespace CodeAnalyzeMVC2015.Controllers
                 {
                     ViewBag.Ack = "No such EMail Id exists";
                 }
+
+    //DataTable dtUserActivation = connManager.GetDataTable("select * from UserActivation where Email = '" + txtEMailId + "'");
+            //if (dtUserActivation.Rows.Count > 0)
+            //{
+            //    ViewBag.Ack = "User activation pending";
+            //    ViewBag.Activation = "Resend Activation Code?";
+            //    return View("../Account/Login");
+            //}
+
                 if (!string.IsNullOrEmpty(dsUser.Tables[0].Rows[0]["Password"].ToString()))
                 {
                     Mail mail = new Mail();
@@ -72,6 +81,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             ConnManager connManager = new ConnManager();
             connManager.OpenConnection();
             DataTable DSUserList = new DataTable();
+            DataTable dtUserActivation = new DataTable();
 
             if (!string.IsNullOrEmpty(txtPassword))
             {
@@ -90,6 +100,17 @@ namespace CodeAnalyzeMVC2015.Controllers
             }
             else
             {
+
+            //dtUserActivation = connManager.GetDataTable("select * from UserActivation where UserId = " + double.Parse(DSUserList.Rows[0]["UserId"].ToString()) + " and Email = '" + txtEMailId + "'");
+            //if (dtUserActivation.Rows.Count > 0)
+            //{
+            //    ViewBag.lblAck = "User activation pending";
+            //    ViewBag.Activation = "Resend Activation Code?";
+            //    return View("../Account/Login");
+            //}
+
+
+
                 Users user = new Users();
                 user.UserId = double.Parse(DSUserList.Rows[0]["UserId"].ToString());
                 user.FirstName = DSUserList.Rows[0]["FirstName"].ToString();
@@ -175,6 +196,7 @@ namespace CodeAnalyzeMVC2015.Controllers
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public ActionResult CreateEditUser(Users user, HttpPostedFileBase fileUserPhoto, string txtPassword)
         {
+            string activationCode = Guid.NewGuid().ToString();
             //AddEdit user
             if (Request.Form["Cancel"] == null)
             {
@@ -198,6 +220,13 @@ namespace CodeAnalyzeMVC2015.Controllers
                             return View("Users", user);
                         }
 
+                        //DataTable dtUserActivation = connManager.GetDataTable("select * from UserActivation where  Email = '" + txtEMailId + "'");
+                        //if (dtUserActivation.Rows.Count > 0)
+                        //{
+                        //    ViewBag.lblAck = "User activation pending";
+                        //    ViewBag.Activation = "Resend Activation Code?";
+                        //    return View("../Account/Login");
+                        //}
 
                         double dblUserID = 0;
                         SqlConnection LclConn = new SqlConnection();
@@ -262,11 +291,31 @@ namespace CodeAnalyzeMVC2015.Controllers
                         {
                             SetTransaction.Rollback();
                         }
-                        user.CloseConnection(LclConn);
+                       
 
+                        //using (SqlConnection con = new SqlConnection(LclConn))
+                        //{
+                        //    using (SqlCommand cmd = new SqlCommand("INSERT INTO UserActivation VALUES(@UserId, @ActivationCode)"))
+                        //    {
+                        //        using (SqlDataAdapter sda = new SqlDataAdapter())
+                        //        {
+                        //            cmd.CommandType = CommandType.Text;
+                        //            cmd.Parameters.AddWithValue("@UserId", dblUserID);
+                        //            cmd.Parameters.AddWithValue("@ActivationCode", activationCode);
+                        //            cmd.Connection = con;
+                        //            con.Open();
+                        //            cmd.ExecuteNonQuery();
+                        //            con.Close();
+                        //        }
+                        //    }
+                        //}
 
-                        ViewBag.Ack = "User Registered Successfully. Please login.";
-                        SendNewUserRegEMail(user.Email);
+                         user.CloseConnection(LclConn);
+
+                        //ViewBag.Ack = "User Registered Successfully. Please login.";
+                        ViewBag.Ack = "User Info Saved Successfully. An activation link has been sent to your email address, please check your inbox and activate your account";
+                        //SendNewUserRegEMail(user.Email);
+                        SendActivationEMail(activationCode)
                         SendEMail(user.Email, user.FirstName, user.LastName);
                         //}
                         //catch
@@ -427,6 +476,27 @@ namespace CodeAnalyzeMVC2015.Controllers
             {
                 user = (Users)Session["User"];
                 return View("../Account/ViewUser", user);
+            }
+        }
+
+        private void SendActivationEMail(string ActivationCode)
+        {
+            try
+            {
+                Mail mail = new Mail();
+                string EMailBody = System.IO.File.ReadAllText(Server.MapPath("../EMailBody.txt"));
+                string strCA = "<a id=HyperLink1 style=font-size: medium; font-weight: bold; color:White href=http://codeanalyze.com>CodeAnalyze</a>";
+                mail.Body = string.Format(email, "Welcome to " + strCA + ". We appreciate your time for posting code that help many. Please click <a id=actHere href=http://codeanalyze.com/Account/Activate/ " + ActivationCode + ">here</a> to activate your account");
+                mail.FromAdd = "admin@codeanalyze.com";
+                mail.Subject = "Welcome to CodeAnalyze - Blogger Rewards";
+                mail.ToAdd = email;
+                mail.IsBodyHtml = true;
+                mail.SendMail();
+            }
+            catch
+            {
+
+
             }
         }
 
