@@ -73,7 +73,19 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult ProcessLogin(string txtEMailId, string txtPassword)
         {
-            return CheckUserLogin(txtEMailId, txtPassword);
+            if (Request.Form["btnResendAct"] != null)
+            {
+                //DataTable dtUserActivation = connManager.GetDataTable("select * from UserActivation where  Email = '" + txtEMailId + "'");
+                //if (dtUserActivation.Rows.Count > 0)
+                //{
+                //    SendActivationEMail(txtEMailId, dtUserActivation.Rows[0]["ActivationCode"].ToString())
+                //    return View("../Account/Login");
+                //}
+            }
+            else
+            {
+                return CheckUserLogin(txtEMailId, txtPassword);
+            }
         }
 
         private ActionResult CheckUserLogin(string txtEMailId, string txtPassword)
@@ -315,7 +327,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                         //ViewBag.Ack = "User Registered Successfully. Please login.";
                         ViewBag.Ack = "User Info Saved Successfully. An activation link has been sent to your email address, please check your inbox and activate your account";
                         //SendNewUserRegEMail(user.Email);
-                        SendActivationEMail(activationCode)
+                        SendActivationEMail(user.Email, activationCode)
                         SendEMail(user.Email, user.FirstName, user.LastName);
                         //}
                         //catch
@@ -479,7 +491,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             }
         }
 
-        private void SendActivationEMail(string ActivationCode)
+        private void SendActivationEMail(string email, string ActivationCode)
         {
             try
             {
