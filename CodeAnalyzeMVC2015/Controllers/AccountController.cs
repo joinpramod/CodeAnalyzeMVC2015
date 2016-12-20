@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace CodeAnalyzeMVC2015.Controllers
 {
@@ -37,13 +38,13 @@ namespace CodeAnalyzeMVC2015.Controllers
                     ViewBag.Ack = "No such EMail Id exists";
                 }
 
-    //DataTable dtUserActivation = connManager.GetDataTable("select * from UserActivation where Email = '" + txtEMailId + "'");
-            //if (dtUserActivation.Rows.Count > 0)
-            //{
-            //    ViewBag.Ack = "User activation pending";
-            //    ViewBag.Activation = "Resend Activation Code?";
-            //    return View("../Account/Login");
-            //}
+                DataTable dtUserActivation = con.GetDataTable("select * from UserActivation where Email = '" + txtEMailId + "'");
+                if (dtUserActivation.Rows.Count > 0)
+                {
+                    ViewBag.Ack = "User activation pending";
+                    ViewBag.Activation = "Resend Activation Code?";
+                    return View("../Account/Login");
+                }
 
                 if (!string.IsNullOrEmpty(dsUser.Tables[0].Rows[0]["Password"].ToString()))
                 {
@@ -75,12 +76,14 @@ namespace CodeAnalyzeMVC2015.Controllers
         {
             if (Request.Form["btnResendAct"] != null)
             {
-                //DataTable dtUserActivation = connManager.GetDataTable("select * from UserActivation where  Email = '" + txtEMailId + "'");
-                //if (dtUserActivation.Rows.Count > 0)
-                //{
-                //    SendActivationEMail(txtEMailId, dtUserActivation.Rows[0]["ActivationCode"].ToString())
-                //    return View("../Account/Login");
-                //}
+                ConnManager con = new ConnManager();
+                DataTable dtUserActivation = con.GetDataTable("select * from UserActivation where  Email = '" + txtEMailId + "'");
+                if (dtUserActivation.Rows.Count > 0)
+                {
+                    SendActivationEMail(txtEMailId, dtUserActivation.Rows[0]["ActivationCode"].ToString());
+                    ViewBag.Ack = "Activation Code Sent";                
+                }
+                return View("../Account/Login");
             }
             else
             {
@@ -113,15 +116,13 @@ namespace CodeAnalyzeMVC2015.Controllers
             else
             {
 
-            //dtUserActivation = connManager.GetDataTable("select * from UserActivation where UserId = " + double.Parse(DSUserList.Rows[0]["UserId"].ToString()) + " and Email = '" + txtEMailId + "'");
-            //if (dtUserActivation.Rows.Count > 0)
-            //{
-            //    ViewBag.lblAck = "User activation pending";
-            //    ViewBag.Activation = "Resend Activation Code?";
-            //    return View("../Account/Login");
-            //}
-
-
+                dtUserActivation = connManager.GetDataTable("select * from UserActivation where UserId = " + double.Parse(DSUserList.Rows[0]["UserId"].ToString()) + " and Email = '" + txtEMailId + "'");
+                if (dtUserActivation.Rows.Count > 0)
+                {
+                    ViewBag.lblAck = "User activation pending";
+                    ViewBag.Activation = "Resend Activation Code?";
+                    return View("../Account/Login");
+                }
 
                 Users user = new Users();
                 user.UserId = double.Parse(DSUserList.Rows[0]["UserId"].ToString());
@@ -160,21 +161,6 @@ namespace CodeAnalyzeMVC2015.Controllers
                 ViewBag.UserEmail = user.Email;
                 connManager.DisposeConn();
                 return View("../Account/ViewUser", user);
-
-
-                //List<ArticleModel> articles = new List<ArticleModel>();
-                //articles = connManager.GetArticles("Select * from VwArticles order by articleId desc");
-                //connManager.DisposeConn();
-
-                //PagingInfo info = new PagingInfo();
-                //info.SortField = " ";
-                //info.SortDirection = " ";
-                //info.PageSize = 10;
-                //info.PageCount = Convert.ToInt32(Math.Ceiling((double)(articles.Count / info.PageSize)));
-                //info.CurrentPageIndex = 0;
-                //var query = articles.OrderBy(c => c.ArticleID).Take(info.PageSize);
-                //ViewBag.PagingInfo = info;
-                //return View("../Articles/Index", query.ToList());
 
             }
         }
@@ -232,13 +218,13 @@ namespace CodeAnalyzeMVC2015.Controllers
                             return View("Users", user);
                         }
 
-                        //DataTable dtUserActivation = connManager.GetDataTable("select * from UserActivation where  Email = '" + txtEMailId + "'");
-                        //if (dtUserActivation.Rows.Count > 0)
-                        //{
-                        //    ViewBag.lblAck = "User activation pending";
-                        //    ViewBag.Activation = "Resend Activation Code?";
-                        //    return View("../Account/Login");
-                        //}
+                        DataTable dtUserActivation = con.GetDataTable("select * from UserActivation where  Email = '" + user.Email + "'");
+                        if (dtUserActivation.Rows.Count > 0)
+                        {
+                            ViewBag.lblAck = "User activation pending";
+                            ViewBag.Activation = "Resend Activation Code?";
+                            return View("../Account/Login");
+                        }
 
                         double dblUserID = 0;
                         SqlConnection LclConn = new SqlConnection();
@@ -303,37 +289,32 @@ namespace CodeAnalyzeMVC2015.Controllers
                         {
                             SetTransaction.Rollback();
                         }
-                       
 
-                        //using (SqlConnection con = new SqlConnection(LclConn))
-                        //{
-                        //    using (SqlCommand cmd = new SqlCommand("INSERT INTO UserActivation VALUES(@UserId, @ActivationCode)"))
-                        //    {
-                        //        using (SqlDataAdapter sda = new SqlDataAdapter())
-                        //        {
-                        //            cmd.CommandType = CommandType.Text;
-                        //            cmd.Parameters.AddWithValue("@UserId", dblUserID);
-                        //            cmd.Parameters.AddWithValue("@ActivationCode", activationCode);
-                        //            cmd.Connection = con;
-                        //            con.Open();
-                        //            cmd.ExecuteNonQuery();
-                        //            con.Close();
-                        //        }
-                        //    }
-                        //}
 
-                         user.CloseConnection(LclConn);
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SQLCON"].ToString()))
+                        {
+                            using (SqlCommand cmd = new SqlCommand("INSERT INTO UserActivation VALUES(@UserId, @ActivationCode)"))
+                            {
+                                using (SqlDataAdapter sda = new SqlDataAdapter())
+                                {
+                                    cmd.CommandType = CommandType.Text;
+                                    cmd.Parameters.AddWithValue("@UserId", dblUserID);
+                                    cmd.Parameters.AddWithValue("@ActivationCode", activationCode);
+                                    cmd.Connection = conn;
+                                    conn.Open();
+                                    cmd.ExecuteNonQuery();
+                                    conn.Close();
+                                }
+                            }
+                        }
+
+                        user.CloseConnection(LclConn);
 
                         //ViewBag.Ack = "User Registered Successfully. Please login.";
                         ViewBag.Ack = "User Info Saved Successfully. An activation link has been sent to your email address, please check your inbox and activate your account";
                         //SendNewUserRegEMail(user.Email);
-                        SendActivationEMail(user.Email, activationCode)
+                        SendActivationEMail(user.Email, activationCode);
                         SendEMail(user.Email, user.FirstName, user.LastName);
-                        //}
-                        //catch
-                        //{
-
-                        //}
                     }
                     Session["User"] = user;
                     //return View("ViewUser", user);
@@ -347,19 +328,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             }
             else
             {
-
-                //if (Session["User"] != null)
-                //{
-                //    user = (Users)Session["User"];
-                //    return View("../Account/ViewUser", user);
-                //}
-                //else
-                //{
                 return View("Users", user);
-                //Response.Redirect("../Articles/Index");
-
-                //}
-                //return null;
             }
         }
 
