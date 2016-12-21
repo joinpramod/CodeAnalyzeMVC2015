@@ -257,16 +257,16 @@
                 </section>
                 }
 
-                <section style="vertical-align:top">
+               <section style="vertical-align:top">
                     <div class="ccr-gallery-ttile">
-                        <p><strong>Recent Post</strong></p>
+                        <p><strong>Articles</strong></p>
                     </div>
                     <ul>
                         <li>
                             @Html.Action("RecentPosts", "Master")
                         </li>
                     </ul>
-                </section>       
+                </section> 
                 
                     
                  @* @if(ViewBag.AdsBlocked){       
@@ -293,28 +293,19 @@
                     </section>
                 }
                 
+                <section>
+                    <div class="ccr-gallery-ttile">
+                        <p><strong>Unanswered</strong></p>
+                    </div>
+                    <ul>
+                        <li>
+                            @Html.Action("Unanswered", "Master")
+                        </li>
+                    </ul>
+                </section> 
                 
-                <section>
-                    <div class="ccr-gallery-ttile">
-                        <p><strong>Popular Post</strong></p>
-                    </div>
-                    <ul>
-                        <li>
-                            @Html.Action("PopularPosts", "Master")
-                        </li>
-                    </ul>
-                </section>                
-
-                <section>
-                    <div class="ccr-gallery-ttile">
-                        <p><strong>Most Viewed</strong></p>
-                    </div>
-                    <ul>
-                        <li>
-                            @Html.Action("MostViewed", "Master")
-                        </li>
-                    </ul>
-                </section>
+                        
+         
 
             </aside>
         </div>
