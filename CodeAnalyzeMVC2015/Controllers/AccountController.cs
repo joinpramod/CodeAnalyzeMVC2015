@@ -61,7 +61,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                     mail.ToAdd = dsUser.Tables[0].Rows[0]["EMail"].ToString();
                     mail.SendMail();
 
-                    ViewBag.Ack = "Password has been emailed to you, please check your email.";
+                    ViewBag.Ack = "Password has been emailed to you, please check your inbox.";
                 }
                 else
                 {
@@ -83,7 +83,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 if (dtUserActivation.Rows.Count > 0)
                 {
                     SendActivationEMail(txtEMailId, dtUserActivation.Rows[0]["ActivationCode"].ToString());
-                    ViewBag.Activation = "Activation Code Sent";
+                    ViewBag.Activation = "Activation Code Sent. Please check your inbox and click on the activation link.";
                     ViewBag.UserEMail = txtEMailId;
                 }
                 return View("../Account/Login");
@@ -95,6 +95,15 @@ namespace CodeAnalyzeMVC2015.Controllers
         }
 
 
+        public ActionResult Activate(string ActivationCode)
+        {            
+                ConnManager con = new ConnManager();
+                DataTable dtUserActivation = con.GetDataTable("delete from UserActivation where  ActivationCode = '" + ActivationCode + "'");
+                ViewBag.lblAck = "Account activated successfully. Please login with your emaild and password";
+                return View("../Account/Login");
+        }
+
+
         public ActionResult ProcessActivationCode(string txtEMailId)
         {
             txtEMailId = Request.Form["hfUserEMail"];
@@ -103,7 +112,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             if (dtUserActivation.Rows.Count > 0)
             {
                 SendActivationEMail(txtEMailId, dtUserActivation.Rows[0]["ActivationCode"].ToString());
-                ViewBag.Activation = "Activation Code Sent. Please check your email id.";
+                ViewBag.Activation = "Activation Code Sent. Please check your inbox and click on the activation link.";
                 ViewBag.UserEMail = txtEMailId;
             }
             return View("Users", user);
