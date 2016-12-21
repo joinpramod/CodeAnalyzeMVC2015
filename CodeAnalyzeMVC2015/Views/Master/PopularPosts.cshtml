@@ -1,27 +1,28 @@
 ﻿<table cellpadding="2" cellspacing="2">
-    @foreach (CodeAnalyzeMVC2015.Models.ArticleModel articlesModel in Model)
+    @foreach (CodeAnalyzeMVC2015.Models.QuestionModel questionModel in Model)
     {
-        string title = articlesModel.ArticleTitle;
+        string title = questionModel.QuestionTitle;
         System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
-        articlesModel.ArticleTitle = rgx.Replace(articlesModel.ArticleTitle, "");
+        questionModel.QuestionTitle = rgx.Replace(questionModel.QuestionTitle, "");
 
         <tr style="border-top: solid 1px #efebeb;">
             <td colspan="3">
-                <img id="imgArrow" src="~/Images/WriteArticle.png" style="width:25px;height:25px;" />
-                @Html.ActionLink(title, "Details", "Articles", new { ID = articlesModel.ArticleID, Title = articlesModel.ArticleTitle.Replace(" ", "-") }, null)
+                <img id="imgArrow" src="~/Images/questions.png" style="width:20px;height:20px;" />
+                @*@Html.ActionLink(title, "Details", "Articles", new { ID = articlesModel.ArticleID, Title = articlesModel.ArticleTitle.Replace(" ", "-") }, null)*@
+                @Html.ActionLink(title, "Ans", "Que", new { id = questionModel.QuestionID, title = questionModel.QuestionTitle.ToString().Replace(" ", "-") }, null)
             </td>
         </tr>
-        <tr  style="float:right">
+       @* <tr  style="float:right">
             <td style="width: 60px; padding-left: 0"><i class="fa fa-thumbs-o-up"></i>@articlesModel.ThumbsUp</td>
             <td style="width: 60px; padding-left: 0"><i class="fa fa-thumbs-o-down"></i>@articlesModel.ThumbsDown</td>
             <td style="width: 80px; padding-left: 0">
                 <img id="ImageButton1" src="~/Images/eye.png" style="width:20px;height:20px;" />
 
                 @*</td>
-                    <td style="width: 40px; padding-left: 0">*@
+                    <td style="width: 40px; padding-left: 0">
                 @articlesModel.Views
             </td>
-        </tr>
+        </tr>*@
          @*<tr style="border-bottom: groove 1px #eff0f1;"><td></td></tr>*@
     }
 </table>
