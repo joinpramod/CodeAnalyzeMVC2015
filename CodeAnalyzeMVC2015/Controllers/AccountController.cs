@@ -117,6 +117,15 @@ namespace CodeAnalyzeMVC2015.Controllers
             DataTable DSUserList = new DataTable();
             DataTable dtUserActivation = new DataTable();
 
+            dtUserActivation = connManager.GetDataTable("select * from UserActivation where Emailid = '" + txtEMailId + "'");
+            if (dtUserActivation.Rows.Count > 0)
+            {
+                //ViewBag.lblAck = "User activation pending";
+                ViewBag.Activation = "User activation pending. Resend Activation Code?";
+                ViewBag.UserEMail = txtEMailId;
+                return View("../Account/Login");
+            }
+
             if (!string.IsNullOrEmpty(txtPassword))
             {
                 DSUserList = connManager.GetDataTable("select * from users where email = '" + txtEMailId + "' and Password = '" + txtPassword + "'");
@@ -135,14 +144,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             else
             {
 
-                dtUserActivation = connManager.GetDataTable("select * from UserActivation where Emailid = '" + txtEMailId + "'");
-                if (dtUserActivation.Rows.Count > 0)
-                {
-                    //ViewBag.lblAck = "User activation pending";
-                    ViewBag.Activation = "User activation pending. Resend Activation Code?";
-                    ViewBag.UserEMail = txtEMailId;
-                    return View("../Account/Login");
-                }
+               
 
                 Users user = new Users();
                 user.UserId = double.Parse(DSUserList.Rows[0]["UserId"].ToString());
