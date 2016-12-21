@@ -1,0 +1,100 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+
+    <ol>
+        <li>
+            <p style="width:80%">
+                    CDN datatable scripts and css design are free of cost and can be used for any commercial purpose. Using this its is very easy to implement
+                some of the usefull features of table view or grid view which are used most commonly like paging, sorting, filtering etc.
+                For more information about CDN datatables take a look here <a href='http://cdn.datatables.net/'>CDN Datatable</a>.<br /><br />
+
+                Demos can be found here <a href='https://datatables.net/examples/basic_init/table_sorting.html'>Example Demos</a><br /><br />
+                
+                CDN Datatables is one of the best online free plugins available which has most of the advanced features. It is
+                also responsive.
+
+                Lets take a look at the sample example of how we can implement these 
+            </p>  <b></b>
+<pre class="brush: java">
+
+    &lt;script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"&gt;&lt;/script&gt;   
+    &lt;script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.js"&gt;&lt;/script&gt;
+     &lt;link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" /&gt;  
+
+    $(document).ready(function() {  
+        $('#MyTable').DataTable( {  
+            initComplete: function () {  
+                this.api().columns().every( function () {  
+                    var column = this;  
+                    var select = $('&lt;select&gt;&lt;option value=""&gt;&lt;/option&gt;&lt;/select&gt;')  
+                        .appendTo( $(column.footer()).empty() )  
+                        .on( 'change', function () {  
+                            var val = $.fn.dataTable.util.escapeRegex(  
+                                $(this).val()  
+                            );  
+                    //to select and search from grid  
+                            column  
+                                .search( val ? '^'+val+'$' : '', true, false )  
+                                .draw();  
+                        } );  
+       
+                    column.data().unique().sort().each( function ( d, j ) {  
+                        select.append( '&lt;option value="'+d+'"&gt;'+d+'&lt;/option&gt;' )  
+                    } );  
+                } );  
+            }  
+        } );  
+    } );  
+
+
+
+        &lt;table id="MyTable" class="display" cellspacing="0" width="100%"&gt;  
+            &lt;thead&gt;  
+                &lt;tr&gt;  
+                    &lt;th&gt;EmployeeName&lt;/th&gt;  
+                    &lt;th&gt;Company&lt;/th&gt;  
+                    &lt;th&gt;EMail&lt;/th&gt;  
+                    &lt;th&gt;Phone&lt;/th&gt;  
+                &lt;/tr&gt;  
+            &lt;/thead&gt;  
+            &lt;tfoot&gt;  
+                &lt;tr&gt;  
+                    &lt;th&gt;EmployeeName&lt;/th&gt;  
+                     
+                &lt;/tr&gt;  
+            &lt;/tfoot&gt;  
+            &lt;tbody&gt;  
+                &lt;tr&gt;  
+                    &lt;td&gt;Employee1&lt;/td&gt;  
+                    &lt;td&gt;Company1&lt;/td&gt;  
+                    &lt;td&gt;abc@codeanalyze.com&lt;/td&gt;  
+                    &lt;td&gt;123-456-7894&lt;/td&gt;  
+
+                &lt;/tr&gt;  
+                &lt;tr&gt;  
+                    &lt;td&gt;Employee2&lt;/td&gt;  
+                    &lt;td&gt;Company2&lt;/td&gt;  
+                    &lt;td&gt;def@codeanalyze.com&lt;/td&gt;  
+                    &lt;td&gt;987-654-3210&lt;/td&gt;  
+                &lt;/tr&gt;  
+                &lt;tr&gt;  
+                    &lt;td&gt;Employee2&lt;/td&gt;  
+                    &lt;td&gt;Company3&lt;/td&gt;  
+                    &lt;td&gt;ghi@codeanalyze.com &lt;/td&gt;  
+                    &lt;td&gt;357-159-2486&lt;/td&gt;   
+                &lt;/tr&gt;  
+                           
+            &lt;/tbody&gt;  
+        &lt;/table&gt;  
+</pre>           
+        </li>
+        
+
+</ol> 
+</div>
+   

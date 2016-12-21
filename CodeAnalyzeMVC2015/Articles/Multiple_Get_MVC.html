@@ -1,0 +1,80 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+                In this article we will implement multiple get methods in webapi controller. Each method can have different number of input parameters and return different values.<br />
+                We will use url format having ? and & which means we will mention the parameter names in the url along with its value<br />
+                We will not pass only the parameter values separated by /
+                For example here is a GetMethod call<br />
+                http://localhost/WebApiProject/api/Employee/GetEmployee?ID=" + _id + "&EmpName=" + _empName + "&EmpEMail=" + _empEMail <br />
+                Sample WebApi controller is shown below<br />
+                Read the comments for better understanding
+<pre class="brush: java">
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+
+namespace RAISWebApi.Controllers
+{
+    public class EmployeeController : ApiController
+    {
+        //Use this [HttpGet] attribute for all the Get methods
+        //Make sure that parameters name are matching with the parameters you are passing from client
+        [HttpGet]
+        public IEnumerable&lt;Employee&gt; GetEmployee(string ID)
+        {            
+            return employeeList;
+        }
+
+        [HttpGet]
+        public IEnumerable&lt;Employee&gt; GetEmployeePhone(string ID, string EmpName)
+        {
+            return employeeList;
+        }
+
+        [HttpGet]
+        public IEnumerable&lt;Employee&gt; GetEmployeeAddress(string ID, string EmpName, string EmpEMail)
+        {
+            return employeeList;
+        }
+
+    }
+}
+</pre>           
+        </li>
+         <li>
+                We will have to update the route.config of webapi as shown below
+<pre class="brush: java">
+ public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.Clear();
+
+            routes.MapHttpRoute(
+                name: "ActionApi",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
+
+            routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            );
+
+
+        }
+</pre>                
+        </li>
+</ol> 
+</div>
+   

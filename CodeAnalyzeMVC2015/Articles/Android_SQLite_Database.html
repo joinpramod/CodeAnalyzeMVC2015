@@ -1,0 +1,123 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                SQLite is embedded within the Android operating System, so you don’t need anything external on Android to use SQLite
+            </p>              
+        </li>
+         <li>
+            <p style="width:80%">                
+                We can also create SQLite database in 2 other ways<br />
+                1. In Android Studio go to Device Monitor in Menu. <br />
+                   &nbsp;&nbsp;&nbsp;
+                   Select the connected device emulator from Device tab andgo to File explorer.<br />
+                    <br />
+                   &nbsp;&nbsp;&nbsp;
+                   In File Explorer tab go to data -> data -> select your project. Now Click on the Pull a file from the device icon and save it with .db extension. <br />
+                2. Open Mozilla Firefox and then go to Tools Menu > SQLite Manager. <br />
+                   &nbsp;&nbsp;&nbsp;
+                   Now In SQLite Manager Go to Database Menu > Connect Database. Select your database if exists. If database don't exist then create new database using SQLite Manager. <br />
+                   <br />
+                   &nbsp;&nbsp;&nbsp;
+                   After you create the database, copy the database files into your project folder.
+            </p>              
+        </li>
+
+         <li>
+Take a look at the code below and comments to understand this better
+            <pre class="brush: java">
+
+
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+
+
+public class SQLiteHelper extends SQLiteOpenHelper {
+
+private static final int DATABASE_VERSION = 1;
+public static final String DATABASE_NAME = "EmpSQLite.db";
+
+public static final String TABLE_NAME = "EMPLOYEE";
+public static final String COLUMN_ID = "ID";
+public static final String COLUMN_FIRST_NAME = "FIRST_NAME";
+public static final String COLUMN_LAST_NAME = "LAST_NAME";
+
+private SQLiteDatabase database;
+
+//this will create a new database by calling the base method super in SQLiteOpenHelper
+//this method can be called from main as  
+SQLiteHelper sQLiteHelper = new SQLiteHelper(MainActivity.this);
+public SQLiteHelper(Context context) {
+    super(context, DATABASE_NAME, null, DATABASE_VERSION);
+}
+
+
+//this is to create a new table called Employee
+@Override
+public void onCreate(SQLiteDatabase db) {
+    db.execSQL("create table " + TABLE_NAME + " ( " + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_FIRST_NAME + " VARCHAR, " + COLUMN_LAST_NAME + " VARCHAR);");
+}
+
+
+// this is to insert a record into employee table
+//emp  is the Employee model
+public void insertRecord(EmployeeModel emp) {
+    database = this.getReadableDatabase();
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(COLUMN_FIRST_NAME, emp.getFirstName());
+    contentValues.put(COLUMN_LAST_NAME, emp.getLastName());
+    database.insert(TABLE_NAME, null, contentValues);
+    database.close();
+}
+
+
+
+//this is to get all records in employee table
+public ArrayList&lt;EmployeeModel&gt; getAllRecords() {
+    database = this.getReadableDatabase();
+    Cursor cursor = database.query(TABLE_NAME, null, null, null, null, null, null);
+
+    ArrayList&lt;EmployeeModel&gt; contacts = new ArrayList&lt;EmployeeModel&gt;();
+    EmployeeModel contactModel;
+    if (cursor.getCount() &gt; 0) {
+        for (int i = 0; i &lt; cursor.getCount(); i++) {
+            cursor.moveToNext();
+
+            contactModel = new EmployeeModel();
+            contactModel.setID(cursor.getString(0));
+            contactModel.setFirstName(cursor.getString(1));
+            contactModel.setLastName(cursor.getString(2));
+
+            contacts.add(contactModel);
+        }
+    }
+    cursor.close();
+    database.close();
+    return contacts;
+}
+
+ //Update records in employee table
+public void updateRecord(EmployeeModel emp) {
+    database = this.getReadableDatabase();
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(COLUMN_FIRST_NAME, emp.getFirstName());
+    contentValues.put(COLUMN_LAST_NAME, emp.getLastName());
+    database.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{emp.getID()});
+    database.close();
+}
+
+
+
+}
+
+            </pre> 
+        </li>
+        
+</ol> 
+</div>

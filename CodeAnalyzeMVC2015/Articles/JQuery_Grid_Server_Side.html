@@ -1,0 +1,133 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+   
+    <ol>
+        <li>
+            <p style="width:80%">
+               We will be using jQuery datatable to create a jquery grid and implement paging, sorting, filterting, searching on the server side.
+                Instal jQuery datatable nuget package in Visual Stusio using package manager. Exact should be JQueryDatatablesMVC nuiget package manager. After this we will need to update the
+                bundle config with following<br />
+                For more information about CDN datatables take a look here <a href='http://cdn.datatables.net/'>CDN Datatable</a>.<br /><br />
+
+                Demos can be found here <a href='https://datatables.net/examples/basic_init/table_sorting.html'>Example Demos</a><br /><br />
+                
+                CDN Datatables is one of the best online free plugins available which has most of the advanced features. It is
+                also responsive.
+            </p>  
+<pre class="brush: java">
+bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+                        "~/Scripts/DataTables/jquery.dataTables.min.js",
+                        "~/Scripts/DataTables/dataTables.bootstrap.js"));
+
+bundles.Add(new StyleBundle("~/Content/datatables").Include(
+          "~/Content/DataTables/css/dataTables.bootstrap.css"));
+</pre>           
+        </li>
+         <li>
+            <p style="width:80%">
+               jQuery script to implement grid view is shown below<br />
+            </p>   <b>View</b><br />
+<pre class="brush: java">
+@section Scripts
+{    
+&lt;script type="text/javascript"&gt;
+var empListVM;
+$(function () {
+    empListVM = {
+        dt: null,
+
+        init: function () {
+            dt = $('#emps-data-table').DataTable({
+                "serverSide": true,
+                "processing": true,
+                "ajax": {
+                    "url": "@Url.Action("Get","Employees")"
+            },
+                "columns": [
+                    { "title": "EmployeeName", "data": "EmployeeName", "searchable": true },
+                    { "title": "Employer", "data": "Employer", "searchable": true },
+                    { "title": "EMail", "data": "EMail", "searchable": true },
+                    { "title": "Phone", "data": "Phone", "searchable": true },
+                    { "title": "Address", "data": "Address" },
+                    { "title": "Manager", "data": "Manager" }
+                ],
+                "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                });
+}
+}
+
+// initialize the datatables
+        empListVM.init();
+});
+
+&lt;/script&gt;
+}
+&lt;table id="emps-data-table" class="table table-striped table-bordered" style="width:100%;"&gt;
+</pre>                
+        </li>
+
+
+          <li>
+            <p style="width:80%">
+              Controller action to get the data performing sorting, filtering, searching is as shown below
+            </p>   <b>Controller</b><br />
+<pre class="brush: java">
+public ActionResult Get([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
+{
+    IQueryable<Employees> query = DbContext.Employees;
+    var totalCount = query.Count();
+
+    //Filtering
+    if (requestModel.Search.Value != string.Empty)
+    {
+        var value = requestModel.Search.Value.Trim();
+        query = query.Where(p => p.EmployeeName.Contains(value) ||
+                                 p.Employer.Contains(value) ||
+                                 p.EMail.Contains(value) ||
+                                 p.Phone.Contains(value)
+                           );
+     }
+     var filteredCount = query.Count();
+
+
+     // Sorting
+     var sortedColumns = requestModel.Columns.GetSortedColumns();
+     var orderByString = String.Empty;
+     foreach (var column in sortedColumns)
+     {
+        orderByString += orderByString != String.Empty ? "," : "";
+        orderByString += (column.Data) + 
+          (column.SortDirection == Column.OrderDirection.Ascendant ? " asc" : " desc");
+     }
+     query = query.OrderBy(orderByString == string.Empty ? "BarCode asc" : orderByString);
+
+
+
+     // Paging
+     query = query.Skip(requestModel.Start).Take(requestModel.Length);
+     var data = query.Select(emp => new
+     {
+        EmpID = emp.EmpID,
+        EmployeeName = emp.EmployeeName,
+        Employer = emp.Employer,
+        EMail = emp.EMail,
+        Phone = emp.Phone,
+        Address = emp.Address,
+        Manager = emp.Manager
+     }).ToList();
+
+     return Json(new DataTablesResponse(requestModel.Draw, data, filteredCount, totalCount), 
+                 JsonRequestBehavior.AllowGet);
+}
+</pre>                
+        </li>
+
+
+
+</ol> 
+</div>
+   

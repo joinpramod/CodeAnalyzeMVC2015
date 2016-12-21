@@ -1,0 +1,148 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    Types of data binding in Angular 2 with example
+    <ol>
+        <li>
+            <p style="width:80%">
+                We have 4 types of data binding in Angular 2<br />
+                1. Interpolation <br />
+                2. One-way binding <br />
+                3. Two-way binding <br />
+                4. Event binding <br />
+                Lets take at each of these with example
+            </p>   <br /> <br />      
+        </li>
+         <li>
+            <p style="width:80%">
+                <b>1. Interpolation</b><br />This is similar to Expressions in previous versions, here we will be passing
+                property name in View Template within double curly braces. Take a look at the example below
+            </p>app.component.ts
+<pre class="brush: java">
+import { Component } from '@angular/core';  
+@Component({  
+  selector: 'my-app',  
+  templateUrl: './app/databinding.html'  
+})  
+export class AppComponent {   
+    name = 'Angular 2 Interpolation';  
+} 
+</pre>   
+             On the View html page we will be using this as follows
+<pre class="brush: java">
+&lt;div&gt;  
+    &lt;h5&gt;Interpolation Angular 2&lt;/h5&gt; 
+    This is an example for {{name}} !  
+&lt;/div&gt; 
+
+</pre>     <br /> <br /> 
+        </li>
+          <li>
+            <p style="width:80%">
+                <b>2. One-way binding</b><br />Angular 2 uses HTML DOM element property for one-way binding. one-way data binding directive is replaced with [property]. We will be using
+                square brackets to bind the element in the view as shown below
+            </p>app.component.ts
+<pre class="brush: java">
+import { Component } from '@angular/core';  
+@Component({  
+    selector: 'my-app',  
+    templateUrl: './app/databinding.html'  
+})  
+export class AppComponent {   
+    title = 'Angular 2 One way data binding';  
+    dataString = 'CodeAnalyze'  
+}  
+</pre>
+             On the View html page we will be using this as follows
+<pre class="brush: java">
+&lt;div&gt;  
+    &lt;h5&gt;One way binding Angular 2&lt;/h5&gt;  
+    Hello &lt;span [innerText] = "title" &gt;&lt;/span&gt;!  
+    &lt;input type='text'  [value]="dataString" /&gt;  
+&lt;/div&gt; 
+</pre>  <br /> <br />                 
+        </li>
+
+
+
+
+        <li>
+            <p style="width:80%">
+                <b>3. Two-way binding</b><br />Angular 2 uses [(ngModel)]. We need to import FormsModule to the template module before using the ngModel directive as shown below
+            </p>app.module.ts
+<pre class="brush: java">
+import { NgModule }      from '@angular/core';  
+import { BrowserModule } from '@angular/platform-browser';  
+import { FormsModule } from '@angular/forms';  
+  
+import { AppComponent }  from './app.component';  
+  
+@NgModule({  
+  imports:      [ BrowserModule, FormsModule],  
+  declarations: [ AppComponent],  
+  bootstrap:    [ AppComponent ]  
+})  
+export class AppModule {   
+} 
+</pre> 
+             On the View html page we will be using this as follows
+<pre class="brush: java">
+&lt;div&gt;  
+    &lt;h5&gt;Two way binding Angular 2&lt;/h5&gt;  
+    Enter UserName:  &lt;input [(ngModel)]="enterUserName"  /&gt;  
+    &lt;br/&gt;&lt;br/&gt;  
+    &lt;span&gt; WelCome {{enterUserName}} ! &lt;/span&gt;  
+&lt;/div&gt;  
+</pre>   
+             This can be done without using ngModel also
+            To imlement this we will use something called as "template reference variables". With this we will have 
+            direct access to an element. This identifier is prefixed with a hash/pound character (#).
+"txtName" is template reference variable below pointing to input element. 
+Template does not bind to the component. This solution will not work unless we bind to the element’s event. 
+            This data binding is updated on any of the user actions only like a keypress event for exmaple.
+            So we bind keyup event to input element and we do nothing with this event. We bind 0 with the event as shown below. 
+         <br />
+<pre class="brush: java">
+&lt;div&lt;  
+    &lt;h5&lt;Two way binding (without ngModel directive)&lt;/h5&lt;  
+    Enter you Name: &lt;input  #txtName  type = "text"  (keyup)="0" /&lt;  
+    &lt;br/&lt;&lt;br/&lt;  
+    &lt;span&lt; WelCome {{txtName.value}} ! &lt;/span&lt;  
+&lt;/div&lt; 
+</pre>      <br />      <br /> <br />                  
+        </li>
+        <li>
+            <p style="width:80%">
+                <b>4. Event Binding</b><br />Angular 2.0 directly uses the valid HTML DOM element events.ng-click is now replaced with (click). The round brackets (parentheses) are used with DOM event name for event binding in Angular 2.
+
+
+            </p>app.component.ts
+<pre class="brush: java">
+import { Component } from '@angular/core';  
+@Component({  
+  selector: 'test-app',  
+  templateUrl: './app/databinding.html'  
+})  
+export class AppComponent {   
+    messageText = '';  
+    onClickMe() {  
+        this.messageText = "This is an example for Event Binding in Angular 2";  
+    }  
+} </pre> 
+             On the View html page we will be using this as follows
+<pre class="brush: java">
+&lt;div&gt;  
+    &lt;h5&gt;Event binding Example&lt;/h5&gt;  
+     &lt;button (click)="onClickMe()"&gt;Click me!&lt;/button&gt;  
+    &lt;br/&gt;&lt;br/&gt;  
+    &lt;span&gt; {{messageText}} &lt;/span&gt;  
+&lt;/div&gt;  
+</pre>      <br />                 
+        </li>
+
+</ol> 
+</div>
+   

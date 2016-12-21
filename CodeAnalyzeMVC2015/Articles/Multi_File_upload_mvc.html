@@ -1,0 +1,79 @@
+﻿<html>
+    <body>
+
+ 
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+           This article eaplains about implementing multiple file upload using jquery in asp.net mvc. 
+            We will be using jquery <a href="http://www.uploadify.com/">uploadify jquery plugin</a> which has both html5 and flash version.
+            This also has progress bar feature which will show the progress made by each file to be captured by the client. Lets take a 
+            look at the View, look at comments for details if any
+              <pre class="brush: java">
+
+&lt;html&gt;
+&lt;head&gt;
+    &lt;link rel="Stylesheet" type="text/css" href="../Uploadify/uploadify.css"/&gt;
+    &lt;script type="text/javascript" src="../Uploadify/jquery-1.3.2.min.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="../Uploadify/jquery.uploadify.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+        $(function () {
+            $("#postFiles").fileUpload({
+                'uploader': '../Uploadify/uploader.swf',
+                'cancelImg': '../Uploadify/cancel.png',
+                'buttonText': 'Select Files',
+                'script': '/Home/Index/',
+                'folder': 'Uploads',
+                'fileDesc': 'Word or Excel Files',
+                'fileExt': '*.doc;*.docx;*.xls;*.xlsx',  
+                'multi': true,
+                'auto': true
+            });
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;
+        &lt;!--Input to select only word documents and excel documents--&gt;
+        &lt;input type="file" id="postFiles" name="postFiles"/&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+        </pre>            
+        </li>
+         <li>
+         Controller which has a post method which will take all posted files input parameter. This will be a list or collection of
+             HttpPostedFileBase. 
+         <pre class="brush: java">
+public class HomeController : Controller
+{
+    [HttpGet]
+    public ActionResult Index()
+    {
+        return View();
+    }
+ 
+    [HttpPost]
+    public ActionResult Index(List<HttpPostedFileBase> FileData)
+    {
+        string path = Server.MapPath("~/Uploads/");
+        foreach (HttpPostedFileBase postedFile in FileData)
+        {
+            if (postedFile != null)
+            {
+                string fileName = Path.GetFileName(postedFile.FileName);
+                postedFile.SaveAs(path + fileName);
+            }
+        }
+ 
+        return View();
+    }
+}
+        </pre>            
+        </li>
+        
+</ol> 
+</div>
+    </body>
+</html>    

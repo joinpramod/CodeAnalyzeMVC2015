@@ -1,0 +1,78 @@
+﻿<html>
+    <body>
+
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+Add MediaPlayer framework to the project by selecting project and then in Build Phase section find the library and add it.
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+Create the required view by adding a button and label to choose video. Name the button as Choose Video and Create Outlet for the view in your ViewController.swift file
+            </p> 
+        </li>
+
+        <li>
+            <p style="width:80%">
+               ViewController.swift
+            </p> 
+            <pre class="brush: java">
+import UIKit
+import MediaPlayer
+import MobileCoreServices
+
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+{
+    
+    @IBOutlet weak var varVideo: UIView!
+    
+    var moviePlayer: MPMoviePlayerController = MPMoviePlayerController()
+    var urlVideo :NSURL = NSURL()
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+    }
+    
+    //code to run after chose video button click
+    @IBAction func btnSelectVideo(sender: AnyObject)
+    {
+        let selectVideo = UIImagePickerController()
+        selectVideo.delegate = self
+        selectVideo.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        let kUTTypeMovieAnyObject : AnyObject = kUTTypeMovie as AnyObject
+        selectVideo.mediaTypes = [kUTTypeMovieAnyObject as! String]
+        self.presentViewController(selectVideo, animated: true, completion: nil)
+    }
+    
+    //implement the delegate method of UIImagePickerController
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        videoURL = info[UIImagePickerControllerMediaURL] as! NSURL
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        moviePlayer = MPMoviePlayerController(contentURL: videoURL)
+        moviePlayer.movieSourceType = MPMovieSourceType.Unknown
+        moviePlayer.view.frame = self.varVideo.bounds
+        moviePlayer.scalingMode = MPMovieScalingMode.AspectFill
+        moviePlayer.controlStyle = MPMovieControlStyle.Embedded
+        moviePlayer.shouldAutoplay = true
+        
+        varVideo.addSubview(moviePlayer.view)
+        
+        moviePlayer.prepareToPlay()
+        moviePlayer.play()
+    }
+}
+            </pre> 
+        </li>
+
+
+
+
+</ol> 
+</div>
+    </body>
+</html>    

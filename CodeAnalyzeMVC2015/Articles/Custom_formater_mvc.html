@@ -1,0 +1,90 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+
+    <ol>
+        <li>
+            <p style="width:80%">
+                We will see how we can send and receive request and reponse in custom data format  in asp.net mvc.
+                For example if we need to request and response in CSV comma separated format then we can do this as shown below.
+                We will have to create our format by cretaing a class inherting from BufferedMediaTypeFormatter
+            </p>  <b>CSVFormatter custom format class</b>
+            <pre class="brush: java">
+    public class CSVFormatter : BufferedMediaTypeFormatter
+    {
+        public CSVFormatter()
+        {
+            SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/colon"));
+        }
+        public override bool CanReadType(Type type)
+        {
+            if (type == typeof(Employee) || type == typeof(List&lt;Employee&gt;))
+                return true;
+            else
+                return false;
+        }
+        public override bool CanWriteType(Type type)
+        {
+            if (type == typeof(Employee) || type == typeof(List&lt;Employee&gt;))
+                return true;
+            else
+                return false;
+        }
+
+        public override object ReadFromStream(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+        {
+            List&lt;Employee&gt; Obj = new List&lt;Employee&gt;();
+            Employee emp = null;
+            StreamReader reader = new StreamReader(readStream);
+            string str = reader.ReadToEnd();
+            string[] propArr = str.Split(',');
+            foreach (var item in propArr)
+            {
+                string[] propAttribute = item.Split('|');
+                emp = new Employee();
+                foreach (var item1 in propAttribute)
+                {
+                    string[] propAttribute1 = item1.Split('=');
+                    if (propAttribute1[0].ToLower().Trim().Equals("Name"))
+                    {
+                        emp.Name = propAttribute1[1];
+                    }
+                    if (propAttribute1[0].ToLower().Trim().Equals("EMail"))
+                    {
+                        emp.EMail = propAttribute1[1];
+                    }
+                }
+                Obj.Add(emp);
+            }
+            return Obj;
+        }
+    }</pre>           
+        </li>      
+
+
+        <li>
+            <p style="width:80%">
+                We need to update the request content type as application/colon <br />
+                <b>Content-Type: application/colon</b><br />
+                Update the condifguration in global.ascx page to update the new format<br />
+                 <b>GlobalConfiguration.Configuration.Formatters.Add(new CSVFormatter());</b>
+            </p>  
+           
+         
+         </li>  
+        <li>
+            Next if we check the request in the action method of controller we should find comma separated values
+
+        </li>
+        
+        
+        
+        
+            
+ </ol> 
+</div>
+   

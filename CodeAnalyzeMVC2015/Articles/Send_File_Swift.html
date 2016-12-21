@@ -1,0 +1,261 @@
+﻿<html>
+    <body>
+
+        
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                Many a times we look for ways to share huge files over wifi, this code will help creating a app for this purpose.
+                Create 2 buttons, one for connecting and another for sharing. This app should be present in all devices expected to connect.
+                Turn off bluetooth and turn on wifi only.
+            </p>              
+        </li>
+         <li>
+            <p style="width:80%">
+                Add MultipeerConnectivity framework to the project and add the file to be shared. 
+            </p>              
+        </li>
+
+         <li>ViewController.h 
+            <pre class="brush: swift">
+#import <UIKit/UIKit.h>
+#import <MultipeerConnectivity/MultipeerConnectivity.h>
+
+@interface ViewController : UIViewController <MCBrowserViewControllerDelegate, MCSessionDelegate>
+{
+    __block BOOL isSendData;
+    NSMutableArray *marrFileDataSent, *marrFileReceiveData;
+    int totalFileData, totalDataSend;
+}
+
+
+@property (nonatomic, strong) MCBrowserViewController *browserViewControl;
+@property (nonatomic, strong) MCAdvertiserAssistant *adAssistant;
+@property (nonatomic, strong) MCSession *appSession;
+@property (nonatomic, strong) MCPeerID *peerID;
+
+@end
+
+            </pre> 
+        </li>
+
+          <li>ViewController.m
+            <pre class="brush: swift">
+#import "ViewController.h"
+
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    marrFileDataSent = [[NSMutableArray alloc] init];
+    marrFileReceiveData = [[NSMutableArray alloc] init];
+}
+
+#pragma mark - Action Methods
+
+- (IBAction)btnShareClicked:(id)sender
+{
+    if (!self.appSession) {
+        [self setUpMultipeer];
+    }
+    [self showBrowserVC];
+}
+
+- (IBAction)btnSendClicked:(id)sender
+{
+    [self sendData];
+}
+
+#pragma mark - Wifi Sharing Methods
+
+-(void)setUpMultipeer
+{
+    //  Peer ID
+    self.peerID = [[MCPeerID alloc] initWithDisplayName:[UIDevice currentDevice].name];
+    
+    //  Session
+    self.appSession = [[MCSession alloc] initWithPeer:self.peerID];
+    self.appSession.delegate = self;
+    
+    //  BrowserViewController
+    self.browserViewControl = [[MCBrowserViewController alloc] initWithServiceType:@"chat" session:self.appSession];
+    self.browserViewControl.delegate = self;
+    
+    //  Advertiser
+    self.adAssistant = [[MCAdvertiserAssistant alloc] initWithServiceType:@"chat" discoveryInfo:nil session:self.appSession];
+    [self.adAssistant start];
+}
+
+-(void)showBrowserVC
+{
+    [self presentViewController:self.browserViewControl animated:YES completion:nil];
+}
+
+-(void)dismissBrowserVC
+{
+    [self.browserViewControl dismissViewControllerAnimated:YES completion:^(void){
+        [self invokeAlertMethod:@"Connected Sucessfully" Body:@"Both device connected successfully." Delegate:nil];
+    }];
+}
+
+-(void)stopWifiSharing:(BOOL)isClear
+{
+    if(isClear && self.appSession != nil){
+        [self.appSession disconnect];
+        
+        [self.appSession setDelegate:nil];
+        
+        self.appSession = nil;
+        
+        self.browserViewControl = nil;
+    }
+}
+
+#pragma marks MCBrowserViewControllerDelegate
+// Notifies the delegate, when the user taps the done button
+-(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController
+{
+    [self dismissBrowserVC];
+    [marrFileReceiveData removeAllObjects];
+}
+
+
+-(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController
+{
+    [self dismissBrowserVC];
+}
+
+#pragma marks MCSessionDelegate
+// Received data from remote peer
+- (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID
+{
+    NSLog(@"data receiveddddd : %lu",(unsigned long)data.length);
+    
+    if (data.length > 0) {
+        if (data.length < 2) {
+            totalFileSend++;
+            NSLog(@"noofdatasend : %d",totalFileSend);
+            NSLog(@"array count : %d",marrFileDataSent.count);
+            if (totalFileSend < ([marrFileDataSent count])) {
+                [self.appSession sendData:[marrFileDataSent objectAtIndex:totalFileSend] toPeers:[self.appSession connectedPeers] withMode:MCSessionSendDataReliable error:nil];
+            }else {
+                [self.appSession sendData:[@"File Transfer Done" dataUsingEncoding:NSUTF8StringEncoding] toPeers:[self.appSession connectedPeers] withMode:MCSessionSendDataReliable error:nil];
+            }
+        } else {
+            if ([[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] isEqualToString:@"File Transfer Done"]) {
+                [self appendFileData];
+            }else {
+                [self.appSession sendData:[@"1" dataUsingEncoding:NSUTF8StringEncoding] toPeers:[self.appSession connectedPeers] withMode:MCSessionSendDataReliable error:nil];
+                [marrFileReceiveData addObject:data];
+            }
+        }
+    }
+}
+
+// Received a byte stream
+- (void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID
+{
+    NSLog(@"did receive stream");
+}
+
+// Start receiving a resource 
+- (void)session:(MCSession *)session didStartReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID withProgress:(NSProgress *)progress
+{
+    NSLog(@"start receiving");
+}
+
+// After receiving a resource and saved the content in a temporary location the will move the file to a permanent location within sandbox
+- (void)session:(MCSession *)session didFinishReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID atURL:(NSURL *)localURL withError:(NSError *)error
+{
+    NSLog(@"finish receiving resource");
+}
+
+-(void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state
+{
+    NSLog(@"change state : %d",state);
+}
+
+#pragma mark - Other Methods
+
+-(void)sendData
+{
+    [marrFileDataSent removeAllObjects];
+    
+    NSData *sendData = UIImagePNGRepresentation([UIImage imageNamed:@"test2.PNG"]);
+    NSUInteger length = [sendData length];
+    NSUInteger chunkSize = 100 * 1024;
+    NSUInteger offset = 0;
+    do {
+        NSUInteger thisChunkSize = length - offset > chunkSize ? chunkSize : length - offset;
+        NSData* chunk = [NSData dataWithBytesNoCopy:(char *)[sendData bytes] + offset
+                                             length:thisChunkSize
+                                       freeWhenDone:NO];
+        NSLog(@"chunk length : %lu",(unsigned long)chunk.length);
+        
+        [marrFileDataSent addObject:[NSData dataWithData:chunk]];
+        offset += thisChunkSize;
+    } while (offset < length);
+    
+    totalFileData = [marrFileDataSent count];
+    totalFileSend = 0;
+    
+    if ([marrFileDataSent count] > 0) {
+        [self.appSession sendData:[marrFileDataSent objectAtIndex:totalFileSend] toPeers:[self.appSession connectedPeers] withMode:MCSessionSendDataReliable error:nil];
+    }
+}
+
+-(void)appendFileData
+{
+    NSMutableData *fileData = [NSMutableData data];
+    
+    for (int i = 0; i < [marrFileReceiveData count]; i++) {
+        [fileData appendData:[marrFileReceiveData objectAtIndex:i]];
+    }
+    
+    [fileData writeToFile:[NSString stringWithFormat:@"%@/Image.png", [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]] atomically:YES];
+    
+    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:fileData], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    if (!error) {
+        [self invokeAlertMethod:@"Successfully Sent" Body:@"Image shared successfully and saved in Cameraroll." Delegate:nil];
+    }
+}
+
+- (void)invokeAlertMethod:(NSString *)strTitle Body:(NSString *)strBody Delegate:(id)delegate
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle
+                                                    message:strBody
+                                                   delegate:delegate
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    alert = nil;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose
+}
+
+@end
+
+            </pre> 
+        </li>
+
+      
+</ol> 
+</div>
+    </body>
+</html>    

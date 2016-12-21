@@ -1,0 +1,189 @@
+﻿<html>
+    <body>
+
+        
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                Notifications are an important features of any app today. There are many types of notifications available in android based on the user needs.
+                Here is the list<br />
+                <b>Simple Notification</b> -  this is the basic notification which is shown with a simple message.<br />
+                <b>Expanded Layout Notification</b> - This comes with bigger notification with more text<br />
+                <b>Notifications with Action Buttons</b> - This will have buttons as options for users to respond with mainly yes or no etc. <br />
+                <b>Notifications With Priority</b> - These can be assigned with priority value and can be shown on preference. <br />
+                <b>Bundling Notifications</b> - Consolidated notification message which will have previous notifications if unread.
+                <b>Progress Indication Notification</b> - Shows a progrees bar for the process complete indicator
+            </p> 
+
+             
+        </li>
+
+
+         <li>Sample code to request permission at run time in android marshmallow for adding calender event 
+            <pre class="brush: java">
+private String notificationTitle = "Notification";
+private String notificationText = "This is test notification";
+private NotificationManager notificationManager;
+private NotificationCompat.Builder notificationBuilder;
+private int MergedNotifyCounter;
+
+
+private void SimpleNotification() 
+{
+    notificationBuilder = new NotificationCompat.Builder(this)
+    .setSmallIcon(R.mipmap.ic_launcher)
+    .setLargeIcon(icon)
+    .setContentTitle(notificationTitle)
+    .setContentText(notificationText);
+    NotifyUser();
+}
+
+private void ExpandNotification() 
+{
+    notificationBuilder = new NotificationCompat.Builder(this)
+    .setSmallIcon(R.mipmap.ic_launcher)
+    .setLargeIcon(icon)
+    .setContentTitle(notificationTitle)
+    .setStyle(new NotificationCompat.BigTextStyle().bigText(notificationText))
+    .setContentText(notificationText);
+    NotifyUser();
+}
+
+private void NotificationWithActionButton() 
+{
+    notificationBuilder = new NotificationCompat.Builder(this)
+    .setSmallIcon(R.mipmap.ic_launcher)
+    .setLargeIcon(icon)
+    .setContentTitle(notificationTitle)
+    .setStyle(new NotificationCompat.BigTextStyle().bigText(notificationText))
+    .setContentText(notificationText);
+    Intent answerIntent = new Intent(this, AnswerReceiveActivity.class);
+    answerIntent.setAction("Yes");
+    PendingIntent pendingIntentYes = PendingIntent.getActivity(this, 1, answerIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+    notificationBuilder.addAction(R.drawable.thumbs_up, "Yes", pendingIntentYes);
+    answerIntent.setAction("No");
+    PendingIntent pendingIntentNo = PendingIntent.getActivity(this, 1, answerIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+    notificationBuilder.addAction(R.drawable.thumbs_down, "No", pendingIntentNo);
+    NotifyUser();
+}
+
+private void MaxPriorityNotification() 
+{
+    notificationBuilder = new NotificationCompat.Builder(this)
+    .setSmallIcon(R.mipmap.ic_launcher)
+    .setLargeIcon(icon)
+    .setContentTitle(notificationTitle)
+    .setStyle(new NotificationCompat.BigTextStyle().bigText(notificationText))
+    .setPriority(Notification.PRIORITY_MAX)
+    .setContentText(notificationText);
+    NotifyUser();
+}
+
+private void MinPriorityNotification() 
+{
+    notificationBuilder = new NotificationCompat.Builder(this)
+    .setSmallIcon(R.mipmap.ic_launcher)
+    .setLargeIcon(icon)
+    .setContentTitle(notificationTitle)
+    .setStyle(new NotificationCompat.BigTextStyle().bigText(notificationText))
+    .setPriority(Notification.PRIORITY_MIN)
+    .setContentText(notificationText);
+    NotifyUser();
+}
+
+private void CombinedNotification() 
+{
+    MergedNotifyCounter++;
+    notificationBuilder = new NotificationCompat.Builder(this)
+    .setSmallIcon(R.mipmap.ic_launcher)
+    .setLargeIcon(icon)
+    .setContentTitle(notificationTitle)
+    .setGroup("EmailGroup")
+    .setGroupSummary(true)
+    .setContentText(MergedNotifyCounter + " messages");
+    NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+    inboxStyle.setBigContentTitle(notificationTitle);
+    inboxStyle.setSummaryText("admin@codenalayze.com");
+    for (int i = 0; i < MergedNotifyCounter; i++) 
+    {
+        inboxStyle.addLine("Test" + i);
+    }
+    currentNotificationID = 500;
+    notificationBuilder.setStyle(inboxStyle);
+    NotifyUser();
+}
+
+private void NotifyUser() 
+{
+    Intent notificationIntent = new Intent(this, MainActivity.class);
+    PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+    notificationBuilder.setContentIntent(contentIntent);
+    Notification notification = notificationBuilder.build();
+    notification.flags |= Notification.FLAG_AUTO_CANCEL;
+    notification.defaults |= Notification.DEFAULT_SOUND;
+    currentNotificationID++;
+    int notificationId = currentNotificationID;
+    if (notificationId == Integer.MAX_VALUE - 1)
+    notificationId = 0;
+    notificationManager.notify(notificationId, notification);
+}
+
+private void clearAllNotifications() 
+{
+    if (notificationManager != null) 
+    {
+        currentNotificationID = 0;
+        notificationManager.cancelAll();
+    }
+}
+
+private void ProgressNotifications() 
+{
+    mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+    mBuilder = new NotificationCompat.Builder(this);
+    mBuilder.setContentTitle("Picture Download")
+        .setContentText("Download in progress")
+        .setSmallIcon(R.drawable.ic_notification);
+    // Start a lengthy operation in a background thread
+    new Thread(
+        new Runnable() {
+            @Override
+            public void run() {
+                int incr;
+                // Do the "lengthy" operation 20 times
+                for (incr = 0; incr <= 100; incr+=5) {
+                        // Sets the progress indicator to a max value, the
+                        // current completion percentage, and "determinate"
+                        // state
+                        mBuilder.setProgress(100, incr, false);
+                        // Displays the progress bar for the first time.
+                        mNotifyManager.notify(0, mBuilder.build());
+                            try {
+                                Thread.sleep(5*1000);
+                            } catch (InterruptedException e) {
+                                Log.d(TAG, "sleep failure");
+                            }
+                }
+                // When the loop is finished, updates the notification
+                mBuilder.setContentText("Download complete")
+                // Removes the progress bar
+                        .setProgress(0,0,false);
+                mNotifyManager.notify(ID, mBuilder.build());
+            }
+        }
+    // Starts the thread by calling the run() method in its Runnable
+    ).start();
+}
+
+
+            </pre> 
+        </li>
+
+
+      
+</ol> 
+</div>
+    </body>
+</html>    

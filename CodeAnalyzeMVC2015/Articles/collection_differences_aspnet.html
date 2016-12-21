@@ -1,0 +1,94 @@
+﻿<html>
+    <body>
+
+ 
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                <b>IList</b><br />
+                1. It is the interface which is implemented by List<br />
+                2. Anything which implements this interface is<br />
+                3. NOT of FIXED length which means it can grow as many as needed depending on your memory<br />
+                4. Is Strongly typed which means developers should decide before what kind of data will be stored in this<br />
+            </p>  
+<pre class="brush: java">
+System.Collections.Generic.List&lt;string&gt; lstEmp = new List&lt;string&gt;();
+
+lstEmp.Add("Emp1");
+lstEmp.Add("Emp2");
+lstEmp.Add("Emp3");
+lstEmp.Add("Emp4");
+
+foreach (var item in strList)
+{
+    //…
+}
+</pre>           
+        </li>
+         <li>
+            <p style="width:80%">
+                <b>IEnumerable</b><br />
+                1. This is used for looping or iterating through the collection<br />
+                2. The data in this cannot be modified or removed so this may overload memory<br />
+                3. IEnumerable cannot be instantiate from Enumerable , so it should be instantiate from List<br />
+            </p> 
+<pre class="brush: java">
+System.Collections.Generic.IEnumerable&lt;Employee&gt; empIEnumerable = new List&lt;Employee&gt;
+{   new Employee { ID = 101, Name = "Emp1"},
+    new Employee { ID = 102, Name = "Emp2" },
+    new Employee { ID = 103, Name = "Emp3" },
+    new Employee { ID = 104, Name = "Emp4" }
+};
+
+
+foreach (Employee item in empIEnumerable)
+{
+    //…
+}
+</pre>                
+        </li>
+
+
+          <li>
+            <p style="width:80%">
+                <b>IQueryable</b><br />
+                1. As the name indicates, one can query the results after getting into IQueryable<br />
+                2. Usefull when working on large data and when need filtering based on some condition<br />
+                3. Need to instantiate from List<br />
+            </p> 
+<pre class="brush: java">
+IEnumerable&lt;employee&gt; queryIEnumerable = new List&lt;employee&gt;() ;
+queryIEnumerable = from m in ctx.Employees select m;
+queryIEnumerable = queryIEnumerable.Where(x =&gt; x.ID == 1).ToList();  
+IQueryable&lt;employee&gt; queryIQueryable=null;
+queryIQueryable = (from m in ctx.Employees where m.ID == 1 select m);
+</pre>                
+        </li>
+
+           <li>
+            <p style="width:80%">
+                <b>ICollection</b><br />
+                1. inherits from IEnumerable but this not index based so we cannot get index of object and we might end up looping thorugh<br />
+            </p> 
+<pre class="brush: java">
+System.Collections.Generic.ICollection&lt;string&gt; strICollection = new List&lt;string&gt;();
+strICollection.Add("Emp1");
+strICollection.Add("Emp2");
+
+//Countable***
+int ICollectionCount=strICollection.Count;
+
+System.Text.StringBuilder str = new System.Text.StringBuilder();
+foreach (var item in strICollection)
+{
+   str.Append(" , " + item);
+}
+
+</pre>                
+        </li>
+
+</ol> 
+</div>
+    </body>
+</html>    

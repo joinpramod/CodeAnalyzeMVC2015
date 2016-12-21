@@ -1,0 +1,81 @@
+﻿<html>
+    <body>
+
+ 
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+           This article explains about implementing jquery autocomplete textbox in asp.net mvc. We will query the database for the autocomplete options to be listed to the
+            user. When user starts typing jquery AutoComplete features makes a db call and lists the strings below textbox as autocomplete options so that
+            users can easily select one of the option from the textbox. Take a look at the controller
+              <pre class="brush: java">
+public class HomeController : Controller
+{
+    [HttpPost]
+    public JsonResult AutoComplete(string prefix)
+    {
+        var employees = GetEmployees().ToList();  //Write your method to query db and get data in GetEmployees method
+        return Json(employees);
+    }
+ 
+    [HttpPost]
+    public ActionResult Index(string CustomerName, string CustomerId)
+    {
+        ViewBag.Message = "Employee: " + EmployeeName + " Employer: " + EmployerName;
+        return View();
+    }
+}
+            </pre>            
+          </li>
+         <li>
+         Now lets take a look at the View, please read the comments for any code details 
+        <pre class="brush: java">
+&lt;script src="../jquery-1.10.0.min.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script src="../jquery-ui.min.js" type="text/javascript"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;
+    $(function () {
+        $("#txtEmployee").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/Home/AutoComplete/',
+                    data: "{ 'prefix': '" + request.term + "'}",
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return item;
+                        }))
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            select: function (e, i) {
+                $("#hfEmployee").val(i.item.val);
+            },
+            minLength: 1
+        });
+    });
+&lt;/script&gt;
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    &lt;input type="text" id="txtEmployee" name="EmployeeName"/&gt;
+    &lt;input type="hidden" id="hfEmployee" name="EmployerName"/&gt;
+    &lt;br/&gt;
+    &lt;input type="submit" id="btnSubmit" value="Submit"/&gt;
+    &lt;br/&gt;
+    @ViewBag.Message
+}
+    </pre>            
+        </li>
+        
+</ol> 
+</div>
+    </body>
+</html>    

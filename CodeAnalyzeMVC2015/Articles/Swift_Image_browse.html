@@ -1,0 +1,110 @@
+﻿<html>
+    <body>
+
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                Add a UIViewController in Main.storyboard. Create Image button and UIImageView in the view. We will need UIImagePickerController 
+                and UIPopoverController (to open photo gallery items) objects.
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+               ViewController.swift
+            </p> 
+            <pre class="brush: java">
+import UIKit
+
+class ViewController: UIViewController,UIAlertViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate
+{
+    //Declare choose image button and UIImageView property
+    @IBOutlet weak var btnSelectImg: UIButton!
+    @IBOutlet weak var viewImage: UIImageView!
+    var imgPicker:UIImagePickerController?=UIImagePickerController()
+    var imgSelectPop:UIPopoverController?=nil
+
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        imgPicker!.delegate=self
+    }
+
+
+    //this is mainly to handle if the user selects the option of selecting an image from the gallery or take picture from camera.
+    @IBAction func btnImagePickerClicked(sender: AnyObject)
+    {
+        let alert:UIAlertController=UIAlertController(title: "Select Image", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+
+        let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default)
+        {
+            UIAlertAction in
+            self.launchCamera()
+            
+        }
+        let gallaryAction = UIAlertAction(title: "Gallary", style: UIAlertActionStyle.Default)
+        {
+            UIAlertAction in
+            self.launchGallery()
+        }
+
+
+        // Add the actions
+        imgPicker?.delegate = self
+        alert.addAction(cameraAction)
+        alert.addAction(gallaryAction)
+        alert.addAction(cancelAction)
+        // Present the controller
+        if UIDevice.currentDevice().userInterfaceIdiom == .Phone
+        {
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        else
+        {
+            imgSelectPop=UIPopoverController(contentViewController: alert)
+            imgSelectPop!.presentPopoverFromRect(btnSelectImg.frame, inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: false)
+        }
+    }
+    func launchCamera()
+    {
+        //check if device is able to select images or media from desired source
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera))
+        {
+            imgPicker!.sourceType = UIImagePickerControllerSourceType.Camera
+            self .presentViewController(imgPicker!, animated: true, completion: nil)
+        }
+        else
+        {
+            launchGallery()
+        }
+    }
+    func launchGallery()
+    {
+        imgPicker!.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        if UIDevice.currentDevice().userInterfaceIdiom == .Phone
+        {
+            self.presentViewController(imgPicker!, animated: true, completion: nil)
+        }
+        else
+        {
+            imgSelectPop=UIPopoverController(contentViewController: imgPicker!)
+            imgSelectPop!.presentPopoverFromRect(btnSelectImg.frame, inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: false)
+        }
+    }
+    func imagePickerController(imgPicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])
+    {
+        imgPicker .dismissViewControllerAnimated(true, completion: nil)
+        viewImagea.image=info[UIImagePickerControllerOriginalImage] as? UIImage
+    }   
+}
+            </pre> 
+        </li>
+
+
+
+
+</ol> 
+</div>
+    </body>
+</html>    

@@ -1,0 +1,114 @@
+﻿<html>
+    <body>
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                If we are using Marshmallow then we will sometimes need a feature to request some of the permission from the user at the runtime.
+                These permissions are considered to be some of the major permissions, given below are such permissions and their groups
+            </p> 
+
+            <p style="width:80%">
+               <table>
+                   <tr>
+                       <td>android.permission-group.CALENDAR</td>
+                       <td>android.permission.READ_CALENDAR<br />android.permission.WRITE_CALENDAR</td>
+                   </tr>
+                   <tr>
+                       <td>android.permission-group.CAMERA</td>
+                       <td>android.permission.CAMERA</td>
+                   </tr>
+                   <tr>
+                       <td>android.permission-group.CONTACTS</td>
+                       <td>android.permission.READ_CONTACTS<br />android.permission.WRITE_CONTACTS<br />android.permission.GET_ACCOUNTS</td>
+                   </tr>
+                   <tr>
+                       <td>android.permission-group.LOCATION</td>
+                       <td>android.permission.ACCESS_FINE_LOCATION<br />android.permission.ACCESS_COARSE_LOCATION</td>
+                   </tr>
+                   <tr>
+                       <td>android.permission-group.MICROPHONE</td>
+                       <td>android.permission.RECORD_AUDIO</td>
+                   </tr>
+                       <tr>
+                       <td>android.permission-group.PHONE</td>
+                       <td>android.permission.READ_PHONE_STATE<br />android.permission.CALL_PHONE
+                           <br />android.permission.READ_CALL_LOG<br />android.permission.WRITE_CALL_LOG<br />android.permission.ADD_VOICEMAIL
+                           <br />android.permission.USE_SIP<br />android.permission.PROCESS_OUTGOING_CALLS
+                       </td>
+                   </tr>
+                     <tr>
+                       <td>android.permission-group.SENSORS</td>
+                       <td>android.permission.BODY_SENSORS</td>
+                   </tr>
+                       <tr>
+                       <td>android.permission-group.SMS</td>
+                       <td>android.permission.SEND_SMS<br />android.permission.RECEIVE_SMS
+                           <br />android.permission.READ_SMS<br />android.permission.RECEIVE_WAP_PUSH<br />android.permission.RECEIVE_MMS
+                           <br />android.permission.READ_CELL_BROADCASTS
+                       </td>
+                   </tr>
+                     <tr>
+                       <td>android.permission-group.STORAGE</td>
+                       <td>android.permission.READ_EXTERNAL_STORAGE<br />android.permission.WRITE_EXTERNAL_STORAGE</td>
+                   </tr>
+               </table>
+            </p> 
+        </li>
+     <li>
+         <p>
+             Based on the permission we need for the app, we have to declare it in manifest file as shown below
+              <pre class="brush: java">
+&lt;uses-permission android:name="android.permission.WRITE_CALENDAR" /&gt; 
+                  </pre> 
+         </p>
+     </li>
+
+         <li>Sample code to request permission at run time in android marshmallow for adding calender event 
+            <pre class="brush: java">
+public static final int MY_PERMISSIONS_REQUEST_WRITE_CALENDAR = 123;
+Context context;
+
+@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+public boolean checkPermission()
+{
+    int currentAPIVersion = Build.VERSION.SDK_INT;
+    if(currentAPIVersion>=android.os.Build.VERSION_CODES.M)
+    {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.WRITE_CALENDAR)) {
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
+                alertBuilder.setCancelable(true);
+                //this alert if for informing user that what permission is necessary to do the action before requesting for it
+                alertBuilder.setTitle("Permission necessary");
+                alertBuilder.setMessage("Write calendar permission is necessary to write event!!!");
+                alertBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                    public void onClick(DialogInterface dialog, int which) {
+                        ActivityCompat.requestPermissions((Activity)context, new String[]{Manifest.permission.WRITE_CALENDAR}, MY_PERMISSIONS_REQUEST_WRITE_CALENDAR);
+                    }
+                });
+                AlertDialog alert = alertBuilder.create();
+                alert.show();
+            } else {
+            ActivityCompat.requestPermissions((Activity)context, new String[]{Manifest.permission.WRITE_CALENDAR}, MY_PERMISSIONS_REQUEST_WRITE_CALENDAR);
+            }
+            return false;
+        } else {
+        return true;
+        }
+    } else {
+    return true;
+    }
+}
+
+            </pre> 
+        </li>
+
+
+      
+</ol> 
+</div>
+    </body>
+</html>    

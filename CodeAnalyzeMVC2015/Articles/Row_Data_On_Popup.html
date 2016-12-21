@@ -1,0 +1,105 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+               This article explains about displaying html table row data details in popup window  on click of one of the hyperlink column using jquery in MVC asp.net.
+                Here is the View code which display employee table, view calls a controller action method on click of hyperlink column
+            </p>   <b>View</b>
+<pre class="brush: java">
+ &lt;table cellpadding="0" cellspacing="0" id="EmployeeTable"&gt;
+      &lt;tr&gt;
+            &lt;th&gt;EmployeeID&lt;/th&gt;
+            &lt;th&gt;Name&lt;/th&gt;
+            &lt;th&gt;EMail&lt;/th&gt;
+            &lt;th&gt;Manager&lt;/th&gt;
+            &lt;th&gt;&lt;/th&gt;
+        &lt;/tr&gt;
+        @foreach (Employee employee in Model)
+        {
+            &lt;tr&gt;
+                &lt;td&gt;@employee.EmployeeID&lt;/td&gt;
+                &lt;td&gt;@employee.Name&lt;/td&gt;
+                &lt;td&gt;@employee.EMail&lt;/td&gt;
+                &lt;td&gt;@employee.Manager&lt;/td&gt;
+                &lt;td&gt;&lt;a class="details" href="javascript:;"&gt;Details&lt;/a&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        }
+    &lt;/table&gt;
+    &lt;div id="dialog" style="display: none"&gt;
+    &lt;/div&gt;
+    &lt;script type="text/javascript" src="../1.7.2/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script src="../1.8.9/jquery-ui.js" type="text/javascript"&gt;&lt;/script&gt;
+
+    &lt;script type="text/javascript"&gt;
+        $(function () {
+            $("#dialog").dialog({
+                autoOpen: false,
+                modal: true,
+                title: "View Details"
+            });
+            $("#EmployeeTable .details").click(function () {
+                var employeeId = $(this).closest("tr").find("td").eq(0).html();
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/Details",
+                    data: '{employeeId: "' + employeeId + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: function (response) {
+                        $('#dialog').html(response);
+                        $('#dialog').dialog('open');
+                    },
+                    error: function (response) {
+                        //error
+                    }
+                });
+            });
+        });
+    &lt;/script&gt;
+</pre>           
+        </li>
+         <li>
+            <p style="width:80%">
+                View calls a controller action method on click of hyperlink column, so we should have it as shown below
+            </p> <b></b>
+<pre class="brush: java">
+public class HomeController : Controller
+{
+    [HttpPost]
+    public ActionResult Details(string customerId)
+    {
+        MyDatabase entities = new MyDatabase();
+        return PartialView("Details", entities.Customers.Find(customerId)); 
+    }
+}
+</pre>                
+        </li>
+
+  <li>
+            <p style="width:80%">
+                Partial view in the popup is shown below
+            </p> <b></b>
+<pre class="brush: java">
+@model Partial_View_MVC.Employee
+ 
+&lt;table cellpadding="0" cellspacing="0" border="0"&gt;
+    &lt;tr&gt;
+        &lt;td valign="top"&gt;&lt;b&gt;@Html.DisplayNameFor(model =&gt; model.Name):&lt;/b&gt;&lt;/td&gt;
+        &lt;td&gt;
+            @Html.DisplayFor(model =&gt; model.EMail)
+            @Html.DisplayFor(model =&gt; model.Manager)
+          
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+</pre>                
+        </li>
+</ol> 
+</div>
+   

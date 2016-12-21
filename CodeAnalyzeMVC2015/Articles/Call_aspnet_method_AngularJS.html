@@ -1,0 +1,67 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+               This article explanins about calling web method or web page method of aspx file from angularjs.
+                Suppose if there is a method in aspx page which needs to be called from angularjs controller we can use the below approach.
+                This can also be an example of making Ajax call from angularjs in aspx page. Consider we have a code behind page method something like given below
+                then we will have to make it as WebMethod to be able to call from AngularJS 
+            </p>   <b></b>
+<pre class="brush: java">
+[System.Web.Services.WebMethod]
+public static string WelcomeUser(string name)
+{
+    return "Welcome to CodeAnalyze " + name;
+}
+</pre>           
+        </li>
+         <li>
+            <p style="width:80%">
+                Now lets see how to make use of ng-app and ng-controller of AngularJS to perform this action, looks at comments for more details 
+            </p> <b></b>
+<pre class="brush: java">
+
+&lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    var app = angular.module('MyApp', [])
+    app.controller('MyController', function ($scope, $http, $window) {
+        $scope.CallWebPageMethod = function () {
+            var post = $http({
+                method: "POST",
+                url: "Default.aspx/WelcomeUser",
+                dataType: 'json',   
+                data: { name: $scope.Name },
+                headers: { "Content-Type": "application/json" }
+            });
+
+            post.success(function (data, status) {
+                //success
+            });
+
+            post.error(function (data, status) {
+                //error
+            });
+        }
+    });
+&lt;/script&gt;
+&lt;div ng-app="MyApp" ng-controller="MyController"&gt; &lt;!--Note that we use ng-app and ng-controller tag --&gt;
+    Name:
+    &lt;input type="text" ng-model="Name" /&gt; 
+    &lt;br /&gt;
+    &lt;br /&gt;
+    &lt;input type="button" value="Submit" ng-click="CallWebPageMethod()" /&gt;  &lt;!--ng-click directive is used to call local CallWebPageMethod method which inturn call web method--&gt;
+&lt;/div&gt;
+
+</pre>                
+        </li>
+
+
+</ol> 
+</div>
+   

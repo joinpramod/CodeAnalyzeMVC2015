@@ -135,7 +135,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             else
             {
 
-                dtUserActivation = connManager.GetDataTable("select * from UserActivation where UserId = " + double.Parse(DSUserList.Rows[0]["UserId"].ToString()) + " and Emailid = '" + txtEMailId + "'");
+                dtUserActivation = connManager.GetDataTable("select * from UserActivation where Emailid = '" + txtEMailId + "'");
                 if (dtUserActivation.Rows.Count > 0)
                 {
                     //ViewBag.lblAck = "User activation pending";

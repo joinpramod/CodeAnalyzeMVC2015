@@ -1,0 +1,136 @@
+﻿<html>
+    <body>
+
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+We will use iCarousel library to implement horizontal page slide kind of UI interface, this can also be said as image slider horizontally.
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+Download it from <a href="https://github.com/nicklockwood/iCarousel">https://github.com/nicklockwood/iCarousel</a> . This has different types of Carousel like Linear, Rotary, InvertedRotary, Cylinder, InvertedCylinder, Wheel, InvertedWheel, CoverFlow, CoverFlow2, TimeMachine and InvertedTimeMachine
+
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+Unzip and copy the .h and .m files into some folder in the project
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+Refer  QuartzCore Famework in the project by going to Build Phases -> Link binary with libraries -> Select QuartzCore.framework            
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                <b>Views Creation</b><br />
+                1. Create a layout having two UIViewController with UIButton , UILabel and UIView<br />
+	            2. Check Clip Subviews property of UIView in attribute inspector panel and set its class as iCarousel <br />
+	            3. Create an outlet to ViewController.swift file @IBOutlet var vwCarousel: iCarousel!<br />
+	            4. Create segue named imageDisplaySegue from ViewController to ImageDisplayViewController.<br />
+            </p> 
+        </li>
+
+        <li>
+            <p style="width:80%">
+               ViewController.swift
+            </p> 
+            <pre class="brush: java">
+//This is the code of ViewController.swift
+import UIKit
+
+class ViewController: UIViewController, iCarouselDataSource, iCarouselDelegate {
+
+    var myImages : NSMutableArray = NSMutableArray()
+    var selectedIndex : Int!
+    @IBOutlet var SlideViewHorizontal: iCarousel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+		//Create an image array and make sure to all these images in the project directory
+        myImages = NSMutableArray(array: ["a.jpg","b.jpg","c.jpg","d.jpg"])
+        SlideViewHorizontal.type = iCarouselType.CoverFlow2
+        SlideViewHorizontal .reloadData()
+       
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()        
+    }
+ 
+   
+    //Following are the icarousel delegate methods which has to be implemented
+    func numberOfItemsInCarousel(carousel: iCarousel) -> Int
+    {
+        return myImages.count
+    }
+    
+    func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView
+    {
+		//Return an image view item 
+        var itemView: UIImage(named: "\(myImages.objectAtIndex(index))")
+        return itemView
+    }
+    
+	//When a user clicks on any images available in iCarousel, segue triggers programmatically. 
+	//Generally segue initiated automatically when a user clicks on any image from iCarousel
+    func carousel(carousel: iCarousel, didSelectItemAtIndex index: Int) {
+        selectedIndex = index
+        self .performSegueWithIdentifier("imageDisplaySegue", sender: nil)
+    }
+    
+	//When segue triggers, pass selected image to the destination view controller. 
+	//overriding prepareForSegue method
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "imageDisplaySegue")
+        {
+            var viewController : ImageDisplayViewController = segue.destinationViewController as! ImageDisplayViewController
+            viewController.selectedImage = UIImage(named: "\(myImages.objectAtIndex(selectedIndex))")
+        }
+    }
+    
+}
+            </pre> 
+        </li>
+
+
+        <li>
+            <p style="width:80%">
+               ImageDisplayViewController
+            </p> 
+            <pre class="brush: java">
+//This is the code of another view controller for selected image display
+import UIKit
+
+class ImageDisplayViewController: UIViewController {
+
+    var selectedImage : UIImage!
+    @IBOutlet weak var ivDisplayImage: UIImage!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+		//When ImageDisplayViewController is loaded, an image will be set to image view available in view controller 
+        ivDisplayImage = selectedImage
+       
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        
+    }
+    
+    @IBAction func btnBackClicked(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+}
+
+            </pre> 
+        </li>
+
+</ol> 
+</div>
+    </body>
+</html>    

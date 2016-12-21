@@ -1,0 +1,213 @@
+﻿<html>
+    <body>        
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                Create a paypal developer account here <a href="https://developer.paypal.com/webapps/developer/applications/accounts">https://developer.paypal.com/webapps/developer/applications/accounts</a>
+            </p>              
+        </li>
+		<li>
+            <p style="width:80%">
+                Download android paypal sdk from here <a href="https://github.com/paypal/PayPal-Android-SDK">https://github.com/paypal/PayPal-Android-SDK</a>
+            </p>              
+        </li>
+
+
+        <li>
+			<p style="width:80%">
+			Create the desired UI needed to show the user to use Paypal, here we ill consider that there is button which on click with take the user to paypal site and and once done with return back to the app.
+			</p>
+        </li>
+
+		
+		<li>
+			<p style="width:80%">
+				Create an application on PayPal developer to get sandbox client_id for the app.
+			</p>
+        </li>
+		
+		
+		<li>
+			<p style="width:80%">
+				After creating the app on PayPal developer, copy the client_id and paste it in your MainActivity and set environment to sandbox. Also add required permission in Manifest file
+			</p>
+			<pre class="brush: java">
+&lt;uses-sdk android:minSdkVersion="8" android:targetSdkVersion="8" /&gt;
+
+&lt;uses-permission android:name="android.permission.CAMERA" /&gt;
+&lt;uses-permission android:name="android.permission.VIBRATE" /&gt;    
+&lt;uses-feature android:name="android.hardware.camera" android:required="false" /&gt;
+&lt;uses-feature android:name="android.hardware.camera.autofocus" android:required="false" /&gt;
+&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/&gt;
+&lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/&gt;
+&lt;uses-permission android:name="android.permission.INTERNET"/&gt;    
+
+&lt;application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" &gt;
+        &lt;activity
+            android:name="com.tag.paypalblogdemo.MainActivity"
+            android:label="@string/app_name" &gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.MAIN" /&gt;
+                &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;        
+        
+        &lt;service android:name="com.paypal.android.sdk.payments.PayPalService" android:exported="false" /&gt;
+        
+        &lt;activity android:name="com.paypal.android.sdk.payments.PaymentActivity" /&gt;
+        &lt;activity android:name="com.paypal.android.sdk.payments.LoginActivity" /&gt;
+        &lt;activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" /&gt;
+        &lt;activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" /&gt;
+        &lt;activity android:name="com.paypal.android.sdk.payments.PayPalFuturePaymentActivity" /&gt;
+        &lt;activity android:name="com.paypal.android.sdk.payments.FuturePaymentConsentActivity" /&gt;
+        &lt;activity android:name="com.paypal.android.sdk.payments.FuturePaymentInfoActivity" /&gt;
+        &lt;activity android:name="io.card.payment.CardIOActivity" android:configChanges="keyboardHidden|orientation" /&gt;
+        &lt;activity android:name="io.card.payment.DataEntryActivity" /&gt;               
+&lt;/application&gt;				
+			
+			</pre>
+        </li>
+      
+	  
+	     <li> 
+			<p style="width:80%">
+				Below is the code of MainActivity.java file
+			</p>		 
+		 <pre class="brush: java">
+		 
+		 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Toast;
+
+import com.paypal.android.sdk.payments.PayPalAuthorization;
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalFuturePaymentActivity;
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
+import com.paypal.android.sdk.payments.PaymentConfirmation;
+
+public class MainActivity extends Activity {
+
+
+private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_SANDBOX;
+private static final String CONFIG_CLIENT_ID = "samdbox_client_id";
+private static final int REQUEST_CODE_PAYMENT = 1;
+
+private static PayPalConfiguration config = new PayPalConfiguration()
+		.environment(CONFIG_ENVIRONMENT)
+		.clientId(CONFIG_CLIENT_ID)
+
+PayPalPayment onlineItem;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
+	setContentView(R.layout.activity_main);
+
+	Intent intent = new Intent(this, PayPalService.class);
+	intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+	startService(intent);
+	findViewById(R.id.order).setOnClickListener(new OnClickListener() 
+	{
+		@Override
+		public void onClick(View v) {
+			onlineItem = new PayPalPayment(new BigDecimal("10"), "USD",	"Laptop", PayPalPayment.PAYMENT_INTENT_SALE);
+			Intent intent = new Intent(MainActivity.this,PaymentActivity.class);
+			intent.putExtra(PaymentActivity.EXTRA_PAYMENT, thingToBuy);
+			startActivityForResult(intent, REQUEST_CODE_PAYMENT);
+		}
+	});
+
+}
+
+
+
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	if (requestCode == REQUEST_CODE_PAYMENT) 
+	{
+		if (resultCode == Activity.RESULT_OK) 
+		{
+			PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);			
+			String paymentId = confirm.toJSONObject().getJSONObject("response").getString("id");
+			String payment_client = confirm.getPayment().toJSONObject().toString();
+			// Now verify the payment on the server side
+			verifyPaymentOnServer(paymentId, payment_client);
+		} 
+	} 
+}
+
+ private void verifyPaymentOnServer(final String paymentId, final String payment_client) {
+	StringRequest verifyReq = new StringRequest(Method.POST, Config.URL_VERIFY_PAYMENT, new Response.Listener<String>() {
+
+				@Override
+				public void onResponse(String response) {
+					Log.d(TAG, "verify payment: " + response.toString());
+
+					try {
+						JSONObject res = new JSONObject(response);
+						boolean error = res.getBoolean("error");
+						String message = res.getString("message");
+
+						// user error boolean flag to check for errors
+						Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+
+						if (!error) {
+							// empty the cart
+							productsInCart.clear();
+						}
+
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+
+				}
+			}, new Response.ErrorListener() {
+
+				@Override
+				public void onErrorResponse(VolleyError error) {
+					Log.e(TAG, "Verify Error: " + error.getMessage());
+					Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+				}
+			}) {
+
+		@Override
+		protected Map<String, String> getParams() {
+
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("paymentId", paymentId);
+			params.put("paymentClientJson", payment_client);
+
+			return params;
+		}
+	};
+
+
+@Override
+public void onDestroy() {
+	stopService(new Intent(this, PayPalService.class));
+	super.onDestroy();
+}
+}	 
+	  
+	     </pre>
+	  </li>
+</ol> 
+		
+</div>
+    </body>
+		</li> 
+	</html>    

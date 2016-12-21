@@ -1,0 +1,90 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                We will add a search on each column of html table and then search data of each column using cdn datatable and Ajax request. 
+            </p> <b></b>
+            <pre class="brush: java">
+                &lt;script src="//code.jquery.com/jquery-1.12.3.js"&gt;&lt;/script&gt;  
+                &lt;script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"&gt;&lt;/script&gt;  
+                &lt;link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" /&gt;  
+
+                &lt;table id="tblEmployees"&gt;  
+                    &lt;thead&gt;  
+                        &lt;tr&gt;  
+                            &lt;td&gt;Name&lt;/td&gt;  
+                            &lt;td&gt;Email&lt;/td&gt;  
+                            &lt;td&gt;Address&lt;/td&gt;  
+                        &lt;/tr&gt;  
+                        &lt;tr&gt;  
+                            &lt;td&gt;  
+                                &lt;input type="text" /&gt;  
+                            &lt;/td&gt;  
+                            &lt;td&gt;  
+                                &lt;input type="text" /&gt;  
+                            &lt;/td&gt;  
+                            &lt;td&gt;  
+                                &lt;input type="text"/&gt;  
+                            &lt;/td&gt;  
+                        &lt;/tr&gt;  
+                    &lt;/thead&gt;               
+                &lt;/table&gt;  
+                @section Scripts {  
+                &lt;script src="//code.jquery.com/jquery-1.12.3.js"&gt;&lt;/script&gt;  
+                &lt;script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"&gt;&lt;/script&gt;  
+                &lt;script&gt;
+                    $(document).ready(function () {
+                        $.ajax({
+
+                            url: '/Table/getEmployees',
+                            dataType: "json",
+                            type: "POST",
+                            contentType: 'application/json; charset=utf-8',
+                            data: {},
+                            success: function (data) {
+                                var tr;
+                                console.log(data);
+                                for (var i = 0; i &lt; data.length; i++) {
+                                    tr = tr + "&lt;tr&gt;";
+                                    tr = tr + "&lt;td&gt;" + data[i].Name + "&lt;/td&gt;";
+                                    tr = tr + "&lt;td&gt;" + data[i].Email + "&lt;/td&gt;";
+                                    tr = tr + "&lt;td&gt;" + data[i].Address + "&lt;/td&gt;";
+                                    tr = tr + "&lt;/tr&gt;";
+                                }
+                                $('#tblEmployees').append(tr);
+                                tblFormate();
+                            },
+                            error: function (xhr) {
+                                alert('No Valid Data');
+                            }
+                        });
+
+                        function tblFormate() {
+                            var table = $('#tblEmployees').DataTable(
+                             {
+                                 "lengthMenu": [[5, 10, 50, 100, 150, -1], [5, 10, 50, 100, 150, "All"]]
+                             });
+                            table.columns().eq(0).each(function (colIdx) {
+                                $('input', table.column(colIdx).header()).on('keyup change', function () {
+                                    table
+                                        .column(colIdx)
+                                        .search(this.value)
+                                        .draw();
+                                });
+                            });
+                        }
+
+                    });
+                &lt;/script&gt;  
+      
+                }  
+            </pre>           
+        </li>
+    </ol> 
+</div>
+   

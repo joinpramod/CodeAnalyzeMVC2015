@@ -1,0 +1,148 @@
+﻿<html>
+    <body>
+
+ 
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            Add below code in build.gradle file in order to use Realm Database
+            <pre class="brush: java">
+compile 'io.realm:realm-android:0.86.0'
+            </pre>            
+        </li>
+         <li>
+            Dependencies tag should be as shown below
+             <pre class="brush: java">
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+    compile 'io.realm:realm-android:0.86.0'
+    compile 'com.android.support:cardview-v7:
+}
+            </pre>             
+        </li>
+        <li>
+            <p style="width:80%">
+                Sync project to add dependency related to Realm in the project
+            </p>              
+        </li>
+         <li>
+            All Model should extend from RealmObject as shown below in a sample Employee Model.
+            Each model should mandatorily contain all columns defined in table. @PrimaryKey provides constraint for unique value             
+             <pre class="brush: java">
+public class EmployeeModel extends RealmObject
+{
+    @PrimaryKey
+    private int id;
+    private String name;
+    private String email;
+    public int getId() {
+    return id;
+    }
+    public void setId(int id) {
+    this.id = id;
+    }
+    public String getName() {
+    return name;
+    }
+    public void setName(String name) {
+    this.name = name;
+    }
+    public String getEmail() {
+    return email;
+    }
+    public void setEmail(String email) {
+    this.email = email;
+    }
+   
+}
+
+            </pre>            
+        </li>
+
+         <li>
+            Sample code to get all Employees from the database
+            <pre class="brush: java">
+public class MainActivity extends AppCompatActivity implements View.OnClickListener 
+{
+private Realm myRealm;
+private static ArrayList&lt;EmployeeModel&gt; employeeModelArrayList = new ArrayList&lt;&gt;();
+private EmployeeAdapter employeeAdapter; 
+@Override
+protected void onCreate(Bundle savedInstanceState) 
+{
+	myRealm = Realm.getInstance(MainActivity.this);
+	instance = this;
+	employeeAdapter = new employeeAdapter (MainActivity.this, employeeAdapterModelArrayList);
+	lvEmployeeNameList.setAdapter(employeeAdapter);
+	getEmployees();
+}
+
+//Code to get data from Realm	
+private void getEmployees() {
+RealmResults&lt;EmployeeModel&gt; results = myRealm.where(EmployeeModel.class).findAll();
+myRealm.beginTransaction();
+for (int i = 0; i &lt; results.size(); i++) {
+employeeModelArrayList.add(results.get(i));
+}
+if(results.size()&gt;0)
+id = myRealm.where(EmployeeModel.class).max("id").intValue() + 1;
+myRealm.commitTransaction();
+pemployeeAdapter.notifyDataSetChanged();
+}
+
+
+//Code to insert data into Realm
+private void addEmployee(EmployeeModel model) 
+{
+myRealm.beginTransaction();
+EmployeeModel employeeModel = myRealm.createObject(EmployeeModel.class);
+employeeModel.setId(id);
+employeeModel.setName(model.getName());
+employeeModel.setEmail(model.getEmail());
+employeeModel.add(employeeModel);
+myRealm.commitTransaction(); 
+employeeAdapter.notifyDataSetChanged();
+id++;
+}
+
+//Code to search in table of Realm database
+public EmployeeModel searchEmployee(int empId) 
+{
+RealmResults&lt;EmployeeModel&gt; results = myRealm.where(EmployeeModel.class).equalTo("id", empId).findAll();
+myRealm.beginTransaction();
+myRealm.commitTransaction();
+return results.get(0);
+}	
+</pre>
+             <pre class="brush: java">//Code to update data in realm database
+public void updateEmployee(EmployeeModel model,int position,int empID)                                       
+{
+EmployeeModel editEmployee = myRealm.where(EmployeeModel.class).equalTo("id", empID).findFirst();
+myRealm.beginTransaction();
+editEmployee.setName(model.getName());
+editEmployee.setEmail(model.getEmail());
+myRealm.commitTransaction();
+employeeModelArrayList.set(position, editEmployee);
+em}
+
+//code to delete data
+public void deleteEmployee(int empId, int position) eleteEmployee(int empId, int position) 
+{
+RealmResults&lt;EmployeeModel&gt; results = myRealm.where(EmployeeModel.class).equalTo("id", empId).findAll();
+myRealm.beginTransaction();
+results.remove(0);
+myRealm.commitTransaction();
+employeeModelArrayList.remove(position);
+employeeAdapter.notifyDataSetChanged();
+}
+
+            </pre> 
+        </li>
+        
+</ol> 
+</div>
+    </body>
+</html>    

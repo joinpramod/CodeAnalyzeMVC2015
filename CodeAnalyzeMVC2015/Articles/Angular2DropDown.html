@@ -1,0 +1,68 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                Consider we have 2 drop down list where in we load the default items on 1st drop down list and load the 
+                items on second drop down list, to achive this using angularjs take a look at the code below.
+                Consider we have managers list and based on the selection of the manager from the dropdown list we need to load the
+                employees working under him in the second list. 
+
+            </p>  <b>Html view markup</b>
+<pre class="brush: java">
+&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"&gt;&lt;/script&gt;
+  
+var app = angular.module('myApp', []);
+angular.module('myApp').filter('myFilter', function() {
+  return function(input, selectedManager) {
+   
+    input = input || '';
+     if(selectedManager == null){
+        return input;
+    }else{
+        var out = new Array();  
+        selectedManager = JSON.parse(selectedManager);
+        for (var i = 0; i &lt; input.length; i++) {
+            var item = input[i];
+            if(item.managerId == selectedManager.id){
+                out.push(item);
+            }
+        }
+        return out;
+    }
+  };
+});
+
+app.controller('myCtrl', ['$scope', function($scope) {
+    $scope.selectedManager = null;
+    $scope.selectedEmployee = null;
+    
+    $scope.ManagerList = [
+        {id:0, value:'Manager1'},{id:1, value:'Manager2'},{id:2, value:'Manager3'}
+    ];
+    $scope.EmployeeList = [
+        {managerId:0, id:1, value:'M1Employee1'},{managerId:0, id:2, 
+        value:'M1Employee2'},{managerId:0, id:3, value:'M1Employee3'},
+        {managerId:1, id:4, value:'M2Employee4'},{managerId:1, 
+        id:5, value:'M2Employee5'},{managerId:1, id:6, value:'M2Employee6'},
+        {managerId:2, id:7, value:'M3Employee7'},{managerId:2, id:8, 
+        value:'M3Employee8'},{managerId:2, id:9, value:'M1Employee9'}
+    ];    
+}]);
+
+
+&lt;body ng-app="myApp" ng-controller="myCtrl"&gt;
+&lt;div class="container"&gt;
+
+      
+</pre>           
+        </li>
+        
+
+</ol> 
+</div>
+   

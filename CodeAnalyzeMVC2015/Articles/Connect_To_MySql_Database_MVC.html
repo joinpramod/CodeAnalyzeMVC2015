@@ -1,0 +1,66 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    
+
+    <ol>
+        <li>
+            <p style="width:80%">
+                Right Click the Project in Solution Explorer and click Manage NuGet Packages
+            </p>         
+        </li> 
+          <li>
+            <p style="width:80%">
+                Search for MySql.Data package, when you find it click on Install
+            </p>         
+        </li>  
+          <li>
+            <p style="width:80%">Here is the sample controller which connects to MySql database using the mysql package. We mainly make use of MySqlConnection
+                 connection object.
+            </p>  <b>Controller</b>
+            <pre class="brush: java">
+
+public class HomeController : Controller
+{
+    public ActionResult Index()
+    {
+        List<EmployeeModel> employees = new List<EmployeeModel>();
+        string constr = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
+        using (MySqlConnection con = new MySqlConnection(constr))
+        {
+            string query = "SELECT EmployeeId, Name, Country FROM Employees";
+            using (MySqlCommand cmd = new MySqlCommand(query))
+            {
+                cmd.Connection = con;
+               con.Open();
+                using (MySqlDataReader sdr = cmd.ExecuteReader())
+                {
+                    while (sdr.Read())
+                    {
+                        employees.Add(new EmployeeModel
+                        {
+                            EmployeeId = Convert.ToInt32(sdr["EmployeeId"]),
+                            Name = sdr["Name"].ToString(),
+                            Country = sdr["Country"].ToString()
+                        });
+                    }
+                }
+                con.Close();
+            }
+        }
+ 
+        return View(employees);
+    }
+}
+
+
+            </pre>           
+        </li>  
+      
+    </ol> 
+
+</div>
+   

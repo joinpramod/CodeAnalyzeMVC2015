@@ -1,0 +1,173 @@
+﻿<html>
+    <body>
+
+
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+    There are 2 ways of trying this<br />
+    1. angular-sqlite package<br />
+    2. ngCordova<br /><br /><br />
+
+
+    <b>angular-sqlite package</b>
+    <ol>
+        <li>
+            <p style="width:80%">
+                    There is this <a href="https://www.npmjs.com/package/angular-sqlite">angular-sqlite</a> package which can be extracted from npm or bower as shown below, also check the <a href="http://github.com/reduardo7/angular-sqlite">repository</a>  for more info
+                    It is explained in the above link nicely, please do take a look.
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                <b>npm</b><br />
+npm install angular-sqlite<br />
+                Add ngSQLite as a dependency in app -
+angular.module('myApp', [require('angular-sqlite')]);   <br />
+             </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                <b>bower</b><br />
+bower install angular-sqlite<br />
+                Add to index.html&nbsp; -
+&lt;script src="/bower_components/angular-sqlite/angular-sqlite.js"&gt;&lt;/script&gt;       <br />
+                Add ngSQLite as a dependency in app -
+angular.module('myApp', ['ngSQLite']);<br />
+            </p>
+        </li>
+        <li>
+            <p style="width:80%">Sample code as shown below
+                 <pre class="brush: java">
+.constant('DB_CONFIG', {
+        client: {
+            id: key,
+            name: { type: 'text', null: false },
+            email: { type: 'text' },
+            id_zone: { type: 'integer' }
+        },
+        zone: {
+            id: 'key',
+            name: { type: 'text', null: false }
+        }
+    })
+ 
+    .run(function ($SQLite) {
+        $SQLite.dbConfig({
+            name: 'my-browser-db',
+            description: 'Test DB',
+            version: '1.0'
+        });
+    })
+ 
+    .run(function ($SQLite, DB_CONFIG) {
+        $SQLite.init(function (init) {
+            angular.forEach(DB_CONFIG, function (config, name) {
+                init.step();
+                $SQLite.createTable(name, config).then(init.done);
+            });
+            init.finish();
+        });
+    });
+
+
+.factory('exampleClient', function ($SQLite) {
+  $SQLite.ready(function () { // The DB is created and prepared async. 
+    this.selectAll(o.sql, o.params)
+      .then(o.onEmpty, o.onError,
+        function (result) {
+          if (angular.isFunction(o.onResult)) o.onResult.apply(this, [ result.rows, result.count, result.result ]);
+        }
+      );
+  });
+ 
+  var clientID = 1;
+    $SQLite.ready(function () { // The DB is created and prepared async. 
+        this
+            .selectFirst('SELECT * FROM client WHERE id = ? LIMIT 1', [ clientID ])
+            .then(
+        function () { console.log('Empty Result!'); },
+        function () { console.err('Error!'); },
+        function (data) {
+  				// Result! 
+                // data.item 
+                // data.count 
+                // data.result 
+  			}
+      );
+    });
+ 
+    var newClientData = {
+    name: 'Eduardo Daniel Cuomo',
+    email: 'eduardo.cuomo.ar@gmail.com',
+    id_zone: 123
+  };
+    $SQLite.ready(function () {
+        this.insert('client', newClientData) // this.replace 
+            //.then(onResult, onError) 
+    });
+ 
+    $SQLite.ready(function () {
+        this.execute('UPDATE zone SET name = ? WHERE id = ?', [ 'foo', 123 ])
+            //.then(onFinish, onError) 
+    });});
+</pre> 
+            </p> 
+        </li>
+</ol>
+
+
+
+
+
+    
+            <p style="width:80%">
+                <b>OR the 2nd way of trying this is</b>
+            </p>
+    <br /><br />
+
+
+    <b>ngCordova</b>
+    <ol>
+        <li>
+            <p style="width:80%">
+                Use ngCordova <a href="http://ngcordova.com/docs/">http://ngcordova.com/docs/</a>  or <a href="http://ngcordova.com/docs/plugins/sqlite/">http://ngcordova.com/docs/plugins/sqlite/</a>
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                ngCordova is wrapper of AngularJS functions which can be used from Cordova (<a href="https://cordova.apache.org/">https://cordova.apache.org/</a> ) and PhoneGap (<a href="http://phonegap.com/">http://phonegap.com/</a>)  plugins available 
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                Add Cordova plugin  <a href="https://github.com/litehelpers/Cordova-sqlite-storage.git">https://github.com/litehelpers/Cordova-sqlite-storage.git </a>  
+
+            </p> 
+        </li>
+        <li>Sample code as follows
+            <pre class="brush: java">
+module.controller('MyCtrl', function($scope, $cordovaSQLite) {
+
+  var db = $cordovaSQLite.openDB({ name: "my.db" });
+
+  // for opening a background db:
+  var db = $cordovaSQLite.openDB({ name: "my.db", bgType: 1 });
+
+  $scope.execute = function() {
+    var query = "INSERT INTO test_table (data, data_num) VALUES (?,?)";
+    $cordovaSQLite.execute(db, query, ["test", 100]).then(function(res) {
+      console.log("insertId: " + res.insertId);
+    }, function (err) {
+      console.error(err);
+    });
+  };
+
+});
+
+            </pre> 
+        </li>
+</ol> 
+</div>
+    </body>
+</html>    

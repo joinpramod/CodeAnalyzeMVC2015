@@ -1,0 +1,87 @@
+﻿<html>
+    <body>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                Download custom fonts from internet i.e. ttf files and drg these files into src folder of the project in xcode.
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                Next we need to update the plist file, add new string items with the value of
+                name of the font under "Fonts provided by application". plist file in xml will look like this after adding, here we are adding the fonts Capella and Comicate.
+                <pre class="brush: java">
+&lt;array&gt;
+	&lt;string&gt;Capella.ttf&lt;/string&gt;
+	&lt;string&gt;Comicate.ttf&lt;/string&gt;
+&lt;/array&gt;
+                </pre> 
+           </p> 
+        </li>
+     
+
+         <li>ViewController code will be like this considering suitable UI is present
+            <pre class="brush: java">
+#import "ViewController.h"
+@interface ViewController ()
+@end
+
+@implementation ViewController
+{
+    NSMutableArray *font;
+}
+@synthesize lblDemo;
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    font=[[NSMutableArray alloc]initWithObjects:,@"Capella",@"Comicate", nil];
+	//.....
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [font count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"Cell";    
+    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    [cell setBackgroundColor:[UIColor clearColor]];
+    NSString *fontName = [font objectAtIndex:[indexPath row]];    
+    [cell.textLabel setText:fontName];    
+    return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"Select Fonts";
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+       [lblDemo setFont:[UIFont fontWithName:[font objectAtIndex:indexPath.row] size:20]];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+@end
+
+            </pre> 
+        </li>
+
+
+      
+</ol> 
+</div>
+    </body>
+</html>    

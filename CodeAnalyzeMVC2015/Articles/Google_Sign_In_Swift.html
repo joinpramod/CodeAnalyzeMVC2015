@@ -1,0 +1,129 @@
+﻿<html>
+    <body>
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                Sign into Google Developers Console using your Google Account.      
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                Create an application or select an existing application
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                Select the Google Sign-In service from the available service list and enable it
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                Continue and generate the configuration file to download
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                Add GoogleService-Info.plist to the root of the Xcode project
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                Download Google sdk from here <a href="https://developers.google.com/identity/sign-in/ios/sdk">https://developers.google.com/identity/sign-in/ios/sdk</a>
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">                
+                Configure and setup URL Types<br />
+	            a. Go to GoogleService-Info.plist, Copy REVERSED_CLIENT_ID<br />
+	            b. Select the project from the Navigator and then select the app from Project and Target List<br />
+	            c. Go to Info, expand URL types<br />
+                c. Add a URLtype by using + button<br />
+                c. Paste REVERSED_CLIENT_ID to URL Schemes<br />
+                c. Add another URL Type by clicking on + button<br />
+                c. Paste your project Bundle Identifier<br />
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                Add supporting frameworks<br />
+	                a. AddressBook<br />
+	                b. StoreKit<br />
+	                c. SystemConfiguration<br />to add these frameworks select Build Phases under Project Navigator, Expand Link Binary With Libraries and click on + button. 
+Choose and add the above-listed frameworks.
+            </p> 
+        </li>
+
+        <li>Below is the code of .h file or header file
+            <pre class="brush: java">
+#import &lt;GoogleSignIn/GoogleSignIn.h&gt;
+            </pre> 
+        </li>
+
+         <li>AppDelegate.swift file
+            <pre class="brush: java">
+import UIKit
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
+{
+    var window: UIWindow?
+    
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        GIDSignIn.sharedInstance().clientID = "My_Google_Client_Id"
+        GIDSignIn.sharedInstance().delegate = self        
+        return true
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, options: [String: AnyObject]) -> Bool
+    {
+        return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as! String, annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
+    }
+    
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!)
+    {
+                let userId = user.userID                  
+                let userToken = user.authentication.idToken
+                let userName = user.profile.name
+                let userEmail = user.profile.email
+                let userImageURL = user.profile.imageURLWithDimension(200)
+    }
+
+    
+    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!, withError error: NSError!)
+    {
+		// user disconnected from app here.
+    }
+}
+            </pre> 
+        </li>
+
+
+          <li>In the view add the Google Sign In button by adding GIDSignInButton as a custom class.
+Code shown below. After this run the application. Code of ViewController.cs
+            <pre class="brush: java">
+import UIKit
+
+class ViewController: UIViewController, GIDSignInUIDelegate
+{
+    @IBOutlet weak var signInButton: GIDSignInButton!
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+    }
+    
+    @IBAction func btnSignoutTapped(sender: AnyObject)
+    {
+        GIDSignIn.sharedInstance().signOut()
+    }
+}            </pre> 
+          </li>
+
+</ol> 
+</div>
+    </body>
+</html>    

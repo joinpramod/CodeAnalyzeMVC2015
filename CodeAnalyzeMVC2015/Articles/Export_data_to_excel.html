@@ -1,0 +1,91 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+    
+
+    <ol>
+        <li>
+            <p style="width:80%">
+                To export html table data to excel we will be using ClosedXML nuget package. <br />
+                In visual studio Right Click the Project in Solution Explorer and click Manage NuGet Packages from the Context Menu<br />
+                Search ClosedXML and install it.<br />
+                Here is the controller which exports data to excel 
+            </p>  <b>Controller</b>
+            <pre class="brush: java">
+public class HomeController : Controller
+{
+
+ 
+    [HttpPost]
+    public FileResult Export()
+    {
+        NorthwindEntities entities = new NorthwindEntities();
+        DataTable dt = new DataTable("Grid");
+        dt.Columns.AddRange(new DataColumn[4] { new DataColumn("EmployeeId"),
+                                            new DataColumn("ContactName"),
+                                            new DataColumn("City"),
+                                            new DataColumn("Country") });
+ 
+        var employees = from employee in entities.Employees.Take(10)
+                        select employee;
+ 
+        foreach (var employee in employees)
+        {
+            dt.Rows.Add(employee.EmployeeID, employee.ContactName, employee.City, employee.Country);
+        }
+ 
+        using (XLWorkbook wb = new XLWorkbook())
+        {
+            wb.Worksheets.Add(dt);
+            using (MemoryStream stream = new MemoryStream())
+            {
+                wb.SaveAs(stream);
+                return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+            }
+        }
+    }
+}
+
+
+            </pre>           
+        </li>   
+        
+        
+        <li>
+            <p>View is as shown below</p><b>View</b>
+
+<pre class="brush: java">
+&lt;table cellpadding="0" cellspacing="0"&gt;
+&lt;tr&gt;
+    &lt;th&gt;EmployeeID&lt;/th&gt;
+    &lt;th&gt;Contact Name&lt;/th&gt;
+    &lt;th&gt;City&lt;/th&gt;
+    &lt;th&gt;Country&lt;/th&gt;
+&lt;/tr&gt;
+@foreach (Employee employee in Model)
+{
+    &lt;tr&gt;
+        &lt;td&gt;@employee.EmployeeID&lt;/td&gt;
+        &lt;td&gt;@employee.ContactName&lt;/td&gt;
+        &lt;td&gt;@employee.City&lt;/td&gt;
+        &lt;td&gt;@employee.Country&lt;/td&gt;
+    &lt;/tr&gt;
+}
+&lt;/table&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+@using (Html.BeginForm("Export", "Home", FormMethod.Post))
+{
+&lt;input type="submit" value="Export"/&gt;
+}
+</pre>
+        </li>
+           
+    </ol> 
+
+</div>
+   

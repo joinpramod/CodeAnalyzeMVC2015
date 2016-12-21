@@ -1,0 +1,52 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+
+    <ol>
+          <li><p style="width:80%"><b>-></b> We will see how we can implement Amazon style image zoom where we have multiple images listed one after and mouseover we see a zoomed image 
+              on the right. 
+             </p><br />
+              <p style="width:80%"><b>-></b> For each image we will need a magnified image of the same with more clarity. We will be showing the magnified image on mouseover.
+             </p><br />
+              <p style="width:80%"><b>-></b> We will have to refer the jquery and jquery elevatedzoom image zoom plugin. We can refer this script directly from github using the below link <a href="http://cdn.rawgit.com/elevateweb/elevatezoom/master/jquery.elevateZoom-3.0.8.min.js">http://cdn.rawgit.com/elevateweb/elevatezoom/master/jquery.elevateZoom-3.0.8.min.js</a>
+              </p><br />
+              <p style="width:80%"><b>-></b> Consider we have a gridview or a normal html table with an id where in each we have some image. Whole view is as shown below.
+              If you notice for each image we use a property called data-zoom-image
+             </p> <br /> <b>View</b>
+<pre class="brush: java">
+
+&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="http://cdn.rawgit.com/elevateweb/elevatezoom/master/jquery.elevateZoom-3.0.8.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    $(function () {
+        $("[id*=myTable] img").elevateZoom({
+            cursor: 'pointer',
+            imageCrossfade: true,
+            loadingIcon: 'loading.gif'
+        });
+    });
+&lt;/script&gt;
+
+&lt;table cellspacing="0" rules="all" border="1" id="myTable" style="border-collapse:collapse;"&gt;
+		&lt;tr&gt;
+			&lt;td&gt;
+                    &lt;img src='/Images/Small/SmallApple.jpg' alt="" data-zoom-image='/Images/Large/LargeApple.jpg' /&gt;
+                &lt;/td&gt;
+		&lt;/tr&gt;&lt;tr&gt;
+			&lt;td&gt;
+                    &lt;img src='/Images/Small/SmallOrange.jpg' alt="" data-zoom-image='/Images/Large/LargeOrange.jpg' /&gt;
+                &lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/pre&gt;           
+        </li>  
+    
+    
+    </ol> 
+
+</div>
+   

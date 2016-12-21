@@ -1,0 +1,86 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+               This articles explains about updating database from javascript or jquery in asp.net or asp.net mvc.
+                Baiscally this posts data to server  from javascript with the required data needed as shown below. We can sue the below code in both asp.net and mvc
+            </p>   <b>View or ASPX page</b>
+<pre class="brush: java">
+//make sure to refer necessary jquery files needed
+&lt;script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"&gt;&lt;/script&gt;  
+&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;  
+&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"&gt;&lt;/script&gt;  
+&lt;script type="text/javascript"&gt;
+    $(function () {
+        $('#btnSubmit').click(function () {
+            var name = $('#TextBox1').val();
+            var email = $('#TextBox2').val();
+            var designation = $('#TextBox3').val();
+            var city = $('#TextBox4').val();
+            if (name != '' && email != '' && designation != '' && city != '') {
+                $.ajax
+                    ({
+                        type: 'POST',
+                        url: 'Home.aspx/UpdateDB',     //this is asp.net where UpdateDB is declared as WebMethod inside home.aspx.cs. If MVC then use url: 'Home/UpdateDB',   where UpdateDB is Action method in Home controller
+                        async: false,
+                        data: "{'name':'" + name + "','email':'" + email + "','designation':'" + designation + "','city':'" + city + "'}",
+                        contentType: 'application/json; charset =utf-8',
+                        success: function (data) {
+                            var obj = data.d;
+                            if (obj == 'true') {
+                                $('#TextBox1').val('');
+                                $('#TextBox2').val('');
+                                $('#TextBox3').val('');
+                                $('#TextBox4').val('');
+                                alert("Data Saved Successfully");
+                            }
+                        },
+                        error: function (result) {
+                            alert("Error Occured, Try Again");
+                        }
+                    });
+            } else {
+                alert("Pleae Fill all the Fields");
+                return false;
+            }
+        })
+    });
+&lt;/script&gt; 
+</pre>           
+        </li>
+        <li>
+            <p style="width:80%">
+                Suppose if we are using aspx page then WebMethod should be as shown below
+            </p> <b>aspx.cs codebehind file</b>
+<pre class="brush: java">
+[WebMethod]  
+public static string UpdateDB(string name, string email, string designation, string city)  
+{  
+    //Add your stuff
+}
+</pre>                
+        </li>
+        <li>
+            <p style="width:80%">
+                If it is MVC Controller then it can be as shown below
+            </p> <b>MVC Controller</b>
+<pre class="brush: java">
+    public class AccountController : Controller
+    {
+        [AllowAnonymous]
+        public ActionResult UpdateDB(string name, string email, string designation, string city
+        {
+            //ADD your stuff
+        }
+    }
+</pre>                
+        </li>
+
+</ol> 
+</div>
+   

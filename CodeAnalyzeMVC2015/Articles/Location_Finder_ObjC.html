@@ -1,0 +1,112 @@
+﻿<html>
+    <body>
+
+
+
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                We will use CoreLocation framework to get user location in iOS app. We will creating an instance of CLLocationManager which has all the major
+                functionalities, methods and properties needed for location tracking with minor and major movement of the user like<br />
+                stopUpdatingLocation<br />
+                StartUpdatingLocation<br />
+                desiredAccuracy<br />
+                distanceFilter<br />
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                To begin with first add the CoreLocation framework into the project. Here is the code for .h file
+                 <pre class="brush: java">
+#import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+
+@interface UserLocationViewController : UIViewController<CLLocationManagerDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextField *txtLatitude, *txtLongitude, *txtCountry;
+
+@property (nonatomic, retain) CLLocationManager *locationManager;
+@end
+                 </pre> 
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                Code of .m file. Take a look at the comments about the code description
+                 <pre class="brush: java">
+#import "UserLocationViewController.h"
+
+@interface UserLocationViewController ()
+{
+    //Create objects of CLPlacemark and CLGeocoder
+    CLGeocoder *geocoder;
+    CLPlacemark *userLoc;
+}
+@end
+
+@implementation UserLocationViewController
+@synthesize locationManager;
+@synthesize txtLatitude, txtLongitude, txtCountry;
+
+
+(void)viewDidLoad
+{
+    [super viewDidLoad];
+    geocoder = [[CLGeocoder alloc] init];
+    if (locationManager == nil)
+    {
+        //Create an instance of CLLocationManager
+        locationManager = [[CLLocationManager alloc] init];
+        //Assign the accuracy of the location change required
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        locationManager.delegate = self;
+        [locationManager requestAlwaysAuthorization];
+    }
+    //call startUpdatingLocation method
+    [locationManager startUpdatingLocation];
+}
+
+(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    // Turn off the location manager to save power.
+    [self.locationManager stopUpdatingLocation];
+}
+
+
+//implement the delegate methods of the CLLocationManager
+(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+
+    CLLocation *newLocation = [locations lastObject];
+    
+    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *userLocs, NSError *error) {
+        
+        if (error == nil && [userLocs count] > 0) {
+            userLoc = [userLocs lastObject];
+            txtLatitude.text = [NSString stringWithFormat:@"%f",newLocation.coordinate.latitude];
+            txtLongitude.text = [NSString stringWithFormat:@"%f",newLocation.coordinate.longitude];
+            txtCountry.text = userLoc.country;
+            
+        }
+    } ];
+    
+    // Turn off the location manager to save power.
+    [manager stopUpdatingLocation];
+}
+
+(void)locationManager:(CLLocationManager *)manager
+        didFailWithError:(NSError *)error
+{
+    NSLog(@"Error");
+}
+@end
+                 </pre> 
+            </p> 
+        </li>
+</ol> 
+</div>
+    </body>
+</html>    

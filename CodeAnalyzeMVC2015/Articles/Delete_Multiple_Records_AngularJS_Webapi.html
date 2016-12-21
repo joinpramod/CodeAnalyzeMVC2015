@@ -1,0 +1,124 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                This article explains about deleting multiple records in HTML table by consuming WebApi using AngularJS.
+                Initially we bind a html table with Json calling WebAPI and using AngularJS
+                We will need a WebApi Controller with Delete method that accepts multiple int parameters or integer array as shown below
+                 <b>WebApi Controller say EmployeeController</b><br />
+            </p>  
+<pre class="brush: java">
+//Get Employee List  
+[HttpGet]  
+public IEnumerable &lt;Employee&gt; GetAllEmployees() {  
+    var data = context.Employees.ToList();  
+    return data;  
+}  
+[HttpPost]  
+public HttpResponseMessage DeleteEmployee(int[] itemsSelected) {    
+    try {  
+        //..add your logic  
+    } catch (Exception ex) {    
+        //throw
+    }  
+}  
+</pre>           
+        </li>
+         <li>
+            <p style="width:80%">
+                We will need javascript files to implement this using AngularJS say AppEmployee.js and EmployeeController.js
+                AppEmployee.js file looks like something like below where configure route, controller and View<br /><b>AppEmployee.js</b>
+            </p> 
+<pre class="brush: java">
+var app = angular.module('myApp', ['ngRoute']);  
+app.config(['$routeProvider', function($routeProvider) {  
+    $routeProvider.when('/EmployeeList', {  
+        templateUrl: '/AppEmployees/Views/EmployeeList.html',  
+        controller: 'EmployeeController'  
+    }).otherwise({  
+        controller: 'EmployeeController'  
+    });  
+}]);  
+</pre>                
+        </li>
+
+
+          <li>
+            <p style="width:80%">
+                This is AngularSJ controller which makes the request to web api to delete the employees by calling DeleteEmployee method of webapi controller
+                <br />
+                <b>EmployeeController.js</b><br />
+            </p> 
+<pre class="brush: java">
+app.controller('EmployeeController', function($scope, $http, $window) {  
+    $scope.EmployeeList = [];  
+    $http.get('api/Employee/GetAllEmployees').success(function(data) {  
+        $scope.EmployeeList = data;  
+    }).error(function() {  
+        //error
+    });  
+    $scope.DeleteEmployee = function(list) {  
+        var itemList = [];  
+        angular.forEach(list, function(value, key) {  
+            if (list[key].selected) {  
+                itemList.push(list[key].selected);  
+            }  
+        });          
+        $http.post("api/Employee/DeleteEmployee", itemList).success(function(data) {  
+            $window.alert(data);  
+        }).error(function(msg) {  
+           //error
+        });  
+    }  
+});  
+</pre>                
+        </li>
+
+           <li>
+            <p style="width:80%">
+                below is the View code where in we display the list of employees and give option user to select multiple records and delete them<br />
+                <b>EmployeeList.html</b><br />
+            </p> 
+<pre class="brush: java">
+
+&lt;script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"&gt; &lt;/script&gt; 
+&lt;script src = "https://code.angularjs.org/1.4.7/angular-route.js"&gt; &lt;/script&gt;      
+&lt;script src = "~/AppEmployees/AppEmployee.js"&gt; &lt;/script&gt;  
+&lt;script src = "~/AppEmployees/EmployeeController.js"&gt; &lt;/script&gt;  
+
+&lt;a href="" class="btn btn-primary" ng-click="DeleteEmployee(EmployeeList)"&gt;Delete Multiple Rows selected&lt;/a&gt;  
+
+&lt;div class="table-responsive"&gt;  
+    &lt;table id="mytable" class="table table-bordred table-striped"&gt;  
+        &lt;thead&gt;  
+            &lt;th&gt;&lt;/th&gt;  
+            &lt;th&gt;Employee ID&lt;/th&gt;  
+            &lt;th&gt;Employee Name&lt;/th&gt;  
+            &lt;th&gt;Employee Email&lt;/th&gt;  
+            &lt;th&gt;Employee ZipCode&lt;/th&gt;  
+            &lt;th&gt;Employee Country&lt;/th&gt;  
+            &lt;th&gt;Employee City&lt;/th&gt;  
+        &lt;/thead&gt;  
+        &lt;tbody&gt;  
+            &lt;tr ng-repeat="item in EmployeeList"&gt;  
+                &lt;td&gt;&lt;input type="checkbox" id="check1" ng-true-value="{{item.EmployeeID}}" ng-false-value="''" ng-model="item.selected" /&gt;&lt;/td&gt;  
+                &lt;td&gt;{{item.EmployeeID}}&lt;/td&gt;  
+                &lt;td&gt;{{item.EmployeeName}}&lt;/td&gt;  
+                &lt;td&gt;{{item.EmployeeEmail}}&lt;/td&gt;  
+                &lt;td&gt;{{item.EmployeeZipCode}}&lt;/td&gt;  
+                &lt;td&gt;{{item.EmployeeCountry}}&lt;/td&gt;  
+                &lt;td&gt;{{item.EmployeeCity}}&lt;/td&gt;  
+            &lt;/tr&gt;  
+        &lt;/tbody&gt;  
+    &lt;/table&gt;  
+&lt;/div&gt; 
+</pre>                
+        </li>
+</ol> 
+</div>
+   

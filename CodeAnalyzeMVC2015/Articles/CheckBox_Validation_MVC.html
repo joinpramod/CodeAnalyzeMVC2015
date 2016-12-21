@@ -1,0 +1,82 @@
+﻿<html>
+    <body>
+
+ 
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            The Required Data Annotation attribute does not work for Boolean validation i.e. performing validation so we will create Custom Attribute Class for Checkbox Validation.
+            <pre class="brush: java">
+public class BooleanRequired : ValidationAttribute, IClientValidatable
+    {
+        public override bool IsValid(object value)
+        {
+            if (value is bool)
+                return (bool)value;
+            else
+                return true;
+        }
+ 
+        public IEnumerable GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
+        {
+            yield return new ModelClientValidationRule
+            {
+                ErrorMessage = "You must accept Terms and Condition",
+                ValidationType = "booleanrequired"
+            };
+        }
+    }
+        </pre>            
+        </li>
+         <li>
+         Consider we have model as shown below>
+         <pre class="brush: java">
+public class SampleModel
+{
+    [Display(Name = "I accept the above terms and conditions.")]
+    [BooleanRequired (ErrorMessage = "Please accept the terms and condition.")]
+    public bool TermsConditions { get; set; }
+}
+        </pre>             
+        </li>
+        <li>
+                Here is the View code validating the checkbox
+
+             <pre class="brush: java">
+&lt;!--Required scripts in the view for client side validation--&gt;
+&lt;script src="~/Scripts/jquery-1.7.1.js"&gt;&lt;/script&gt;
+&lt;script src="~/Scripts/jquery.validate.js"&gt;&lt;/script&gt;
+&lt;script src="~/Scripts/jquery.validate.unobtrusive.js"&gt;&lt;/script&gt; 
+&lt;script&gt;    
+(function ($) {
+    //Custom Unobtrusive Jquery for Client Side Validation 
+    //As a first argument give ValidationType which is used in your Custom Attribute Class 
+    $.validator.unobtrusive.adapters.addBool("booleanrequired", "required");
+})(jQuery);
+&lt;/script&gt;
+&lt;h2&gt;Custom CheckBox Validation&lt;/h2&gt;
+ 
+@using (Html.BeginForm("SubmitForm", "Home"))
+{  
+        
+    &lt;div class="control-group"&gt;
+        &lt;div class="controls"&gt;
+            @Html.CheckBoxFor(m =&gt; m.TermsConditions)
+            Accept Terms and Condition
+            @Html.ValidationMessageFor(m =&gt; m.TermsConditions)
+        &lt;/div&gt;
+    &lt;/div&gt;
+      
+    &lt;div&gt;
+        &lt;div style="padding-left: 80px"&gt;&lt;/div&gt;
+        &lt;input type="submit" value="send" name="Submit" title="send" /&gt;
+    &lt;/div&gt;  
+}
+        </pre>            
+        </li>
+
+        
+</ol> 
+</div>
+    </body>
+</html>    

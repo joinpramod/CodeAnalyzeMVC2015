@@ -1,0 +1,77 @@
+<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    &nbsp;<ol>
+          <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none">
+This article explains about implementing javascript richtext editor control in asp.net mvc.
+
+We will be using TinyMCE for this purpose, over the time TinyMCE has become one of the most popular and reputed editor control
+for most of the web application. This is because it is customizable and uses pure javascript. Download the whole TinyMCE Dev Package from here
+<a href='https://www.tinymce.com/download/'>https://www.tinymce.com/download/</a>. 
+
+Unzip and copy the whole tinymce folder which contains all javascript and jar files into your project folder which you can refer from application.
+
+You can also at the basic and full version Demos of this here https://www.tinymce.com/docs/demo/basic-example/ with which you will get and idea
+that how simple this is to implement and use
+
+After this we will need to integrate this tinymce into our MVC application. We will refer the tinymce javascripts first like this,
+</pre><b>View</b>
+            <pre class="brush: java">
+&lt;script src="~/Scripts/tinymce/tinymce.min.js"&gt;&lt;/script&gt;
+            </pre>
+        </li>
+        <li>
+        <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none">
+We will need a TextArea mvc control, TinyMce will look for TextArea control and convert it into full rich text editor Editor
+        </pre>
+        <pre class="brush: java">
+@Html.TextArea("txtMVCEditor")
+        </pre>
+        </li>
+        <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none">
+Whole View will look some thing like           
+            </pre><b></b>
+            <pre class="brush: java">
+&lt;script type="text/javascript" src="~/Scripts/tinymce/tinymce.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    tinymce.init(
+        {
+            mode: "textareas",
+            statusbar: false,
+            height: "300px",
+            width: "98%"
+    });
+&lt;/script&gt;
+@using (Html.BeginForm("ProcessEditor", "MyController", FormMethod.Post))
+{
+&lt;table style="width:100%; font-size:16px"&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+            &lt;table&gt;               
+                &lt;tr&gt;
+                    &lt;td align="left"&gt;
+                        @Html.TextArea("MyMVCEditor")
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td align="center"&gt;&lt;br/&gt;
+                        &lt;input type="submit" value="Submit" id="btnSubmit" /&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;                         
+            &lt;/table&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+}
+            </pre>           
+        </li>  
+    
+    </ol> 
+
+</div>
+   

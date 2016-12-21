@@ -1,0 +1,79 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    
+    <ol>
+        <li>
+            <p style="width:80%">
+                This article explains about grouping data rows in View uses jqx-data-table using AngularJS in MVC asp.net.
+                Below is the View code, please read the comments at places to understand more.<br />
+                <b>View</b><br />
+            </p>  
+<pre class="brush: java">
+@section scripts{  
+  
+    &lt;link href="~/Content/jqx.base.css" rel="stylesheet" /&gt;  
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"&gt;&lt;/script&gt;  
+    &lt;script src="~/Scripts/jquery-1.10.2.min.js"&gt;&lt;/script&gt;  
+    &lt;script src="~/Scripts/jqxcore.js"&gt;&lt;/script&gt;  
+    &lt;script src="~/Scripts/jqxdata.js"&gt;&lt;/script&gt;  
+    &lt;script src="~/Scripts/jqxangular.js"&gt;&lt;/script&gt;  
+    &lt;script src="~/Scripts/jqxbuttons.js"&gt;&lt;/script&gt;  
+    &lt;script src="~/Scripts/jqxscrollbar.js"&gt;&lt;/script&gt;  
+    &lt;script src="~/Scripts/jqxdatatable.js"&gt;&lt;/script&gt;  
+    &lt;script src="~/Scripts/demos.js"&gt;&lt;/script&gt;        
+    &lt;script type="text/javascript"&gt;
+
+        var myApp = angular.module('myApp', ['jqwidgets']);
+        myApp.controller('GroupingCtrl', ['$scope', function ($scope) {
+            //create AngularJS DataTable  
+            $scope.gridSettings = {
+                source: new $.jqx.dataAdapter({
+                    dataType: "json",
+                    dataFields: [
+                        { name: 'EmployeeCountry', type: 'string' },
+                        { name: 'EmployeeName', type: 'string' },
+                        { name: 'EmployeeEmail', type: 'string' },
+                        { name: 'EmployeeZipCode', type: 'int' },
+                        { name: 'EmployeeCity', type: 'string' }
+                    ],
+                    url: 'GetEmployeeList'
+                }),
+                pageable: true,
+                altRows: true,
+                sortable: true,
+                groups: ['EmployeeCountry'],
+                width: 850,
+                groupsRenderer: function (value, rowData, level) {
+                    return "Country : " + value;
+                },
+                columns: [
+
+                  { text: 'Employee Country', cellsAlign: 'left', align: 'left', dataField: 'EmployeeCountry', width: 130 },
+                  { text: 'Employee Name', cellsAlign: 'left', align: 'left', dataField: 'EmployeeName', width: 180 },
+                  { text: 'Employee Email', dataField: 'EmployeeEmail', cellsAlign: 'right', align: 'right', width: 250 },
+                  { text: 'Employee ZipCode', dataField: 'EmployeeZipCode', align: 'right', cellsAlign: 'right', width: 110 },
+                  { text: 'Employee City', cellsAlign: 'center', align: 'center', dataField: 'EmployeeCity' }
+                ]
+
+            };
+
+        }]);
+
+
+    &lt;/script&gt;  
+      
+}  
+&lt;div ng-app="myApp" ng-controller="GroupingCtrl"&gt;  
+    &lt;jqx-data-table jqx-settings="gridSettings"&gt;&lt;/jqx-data-table&gt;  
+&lt;/div&gt;
+</pre>           
+        </li>
+   
+
+</ol> 
+</div>
+   

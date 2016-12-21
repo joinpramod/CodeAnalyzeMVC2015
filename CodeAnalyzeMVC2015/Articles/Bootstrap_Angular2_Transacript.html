@@ -1,0 +1,109 @@
+﻿<html>
+    <body>        
+        Bootstrap angular 2 application having component with transcript
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                Lets take a look at bootstraping angular 2 application with transscript<br />
+                We will need the following import in our application after having angular 2 installed.<br />
+                <pre class="brush: java">
+&lt;script src="//code.angularjs.org/2.0.0-beta.8/angular2-polyfills.js"&gt;&lt;/script&gt;
+&lt;script src="//code.angularjs.org/tools/system.js"&gt;&lt;/script&gt;
+&lt;script src="//code.angularjs.org/tools/typescript.js"&gt;&lt;/script&gt;
+&lt;script src="//code.angularjs.org/2.0.0-beta.8/Rx.js"&gt;&lt;/script&gt;
+&lt;script src="//code.angularjs.org/2.0.0-beta.8/angular2.min.js"&gt;&lt;/script&gt;
+                </pre>
+                </p>
+            </li>
+        <li>
+            <p style="width:80%">
+                Here is the html file or you can say the base before creating the app having all the major angular 2 includes. We will be using  trascript here
+                  </p> 
+                <pre class="brush: java">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Angular 2&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css" /&gt;
+    &lt;script src="//code.angularjs.org/2.0.0-beta.8/angular2-polyfills.js"&gt;&lt;/script&gt;
+    &lt;script src="//code.angularjs.org/tools/system.js"&gt;&lt;/script&gt;
+    &lt;script src="//code.angularjs.org/tools/typescript.js"&gt;&lt;/script&gt;
+    &lt;script src="//code.angularjs.org/2.0.0-beta.8/Rx.js"&gt;&lt;/script&gt;
+    &lt;script src="//code.angularjs.org/2.0.0-beta.8/angular2.min.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        System.config({
+            transpiler: 'typescript',
+            typescriptOptions: {
+                emitDecoratorMetadata: true
+            },
+            map: {
+                app: './app'
+            },
+            packages: {
+                app: {
+                    main: './main.ts',
+                    defaultExtension: 'ts'
+                }
+            }
+        });
+
+        System
+          .import('app')
+          .catch(console.error.bind(console));
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;my-app&gt;
+      Loading...
+    &lt;/my-app&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+                </pre> 
+                       
+        </li>
+		<li>
+            <p style="width:80%">
+               Next we need to create component as angular 2 is nothing but component Here is the component of the angular 2 i.e. app.component.ts
+                This has a simple message.
+            </p>              
+            <pre class="brush: java">
+// app.component.ts
+import {Component} from 'angular2/core';
+
+@Component({
+  selector: 'my-app',
+  template: `
+    <div>
+      Hi! How are you?
+    </div>
+  `
+})
+export class AppComponent {
+  
+}
+            </pre>
+        </li>
+
+        <li>
+			<p style="width:80%">
+                Code to bootstrap the app main.ts. We will be bootstraping from within angular 2 i.e. from angular2/platform/browser and this should be done.
+
+			</p>
+            <pre class="brush: java">
+// main.ts
+import {bootstrap} from 'angular2/platform/browser';
+import {AppComponent} from './app.component';
+
+bootstrap(AppComponent);
+
+            </pre>
+        </li>
+
+	
+</ol> 
+		
+</div>
+    </body>
+	
+	</html>    

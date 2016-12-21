@@ -1,0 +1,147 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+     
+
+    <ol>
+          <li>
+            <p style="width:80%">We will create a google recaptcha attribute for which we will create a filter as shown below, you can create this in appcode if you want
+            Before this we need to create google keys which can be got from here <a href="https://www.google.com/recaptcha/intro/index.html">https://www.google.com/recaptcha/intro/index.html</a></p>  <b>RECaptcha attribute filter creation</b>
+            <pre class="brush: java">
+namespace CodeAnalyzeMVC2015.AppCode
+{
+    public enum Theme { Red, White, BlackGlass, Clean }
+
+    [Serializable]
+    public class InvalidKeyException : ApplicationException
+    {
+        public InvalidKeyException() { }
+        public InvalidKeyException(string message) : base(message) { }
+        public InvalidKeyException(string message, Exception inner) : base(message, inner) { }
+    }
+
+    public class ReCaptchaAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var userIP = filterContext.RequestContext.HttpContext.Request.UserHostAddress;
+
+            var privateKey = ConfigurationManager.AppSettings["ReCaptcha.PrivateKey"];
+
+            if (string.IsNullOrWhiteSpace(privateKey))
+                throw new InvalidKeyException("ReCaptcha.PrivateKey missing from appSettings");
+
+            var postData = string.Format("&privatekey={0}&remoteip={1}&challenge={2}&response={3}",
+                                         privateKey,
+                                         userIP,
+                                         filterContext.RequestContext.HttpContext.Request.Form["recaptcha_challenge_field"],
+                                         filterContext.RequestContext.HttpContext.Request.Form["recaptcha_response_field"]);
+
+            var postDataAsBytes = Encoding.UTF8.GetBytes(postData);
+
+            // Create web request
+            var request = WebRequest.Create("http://www.google.com/recaptcha/api/verify");
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = postDataAsBytes.Length;
+            var dataStream = request.GetRequestStream();
+            dataStream.Write(postDataAsBytes, 0, postDataAsBytes.Length);
+            dataStream.Close();
+
+            // Get the response.
+            var response = request.GetResponse();
+
+            using (dataStream = response.GetResponseStream())
+            {
+                using (var reader = new StreamReader(dataStream))
+                {
+                    var responseFromServer = reader.ReadToEnd();
+
+                    if (!responseFromServer.StartsWith("true"))
+                        ((Controller)filterContext.Controller).ModelState.AddModelError("ReCaptcha", "Captcha words typed incorrectly");
+                }
+            }
+        }
+    }
+
+    public static class HtmlHelperExtensions
+    {
+        public static MvcHtmlString GenerateCaptcha(this HtmlHelper helper, Theme theme, string callBack = null)
+        {
+            const string htmlInjectString = @"&lt;div id=""recaptcha_div""&gt;&lt;/div&gt;
+&lt;script type=""text/javascript""&gt;
+    Recaptcha.create(""{0}"", ""recaptcha_div"", {{ theme: ""{1}"" {2}}});
+&lt;/script&gt;";
+
+            var publicKey = ConfigurationManager.AppSettings["ReCaptcha.PublicKey"];
+
+            if (string.IsNullOrWhiteSpace(publicKey))
+                throw new InvalidKeyException("ReCaptcha.PublicKey missing from appSettings");
+
+            if (!string.IsNullOrWhiteSpace(callBack))
+                callBack = string.Concat(", callback: ", callBack);
+
+            var html = string.Format(htmlInjectString, publicKey, theme.ToString().ToLower(), callBack);
+            return MvcHtmlString.Create(html);
+        }
+    }
+}
+            </pre>           
+        </li>  
+        <li>
+            <p>Add the config entries as shown below</p>
+<pre class="brush: java">
+&lt;add key="ReCaptcha.PublicKey" value="xxxx" /&gt;
+&lt;add key="ReCaptcha.PrivateKey" value="xxxx" /&gt;
+</pre>
+        </li>
+        <li>
+            <p style="width:80%">Here is the MVC view to implement google RECaptcha 
+            </p><b>View</b>
+<pre class="brush: java">
+&lt;script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"&gt;&lt;/script&gt;
+@using (Html.BeginForm("CreateEditUser", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                    @Html.GenerateCaptcha(Theme.White)
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                     &lt;input type="submit" id="btnRegister" value="Submit" /&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;        
+    &lt;/table&gt;
+}
+</pre>           
+        </li> 
+          <li>
+            <p style="width:80%">At the controller end if the user has entered the REcaptcha correctly then the model will be a valid one else
+                model will be invalid. Also we will have to add the Recaptcha attribute to action. To check this at the controller here is the Controller code
+            </p>  <b>Controller</b>
+            <pre class="brush: java">
+[ReCaptcha]
+[AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
+public ActionResult CreateEditUser(Users user, HttpPostedFileBase fileUserPhoto, string txtPassword)
+{
+    if (ModelState.IsValid)
+    {
+        \\recaptcha text is correct
+    }
+    else
+    {
+        \\recaptcha text is incorrect
+    }
+}
+            </pre>           
+        </li>  
+    
+    </ol> 
+
+</div>
+   

@@ -1,0 +1,55 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    
+    <ol>
+          <li>
+            <p style="width:80%">
+                To handle XSS cross site scripting attacks .net framework have this feature of validating request. With this if the user try to 
+                send a javascript or html code from the input text field or textbox field then its been validated and a beautiful error is thrown to the user saying 
+                "A potentially dangerous Request.Form value was detected from the client". This will prevent our website being hacked
+                or abused. But at times we will be in situation where we want to accept such user input data, we may want the user to enter code directly as input either to discribe
+                 a coding situation, or for blogging or user may want to enter angular brackets <, > or normally while using editor of control where in we expect a long data
+                description kind of input value etc. At this time to configure the application to avoid validation such request fields 
+                or values or parameters so that the input data reach the server. We can do this by few methods in ASP.NET MVC<br />
+                1. using  [AllowHtml] Aattribute for model property<br />
+                2. using [ValidateInput(false)] attribute on the controller action.<br /><br />
+               <b>1st method</b>[Preferred]<br/>
+                 Lets take a look at  [AllowHtml]  in model. Controller and View remain same as normal with no specific changes. When we specify [AllowHtml] MVC framework understands that
+                we do not this field to be validated. In the example if the user is sending his resume text and if we want to disable request validation.  Here is the sample model<br /> 
+            </p><b>Model</b>
+<pre class="brush: java">
+public class EmployeeModel
+{
+    [Display(Name = "Resume:")]
+    [AllowHtml]
+    public string Resume { get; set; }
+}
+</pre>           
+        </li>  
+        <li> 
+            <p>  <b>2nd method</b><br />  In the next example we will see how to use [ValidateInput(false)], we will have to mention this attribute on the controller action, when it is done then the whole request 
+                is not validated and any kind of data from user is allowed. Model and View remains same with no specific changes.
+            </p><b>Controller</b>
+<pre class="brush: java">
+public class HomeController : Controller
+{
+    [HttpPost]
+    [ValidateInput(false)]
+    public ActionResult Index(EmployeeModel emp)
+    {
+        return View();
+    }
+}    
+</pre>
+        </li>
+    <li>
+        Of the 2 options, 1st method is preferred because it only disables validation for that particular field rather than whole request as in 2nd method.
+    </li>
+    </ol> 
+
+</div>
+   

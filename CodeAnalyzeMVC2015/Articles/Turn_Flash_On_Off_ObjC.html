@@ -1,0 +1,80 @@
+﻿<html>
+    <body>
+
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                Below is the code in objective-c to turn flashlight ON and OFF if required by your app. This is a 
+                simple functionality that can be implemented in iOS. Here we will use AVFoundation framework to implement this.
+                To use this library we need to link the the above framework in the project. Lets say we have a 
+                button on the screen to turn ON and OFF flashlight. Below is the code of .h and .m file<br />
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                To begin with first add the CoreLocation framework into the project. Here is the code for .h file
+                 <pre class="brush: java">
+#import &lt;UIKit/UIKit.h&gt;
+#import &lt;AVFoundation/AVFoundation.h&gt;
+@interface ViewController : UIViewController
+- (IBAction)btnFlashOnOffOnClicked:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *btnFlashOnOff;
+
+@end                 </pre> 
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                Code of .m file. Take a look at the comments about the code description
+                 <pre class="brush: java">
+#import "ViewController.h"
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+@synthesize btnFlashOnOff;
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+- (IBAction)btnFlashOnClicked:(id)sender
+{
+    AVCaptureDevice *phoneFlashLight = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if ([phoneFlashLight isTorchAvailable] && [phoneFlashLight isTorchModeSupported:AVCaptureTorchModeOn])
+    {
+        if ([phoneFlashLight lockForConfiguration:nil])
+        {
+            if ([phoneFlashLight isTorchActive])
+            {
+                [btnFlashOnOff setTitle:@"TURN FLASH ON" forState:UIControlStateNormal];
+                [phoneFlashLight setTorchMode:AVCaptureTorchModeOff];
+            }
+            else
+            {
+                [btnFlashOnOff setTitle:@"TURN FLASH OFF" forState:UIControlStateNormal];
+                [phoneFlashLight setTorchMode:AVCaptureTorchModeOn];
+            }
+            [phoneFlashLight unlockForConfiguration];
+        }
+    }
+}
+
+@end
+                 </pre> 
+            </p> 
+        </li>
+</ol> 
+</div>
+    </body>
+</html>    

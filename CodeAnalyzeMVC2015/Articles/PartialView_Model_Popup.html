@@ -1,0 +1,116 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    
+    <ol>
+        <li>
+            <p style="width:80%">
+               Lets consider that we have a controller action which returns ActionResult with model necessary for Partial View
+            </p>   
+            <b>Controller</b><br />
+<pre class="brush: java">
+public ActionResultEmployeePartial()  
+{  
+    List &lt;Employee&gt; model = db.Employee.ToList();  
+    return PartialView("EmpPartial", model);  
+}  
+</pre>           
+        </li>
+         <li>
+            <p style="width:80%">
+              Now lets create a partial view with the View folder and subsequent folder of the page view where you want to show the modal popup. Lets say "Employee" folder within "View".
+                Here is the code of the PartialView which will be shown within View page
+            </p>   
+            <b>Partial View</b><br />
+<pre class="brush: java">
+    @model List&lt;Employee&gt;@  
+    {  
+            var grid = newWebGrid(source: Model, canPage: true, rowsPerPage: 10, ajaxUpdateContainerId: "gridContent");  
+            grid.Pager(WebGridPagerModes.All);  
+    } 
+
+    &lt;div id="gridContent"&gt;   
+    @grid.GetHtml(  
+      columns: grid.Columns(
+                grid.Column(columnName: "EmployeeId", header: "Emp_Id"),   
+                grid.Column(columnName: "Name", header: "Name" ),   
+                grid.Column(columnName: "Manager", header: "Manager"),   
+                grid.Column(columnName: "EMail", header: "EMail"),   
+                grid.Column(columnName: "City", header: "City")))   
+    &lt;/div&gt;  
+</pre>                
+        </li>
+
+
+          <li>
+            <p style="width:80%">
+                View within which the partial view created above will be shown as popup
+            </p> 
+            <b>View</b><br />
+<pre class="brush: java">
+
+@section scripts {
+    &lt;script&gt; var ajaxCallURL = '/Employee/EmployeePartial';  
+    $(function()  
+      {  
+        $(".showModalPopup").click(function()  
+         {  
+            var $buttonClicked = $(this);  
+            var options = {  
+                "backdrop": "static",  
+                keyboard: true  
+            };  
+            $.ajax({  
+                type: "GET",  
+                url: ajaxCallURL,  
+                contentType: "application/json; charset=utf-8",  
+                datatype: "json",  
+                success: function(data)  
+                {  
+                    debugger;  
+                    $('#myModalContent').html(data);  
+                    $('#myModal').modal(options);  
+                    $('#myModal').modal('show');  
+                },  
+                error: function() {  
+                    alert("Content load failed.");  
+                }  
+            });  
+        });  
+        $("#closbtn").click(function()  
+        {  
+            $('#myModal').modal('hide');  
+        });  
+    }); &lt;/script&gt;  
+} 
+    
+    &lt;table&gt; 
+        &lt;tr&gt;
+            &lt;td&gt; 
+                &lt;a href="javascript:void(0);" id="showModalPopup"&gt;Show Model Popup&lt;/a&gt; 
+            &lt;/td&gt; 
+        &lt;/tr&gt;
+    &lt;/table&gt; 
+    &lt;div id="myModal" tyle="text-align:right;"&gt; 
+        &lt;div style="width:900px; height:400px; padding:10px;"&gt; 
+            &lt;div style="overflow:auto; padding:10px;"&gt; 
+                &lt;button type="button" id="closbtn"&gt;x&lt;/button&gt; 
+                &lt;div&gt; &lt;/div&gt; 
+                &lt;div id="myModalContent" style = "width:850px; height:400px; padding:10px;"&gt; 
+                
+                &lt;/div&gt; 
+            &lt;/div&gt; 
+
+        &lt;/div&gt; 
+    &lt;/div&gt; 
+</pre>                
+        </li>
+
+  
+
+</ol> 
+</div>
+   

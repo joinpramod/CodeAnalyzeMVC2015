@@ -1,0 +1,55 @@
+﻿<style>
+    li {
+        list-style-type: none;
+    }
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+    
+    <ol>
+        <li>
+            <p style="width:80%">
+                In this article we will see how to validate email address at the client side using jquery in asp.net mvc. To do this we will need 
+                jquery validation script jqueryval.js which we will be refering at the client side.<br />
+                This script jqueryval.js will handle the validation part at the client side.<br/>
+                The Required Data Annotation and the EmailAddress Data Annotation attributes have been specified with a property Error Message with a string value. <br />
+            </p> <br /> <b>Model</b>
+            <pre class="brush: java">                
+public class Employee
+{
+    [Display(Name = "Email Address")]
+    [Required(ErrorMessage = "Email is required.")]
+    [EmailAddress(ErrorMessage = "Invalid Email Address.")]
+    public string Email { get; set; }
+}
+            </pre>           
+        </li>  
+        <li>
+            <p>Controller will be same with no special changes and with a Post method. Take a look at the View code below</p>
+
+        </li><br /><b>View</b>      
+<pre class="brush: java">         
+&lt;body&gt;
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        &lt;table&gt;
+            &lt;tr&gt;
+                &lt;td&gt;@Html.DisplayFor(m =&gt; m.Email)&lt;/td&gt;
+                &lt;td&gt;@Html.TextBoxFor(m =&gt; m.Email)&lt;/td&gt;
+                &lt;td&gt;@Html.ValidationMessageFor(m =&gt; m.Email, "")&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;input type="submit" value="Submit"/&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    }
+&lt;/body&gt;
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+&lt;/html&gt;
+ </pre>       
+    </ol> 
+</div>
+   

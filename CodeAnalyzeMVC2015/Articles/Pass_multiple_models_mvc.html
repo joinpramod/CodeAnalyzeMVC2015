@@ -1,0 +1,117 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>           
+            <p style="width:80%">
+            We will see how we can pass multiple models to one single view and use all those models separately in the View and display them.
+            We use this dynamic model which can hold more than model. Consider we have 2 models say EmployeeModel and ManagerModel
+            </p>  <b>Models</b>
+<pre class="brush: java">
+public class EmployeeModel
+{
+    public string EmployeeId { get; set; }
+    public string ManagerId { get; set; }
+    public string EmployeeName { get; set; }
+    public string City { get; set; }
+    public string Country { get; set; }
+}
+    
+public class ManagerModel
+{
+    public string ManagerId { get; set; }
+    public string ManagerName { get; set; }
+    public string City { get; set; }
+    public string Country { get; set; }
+}
+</pre>           
+        </li>
+</ol> 
+
+        <ol>
+        <li>           
+            <p style="width:80%">
+                Here is the Controller which will pass multiple models to view. Note how we make use of dynamic keyword for the model.
+            </p>  <b>Controller</b>
+<pre class="brush: java">
+public class HomeController : Controller
+{
+    public ActionResult Index()
+    {
+        dynamic model = new ExpandoObject();
+        model.Managers = GetManagerss();
+        model.Employees = GetEmployees();
+        return View(model);
+    }
+}
+</pre>           
+        </li>
+</ol> 
+      <ol>
+        <li>           
+            <p style="width:80%">
+               Now, here is the View which can handles these Models separetly and display them in the list
+            </p>  <b>View</b>
+<pre class="brush: java">
+
+@using Multiple_Model_MVC.Models
+@model dynamic
+@{
+    Layout = null;
+}
+ 
+&lt;!DOCTYPE html&gt;
+ 
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta name="viewport" content="width=device-width"/&gt;
+    &lt;title&gt;Index&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;table cellpadding="0" cellspacing="0"&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ManagerID&lt;/th&gt;
+            &lt;th&gt;Contact Name&lt;/th&gt;
+            &lt;th&gt;City&lt;/th&gt;
+            &lt;th&gt;Country&lt;/th&gt;
+        &lt;/tr&gt;
+        @foreach (ManagerModel manager in Model.Managers)
+        {
+            &lt;tr&gt;
+                &lt;td&gt;@manager.ManagerId&lt;/td&gt;
+                &lt;td&gt;@manager.ManagerName&lt;/td&gt;
+                &lt;td&gt;@manager.City&lt;/td&gt;
+                &lt;td&gt;@manager.Country&lt;/td&gt;
+            &lt;/tr&gt;
+        }
+    &lt;/table&gt;
+    &lt;hr/&gt;
+    &lt;table cellpadding="0" cellspacing="0"&gt;
+        &lt;tr&gt;
+            &lt;th&gt;EmployeeID&lt;/th&gt;
+            &lt;th&gt;Employee Name&lt;/th&gt;
+            &lt;th&gt;City&lt;/th&gt;
+            &lt;th&gt;Country&lt;/th&gt;
+        &lt;/tr&gt;
+        @foreach (EmployeeModel employee in Model.Employees)
+        {
+            &lt;tr&gt;
+                &lt;td&gt;@employee.EmployeeId&lt;/td&gt;
+                &lt;td&gt;@employee.EmployeeName&lt;/td&gt;
+                &lt;td&gt;@employee.City&lt;/td&gt;
+                &lt;td&gt;@employee.Country&lt;/td&gt;
+            &lt;/tr&gt;
+        }
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</pre>           
+        </li>
+</ol> 
+
+</div>
+   

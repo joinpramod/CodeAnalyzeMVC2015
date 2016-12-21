@@ -1,0 +1,52 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+               This article explains about passing data value from one controller to another controller or from page to another page using AngularJS.
+                Consider we have 2 webpages as shown below, look at comments for more details
+            </p>   <b>Web Page 1</b>
+<pre class="brush: java">
+&lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+        var app = angular.module('MyApp', [])
+        app.controller('MyController', function ($scope, $window) {
+            $scope.OpenPage2 = function () {
+                var $popup = $window.open("WebPage2.htm", "page2", "width=100%,height=100%");
+                $popup.Name = $scope.Name;
+            }
+        });
+    &lt;/script&gt;
+    &lt;div ng-app="MyApp" ng-controller="MyController"&gt;   &lt;!--div is the app and the controller--&gt;
+        Name:
+        &lt;input type="text" ng-model="Name" /&gt;  &lt;!--this input text is used as model and passed to second page--&gt;
+        &lt;input type="button" value="Go to page 2" ng-click="OpenPage2()" /&gt; &lt;!--OpenPage2 method is called on click of this method--&gt;
+    &lt;/div&gt;
+</pre>           
+        </li>
+         <li>
+            <p style="width:80%">
+                Here is page 2 which received the data value of "name" field passed from page 1 
+            </p> <b></b>
+<pre class="brush: java">
+&lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+        var app = angular.module('MyChildApp', [])
+        app.controller('MyChildController', function ($scope, $window) {
+            $scope.Name = $window.Name;
+        });
+    &lt;/script&gt;
+    &lt;div ng-app="MyChildApp" ng-controller="MyChildController"&gt;
+        Hi: &lt;span ng-bind="Name"&gt;&lt;/span&gt;
+    &lt;/div&gt;
+</pre>                
+        </li>
+
+</ol> 
+</div>
+   

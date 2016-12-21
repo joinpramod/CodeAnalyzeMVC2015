@@ -1,0 +1,80 @@
+﻿<html>
+    <body>
+
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                Consider we have a TableView, SearchBar and SearchDisplay controller in the view. Here is the whole code, look at the comments to understand</p>
+        </li>
+        <li>
+
+            <pre class="brush: java">
+import UIKit
+
+//We need to have delegate and datasource methods for SearchBar and SearchDisplay controls and implement UISearchBarDelegate & UISearchDisplayDelegate
+class TableSearchViewController: UIViewController, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate
+{
+    //2 variables of string array to store complete data list and the filtered list
+    var vegList = [String]()
+    var filteredVegList = [String]()
+    //IBOutlet for UITableView
+    @IBOutlet var tblVegetables: UITableView!   
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        //Initially the table is loaded with some sample data of list of vegetables.
+        vegList = ["Tomato", "Onion", "Spinach", "Carrot", "Mashroom", "Raddish", "Lettuce", "Brokoli", "Potatoes", "Cucumber", "Beans", "Green Pepper", "Egg Plant"]
+        self.tblVegetables.reloadData()
+    }
+    
+    //This is to fill the tableview with above array of vegetables
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        if tableView == self.searchResultController!.searchResultsTableView {
+            return self.filteredVegList.count
+        } else {
+            return self.vegList.count
+        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cellVegetable = self.tblVegetables.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        
+        var vegetableName : String!
+        if tableView == self.searchResultController!.searchResultsTableView {
+            vegetableName = filteredVegList[indexPath.row]
+        } else {
+            vegetableName = vegList[indexPath.row]
+        }
+        
+        cellVegetable.textLabel?.text = vegetableName
+        return cellVegetable
+    }
+    
+    
+    //this function will filter the data based on the user search string and to reload the tableview with the search string.
+    func searchResultController(controller: UISearchDisplayController, shouldReloadTableForSearchString searchString: String?) -> Bool {
+        let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchString)
+        let array = (self.vegList as NSArray).filteredArrayUsingPredicate(searchString)
+        self.filteredVegList = array as! [String]
+        self.tblVegetables.reloadData()
+        return true
+    }
+}
+            </pre> 
+        </li>
+
+
+
+
+</ol>
+    
+  
+
+</div>
+        </body>
+    </html>    

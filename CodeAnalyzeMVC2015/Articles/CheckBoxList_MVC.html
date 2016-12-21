@@ -1,0 +1,116 @@
+﻿<html>
+    <body>
+
+ 
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            We do not have a builtin CheckBoxList mvc control in asp.net mvc, so we will have to create custom CheckBoxList by
+            using SelectListItem class. We will create a list of  SelectListItem as datasource or say Model and we will be binding it to
+            the frount end. Take a look at the code
+              <pre class="brush: java">
+public class HomeController : Controller
+{
+    // GET: Home
+    public ActionResult Index()
+    {
+        List&lt;SelectListItem&gt; items = new List&lt;SelectListItem&gt;();
+        string constr = ConfigurationManager.ConnectionStrings["MyCon"].ConnectionString;
+        using (SqlConnection con = new SqlConnection(constr))
+        {
+            string query = " SELECT Key, Value FROM Table";
+            using (SqlCommand cmd = new SqlCommand(query))
+            {
+                cmd.Connection = con;
+                con.Open();
+                using (SqlDataReader dataReader = cmd.ExecuteReader())
+                {
+                    while (dataReader.Read())
+                    {
+                        items.Add(new SelectListItem
+                        {
+                            Text = dataReader["Value"].ToString(),
+                            Value = dataReader["Key"].ToString()
+                        });
+                    }
+                }
+                con.Close();
+            }
+        }
+ 
+        return View(items);
+    }
+ 
+    // This method is to get the selected items by the user
+    [HttpPost]
+    public ActionResult Index(List&lt;SelectListItem&gt; items)
+    {
+        ViewBag.Message = "Selected items are:";
+        foreach (SelectListItem item in items)
+        {
+            if (item.Selected)
+            {
+                ViewBag.Message += string.Format("{0}, ", item.Text);
+            }
+        }
+        return View(items);
+    }
+}
+        </pre>            
+        </li>
+         <li>
+         Now lets take a look at the View code
+         <pre class="brush: java">
+
+@model List&lt;SelectListItem&gt;
+ 
+@{
+    Layout = null;
+}
+ 
+&lt;!DOCTYPE html&gt;
+ 
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta name="viewport" content="width=device-width"/&gt;
+    &lt;title&gt;Index&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        &lt;table&gt;
+            @for (int i = 0; i &lt; Model.Count(); i++)
+            {
+            &lt;tr&gt;
+                &lt;td&gt;
+                    @Html.CheckBoxFor(m =&gt; m[i].Selected)
+                &lt;/td&gt;
+                &lt;td&gt;
+                    @Html.DisplayFor(m =&gt; m[i].Text)
+                    @Html.HiddenFor(m =&gt; m[i].Value)
+                    @Html.HiddenFor(m =&gt; m[i].Text)
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            }
+        &lt;/table&gt;
+        &lt;br/&gt;
+        &lt;input type="submit" value="Submit"/&gt;
+    }
+    @if (ViewBag.Message != null)
+    {
+        &lt;script type="text/javascript"&gt;
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        &lt;/script&gt;
+    }
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>            
+        </li>
+
+        
+</ol> 
+</div>
+    </body>
+</html>    

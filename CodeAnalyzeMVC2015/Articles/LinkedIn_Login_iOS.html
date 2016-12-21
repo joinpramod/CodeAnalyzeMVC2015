@@ -1,0 +1,179 @@
+﻿<html>
+    <body>
+
+ 
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                Create LinkedIn developer account at <a href="https://www.linkedin.com/developer/apps">https://www.linkedin.com/developer/apps</a> 
+            </p>              
+        </li>
+         <li>
+            <p style="width:80%">                
+                After this create LinkedIn Application
+            </p>              
+        </li>
+        <li>
+            <p style="width:80%">
+                Make a mote of Client ID, Client Secret Key and Application Permissions.
+            </p>              
+        </li>
+        <li>
+            <p style="width:80%">
+                Next select Mobile tab from the left and iOS Bundle Identifier in iOS Settings and click Update
+            </p>              
+        </li>
+        <li>
+            <p style="width:80%">
+                Copy the newly created iOS Bundle Identifier and the application id.
+            </p>              
+        </li>
+         <li>
+            <p style="width:80%">
+                Download the LinkedIn sdk framework from  <a href="https://developer.linkedin.com/docs/ios-sdk">https://developer.linkedin.com/docs/ios-sdk</a> 
+                Copy LinkedIn-SDK.framework folderinto project folder
+            </p>              
+        </li>
+         <li>Change Info.plist file as shown below
+            <pre class="brush: java">
+	&lt;key&gt;LIAppId&lt;/key&gt;
+	&lt;string&gt;xxxxxx&lt;/string&gt;
+	&lt;key&gt;CFBundleURLTypes&lt;/key&gt;
+	&lt;array&gt;
+		&lt;dict&gt;
+			&lt;key&gt;CFBundleURLSchemes&lt;/key&gt;
+			&lt;array&gt;
+				&lt;string&gt;lixxxxxx&lt;/string&gt;
+			&lt;/array&gt;
+		&lt;/dict&gt;
+	&lt;/array&gt;
+	&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;
+	&lt;dict&gt;
+		&lt;key&gt;NSExceptionDomains&lt;/key&gt;
+		&lt;dict&gt;
+			&lt;key&gt;linkedin.com&lt;/key&gt;
+			&lt;dict&gt;
+				&lt;key&gt;NSExceptionAllowsInsecureHTTPLoads&lt;/key&gt;
+				&lt;true/&gt;
+				&lt;key&gt;NSIncludesSubdomains&lt;/key&gt;
+				&lt;true/&gt;
+				&lt;key&gt;NSExceptionRequiresForwardSecrecy&lt;/key&gt;
+				&lt;false/&gt;
+			&lt;/dict&gt;
+		&lt;/dict&gt;
+	&lt;/dict&gt;
+	&lt;key&gt;LSApplicationQueriesSchemes&lt;/key&gt;
+	&lt;array&gt;
+		&lt;string&gt;linkedin&lt;/string&gt;
+		&lt;string&gt;linkedin-sdk2&lt;/string&gt;
+		&lt;string&gt;linkedin-sdk&lt;/string&gt;
+	&lt;/array&gt;
+
+            </pre> 
+        </li>
+       <li>AppDelegate.m file code is as shown below
+            <pre class="brush: java">
+#import "AppDelegate.h"
+#import <linkedin-sdk/LISDK.h>
+
+@interface AppDelegate ()
+
+@end
+
+@implementation AppDelegate
+
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Override point for customization after application launch.
+    return YES;
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application {
+    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    if ([LISDKCallbackHandler shouldHandleUrl:url]) {
+        return [LISDKCallbackHandler application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    }
+    return YES;
+}
+
+@end
+
+            </pre> 
+        </li>
+           <li>ViewController.m file code is as shown below
+            <pre class="brush: java">
+#import "ViewController.h"
+#import <linkedin-sdk/LISDK.h>
+#import <Foundation/Foundation.h>
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)btnLoginTapped:(id)sender
+{
+    NSArray *permissions = [NSArray arrayWithObjects:LISDK_BASIC_PROFILE_PERMISSION, nil];
+    
+    [LISDKSessionManager createSessionWithAuth:permissions state:nil showGoToAppStoreDialog:YES successBlock:^(NSString *returnState){
+        NSLog(@"%s","success called!");
+        LISDKSession *session = [[LISDKSessionManager sharedInstance] session];
+        NSLog(@"Session  : %@", session.description);
+        
+        [[LISDKAPIHelper sharedInstance] getRequest:@"https://api.linkedin.com/v1/people/~"
+                                            success:^(LISDKAPIResponse *response) {
+                                                
+                                                NSData* data = [response.data dataUsingEncoding:NSUTF8StringEncoding];
+                                                NSDictionary *dictResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                                                
+                                                NSString *authUsername = [NSString stringWithFormat: @"%@ %@", [dictResponse valueForKey: @"firstName"], [dictResponse valueForKey: @"lastName"]];
+                                                NSLog(@"Authenticated user name  : %@", authUsername);
+                                                [self.lblAuthenticatedUser setText: authUsername];
+                                                
+                                            } error:^(LISDKAPIError *apiError) {
+                                                NSLog(@"Error  : %@", apiError);
+                                            }];
+    } errorBlock:^(NSError *error) {
+        NSLog(@"Error called  : %@", error);
+    }];
+}
+@end
+            </pre> 
+        </li>
+</ol> 
+</div>
+    </body>
+</html>    

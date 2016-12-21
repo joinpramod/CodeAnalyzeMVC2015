@@ -1,0 +1,180 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+               This articles explains about validating if username alredy exists or if username is already taken at client side without page refresh or 
+                postback so that user is updated with result quickly. We can do this in 2 ways<br />
+                1. Remote Validation <br />
+                2. Jquery
+            </p>            
+        </li>
+        </ol>
+     <b style="font-size:18px">1. Remote Validation</b>
+    <ol>
+         <li>
+            
+            <p style="width:80%">
+              Lets see how we can do this using Remote validation, model looks something like below where you can see we can various conditional validations,
+                we have this validation below as [Remote("IsUsernameAvailable", "Validation")], this is remote validation where in we mention to call Validation
+                controller and IsUsernameAvailable action method within controller. 
+            </p>   
+            <b>Model - User</b>
+<pre class="prettyprint" style="border: 1px dashed #ccc;overflow: auto;display: block;white-space: pre;font-size:14px">
+
+public class CreateUserModel
+{
+    [Required]
+    [StringLength(10, MinimumLength = 7, ErrorMessage = "Must be at least 7 characters long.")]
+    [Remote("IsUsernameAvailable", "Validation")]
+    [RegularExpression(@"(\S)+", ErrorMessage = "White space is not allowed.")]
+    [Editable(true)]
+    public override string UserName { get; set; }
+}
+
+</pre>                
+        </li>
+
+
+          <li>
+            <p style="width:80%">
+                Lets take a look at the Controller which handles the remote validation request as shown, see comments for more details on the code if available
+            </p> 
+            <b>Controller</b>
+<pre class="prettyprint" style="border: 1px dashed #ccc;overflow: auto;display: block;white-space: pre;font-size:14px">
+
+public class ValidationController : Controller 
+{
+    public JsonResult IsUsernameAvailable(string Username) {
+        //Add your logic to check if username is taken by querying db or whatever..
+    }
+}
+
+</pre>                
+        </li>
+
+           <li>
+            <p style="width:80%">
+               Also make sure you the following configurations in web.config file which is needed for client side validation in case if you don't have.
+            </p>  
+            <b>web.config</b>
+<pre class="prettyprint" style="border: 1px dashed #ccc;overflow: auto;display: block;white-space: pre;font-size:14px">
+
+&lt;appSettings&gt;
+    &lt;add key="ClientValidationEnabled" value="true" /&gt;
+    &lt;add key="UnobtrusiveJavaScriptEnabled" value="true" /&gt;
+&lt;/appSettings&gt;
+
+</pre>                
+        </li>
+
+        <li>
+            <p style="width:80%">
+             Here is the View code 
+            </p>  
+            <b>View</b>
+<pre class="prettyprint" style="border: 1px dashed #ccc;overflow: auto;display: block;white-space: pre;font-size:14px">
+    
+@using (Html.BeginForm()) {
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true)
+
+    &lt;fieldset&gt;
+        &lt;legend&gt;PersonalDetail&lt;/legend&gt;
+        &lt;div&gt;
+            Username
+        &lt;/div&gt;
+        &lt;div&gt;
+            @Html.EditorFor(model =&gt; model.Username)
+            @Html.ValidationMessageFor(model =&gt; model.Username)
+        &lt;/div&gt;
+
+        &lt;p&gt;
+            &lt;input type="submit" value="Create" /&gt;
+        &lt;/p&gt;
+    &lt;/fieldset&gt;
+}     
+
+</pre>                
+        </li>
+        </ol>
+
+    <b style="font-size:18px">2. jQuery method</b>
+
+    <ol>
+  <li>
+            <p style="width:80%">
+             Now lets see how we can achieve the same without Remote validation and with JQuery, suppose if we do not have any model and we are only getting inputs
+                from user. Here is a Controller Action method
+            </p>  
+            <b>Controller</b>
+<pre class="prettyprint" style="border: 1px dashed #ccc;overflow: auto;display: block;white-space: pre;font-size:14px">
+
+[AllowAnonymous]
+public string IsUsernameTaken(string input)
+{
+    // add your logic to check username and return something on scenarios if exists and if dont exists
+    bool ifTaken = true;
+    if (ifTaken == false)
+    {
+        return "Taken";
+    }
+    if (ifTaken == true)
+    {
+        return "Not Taken";
+    }
+    return ifTaken;
+}
+
+</pre>                
+        </li>
+          <li>
+            <p style="width:80%">
+             Here is the View where we call the above method from jquery
+            </p>  
+            <b>View</b>
+<pre class="prettyprint" style="border: 1px dashed #ccc;overflow: auto;display: block;white-space: pre;font-size:14px">
+    
+@model MvcApplication1.Models.RegisterModel
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+        &lt;ol&gt;
+            &lt;li&gt;
+                @Html.LabelFor(m =&gt; m.UserName)
+                @Html.TextBoxFor(m =&gt; m.UserName)
+                &lt;span id="result" /&gt;
+            &lt;/li&gt;
+        &lt;/ol&gt;
+        &lt;input type="submit" value="Register" /&gt;
+}
+
+@section Scripts 
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    &lt;script type="text/jscript"&gt;
+        $('#UserName').blur(function () {
+            var url = "/Account/IsUsernameTaken";
+            var name = $('#UserName').val();
+            $.get(url, { input: name }, function (data) {
+                if (data == "Taken") {
+                    $("#result").html("&lt;span&gt;Taken&lt;/span&gt;");
+                }
+                else {
+                    $("#result").html("&lt;spa&gt;Not Taken&lt;/span&gt;");
+                }
+            });
+        })
+    &lt;/script&gt;
+}
+
+</pre>                
+        </li>
+</ol> 
+</div>
+   

@@ -1,0 +1,105 @@
+﻿
+<html>
+    <body>
+<script type="text/javascript" src="sCodeJava.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="sCodeCSS.css" />
+    <link type="text/css" rel="stylesheet" href="CodeDecorate.css" />
+
+        Create tabular layout in objective-C for iOS app using XCode to show images
+        Create grid layout in objective-C for iPhone app using XCode to show images
+       
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                We will use UICollectionView to create grid like structure or table like structure in iOS app.
+            </p>
+        </li>
+        <li>
+            <p style="width:80%">
+                Create a XCode project and name it as per your convenience.
+            </p>
+       </li>
+        <li>
+            <p style="width:80%">
+                In Main.Storyboard, delete the default view controller and add a new CollectionView controller from the object library.<br />
+                Change the size of the cell if needed by selecting the cell that appears ofter adding the view.  
+            </p>
+        </li>
+        <li>
+            <p style="width:80%">
+                Insert image inside the cell by adding image view controller and label it if needed.
+            </p>
+        </li>
+        <li>
+            <p style="width:80%">
+               Create a new class inherited from UICollectionViewCell to customize the cell as needed. Lets call it as SubCell. Change the class of the cell to this new class SubCell and set reuseidentifier as cell.    
+            </p>
+        </li>
+        <li>
+            <p style="width:80%">
+               Create another new class inherited from UICollectionViewController. Lets call it CustomViewController. Select view controller in the storyboard and change its class from default to this CustomViewController. Delete existing .m and .h files.
+            </p>
+
+        </li>
+       
+        
+         <li>
+            <p style="width:80%">           
+              Implement methods like UICollectionViewDataSource in CustomViewController.h file to use UICollectionView methods.
+            Create an mutable array to store objects for cell and a mutable dictionary for each object in CustomViewController.h file
+            </p>
+            <pre class="brush: java">
+#import  &lt;UIKit/UIKit.h&gt;
+
+@interface CustomViewController : UICollectionViewController &lt;UICollectionViewDataSource&gt;
+
+@property (nonatomic,strong) NSMutableArray *arrImages;
+@property (nonatomic,strong) NSMutableDictionary *dictImages;
+
+@end
+            </pre> 
+        </li>
+
+
+         <li>
+            <p style="width:80%">SubCell.h file code will look like below</p>
+            <pre class="brush: java">
+@interface SubCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutletUIImageView *ivImage;
+@property (weak, nonatomic) IBOutletUILabel *lblPosition;
+@end
+            </pre> 
+          </li>
+
+
+        <li>
+        <p style="width:80%">           
+        Also implement NumberOfItemsInSection, cellForItemAtIndexPath in CustomViewController.m file.            
+        </p>         
+
+       <pre class="brush: java">
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return [arrImages count];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    SubCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];    
+    cell.lblIndex.text=[[arrImages objectAtIndex:[indexPath row]]valueForKey:@"Info"];    
+    UIImage *image=[UIImage imageNamed:[[arrImages objectAtIndex:[indexPath row]]valueForKey:@"imageFile"]];    
+    [cell.ivCartoon setImage:image];    
+    return cell;
+}
+            </pre>
+        </li>
+
+</ol>
+    
+  
+
+</div>
+        </body>
+    </html>    

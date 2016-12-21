@@ -1,0 +1,92 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    
+    <ol>
+        <li>
+            <p style="width:80%">
+                In this article we will be binding JSON data to datatable plugin in AngularJS. It is considered that we have a controller 
+                returning JSON result containing a list of objects. We will be using jquery widgets. Take a look at the View code below and
+                comments in between for more understanding
+            </p>  
+<pre class="brush: java">
+
+    @section scripts {  
+        &lt;!--link all jquery widget css and javascripts as shown below--&gt;
+       &lt;link href = "~/Content/jqx.base.css" rel="stylesheet" / &gt;  
+       &lt;script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"&gt;&lt;/script&gt; 
+       &lt;script src = "~/Scripts/jqxcore.js"&gt;&lt;/script&gt; 
+       &lt;script src = "~/Scripts/jqxangular.js"&gt;&lt;/script&gt;
+       &lt;script src = "~/Scripts/jqxbuttons.js"&gt;&lt;/script&gt; 
+       &lt;script src = "~/Scripts/jqxscrollbar.js"&gt;&lt;/script&gt; 
+       &lt;script src = "~/Scripts/jqxdata.js"&gt;&lt;/script&gt; 
+       &lt;script src = "~/Scripts/jqxdatatable.js"&gt;&lt;/script&gt; 
+       &lt;script type = "text/javascript"&gt;
+            var myApp = angular.module('myApp', ['jqwidgets']);
+            myApp.controller('DataTableCtrl', ['$scope', function ($scope) {
+                $scope.gridSettings = {
+                    width: 1000,
+                    pageable: true,
+                    pagerButtonsCount: 10,
+                    source: new $.jqx.dataAdapter({
+                        dataType: "json",
+                        dataFields: [{
+                            name: 'EmpName',
+                            type: 'string'
+                        }, {
+                            name: 'EmpEmail',
+                            type: 'string'
+                        }, {
+                            name: 'EmpZipCode',
+                            type: 'string'
+                        }, {
+                            name: 'EmpPhone',
+                            type: 'string'
+                        }, {
+                            name: 'EmpManager',
+                            type: 'string'
+                        }],
+                        id: 'EmpID',
+                        url: 'GetEmployeeList'
+                        &lt;!--This is the Action in Controller--&gt;
+                    }),
+                    columnsResize: true,
+                    columns: [{
+                        text: 'Name',
+                        dataField: 'EmpName',
+                        width: 200
+                    }, {
+                        text: 'Email',
+                        dataField: 'EmpEmail',
+                        width: 200
+                    }, {
+                        text: 'ZipCode',
+                        dataField: 'EmpZipCode',
+                        width: 200
+                    }, {
+                        text: 'Phone',
+                        dataField: 'EmpPhone',
+                        width: 200
+                    }, {
+                        text: 'Manager',
+                        dataField: 'EmpManager',
+                        width: 200
+                    }]
+                };
+            }]);
+       &lt;/script&gt;  
+    } 
+
+  &lt;div ng-app="myApp" ng-controller="DataTableCtrl"&gt;  
+  &lt;jqx-data-table jqx-settings="gridSettings"&gt;&lt;/jqx-data-table&gt; 
+  &lt;/div&gt;  
+</pre>           
+        </li>
+   
+
+</ol> 
+</div>
+   

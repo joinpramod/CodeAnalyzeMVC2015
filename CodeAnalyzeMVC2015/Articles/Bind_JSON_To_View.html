@@ -1,0 +1,63 @@
+﻿<html>
+    <body>
+
+ 
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            Consider we have an Employee model with Name and Company as its properties
+              <pre class="brush: java">
+public class EmployeeModel
+{
+    public string Name { get; set; } 
+    public string Company { get; set; }
+}
+        </pre>            
+        </li>
+         <li>
+         A sample controller with Post action method returning JsonResult 
+         <pre class="brush: java">
+public class HomeController : Controller
+{
+    // GET: Home
+    public ActionResult Index()
+    {
+        return View();
+    }
+ 
+    [HttpPost]
+    public JsonResult PostMethod(string name)
+    {
+        EmployeeModel emp = new EmployeeModel();
+        emp = GetEmployeeData();  // write your logic to get data from database
+        return Json(emp);
+    }
+}
+        </pre>            
+        </li>
+        <li>
+         A sample view to read JSONResult sent as response from controller and bind it to View that will be displayed to the user.
+        This uses jquery to post data to controller and display the JSONResult result sent from controller
+         <pre class="brush: java">
+&lt;input type="text" id="txtName" placeholder="Enter your name"/&gt;
+&lt;input type="button" id="btnGet" value="Get company name"/&gt;
+&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    $(function () {
+        $("#btnGet").click(function () {
+            $.post("/Home/PostMethod",
+                { name: $("#txtName").val() },
+                function (response) {
+                    alert("Hello: " + response.Name + " .\n Your employer name is: " + response.Company);
+                }
+                );
+        });
+    });
+&lt;/script&gt;
+        </pre>            
+        </li>
+        
+</ol> 
+</div>
+    </body>
+</html>    

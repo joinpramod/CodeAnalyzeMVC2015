@@ -1,0 +1,109 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                To implement this we need to install jQuery unobtrusive ajax Nuget Package i.e. Microsoft.jquery.Unobtrusive.Ajax.
+                After this we should find jquery.unobtrusive-ajax.js and jquery.unobtrusive-ajax.min.js in the scripts folder of the project.
+                Considering we have required controller to accept the from request post and handle it, we will look at the view directly to implement this, please looks at the comments for more better understanding
+            </p>  
+<pre class="brush: java">
+@model AjaxBeginFormwithMVC.Models.EmpModel  
+  
+&lt;script src="~/Scripts/jquery-1.10.2.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jquery.unobtrusive-ajax.js"&gt;&lt;/script&gt;  
+
+&lt;div id="divEmp"&gt;  
+  
+    //make sure we pass the div id here while beginning the form, we need to mention Ajax related configurations here.
+    //With this it means the div portion only is posted to server and not entire page and hence avoiding whole refresh and updating to Ajax
+    //EmpDetails is controller here
+
+    @using (Ajax.BeginForm("EmpDetails", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divEmp" }))  
+    {  
+        @Html.AntiForgeryToken()  
+  
+        &lt;div&gt;    
+   
+            @Html.ValidationSummary(true, "")  
+
+            &lt;div&gt;  
+                @Html.LabelFor(model =&gt; model.FirstName)  
+                &lt;div&gt;  
+                    @Html.EditorFor(model =&gt; model.FirstName)  
+                    @Html.ValidationMessageFor(model =&gt; model.FirstName, "")  
+                &lt;/div&gt;  
+            &lt;/div&gt;  
+  
+            &lt;div&gt;  
+                @Html.LabelFor(model =&gt; model.LastName)  
+                &lt;div&gt;  
+                    @Html.EditorFor(model =&gt; model.LastName)  
+                    @Html.ValidationMessageFor(model =&gt; model.LastName, "")  
+                &lt;/div&gt;  
+            &lt;/div&gt;  
+  
+            &lt;div&gt;  
+                @Html.LabelFor(model =&gt; model.Address)  
+                &lt;div&gt;  
+                    @Html.EditorFor(model =&gt; model.Address)  
+                    @Html.ValidationMessageFor(model =&gt; model.Address, "")  
+                &lt;/div&gt;  
+            &lt;/div&gt;  
+  
+            &lt;div&gt;  
+                    &lt;input type="submit" value="Save"/&gt;  
+            &lt;/div&gt;  
+       
+            &lt;div&gt;  
+                &lt;div&gt;  
+                   @ViewBag.Records  
+                &lt;/div&gt;  
+            &lt;/div&gt;  
+  
+        &lt;/div&gt;  
+    }  
+&lt;/div&gt;  
+&lt;script src="~/Scripts/jquery.validate.min.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jquery.validate.unobtrusive.min.js"&gt;&lt;/script&gt;  
+
+</pre>           
+        </li>
+         <li>
+            <p style="width:80%">
+                <b>IEnumerable</b><br />
+            </p> 
+<pre class="brush: java">
+
+</pre>                
+        </li>
+
+
+          <li>
+            <p style="width:80%">
+                <b>IQueryable</b><br />
+            </p> 
+<pre class="brush: java">
+</pre>                
+        </li>
+
+           <li>
+            <p style="width:80%">
+                <b>ICollection</b><br />
+            </p> 
+<pre class="brush: java">
+
+</pre>                
+        </li>
+
+              <li>
+            <p style="width:80%">
+                <b>ICollection</b><br />
+            </p> 
+<pre class="brush: java">
+
+</pre>                
+        </li>
+
+</ol> 
+</div>
+   

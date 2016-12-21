@@ -1,0 +1,106 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+ 
+    Following are the steps to use Google maps SDK in Swift on iOS app 
+
+    <ol>
+        <li>
+            <p style="width:80%">
+                Create an XCode project and integrate Google Maps SDK for iOS by following the instructions here https://developers.google.com/maps/premium/ios-get-started#add_the_sdk_to_your_project 
+            </p>
+        </li>
+        <li>
+            <p style="width:80%">
+            Add bridging header file to the swift project. With this Objective C code of GoogleMaps.framework can be used in swift application. Add this line in Bridging header file     
+            </p> 
+            <pre class="prettyprint" style="font-size:15px">
+#import &lt;GoogleMaps/GoogleMaps.h&gt; 
+            </pre>
+                 
+        </li>
+        <li>
+            <p style="width:80%">
+                Use the code below in AppDelegate.swift file
+            </p>
+            <pre class="prettyprint" style="font-size:15px">
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool 
+{
+    // Override point for customization after application launch.GMSServices.provideAPIKey("<API_KEY>")
+    return true
+} 
+            </pre>
+        </li>
+        <li>
+            <p style="width:80%">
+                Use the code below in AppDelegate.swift file
+            </p>
+            <pre class="prettyprint" style="font-size:15px">
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool 
+{
+    // Override point for customization after application launch.GMSServices.provideAPIKey("<API_KEY>")
+    return true
+} 
+            </pre>
+        </li>
+        <li>
+            <p style="width:80%">
+                Add the below code in ViewController.swift
+            </p>
+            <pre class="prettyprint" style="font-size:15px">
+override func viewDidLoad()
+{
+	let camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(18.300000, longitude: 78.879456, zoom: 10.0)
+	vwGMap = GMSMapView.mapWithFrame(self.view.frame, camera: camera)
+	vwGMap.camera = camera
+} 
+            </pre>
+        </li>
+        <li>
+            <p style="width:80%">
+                Use the below code to get user location
+            </p>
+            <pre class="prettyprint" style="font-size:15px">
+var mapsManager = CLLocationManager()
+var vwGMap = GMSMapView()
+
+override func viewDidLoad()
+{
+    super.viewDidLoad()
+    mapsManager.delegate = self
+    mapsManager.desiredAccuracy = kCLLocationAccuracyKilometer
+    mapsManager.distanceFilter = 1000 //minimum distance to be moved by device before update
+    mapsManager.requestWhenInUseAuthorization()     	// permission to use location service
+    mapsManager.requestAlwaysAuthorization()  		// permission to use location when the app is run future
+    mapsManager.startUpdatingLocation() 	  		// Update user location		
+    self.view = vwGMap 				       // Make GMSMapView the current view
+}
+
+func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus)
+{
+    if (status == CLAuthorizationStatus.AuthorizedWhenInUse)
+    {
+        vwGMap.myLocationEnabled = true  //to get user’s current location
+    }
+}
+
+func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+{
+    let newLocation = locations.last
+    vwGMap.camera = GMSCameraPosition.cameraWithTarget(newLocation!.coordinate, zoom: 15.0)
+    vwGMap.settings.myLocationButton = true
+    self.view = self.vwGMap
+
+   //Or 
+   // To create a marker at current location use the below code
+   let marker = GMSMarker()
+   marker.position = CLLocationCoordinate2DMake(newLocation!.coordinate.latitude, newLocation!.coordinate.longitude)
+   marker.map = self.vwGMap
+
+}
+
+            </pre>
+        </li>
+</ol>
+    
+  
+
+</div>

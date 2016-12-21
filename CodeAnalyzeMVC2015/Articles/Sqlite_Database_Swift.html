@@ -1,0 +1,108 @@
+﻿<html>
+    <body>
+
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                FMDB means Flying Meat Database. Download FMDB from <a href="https://github.com/ccgus/fmdb">https://github.com/ccgus/fmdb</a> .  Unzip downloaded file copy to src -> fmdb folder of the project.         
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                While we add the database, SQLite library is used to load Objective-C libraries. Link libsqlite3.0.dylib library to the project in XCode            
+            </p> 
+        </li>
+         <li>
+            <p style="width:80%">
+                FMDatabase files do not support ARC so set complier flag for all FMDatabase files. We use -fno-objc-arc flag to disable ARC from FMDatabase Files.
+            </p> 
+        </li>
+         <li>
+            <p style="width:80%">
+                Add compiler flag -fno-objc-arc to FMDB library files by selecting project then select Main target in middle panel and then select build phase from tabs. Now expand arrow next to compile sources
+            </p> 
+        </li>
+        <li>
+            <p style="width:80%">
+                FMDatabase is in Objective C so to use it in swift we will need bridging header file in our project.<br />
+	            a. Go To File -> New -> file (select header file)<br />
+	            b. Use the [ProjectName]-Bridging-Header.h naming convention.<br />
+	            c. Go to Build Settings tab -> Swift Compiler section<br />
+	               &nbsp;&nbsp; 1) Install Objective-C Compatibility Header = Yes<br />
+	               &nbsp;&nbsp; 2) Objective-C bridging Header = [name of bridging header file]<br />
+
+            </p> 
+        </li>
+          <li>
+            <p style="width:80%">
+                If Sqlite database is already created or if its existing  then we will need the name of the database file. If its not then create a database. Simplest way is to create from Mozilla SQLite Manager add-on for browser. Then create a sample table if needed and add some records into it.
+            </p> 
+        </li>
+          <li>
+            <p style="width:80%">
+                Copy Database to project directory. After this database file would have been added to project. But to store data into it we need to copy database file to the document folder of our application on real device.
+            </p> 
+        </li>
+         <li>
+            <p style="width:80%">
+                Sample connection manager class to connect to sqlite database and get data is as follows, please see the comments for more info
+            </p> 
+        </li>
+
+
+
+        <li>
+            <pre class="brush: java">
+import UIKit
+
+//let create a class called ConnManager which will be a singleton class basically and then create an instance of it
+let varConnManager = ConnManager ()
+
+class ConnManager: NSObject {
+    
+    var database: FMDatabase? = nil
+
+    class func getInstance() -> ConnManager
+    {
+        if(varConnManager.database == nil)
+        {
+	//we need to pass the path of the SQLite database file in the project
+            varConnManager.database = FMDatabase(path: "Employee.sqlite")
+        }
+       //return connection object
+        return varConnManager
+    }
+    
+    func getAllStudentData() -> NSMutableArray {
+	//open databse connection
+        varConnManager.database!.open()
+        let resultSet: FMResultSet! = varConnManager.database!.executeQuery("SELECT * FROM emp_Table", withArgumentsInArray: nil)
+        let varEmpInfo : NSMutableArray = NSMutableArray()
+        if (resultSet != nil) {
+            while resultSet.next() {
+                let empInfo : EmployeeInfo = EmployeeInfo()
+                empInfo.Name = resultSet.stringForColumn("Name")
+                empInfo.Marks = resultSet.stringForColumn("Company")
+                empInfo.addObject(studentInfo)
+            }
+        }
+        varConnManager.database!.close()
+        return varEmpInfo
+    }
+}
+
+            </pre> 
+        </li>
+
+
+
+
+</ol>
+    
+  
+
+</div>
+        </body>
+    </html>    

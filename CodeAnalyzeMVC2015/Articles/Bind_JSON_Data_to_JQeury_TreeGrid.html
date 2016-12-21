@@ -1,0 +1,97 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                This article explains about binding a jquery tree grid jqxTreeGrid to json data in asp.net mvc.
+                It is considered here that you have controller which is returning a data collection in JSON data.
+                Before starting download the required libraries from <a href="http://www.jqwidgets.com/download/" >jqxwidgets</a> and add it to the View as shown below
+            </p>  
+<pre class="brush: java">
+&lt;link href="~/Content/jqx.base.css" rel="stylesheet" /&gt;  
+&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jquery-1.10.2.min.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jqxcore.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jqxdata.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jqxbuttons.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jqxtreegrid.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jqxdatatable.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jqxscrollbar.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jqxangular.js"&gt;&lt;/script&gt;  
+</pre>           
+        </li>
+         <li>
+             Main thing here is hierarchy which is actually like primary key and foreign key in SQL. We need to define it properly to get the correct tree structure.
+             In the below example employeeid and manager are assigned in hierarchy section
+
+<pre class="brush: java">
+@model  IEnumerable&lt;MyProject.Employees&gt;  
+
+@section scripts {  
+  
+    &lt;link rel="stylesheet" href="http://jqwidgets.com/jquery-widgets-demo/jqwidgets/styles/jqx.base.css" type="text/css" /&gt;  
+  
+    &lt;script type="text/javascript" src="http://jqwidgets.com/jquery-widgets-demo/scripts/jquery-1.11.1.min.js"&gt;&lt;/script&gt;  
+    &lt;script type="text/javascript" src="http://jqwidgets.com/jquery-widgets-demo/jqwidgets/jqxcore.js"&gt;&lt;/script&gt;  
+    &lt;script type="text/javascript" src="http://jqwidgets.com/jquery-widgets-demo/jqwidgets/jqxdata.js"&gt;&lt;/script&gt;  
+    &lt;script type="text/javascript" src="http://jqwidgets.com/jquery-widgets-demo/jqwidgets/jqxbuttons.js"&gt;&lt;/script&gt;  
+    &lt;script type="text/javascript" src="http://jqwidgets.com/jquery-widgets-demo/jqwidgets/jqxscrollbar.js"&gt;&lt;/script&gt;  
+    &lt;script type="text/javascript" src="http://jqwidgets.com/jquery-widgets-demo/jqwidgets/jqxdatatable.js"&gt;&lt;/script&gt;  
+    &lt;script type="text/javascript" src="http://jqwidgets.com/jquery-widgets-demo/jqwidgets/jqxtreegrid.js"&gt;&lt;/script&gt;  
+     
+  
+    &lt;script type="text/javascript"&gt;
+        $(document).ready(function () {
+
+            var source =
+            {
+                dataType: "json",
+                dataFields: [
+                    { name: 'EmployeeID', type: 'number' },
+                    { name: 'FirstName', type: 'string' },
+                    { name: 'LastName', type: 'string' },
+                    { name: 'Title', type: 'string' },
+                    { name: 'Manager', type: 'number' },
+                    { name: 'City', type: 'string' }
+
+                ],
+                hierarchy:
+                {
+                    keyDataField: { name: 'EmployeeID' },
+                    parentDataField: { name: 'Manager' }
+                },
+                id: 'EmployeeID',
+                url: "Home/GetEmployees"
+            };
+            var dataAdapter = new $.jqx.dataAdapter(source);
+
+            // call jqxTreeGrid  
+            $("#treeGrid").jqxTreeGrid(
+            {
+                width: 700,
+                source: dataAdapter,
+                pageable: true,
+                sortable: true,
+                ready: function () {
+                    $("#treeGrid").jqxTreeGrid('expandRow', '2');
+                },
+                //choose the columns you wish to display on screen   
+                columns: [
+                  { text: 'First Name', dataField: 'FirstName', width: 150 },
+                  { text: 'Last Name', dataField: 'LastName', width: 150 },
+                  { text: 'Title', dataField: 'Title', width: 200 },
+                  { text: 'City', dataField: 'City', width: 200 }
+                ]
+            });
+        });
+    &lt;/script&gt;  
+}  
+
+&lt;div id="treeGrid"&gt;&lt;/div&gt; 
+    
+    
+     
+</pre>                
+</li>
+</ol> 
+</div>
+   

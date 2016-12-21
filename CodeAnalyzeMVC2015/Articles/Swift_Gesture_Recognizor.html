@@ -1,0 +1,129 @@
+﻿<html>
+    <body>
+
+
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                With modern mobile appliacion development, there is a need to create unique gestures or can be said as unser finger action types
+                and to further identify them and use them. Some of the common action types are<br />
+                Tap<br />
+                Long pressed<br />
+                Pinch<br />
+                Rotate<br />
+                Pan<br />
+                Swipe<br />
+                To help identify these actions we have UIGestureRecognizer in Swift. We use this class to implement the gesture.<br />
+                Follow the steps
+            </p>
+        </li>
+        <li>
+            <p style="width:80%">
+                Create a XCode project and name it as per your convenience and select Swift as language and device iPhone .
+            </p>
+       </li>
+        <li>
+            <p style="width:80%">
+                Create a layout and add a view. Connect this with ViewController.swift file. Whole code is shown below
+                
+            </p>
+        </li>
+         <li>
+
+            <pre class="brush: java">
+import UIKit
+
+class ViewController: UIViewController
+{
+   
+    //view for gesture recognition and IBOutlet creation
+    @IBOutlet weak var actionView: UIView!
+    
+    //initial 2 positions
+    var posX:Double = 0;
+    var posY:Double = 0;
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        self.initializeGestureRecognizer()
+    }
+    
+    func initializeGestureRecognizer()
+    {
+        //Tap Gesture 
+        var tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("recognizeTapGesture:"))
+        actionView.addGestureRecognizer(tapGesture)
+        
+        //Long Press Gesture 
+		var longPressedGesture: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: Selector("recognizeLongPressedGesture:"))
+        actionView.addGestureRecognizer(longPressedGesture)
+
+        //Rotate Gesture 
+        var rotateGesture: UIRotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: Selector("recognizeRotateGesture:"))
+        actionView.addGestureRecognizer(rotateGesture)
+
+        //Pinch Gesture 
+        var pinchGesture: UIPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: Selector("recognizePinchGesture:"))
+        actionView.addGestureRecognizer(pinchGesture)
+
+        //Pan Gesture 
+        var panGesture: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: Selector("recognizePanGesture:"))
+        panGesture.minimumNumberOfTouches = 1
+        panGesture.maximumNumberOfTouches = 1
+        actionView.addGestureRecognizer(panGesture)
+    }
+    
+    func recognizeTapGesture(sender: UIGestureRecognizer)
+    {
+        var clrRed: CGFloat = CGFloat(rand()) / CGFloat(RAND_MAX)
+        var clrGreen: CGFloat = CGFloat(rand()) / CGFloat(RAND_MAX)
+        var clrBlue: CGFloat = CGFloat(rand()) / CGFloat(RAND_MAX)
+        actionView.backgroundColor = UIColor(red: clrRed, green: clrGreen, blue: clrBlue, alpha: 1)
+    }
+    
+    func recognizeLongPressedGesture(sender: UILongPressGestureRecognizer)
+    {
+        var _red: CGFloat = CGFloat(rand()) / CGFloat(RAND_MAX)
+        var _green: CGFloat = CGFloat(rand()) / CGFloat(RAND_MAX)
+        var _blue: CGFloat = CGFloat(rand()) / CGFloat(RAND_MAX)
+        actionView.backgroundColor = UIColor(red: clrRed, green: clrGreen, blue: clrBlue, alpha: 1)
+    }
+    
+    func recognizeRotateGesture(sender: UIRotationGestureRecognizer)
+    {
+        sender.view!.transform = CGAffineTransformRotate(sender.view!.transform, sender.rotation)
+        sender.rotation = 0
+    }
+    
+    func recognizePinchGesture(sender: UIPinchGestureRecognizer)
+    {
+        sender.view!.transform = CGAffineTransformScale(sender.view!.transform,
+            sender.scale, sender.scale)
+        sender.scale = 1
+    }
+    
+    func recognizePanGesture(sender: UIPanGestureRecognizer)
+    {
+        var translate = sender.translationInView(self.view)
+        sender.view!.center = CGPoint(x:sender.view!.center.x + translate.x,
+            y:sender.view!.center.y + translate.y)
+        sender.setTranslation(CGPointZero, inView: self.view)
+    }
+
+}
+
+            </pre> 
+        </li>
+
+
+
+
+</ol>
+    
+  
+
+</div>
+        </body>
+    </html>    

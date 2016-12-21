@@ -1,0 +1,163 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    
+    <ol>
+        <li>
+            <p style="width:80%">
+                Consider we have a webapi with a controller to accpet the uplaoded file and do the required job. So from the View we need to call this web api 
+                to upload the file and we will do this on clinet side with angularjs and HTML5 uploader controler. Here the code for the View, take a 
+                look at the comments in between for more understanding<br />
+                <b>Html page or View</b><br />
+            </p>  
+<pre class="brush: java">
+&lt;head&gt;
+    &lt;!--Refer the angularjs basic scripts and also add reference to 2 java scripts UploadApp.js and FileUploder.js which will be creating later--&gt;
+    &lt;script src="../Script/angular1.3.8.js"&gt;&lt;/script&gt;  
+    &lt;script src="../Script/angular-route.js"&gt;&lt;/script&gt;  
+    &lt;script src="../UploadApp.js"&gt;&lt;/script&gt;  
+    &lt;script src="../FileUploder.js"&gt;&lt;/script&gt;  
+    &lt;&gt;  
+        .percent {  
+            position: absolute;  
+            width: 300px;  
+            height: 14px;  
+        }  
+  
+        .progress-bar {  
+            width: 300px;  
+            height: 14px;  
+            border: 1px solid #CCC;  
+        }  
+  
+        .uploaded {  
+            padding: 0;  
+            height: 14px;  
+        }  
+    &lt;/&gt;  
+&lt;/head&gt;  
+&lt;body ng-app="UploadApp" ng-controller="FileUploder"&gt;  
+    &lt;div&gt;  
+        &lt;table ="width:100%;border:solid;"&gt;  
+            &lt;tr&gt;  
+                &lt;td&gt;Select Files to Upload&lt;/td&gt;  
+                &lt;td&gt;  
+                    &lt;input type="file" ng-model-instant id="fileToUpload" onchange="angular.element(this).scope().setFiles(this)" /&gt;  
+                &lt;/td&gt;  
+            &lt;/tr&gt;  
+            &lt;tr&gt;  
+                &lt;td&gt;File Size&lt;/td&gt;    &lt;!--this is to show the size of the file--&gt;
+                &lt;td&gt;  
+                    &lt;div ng-repeat="file in files.slice(0)"&gt;  
+                        &lt;span ng-switch="file.size &gt; 1024*1024"&gt;  
+                            &lt;span ng-switch-when="true"&gt;{{file.size / 1024 / 1024 | number:2}} MB&lt;/span&gt;  
+                            &lt;span ng-switch-default&gt;{{file.size / 1024 | number:2}} kB&lt;/span&gt;  
+                        &lt;/span&gt;  
+                    &lt;/div&gt;  
+                &lt;/td&gt;  
+            &lt;/tr&gt;             
+            &lt;tr&gt;  
+                &lt;td&gt;  
+                    File Attach Status  
+                &lt;/td&gt;  
+                &lt;td&gt;{{AttachStatus}}&lt;/td&gt;  &lt;!--this is to show the status of files being attached, if the file is big then one can the progress here--&gt;
+            &lt;/tr&gt;  
+            &lt;tr&gt;  
+                &lt;td&gt;  
+                    &lt;input type="button" value="Upload" ng-click="fnUpload();" /&gt;  
+                &lt;/td&gt;  
+            &lt;/tr&gt;  
+        &lt;/table&gt;  
+    &lt;/div&gt;  
+
+</pre>           
+        </li>
+         <li>
+            <p style="width:80%">Here is the javascript code for upload
+                <b>UploadApp.js</b><br />
+            </p> 
+<pre class="brush: java">
+var UploadApp = angular.module('UploadApp', []);   
+</pre>                
+        </li>
+
+
+          <li>
+            <p style="width:80%">Lets add another javascript file and define a controller to handle the file upload<br />
+                <b>FileUploader.js</b><br />
+            </p> 
+<pre class="brush: java">
+MyApp.controller("FileUploder", ['$scope', '$http', '$timeout', '$window',    
+        function ($scope, $http, $location, $timeout, $window) {    
+            $scope.AttachStatus = "";    
+    }    
+    ]); 
+
+
+&lt;!--This event is to get the file details right after the file is selected for upload like file size, file name etc--&gt;
+$scope.setFiles = function (element) {  
+            $scope.$apply(function (scope) {  
+                $scope.AttachStatus = "";  
+                $scope.files = []  
+                for (var i = 0; i &lt; element.files.length; i++) {  
+                    $scope.files.push(element.files[i])  
+                }  
+                $scope.progressVisible = false  
+            });  
+        }
+
+
+
+&lt;!--Next set of functions are to call webapi and upload the file as shown below--&gt;
+$scope.fnUpload = function () {  
+            var fd = new FormData()  
+            for (var i in $scope.files) {  
+                fd.append("uploadedFile", $scope.files[i])  
+            }  
+            var xhr = new XMLHttpRequest();  
+            xhr.addEventListener("load", uploadComplete, false);  
+            xhr.open("POST", "http://mySerever/api/FileUploader/UploadFile", true);  
+            $scope.progressVisible = true;  
+            xhr.send(fd);  
+        }  
+      
+        function uploadComplete(evt) {  
+            $scope.progressVisible = false;  
+            if (evt.target.status == 201) {  
+                $scope.FilePath = evt.target.responseText;  
+                $scope.AttachStatus = "Upload Done";  
+                alert($scope.FilePath);  
+            }  
+            else {  
+                $scope.AttachStatus = evt.target.responseText;  
+            }  
+        }   
+
+
+</pre>                
+        </li>
+
+           <li>
+            <p style="width:80%">
+                <b>ICollection</b><br />
+            </p> 
+<pre class="brush: java">
+
+</pre>                
+        </li>
+
+              <li>
+            <p style="width:80%">
+                <b>ICollection</b><br />
+            </p> 
+<pre class="brush: java">
+
+</pre>                
+        </li>
+
+</ol> 
+</div>
+   

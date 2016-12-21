@@ -1,0 +1,82 @@
+﻿<div style="font-size:16px;width:100%;font-family:Calibri">
+    <ol>
+        <li>
+            <p style="width:80%">
+                This article explains about binding a jquery grid jqxgrid to json data using Angularjs in asp.net mvc.
+                It is considered here that you have controller which is returning a data collection in JSON data.
+                Before starting download the required libraries from <a href="http://www.jqwidgets.com/download/" >jqxwidgets</a> and add it to the View as shown below
+            </p>  
+<pre class="brush: java">
+&lt;link href="~/Content/jqx.base.css" rel="stylesheet" /&gt;  
+&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jquery-1.10.2.min.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jqxcore.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jqxdata.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jqxbuttons.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jqxgrid.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jqxgrid.selection.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jqxscrollbar.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jqxgrid.sort.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jqxgrid.columnsresize.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Scripts/jqxangular.js"&gt;&lt;/script&gt;  
+</pre>           
+        </li>
+         <li>
+             Look at the comments to get a better understanding of the code
+<pre class="brush: java">
+&lt;script type="text/javascript"&gt;
+    var app = angular.module('myApp', ['jqwidgets']);
+    app.controller('GridCtrl', function ($scope, $http) {
+
+        $scope.createWidget = false;
+        $http({
+
+            method: 'GET',
+            url: 'GetEmployees'
+        }).success(function (data, status) {
+
+            // prepare the data  
+            var source = {
+
+                datatype: "json",
+                datafields: [
+                    { name: 'EmployeeID', type: 'int' },
+                    { name: 'EmployeeName', type: 'string' },
+                    { name: 'EmployeeEmail', type: 'string' }
+                ],
+                id: 'id',
+                localdata: data
+            };
+
+            var dataAdapter = new $.jqx.dataAdapter(source);
+            $scope.gridSettings =
+            {
+                width: 800,
+                source: dataAdapter,
+                columnsresize: true,
+
+                columns: [
+                    { text: 'Employee ID', datafield: 'EmployeeID', width: 250 },
+                    { text: 'Employee Name', datafield: 'EmployeeName', width: 250 },
+                    { text: 'Employee Email', datafield: 'EmployeeEmail', width: 250 }
+                ]
+
+            };
+            //now create the widget.  
+            $scope.createWidget = true;
+
+        }).error(function (data, status) {
+            console.log('error');
+        });
+
+    });
+&lt;/script&gt;      
+
+&lt;div ng-app="myApp" ng-controller="GridCtrl"&gt;  
+    &lt;jqx-grid jqx-create="createWidget" jqx-settings="gridSettings"&gt;&lt;/jqx-grid&gt;  
+&lt;/div&gt;  
+</pre>                
+</li>
+</ol> 
+</div>
+   

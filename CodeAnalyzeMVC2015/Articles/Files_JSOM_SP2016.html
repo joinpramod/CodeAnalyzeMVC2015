@@ -1,0 +1,72 @@
+﻿<style>
+    li {
+    list-style-type: none;
+    }
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    &nbsp;<ol>
+        <li>
+            <p style="width:80%">
+                Lets take a look at retrieving the documents form a document set using javascript object model JSOM in Sharepoint 2016.
+                Document set is basically a data type which is used to group documents in a library.
+                <br />
+                Some of the advantages are <br />
+                1. Set default content to the new documents created <br />
+                2. Assign metadata and workflows to run on a group of ducuments. <br />
+                Here is the javascript
+            </p>  
+<pre class="brush: java">
+    &lt;script type="text/javascript" src="../1.8.1/jquery.min.js"&gt;&lt;/script&gt;  
+    &lt;script type="text/javascript"&gt;  
+        $(document).ready(function() {  
+            var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";  
+            $.getScript(scriptbase + "SP.Runtime.js", function() {  
+                $.getScript(scriptbase + "SP.js", function() {  
+                    $.getScript(scriptbase + "SP.DocumentManagement.js", CreateClientDocumentSet);  
+                });  
+            });  
+        });  
+        var docSetFiles;  
+      
+        function CreateClientDocumentSet() {
+            //Get the current context 
+            clientContext = new SP.ClientContext.get_current();
+            //Get the current web 
+            oWeb = clientContext.get_web();
+            //Get the document list
+            var oList = oWeb.get_lists().getByTitle("Test Doc Library");  
+            clientContext.load(oList);  
+            //Root folder  
+            oLibraryFolder = oList.get_rootFolder();  
+            var documentSetFolder = "/sites/MyDocs/Test%20Doc%20Library/TestDocumentSets";
+            //Get the document set files using CAML query   
+            var camlQuery = SP.CamlQuery.createAllItemsQuery();  
+            camlQuery.set_folderServerRelativeUrl(documentSetFolder);  
+            docSetFiles = oList.getItems(camlQuery);  
+            //Load client context 
+            clientContext.load(docSetFiles, 'Include(File)');  
+            clientContext.executeQueryAsync(ProcessSuccess, ProcessFailure);  
+        }  
+      
+        function ProcessSuccess() {
+            //Loop to get file name   
+            var docSetFilesdocSetFilesEnumerator = docSetFiles.getEnumerator();  
+            while (docSetFilesEnumerator.moveNext()) {  
+                var oDoc = docSetFilesEnumerator.get_current().get_file();  
+                alert("Document Name : " + oDoc.get_name());  
+            }  
+        }  
+      
+        function ProcessFailure() {
+            alert('Failed - ' + args.get_message());
+        }  
+    &lt;/script&gt;  
+</pre>           
+        </li>
+
+
+
+
+</ol> 
+</div>
+   

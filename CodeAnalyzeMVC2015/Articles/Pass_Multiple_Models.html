@@ -1,0 +1,87 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    
+    <ol>
+        <li>
+            <p style="width:80%">
+                In this article we will see how to post multiple models models to controller using jquery ajax. Lets consider that we have 2 models
+                Employee and Company, now we will have a 3rd combined model say Combined which is having an object of Employee and Company as shown below
+            </p>  <b>Models</b><br />
+<pre class="brush: java">
+ public class Company {  
+        public int CompanyId {set; get;}  
+        public string CompanyName {set; get;}  
+        public string Address {set; get; }  
+    }  
+
+    public class Employee {  
+        public int EmployeIeId {set; get;}  
+        public string EmployeeName { set; get;}  
+        public string Address {set; get;}  
+    }  
+    public class Combined {  
+        public Company company {set;get;}  
+        public Employee employee {set;get;}  
+    }  
+</pre>           
+        </li>
+         <li>
+            <p style="width:80%">
+                We will have a Controller Action to accept a post method and this combined model
+            </p> <b>Controller</b><br />
+<pre class="brush: java">
+public JsonResult Process(Combined model) {  
+            return Json(JsonRequestBehavior.AllowGet);  
+        }  
+</pre>                
+        </li>
+          <li>
+            <p style="width:80%">
+               Main thing to note here in jQuery we can get the nested class properties, means we can get Company and Employee properties from Combined model 
+                as shown below
+            </p> <b>View</b><br /> 
+<pre class="brush: java">
+&lt;script%gt;
+    $("#btnClick").click(function () {
+        var company = {
+            CompanyId: $('#@Html.IdFor(m=%gt;m.company.CompanyId)').val(),
+            CompanyName: $('#@Html.IdFor(m=%gt;m.company.CompanyName)').val(),
+            Address: $('#@Html.IdFor(m=%gt;m.company.Address)').val()
+        }
+        var employee = {
+            EmployeIeId: $('#@Html.IdFor(m=%gt;m.employee.EmployeeId)').val(),
+            EmployeeName: $('#@Html.IdFor(m=%gt;m.employee.EmployeeName)').val(),
+            Address: $('#@Html.IdFor(m=%gt;m.employee.Address)').val()
+        }
+        var model = {
+            "company": company,
+            "employee": employee
+        }
+        alert(model)
+        $.ajax({
+            type: "post",
+            url: "/Controller/Action",
+            data: model,
+            datatype: "json",
+            cache: false,
+            success: function (data) {
+                //Multiple Data Posted
+            },
+            error: function (xhr) {
+                //Error
+            }
+        });
+    });
+&lt;/script%gt;  
+</pre>                
+        </li>
+
+
+
+</ol> 
+</div>
+   
