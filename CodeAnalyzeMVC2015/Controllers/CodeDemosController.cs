@@ -18,5 +18,22 @@ namespace CodeAnalyzeMVC2015.Controllers
             return View("../CodeDemos/" + articleId);
         }
 
+        [HttpPost]
+        public ActionResult Save()
+        {
+            //string strEMail = Request.Form["hfUserEMail1"];
+            TempData["Message"] = "Data saved";
+            return RedirectToAction("Index");
+
+        }
+
+        [HttpPost]
+        public ActionResult Cancel()
+        {
+            //string strEMail = Request.Form["hfUserEMail1"];
+            TempData["Message"] = "Action cancelled";
+            return RedirectToAction("Index");
+        }
+
     }
 }
