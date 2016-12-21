@@ -23,34 +23,48 @@ namespace CodeAnalyzeMVC2015.Models
             //if (ViewBag.AdsBlocked)
                 //strSql = "Select top 4 * from VwArticles where IsDisplay = 1 and articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc";
             //else
-            strSql = "Select top 4 * from VwArticles where IsDisplay = 1 and articleid not in (10044,10045,10046,10047,10048,10049) order by articleId desc";
+            strSql = "Select top 8 * from VwArticles where IsDisplay = 1 and articleid not in (10044,10045,10046,10047,10048,10049) ORDER BY NEWID()";
             List<ArticleModel> articles = GetArticles(strSql);        
             return PartialView("RecentPosts", articles);
         }
         
         
-        [AllowAnonymous]
-        [ChildActionOnly]
-        [Route("PopularPosts")]
-        public ActionResult PopularPosts()
-        {
-            //CheckUserLogin();        
-            List<ArticleModel> articles = GetArticles("Select top 2 * from VwArticles where IsDisplay = 1 order by thumbsup desc");
-            return PartialView("PopularPosts", articles);
-        }
+        //[AllowAnonymous]
+        //[ChildActionOnly]
+        //[Route("PopularPosts")]
+        //public ActionResult PopularPosts()
+        //{
+            ////CheckUserLogin();        
+            //List<ArticleModel> articles = GetArticles("Select top 2 * from VwArticles where IsDisplay = 1 order by thumbsup desc");
+            //return PartialView("PopularPosts", articles);
+        //}
      
 
 
+        //[AllowAnonymous]
+        //[ChildActionOnly]
+        //[Route("PopularPosts")]
+        //public ActionResult MostViewed()
+        //{
+            ////CheckUserLogin();            
+            //List<ArticleModel> articles = GetArticles("Select top 4 * from VwArticles where IsDisplay = 1 order by views desc");            
+            //return PartialView("PopularPosts", articles);
+        //}
+
+
         [AllowAnonymous]
         [ChildActionOnly]
         [Route("PopularPosts")]
-        public ActionResult MostViewed()
+        public ActionResult Unanswered()
         {
             //CheckUserLogin();            
-            List<ArticleModel> articles = GetArticles("Select top 4 * from VwArticles where IsDisplay = 1 order by views desc");            
-            return PartialView("PopularPosts", articles);
+            //List<QuestionModel> questions = GetQuestions("SELECT TOP 18 * FROM VwSolutions ORDER BY NEWID()");   
+            ConnManager connManager = new ConnManager();
+            questions = connManager.GetQuestions("SELECT TOP 18 * FROM VwSolutions ORDER BY NEWID()");
+            return PartialView("PopularPosts", questions);
         }
-
+        
+        
 
         public List<ArticleModel> GetArticles(string strQuery)
         {
