@@ -31,21 +31,22 @@ namespace CodeAnalyzeMVC2015.Controllers
             if (!string.IsNullOrEmpty(txtEMailId))
             {
                 ConnManager con = new ConnManager();
+
+                DataTable dtUserActivation = con.GetDataTable("select * from UserActivation where EmailId = '" + txtEMailId + "'");
+                if (dtUserActivation.Rows.Count > 0)
+                {
+                    //ViewBag.Ack = "User activation pending";
+                    ViewBag.Activation = "User activation pending. Resend Activation Code?";
+                    return View("../Account/Login");
+                }
+
                 DataSet dsUser = con.GetData("Select * from Users where Email = '" + txtEMailId + "'");
                 con.DisposeConn();
                 if (dsUser.Tables[0].Rows.Count <= 0)
                 {
                     ViewBag.Ack = "No such EMail Id exists";
                 }
-
-                DataTable dtUserActivation = con.GetDataTable("select * from UserActivation where Email = '" + txtEMailId + "'");
-                if (dtUserActivation.Rows.Count > 0)
-                {
-                    ViewBag.Ack = "User activation pending";
-                    ViewBag.Activation = "Resend Activation Code?";
-                    return View("../Account/Login");
-                }
-
+             
                 if (!string.IsNullOrEmpty(dsUser.Tables[0].Rows[0]["Password"].ToString()))
                 {
                     Mail mail = new Mail();
@@ -74,14 +75,16 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult ProcessLogin(string txtEMailId, string txtPassword)
         {
-            if (Request.Form["btnResendAct"] != null)
+            if (Request.Form["hfUserEMail"] != null)
             {
+                txtEMailId = Request.Form["hfUserEMail"];
                 ConnManager con = new ConnManager();
-                DataTable dtUserActivation = con.GetDataTable("select * from UserActivation where  Email = '" + txtEMailId + "'");
+                DataTable dtUserActivation = con.GetDataTable("select * from UserActivation where  Emailid = '" + txtEMailId + "'");
                 if (dtUserActivation.Rows.Count > 0)
                 {
                     SendActivationEMail(txtEMailId, dtUserActivation.Rows[0]["ActivationCode"].ToString());
-                    ViewBag.Ack = "Activation Code Sent";                
+                    ViewBag.Activation = "Activation Code Sent";
+                    ViewBag.UserEMail = txtEMailId;
                 }
                 return View("../Account/Login");
             }
@@ -90,6 +93,22 @@ namespace CodeAnalyzeMVC2015.Controllers
                 return CheckUserLogin(txtEMailId, txtPassword);
             }
         }
+
+
+        public ActionResult ProcessActivationCode(string txtEMailId)
+        {
+            txtEMailId = Request.Form["hfUserEMail"];
+            ConnManager con = new ConnManager();
+            DataTable dtUserActivation = con.GetDataTable("select * from UserActivation where  Emailid = '" + txtEMailId + "'");
+            if (dtUserActivation.Rows.Count > 0)
+            {
+                SendActivationEMail(txtEMailId, dtUserActivation.Rows[0]["ActivationCode"].ToString());
+                ViewBag.Activation = "Activation Code Sent. Please check your email id.";
+                ViewBag.UserEMail = txtEMailId;
+            }
+            return View("Users", user);
+        }
+
 
         private ActionResult CheckUserLogin(string txtEMailId, string txtPassword)
         {
@@ -116,11 +135,12 @@ namespace CodeAnalyzeMVC2015.Controllers
             else
             {
 
-                dtUserActivation = connManager.GetDataTable("select * from UserActivation where UserId = " + double.Parse(DSUserList.Rows[0]["UserId"].ToString()) + " and Email = '" + txtEMailId + "'");
+                dtUserActivation = connManager.GetDataTable("select * from UserActivation where UserId = " + double.Parse(DSUserList.Rows[0]["UserId"].ToString()) + " and Emailid = '" + txtEMailId + "'");
                 if (dtUserActivation.Rows.Count > 0)
                 {
-                    ViewBag.lblAck = "User activation pending";
-                    ViewBag.Activation = "Resend Activation Code?";
+                    //ViewBag.lblAck = "User activation pending";
+                    ViewBag.Activation = "User activation pending. Resend Activation Code?";
+                    ViewBag.UserEMail = txtEMailId;
                     return View("../Account/Login");
                 }
 
@@ -210,6 +230,17 @@ namespace CodeAnalyzeMVC2015.Controllers
                         //try
                         //{
                         ConnManager con = new ConnManager();
+
+                        DataTable dtUserActivation = con.GetDataTable("select * from UserActivation where  Emailid = '" + user.Email + "'");
+                        if (dtUserActivation.Rows.Count > 0)
+                        {
+                            //ViewBag.lblAck = "User activation pending";
+                            ViewBag.Activation = "User activation pending. Resend Activation Code?";
+                            ViewBag.UserEMail = user.Email;
+                            return View("Users", user);
+                        }
+
+
                         DataSet dsUser = con.GetData("Select * from Users where Email = '" + user.Email + "'");
                         con.DisposeConn();
                         if (dsUser.Tables[0].Rows.Count > 0)
@@ -217,14 +248,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                             ViewBag.Ack = "EMail id already exists. If you have forgotten password, please click forgot password link on the Sign In page.";
                             return View("Users", user);
                         }
-
-                        DataTable dtUserActivation = con.GetDataTable("select * from UserActivation where  Email = '" + user.Email + "'");
-                        if (dtUserActivation.Rows.Count > 0)
-                        {
-                            ViewBag.lblAck = "User activation pending";
-                            ViewBag.Activation = "Resend Activation Code?";
-                            return View("../Account/Login");
-                        }
+                       
 
                         double dblUserID = 0;
                         SqlConnection LclConn = new SqlConnection();
@@ -299,6 +323,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                                 {
                                     cmd.CommandType = CommandType.Text;
                                     cmd.Parameters.AddWithValue("@UserId", dblUserID);
+                                    cmd.Parameters.AddWithValue("@EMailId", user.Email);
                                     cmd.Parameters.AddWithValue("@ActivationCode", activationCode);
                                     cmd.Connection = conn;
                                     conn.Open();

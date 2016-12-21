@@ -24,34 +24,53 @@
  }
 
 <table style="font-size:16px;font-family:Calibri;width:100%">
-    @if (Model.Email == null || ViewBag.Ack != null)
-    {
-                    <tr>
-                        <td style="padding-top: 2%;">
-                            <b>Use any of the following options</b><br /><br />
-                         </td>
-                    </tr>
-                    <tr>
-                        <td style="padding-top: 5px">
-                            <input type="image" onclick="FaceBookLogin()" value="FaceBook" style="height:35px;width:200px" src="~/Images/SignInWithFacebook.png" />
-                        </td>
-                    </tr>
-                    <tr><td>&nbsp</td></tr>
-                    <tr>
-                        <td style="padding-top: 5px">
-                            <div id="my-signin2"></div>
-                        </td>
-                    </tr>
-    }
+                    @if (Model.Email == null || ViewBag.Ack != null)
+                    {
+                                    <tr>
+                                        <td style="padding-top: 2%;">
+                                            <b>Use any of the following options</b><br /><br />
+                                         </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-top: 5px">
+                                            <input type="image" onclick="FaceBookLogin()" value="FaceBook" style="height:35px;width:200px" src="~/Images/SignInWithFacebook.png" />
+                                        </td>
+                                    </tr>
+                                    <tr><td>&nbsp</td></tr>
+                                    <tr>
+                                        <td style="padding-top: 5px">
+                                            <div id="my-signin2"></div>
+                                        </td>
+                                    </tr>
+                    }
                     <tr>
                         <td style="font-weight: bold; color: red">
                             @ViewBag.Ack<br />
                         </td>
                     </tr>
+                    @using (Html.BeginForm("ProcessActivationCode", "Account"))
+                    {
+                       if (ViewBag.Activation != null)
+                        {
+                            <tr>
+                                <td>
+                                    <span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red">@ViewBag.Activation</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <input type="submit" value="Resend Activation Link" id="btnResendAct" style="border-radius:10px" class="mysubmit" />
+                                    @Html.Hidden("hfUserEMail", (object)ViewBag.UserEMail)
+                                </td>
+                            </tr>
+                        }    
+                    }
                     <tr>
                         <td style="padding-top: 5px">
                             @using (Html.BeginForm("CreateEditUser", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
+
                             <table style="height: 250px; width: 80%;border:solid;border-radius:20px;border-width:0px;border-color:lightgrey;background-color:#EFF0ED" cellpadding=5; cellspacing=5>
                                 <tr>
                                     <td>
@@ -113,7 +132,7 @@
                                 </tr>
                                 <tr>
                                     <td align="center">
-                                        <input type="submit" id="btnRegister" value="Submit" onclick="return ValidateUserReg()" class="mysubmit" />
+                                        <input type="submit" id="btnRegister" value="Submit"  class="mysubmit" />
                                         <input type="submit" id="btnCancel" name="Cancel" value="Cancel" class="mysubmit" />
                                         <br />
                                     </td>
