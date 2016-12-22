@@ -1,0 +1,80 @@
+<table style="width: 100%; font-family: Calibri">
+    <tbody>
+        <tr>
+            <td style="width:100%">
+                <span style="width: 90%; font-weight: bold; font-family: Calibri; color: #333; font-size: 24px">Demo - Multiple forms in view asp.net mvc with multiple submit buttons
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br><br>
+                    <table>
+                            <tr>
+                                <td>
+                                    @using (Html.BeginForm("Save", "CodeDemos", FormMethod.Post))
+                                    {
+                                        <input type="submit" id="btnSave" value="Save"/>
+                                        <!--@Html.Hidden("hfUserEMail1", "admin@codeanalyze.com")-->
+                                    }
+                                </td>
+                                <td>
+                                    @using (Html.BeginForm("Cancel", "CodeDemos", FormMethod.Post))
+                                    {
+                                        <input type="submit" id="btnCancel" value="Cancel"/>
+                                        <!--@Html.Hidden("hfUserEMail2", "no email")-->
+                                    }
+                                </td>
+                            </tr>
+
+  
+                        @if (ViewBag.DemoMessage != null)
+                        {
+                           <script type="text/javascript">
+                               window.onload = function () {
+                                   alert('@ViewBag.DemoMessage');
+                               };
+                            </script>
+                        }
+                    </table>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <a id="btnSubmit" class="mysubmit" href="../../../Articles/Details/20183/Multiple-forms-in-view-aspnet-mvc-with-multiple-submit-buttons" style="font-size:24px">Back to code article</a>            </td>
+        </tr>
+        <tr>
+            <td>
+                <br><br>
+                <div>
+                    <p style="font-size:18px;font-weight:bold">
+                        Quick information
+<pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none">
+System_CAPS_pubmethodSystem_CAPS_static	BeginForm(HtmlHelper)	
+Writes an opening &lt;form&gt; tag to the response. The form uses the POST method&lt; and the request is processed by the action method for the view.
+
+System_CAPS_pubmethodSystem_CAPS_static	BeginForm(HtmlHelper&lt; Object)	
+Writes an opening &lt;form&gt; tag to the response and includes the route values in the action attribute. The form uses the POST method&lt; and the request is processed by the action method for the view.
+
+System_CAPS_pubmethodSystem_CAPS_static	BeginForm(HtmlHelper&lt; RouteValueDictionary)	
+Writes an opening &lt;form&gt; tag to the response and includes the route values from the route value dictionary in the action attribute. The form uses the POST method&lt; and the request is processed by the action method for the view.
+
+System_CAPS_pubmethodSystem_CAPS_static	BeginForm(HtmlHelper&lt; String&lt; String)	
+Writes an opening &lt;form&gt; tag to the response and sets the action tag to the specified controller and action. The form uses the POST method.
+
+System_CAPS_pubmethodSystem_CAPS_static	BeginForm(HtmlHelper&lt; String&lt; String&lt; FormMethod)	
+Writes an opening &lt;form&gt; tag to the response and sets the action tag to the specified controller and action. The form uses the specified HTTP method.
+
+System_CAPS_pubmethodSystem_CAPS_static	BeginForm(HtmlHelper&lt; String&lt; String&lt; FormMethod&lt; IDictionary(Of String&lt; Object))	
+Writes an opening &lt;form&gt; tag to the response and sets the action tag to the specified controller and action. The form uses the specified HTTP method and includes the HTML attributes from a dictionary.
+</pre>
+</p>
+                </div>
+               
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <a id="btnSubmit" class="mysubmit" href="../../../Articles/Details/20183/Multiple-forms-in-view-aspnet-mvc-with-multiple-submit-buttons" style="font-size:24px">Back to code article</a>            </td>
+        </tr>
+    </tbody>
+</table>

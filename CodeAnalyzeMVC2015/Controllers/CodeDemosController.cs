@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace CodeAnalyzeMVC2015.Controllers
 {
@@ -22,18 +18,17 @@ namespace CodeAnalyzeMVC2015.Controllers
         public ActionResult Save()
         {
             //string strEMail = Request.Form["hfUserEMail1"];
-            TempData["Message"] = "Data saved";
-            string articleId = RouteData.Values["Id"].ToString();
-            return View("../CodeDemos/" + articleId);
+            ViewBag.DemoMessage = "Data saved";
+            return View("../CodeDemos/" + 20183);
         }
 
         [HttpPost]
         public ActionResult Cancel()
         {
             //string strEMail = Request.Form["hfUserEMail1"];
-            TempData["Message"] = "Action cancelled";
-            string articleId = RouteData.Values["Id"].ToString();
-            return View("../CodeDemos/" + articleId);
+            ViewBag.DemoMessage = "Action cancelled";
+            string articleId = ViewBag.ArticleId;
+            return View("../CodeDemos/" + 20183);
         }
 
     }

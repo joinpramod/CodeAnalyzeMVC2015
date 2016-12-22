@@ -234,6 +234,7 @@
     <Content Include="Articles\LinkedIn_Login_iOS.html" />
     <Content Include="Articles\Location_Finder_ObjC.html" />
     <Content Include="Articles\Login_With_Facebook_Swift2.html" />
+    <Content Include="Articles\Multiple_Form_Submissions.html" />
     <Content Include="Articles\Multiple_Get_MVC.html" />
     <Content Include="Articles\Multi_File_upload_mvc.html" />
     <Content Include="Articles\PartialView_Model_Popup.html" />
@@ -626,6 +627,7 @@
     <Content Include="Views\CodeDemos\20174.cshtml" />
     <Content Include="Views\CodeDemos\General.cshtml" />
     <Content Include="Views\CodeDemos\20182.cshtml" />
+    <Content Include="Views\CodeDemos\20183.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

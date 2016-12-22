@@ -1,0 +1,90 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+   
+
+    <ol>
+          <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+We can have multiple form submissions within a view in asp.net mvc having multiple submit buttons. This means we will have multiple Action methods defined for each submit button. Each submission will post a different form to server and this should handled on the server side based on the requirement. Here is the code of view and controller where we implement this.
+
+Look at the demo at the end of this article to get an idea how this works.
+
+We have 2 action methods Save and Cancel handling the Save and Cancel button clicks. Control will reach to the respective method based on user action.
+            </pre><b>Controller</b>
+            <pre class="brush: java">
+public class HomeController : Controller
+{
+    // GET: Home
+    public ActionResult Index()
+    {
+        return View();
+    }
+ 
+    [HttpPost]
+    public ActionResult Save()
+    {
+        //string strEMail = Request.Form["hfUserEMail1"];
+        ViewBag.DemoMessage = "Data saved";
+        return View();        
+    }
+ 
+    [HttpPost]
+    public ActionResult Cancel()
+    {
+        //string strEMail = Request.Form["hfUserEMail1"];
+        ViewBag.DemoMessage = "Data saved";
+        return View();
+    }
+}
+            </pre>           
+        </li>  
+        <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+Here is the View code we have 2 different forms and each form has a button which post the form. If we need to pass any specific information, then we need to define this within each form. For ex if we want to pass emailid with both form submission then we will have to define it in a hidden field and place it within each form with unique ids as shown below within comments. It can fetched on the server side using Request.Form["hfUserEMail1"] or Request.Form["hfUserEMail2"]
+            </pre><b>View</b>
+            <pre class="brush: java">
+ &lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Index&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+                {
+                    &lt;input type="submit" id="btnSave" value="Save"/&gt;
+                    &lt;!--@Html.Hidden("hfUserEMail1", "admin@codeanalyze.com")--&gt;
+                }
+            &lt;/td&gt;
+            &lt;td&gt;
+                @using (Html.BeginForm("Cancel", "Home", FormMethod.Post))
+                {
+                    &lt;input type="submit" id="btnCancel" value="Cancel"/&gt;
+                    &lt;!--@Html.Hidden("hfUserEMail2", "no email")--&gt;
+                }
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+  
+    @if (ViewBag.DemoMessage != null)
+    {
+       &lt;script type="text/javascript"&gt;
+           window.onload = function () {
+               alert('@ViewBag.DemoMessage');
+           };
+        &lt;/script&gt;
+    }
+&lt;/body&gt;
+&lt;/html&gt;
+            </pre>
+        </li>
+    
+    </ol> 
+
+</div>
+   
