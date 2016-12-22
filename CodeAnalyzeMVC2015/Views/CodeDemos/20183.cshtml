@@ -26,15 +26,13 @@
                                 </td>
                             </tr>
 
-  
-                        @if (ViewBag.DemoMessage != null)
-                        {
-                           <script type="text/javascript">
-                               window.onload = function () {
-                                   alert('@ViewBag.DemoMessage');
-                               };
-                            </script>
-                        }
+                            
+                            <tr>
+                                <td>
+                                    <span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red">@ViewBag.DemoMessage</span>
+                                </td>
+                            </tr> 
+
                     </table>
             </td>
         </tr>
