@@ -224,43 +224,29 @@
     <section id="ccr-main-section">
         <div class="container">
             <section id="ccr-left-section" class="col-md-8">
-                @*<div class="current-page">
-                   @if (!string.IsNullOrEmpty(ViewBag.UserEmail))
-                   {
-                        <table style="width: 100%;">
-                            <tr>
-                                <td style="font-family: Calibri; margin-left: 0">
-                                    <span style="color: red; font-weight: bold; width: 20%">@ViewBag.lblFirstName</span>
-                                </td>
-                                <td style="margin-left: 0">
-                                    <span style="font-family: Calibri; width: 10%"></span>
-                                </td>
-                            </tr>
-                        </table>
-                    }
-                </div>*@
-                <div style="margin-top:10px">
+                <div style="margin-top:20px">
                     @RenderBody()
                 </div>
             </section>
 
             <aside id="ccr-right-section" class="col-md-4">
-                    @if ((string.IsNullOrEmpty(ViewBag.UserEmail)) || (!string.IsNullOrEmpty(ViewBag.UserEmail) && ViewBag.UserEmail != "admin@codeanalyze.com"))
-                    {
-                <section>
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <ins class="adsbygoogle"
-                         style="display:inline-block;width:336px;height:280px"
-                         data-ad-client="ca-pub-3767148792604115"
-                         data-ad-slot="2216957987"></ins>
-                    <script>
+                @if ((string.IsNullOrEmpty(ViewBag.UserEmail)) || (!string.IsNullOrEmpty(ViewBag.UserEmail) && ViewBag.UserEmail != "admin@codeanalyze.com"))
+                {
+                    <section>
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:336px;height:280px"
+                             data-ad-client="ca-pub-3767148792604115"
+                             data-ad-slot="2216957987"></ins>
+                        <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                </section>
-                    }
+                        </script>
+                    </section>
+                }
+
                 <section style="vertical-align:top">
                     <div class="ccr-gallery-ttile">
-                        <p><strong>Recent Post</strong></p>
+                        <p><strong>Popular Articles</strong></p>
                     </div>
                     <ul>
                         <li>
@@ -268,40 +254,44 @@
                         </li>
                     </ul>
                 </section>
-                    @if ((string.IsNullOrEmpty(ViewBag.UserEmail)) || (!string.IsNullOrEmpty(ViewBag.UserEmail) && ViewBag.UserEmail != "admin@codeanalyze.com"))
-                    {
-                <section>
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <ins class="adsbygoogle"
-                         style="display:inline-block;width:336px;height:280px"
-                         data-ad-client="ca-pub-3767148792604115"
-                         data-ad-slot="2216957987"></ins>
-                    <script>
+
+
+                @* @if(ViewBag.AdsBlocked){
+                      <br/><br/>
+                       <section>
+                        <span style="font-size:20px;font-weight:bold;color:#ff5b33">We request your support by just disabling Adblocker
+                          to make “Coder Rewards” possible and we’ll make sure Ads don’t annoy you. </span>
+                       </section>
+                      <br/><br/>
+                    }*@
+
+
+                @if ((string.IsNullOrEmpty(ViewBag.UserEmail)) || (!string.IsNullOrEmpty(ViewBag.UserEmail) && ViewBag.UserEmail != "admin@codeanalyze.com"))
+                {
+                    <section>
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:336px;height:280px"
+                             data-ad-client="ca-pub-3767148792604115"
+                             data-ad-slot="2216957987"></ins>
+                        <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                </section>
-                    }
-                @*<section>
-                    <div class="ccr-gallery-ttile">
-                        <p><strong>Popular Post</strong></p>
-                    </div>
-                    <ul>
-                        <li>
-                            @Html.Action("PopularPosts", "Master")
-                        </li>
-                    </ul>
-                </section>*@
+                        </script>
+                    </section>
+                }
 
                 <section>
                     <div class="ccr-gallery-ttile">
-                        <p><strong>Most Viewed</strong></p>
+                        <p><strong>Questions</strong></p>
                     </div>
                     <ul>
                         <li>
-                            @Html.Action("MostViewed", "Master")
+                            @Html.Action("Unanswered", "Master")
                         </li>
                     </ul>
                 </section>
+
+
 
 
             </aside>

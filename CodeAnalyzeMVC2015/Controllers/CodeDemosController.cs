@@ -23,8 +23,8 @@ namespace CodeAnalyzeMVC2015.Controllers
         {
             //string strEMail = Request.Form["hfUserEMail1"];
             TempData["Message"] = "Data saved";
-            return RedirectToAction("Index");
-
+            string articleId = RouteData.Values["Id"].ToString();
+            return View("../CodeDemos/" + articleId);
         }
 
         [HttpPost]
@@ -32,7 +32,8 @@ namespace CodeAnalyzeMVC2015.Controllers
         {
             //string strEMail = Request.Form["hfUserEMail1"];
             TempData["Message"] = "Action cancelled";
-            return RedirectToAction("Index");
+            string articleId = RouteData.Values["Id"].ToString();
+            return View("../CodeDemos/" + articleId);
         }
 
     }

@@ -402,7 +402,6 @@
     <Content Include="Scripts\tinymce\themes\modern\theme.min.js" />
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
-    <Content Include="Controllers\EMailBody.txt" />
     <Content Include="Views\Articles\Details.cshtml" />
     <Content Include="Views\Web.config" />
   </ItemGroup>

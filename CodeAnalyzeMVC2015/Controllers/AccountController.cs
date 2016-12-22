@@ -84,7 +84,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 {
                     SendActivationEMail(txtEMailId, dtUserActivation.Rows[0]["ActivationCode"].ToString());
                     ViewBag.Activation = "Activation Code Sent. Please check your inbox and click on the activation link.";
-                    ViewBag.UserEMail = txtEMailId;
+                    ViewBag.UserActEMail = txtEMailId;
                 }
                 return View("../Account/Login");
             }
@@ -95,12 +95,35 @@ namespace CodeAnalyzeMVC2015.Controllers
         }
 
 
-        public ActionResult Activate(string ActivationCode)
-        {            
-                ConnManager con = new ConnManager();
-                DataTable dtUserActivation = con.GetDataTable("delete from UserActivation where  ActivationCode = '" + ActivationCode + "'");
+        public ActionResult Activate()
+        {
+            string ActivationCode = Request.QueryString["ActivationCode"];
+            ConnManager con = new ConnManager();
+            DataTable dtUserActivation = con.GetDataTable("select * from UserActivation where  ActivationCode = '" + ActivationCode + "'");
+
+            if (dtUserActivation != null && dtUserActivation.Rows.Count > 0)
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SQLCON"].ToString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand("delete from UserActivation where  EMailId = @EMailId"))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@EMailId", dtUserActivation.Rows[0]["EMailId"]);
+                        cmd.Connection = conn;
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                }
                 ViewBag.lblAck = "Account activated successfully. Please login with your emaild and password";
-                return View("../Account/Login");
+            }
+            else
+            {
+                ViewBag.lblAck = "Account did not activated, please get the activation resent to your inbox and try again";
+            }
+
+           
+            return View("../Account/Login");
         }
 
 
@@ -113,7 +136,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             {
                 SendActivationEMail(txtEMailId, dtUserActivation.Rows[0]["ActivationCode"].ToString());
                 ViewBag.Activation = "Activation Code Sent. Please check your inbox and click on the activation link.";
-                ViewBag.UserEMail = txtEMailId;
+                ViewBag.UserActEMail = txtEMailId;
             }
             return View("Users", user);
         }
@@ -131,7 +154,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             {
                 //ViewBag.lblAck = "User activation pending";
                 ViewBag.Activation = "User activation pending. Resend Activation Code?";
-                ViewBag.UserEMail = txtEMailId;
+                ViewBag.UserActEMail = txtEMailId;
                 return View("../Account/Login");
             }
 
@@ -247,7 +270,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                         {
                             //ViewBag.lblAck = "User activation pending";
                             ViewBag.Activation = "User activation pending. Resend Activation Code?";
-                            ViewBag.UserEMail = user.Email;
+                            ViewBag.UserActEMail = user.Email;
                             return View("Users", user);
                         }
 
@@ -328,7 +351,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                         using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SQLCON"].ToString()))
                         {
-                            using (SqlCommand cmd = new SqlCommand("INSERT INTO UserActivation VALUES(@UserId, @ActivationCode)"))
+                            using (SqlCommand cmd = new SqlCommand("INSERT INTO UserActivation VALUES(@UserId, @EMailId, @ActivationCode)"))
                             {
                                 using (SqlDataAdapter sda = new SqlDataAdapter())
                                 {
@@ -352,9 +375,11 @@ namespace CodeAnalyzeMVC2015.Controllers
                         SendActivationEMail(user.Email, activationCode);
                         SendEMail(user.Email, user.FirstName, user.LastName);
                     }
-                    Session["User"] = user;
+                    //Session["User"] = user;
                     //return View("ViewUser", user);
-                    return Redirect("../Account/ViewUser");
+                    //return Redirect("../Account/ViewUser");
+                    user = new Users();
+                    return View("Users", user);
                 }
                 else
                 {
@@ -502,8 +527,9 @@ namespace CodeAnalyzeMVC2015.Controllers
             {
                 Mail mail = new Mail();
                 string EMailBody = System.IO.File.ReadAllText(Server.MapPath("../EMailBody.txt"));
+                string strActLink = "http://codeanalyze.com/Account/Activate/?ActivationCode=" + ActivationCode;
                 string strCA = "<a id=HyperLink1 style=font-size: medium; font-weight: bold; color:White href=http://codeanalyze.com>CodeAnalyze</a>";
-                mail.Body = string.Format(email, "Welcome to " + strCA + ". We appreciate your time for posting code that help many. Please click <a id=actHere href=http://codeanalyze.com/Account/Activate/ " + ActivationCode + ">here</a> to activate your account");
+                mail.Body = string.Format(EMailBody, "Welcome to " + strCA + ". We appreciate your time for posting code that help many. <br/> <br/>Please click <a id=actHere href=http://codeanalyze.com/Account/Activate/?ActivationCode=" + ActivationCode + ">" + strActLink + "</a> to activate your account");
                 mail.FromAdd = "admin@codeanalyze.com";
                 mail.Subject = "Welcome to CodeAnalyze - Blogger Rewards";
                 mail.ToAdd = email;
@@ -526,7 +552,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 Mail mail = new Mail();
                 string EMailBody = System.IO.File.ReadAllText(Server.MapPath("../EMailBody.txt"));
                 string strCA = "<a id=HyperLink1 style=font-size: medium; font-weight: bold; color:White href=http://codeanalyze.com>CodeAnalyze</a>";
-                mail.Body = string.Format(email, "Welcome to " + strCA + ". We appreciate your time for posting code that help many.");
+                mail.Body = string.Format(EMailBody, "Welcome to " + strCA + ". We appreciate your time for posting code that help many.");
                 mail.FromAdd = "admin@codeanalyze.com";
                 mail.Subject = "Welcome to CodeAnalyze - Blogger Rewards";
                 mail.ToAdd = email;
