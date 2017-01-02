@@ -71,14 +71,11 @@ Here is the View code we have 2 different forms and each form has a button which
         &lt;/tr&gt;
     &lt;/table&gt;
   
-    @if (ViewBag.DemoMessage != null)
-    {
-       &lt;script type="text/javascript"&gt;
-           window.onload = function () {
-               alert('@ViewBag.DemoMessage');
-           };
-        &lt;/script&gt;
-    }
+         &lt;tr&gt;
+            &lt;td&gt;
+                &lt;span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red"&gt;@ViewBag.DemoMessage&lt;/span&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
 &lt;/body&gt;
 &lt;/html&gt;
             </pre>
