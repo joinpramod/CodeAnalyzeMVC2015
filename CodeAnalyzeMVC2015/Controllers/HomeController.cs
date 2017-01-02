@@ -59,7 +59,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
                 mail.Body = strBody;
 
-
+                mail.IsBodyHtml = true;
                 //mail.Body = txtSuggestion + " from " + txtEMail;
                 //if (Session["User"] != null)
                 mail.FromAdd = "admin@codeanalyze.com";
