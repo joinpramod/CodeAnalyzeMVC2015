@@ -571,9 +571,22 @@ namespace CodeAnalyzeMVC2015.Controllers
             try
             {
                 Mail mail = new Mail();
-                mail.Body = "new user email id " + Email_address + " name " + firstName;
+                string strBody = string.Empty;
+                strBody = "new user email id " + Email_address + " name " + firstName;
+
+                try
+                {
+                    strBody += "<br /><br /> IP - " + Utilities.GetUserIP() + "<br /><br />";
+                }
+                catch
+                {
+
+                }
+
+                mail.Body = strBody;
                 mail.FromAdd = "admin@codeanalyze.com";
                 mail.Subject = "New User registered";
+
                 mail.ToAdd = "admin@codeanalyze.com";
                 mail.IsBodyHtml = true;
                 mail.SendMail();

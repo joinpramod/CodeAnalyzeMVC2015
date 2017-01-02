@@ -80,8 +80,20 @@ namespace CodeAnalyzeMVC2015.Controllers
             if (Session["User"] != null && fileArticleWordFile != null)
             {
                 Mail mail = new Mail();
-                mail.Body = "<a>New article from " + user.Email + ", file name is " + fileArticleWordFile.FileName + " Youtube URL - " + txtYouTubeLink + " </a>";
                 mail.FromAdd = "admin@codeanalyze.com";
+                                 
+                string strBody = "<a>New article from " + user.Email + ", file name is " + fileArticleWordFile.FileName + " Youtube URL - " + txtYouTubeLink + " </a>";
+
+                try
+                {
+                    strBody += "<br /><br /> IP - " + Utilities.GetUserIP() + "<br /><br />";
+                }
+                catch
+                {
+
+                }
+
+                mail.Body = strBody;
                 mail.Subject = "New Article from " + user.Email;
                 mail.ToAdd = "articles@codeanalyze.com";
 

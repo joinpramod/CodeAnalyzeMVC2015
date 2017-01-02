@@ -45,7 +45,22 @@ namespace CodeAnalyzeMVC2015.Controllers
                 //    return View();
                 //}
                 Mail mail = new Mail();
-                mail.Body = txtSuggestion + " from " + txtEMail;
+
+                string strBody = txtSuggestion + " from " + txtEMail;
+
+                try
+                {
+                    strBody += "<br /><br /> IP - " + Utilities.GetUserIP() + "<br /><br />";
+                }
+                catch
+                {
+
+                }
+
+                mail.Body = strBody;
+
+
+                //mail.Body = txtSuggestion + " from " + txtEMail;
                 //if (Session["User"] != null)
                 mail.FromAdd = "admin@codeanalyze.com";
                 // else
