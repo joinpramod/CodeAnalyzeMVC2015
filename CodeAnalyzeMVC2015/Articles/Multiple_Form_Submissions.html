@@ -3,8 +3,7 @@
     list-style-type: none;
 }
 </style>
-<div style="font-size:16px;width:100%;font-family:Calibri">
-   
+<div style="font-size:16px;width:100%;font-family:Calibri">  
 
     <ol>
           <li>
@@ -43,6 +42,11 @@ public class HomeController : Controller
             </pre>           
         </li>  
         <li>
+            <div style="text-align:center;width:100%">
+                <a href='@Model.DemoURL' style="font-weight:bold;font-size:24px;width:100px;height:40px" class="mysubmit">View Demo of Code</a><br/><br />
+            </div>
+        </li>
+        <li>
             <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
 Here is the View code we have 2 different forms and each form has a button which post the form. If we need to pass any specific information, then we need to define this within each form. For ex if we want to pass emailid with both form submission then we will have to define it in a hidden field and place it within each form with unique ids as shown below within comments. It can fetched on the server side using Request.Form["hfUserEMail1"] or Request.Form["hfUserEMail2"]
             </pre><b>View</b>
@@ -79,8 +83,7 @@ Here is the View code we have 2 different forms and each form has a button which
 &lt;/body&gt;
 &lt;/html&gt;
             </pre>
-        </li>
-    
+        </li>    
     </ol> 
 
 </div>
