@@ -7,10 +7,17 @@ namespace CodeAnalyzeMVC2015.Controllers
         //
         // GET: /CodeDemos/
 
-        public ActionResult Articles()
+        public ActionResult Articles(string strId)
         {
-            string articleId = RouteData.Values["Id"].ToString();
-
+            string articleId = string.Empty;
+            if (RouteData.Values.Count > 0 && RouteData.Values["Id"] != null)
+            {
+                articleId = RouteData.Values["Id"].ToString();
+            }
+            else
+            {
+                articleId = strId;
+            }
             return View("../CodeDemos/" + articleId);
         }
 
@@ -29,6 +36,25 @@ namespace CodeAnalyzeMVC2015.Controllers
             ViewBag.DemoMessage = "Action cancelled";
             string articleId = ViewBag.ArticleId;
             return View("../CodeDemos/" + 20183);
+        }
+
+        [HttpPost]
+        public ActionResult DynamicTextBox(string[] txtBoxes)
+        {
+            string txtBoxValues = "";
+            foreach (string textboxValue in txtBoxes)
+            {
+                txtBoxValues += textboxValue + ", ";
+            }
+            ViewBag.DemoMessage = txtBoxValues;
+
+            string articleId = string.Empty;
+            if (RouteData.Values.Count > 0 && RouteData.Values["Id"] != null)
+            {
+                articleId = RouteData.Values["Id"].ToString();
+            }
+
+            return Articles(articleId);
         }
 
     }
