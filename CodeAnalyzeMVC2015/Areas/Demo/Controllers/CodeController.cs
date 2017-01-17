@@ -57,5 +57,62 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
             return Articles("20184");
         }
 
+        #region 20185
+        public const int RecordsPerPage = 5;
+        public List<Employee> EmployeeData;
+
+
+        public ActionResult GetEmployees(int? pageNum)
+        {
+            pageNum = pageNum ?? 0;
+            ViewBag.IsEndOfRecords = false;
+            if (Request.IsAjaxRequest())
+            {
+                var employees = GetRecordsForPage(pageNum.Value);
+                ViewBag.IsEndOfRecords = (employees.Any());
+                return PartialView("_EmployeeData", employees);
+            }
+            else
+            {
+                EmployeeData = GetEmployeeList();
+
+                ViewBag.TotalNumberEmployees = EmployeeData.Count;
+                ViewBag.Employees = GetRecordsForPage(pageNum.Value);
+
+                return View("../CodeDemos/20185");
+            }
+        }
+
+        public List<Employee> GetRecordsForPage(int pageNum)
+        {
+            EmployeeData = GetEmployeeList();
+            int from = (pageNum * RecordsPerPage);
+            var tempList = (from rec in EmployeeData select rec).Skip(from).Take(20).ToList<Employee>();
+            return tempList;
+        }
+
+
+        public List<Employee> GetEmployeeList()
+        {
+            //string employeeFile = HostingEnvironment.MapPath("~/App_Data/Employees.txt");
+            List<Employee> tempList = new List<Employee>();
+            //tempList.Add(new Employee("", ""));
+
+
+            tempList.Add(new Employee("1000", "Employee-1000"));
+            tempList.Add(new Employee("1001", "Employee-1001"));
+            tempList.Add(new Employee("1002", "Employee-1002"));
+            //....
+            //... Load your list from wherver you want, database or file or anything..
+            //...
+            //...
+            tempList.Add(new Employee("1073", "Employee-1073"));
+            tempList.Add(new Employee("1074", "Employee-1074"));
+
+
+            return tempList;
+        }     
+        #endregion
+
     }
 }
