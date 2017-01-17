@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewBag.Title = "Demo - Read CSV file at client side and display on html table using javascript";
     Layout = "~/Areas/Demo/Views/Shared/_Layout.cshtml";
 }
@@ -16,35 +16,35 @@
                 <br><br>
 
                 <script type="text/javascript">
-              function UploadCSV() {
-                  var csvFileUpload = document.getElementById("csvFileUpload");
-                  var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
-                  if (regex.test(csvFileUpload.value.toLowerCase())) {
-                      if (typeof (FileReader) != "undefined") {
-                          var reader = new FileReader();
-                          reader.onload = function (e) {
-                              var table = document.createElement("table");
-                              var rows = e.target.result.split("\n");
-                              for (var i = 0; i < rows.length; i++) {
-                                  var row = table.insertRow(-1);
-                                  var cells = rows[i].split(",");
-                                  for (var j = 0; j < cells.length; j++) {
-                                      var cell = row.insertCell(-1);
-                                      cell.innerHTML = cells[j];
-                                  }
-                              }
-                              var dvTable = document.getElementById("dvTable");
-                              dvTable.innerHTML = "";
-                              dvTable.appendChild(table);
-                          }
-                          reader.readAsText(csvFileUpload.files[0]);
-                      } else {
-                          alert("This browser does not support HTML5.");
-                      }
-                  } else {
-                      alert("Please upload a valid CSV file.");
-                  }
-              }
+                    function UploadCSV() {
+                        var csvFileUpload = document.getElementById("csvFileUpload");
+                        var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
+                        if (regex.test(csvFileUpload.value.toLowerCase())) {
+                            if (typeof (FileReader) != "undefined") {
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    var table = document.createElement("table");
+                                    var rows = e.target.result.split("\n");
+                                    for (var i = 0; i < rows.length; i++) {
+                                        var row = table.insertRow(-1);
+                                        var cells = rows[i].split(",");
+                                        for (var j = 0; j < cells.length; j++) {
+                                            var cell = row.insertCell(-1);
+                                            cell.innerHTML = cells[j];
+                                        }
+                                    }
+                                    var dvTable = document.getElementById("dvTable");
+                                    dvTable.innerHTML = "";
+                                    dvTable.appendChild(table);
+                                }
+                                reader.readAsText(csvFileUpload.files[0]);
+                            } else {
+                                alert("This browser does not support HTML5.");
+                            }
+                        } else {
+                            alert("Please upload a valid CSV file.");
+                        }
+                    }
                 </script>
                 <table>
                     <tbody>
@@ -74,7 +74,7 @@
             <p style="font-size:18px;font-weight:bold">
                 Quick information
             </p>
-            <pre style="font-size:16px;background-color:transparent;font-family:calibri">
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;word-break:keep-all">
     The following conditions may cause an exception:
     1. A row cannot be parsed using the specified format (MalformedLineException). The exception message specifies the line causing the exception, while the ErrorLine property is assigned the text contained in the line.
     2. The specified file does not exist (FileNotFoundException).
@@ -93,4 +93,4 @@
                 <a id="btnSubmit" class="mysubmit" href='../../../../Articles/Details/20174/Read-CSV-file-at-client-side-and-display-on-html-table-using-javascript' style="font-size:24px">Back to code article</a>
             </td>
         </tr>
-    </tbody></table>
+</tbody></table>
