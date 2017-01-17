@@ -1,0 +1,191 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    
+
+    <ol>
+          <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+
+Lazy loading is way of loading data on demand, consider we have a table displaying some thousands of records, instead of trying to display all records in one shot we display them as and when the user scroll down and look for more data. We do this wiothout user experiencing more delay.
+
+In this way we improve the user interaction with web page, it doesn't take much time to load the page intially and make the user wait. We can handle huge data in terms of displaying to user.
+
+Lets take a look at the code heres
+            </pre>
+          </li>
+        <li>
+                  <div style="text-align:center;width:100%">
+                      <a href='../../../Demo/Code/Articles/20185/Implement-lazy-loading-in-aspnet-mvc-using-ajax-with-sample-demo' style="font-weight:bold;font-size:24px;width:100px;height:40px" class="mysubmit">View Demo of Code</a><br /><br />
+                  </div>
+              </li>
+        <li>
+        <li>
+<pre class="brush: java">
+<b>Controller</b>
+public const int RecordsPerPage = 5;
+public List&lt;Employee&gt; EmployeeData;
+    
+
+public ActionResult GetEmployees(int? pageNum)
+{
+    pageNum = pageNum ?? 0;
+    ViewBag.IsEndOfRecords = false;
+    if (Request.IsAjaxRequest())
+    {
+        var employees = GetRecordsForPage(pageNum.Value);
+        ViewBag.IsEndOfRecords = (employees.Any());
+        return PartialView("_EmployeeData", employees);
+    }
+    else
+    {               
+        EmployeeData = GetEmployeeList();
+
+        ViewBag.TotalNumberEmployees = EmployeeData.Count;
+        ViewBag.Employees = GetRecordsForPage(pageNum.Value);
+
+        return View("Index");
+    }
+}
+
+public List&lt;Employee&gt; GetRecordsForPage(int pageNum)
+{           
+    EmployeeData = GetEmployeeList();
+    int from = (pageNum * RecordsPerPage);
+    var tempList = (from rec in EmployeeData select rec).Skip(from).Take(20).ToList&lt;Employee&gt;();
+    return tempList;
+}
+
+
+public List&lt;Employee&gt; GetEmployeeList()
+{
+    //string employeeFile = HostingEnvironment.MapPath("~/App_Data/Employees.txt");
+    List&lt;Employee&gt; tempList = new List&lt;Employee&gt;();
+    //tempList.Add(new Employee("", ""));
+
+
+    tempList.Add(new Employee("1000", "Employee-1"));
+    tempList.Add(new Employee("1001", "Employee-2"));
+    tempList.Add(new Employee("1002", "Employee-3"));
+        //....
+        //... Load your list from wherver you want, database or file or anything..
+        //...
+        //...
+    tempList.Add(new Employee("1073", "Employee-4"));
+    tempList.Add(new Employee("1074", "Employee-5"));
+
+
+    return tempList;
+}
+</pre>           
+        </li>  
+        <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all"><br /><br />
+<b>View</b>
+In View we will have mandaority make table css as table infinite-scroll from bootstrap so that table auto scrolls down when additional data is loaded.
+
+Add the required script screen to load data making an ajax request so that user dont feel the wait. 
+            </pre>
+<pre class="brush: java">
+@using Models
+
+&lt;script src="~/Scripts/jquery-1.10.2.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="~/Scripts/bootstrap.min.js"&gt;&lt;/script&gt;
+&lt;link href="~/Content/bootstrap.min.css" rel="stylesheet" /&gt;
+
+    &lt;div id="loading"&gt;
+        &lt;img src='~/Content/loading.gif' /&gt;&lt;p style="color: red;"&gt;&lt;b&gt;Loading...&lt;/b&gt;&lt;/p&gt;
+    &lt;/div&gt;
+&lt;table class="table infinite-scroll" style="margin-top:20%;height:100px"&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th&gt;ID #&lt;/th&gt;
+                &lt;th&gt;Name&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            @Html.Partial("_EmployeeData", (ViewBag.Employees as List&lt;Employee&gt;))
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+
+@section scripts{
+    &lt;script&gt;
+        var page = 0,
+        inCallback = false,
+        isReachedScrollEnd = false;
+        var scrollHandler = function () {
+            if (isReachedScrollEnd == false &&
+                ($(document).scrollTop() &lt;= $(document).height() - $(window).height())) {
+                loadEmployeeData(url);
+            }
+        }
+
+        function loadEmployeeData(loadMoreRowsUrl) {
+            if (page &gt; -1 && !inCallback) {
+                inCallback = true;
+                page++;
+                $("div#loading").show();
+
+                $.ajax({
+                    type: 'GET',
+                    url: loadMoreRowsUrl,
+                    data: "pageNum=" + page,
+                    success: function (data, textstatus) {
+                        if (data != '') {
+                            $("table.infinite-scroll &gt; tbody").append(data);
+                        }
+                        else {
+                            page = -1;
+                        }
+
+                        inCallback = false;
+                        $("div#loading").hide();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            }
+        }
+    &lt;/script&gt;
+
+    &lt;script type="text/javascript"&gt;
+        $(function () {
+            $("div#loading").hide();
+        });
+
+        var url = '@Url.RouteUrl("EmployeeDataList")';
+        $(window).scroll(scrollHandler);
+    &lt;/script&gt;
+}
+</pre>
+        </li>
+        <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all"><br /><br />
+<b>Model</b>
+Model has an employee class with 2 columns.
+Add this line in route.config   routes.MapRoute("EmployeeDataList", "", new { controller = "Home", action = "GetEmployees" });
+            </pre>
+<pre class="brush: java">
+ public class Employee
+    {
+        public string ID { get; set; }
+        public string Name { get; set; }
+
+        public Employee(string strId, string strName)
+        {
+            ID = strId;
+            Name = strName;
+        }
+    }
+</pre>           
+        </li>  
+    
+    </ol> 
+
+</div>
+   
