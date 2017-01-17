@@ -45,7 +45,7 @@
      
                 <br><br>               
                 
-                @using (Html.BeginForm("DynamicTextBox", "CodeDemos", FormMethod.Post))
+                @using (Html.BeginForm("DynamicTextBox", "Code", FormMethod.Post))
                 {
                     <input id="btnAddTextBox" type="button" value="Add Textbox" onclick="AppendTextBox()" /><br />
                     <div id="divTextBoxes">
@@ -70,5 +70,10 @@ When the data entry form requirements are well-known in advance, and when such d
 
                 <p>
                 <br>
-                <input value="Back to article" id="btnSubmit" onclick="history.go(-1);" class="mysubmit" type="submit">
-       </p>
+<table style="width:100%">
+ <tr>
+            <td align="center">
+                <a id="btnSubmit" class="mysubmit" href="../../../../Articles/Details/20184/Add-and-remove-dynamic-textbox-control-to-view-in-aspnet-mvc-with-demo-page" style="font-size:24px">Back to code article</a>            </td>
+</tr>
+</table>
+                </p>
