@@ -1,4 +1,10 @@
-﻿<script type="text/javascript" src="~/Scripts/tinymce/tinymce.min.js"></script>
+﻿@{
+    ViewBag.Title = "Demo - Rich text editor control in asp.net mvc using javascript free";
+    Layout = "~/Areas/Demo/Views/Shared/_Layout.cshtml";
+}
+
+
+<script type="text/javascript" src="~/Scripts/tinymce/tinymce.min.js"></script>
 <script type="text/javascript">
     tinymce.init(
         {
@@ -20,6 +26,11 @@
             <td>
                 <br><br>
                 @Html.TextArea("MyMVCEditor")
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <a id="btnSubmit" class="mysubmit" href="../../../../Articles/Details/20182/Rich-text-editor-control-in-aspnet-mvc-using-javascript-free" style="font-size:24px">Back to code article</a>
             </td>
         </tr>
         <tr>
@@ -57,8 +68,7 @@ Advanced Editing Behaviors - Learn about some edge case editor behavior.
         </tr>
         <tr>
             <td align="center">
-                <br>
-                <input value="Back to article" id="btnSubmit" onclick="history.go(-1);" class="mysubmit" type="submit">
+                <a id="btnSubmit" class="mysubmit" href="../../../../Articles/Details/20182/Rich-text-editor-control-in-aspnet-mvc-using-javascript-free" style="font-size:24px">Back to code article</a>
             </td>
         </tr>
     </tbody>

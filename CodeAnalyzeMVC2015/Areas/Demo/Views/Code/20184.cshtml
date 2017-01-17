@@ -1,0 +1,74 @@
+@{
+    ViewBag.Title = "Demo - Add and remove dynamic textbox control to view in asp.net mvc";
+    Layout = "~/Areas/Demo/Views/Shared/_Layout.cshtml";
+} 
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        function GetExistingDynamicTextBoxes(value) {
+            var div = $("<div />");
+
+            var textBox = $("<input />").attr("type", "textbox").attr("name", "txtBoxes");
+            textBox.val(value);
+            div.append(textBox);
+
+            var button = $("<input />").attr("type", "button").attr("value", "Remove");
+            button.attr("onclick", "DeleteTextBox(this)");
+            div.append(button);
+
+            return div;
+        }
+        function AppendTextBox() {
+            var div = GetExistingDynamicTextBoxes("");
+            $("#divTextBoxes").append(div);
+        }
+
+        function DeleteTextBox(button) {
+            $(button).parent().remove();
+        }
+
+        $(function () {
+            var values = eval('@Html.Raw(ViewBag.DemoMessage)');
+            if (values != null) {
+                $("#divTextBoxes").html("");
+                $(values).each(function () {
+                    $("#divTextBoxes").append(GetExistingDynamicTextBoxes(this));
+                });
+            }
+        });
+    </script>        
+
+
+                <div style="width: 90%; font-weight: bold; font-family: Calibri; color: #333; font-size: 24px">
+                    Demo - Add and remove dynamic textbox control to view in asp.net mvc
+                </div>
+     
+                <br><br>               
+                
+                @using (Html.BeginForm("DynamicTextBox", "CodeDemos", FormMethod.Post))
+                {
+                    <input id="btnAddTextBox" type="button" value="Add Textbox" onclick="AppendTextBox()" /><br />
+                    <div id="divTextBoxes">
+                        <!--Dynamic textboxes-->
+                    </div><br />                    
+                    <input type="submit" value="Show values of textboxes from server side" />
+                }  
+
+                <span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red">@ViewBag.DemoMessage</span>
+
+                <br><br>
+                <div>
+                    <p style="font-size:18px;font-weight:bold">
+                        Quick information
+                            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+When creating a data-driven Web site, one of the most common tasks Web developers are faced with is creating data entry forms. Data entry forms are Web pages that provide the system's users with a means to input data. The task of creating a particular data entry form typically starts with hammering out the requirements that spell out specifically what information needs to be collected from the user. With the requirements defined, the next stage is designing the data entry Web Form, which involves creating the graphical user interface, as well as writing the code that updates the database with the user's inputs.
+
+When the data entry form requirements are well-known in advance, and when such data entry forms are identical across all users for the system, creating such entry forms is hardly challenging. The task becomes more arduous, however, if the data entry forms need to be dynamic. For example, consider a company's Internet Web application whose purpose is to collect information about the product purchased by a customer; a sort of online product registration system. With such an application, the questions the user is presented with might differ based on what product they purchased, or if they purchased the product from a store or from the company's Web site.                    
+                            </pre> 
+                    </p>
+                </div>
+
+                <p>
+                <br>
+                <input value="Back to article" id="btnSubmit" onclick="history.go(-1);" class="mysubmit" type="submit">
+       </p>

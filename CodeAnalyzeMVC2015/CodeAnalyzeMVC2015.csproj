@@ -133,9 +133,10 @@
     <Compile Include="AppCode\Suggestion.cs" />
     <Compile Include="AppCode\Users.cs" />
     <Compile Include="AppCode\Utilities.cs" />
+    <Compile Include="Areas\Demo\DemoAreaRegistration.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\CodeDemosController.cs" />
+    <Compile Include="Areas\Demo\Controllers\CodeController.cs" />
     <Compile Include="Controllers\QueController.cs" />
     <Compile Include="Controllers\TutorialsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -547,6 +548,9 @@
     <Content Include="ArticleTemplate.docx" />
     <Content Include="js\javacriptCompressor\bin\client\classes.jsa" />
     <Content Include="js\javacriptCompressor\bin\jpicpl32.cpl" />
+    <Content Include="Areas\Demo\Views\web.config" />
+    <Content Include="Areas\Demo\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20184.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -624,12 +628,13 @@
     <Content Include="Views\Account\ViewUser.cshtml" />
     <Content Include="Views\Home\NotFound.cshtml" />
     <Content Include="Views\Tutorials\EBook.cshtml" />
-    <Content Include="Views\CodeDemos\20174.cshtml" />
-    <Content Include="Views\CodeDemos\General.cshtml" />
-    <Content Include="Views\CodeDemos\20182.cshtml" />
-    <Content Include="Views\CodeDemos\20183.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20174.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\General.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20182.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20183.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Demo\Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

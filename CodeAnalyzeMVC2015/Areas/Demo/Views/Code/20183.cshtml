@@ -1,3 +1,10 @@
+@{
+    ViewBag.Title = "Demo - Multiple forms in view asp.net mvc with multiple submit buttons";
+    Layout = "~/Areas/Demo/Views/Shared/_Layout.cshtml";
+}
+
+
+
 <table style="width: 100%; font-family: Calibri">
     <tbody>
         <tr>
@@ -11,14 +18,14 @@
                     <table>
                             <tr>
                                 <td>
-                                    @using (Html.BeginForm("Save", "CodeDemos", FormMethod.Post))
+                                    @using (Html.BeginForm("Save", "Code", FormMethod.Post))
                                     {
                                         <input type="submit" id="btnSave" value="Save"/>
                                         <!--@Html.Hidden("hfUserEMail1", "admin@codeanalyze.com")-->
                                     }
                                 </td>
                                 <td>
-                                    @using (Html.BeginForm("Cancel", "CodeDemos", FormMethod.Post))
+                                    @using (Html.BeginForm("Cancel", "Code", FormMethod.Post))
                                     {
                                         <input type="submit" id="btnCancel" value="Cancel"/>
                                         <!--@Html.Hidden("hfUserEMail2", "no email")-->
@@ -38,7 +45,7 @@
         </tr>
         <tr>
             <td align="center">
-                <a id="btnSubmit" class="mysubmit" href="../../../Articles/Details/20183/Multiple-forms-in-view-aspnet-mvc-with-multiple-submit-buttons" style="font-size:24px">Back to code article</a>            </td>
+                <a id="btnSubmit" class="mysubmit" href="../../../../Articles/Details/20183/Multiple-forms-in-view-aspnet-mvc-with-multiple-submit-buttons" style="font-size:24px">Back to code article</a>            </td>
         </tr>
         <tr>
             <td>
@@ -72,7 +79,7 @@ Writes an opening &lt;form&gt; tag to the response and sets the action tag to th
         </tr>
         <tr>
             <td align="center">
-                <a id="btnSubmit" class="mysubmit" href="../../../Articles/Details/20183/Multiple-forms-in-view-aspnet-mvc-with-multiple-submit-buttons" style="font-size:24px">Back to code article</a>            </td>
+                <a id="btnSubmit" class="mysubmit" href="../../../../Articles/Details/20183/Multiple-forms-in-view-aspnet-mvc-with-multiple-submit-buttons" style="font-size:24px">Back to code article</a>            </td>
         </tr>
     </tbody>
 </table>

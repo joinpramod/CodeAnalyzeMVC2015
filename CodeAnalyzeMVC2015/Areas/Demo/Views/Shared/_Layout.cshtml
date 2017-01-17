@@ -1,0 +1,327 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title</title>
+    <link id="Link1" rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link id="Link2" rel="icon" href="~/favicon.ico" type="image/ico" />
+     
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/style.1.0.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/sCodeCSS.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/CodeDecorate.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/prettify.css" />
+      
+    <script src="https://apis.google.com/js/platform.js" async defer type="text/javascript"></script>
+    <script type="text/javascript" src="~/js/sCode.js"></script>
+    <script type="text/javascript" src="~/js/sCodeJScript.js"></script>
+    <script type="text/javascript" src="~/js/sCodeCSharp.js"></script>
+    <script type="text/javascript" src="~/js/sCodeJava.js"></script>
+    <script type="text/javascript" src="~/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/js/custom.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="~/js/prettify.js"></script>
+    <script type="text/javascript" src="~/js/JavaScript.1.2.js"></script>   
+     
+
+
+    @if (!Request.Url.ToString().Contains("localhost"))
+    {
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-58993626-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    }
+
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Language" content="en-us" />
+    <meta name="Robots" content="All" />
+    <meta name="description" content="@ViewBag.keywords" />   
+    <meta name="google-signin-client_id" content="882773719808-68o6a3dviihrqvnld51tne9978udc3ig.apps.googleusercontent.com">
+    <meta name="application-name" content="CodeAnalyze" />
+    <meta name="keywords" content="Code, Articles, XCode, Swift, Objective-C, Android, Questions, Answers, MVC, ASP.NET, C#, Java, SQL, Hadoop, Programming, Rewards, Microsoft, Technology" />
+
+      
+</head>
+<body>
+
+   
+    <header id="ccr-header">
+        <section id="ccr-nav-top" class="fullwidth">
+            <div class="fullwidth">
+                <div class="container">
+                    <nav class="top-menu">
+
+                        <ul class="left-top-menu">
+                            <li><span style="color:white">@Html.ActionLink("Home", "Index", "Articles", new { area = "" }, null)</span></li>
+                            <li> @Html.ActionLink("Contact Us", "Contact", "Home", new { area = "" }, null)</li>
+                        </ul>
+
+                        <ul class="right-top-menu pull-right">
+                         
+                                @if (string.IsNullOrEmpty(ViewBag.UserEmail))
+                                {
+                                    <li>
+                                        @Html.ActionLink("Register", "Users", "Account", new { area = ""}, null)
+                                    </li>   
+                                    <li>
+                                        @Html.ActionLink("Sign In", "Login", "Account", new { area = ""}, null)
+                                    </li>
+
+                                }
+                                else
+                                {
+                                    <li>
+                                        @Html.ActionLink("My Profile", "ViewUser", "Account", new { area = "" },null )
+                                    </li>
+                                    <li>                                    
+                                        @Html.ActionLink("Log Out", "LogOut", "Master", new { area = "" }, null)                                    
+                                    </li>
+                                }
+                            <li>                             
+                            </li>
+                        </ul>
+
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <section id="ccr-site-title">
+            <div class="container">
+                <div class="site-logo">
+                    <a href="~/Home/Rewards" class="navbar-brand">       
+                        <table>
+                           <tr>
+                              <td> <img src="~/Images/cblogo.PNG"></td><td> <h1><span title="Get Amazon Gift Card Emails for code blogging as Rewards.">Code Analyze</span></h1></td>
+                            </tr>  
+                        </table>
+                    </a>
+                </div>
+
+                <ul class="right-top-menu pull-right">
+                    @if ((string.IsNullOrEmpty(ViewBag.UserEmail)) || (!string.IsNullOrEmpty(ViewBag.UserEmail) && ViewBag.UserEmail != "admin@codeanalyze.com"))
+                    {
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- MyLeaderboard -->
+                        <ins class="adsbygoogle"
+                            style="display:inline-block;width:728px;height:90px"
+                            data-ad-client="ca-pub-3767148792604115"
+                            data-ad-slot="2874275986"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    }
+                </ul>
+            </div>
+        </section>
+
+        <section id="ccr-nav-main" style="z-index:99">
+            <nav class="main-menu">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".ccr-nav-main">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse ccr-nav-main">
+                        <ul class="nav navbar-nav">
+                            <li id="menuLogo" style="display:none">
+                                <img src="~/Images/cblogo.PNG" style="height:40px;width:40px" />
+                            </li>
+                            <li id="menuSiteTitle" style="display:none;">
+                                <a href="../Home/Rewards"><span style="color:#333;font-size:30px;font-weight:bold;">Code Analyze</span></a>
+                            </li>
+                            <li>@Html.ActionLink("Articles", "Index", "Articles", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("Post Article", "Post", "Articles", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("Post Question", "Post", "Que", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("Unanswered", "UnAns", "Que", new { area = "" }, null)</li>
+                            <li class="dropdown">
+                                <a href="#">Tutorials<i class="fa fa-caret-down"></i></a>
+                                <ul class="sub-menu">
+                                    <li>@Html.ActionLink("Basics", "Basics", "Tutorials", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("EBook", "Ebook", "Tutorials", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("AngularJS", "AngularJS", "Tutorials", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("XCode", "XCode", "Tutorials", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Android", "Android", "Tutorials", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Hadoop", "Hadoop", "Tutorials", new { area = "" }, null)</li>
+                                </ul>
+                            </li>
+                            <li> @Html.ActionLink("Rewards", "Rewards", "Home", new { area = "" }, null)</li> 
+                            <li> @Html.ActionLink("Contact Us", "Contact", "Home", new { area = "" }, null)</li> 
+                            @if (string.IsNullOrEmpty(ViewBag.UserEmail))
+                            {
+                                <li id="menuRegister" style="display:none">
+                                    <a style="width:65px;padding:0px;text-align:center;" href="/Account/Users">Register</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
+    </header>
+
+
+
+    <section id="ccr-main-section">
+        <div class="container">
+            <section id="ccr-left-section" class="col-md-8">
+                <div style="margin-top:20px">
+                    @RenderBody()
+                </div>
+            </section>
+
+            <aside id="ccr-right-section" class="col-md-4">
+                @if ((string.IsNullOrEmpty(ViewBag.UserEmail)) || (!string.IsNullOrEmpty(ViewBag.UserEmail) && ViewBag.UserEmail != "admin@codeanalyze.com"))
+                {
+                <section>                 
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:336px;height:280px"
+                         data-ad-client="ca-pub-3767148792604115"
+                         data-ad-slot="2216957987"></ins>
+                    <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>                 
+                </section>
+                }                
+                        
+                <section style="vertical-align:top">
+                    <div class="ccr-gallery-ttile">
+                        <p><strong>Popular Articles</strong></p>
+                    </div>
+                    <ul>
+                        <li>
+                            @Html.Action("RecentPosts", "Master", new { area = "" })
+                        </li>
+                    </ul>
+                </section> 
+                        
+                @if ((string.IsNullOrEmpty(ViewBag.UserEmail)) || (!string.IsNullOrEmpty(ViewBag.UserEmail) && ViewBag.UserEmail != "admin@codeanalyze.com"))
+                {
+                    <section>
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:336px;height:280px"
+                         data-ad-client="ca-pub-3767148792604115"
+                         data-ad-slot="2216957987"></ins>
+                    <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                    </section>
+                }
+
+                <section>
+                    <div class="ccr-gallery-ttile">
+                        <p><strong>Questions</strong></p>
+                    </div>
+                    <ul>
+                        <li>
+                            @Html.Action("Unanswered", "Master", new {area=""})
+                        </li>
+                    </ul>
+                </section> 
+            </aside>
+        </div>
+    </section>
+
+
+    <aside id="ccr-footer-sidebar">
+        <div class="container">
+            <ul>
+                <li class="col-md-3">
+                    <h5 style="color: White">About Us</h5>
+                    <div class="about-us">
+                        CodeAnalyze is a code blogger rewarding platform intended to reward users for posting code articles, discussing code and helping each other. We believe bloggers deserve much more as their work actually helps many coders. Get rewarded as a mark of appreciation in the form of Amazon gift card emails.
+                    </div>
+
+                </li>
+                <li class="col-md-3">
+                    <h5 style="color: White">Support</h5>
+                    <ul>
+                        @*<li>
+                            @Html.ActionLink("About Us", "About", "Home")
+                        </li>*@
+                        <li>
+                            @Html.ActionLink("Posting Guidlines", "PostingGuidelines", "Home", new { area = "" }, null)
+                        </li>
+                        <li> @Html.ActionLink("Suggestion", "Contact", "Home", new { area = "" }, null)</li>
+                    </ul>
+
+                </li>
+                <li class="col-md-3">
+                    <h5 style="color: White">CodeAnalyze</h5>
+                    <ul>
+                        <li>
+                            @Html.ActionLink("Home", "Index", "Articles", new { area = "" }, null)
+                        </li>
+                        <li>
+                            @Html.ActionLink("Terms & Conditions", "Disclaimer", "Home", new { area = "" }, null)
+                        </li>
+                        <li>
+                            @Html.ActionLink("Rewards", "Rewards", "Home", new { area = "" }, null)
+                        </li>
+                        @*<li>
+                            @Html.ActionLink("About Us", "About", "Home")
+                        </li>*@
+                    </ul>
+
+                </li>
+                <li class="col-md-3">
+                    <h5 style="color: White">Tags</h5>
+                    <div class="tagcloud">
+                        @Html.ActionLink("Java", "UnAns", "Que", new { ddType = 3, area = "" }, null)
+                        @Html.ActionLink("C#", "UnAns", "Que", new { ddType = 12, area = "" }, null)
+                        @Html.ActionLink("Android", "UnAns", "Que", new { ddType = 21, area = "" }, null)
+                        @Html.ActionLink("iOS", "UnAns", "Que", new { ddType = 20, area = "" }, null)
+                        @Html.ActionLink("ASP.NET", "UnAns", "Que", new { ddType = 5, area = "" }, null)
+                        @Html.ActionLink("SharePoint", "UnAns", "Que", new { ddType = 18, area = "" }, null)
+                        @Html.ActionLink("JQuery", "UnAns", "Que", new { ddType = 22, area = "" }, null)
+                        @Html.ActionLink("Javascript", "UnAns", "Que", new { ddType = 8, area = "" }, null)
+                        @Html.ActionLink("PHP", "UnAns", "Que", new { ddType = 4, area = "" }, null)
+                        @Html.ActionLink("Html5", "UnAns", "Que", new { ddType = 23, area = "" }, null)
+                        @Html.ActionLink("SQL", "UnAns", "Que", new { ddType = 9, area = "" }, null)
+                        @Html.ActionLink("LINUX", "UnAns", "Que", new { ddType = 14, area = "" }, null)
+                        @Html.ActionLink("ASP.NET MVC", "UnAns", "Que", new { ddType = 5, area = "" }, null)
+                        @Html.ActionLink("Technology", "UnAns", "Que", new { ddType = 19, area = "" }, null)
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+    </aside>
+    
+    <footer id="ccr-footer">
+        <div class="container">
+            <div class="copyright">
+                &copy; 2016, Copyrights <a href="http://codeanalyze.com">CodeAnalyze</a>. All Rights Reserved
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        prettyPrint();
+    </script>
+
+
+
+</body>
+</html>

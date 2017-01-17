@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
 
-namespace CodeAnalyzeMVC2015.Controllers
+namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
 {
-    public class CodeDemosController : Controller
+    public class CodeController : Controller
     {
         //
         // GET: /CodeDemos/
@@ -18,7 +18,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             {
                 articleId = strId;
             }
-            return View("../CodeDemos/" + articleId);
+            return View(articleId);
         }
 
         [HttpPost]
@@ -26,7 +26,7 @@ namespace CodeAnalyzeMVC2015.Controllers
         {
             //string strEMail = Request.Form["hfUserEMail1"];
             ViewBag.DemoMessage = "Data saved";
-            return View("../CodeDemos/" + 20183);
+            return View("20183");
         }
 
         [HttpPost]
@@ -35,7 +35,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             //string strEMail = Request.Form["hfUserEMail1"];
             ViewBag.DemoMessage = "Action cancelled";
             string articleId = ViewBag.ArticleId;
-            return View("../CodeDemos/" + 20183);
+            return View("20183");
         }
 
         [HttpPost]
@@ -54,7 +54,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 articleId = RouteData.Values["Id"].ToString();
             }
 
-            return Articles(articleId);
+            return Articles("20184");
         }
 
     }
