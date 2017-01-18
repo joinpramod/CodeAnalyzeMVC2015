@@ -134,6 +134,7 @@
     <Compile Include="AppCode\Users.cs" />
     <Compile Include="AppCode\Utilities.cs" />
     <Compile Include="Areas\Demo\DemoAreaRegistration.cs" />
+    <Compile Include="Areas\Demo\Models\Employee.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Areas\Demo\Controllers\CodeController.cs" />
@@ -634,7 +635,6 @@
     <Content Include="Areas\Demo\Views\Code\20183.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Demo\Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
