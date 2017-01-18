@@ -552,6 +552,8 @@
     <Content Include="Areas\Demo\Views\web.config" />
     <Content Include="Areas\Demo\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Demo\Views\Code\20184.cshtml" />
+    <Content Include="Areas\Demo\Views\Shared\_EmployeeData.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20185.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

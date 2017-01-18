@@ -1,0 +1,87 @@
+@{
+    ViewBag.Title = "Demo - Implement lazy loading in asp.net mvc using ajax with sample demo";
+    Layout = "~/Areas/Demo/Views/Shared/_Layout.cshtml";
+} 
+
+@using CodeAnalyzeMVC2015.Areas.Demo.Models
+
+ 
+
+   <div id="loading">
+        <img src='~/Content/loading.gif' /><p style="color: red;"><b>Loading...</b></p>
+    </div>
+<table class="table infinite-scroll" style="margin-top:20%;height:100px">
+        <thead>
+            <tr>
+                <th>ID #</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @Html.Partial("_EmployeeData", (ViewBag.Employees as List<Employee>))
+        </tbody>
+    </table>
+
+@section scripts{
+    <script>
+        var page = 0,
+        inCallback = false,
+        isReachedScrollEnd = false;
+        var scrollHandler = function () {
+            if (isReachedScrollEnd == false &&
+                ($(document).scrollTop() <= $(document).height() - $(window).height())) {
+                loadEmployeeData(url);
+            }
+        }
+
+        function loadEmployeeData(loadMoreRowsUrl) {
+            if (page > -1 && !inCallback) {
+                inCallback = true;
+                page++;
+                $("div#loading").show();
+                debugger;
+                $.ajax({
+                    type: 'GET',
+                    url: '/Demo/Code/GetEmployees',
+                    data: "pageNum=" + page,
+                    success: function (data, textstatus) {
+                        if (data != '') {
+                            $("table.infinite-scroll > tbody").append(data);
+                        }
+                        else {
+                            page = -1;
+                        }
+
+                        inCallback = false;
+                        $("div#loading").hide();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("div#loading").hide();
+        });
+
+        var url = '/Code/GetEmployees';
+        $(window).scroll(scrollHandler);
+    </script>
+}
+
+
+                <p>
+                <br>
+<table>
+    <tr>
+            <td align="center">
+                <a id="btnSubmit" class="mysubmit" href="../../../../Articles/Details/20185/Implement-lazy-loading-in-aspnet-mvc-using-ajax-with-sample-demo" style="font-size:24px">Back to code article</a>            
+            </td>
+    </tr>  
+</table>
+
+                </p>
