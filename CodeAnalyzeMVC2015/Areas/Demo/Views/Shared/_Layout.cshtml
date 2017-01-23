@@ -126,6 +126,8 @@
                         (adsbygoogle = window.adsbygoogle || []).push({});
                         </script>
                     }*@
+                    @if ((string.IsNullOrEmpty(ViewBag.UserEmail)) || (!string.IsNullOrEmpty(ViewBag.UserEmail) && ViewBag.UserEmail != "admin@codeanalyze.com"))
+                    {
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- My 728*90 -->
                     <ins class="adsbygoogle"
@@ -135,6 +137,7 @@
                     <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
+                }
                 </ul>
             </div>
         </section>
@@ -209,7 +212,9 @@
                     (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>                 
                 </section>
-                }*@                
+                }*@   
+                @if ((string.IsNullOrEmpty(ViewBag.UserEmail)) || (!string.IsNullOrEmpty(ViewBag.UserEmail) && ViewBag.UserEmail != "admin@codeanalyze.com"))
+                    {
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- My 336*280 -->
                 <ins class="adsbygoogle"
@@ -219,6 +224,7 @@
                 <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>    
+            }   
                 <section style="vertical-align:top">
                     <div class="ccr-gallery-ttile">
                         <p><strong>Popular Articles</strong></p>
@@ -243,6 +249,8 @@
                     </script>
                     </section>
                 }*@
+                        @if ((string.IsNullOrEmpty(ViewBag.UserEmail)) || (!string.IsNullOrEmpty(ViewBag.UserEmail) && ViewBag.UserEmail != "admin@codeanalyze.com"))
+                    {
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- My 336*280 -->
                 <ins class="adsbygoogle"
@@ -252,6 +260,7 @@
                 <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
+                    }
                 <section>
                     <div class="ccr-gallery-ttile">
                         <p><strong>Questions</strong></p>
