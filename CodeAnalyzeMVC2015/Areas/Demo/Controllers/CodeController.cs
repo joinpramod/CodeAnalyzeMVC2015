@@ -26,13 +26,20 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
             {
                 return GetEmployees(0);
             }
+             if (articleId.Equals("20186"))
+            {
+                List<SelectListItem> items = GetItems20186();
+
+                return View("../Code/" + articleId, items);
+            }
             else
             {
                 return View("../Code/" + articleId);
             }
             //return View(articleId);
         }
-
+        
+        #region 20183
         [HttpPost]
         public ActionResult Save()
         {
@@ -49,7 +56,10 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
             string articleId = ViewBag.ArticleId;
             return View("20183");
         }
-
+        #endregion
+        
+        
+        #region 20184
         [HttpPost]
         public ActionResult DynamicTextBox(string[] txtBoxes)
         {
@@ -68,7 +78,8 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
 
             return Articles("20184");
         }
-
+        #endregion
+      
         #region 20185
         public const int RecordsPerPage = 5;
         public List<Employee> EmployeeData;
@@ -168,6 +179,58 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
             return tempList;
         }
         #endregion
+
+        #region 20186
+
+        public ActionResult Post20186(FormCollection form)
+        {
+            string lbEmp = form["lbEmp"];
+            ViewBag.Message += lbEmp;
+            List<SelectListItem> items = GetItems20186();
+            return View("../Code/20186", items);
+        }
+
+        private static List<SelectListItem> GetItems20186()
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+
+            items.Add(new SelectListItem
+            {
+                Text = "Microsoft",
+                Value = "1"
+            });
+
+            items.Add(new SelectListItem
+            {
+                Text = "Apple",
+                Value = "2"
+            });
+
+            items.Add(new SelectListItem
+            {
+                Text = "IBM",
+                Value = "3"
+            });
+
+            items.Add(new SelectListItem
+            {
+                Text = "Oracle",
+                Value = "4"
+            });
+
+            items.Add(new SelectListItem
+            {
+                Text = "Google",
+                Value = "5"
+            });
+            return items;
+        }
+
+
+
+        #endregion
+
+
 
     }
 
