@@ -1,0 +1,124 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+    <ol>
+          <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+In this article we will create a dropdownlist with multiple select options using checkbox for each item in dropdownlist in asp.net mvc.
+This can be also similar to ListBox but we will have checkbox for each item. We will bind the data to the dropdownlist from the controller using the model.
+We will be using jquery and bootstrap to implement this feature. So we need to refer the scripts and css files. 
+With the new scripts users can see the selected items.
+            </pre>
+             </li>
+             <li>
+                <div style="text-align:center;width:100%">
+                    <a href='../../../Demo/Code/Articles/20186/Dropdownlist-with-multiple-select-with-checkbox-using-jquery-in-asp.net-mvc' style="font-weight:bold;font-size:24px;height:40px" class="mysubmit">View Demo of Code</a><br /><br />
+                </div>
+            </li>  
+            <li>
+              <b>Controller</b>
+<pre class="brush: java">
+
+public ActionResult Index()
+{
+    List&lt;SelectListItem&gt; items = GetItems();
+
+    return View(items);
+}
+
+public ActionResult PostValues(FormCollection form)
+{
+    string lbComp = form["lbComp"];
+    ViewBag.Message += lbComp;
+    List&lt;SelectListItem&gt; items = GetItems();
+    return View(items);
+}
+
+private static List&lt;SelectListItem&gt; GetItems()
+{
+    List&lt;SelectListItem&gt; items = new List&lt;SelectListItem&gt;();
+
+    items.Add(new SelectListItem
+    {
+        Text = "Microsoft",
+        Value = "1"
+    });
+
+    items.Add(new SelectListItem
+    {
+        Text = "Apple",
+        Value = "2"
+    });
+
+    items.Add(new SelectListItem
+    {
+        Text = "IBM",
+        Value = "3"
+    });
+
+    items.Add(new SelectListItem
+    {
+        Text = "Oracle",
+        Value = "4"
+    });
+
+    items.Add(new SelectListItem
+    {
+        Text = "Google",
+        Value = "5"
+    });
+    return items;
+}
+
+</pre>           
+        </li>  
+        <li>
+            <div style="text-align:center;width:100%">
+                <a href='../../../Demo/Code/Articles/20186/Dropdownlist-with-multiple-select-with-checkbox-using-jquery-in-asp.net-mvc' style="font-weight:bold;font-size:24px;height:40px" class="mysubmit">View Demo of Code</a><br /><br />
+            </div>
+        </li>
+        <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none">
+Take a look at the view and the external links accessed to refer the bootstrap scripts and css files
+            </pre><b>View</b>
+<pre class="brush: java">;
+&lt;script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"&gt;&lt;/script&gt;
+&lt;script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"&gt;&lt;/script&gt;
+
+&lt;link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css"/&gt;
+&lt;link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/&gt;
+
+
+@model List&lt;SelectListItem&gt;
+
+ @using (Html.BeginForm("PostValues", "Code", FormMethod.Post))
+{
+    &lt;br/&gt;
+    &lt;br/&gt;
+            @Html.DropDownList("lbComp", new SelectList(Model, "Value", "Text"), new{multiple="multiple"})
+    &lt;br/&gt;
+    &lt;br/&gt;
+    &lt;input type="submit" value="Submit"/&gt;
+}
+
+    &lt;br /&gt;&lt;span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red; font-size:16px"&gt;@ViewBag.Message&lt;/span&gt;
+
+    &lt;script type="text/javascript"&gt;
+        $(document).ready(function () {
+            $('#lbComp').multiselect();
+        });
+    &lt;/script&gt;
+
+</pre>
+        </li>
+
+   
+    </ol> 
+
+</div>
+   
