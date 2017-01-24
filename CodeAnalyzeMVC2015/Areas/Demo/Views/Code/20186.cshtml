@@ -1,0 +1,58 @@
+@{
+    ViewBag.Title = "Demo - Dropdownlist with multiple select with checkbox using jquery in asp.net mvc";
+    Layout = "~/Areas/Demo/Views/Shared/_Layout.cshtml";
+} 
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+
+<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css"/>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+
+@model List<SelectListItem>
+
+ @using (Html.BeginForm("Post20186", "Code", FormMethod.Post))
+{
+    <br/>
+    <br/>
+            @Html.DropDownList("lbEmp", new SelectList(Model, "Value", "Text"), new{multiple="multiple"})
+    <br/>
+    <br/>
+    <input type="submit" value="Submit"/>
+}
+
+    <br /><span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red; font-size:16px">@ViewBag.Message</span>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#lbEmp').multiselect();
+        });
+    </script>
+
+<p>
+    <br>
+    <table>
+        <tr>
+            <td align="center">
+                <a id="btnSubmit" class="mysubmit" href="../../../../Articles/Details/20186/Dropdownlist-with-multiple-select-with-checkbox-using-jquery-in-asp.net-mvc" style="font-size: 24px">Back to code article</a>
+            </td>
+        </tr>
+    </table>
+
+</p>
+
+
+<br><br>
+                <div>
+                    <p style="font-size:18px;font-weight:bold">
+                        Quick information
+                            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+One can look at more examples and samples at <a href='http://davidstutz.github.io/bootstrap-multiselect/'>More examples</a>                            </pre> 
+                    </p>
+                </div>
+
+
+
+
