@@ -220,6 +220,7 @@
     <Content Include="Articles\Disable_Request_Validation_MVC.html" />
     <Content Include="Articles\Display_CSVFIle_on_HtmlTable_ClientSide.html" />
     <Content Include="Articles\Download_and Upload_File_FTP_XCode.html" />
+    <Content Include="Articles\DropdDown_Multi_Select_MVC.html" />
     <Content Include="Articles\Editor_Control_In_ASP.NET_MVC.html" />
     <Content Include="Articles\Executing_Asynchronous_Task_Thread.html" />
     <Content Include="Articles\Export_data_to_excel.html" />
@@ -233,6 +234,7 @@
     <Content Include="Articles\JQuery_AutoComplete_MVC.html" />
     <Content Include="Articles\JQuery_Grid_Server_Side.html" />
     <Content Include="Articles\JQuery_Validation_FileUpload.html" />
+    <Content Include="Articles\Lazy_Loading_MVC.html" />
     <Content Include="Articles\LinkedIn_Login_iOS.html" />
     <Content Include="Articles\Location_Finder_ObjC.html" />
     <Content Include="Articles\Login_With_Facebook_Swift2.html" />
@@ -554,6 +556,7 @@
     <Content Include="Areas\Demo\Views\Code\20184.cshtml" />
     <Content Include="Areas\Demo\Views\Shared\_EmployeeData.cshtml" />
     <Content Include="Areas\Demo\Views\Code\20185.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20186.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
