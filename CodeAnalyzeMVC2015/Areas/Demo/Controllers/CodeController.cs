@@ -230,7 +230,29 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
 
         #endregion
 
+        #region 20187
+        [HttpPost]
+        public ActionResult Charts_ASPNET_MVC(string[] txtBoxes)
+        {
+            if (Request.Form["BarChart"] != null)
+            {
+                ViewBag.Message = "Bar";
+            }
 
+            if (Request.Form["PieChart"] != null)
+            {
+                ViewBag.Message = "Pie";
+            }
+
+            if (Request.Form["LineChart"] != null)
+            {
+                ViewBag.Message = "Line";
+            }
+
+
+            return Articles("20187");
+        }
+        #endregion
 
     }
 
