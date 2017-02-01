@@ -1,0 +1,62 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+    <ol>
+          <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+This articles explains about displaying or showing modal popup on button click or link click or any action from user in asp.net mvc or any other web application.
+We wil display the contents in div on a modal popup. Jquery modal popup has following important properties
+
+         modal         	--> boolean value to indicate if the control it is being tied is modal or not, value is true for this
+         autoOpen   	--> by default autoOpen is always true which mean this will popup when the page loads
+         title          	--> title of popup window
+         width         	--> width of modal popup                 
+         height        	--> heigh of modal popup
+
+We need to have mandatory reference to the following scripts and style sheets
+        jquery.min.js
+        jquery-ui.js    --> can be donwloaded from <a href='https://jqueryui.com/download/'>https://jqueryui.com/download/</a>
+
+        jquery-ui.css   --> can be donwloaded from <a href='https://jqueryui.com/download/'>https://jqueryui.com/download/</a>
+            </pre>
+              
+              </li>
+                <li>
+            <div style="text-align:left;width:100%">
+                <a href='../../../Demo/Code/Articles/20188/Display-modal-popup-using-jquery-to-show-the-div-content-in-aspnet-mvc' style="font-weight:bold;font-size:24px;width:200px;height:40px" class="mysubmit">View Demo of Code</a><br /><br />
+            </div>
+        </li>
+        <li>
+              <b>Sample code</b>
+<pre class="brush: java">
+&lt;script src="../Scripts/jquery-1.10.2.min.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript"&gt;
+     $(function () {
+         $("#dialog").dialog({
+             modal: true,
+             autoOpen: false,
+             title: "jQuery modal popup example",
+             width: 300,
+             height: 150
+         });
+         $("#btnShow").click(function () {
+             $('#dialog').dialog('open');
+         });
+     });
+&lt;/script&gt;
+&lt;input type="button" id="btnShow" value="Show Popup" /&gt;
+&lt;div id="dialog" style="display:none"&gt;
+Hi, how are you?
+&lt;/div&gt;
+</pre>           
+        </li>  
+
+ 
+    </ol> 
+
+</div>
+   

@@ -1,0 +1,58 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+
+    <ol>
+          <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+Asp.Net MVC have an in built chart helper class using which we can draw various types of charts like pie, line, bar, stock, area, column charts.
+We will have input the data for the chart to be drawn. This can be either static or dynamic. The data can be an array or from an xml file or data can be got from database.
+Take a look at the demo to get better understanding.
+            </pre>
+              </li>
+        <li>
+            <div style="text-align:center;width:100%">
+                <a href='../../../Demo/Code/Articles/20187/Create-pie-bar-line-charts-in-asp-net-mvc-using-chart-helper-class' style="font-weight:bold;font-size:24px;width:200px;height:40px" class="mysubmit">View Demo of Code</a><br /><br />
+            </div>
+
+        </li>
+              <li>
+              <b>View code</b>
+<pre class="brush: java">
+//Bar chart
+var myChart1 = new Chart(width: 400, height: 300)
+        .AddTitle("Bar Chart")
+        .AddSeries(
+            name: "Bar", chartType: "Bar",
+            xValue: new[] {  "Emp1", "Emp2", "Emp3", "Emp4", "Emp5" },
+            yValues: new[] { "2", "6", "4", "5", "3" })
+        .Write();
+
+//Pie chart
+var myChart2 = new Chart(width: 400, height: 300)
+            .AddTitle("Pie Chart")
+            .AddSeries( 
+                name: "Pie",  chartType: "Pie",
+                xValue: new[] {  "Emp6", "Emp7", "Emp8", "Emp9", "Emp10" },
+                yValues: new[] {  "10", "20", "15", "25", "30" })
+            .Write();
+
+//Line chart
+ var myChart3 = new Chart(width: 400, height: 300)
+        .AddTitle("Line Chart")
+        .AddSeries( 
+            name: "Line",  chartType: "Line",
+            xValue: new[] {  "Emp11", "Emp12", "Emp13", "Emp14", "Emp15" },
+            yValues: new[] {  "10", "20", "15", "25", "30" })
+        .Write();
+</pre>           
+        </li>  
+  
+    </ol> 
+
+</div>
+   
