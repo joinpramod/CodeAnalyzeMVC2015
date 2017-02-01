@@ -1,0 +1,91 @@
+@{
+    ViewBag.Title = "Demo - Create pie bar line charts in asp.net mvc using chart helper class";
+    Layout = "~/Areas/Demo/Views/Shared/_Layout.cshtml";
+} 
+
+<br/>
+<br/>
+
+ @using (Html.BeginForm("Charts_ASPNET_MVC", "Code", FormMethod.Post))
+{
+
+<input type="submit" name="BarChart" value="Bar"/> <input type="submit" name="PieChart" value="Pie"/> <input type="submit" name="LineChart" value="Line"/> 
+
+
+<div style="height:auto">
+@if(ViewBag.Message == "Bar")
+{
+            var myChart1 = new Chart(width: 400, height: 300)
+            .AddTitle("Bar Chart")
+            .AddSeries(
+                name: "Bar", chartType: "Bar",
+                xValue: new[] {  "Emp1", "Emp2", "Emp3", "Emp4", "Emp5" },
+                yValues: new[] { "2", "6", "4", "5", "3" })
+            .Write();
+}
+</div>
+<br/>
+<br/>
+<div style="height:auto">
+@if(ViewBag.Message == "Pie")
+{
+             var myChart2 = new Chart(width: 400, height: 300)
+            .AddTitle("Pie Chart")
+            .AddSeries( 
+                name: "Pie",  chartType: "Pie",
+                xValue: new[] {  "Emp6", "Emp7", "Emp8", "Emp9", "Emp10" },
+                yValues: new[] {  "10", "20", "15", "25", "30" })
+            .Write();
+}
+</div>
+<br/>
+<br/>
+<div style="height:auto">
+@if(ViewBag.Message == "Line")
+{
+         var myChart3 = new Chart(width: 400, height: 300)
+        .AddTitle("Line Chart")
+        .AddSeries( 
+            name: "Line",  chartType: "Line",
+            xValue: new[] {  "Emp11", "Emp12", "Emp13", "Emp14", "Emp15" },
+            yValues: new[] {  "10", "20", "15", "25", "30" })
+        .Write();
+}
+</div>
+
+
+
+    <br/>
+    <br/>
+    
+
+
+    <br /><span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red; font-size:16px">@ViewBag.Message</span>
+
+}
+
+<p>
+    <br>
+    <table>
+        <tr>
+            <td align="center">
+                <a id="btnSubmit" class="mysubmit" href="../../../../Articles/Details/20187/Create-pie-bar-line-charts-in-asp-net-mvc-using-chart-helper-class" style="font-size: 24px">Back to code article</a>
+            </td>
+        </tr>
+    </table>
+
+</p>
+
+
+<br><br>
+                <div>
+                    <p style="font-size:18px;font-weight:bold">
+                        Quick information
+                            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+One can look at more examples and samples at <a href='https://www.asp.net/web-pages/overview/data/7-displaying-data-in-a-chart'>More details</a>                            </pre> 
+                    </p>
+                </div>
+
+
+
+
