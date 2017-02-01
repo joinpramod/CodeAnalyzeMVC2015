@@ -1,0 +1,55 @@
+@{
+    ViewBag.Title = "Demo - Show alert confirmation window and process it at server side in asp.net mvc";
+    Layout = "~/Areas/Demo/Views/Shared/_Layout.cshtml";
+} 
+<br/>
+<br/>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+
+<table style="width: 100%; font-family: Calibri">
+        <tr>
+            <td style="width:100%">
+                <span style="width: 90%; font-weight: bold; font-family: Calibri; color: #333; font-size: 24px">Demo - Show alert confirmation window and process at server side in asp.net mvc</span>
+            </td>
+        </tr>
+</table>
+
+   @using (Html.BeginForm("AlertConfirmation", "Code", FormMethod.Post))
+    {
+        <input type="submit" value="Show alert confirmation box" onclick="Confirm()"  style="font-weight: bold; font-family: Calibri; color: green; font-size:20px"/>
+        <input type="hidden" id="hdnValue" name="hiddenValue" />
+    }
+
+    <br /><span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red; font-size:20px">@ViewBag.Message</span>
+
+
+
+    <script type="text/javascript">
+        function Confirm() {
+            if (confirm("Get this confirmation from server")) {
+                document.getElementById("hdnValue").value = "Yes";
+            } else {
+                document.getElementById("hdnValue").value = "No";
+            }
+        }
+    </script>
+
+<p>
+    <br>
+    <table>
+        <tr>
+            <td align="center">
+                <a id="btnSubmit" class="mysubmit" href="../../../../Articles/Details/20189/Show-alert-confirmation-window-and-process-at-server-side-in-asp-net-mvc" style="font-size: 24px">Back to code article</a>
+            </td>
+        </tr>
+    </table>
+
+</p>
+
+
+
+
+
+
