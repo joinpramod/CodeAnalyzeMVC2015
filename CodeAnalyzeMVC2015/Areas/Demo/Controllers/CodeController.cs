@@ -254,6 +254,23 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
         }
         #endregion
 
+        #region 20189
+        [HttpPost]
+        public ActionResult AlertConfirmation(string hiddenValue)
+        {
+            if (hiddenValue == "Yes")
+            {
+                ViewBag.Message = "OK";
+            }
+            else
+            {
+                ViewBag.Message = "Cancel";
+            }
+
+            return View("20189");
+        }
+        #endregion
+
     }
 
 
