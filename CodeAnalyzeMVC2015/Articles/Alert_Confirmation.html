@@ -1,0 +1,52 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+    <ol>
+          <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+This article explains about creating alert confirmation window and then processing the user selected option of OK or Cancel with Yes and No on the server side.
+Normally while performing delete actions we would need to double confirm the user action of deletion as there might a chance of user clicking delete by mistake or not intended to do it.
+With this option we can make the user sure of the action.
+We will show the javascript alert confimration window and we pass the user selected option via a hidden filed to the server by post method.
+We validate this value on the server side and process accordingly. Take a look at the sample.
+            </pre>
+              </li>
+            <li>
+            <div style="text-align:center;width:100%">
+                <a href='../../../Demo/Code/Articles/20189/Show-alert-confirmation-window-and-process-at-server-side-in-asp-net-mvc' style="font-weight:bold;font-size:24px;width:100px;height:40px" class="mysubmit">View Demo of Code</a><br /><br />
+            </div>
+        </li>   
+        <li>
+<b>View Code</b>
+<pre class="brush: java">
+@using (Html.BeginForm("AlertConfirmation", "Code", FormMethod.Post))
+{
+    &lt;input type="submit" value="Show alert confirmation box" onclick="Confirm()"  style="font-weight: bold; font-family: Calibri; color: green; font-size:20px"/&gt;
+    &lt;input type="hidden" id="hdnValue" name="hiddenValue" /&gt;
+}
+
+&lt;br /&gt;&lt;span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red; font-size:20px"&gt;@ViewBag.Message&lt;/span&gt;
+
+
+
+&lt;script type="text/javascript"&gt;
+    function Confirm() {
+        if (confirm("Get this confirmation from server")) {
+            document.getElementById("hdnValue").value = "Yes";
+        } else {
+            document.getElementById("hdnValue").value = "No";
+        }
+    }
+&lt;/script&gt;
+</pre>           
+        </li>  
+    
+ 
+    </ol> 
+
+</div>
+   
