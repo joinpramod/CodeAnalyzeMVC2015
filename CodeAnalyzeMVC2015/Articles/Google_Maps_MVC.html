@@ -1,0 +1,68 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+    <ol>
+        <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+1. To implement google maps in asp.net mvc we need to get google api key from here <a href='https://developers.google.com/maps/faq?csw=1#new-key'>Get Google Api Key</a>
+2. Using the below code we can map multiple pointers if we have the latitude and logitude
+3. Data can also be got from database to map the pointers
+4. Using google maps in .net application is really simple if we have the google map api key
+5. Google maps can zoomed in and out and most of the features of google maps will be available.
+            </pre>
+        </li>
+        <li>
+            <div style="text-align:center;width:100%">
+                <a href='../../../Demo/Code/Articles/20190/Display-google-maps-in-asp-net-mvc-and-pin-addresses-with-details-popup' style="font-weight:bold;font-size:24px;width:200px;height:40px" class="mysubmit">View Demo of Code</a><br /><br />
+            </div>
+        </li>
+        <li>
+            <b>View Code</b>
+            <pre class="brush: java">
+&lt;div id="mapArea" style="width: 500px; height: 500px"&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key==************************************"></"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    var mapPointers = [{ 'title': 'New York', 'lat': '40.730610', 'lng': '-73.935242', 'description': 'Google Map Testing for New York' }, ];;
+    //the data for map pointers can be got from controller in a ViewBag and assigned here
+    window.onload = function () {
+        var googleMap = {
+            center: new google.maps.LatLng(mapPointers[0].lat, mapPointers[0].lng),
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var mappointerDetailsWindow = new google.maps.InfoWindow();
+        var map = new google.maps.Map(document.getElementById("mapArea"), googleMap);
+        for (i = 0; i &lt; mapPointers.length; i++) {
+            var data = mapPointers[i]
+            var latLong = new google.maps.LatLng(data.lat, data.lng);
+            var mapPointer = new google.maps.Marker({
+                position: latLong,
+                map: map,
+                title: data.title
+            });
+            (function (mapPointer, data) {
+                google.maps.event.addListener(mapPointer, "click", function (e) {
+                    mappointerDetailsWindow.setContent(data.description);
+                    mappointerDetailsWindow.open(map, mapPointer);
+                });
+            })(mapPointer, data);
+        }
+    }
+&lt;/script&gt;
+            </pre>           
+        </li>  
+        <li>
+            <div style="text-align:center;width:100%">
+                <a href='../../../Demo/Code/Articles/20190/Display-google-maps-in-asp-net-mvc-and-pin-addresses-with-details-popup' style="font-weight:bold;font-size:24px;width:200px;height:40px" class="mysubmit">View Demo of Code</a><br /><br />
+            </div>
+        </li>
+ 
+    </ol> 
+
+</div>
+   
