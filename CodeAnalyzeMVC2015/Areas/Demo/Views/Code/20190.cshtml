@@ -1,0 +1,67 @@
+@{
+    ViewBag.Title = "Demo - Display google maps in asp.net mvc and pin addresses with details popup";
+    Layout = "~/Areas/Demo/Views/Shared/_Layout.cshtml";
+} 
+<br/>
+<br/>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+
+<table style="width: 100%; font-family: Calibri">
+        <tr>
+            <td style="width:100%">
+                <span style="width: 90%; font-weight: bold; font-family: Calibri; color: #333; font-size: 24px">Demo - Display google maps in asp.net mvc and pin addresses with details popup</span>
+            </td>
+        </tr>
+</table>
+
+   <div id="mapArea" style="width: 500px; height: 500px">
+    </div>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCfvjCYtyuccoa9g257E2NYicVZZf_We0"></script>
+    <script type="text/javascript">
+        var mapPointers = [{ 'title': 'New York', 'lat': '40.730610', 'lng': '-73.935242', 'description': 'Google Map Testing for New York' }, ];;
+        //the data for map pointers can be got from controller in a ViewBag and assigned here
+        window.onload = function () {
+            var googleMap = {
+                center: new google.maps.LatLng(mapPointers[0].lat, mapPointers[0].lng),
+                zoom: 10,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                var mappointerDetailsWindow = new google.maps.InfoWindow();
+                var map = new google.maps.Map(document.getElementById("mapArea"), googleMap);
+                for (i = 0; i < mapPointers.length; i++) {
+                    var data = mapPointers[i]
+                    var latLong = new google.maps.LatLng(data.lat, data.lng);
+                    var mapPointer = new google.maps.Marker({
+                        position: latLong,
+                        map: map,
+                        title: data.title
+                    });
+                    (function (mapPointer, data) {
+                        google.maps.event.addListener(mapPointer, "click", function (e) {
+                            mappointerDetailsWindow.setContent(data.description);
+                            mappointerDetailsWindow.open(map, mapPointer);
+                        });
+                    })(mapPointer, data);
+                }
+        }
+    </script>
+
+<p>
+    <br>
+    <table>
+        <tr>
+            <td align="center">
+                <a id="btnSubmit" class="mysubmit" href="../../../../Articles/Details/20190/Display-google-maps-in-asp-net-mvc-and-pin-addresses-with-details-popup" style="font-size: 24px">Back to code article</a>
+            </td>
+        </tr>
+    </table>
+
+</p>
+
+
+
+
+
+
