@@ -1,0 +1,101 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    //Pass model object in json format to controller from jquery ajax request in asp.net mvc
+
+    <ol>
+        <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+1. This article explains about using post method to pass a whole model object from jquery ajax request to controller.
+2. Add reference to jquery and json javascript to implement this jquery.min.js and json2.js 
+3. We need a Model object say Employee object model, a Controller action method to handle the post request and a View to take the user input and display the data back
+4. Below is the code of the Model, Controller and  View, do go thorugh the comments for more understanding
+5. Also take a look the demo to see the code in action
+            </pre>
+        </li>
+        <li>
+            <div style="text-align:center;width:100%">
+                <a href='../../../Demo/Code/Articles/20191/Pass-model-object-in-json-format-to-controller-from-jquery-ajax-request-in-asp-net-mvc' style="font-weight:bold;font-size:24px;width:100px;height:40px" class="mysubmit">View Demo of Code</a><br /><br />
+            </div>
+        </li>
+        <li>
+            <b>Model</b>
+            <pre class="brush: java">
+public class Employee
+{
+    public string ID { get; set; }
+    public string Name { get; set; }
+
+    public Employee()
+    {
+        // Having an empty constructor is mandatory
+    }
+
+    public Employee(string strId, string strName)
+    {
+        ID = strId;
+        Name = strName;
+    }
+}
+            </pre>           
+        </li>  
+        <li>
+            <div style="text-align:center;width:100%">
+                <a href='../../../Demo/Code/Articles/20191/Pass-model-object-in-json-format-to-controller-from-jquery-ajax-request-in-asp-net-mvc' style="font-weight:bold;font-size:24px;width:100px;height:40px" class="mysubmit">View Demo of Code</a><br /><br />
+            </div>
+        </li>
+         <li>
+            <b>Model</b>
+            <pre class="brush: java">
+[HttpPost]
+public JsonResult PassModelFromJQuery(Employee emp)
+{
+    return Json(emp);
+}
+
+            </pre>           
+        </li>  
+  <li>
+            <b>View</b>
+            <pre class="brush: java">
+&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    $(function () {
+        $("#btnGet").click(function () {
+            var emp = {};
+            emp.Name = $("#txtName").val();
+            emp.ID = $("#txtId").val();
+            $.ajax({
+                type: "POST",
+                url: "../../../../Demo/Code/PassModelFromJQuery",
+                data: '{emp: ' + JSON.stringify(emp) + '}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    alert("These values are got from server post request, ID: " + response.ID + ".\nName: " + response.Name);
+                },
+                failure: function (response) {
+                    //alert(response.responseText);
+                },
+                error: function (response) {
+                    //alert(response.responseText);
+                }
+            });
+        });
+    });
+&lt;/script&gt;
+
+&lt;input type="text" placeholder="Employee Id" id="txtId"/&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;input type="text" placeholder="Employee Name" id="txtName"/&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;input type="button" id="btnGet" value="Pass Emp model from jquery ajax to cntrl and display it back " style="font-weight: bold; font-family: Calibri; color: green; font-size:16px"/&gt;
+
+            </pre>           
+        </li>  
+    </ol> 
+
+</div>
+   
