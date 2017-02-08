@@ -271,6 +271,14 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
         }
         #endregion
 
+        #region 20191
+        [HttpPost]
+        public JsonResult PassModelFromJQuery(Employee emp)
+        {
+            return Json(emp);
+        }
+        #endregion
+
     }
 
 
