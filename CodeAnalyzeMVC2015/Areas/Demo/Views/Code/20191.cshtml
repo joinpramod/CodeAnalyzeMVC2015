@@ -1,0 +1,64 @@
+@{
+    ViewBag.Title = "Demo - Pass model object in json format to controller from jquery ajax request in asp.net mvc";
+    Layout = "~/Areas/Demo/Views/Shared/_Layout.cshtml";
+} 
+<br/>
+<br/>
+
+<table style="width: 100%; font-family: Calibri">
+        <tr>
+            <td style="width:100%">
+                <span style="width: 90%; font-weight: bold; font-family: Calibri; color: #333; font-size: 24px">Demo - Pass model object in json format to controller from jquery ajax request in asp.net mvc</span>
+            </td>
+        </tr>
+</table>
+
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnGet").click(function () {
+                var emp = {};
+                emp.Name = $("#txtName").val();
+                emp.ID = $("#txtId").val();
+                $.ajax({
+                    type: "POST",
+                    url: "../../../../Demo/Code/PassModelFromJQuery",
+                    data: '{emp: ' + JSON.stringify(emp) + '}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        alert("These values are got from server post request, ID: " + response.ID + ".\nName: " + response.Name);
+                    },
+                    failure: function (response) {
+                        //alert(response.responseText);
+                    },
+                    error: function (response) {
+                        //alert(response.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <input type="text" placeholder="Employee Id" id="txtId"/><br /><br />
+    <input type="text" placeholder="Employee Name" id="txtName"/><br /><br />
+    <input type="button" id="btnGet" value="Pass Emp model from jquery ajax to cntrl and display it back " style="font-weight: bold; font-family: Calibri; color: green; font-size:16px"/>
+    
+<p>
+    <br>
+    <table>
+        <tr>
+            <td align="center">
+                <a id="btnSubmit" class="mysubmit" href="../../../../Articles/Details/20191/Pass-model-object-in-json-format-to-controller-from-jquery-ajax-request-in-asp-net-mvc" style="font-size: 24px">Back to code article</a>
+            </td>
+        </tr>
+    </table>
+
+</p>
+
+
+
+
+
+
