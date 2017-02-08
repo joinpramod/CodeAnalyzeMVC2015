@@ -11,6 +11,11 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Models
         public string ID { get; set; }
         public string Name { get; set; }
 
+        public Employee()
+        {
+
+        }
+        
         public Employee(string strId, string strName)
         {
             ID = strId;
