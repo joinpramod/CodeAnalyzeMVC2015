@@ -111,7 +111,41 @@ namespace CodeAnalyzeMVC2015.Controllers
         }
 
         public ActionResult NotFound()
-        {
+        {        
+            Mail mail = new Mail();
+            string strBody = "";
+
+            if (HttpContext.Current != null)
+            {
+                var varURL = HttpContext.Current.Request.Url;
+                strBody += "URL -- " + varURL + "<br /><br />";
+                try
+                {
+                string strReferer = Request.UrlReferrer.ToString();
+                strBody += "Previous URL -- " + strReferer + "<br /><br />";
+                }
+                catch
+                {
+
+                }
+            }  
+
+            try
+            {
+                strBody += "IP - " + Utilities.GetUserIP() + "<br /><br />";
+            }
+            catch
+            {
+
+            }
+
+            mail.Body = strBody;
+            mail.FromAdd = "admin@codeanalyze.com";
+            mail.Subject = "Not Found";
+            mail.ToAdd = "admin@codeanalyze.com";
+            mail.IsBodyHtml = true;
+            mail.SendMail();         
+        
             Response.StatusCode = 404;
             Response.StatusDescription = "Page not found";
             return View();
