@@ -45,7 +45,7 @@
      
                 <br><br>               
                 
-                @using (Html.BeginForm("DynamicTextBox", "Code", FormMethod.Post))
+                @using (Html.BeginForm(null, null, FormMethod.Post))
                 {
                     <input id="btnAddTextBox" type="button" value="Add Textbox" onclick="AppendTextBox()" /><br />
                     <div id="divTextBoxes">
