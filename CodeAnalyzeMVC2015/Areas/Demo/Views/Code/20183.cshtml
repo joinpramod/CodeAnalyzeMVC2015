@@ -18,14 +18,14 @@
                     <table>
                             <tr>
                                 <td>
-                                    @using (Html.BeginForm("Save", "Code", FormMethod.Post))
+                                    @using (Html.BeginForm(null, null, FormMethod.Post))
                                     {
                                         <input type="submit" id="btnSave" value="Save"/>
                                         <!--@Html.Hidden("hfUserEMail1", "admin@codeanalyze.com")-->
                                     }
                                 </td>
                                 <td>
-                                    @using (Html.BeginForm("Cancel", "Code", FormMethod.Post))
+                                    @using (Html.BeginForm(null, null, FormMethod.Post))
                                     {
                                         <input type="submit" id="btnCancel" value="Cancel"/>
                                         <!--@Html.Hidden("hfUserEMail2", "no email")-->
