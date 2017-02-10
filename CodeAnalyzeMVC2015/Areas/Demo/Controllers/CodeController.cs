@@ -22,65 +22,98 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
                 articleId = strId;
             }
 
+
+            #region 20183
+            if (articleId.Equals("20183"))
+            {
+                if (Request.Form["btnSave"] != null)
+                {
+                    ViewBag.DemoMessage = "Save Clicked";
+                }
+
+                if (Request.Form["btnCancel"] != null)
+                {
+                    ViewBag.DemoMessage = "Cancel clicked";
+                }
+                return View("../Code/20183");
+            }
+            #endregion
+
+            #region 20184
+            if (articleId.Equals("20184"))
+            {
+                if (Request.Form["txtBoxes"] != null)
+                {                 
+                    ViewBag.DemoMessage = Request.Form["txtBoxes"];
+                }
+                return View("../Code/20184");
+            }
+            #endregion
+            
+            #region 20185
             if (articleId.Equals("20185"))
             {
                 return GetEmployees(0);
             }
-             if (articleId.Equals("20186"))
-            {
-                List<SelectListItem> items = GetItems20186();
+            #endregion
 
+            #region 20186
+            if (articleId.Equals("20186"))
+            {
+                if (Request.Form["lbEmp"] != null)
+                {
+                    string lbEmp = Request.Form["lbEmp"];
+                    ViewBag.Message += lbEmp;
+                }
+                List<SelectListItem> items = GetItems20186();
                 return View("../Code/" + articleId, items);
             }
-            else
+            #endregion
+
+                  #region 20187
+            if (articleId.Equals("20187"))
             {
-                return View("../Code/" + articleId);
+                if (Request.Form["BarChart"] != null)
+                {
+                    ViewBag.Message = "Bar";
+                }
+
+                if (Request.Form["PieChart"] != null)
+                {
+                    ViewBag.Message = "Pie";
+                }
+
+                if (Request.Form["LineChart"] != null)
+                {
+                    ViewBag.Message = "Line";
+                }
             }
+            #endregion
+
+
+            #region 20189
+            if (articleId.Equals("20189"))
+            {
+                if (Request.Form["hiddenValue"] != null)
+                {
+                    if (Request.Form["hiddenValue"] == "Yes")
+                    {
+                        ViewBag.Message = "OK";
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Cancel";
+                    }
+                }
+            }
+            #endregion           
+
+            return View("../Code/" + articleId);
             //return View(articleId);
         }
         
-        #region 20183
-        [HttpPost]
-        public ActionResult Save()
-        {
-            //string strEMail = Request.Form["hfUserEMail1"];
-            ViewBag.DemoMessage = "Data saved";
-            return View("20183");
-        }
-
-        [HttpPost]
-        public ActionResult Cancel()
-        {
-            //string strEMail = Request.Form["hfUserEMail1"];
-            ViewBag.DemoMessage = "Action cancelled";
-            string articleId = ViewBag.ArticleId;
-            return View("20183");
-        }
-        #endregion
         
-        
-        #region 20184
-        [HttpPost]
-        public ActionResult DynamicTextBox(string[] txtBoxes)
-        {
-            string txtBoxValues = "";
-            foreach (string textboxValue in txtBoxes)
-            {
-                txtBoxValues += textboxValue + ", ";
-            }
-            ViewBag.DemoMessage = txtBoxValues;
-
-            string articleId = string.Empty;
-            if (RouteData.Values.Count > 0 && RouteData.Values["Id"] != null)
-            {
-                articleId = RouteData.Values["Id"].ToString();
-            }
-
-            return Articles("20184");
-        }
-        #endregion
-      
-        #region 20185
+        #region 20185-api-type-req lazy loading
         public const int RecordsPerPage = 5;
         public List<Employee> EmployeeData;
 
@@ -179,17 +212,9 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
             return tempList;
         }
         #endregion
-
-        #region 20186
-
-        public ActionResult Post20186(FormCollection form)
-        {
-            string lbEmp = form["lbEmp"];
-            ViewBag.Message += lbEmp;
-            List<SelectListItem> items = GetItems20186();
-            return View("../Code/20186", items);
-        }
-
+      
+      
+        #region 20186-api-type-req dropdown with checkbox bind dd initially
         private static List<SelectListItem> GetItems20186()
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -225,9 +250,6 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
             });
             return items;
         }
-
-
-
         #endregion
 
         #region 20187
@@ -254,30 +276,49 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
         }
         #endregion
 
-        #region 20189
-        [HttpPost]
-        public ActionResult AlertConfirmation(string hiddenValue)
-        {
-            if (hiddenValue == "Yes")
-            {
-                ViewBag.Message = "OK";
-            }
-            else
-            {
-                ViewBag.Message = "Cancel";
-            }
-
-            return View("20189");
-        }
-        #endregion
-
-        #region 20191
+        
+        #region 20191-api-type-req pass model from jquery
         [HttpPost]
         public JsonResult PassModelFromJQuery(Employee emp)
         {
             return Json(emp);
         }
         #endregion
+        
+        
+        #region 20192-api-type-req AJ cascade dropdownlist
+
+        public ActionResult GetChildItems(string baseItem)
+        {
+            if (baseItem == "Year")
+            {
+                List<SelectListItem> lstChildItems = new List<SelectListItem>();
+                lstChildItems.Add(new SelectListItem { Value = "Jan", Text = "Jan" });
+                lstChildItems.Add(new SelectListItem { Value = "Feb", Text = "Feb" });
+                lstChildItems.Add(new SelectListItem { Value = "March", Text = "March" });
+                lstChildItems.Add(new SelectListItem { Value = "April", Text = "April" });
+                lstChildItems.Add(new SelectListItem { Value = "May", Text = "May" });
+                lstChildItems.Add(new SelectListItem { Value = "June", Text = "June" });
+                return Json(lstChildItems, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                List<SelectListItem> lstChildItems = new List<SelectListItem>();
+                lstChildItems.Add(new SelectListItem { Value = "Sunday", Text = "Sunday" });
+                lstChildItems.Add(new SelectListItem { Value = "Monday", Text = "Monday" });
+                lstChildItems.Add(new SelectListItem { Value = "Tuesday", Text = "Tuesday" });
+                lstChildItems.Add(new SelectListItem { Value = "Wednesday", Text = "Wednesday" });
+                lstChildItems.Add(new SelectListItem { Value = "Thrusday", Text = "Thrusday" });
+                lstChildItems.Add(new SelectListItem { Value = "Friday", Text = "Friday" });
+                lstChildItems.Add(new SelectListItem { Value = "Saturday", Text = "Saturday" });
+                return Json(lstChildItems, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+
+        #endregion
+
+
 
     }
 
