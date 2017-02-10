@@ -16,7 +16,7 @@
         </tr>
 </table>
 
-   @using (Html.BeginForm("AlertConfirmation", "Code", FormMethod.Post))
+   @using (Html.BeginForm(null, null, FormMethod.Post))
     {
         <input type="submit" value="Show alert confirmation box" onclick="Confirm()"  style="font-weight: bold; font-family: Calibri; color: green; font-size:20px"/>
         <input type="hidden" id="hdnValue" name="hiddenValue" />
