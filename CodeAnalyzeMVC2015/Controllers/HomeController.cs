@@ -115,20 +115,18 @@ namespace CodeAnalyzeMVC2015.Controllers
             Mail mail = new Mail();
             string strBody = "";
 
-            if (HttpContext.Current != null)
+            try
             {
-                var varURL = HttpContext.Current.Request.Url;
+                var varURL = Request.Url;
                 strBody += "URL -- " + varURL + "<br /><br />";
-                try
-                {
                 string strReferer = Request.UrlReferrer.ToString();
                 strBody += "Previous URL -- " + strReferer + "<br /><br />";
-                }
-                catch
-                {
+            }
+            catch
+            {
 
-                }
-            }  
+            }
+              
 
             try
             {

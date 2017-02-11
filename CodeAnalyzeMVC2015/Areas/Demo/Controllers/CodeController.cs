@@ -14,102 +14,107 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
         {
             string articleId = string.Empty;
             if (RouteData.Values.Count > 0 && RouteData.Values["Id"] != null)
-            {
                 articleId = RouteData.Values["Id"].ToString();
-            }
             else
-            {
                 articleId = strId;
-            }
 
-
-            #region 20183
-            if (articleId.Equals("20183"))
+            switch(articleId)
             {
-                if (Request.Form["btnSave"] != null)
-                {
-                    ViewBag.DemoMessage = "Save Clicked";
-                }
-
-                if (Request.Form["btnCancel"] != null)
-                {
-                    ViewBag.DemoMessage = "Cancel clicked";
-                }
-                return View("../Code/20183");
-            }
-            #endregion
-
-            #region 20184
-            if (articleId.Equals("20184"))
-            {
-                if (Request.Form["txtBoxes"] != null)
-                {                 
-                    ViewBag.DemoMessage = Request.Form["txtBoxes"];
-                }
-                return View("../Code/20184");
-            }
-            #endregion
-            
-            #region 20185
-            if (articleId.Equals("20185"))
-            {
-                return GetEmployees(0);
-            }
-            #endregion
-
-            #region 20186
-            if (articleId.Equals("20186"))
-            {
-                if (Request.Form["lbEmp"] != null)
-                {
-                    string lbEmp = Request.Form["lbEmp"];
-                    ViewBag.Message += lbEmp;
-                }
-                List<SelectListItem> items = GetItems20186();
-                return View("../Code/" + articleId, items);
-            }
-            #endregion
-
-                  #region 20187
-            if (articleId.Equals("20187"))
-            {
-                if (Request.Form["BarChart"] != null)
-                {
-                    ViewBag.Message = "Bar";
-                }
-
-                if (Request.Form["PieChart"] != null)
-                {
-                    ViewBag.Message = "Pie";
-                }
-
-                if (Request.Form["LineChart"] != null)
-                {
-                    ViewBag.Message = "Line";
-                }
-            }
-            #endregion
-
-
-            #region 20189
-            if (articleId.Equals("20189"))
-            {
-                if (Request.Form["hiddenValue"] != null)
-                {
-                    if (Request.Form["hiddenValue"] == "Yes")
+                case "20183":
+                    #region 20183
+                    if (articleId.Equals("20183"))
                     {
-                        ViewBag.Message = "OK";
-                    }
-                    else
-                    {
-                        ViewBag.Message = "Cancel";
-                    }
-                }
-            }
-            #endregion           
+                        if (Request.Form["btnSave"] != null)
+                        {
+                            ViewBag.DemoMessage = "Save Clicked";
+                        }
 
+                        if (Request.Form["btnCancel"] != null)
+                        {
+                            ViewBag.DemoMessage = "Cancel clicked";
+                        }
+                    }
+                    #endregion
+                    break;
+
+                case "20184":
+                    #region 20184
+                    if (articleId.Equals("20184"))
+                    {
+                        if (Request.Form["txtBoxes"] != null)
+                        {
+                            ViewBag.DemoMessage = Request.Form["txtBoxes"];
+                        }
+                    }
+                    #endregion
+                    break;
+
+                case "20185":
+                    #region 20185
+                    if (articleId.Equals("20185"))
+                    {
+                        return GetEmployees(0);
+                    }
+                    #endregion
+                    break;
+
+                case "20186":
+                    #region 20186
+                    if (articleId.Equals("20186"))
+                    {
+                        if (Request.Form["lbEmp"] != null)
+                        {
+                            string lbEmp = Request.Form["lbEmp"];
+                            ViewBag.Message += lbEmp;
+                        }
+                        List<SelectListItem> items = GetItems20186();
+                        return View("../Code/" + articleId, items);
+                    }
+                    #endregion
+                    break;
+
+                case "20187":
+                    #region 20187
+                    if (articleId.Equals("20187"))
+                    {
+                        if (Request.Form["BarChart"] != null)
+                        {
+                            ViewBag.Message = "Bar";
+                        }
+
+                        if (Request.Form["PieChart"] != null)
+                        {
+                            ViewBag.Message = "Pie";
+                        }
+
+                        if (Request.Form["LineChart"] != null)
+                        {
+                            ViewBag.Message = "Line";
+                        }
+                    }
+                    #endregion
+                    break;
+
+                case "20189":
+                    #region 20189
+                    if (articleId.Equals("20189"))
+                    {
+                        if (Request.Form["hiddenValue"] != null)
+                        {
+                            if (Request.Form["hiddenValue"] == "Yes")
+                            {
+                                ViewBag.Message = "OK";
+                            }
+                            else
+                            {
+                                ViewBag.Message = "Cancel";
+                            }
+                        }
+                    }
+                    #endregion
+                    break;
+            }
             return View("../Code/" + articleId);
-            //return View(articleId);
         }
         
         
@@ -249,30 +254,6 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
                 Value = "5"
             });
             return items;
-        }
-        #endregion
-
-        #region 20187
-        [HttpPost]
-        public ActionResult Charts_ASPNET_MVC(string[] txtBoxes)
-        {
-            if (Request.Form["BarChart"] != null)
-            {
-                ViewBag.Message = "Bar";
-            }
-
-            if (Request.Form["PieChart"] != null)
-            {
-                ViewBag.Message = "Pie";
-            }
-
-            if (Request.Form["LineChart"] != null)
-            {
-                ViewBag.Message = "Line";
-            }
-
-
-            return Articles("20187");
         }
         #endregion
 

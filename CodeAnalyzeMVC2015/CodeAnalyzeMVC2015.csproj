@@ -557,6 +557,11 @@
     <Content Include="Areas\Demo\Views\Shared\_EmployeeData.cshtml" />
     <Content Include="Areas\Demo\Views\Code\20185.cshtml" />
     <Content Include="Areas\Demo\Views\Code\20186.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20187.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20188.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20189.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20190.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20191.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
