@@ -112,37 +112,37 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult NotFound()
         {        
-            Mail mail = new Mail();
-            string strBody = "";
+            //Mail mail = new Mail();
+            //string strBody = "";
 
-            try
-            {
-                var varURL = Request.Url;
-                strBody += "URL -- " + varURL + "<br /><br />";
-                string strReferer = Request.UrlReferrer.ToString();
-                strBody += "Previous URL -- " + strReferer + "<br /><br />";
-            }
-            catch
-            {
+            //try
+            //{
+            //    var varURL = Request.Url;
+            //    strBody += "URL -- " + varURL + "<br /><br />";
+            //    string strReferer = Request.UrlReferrer.ToString();
+            //    strBody += "Previous URL -- " + strReferer + "<br /><br />";
+            //}
+            //catch
+            //{
 
-            }
+            //}
               
 
-            try
-            {
-                strBody += "IP - " + Utilities.GetUserIP() + "<br /><br />";
-            }
-            catch
-            {
+            //try
+            //{
+            //    strBody += "IP - " + Utilities.GetUserIP() + "<br /><br />";
+            //}
+            //catch
+            //{
 
-            }
+            //}
 
-            mail.Body = strBody;
-            mail.FromAdd = "admin@codeanalyze.com";
-            mail.Subject = "Not Found";
-            mail.ToAdd = "admin@codeanalyze.com";
-            mail.IsBodyHtml = true;
-            mail.SendMail();         
+            //mail.Body = strBody;
+            //mail.FromAdd = "admin@codeanalyze.com";
+            //mail.Subject = "Not Found";
+            //mail.ToAdd = "admin@codeanalyze.com";
+            //mail.IsBodyHtml = true;
+            //mail.SendMail();         
         
             Response.StatusCode = 404;
             Response.StatusDescription = "Page not found";
