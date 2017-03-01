@@ -30,6 +30,8 @@ namespace CodeAnalyzeMVC2015.Controllers
 
         public ActionResult Contact(string txtEMail, string txtSuggestion)
         {
+            if (ModelState.IsValid)
+            {
             if (!string.IsNullOrEmpty(txtSuggestion))
             {
                 if (string.IsNullOrEmpty(txtEMail))
@@ -79,7 +81,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                 user = (Users)Session["User"];
                 ViewBag.UserEMail = user.Email;
             }
-
+            }
 
             return View();
         }
