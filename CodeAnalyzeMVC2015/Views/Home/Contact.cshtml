@@ -3,12 +3,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+@using CodeAnalyzeMVC2015.AppCode
+
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 <script type="text/javascript" src="~/js/JavaScript1.js"></script>
+<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+
 
 <h2>Contact Us</h2><br />
-
 <div id="Content">
-
 
 
 @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
@@ -38,6 +42,11 @@
                         <td style="font-family: Calibri;">
                             @Html.TextArea("txtSuggestion", "", new { style = "width:90%;height:200px;", placeholder = "Message", @class = "myText" })
                         </td>
+                    </tr>
+                     <tr>
+                                    <td align="center">
+                                            @Html.GenerateCaptcha(Theme.White)
+                                    </td>
                     </tr>
                     <tr>
                         <td align="left" style="padding-left: 40%">
