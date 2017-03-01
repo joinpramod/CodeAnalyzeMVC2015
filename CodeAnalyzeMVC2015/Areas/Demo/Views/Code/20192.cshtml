@@ -1,0 +1,68 @@
+@{
+    ViewBag.Title = "Demo - Bind or Populate or Load dropdownlist items based on another dropdownlist selection using jquery in asp.net mvc";
+    Layout = "~/Areas/Demo/Views/Shared/_Layout.cshtml";
+} 
+<br/>
+<br/>
+
+@model CodeAnalyzeMVC2015.Areas.Demo.Models.MyViewModel
+
+<table style="width: 100%; font-family: Calibri">
+        <tr>
+            <td style="width:100%">
+                <span style="width: 90%; font-weight: bold; font-family: Calibri; color: #333; font-size: 24px">Demo - Bind or Populate or Load dropdownlist items based on another dropdownlist selection using jquery in asp.net mvc</span>
+            </td>
+        </tr>
+</table>
+
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+@Html.DropDownListFor(
+    x => x.BaseItem, 
+    new SelectList(Model.BaseItems, "Value", "Text"),
+    "-- select base --"
+)
+
+@Html.DropDownListFor(
+    x => x.ChildItem, 
+    Enumerable.Empty<SelectListItem>(),
+    "-- select child --"
+)
+
+<script type="text/javascript">
+    $('#BaseItem').change(function () {
+        var selectedBaseItem = $(this).val();
+        if (selectedBaseItem != null && selectedBaseItem != '') {
+            $.getJSON('@Url.Action("GetChildItems")', { baseItem: selectedBaseItem }, function (childItems) {
+                var childDDItems = $('#ChildItem');
+                childDDItems.empty();
+                $.each(childItems, function (index, item) {
+                    childDDItems.append($('<option/>', {
+                        value: item.Value,
+                        text: item.Text
+                    }));
+                });
+            });
+        }
+    });
+</script>
+
+
+<p>
+    <br>
+    <table>
+        <tr>
+            <td align="center">
+                <a id="btnSubmit" class="mysubmit" href="../../../../Articles/Details/20192/Bind-or-Populate-or-Load-or-Cascade-dropdownlist-items-based-on-another-dropdownlist-selection-using-jquery-in-asp-net-mvc" 
+                 style="font-size:22px;display:inline-block;width:120px;text-align:center;height:auto">View Code</a>
+            </td>
+        </tr>
+    </table>
+
+</p>
+
+
+
+
+
+

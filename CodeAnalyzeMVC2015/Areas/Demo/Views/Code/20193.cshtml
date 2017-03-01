@@ -1,0 +1,144 @@
+@{
+    ViewBag.Title = "Demo - Dynamic file upload control and upload multiple files in asp.net mvc without html5 and flash";
+    Layout = "~/Areas/Demo/Views/Shared/_Layout.cshtml";
+} 
+<br/>
+<br/>
+
+@model CodeAnalyzeMVC2015.Areas.Demo.Models.MyViewModel
+
+<table style="width: 100%; font-family: Calibri">
+        <tr>
+            <td style="width:100%">
+                <span style="width: 90%; font-weight: bold; font-family: Calibri; color: #333; font-size: 24px">Demo - Dynamic file upload control and upload multiple files in asp.net mvc without html5 and flash</span>
+            </td>
+        </tr>
+</table>
+
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post))
+{
+<div id="dvUploader">
+    <div>
+
+        <input id="hdnCurrentCtrlIndex" type="hidden" />
+        <input id="hdnUploadedFileCount" type="hidden" />
+    </div>
+
+    <div id="dvUploadContainer">
+        <div id="dvCtrl0">
+            <input id="fuMultipleFile0" type="file" onchange="AddCtlr();" />
+        </div>
+    </div>
+    <div id="dvFileList"></div>
+    <div id="dvTotalFiles"></div>
+    <div id="dvMessage"></div>
+    </div>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#hdnCurrentCtrlIndex').val(0);
+            $('#hdnUploadedFileCount').val(0);
+        });
+
+        function AddCtlr() {
+
+            var maxFilesCount = 5;
+
+            //Add selected file to the list       
+            var i = parseInt($('#hdnCurrentCtrlIndex').val());
+
+            var files = $('#fuMultipleFile' + i).get(0).files;
+            $("#dvFileList").append("<div class='row' id=filecontainer" + i + "><div class='filename'>" + files[0].name + ' (' + Math.round(files[0].size / 1024) + ' kb)' + "</div> <div class='removelink'><a href='#' onclick=RemoveCtrl(" + i + ");>Remove</a></div></div>");
+
+            //Hide the active control
+            $('#fuMultipleFile' + i).attr("style", "display:none");
+
+            // Update uploaded file count
+            var uploadedFilesCount = parseInt($('#hdnUploadedFileCount').val());
+            uploadedFilesCount = uploadedFilesCount + 1;
+            $('#hdnUploadedFileCount').val(uploadedFilesCount);
+
+            //Display File Count
+            DisplayFileCount(uploadedFilesCount, maxFilesCount);
+
+            // Increase the control index
+            i = i + 1;
+            $('#hdnCurrentCtrlIndex').val(i);
+
+            // Create new control 
+            if (uploadedFilesCount != maxFilesCount && uploadedFilesCount < maxFilesCount) {
+
+                $('#dvUploadContainer').append("<div id='dvCtrl" + i + "'><input name='fuCtrl" + i + "'" + " id='fuMultipleFile" + i + "'" + " type='file' onchange='AddCtlr();'></div>");
+            }
+        }
+
+        function RemoveCtrl(ctrlindexid) {
+
+            // Remove relevant upload control and added file
+            $("#fuMultipleFile" + ctrlindexid + "").remove();
+            $("#dvCtrl" + ctrlindexid + "").remove();
+            $("#filecontainer" + ctrlindexid + "").remove();
+
+            var i = parseInt($('#hdnCurrentCtrlIndex').val());
+
+            var maxFilesCount = parseInt($('#hdnMaxFile').val());
+            var uploadedFilesCount = parseInt($('#hdnUploadedFileCount').val());
+
+            // create new controls
+            if (uploadedFilesCount == maxFilesCount) {
+
+                $('#dvUploadContainer').append("<div id='dvCtrl" + i + "'><input name='fuCtrl" + i + "'" + " id='fuMultipleFile" + i + "'" + " type='file' onchange='AddCtlr();'></div>");
+            }
+
+            // Update the uploaded file count
+            uploadedFilesCount = uploadedFilesCount - 1;
+
+            // Display File Count
+            DisplayFileCount(uploadedFilesCount, maxFilesCount);
+
+            // Update the uploaded file count
+            $('#hdnUploadedFileCount').val(uploadedFilesCount);
+
+        }
+
+        function DisplayFileCount(uploadedFilesCount, maxFilesCount) {
+            //Display total files
+            $('#dvTotalFiles').empty();
+            $('#dvTotalFiles').append("(" + uploadedFilesCount + " of " + maxFilesCount + ")" + " files are uploaded");
+            $('#dvMessage').empty();
+        }
+
+
+
+
+    </script>
+
+            <br />
+        <div>
+            <input id="ibUpload" type="submit" value="Upload" />
+
+        </div>
+
+}
+
+<p>
+    <br>
+    <table>
+        <tr>
+            <td align="center">
+                <a id="btnSubmit" class="mysubmit" href="../../../../Articles/Details/20193/Dynamic file upload control and upload multiple files in asp.net mvc without html5 and flash" style="font-size: 24px">Back to code article</a>
+            </td>
+        </tr>
+    </table>
+
+</p>
+
+
+
+
+
+
