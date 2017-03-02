@@ -562,6 +562,8 @@
     <Content Include="Areas\Demo\Views\Code\20189.cshtml" />
     <Content Include="Areas\Demo\Views\Code\20190.cshtml" />
     <Content Include="Areas\Demo\Views\Code\20191.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20192.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20193.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
