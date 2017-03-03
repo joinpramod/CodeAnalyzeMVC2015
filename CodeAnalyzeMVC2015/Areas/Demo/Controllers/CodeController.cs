@@ -113,6 +113,12 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
                     }
                     #endregion
                     break;
+                    
+                case "20192":
+                    #region 20192
+                    MyViewModel model = new MyViewModel();
+                    return View("../Code/20192", model);
+                    #endregion
             }
             return View("../Code/" + articleId);
         }
