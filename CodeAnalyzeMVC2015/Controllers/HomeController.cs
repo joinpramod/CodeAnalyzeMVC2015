@@ -28,61 +28,70 @@ namespace CodeAnalyzeMVC2015.Controllers
             return View();
         }
 
+        [ReCaptcha]
+        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public ActionResult Contact(string txtEMail, string txtSuggestion)
         {
             if (ModelState.IsValid)
             {
-            if (!string.IsNullOrEmpty(txtSuggestion))
-            {
-                if (string.IsNullOrEmpty(txtEMail))
+                if (!string.IsNullOrEmpty(txtSuggestion))
                 {
-                    if (Session["User"] != null)
+                    if (string.IsNullOrEmpty(txtEMail))
                     {
-                        user = (Users)Session["User"];
-                        txtEMail = user.Email;
+                        if (Session["User"] != null)
+                        {
+                            user = (Users)Session["User"];
+                            txtEMail = user.Email;
+                        }
                     }
+                    //else
+                    //{
+                    //    return View();
+                    //}
+                    Mail mail = new Mail();
+
+                    string strBody = txtSuggestion + " from " + txtEMail;
+
+                    try
+                    {
+                        strBody += "<br /><br /> IP - " + Utilities.GetUserIP() + "<br /><br />";
+                    }
+                    catch
+                    {
+
+                    }
+
+                    mail.Body = strBody;
+
+                    mail.IsBodyHtml = true;
+                    //mail.Body = txtSuggestion + " from " + txtEMail;
+                    //if (Session["User"] != null)
+                    mail.FromAdd = "admin@codeanalyze.com";
+                    // else
+                    // mail.FromAdd = txtEMail;
+                    mail.Subject = "Suggestion";
+                    mail.ToAdd = "admin@codeanalyze.com";
+
+                    mail.SendMail();
+                    ViewBag.Ack = "Thank you!! We appreciate your patience and your time in reaching out to us, we will get back to you soon if needed.";
+
+                    return View();
                 }
-                //else
-                //{
-                //    return View();
-                //}
-                Mail mail = new Mail();
 
-                string strBody = txtSuggestion + " from " + txtEMail;
-
-                try
+                if (Session["User"] != null)
                 {
-                    strBody += "<br /><br /> IP - " + Utilities.GetUserIP() + "<br /><br />";
+                    user = (Users)Session["User"];
+                    ViewBag.UserEMail = user.Email;
                 }
-                catch
-                {
-
-                }
-
-                mail.Body = strBody;
-
-                mail.IsBodyHtml = true;
-                //mail.Body = txtSuggestion + " from " + txtEMail;
-                //if (Session["User"] != null)
-                mail.FromAdd = "admin@codeanalyze.com";
-                // else
-                   // mail.FromAdd = txtEMail;
-                mail.Subject = "Suggestion";
-                mail.ToAdd = "admin@codeanalyze.com";
-
-                mail.SendMail();
-                ViewBag.Ack = "Thank you!! We appreciate your patience and your time in reaching out to us, we will get back to you soon if needed.";
-
-                return View();
             }
 
-            if (Session["User"] != null)
+            else
             {
-                user = (Users)Session["User"];
-                ViewBag.UserEMail = user.Email;
+                if (!string.IsNullOrEmpty(txtSuggestion))
+                {
+                    ViewBag.Ack = "Invalid ReCaptcha, Please try again";
+                }
             }
-            }
-
             return View();
         }
 

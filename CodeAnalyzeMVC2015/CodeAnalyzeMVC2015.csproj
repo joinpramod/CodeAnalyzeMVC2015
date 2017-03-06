@@ -181,6 +181,8 @@
       <DependentUpon>ProcessArticles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Articles\Add_remove_dynamic_textbox.html" />
+    <Content Include="Articles\Alert_Confirmation.html" />
     <Content Include="Articles\Amazon_style_image_zoom.html" />
     <Content Include="Articles\Android_Notification_Types.html" />
     <Content Include="Articles\Android_Paypal.html" />
@@ -199,6 +201,8 @@
     <Content Include="Articles\Bind_JSON_To_View2.html" />
     <Content Include="Articles\Bootstrap_Angular2_Transacript.html" />
     <Content Include="Articles\Call_aspnet_method_AngularJS.html" />
+    <Content Include="Articles\CascadeDropDownJquery.html" />
+    <Content Include="Articles\Charts_ASPNET_MVC.html" />
     <Content Include="Articles\CheckBoxList_MVC.html" />
     <Content Include="Articles\CheckBox_Validation_MVC.html" />
     <Content Include="Articles\CheckBox_Validation_MVC_JQuery.html" />
@@ -227,12 +231,14 @@
     <Content Include="Articles\Files_JSOM_SP2016.html" />
     <Content Include="Articles\FileUpload_HTML5_Angular.html" />
     <Content Include="Articles\Get_Set_Values_DropDownlist_MVC.html" />
+    <Content Include="Articles\Google_Maps_MVC.html" />
     <Content Include="Articles\Google_Recaptcha_MVC.html" />
     <Content Include="Articles\Google_Sign_In_Swift.html" />
     <Content Include="Articles\Group_Data_Rows_AngularJS.html" />
     <Content Include="Articles\Horizontal_Swipe_Swift.html" />
     <Content Include="Articles\JQuery_AutoComplete_MVC.html" />
     <Content Include="Articles\JQuery_Grid_Server_Side.html" />
+    <Content Include="Articles\JQuery_Modal_Popup.html" />
     <Content Include="Articles\JQuery_Validation_FileUpload.html" />
     <Content Include="Articles\Lazy_Loading_MVC.html" />
     <Content Include="Articles\LinkedIn_Login_iOS.html" />
@@ -243,6 +249,7 @@
     <Content Include="Articles\Multi_File_upload_mvc.html" />
     <Content Include="Articles\PartialView_Model_Popup.html" />
     <Content Include="Articles\Pass_Data_to_Another_Page_AngularJShtml.html" />
+    <Content Include="Articles\Pass_Model_From_JQuery.html" />
     <Content Include="Articles\Pass_Multiple_Models.html" />
     <Content Include="Articles\Pass_multiple_models_mvc.html" />
     <Content Include="Articles\Play_Audio_Swift.html" />
@@ -251,6 +258,7 @@
     <Content Include="Articles\Pushwoosh_Objective_C.html" />
     <Content Include="Articles\QRCode_Reader.html" />
     <Content Include="Articles\Remote_Validation_MVC.html" />
+    <Content Include="Articles\Remove_Add_dynamic_textbox.html" />
     <Content Include="Articles\Row_Data_On_Popup.html" />
     <Content Include="Articles\Search_CDNDatatable.html" />
     <Content Include="Articles\Send_File_Swift.html" />

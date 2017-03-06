@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <td>Server:</td>
-                <td><asp:TextBox ID="txtServer" runat="server" Text="ftp://web-16.znetlive.in" Width="191px"></asp:TextBox>
+                <td><asp:TextBox ID="txtServer" runat="server" Text="ftp://web-17.znetlive.in" Width="191px"></asp:TextBox>
                 </td>
             </tr>
             <tr>

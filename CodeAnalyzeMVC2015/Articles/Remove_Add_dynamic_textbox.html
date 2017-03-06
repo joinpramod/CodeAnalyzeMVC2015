@@ -1,0 +1,101 @@
+<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    
+
+    <ol>
+          <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+Adding and removing dynamic controls like textbox and button to asp.net mvc view is more simplified than before in mvc using javascript. 
+                
+To do this we will need a javascript which will perform the action of adding new textbox and button to the view.
+
+To load the new html back to the view from the javascript we use Html.Raw control which is mainly use to display dynamic html content.
+
+Take a look at the demo at the end of this article to see this in action.
+            </pre>
+              </li>
+
+    <li>
+                  <div style="text-align:center;width:100%">
+                      <a href='../../../Demo/Code/Articles/20184/Add-and-remove-dynamic-textbox-control-to-view-in-aspnet-mvc-with-dem' class="demo">View Demo</a><br /><br />
+                  </div>
+              </li>
+    <li>
+              <li>
+              <b>Javascript</b>
+            <pre class="brush: java">
+
+    &lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+          function GetExistingDynamicTextBoxes(value) {
+            var div = $(" &lt;div /&gt;");
+
+            var textBox = $(" &lt;input /&gt;").attr("type", "textbox").attr("name", "txtBoxes");
+            textBox.val(value);
+            div.append(textBox);
+
+            var button = $(" &lt;input /&gt;").attr("type", "button").attr("value", "Remove");
+            button.attr("onclick", "DeleteTextBox(this)");
+            div.append(button);
+
+            return div;
+        }
+        function AppendTextBox() {
+            var div = GetExistingDynamicTextBoxes("");
+            $("#divTextBoxes").append(div);
+        }
+
+        function DeleteTextBox(button) {
+            $(button).parent().remove();
+        }
+
+        $(function () {
+            var values = eval('@Html.Raw(ViewBag.DemoMessage)');
+            if (values != null) {
+                $("#divTextBoxes").html("");
+                $(values).each(function () {
+                    $("#divTextBoxes").append(GetExistingDynamicTextBoxes(this));
+                });
+            }
+        });
+    &lt;/script&gt;
+
+    @using (Html.BeginForm("DynamicTextBox", "CodeDemos", FormMethod.Post))
+        {
+            &lt;input id="btnAddTextBox" type="button" value="Add Textbox" onclick="AppendTextBox()" /&gt;&lt;br /&gt;
+            &lt;div id="divTextBoxes"&gt;
+                &lt;!--Dynamic textboxes--&gt;
+            &lt;/div&gt;&lt;br /&gt;                    
+            &lt;input type="submit" value="Show values of textboxes from server side" /&gt;
+        } 
+
+
+            </pre>           
+        </li>  
+        <li>
+        <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+Lets see how to read these dynamic textbox control values at server side on controller action
+            </pre><b>Controller</b>
+            <pre class="brush: java">
+[HttpPost]
+public ActionResult DynamicTextBox(string[] txtBoxes)
+{
+    string txtBoxValues = "";
+    foreach (string textboxValue in txtBoxes)
+    {
+        txtBoxValues += textboxValue + "\\n";
+    }
+    ViewBag.DemoMessage = txtBoxValues;
+
+    return Articles();
+}               
+            </pre>
+            </li>
+    </ol> 
+
+</div>
+   

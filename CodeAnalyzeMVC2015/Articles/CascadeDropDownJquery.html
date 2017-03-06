@@ -1,0 +1,140 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+    <ol>
+        <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+This article explains about loading or binding the dropdown list based on the item selection of another dropdown list using jquery in asp.net mvc.<br />
+This is also referred as cascading dropdownlist, here cascading dropdownlist is implmeted using jquery in asp.net mvc<br />
+Parent dropdownlist items are binded from model and child dropdownlist items are got from ajax jquery get request.<br />
+Take a look at the demo for better understanding of the code below<br />
+            </pre>
+        </li>
+        <li>
+            <div style="text-align:center;width:100%">
+                <a href='../../../Demo/Code/Articles/20192/Bind-or-Populate-or-Load-dropdownlist-items-based-on-another-dropdownlist-selection-using-jquery-in-asp-net-mvc' 
+                     class="demo">View Demo</a><br /><br />
+            </div>
+        </li>
+        <li>
+GetChildItems is the controller action method which is called from jquery ajax request to get the desired child dropdownlist items based on the selection of parent
+             <br /><br /><b>Controller</b>
+            <pre class="brush: java">
+public ActionResult GetChildItems(string baseItem)
+{
+    if (baseItem == "Year")
+    {
+        List&lt;SelectListItem&gt; lstChildItems = new List&lt;SelectListItem&gt;();
+        lstChildItems.Add(new SelectListItem { Value = "Jan", Text = "Jan" });
+        lstChildItems.Add(new SelectListItem { Value = "Feb", Text = "Feb" });
+        lstChildItems.Add(new SelectListItem { Value = "March", Text = "March" });
+        lstChildItems.Add(new SelectListItem { Value = "April", Text = "April" });
+        lstChildItems.Add(new SelectListItem { Value = "May", Text = "May" });
+        lstChildItems.Add(new SelectListItem { Value = "June", Text = "June" });
+        return Json(lstChildItems, JsonRequestBehavior.AllowGet);
+    }
+    else
+    {
+        List&lt;SelectListItem&gt; lstChildItems = new List&lt;SelectListItem&gt;();
+        lstChildItems.Add(new SelectListItem { Value = "Sunday", Text = "Sunday" });
+        lstChildItems.Add(new SelectListItem { Value = "Monday", Text = "Monday" });
+        lstChildItems.Add(new SelectListItem { Value = "Tuesday", Text = "Tuesday" });
+        lstChildItems.Add(new SelectListItem { Value = "Wednesday", Text = "Wednesday" });
+        lstChildItems.Add(new SelectListItem { Value = "Thrusday", Text = "Thrusday" });
+        lstChildItems.Add(new SelectListItem { Value = "Friday", Text = "Friday" });
+        lstChildItems.Add(new SelectListItem { Value = "Saturday", Text = "Saturday" });
+        return Json(lstChildItems, JsonRequestBehavior.AllowGet);
+
+    }
+}
+            </pre>           
+        </li>  
+        <li>
+            <div style="text-align:center;width:100%">
+                <a href='../../../Demo/Code/Articles/20192/Bind-or-Populate-or-Load-dropdownlist-items-based-on-another-dropdownlist-selection-using-jquery-in-asp-net-mvc' 
+                    class="demo">View Demo</a><br /><br />
+            </div>
+        </li>
+         <li>
+BaseItems is the property of the model which contains the list of items to be binded to parent dropdownlist.<br />
+It makes ajax request on change event of parent dropdownlist 
+            <br /><br /><b>View</b>
+            <pre class="brush: java">
+&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"&gt;&lt;/script&gt;
+
+@Html.DropDownListFor(
+    x =&gt; x.BaseItem, 
+    new SelectList(Model.BaseItems, "Value", "Text"),
+    "-- select base --"
+)
+
+@Html.DropDownListFor(
+    x =&gt; x.ChildItem, 
+    Enumerable.Empty&lt;SelectListItem&gt;(),
+    "-- select child --"
+)
+
+&lt;script type="text/javascript"&gt;
+    $('#BaseItem').change(function () {
+        var selectedBaseItem = $(this).val();
+        if (selectedBaseItem != null && selectedBaseItem != '') {
+            $.getJSON('@Url.Action("GetChildItems")', { baseItem: selectedBaseItem }, function (childItems) {
+                var childDDItems = $('#ChildItem');
+                childDDItems.empty();
+                $.each(childItems, function (index, item) {
+                    childDDItems.append($('&lt;option/&gt;', {
+                        value: item.Value,
+                        text: item.Text
+                    }));
+                });
+            });
+        }
+    });
+&lt;/script&gt;
+            </pre>           
+        </li>      
+        <li>
+            <b>Model</b>
+            <pre class="brush: java">
+public class MyViewModel
+{
+    public int? BaseItem { get; set; }
+    public int? ChildItem { get; set; }
+
+    public IEnumerable&lt;SelectListItem&gt; BaseItems
+    {
+        get
+        {
+
+            List&lt;SelectListItem&gt; lstBaseItems = new List&lt;SelectListItem&gt;();
+            lstBaseItems.Add(new SelectListItem
+            {
+                Value = "Year",
+                Text = "Year"
+            });
+            lstBaseItems.Add(new SelectListItem
+            {
+                Value = "Week",
+                Text = "Week"
+            });
+            return lstBaseItems;
+
+        }
+    }
+}
+            </pre>           
+        </li>  
+        <li>
+            <div style="text-align:center;width:100%">
+                <a href='../../../Demo/Code/Articles/20192/Bind-or-Populate-or-Load-dropdownlist-items-based-on-another-dropdownlist-selection-using-jquery-in-asp-net-mvc' 
+                     class="demo">View Demo</a><br /><br />
+            </div>
+        </li>
+    </ol> 
+
+</div>
+   
