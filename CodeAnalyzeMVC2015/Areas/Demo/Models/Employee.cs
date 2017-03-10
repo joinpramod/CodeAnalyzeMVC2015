@@ -54,4 +54,37 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Models
     }
     #endregion
 
+    #region 20194
+    public class EmpRepository
+    {
+        public static IList<Employee> emps = null;
+
+        public static IList<Employee> GetEmployees()
+        {
+            if (emps == null)
+            {
+                emps = new List<Employee>();
+                emps.Add(new Employee() { ID = "1", Name = "Andy" });
+                emps.Add(new Employee() { ID = "2", Name = "Alex" });
+                emps.Add(new Employee() { ID = "3", Name = "Mike" });
+                emps.Add(new Employee() { ID = "4", Name = "Lance" });
+                emps.Add(new Employee() { ID = "5", Name = "Richard" });
+                emps.Add(new Employee() { ID = "6", Name = "Jessica" });
+                emps.Add(new Employee() { ID = "7", Name = "Bob" });
+                emps.Add(new Employee() { ID = "8", Name = "Jeffery" });
+                emps.Add(new Employee() { ID = "9", Name = "Henry" });
+                emps.Add(new Employee() { ID = "10", Name = "Vlad" });
+                emps.Add(new Employee() { ID = "11", Name = "Steve" });
+                emps.Add(new Employee() { ID = "12", Name = "Mark" });
+                emps.Add(new Employee() { ID = "13", Name = "Rubecca" });
+                emps.Add(new Employee() { ID = "14", Name = "Lisa" });
+                emps.Add(new Employee() { ID = "15", Name = "Susan" });
+                emps.Add(new Employee() { ID = "16", Name = "Jared" });
+
+            }
+            return emps;
+        }
+    }  
+    #endregion
+
 }
