@@ -119,6 +119,11 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
                     MyViewModel model = new MyViewModel();
                     return View("../Code/20192", model);
                     #endregion
+                    
+                case "20194":
+                    #region 20194
+                    return View("../Code/20194", EmpRepository.GetEmployees());
+                    #endregion
             }
             return View("../Code/" + articleId);
         }
