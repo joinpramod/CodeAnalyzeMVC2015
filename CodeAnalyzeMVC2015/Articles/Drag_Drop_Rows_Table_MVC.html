@@ -1,0 +1,149 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+    <ol>
+        <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+This article explains about implementing drag and drop table rows and repositioning the rows in asp.net mvc.<br />
+Jquery is used to implement this and also jquery datatable script mainly jquery.dataTables.min.js and jquery-ui.min.js.<br />
+jquery-ui.min.css and jquery.dataTables.min.css style sheets are a part of above package which has to be referred.<br />
+The javascripts and css styles sheets have to be downloaded from 
+<a href='https://jqueryui.com/resources/download/jquery-ui-1.12.1.zip'>https://jqueryui.com/resources/download/jquery-ui-1.12.1.zip</a>
+<a href='https://datatables.net/download/download'>https://datatables.net/download/download</a><br />
+Also pagination and search functionality is also implemented using the same scripts.<br />
+Custom pagination is also available where user can select the number of rows to be displayed in each page.
+            </pre>
+        </li>
+        <li>
+            <div style="text-align:center;width:100%">
+                <a href='../../../Demo/Code/Articles/20194/Drag-and-drop-rows-in-table-grid-and-multi-select-rows-using-jquery-in-asp-net-mvc' class="demo">View Demo</a><br /><br />
+            </div>
+        </li>
+        <li><b>Controller</b>
+            <pre class="brush: java">
+public ActionResult Index()
+{    
+    return View(EmpRepository.GetEmployees());
+}
+            </pre>           
+        </li>  
+         <li>
+            <b>View</b>
+            <pre class="brush: java">
+&lt;script src="~/Scripts/jquery-1.10.2.min.js"&gt;&lt;/script&gt;  
+&lt;script src="~/Areas/Demo/CSS/jquery.dataTables.min.js"&gt;&lt;/script&gt;
+&lt;link href="~/Areas/Demo/CSS/jquery.dataTables.min.css" rel="stylesheet" /&gt;
+&lt;link href="~/Areas/Demo/Scripts/jquery-ui.min.css" rel="stylesheet" /&gt;
+&lt;script src="~/Areas/Demo/Scripts/jquery-ui.min.js"&gt;&lt;/script&gt;
+      
+&lt;script type="text/javascript"&gt;
+    $(document).ready(function () {
+
+        $("#tblEmployee tbody").sortable({
+            start: function (e, ui) {
+                var elements = ui.item.siblings('.selected.hidden').not('.ui-sortable-placeholder');
+                ui.item.data('items', elements);
+            },
+            update: function (e, ui) {
+                ui.item.after(ui.item.data("items"));
+            },
+            stop: function (e, ui) {
+                ui.item.siblings('.selected').removeClass('hidden');
+                $('tr.selected').removeClass('selected');
+            }
+        });
+
+        $("#tblEmployee").dataTable({
+            "pagingType": "simple"
+        });
+
+    });
+&lt;/script&gt;  
+      
+&lt;table id="tblEmployee" class="table"&gt;  
+    &lt;thead&gt;  
+        &lt;tr&gt;  
+            &lt;th&gt;  
+                @Html.DisplayNameFor(model =&gt; model.ID)  
+            &lt;/th&gt;  
+            &lt;th&gt;  
+                @Html.DisplayNameFor(model =&gt; model.Name)  
+            &lt;/th&gt;  
+
+        &lt;/tr&gt;  
+    &lt;/thead&gt;  
+    &lt;tbody&gt;  
+        @foreach (var item in Model)  
+        {  
+            &lt;tr&gt;  
+                &lt;td&gt;  
+                    @Html.DisplayFor(modelItem =&gt; item.ID)  
+                &lt;/td&gt;  
+                &lt;td&gt;  
+                    @Html.DisplayFor(modelItem =&gt; item.Name)  
+                &lt;/td&gt;  
+            &lt;/tr&gt;  
+        }  
+    &lt;/tbody&gt;  
+&lt;/table&gt;  
+            </pre>           
+        </li>     
+       <li>
+            <div style="text-align:center;width:100%">
+                <a href='../../../Demo/Code/Articles/20194/Drag-and-drop-rows-in-table-grid-and-multi-select-rows-using-jquery-in-asp-net-mvc' class="demo">View Demo</a><br /><br />
+            </div>
+        </li>    
+        <li>
+            <b>Model</b>
+            <pre class="brush: java">
+public class Employee
+{
+    public string ID { get; set; }
+    public string Name { get; set; }
+}
+
+
+public class EmpRepository
+{
+    public static IList&lt;Employee&gt; emps = null;
+
+    public static IList&lt;Employee&gt; GetEmployees()
+    {
+        if (emps == null)
+        {
+            emps = new List&lt;Employee&gt;();
+            emps.Add(new Employee() { ID = "1", Name = "Andy" });
+            emps.Add(new Employee() { ID = "2", Name = "Alex" });
+            emps.Add(new Employee() { ID = "3", Name = "Mike" });
+            emps.Add(new Employee() { ID = "4", Name = "Lance" });
+            emps.Add(new Employee() { ID = "5", Name = "Richard" });
+            emps.Add(new Employee() { ID = "6", Name = "Jessica" });
+            emps.Add(new Employee() { ID = "7", Name = "Bob" });
+            emps.Add(new Employee() { ID = "8", Name = "Jeffery" });
+            emps.Add(new Employee() { ID = "9", Name = "Henry" });
+            emps.Add(new Employee() { ID = "10", Name = "Vlad" });
+            emps.Add(new Employee() { ID = "11", Name = "Steve" });
+            emps.Add(new Employee() { ID = "12", Name = "Mark" });
+            emps.Add(new Employee() { ID = "13", Name = "Rubecca" });
+            emps.Add(new Employee() { ID = "14", Name = "Lisa" });
+            emps.Add(new Employee() { ID = "15", Name = "Susan" });
+            emps.Add(new Employee() { ID = "16", Name = "Jared" });
+        }
+        return emps;
+    }
+}  
+            </pre>           
+        </li>  
+        <li>
+            <div style="text-align:center;width:100%">
+                <a href='../../../Demo/Code/Articles/20194/Drag-and-drop-rows-in-table-grid-and-multi-select-rows-using-jquery-in-asp-net-mvc' class="demo">View Demo</a><br /><br />
+            </div>
+        </li>
+    </ol> 
+
+</div>
+   
