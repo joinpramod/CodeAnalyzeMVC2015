@@ -310,7 +310,28 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
 
         #endregion
 
+        #region 20196-jQuery-Image-Upload-with-Image-Perview-asp-net-mvc
+        public ActionResult ImagePreview(HttpPostedFileBase file, string button)
+        {
+            try
+            {
+                //Get the file name
+                //string filename = System.IO.Path.GetFileName(file.FileName);
+                //Save the file in server Images folder
+                //file.SaveAs(Server.MapPath("~/Images/" + filename));
+                //string filepathtosave = "Images/" + filename;
+                //TODO : CODE TO SAVE IMAGE DETAIL IN DATABASE
 
+                ViewBag.Message = "File Uploaded to server successfully.";
+            }
+            catch
+            {
+                ViewBag.Message = "Error while uploading the files.";
+            }
+            return View("../Code/20196");
+        }
+
+        #endregion
 
     }
 
