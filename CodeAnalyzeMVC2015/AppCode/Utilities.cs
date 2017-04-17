@@ -72,6 +72,35 @@ public static class Utilities
         return strIP;
     }
 
+ 
+    //public static string GetGravatarUrlForAddress(string address)
+    //{
+    //    return  "http://www.gravatar.com/avatar/" + HashEmailAddress(address) + "?s=80&r=g&d=Identicon";
+    //}
+
+
+    //private static string HashEmailAddress(string address)
+    //{
+    //    try
+    //    {
+    //        MD5 md5 = new MD5CryptoServiceProvider();
+
+    //        var hasedBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(address));
+
+    //        var sb = new System.Text.StringBuilder();
+
+    //        for (var i = 0; i < hasedBytes.Length; i++)
+    //        {
+    //            sb.Append(hasedBytes[i].ToString("X2"));
+    //        }
+
+    //        return sb.ToString().ToLower();
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        throw ex;
+    //    }
+    //}
 
 }
 }
