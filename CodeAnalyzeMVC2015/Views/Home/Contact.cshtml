@@ -10,12 +10,27 @@
 <script type="text/javascript" src="~/js/JavaScript1.js"></script>
 <script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
 
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<script>
+    function IsRecapchaValid() {
+        var response = grecaptcha.getResponse();
+        if (response.length == 0) {
+            //reCaptcha not verified
+            alert("Please validate the recaptcha");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>
 
 <h2>Contact Us</h2><br />
 <div id="Content">
 
 
-@using (Html.BeginForm("Contact", "Home", FormMethod.Post))
+@using (Html.BeginForm("Contact", "Home", FormMethod.Post, new {onsubmit="return IsRecapchaValid();" }))
 {
    
                 <table style="width:100%;font-size:16px">
@@ -45,7 +60,7 @@
                     </tr>
                      <tr>
                                     <td align="center">
-                                            @Html.GenerateCaptcha(Theme.White)
+                                             <div class="g-recaptcha" data-sitekey="6LfVsxATAAAAADNxqs-kXsBp1GHJMGGiENNpgpLF"></div>
                                     </td>
                     </tr>
                     <tr>
