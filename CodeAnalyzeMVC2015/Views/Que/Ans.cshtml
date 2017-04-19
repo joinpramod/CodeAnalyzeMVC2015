@@ -40,7 +40,15 @@
                         <td style="width: 20%;">
                             @if (!string.IsNullOrEmpty(Model.ImageURL))
                             {
-                                <img id="imgAskedUser"  title="User Avatar" src="@Url.Content("~/Images/" + System.IO.Path.GetFileName(Model.ImageURL))" style="height:50px;width:50px" />
+                                if (!Model.ImageURL.ToString().Contains("gravatar.com"))
+                                {
+                                    <img id="imgAskedUser"  title="User Avatar" src="@Url.Content("~/Images/" + System.IO.Path.GetFileName(Model.ImageURL))" style="height:50px;width:50px" />
+                                }
+                                else
+                                {
+                                    <img id="imgAskedUser" title="User Avatar" style="height:50px;width:50px" src="@Model.ImageURL.Replace("amp;","")"/>
+                                       
+                                }
                             }
                          </td>
                         <td align="left" style="width:80%;font-weight:bold;font-family:Calibri">@Model.AskedUser</td>

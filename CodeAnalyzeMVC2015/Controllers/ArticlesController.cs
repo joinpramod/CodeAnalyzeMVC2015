@@ -190,7 +190,7 @@ namespace CodeAnalyzeMVC2015.Controllers
 
             if (articleID != null)
             {
-                BindComments("Select * from VwArticleReplies where ArticleId =" + articleID.ToString(), ref model);
+                //BindComments("Select * from VwArticleReplies where ArticleId =" + articleID.ToString(), ref model);
             }
 
             if (user.Email != null)

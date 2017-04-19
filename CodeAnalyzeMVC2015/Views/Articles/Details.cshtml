@@ -129,8 +129,16 @@
                             <td align="left" style="width:81px">
                                 @if (!string.IsNullOrEmpty(Model.ImageURL))
                                 {
-                                    <img id="imgAskedUser" title="User Avatar" src="@Url.Content("~/Images/" + System.IO.Path.GetFileName(Model.ImageURL))" style="height:80px;width:80px" />
-                                    <br /><span style="font-size:12px;padding-left:8px">User Avatar</span>
+                                    if (!Model.ImageURL.ToString().Contains("gravatar.com"))
+                                    {
+                                        <img id="imgAskedUser" title="User Avatar" src="@Url.Content("~/Images/" + System.IO.Path.GetFileName(Model.ImageURL))" style="height:80px;width:80px" />
+                                                <br /><span style="font-size:12px;padding-left:8px">User Avatar</span>
+                                    }
+                                    else
+                                    {
+                                        <img id="imgAskedUser" title="User Avatar" src="@Model.ImageURL.Replace("amp;","")" style="height:80px;width:80px" />
+                                       
+                                    }
                                 }
                             </td>
                             <td align="left" valign="top">

@@ -331,10 +331,8 @@ namespace CodeAnalyzeMVC2015.Controllers
                         }
                         else
                         {
-                            //user.ImageURL = "http://www.gravatar.com/avatar/" + Utilities.HashEmailAddress(address) + "?s=80&r=g&d=Identicon";
-                            ////user.ImageURL = "~/Images/Person.JPG";
-
-                            user.ImageURL = "~/Images/Person.JPG";
+                            user.ImageURL = "http://www.gravatar.com/avatar/" + Utilities.HashEmailAddress(user.Email) + "?s=80&r=g&d=Identicon";
+                            //user.ImageURL = "~/Images/Person.JPG";
                         }
 
                         user.OptionID = 1;

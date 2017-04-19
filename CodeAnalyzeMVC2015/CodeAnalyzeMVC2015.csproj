@@ -181,6 +181,10 @@
       <DependentUpon>ProcessArticles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Areas\Demo\CSS\jquery-ui.min.css" />
+    <Content Include="Areas\Demo\CSS\jquery.dataTables.min.css" />
+    <Content Include="Areas\Demo\Scripts\jquery-ui.min.js" />
+    <Content Include="Areas\Demo\Scripts\jquery.dataTables.min.js" />
     <Content Include="Articles\Add_remove_dynamic_textbox.html" />
     <Content Include="Articles\Alert_Confirmation.html" />
     <Content Include="Articles\Amazon_style_image_zoom.html" />
@@ -224,6 +228,7 @@
     <Content Include="Articles\Disable_Request_Validation_MVC.html" />
     <Content Include="Articles\Display_CSVFIle_on_HtmlTable_ClientSide.html" />
     <Content Include="Articles\Download_and Upload_File_FTP_XCode.html" />
+    <Content Include="Articles\Drag_Drop_Rows_Table_MVC.html" />
     <Content Include="Articles\DropdDown_Multi_Select_MVC.html" />
     <Content Include="Articles\Editor_Control_In_ASP.NET_MVC.html" />
     <Content Include="Articles\Executing_Asynchronous_Task_Thread.html" />
@@ -572,6 +577,7 @@
     <Content Include="Areas\Demo\Views\Code\20191.cshtml" />
     <Content Include="Areas\Demo\Views\Code\20192.cshtml" />
     <Content Include="Areas\Demo\Views\Code\20193.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20194.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

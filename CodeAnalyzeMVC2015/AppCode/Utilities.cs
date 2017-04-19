@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Web;
 using System.Text.RegularExpressions;
+using System.Security.Cryptography;
+using System.Text;
 
 /// <summary>
 /// Summary description for Utilities
 /// </summary>
- namespace CodeAnalyzeMVC2015
+namespace CodeAnalyzeMVC2015
 {
 public static class Utilities
 {
@@ -72,35 +74,35 @@ public static class Utilities
         return strIP;
     }
 
- 
-    //public static string GetGravatarUrlForAddress(string address)
-    //{
-    //    return  "http://www.gravatar.com/avatar/" + HashEmailAddress(address) + "?s=80&r=g&d=Identicon";
-    //}
+
+        public static string GetGravatarUrlForAddress(string address)
+        {
+            return "http://www.gravatar.com/avatar/" + HashEmailAddress(address) + "?s=80&r=g&d=Identicon";
+        }
 
 
-    //private static string HashEmailAddress(string address)
-    //{
-    //    try
-    //    {
-    //        MD5 md5 = new MD5CryptoServiceProvider();
+        public static string HashEmailAddress(string address)
+        {
+            try
+            {
+                MD5 md5 = new MD5CryptoServiceProvider();
 
-    //        var hasedBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(address));
+                var hasedBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(address));
 
-    //        var sb = new System.Text.StringBuilder();
+                var sb = new System.Text.StringBuilder();
 
-    //        for (var i = 0; i < hasedBytes.Length; i++)
-    //        {
-    //            sb.Append(hasedBytes[i].ToString("X2"));
-    //        }
+                for (var i = 0; i < hasedBytes.Length; i++)
+                {
+                    sb.Append(hasedBytes[i].ToString("X2"));
+                }
 
-    //        return sb.ToString().ToLower();
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        throw ex;
-    //    }
-    //}
+                return sb.ToString().ToLower();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-}
+    }
 }
