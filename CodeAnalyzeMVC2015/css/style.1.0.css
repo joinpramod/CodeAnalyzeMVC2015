@@ -504,10 +504,10 @@ line-height: 15px;
 }
 #ccr-site-title .site-logo img{
 	width: 120px;
-	height: 80px;
+	height:100px;
 	margin: 0px;
 	padding: 0px;
-	padding-right: 20px;
+	padding-right: 5px;
 	float: left;
 }
 #ccr-site-title  .add-space{
