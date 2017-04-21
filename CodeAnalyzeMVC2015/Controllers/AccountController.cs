@@ -263,118 +263,121 @@ namespace CodeAnalyzeMVC2015.Controllers
                     {
                         //try
                         //{
-                        ConnManager con = new ConnManager();
+                        //if(!user.Email.ToLower().Contains("mail.ru"))
+                        //{
+                                ConnManager con = new ConnManager();
 
-                        DataTable dtUserActivation = con.GetDataTable("select * from UserActivation where  Emailid = '" + user.Email + "'");
-                        if (dtUserActivation.Rows.Count > 0)
-                        {
-                            //ViewBag.lblAck = "User activation pending";
-                            ViewBag.Activation = "User activation pending. Resend Activation Code?";
-                            ViewBag.UserActEMail = user.Email;
-                            return View("Users", user);
-                        }
-
-
-                        DataSet dsUser = con.GetData("Select * from Users where Email = '" + user.Email + "'");
-                        con.DisposeConn();
-                        if (dsUser.Tables[0].Rows.Count > 0)
-                        {
-                            ViewBag.Ack = "EMail id already exists. If you have forgotten password, please click forgot password link on the Sign In page.";
-                            return View("Users", user);
-                        }
-                       
-
-                        double dblUserID = 0;
-                        SqlConnection LclConn = new SqlConnection();
-                        SqlTransaction SetTransaction = null;
-                        bool IsinTransaction = false;
-                        if (LclConn.State != ConnectionState.Open)
-                        {
-                            user.SetConnection = user.OpenConnection(LclConn);
-                            SetTransaction = LclConn.BeginTransaction(IsolationLevel.ReadCommitted);
-                            IsinTransaction = true;
-                        }
-                        else
-                        {
-                            user.SetConnection = LclConn;
-                        }
-
-                        if (fileUserPhoto != null && fileUserPhoto.FileName != "")
-                        {
-                            try
-                            {
-                                string fileName = System.IO.Path.GetFileNameWithoutExtension(fileUserPhoto.FileName);
-                                string fileExt = System.IO.Path.GetExtension(fileUserPhoto.FileName);
-                                string fullFileName = System.IO.Path.GetFileName(fileUserPhoto.FileName);
-
-                                if (!System.IO.File.Exists(Server.MapPath("~\\Images\\") + fullFileName))
+                                DataTable dtUserActivation = con.GetDataTable("select * from UserActivation where  Emailid = '" + user.Email + "'");
+                                if (dtUserActivation.Rows.Count > 0)
                                 {
-                                    fileUserPhoto.SaveAs(Server.MapPath("~\\Images\\") + fullFileName);
+                                    //ViewBag.lblAck = "User activation pending";
+                                    ViewBag.Activation = "User activation pending. Resend Activation Code?";
+                                    ViewBag.UserActEMail = user.Email;
+                                    return View("Users", user);
+                                }
+
+
+                                DataSet dsUser = con.GetData("Select * from Users where Email = '" + user.Email + "'");
+                                con.DisposeConn();
+                                if (dsUser.Tables[0].Rows.Count > 0)
+                                {
+                                    ViewBag.Ack = "EMail id already exists. If you have forgotten password, please click forgot password link on the Sign In page.";
+                                    return View("Users", user);
+                                }
+
+
+                                double dblUserID = 0;
+                                SqlConnection LclConn = new SqlConnection();
+                                SqlTransaction SetTransaction = null;
+                                bool IsinTransaction = false;
+                                if (LclConn.State != ConnectionState.Open)
+                                {
+                                    user.SetConnection = user.OpenConnection(LclConn);
+                                    SetTransaction = LclConn.BeginTransaction(IsolationLevel.ReadCommitted);
+                                    IsinTransaction = true;
                                 }
                                 else
                                 {
-                                    fullFileName = fileName + DateTime.Now.ToString("HHmmss") + fileExt;
-                                    while (System.IO.File.Exists(fullFileName))
-                                    {
-                                        fileName = fileName + DateTime.Now.ToString("HHmmss");
-                                        fullFileName = fileName + fileExt;
-                                    }
-                                    fileUserPhoto.SaveAs(Server.MapPath("~\\Images\\") + fullFileName);
+                                    user.SetConnection = LclConn;
                                 }
-                                user.ImageURL = "~/Images/" + fullFileName;
-                            }
-                            catch (Exception ex)
-                            {
-                                //ViewBag.Ack = "Please try again";
-                                user.ImageURL = "~/Images/Person.JPG";
-                            }
-                        }
-                        else
-                        {
-                            user.ImageURL = "http://www.gravatar.com/avatar/" + Utilities.HashEmailAddress(user.Email) + "?s=80&r=g&d=Identicon";
-                            //user.ImageURL = "~/Images/Person.JPG";
-                        }
 
-                        user.OptionID = 1;
-                        user.CreatedDateTime = DateTime.Now;
-                        user.Password = txtPassword;
-
-                        bool result = user.CreateUsers(ref dblUserID, SetTransaction);
-                        if (IsinTransaction && result)
-                        {
-                            SetTransaction.Commit();
-                        }
-                        else
-                        {
-                            SetTransaction.Rollback();
-                        }
-
-
-                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SQLCON"].ToString()))
-                        {
-                            using (SqlCommand cmd = new SqlCommand("INSERT INTO UserActivation VALUES(@UserId, @EMailId, @ActivationCode)"))
-                            {
-                                using (SqlDataAdapter sda = new SqlDataAdapter())
+                                if (fileUserPhoto != null && fileUserPhoto.FileName != "")
                                 {
-                                    cmd.CommandType = CommandType.Text;
-                                    cmd.Parameters.AddWithValue("@UserId", dblUserID);
-                                    cmd.Parameters.AddWithValue("@EMailId", user.Email);
-                                    cmd.Parameters.AddWithValue("@ActivationCode", activationCode);
-                                    cmd.Connection = conn;
-                                    conn.Open();
-                                    cmd.ExecuteNonQuery();
-                                    conn.Close();
+                                    try
+                                    {
+                                        string fileName = System.IO.Path.GetFileNameWithoutExtension(fileUserPhoto.FileName);
+                                        string fileExt = System.IO.Path.GetExtension(fileUserPhoto.FileName);
+                                        string fullFileName = System.IO.Path.GetFileName(fileUserPhoto.FileName);
+
+                                        if (!System.IO.File.Exists(Server.MapPath("~\\Images\\") + fullFileName))
+                                        {
+                                            fileUserPhoto.SaveAs(Server.MapPath("~\\Images\\") + fullFileName);
+                                        }
+                                        else
+                                        {
+                                            fullFileName = fileName + DateTime.Now.ToString("HHmmss") + fileExt;
+                                            while (System.IO.File.Exists(fullFileName))
+                                            {
+                                                fileName = fileName + DateTime.Now.ToString("HHmmss");
+                                                fullFileName = fileName + fileExt;
+                                            }
+                                            fileUserPhoto.SaveAs(Server.MapPath("~\\Images\\") + fullFileName);
+                                        }
+                                        user.ImageURL = "~/Images/" + fullFileName;
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        //ViewBag.Ack = "Please try again";
+                                        user.ImageURL = "~/Images/Person.JPG";
+                                    }
                                 }
-                            }
-                        }
+                                else
+                                {
+                                    user.ImageURL = "http://www.gravatar.com/avatar/" + Utilities.HashEmailAddress(user.Email) + "?s=80&r=g&d=Identicon";
+                                    //user.ImageURL = "~/Images/Person.JPG";
+                                }
 
-                        user.CloseConnection(LclConn);
+                                user.OptionID = 1;
+                                user.CreatedDateTime = DateTime.Now;
+                                user.Password = txtPassword;
 
-                        //ViewBag.Ack = "User Registered Successfully. Please login.";
-                        ViewBag.Ack = "User Info Saved Successfully. An activation link has been sent to your email address, please check your inbox and activate your account";
-                        //SendNewUserRegEMail(user.Email);
-                        SendActivationEMail(user.Email, activationCode);
-                        SendEMail(user.Email, user.FirstName, user.LastName);
+                                bool result = user.CreateUsers(ref dblUserID, SetTransaction);
+                                if (IsinTransaction && result)
+                                {
+                                    SetTransaction.Commit();
+                                }
+                                else
+                                {
+                                    SetTransaction.Rollback();
+                                }
+
+
+                                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SQLCON"].ToString()))
+                                {
+                                    using (SqlCommand cmd = new SqlCommand("INSERT INTO UserActivation VALUES(@UserId, @EMailId, @ActivationCode)"))
+                                    {
+                                        using (SqlDataAdapter sda = new SqlDataAdapter())
+                                        {
+                                            cmd.CommandType = CommandType.Text;
+                                            cmd.Parameters.AddWithValue("@UserId", dblUserID);
+                                            cmd.Parameters.AddWithValue("@EMailId", user.Email);
+                                            cmd.Parameters.AddWithValue("@ActivationCode", activationCode);
+                                            cmd.Connection = conn;
+                                            conn.Open();
+                                            cmd.ExecuteNonQuery();
+                                            conn.Close();
+                                        }
+                                    }
+                                }
+
+                                user.CloseConnection(LclConn);
+
+                                //ViewBag.Ack = "User Registered Successfully. Please login.";
+                                ViewBag.Ack = "User Info Saved Successfully. An activation link has been sent to your email address, please check your inbox and activate your account";
+                                //SendNewUserRegEMail(user.Email);
+                                SendActivationEMail(user.Email, activationCode);
+                                SendEMail(user.Email, user.FirstName, user.LastName);
+                        //}
                     }
                     //Session["User"] = user;
                     //return View("ViewUser", user);
