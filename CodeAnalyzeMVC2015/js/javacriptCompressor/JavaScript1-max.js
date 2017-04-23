@@ -191,21 +191,21 @@ function ValidateUserReg() {
 }
 
 function ValidateSuggestion() {
-    var txtEMail = document.getElementById('txtEMail').value;
     var txtSuggestion = document.getElementById('txtSuggestion').value;
-
-
-    if (txtEMail == "" || txtSuggestion == "") {
-        alert("Please enter all details");
-        return false;
-    }
-    else {
-        if (ValidateEMail(txtEMail))
-            return true;
-        else {
-            alert("Please enter valid email");
+    var VarEMail = document.getElementById('hfUserEMail').value;
+    if (VarEMail != "") {
+        if (txtSuggestion == "") {
+            alert("Please enter all details");
             return false;
         }
+        else
+        {
+            return true;
+        }
+    }
+    else {
+        alert("To avoid spams and robots please login to contact us. We appreciate your patience.");
+        return false;
     }
 }
 

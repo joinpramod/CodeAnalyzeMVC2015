@@ -382,6 +382,7 @@
     <Content Include="js\javacriptCompressor\TinyMCE-max.js" />
     <Content Include="js\javacriptCompressor\yuicompressor-2.4.8.jar" />
     <Content Include="js\JavaScript.1.2.js" />
+    <Content Include="js\JavaScript.1.3.js" />
     <Content Include="js\sCodeCPP.js" />
     <Content Include="js\sCodeJava.js" />
     <Content Include="js\sCodePowerShell.js" />

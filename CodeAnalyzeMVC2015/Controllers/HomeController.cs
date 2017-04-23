@@ -32,8 +32,8 @@ namespace CodeAnalyzeMVC2015.Controllers
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public ActionResult Contact(string txtEMail, string txtSuggestion)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 if (!string.IsNullOrEmpty(txtSuggestion))
                 {
                     if (string.IsNullOrEmpty(txtEMail))
@@ -73,7 +73,7 @@ namespace CodeAnalyzeMVC2015.Controllers
                     mail.ToAdd = "admin@codeanalyze.com";
 
                     mail.SendMail();
-                    ViewBag.Ack = "Thank you!! We appreciate your patience and your time in reaching out to us, we will get back to you soon if needed.";
+                    ViewBag.Ack = "Thanks for your time in reaching out to us, we will get back to you soon if needed.";
 
                     return View();
                 }
@@ -83,15 +83,15 @@ namespace CodeAnalyzeMVC2015.Controllers
                     user = (Users)Session["User"];
                     ViewBag.UserEMail = user.Email;
                 }
-            }
+            //}
 
-            else
-            {
-                if (!string.IsNullOrEmpty(txtSuggestion))
-                {
-                    ViewBag.Ack = "Invalid ReCaptcha, Please try again";
-                }
-            }
+            //else
+            //{
+            //    if (!string.IsNullOrEmpty(txtSuggestion))
+            //    {
+            //        ViewBag.Ack = "Invalid ReCaptcha, Please try again";
+            //    }
+            //}
             return View();
         }
 
