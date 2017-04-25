@@ -965,7 +965,7 @@ line-height: 15px;
 #ccr-footer-sidebar{
 	background-color: #282c2d;
 	background-image: url(../img/footer-sidebar-bg.png);
-	padding: 0 0 20px 0;
+	padding: 0 0 4px 0;
 	width: 100%;
 	min-height:00px;
 }
@@ -1015,7 +1015,7 @@ line-height: 15px;
 	float: left;
 }
 #ccr-footer-sidebar .col-md-3{
-	margin: 20px 0 0 0;
+	margin: 10px 0 0 0;
 	overflow: hidden;
 }
 #ccr-footer-sidebar .col-md-3 li{
