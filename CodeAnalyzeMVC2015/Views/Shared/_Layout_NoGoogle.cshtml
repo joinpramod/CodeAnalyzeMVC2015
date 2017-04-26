@@ -36,14 +36,7 @@
     <script type="text/javascript" src="~/js/prettify.js"></script>
     <script type="text/javascript" src="~/js/JavaScript.1.3.js"></script> 
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+
 
 @if (!Request.Url.ToString().Contains("localhost"))
 {
@@ -70,28 +63,17 @@
     <meta name="keywords" content="Code, Articles, XCode, Swift, Objective-C, Android, Questions, Answers, MVC, ASP.NET, C#, Java, SQL, Hadoop, Programming, Rewards, Microsoft, Technology" />
 
 
-    <style type="text/css">
-        .fb-like {
-            transform: scale(1.2);
-            -ms-transform: scale(1.2);
-            -webkit-transform: scale(1.2);
-            -o-transform: scale(1.2);
-            -moz-transform: scale(1.2);
-        }
-    </style>
-
-    <script>
-           (function (d, s, id) {
-               var js, fjs = d.getElementsByTagName(s)[0];
-               if (d.getElementById(id)) return;
-               js = d.createElement(s); js.id = id;
-               js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=848792638492356&version=v2.0";
-               fjs.parentNode.insertBefore(js, fjs);
-           } (document, 'script', 'facebook-jssdk'));
-    </script>
- 
 </head>
 <body>
+
+        <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
     <header id="ccr-header">
         <section id="ccr-nav-top" class="fullwidth">
@@ -343,24 +325,19 @@
                         </li>
                     </ul>
                 </section>
-                <section><br>
-  
-                    <table style="font-size: 14px">
-                    <tbody><tr>
-                        <td style="width: 120px" align="left">
-                        <div class="fb-like" data-href="https://www.facebook.com/codeanalyze1" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
-                        </td>
-                          <td align="left">
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="@Model.ArticleTitle" data-lang="en" data-show-count="false">Tweet</a>
-                        <a href="https://twitter.com/codeanalyze_" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-lang="en" data-show-count="false">Follow</a>
-                        <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-                        </td>
-
-                    </tr>
-                </tbody></table>
-    
-    
-                </section>
+                 <section><br>  
+                        <table style="font-size: 14px">
+                            <tr>
+                                 <td align="left" style="width: 120px" >
+                                 <div class="fb-like" data-href="https://www.facebook.com/codeanalyze1" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+                                                                       </td>
+                                <td>&nbsp;&nbsp;&nbsp;</td>
+                                <td align="left">                        
+                                                        <a href="https://twitter.com/codeanalyze_" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-lang="en" data-show-count="false">Follow</a>
+                                 </td>
+                            </tr>
+                        </table>
+                </section> 
             </aside>
         </div>
     </section>
