@@ -19,11 +19,13 @@
 .mysubmit:hover, .mysubmit:focus {
     background-color:#F3CD50;  
     text-decoration:none; 
+	color:#333;
 }
 
 
 .mysubmit:active, .mysubmit:visited{
     text-decoration:none; 
+	color:#333;
 }
 
 
@@ -124,9 +126,14 @@
     text-decoration:none;
 }
 
-.demo:hover, .demo:active, .demo:visited, .demo:focus {
+.demo:hover {
       background-color:#6CEF9C;  
     color:black;
+    text-decoration:none; 
+}
+
+
+.demo:active, .demo:visited, .demo:focus {
     text-decoration:none; 
 }
 
