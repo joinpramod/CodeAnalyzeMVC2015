@@ -36,15 +36,7 @@
     <script type="text/javascript" src="~/js/prettify.js"></script>
     <script type="text/javascript" src="~/js/JavaScript.1.3.js"></script>
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-
+   
     @if (!Request.Url.ToString().Contains("localhost"))
     {
     <script>
@@ -70,26 +62,7 @@
     <meta name="application-name" content="CodeAnalyze" />
     <meta name="keywords" content="Code, Articles, XCode, Swift, Objective-C, Android, Questions, Answers, MVC, ASP.NET, C#, Java, SQL, Hadoop, Programming, Rewards, Microsoft, Technology" />
 
-    <style type="text/css">
-        .fb-like {
-            transform: scale(1.2);
-            -ms-transform: scale(1.2);
-            -webkit-transform: scale(1.2);
-            -o-transform: scale(1.2);
-            -moz-transform: scale(1.2);
-        }
-    </style>
 
-    <script>
-           (function (d, s, id) {
-               var js, fjs = d.getElementsByTagName(s)[0];
-               if (d.getElementById(id)) return;
-               js = d.createElement(s); js.id = id;
-               js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=848792638492356&version=v2.0";
-               fjs.parentNode.insertBefore(js, fjs);
-           } (document, 'script', 'facebook-jssdk'));
-    </script>
- 
     @*<script type="text/javascript">       
         @{ViewBag.AdsBlocked = false;};  
         var testAd = document.createElement('div');
@@ -105,6 +78,14 @@
         
 </head>
 <body>
+     <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 
    
     <header id="ccr-header">
