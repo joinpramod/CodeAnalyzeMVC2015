@@ -9,6 +9,14 @@
 
 <meta name="description" content="@ViewBag.keywords" />
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 @*<script type="text/javascript">
     $(function () {
@@ -65,6 +73,15 @@
                     <td align="left" style="width: 60px">
                         @Model.ThumbsDown
                     </td>
+<td style="width: 120px" align="left">
+<div class="fb-like" data-href="https://www.facebook.com/codeanalyze1" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+</td>
+  <td  align="left">
+<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="@Model.ArticleTitle" data-lang="en" data-show-count="false">Tweet</a>
+<a href="https://twitter.com/codeanalyze_" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-lang="en" data-show-count="false">Follow</a>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</td>
+
                 </tr>
             </table>
 
@@ -83,7 +100,7 @@
 @using (Html.BeginForm("Details", "Articles"))
 {
     @Html.Raw(Model.ArticleDetails)
-    <br/><br/>
+
     {
         System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9 -]");
         Model.ArticleTitle = rgx.Replace(Model.ArticleTitle, "").Replace(" ", "-");
@@ -96,34 +113,36 @@
             <a href='@Model.DemoURL' style="font-weight:bold;font-size:24px;width:100px;height:40px" class="mysubmit">View Demo of Code</a>
             @*<input type="button" id="btnGet" value="View Demo of Code" style="font-weight:bold;font-size:26px;height:40px" class="mysubmit"/>*@
         </div>                    
-        <br/><br/>           
+           
     }
-
+<br>
     <table style="width: 100%; font-family: Calibri">
-        @*<tr>
-                <td>
-                    <br />
-                    @if (Model.HasVideo)
-                    {
-                        <section id="sidebar-video-post">
-                            <div class="ccr-gallery-ttile">
-                                <span></span>
-                                <p><strong>Video Post</strong></p>
-                            </div>
-                            <div class="sidebar-video">
-                                <iframe width="340" height="195" id="iframeVideo" src="@Model.ImageURL" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                        </section>
-                    }
-                </td>
-            </tr>*@
-        <br />
+     
+          <tr>
+        <td width="100%" align="right">
+
+            <table style="font-size: 14px">
+                <tr>
+<td style="width: 120px" align="left">
+<div class="fb-like" data-href="https://www.facebook.com/codeanalyze1" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+</td>
+  <td  align="left">
+<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="@Model.ArticleTitle" data-lang="en" data-show-count="false">Tweet</a>
+<a href="https://twitter.com/codeanalyze_" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-lang="en" data-show-count="false">Follow</a>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</td>
+
+                </tr>
+            </table>
+
+        </td>
+    </tr>
 
         <tr>
             <td width="100%">
                 @if (Html.Raw(Model.AskedUser).ToString() != null && Html.Raw(Model.AskedUser.ToString()).ToString() != "1")
                 {
-
+<br>
                     <table style="width: 100%; font-size: 16px">
                         <tr>
                             <td align="left" style="width:81px">
@@ -136,7 +155,7 @@
                                     }
                                     else
                                     {
-                                        <img id="imgAskedUser" title="User Avatar" src="@Model.ImageURL.Replace("amp;","")" style="height:80px;width:80px" />
+                                        <img id="imgAskedUser" title="User Avatar" src="@Url.Content(Model.ImageURL.Replace("amp;",""))" style="height:80px;width:80px" />
                                        
                                     }
                                 }
