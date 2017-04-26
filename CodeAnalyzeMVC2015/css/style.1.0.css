@@ -16,11 +16,15 @@
     height:40px;
 }
 
-
-.mysubmit:hover {    
-    background-color:#F3CD50;   
+.mysubmit:hover, .mysubmit:focus {
+    background-color:#F3CD50;  
+    text-decoration:none; 
 }
 
+
+.mysubmit:active, .mysubmit:visited{
+    text-decoration:none; 
+}
 
 
 .mysubmitsmall {
@@ -82,7 +86,6 @@
 .mylink:hover {    
     background-color:#F3CD50;   
     color:black;
-    text-decoration:none;
 }
 
 
@@ -121,12 +124,12 @@
     text-decoration:none;
 }
 
-
-.demo:hover {    
-    background-color:#6CEF9C;  
+.demo:hover, .demo:active, .demo:visited, .demo:focus {
+      background-color:#6CEF9C;  
     color:black;
     text-decoration:none; 
 }
+
 
 
 
@@ -1055,28 +1058,28 @@ line-height: 15px;
 ---------------------------------------------------------------------- */
 #ccr-footer{
 	background-color: #f8f3b5;
-	min-height: 40px;
+	min-height: 30px;
 }
  .container{
 	position: relative;
 }
 .copyright, .copyright a{
 	color: #333;
-	line-height: 40px;
+	line-height: 30px;
 	text-align: center;
 }
 .footer-social-icons{
 	position: absolute;
 	right: 0;
 	top:0;
-	height: 40px;
+	height: 30px;
 	width: 160px;
 }
 .footer-social-icons li a{
 	font-size: 1.35em;
 	color: #333;
 	float: left;
-	line-height: 40px;
+	line-height: 30px;
 	text-align: center;
 	width: 40px;
 }
