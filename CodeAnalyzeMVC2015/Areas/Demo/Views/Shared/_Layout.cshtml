@@ -26,8 +26,8 @@
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
     <script type="text/javascript" src="~/js/prettify.js"></script>
-    <script type="text/javascript" src="~/js/JavaScript.1.2.js"></script>   
-     
+    <script type="text/javascript" src="~/js/JavaScript.1.2.js"></script>  
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
     @if (!Request.Url.ToString().Contains("localhost"))
@@ -58,7 +58,14 @@
       
 </head>
 <body>
-
+         <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
    
     <header id="ccr-header">
         <section id="ccr-nav-top" class="fullwidth">
@@ -274,6 +281,19 @@
                         </li>
                     </ul>
                 </section> 
+                    <section><br>  
+                    <table style="font-size: 14px">
+                    <tr>                       
+                          <td align="left" style="width: 120px" >
+                                 <div class="fb-like" data-href="https://www.facebook.com/codeanalyze1" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+                                                                       </td>
+                                <td>&nbsp;&nbsp;&nbsp;</td>
+                                  <td align="left">                        
+                                                        <a href="https://twitter.com/codeanalyze_" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-lang="en" data-show-count="false">Follow</a>
+                                 </td>
+                    </tr>
+                </table>  
+                </section>   
             </aside>
         </div>
     </section>
