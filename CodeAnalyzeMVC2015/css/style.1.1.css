@@ -162,7 +162,6 @@ header, hgroup, nav, section, summary{
 }
 
 a{
-	color: blue;
 	-webkit-transition: all .25s ease-in;
 		-moz-transition: all .25s ease-in;
 		 -ms-transition: all .25s ease-in;
@@ -173,6 +172,20 @@ a:hover{
 	text-decoration: none;
 	color: blue;
 }
+
+a:active, .a:visited, .a:focus{
+    text-decoration:none; 
+}
+
+a:visited, .a:focus{
+    text-decoration:none; 
+}
+
+a:focus{
+    text-decoration:none; 
+}
+
+
 .container {
 	max-width: 1170px;
 	padding:0px;
@@ -262,6 +275,14 @@ img {
 	     -o-transition: all .15s ease-in;
 	        transition: all .15s ease-in;
 }
+
+.like-comment-readmore .read-more:active,
+.read-more a:visited, .read-more a:focus
+{
+    text-decoration:none; 
+}
+
+
 .like-comment-readmore .read-more{
 	float: right;
 }
