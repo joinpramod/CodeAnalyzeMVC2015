@@ -250,7 +250,24 @@
     <section id="ccr-main-section">
         <div class="container">
             <section id="ccr-left-section" class="col-md-8">
-                <div style="margin-top:20px">
+                <section>
+
+                    <table style="font-size: 14px;text-align:right;width:100%;margin-top:10px">
+                        <tr>
+                            <td  style="width:60%">&nbsp;</td>
+                            <td style="width:20%;margin-top:0px">
+                                <div class="fb-like" data-href="https://www.facebook.com/codeanalyze1" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+                            </td>
+                            <td>&nbsp;&nbsp;&nbsp;</td>
+                            <td align="right" style="width:20%;margin-top:0px">
+                                @*<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="@@CodeAnalyze_" data-lang="en" data-show-count="false">Tweet</a>*@
+                                <a href="https://twitter.com/codeanalyze_" class="twitter-follow-button" data-size="small" data-show-screen-name="false" data-lang="en" data-show-count="true">Follow</a>
+                            </td>
+                        </tr>
+                    </table>
+                </section>
+
+                <div style="margin-top:10px">
                     @RenderBody()
                 </div>
               
@@ -270,6 +287,8 @@
                     </script>                 
                 </section>
                 }*@
+
+
                 @if ((string.IsNullOrEmpty(ViewBag.UserEmail)) || (!string.IsNullOrEmpty(ViewBag.UserEmail) && ViewBag.UserEmail != "admin@codeanalyze.com"))
                     {
               <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -339,18 +358,18 @@
                         </li>
                     </ul>
                 </section> 
-                          <section><br>
+                          <section>
   
                     <table style="font-size: 14px">
                     <tr>
                        
                           <td align="left" style="width: 120px" >
- <div class="fb-like" data-href="https://www.facebook.com/codeanalyze1" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+ <div class="fb-like" data-href="https://www.facebook.com/codeanalyze1" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="false"></div>
                                        </td>
-<td>&nbsp;&nbsp;&nbsp;</td>
+<td>&nbsp;</td>
   <td align="left">      
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="@@CodeAnalyze_" data-lang="en" data-show-count="false">Tweet</a>                  
-                        <a href="https://twitter.com/codeanalyze_" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-lang="en" data-show-count="false">Follow</a>
+                        @*<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="@@CodeAnalyze_" data-lang="en" data-show-count="false">Tweet</a>*@                  
+                        <a href="https://twitter.com/codeanalyze_" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-lang="en" data-show-count="true">Follow</a>
  </td>
                     </tr>
                 </table>
