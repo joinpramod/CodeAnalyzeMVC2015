@@ -1,4 +1,4 @@
-   @{
+﻿@{
     ViewBag.Title = "Demo - Drag and drop rows in table grid and multi select rows using jquery in asp.net mvc";
     Layout = "~/Areas/Demo/Views/Shared/_Layout.cshtml";
     } 
@@ -20,13 +20,13 @@
       
       
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>  
-    <script src="~/Areas/Demo/CSS/jquery-ui.min.css"></script>
-    <link href="~/Areas/Demo/CSS/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="~/Areas/Demo/Scripts/jquery.dataTables.min.js" rel="stylesheet" />
+    <script src="~/Areas/Demo/Scripts/jquery.dataTables.min.js" ></script>
+    <link href="~/Areas/Demo/Scripts/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Areas/Demo/Scripts/jquery-ui.min.css"  rel="stylesheet"/>
     <script src="~/Areas/Demo/Scripts/jquery-ui.min.js"></script>
       
     <script type="text/javascript">
-        $(document).ready(function () {        
+        $(document).ready(function () {
 
             $("#tblEmployee tbody").sortable({
                 start: function (e, ui) {

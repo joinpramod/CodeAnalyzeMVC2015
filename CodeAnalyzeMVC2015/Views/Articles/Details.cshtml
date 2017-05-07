@@ -1,4 +1,4 @@
-@{
+﻿@{
     ViewBag.Title = Model.ArticleTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -8,32 +8,6 @@
 <title>@Model.ArticleTitle</title>
 
 <meta name="description" content="@ViewBag.keywords" />
-
-
-
-@*<script type="text/javascript">
-    $(function () {
-        debugger;
-            $("#btnGet").click(function () {
-                $.ajax({
-                    type: "POST",
-                    url: "@Model.DemoURL",
-                    //data: '{name: "' + $("#txtName").val() + '" }',
-                    contentType: "application/json; charset=utf-8",
-                    //dataType: "json",
-                    success: function (response) {
-                        //alert("Hello: " + response.Name + " .\nCurrent Date and Time: " + response.DateTime);
-                    },
-                    failure: function (response) {
-                        //alert(response.responseText);
-                    },
-                    error: function (response) {
-                        //alert(response.responseText);
-                    }
-                });
-            });
-        });
-</script>*@
 
 <script type="text/javascript" src="~/js/JavaScript1.js"></script>
 
@@ -67,11 +41,13 @@
                         @Model.ThumbsDown
                     </td>
 <td style="width: 120px" align="left">
-<div class="fb-like" data-href="https://www.facebook.com/codeanalyze1" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+<div class="fb-like" data-href="https://www.facebook.com/codeanalyze1" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
 </td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
   <td  align="left">
-<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="@Model.ArticleTitle" data-lang="en" data-show-count="false">Tweet</a>
+<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="@@CodeAnalyze_ @Model.ArticleTitle" data-lang="en" data-show-count="false">Tweet</a>
 <a href="https://twitter.com/codeanalyze_" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-lang="en" data-show-count="false">Follow</a>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </td>
 
                 </tr>
@@ -116,11 +92,13 @@
             <table style="font-size: 14px">
                 <tr>
 <td style="width: 120px" align="left">
-<div class="fb-like" data-href="https://www.facebook.com/codeanalyze1" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+<div class="fb-like" data-href="https://www.facebook.com/codeanalyze1" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
 </td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
   <td  align="left">
-<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="@Model.ArticleTitle" data-lang="en" data-show-count="false">Tweet</a>
+<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="@@CodeAnalyze_ @Model.ArticleTitle" data-lang="en" data-show-count="false">Tweet</a>
 <a href="https://twitter.com/codeanalyze_" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-lang="en" data-show-count="false">Follow</a>
+
 </td>
 
                 </tr>

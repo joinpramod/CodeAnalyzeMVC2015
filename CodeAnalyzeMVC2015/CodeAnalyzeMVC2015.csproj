@@ -284,6 +284,7 @@
     <Content Include="Articles\XCode_Periodically_Rate_Review.html" />
     <Content Include="css\mystyles.css" />
     <Content Include="css\style.1.0.css" />
+    <Content Include="css\style.1.1.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\ThumpsDown.png" />
     <Content Include="Images\ThumpsUp.png" />
