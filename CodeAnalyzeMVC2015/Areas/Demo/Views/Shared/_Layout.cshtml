@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="~/css/bootstrap-theme.min.css" />
     <link rel="stylesheet" type="text/css" href="~/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="~/css/style.1.1.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/style.1.2.css" />
     <link rel="stylesheet" type="text/css" href="~/css/sCodeCSS.css" />
     <link rel="stylesheet" type="text/css" href="~/css/CodeDecorate.css" />
     <link rel="stylesheet" type="text/css" href="~/css/prettify.css" />
@@ -172,15 +172,15 @@
                             <li>@Html.ActionLink("Post Article", "Post", "Articles", new { area = "" }, null)</li>
                             <li>@Html.ActionLink("Post Question", "Post", "Que", new { area = "" }, null)</li>
                             <li>@Html.ActionLink("Unanswered", "UnAns", "Que", new { area = "" }, null)</li>
-                            <li class="dropdown">
-                                <a href="#">Tutorials<i class="fa fa-caret-down"></i></a>
-                                <ul class="sub-menu">
-                                    <li>@Html.ActionLink("Basics", "Basics", "Tutorials", new { area = "" }, null)</li>
-                                    <li>@Html.ActionLink("EBook", "Ebook", "Tutorials", new { area = "" }, null)</li>
-                                    <li>@Html.ActionLink("AngularJS", "AngularJS", "Tutorials", new { area = "" }, null)</li>
-                                    <li>@Html.ActionLink("XCode", "XCode", "Tutorials", new { area = "" }, null)</li>
-                                    <li>@Html.ActionLink("Android", "Android", "Tutorials", new { area = "" }, null)</li>
-                                    <li>@Html.ActionLink("Hadoop", "Hadoop", "Tutorials", new { area = "" }, null)</li>
+                            <li class="mydropdown">
+                                <a class="dropbtn" href="#">Tutorials<i class="fa fa-caret-down"></i></a>
+                                <ul class="mydropdown-content">
+                                    <li>@Html.ActionLink("Basics", "Basics", "Tutorials")</li>
+                                    <li>@Html.ActionLink("EBook", "Ebook", "Tutorials")</li>
+                                    <li>@Html.ActionLink("AngularJS", "AngularJS", "Tutorials")</li>
+                                    <li>@Html.ActionLink("XCode", "XCode", "Tutorials")</li>
+                                    <li>@Html.ActionLink("Android", "Android", "Tutorials")</li>
+                                    <li>@Html.ActionLink("Hadoop", "Hadoop", "Tutorials")</li>
                                 </ul>
                             </li>
                             <li> @Html.ActionLink("Rewards", "Rewards", "Home", new { area = "" }, null)</li> 
