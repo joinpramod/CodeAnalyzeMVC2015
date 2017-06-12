@@ -1,0 +1,199 @@
+   @{
+        ViewBag.Title = "Demo - Implement html treeview using css and jquery in asp.net";
+        Layout = "~/Areas/Demo/Views/Shared/_Layout.cshtml";
+    } 
+    <br/>
+   
+    <table style="width: 100%; font-family: Calibri">
+            <tr>
+                <td style="width:100%">
+                    <span style="width: 90%; font-weight: bold; font-family: Calibri; color: #333; font-size: 24px">Demo - Implement html treeview using css and jquery</span>
+                </td>
+            </tr>
+    </table>   
+
+    <br />  
+      
+<style> 
+ 
+body{
+	font-family:Calibri;
+	font-size:12pt;
+}
+
+.TreeContainer {
+	border: solid 0px red;
+	width: 350px;
+	height: 400px;
+	overflow-y: auto;
+	padding: 10px;
+}
+
+.TreeContainer .ParentPlace {
+		border: solid 0px silver;
+		padding: 5px;
+		font-size: 10pt;
+		font-family: Calibri;
+		width:auto;
+	}
+
+.TreeContainer .ParentPlace span 
+{
+			float:left;
+			border:solid 2px grey;
+			padding:5px;
+}
+
+.TreeContainer .MyPlace {
+		border: solid 0px silver;
+		padding: 5px;
+		font-size: 10pt;
+		font-family: 'Calibri';
+		width:auto;
+	}
+
+.TreeContainer .MyPlace span {
+			float:left;
+			border:solid 2px grey;
+			padding:5px;
+		}
+
+.TreeContainer ul.tree,	ul.tree ul {
+		list-style-type: none;
+		background: url(../../../../Images/vline.png) repeat-y;
+		margin: 0;
+		padding: 0;
+
+	}
+
+.TreeContainer ul.tree ul {
+			margin-left: 10px;
+
+		}
+
+.TreeContainer ul.tree li {
+			margin: 0;
+			padding: 0 12px;
+			line-height: 20px;
+			background: url(../../../../Images/node.png) no-repeat;
+		}
+
+.TreeContainer ul.tree li span {
+				background-color: lightblue;
+				padding: 2px 6px;
+				border-radius: 10px;
+				
+			}
+
+.selected {
+				background-color: lightblue;
+				padding: 2px 6px;
+				border-radius: 10px;
+			}
+			
+</style>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>        
+
+    <script type="text/javascript">
+	    function LoadChildren(ctrl) {
+		    if ($(ctrl).next('a').next('ul').is(':visible')) {
+			    $(ctrl).next('a').next('ul').hide('slow');
+			    $(ctrl).attr('src', '~/Images/Collapse.png');
+			    $(ctrl).attr('style', 'width:20px;height:20px');
+		    }
+		    else {
+			    $(ctrl).next('a').next('ul').show('slow');
+			    $(ctrl).attr('src', '~/Images/blueright.png');
+			    $(ctrl).attr('style', 'width:20px;height:20px');
+		    }
+	    }
+        
+
+	    function NodeSelection(ctrl) {
+		    $('ul.tree li').find('a').each(function () { $(this).removeClass(); })
+		    $(ctrl).addClass("selected");
+	    }
+
+	    $(document).ready(function () {
+		    $('ul.tree li').each(function () {
+			    $(this).children('img').click(function () {
+				    LoadChildren(this);
+			    });
+		    });
+
+		    $('ul.tree li a').click(function (e) {
+			    $('ul.tree li').find('a').each(function () { $(this).removeClass(); })
+
+			    $(this).addClass("selected");
+		    });
+	    });
+    </script>
+      
+    <br /><span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red; font-size:20px">@ViewBag.Message</span>
+
+    <div class="TreeContainer" >
+		<div class="ParentPlace">
+			<span>Root</span>
+		</div>
+		<br><br>
+		<ul class="tree">
+			<li>
+				<span>1</span>
+				<img src="~/Images/Arrow.png" style="width:20px;height:20px" />
+				<a>USA</a>
+				<ul>
+					<li>
+						<span>1</span>
+						<img src="~/Images/Arrow.png" style="width:20px;height:20px" />
+						<a>New York</a>
+						<ul>
+							<li><a>Bronx</a></li>
+							<li><a>Brooklyn</a></li>
+							<li>
+								<span>3</span>
+								<img src="~/Images/Arrow.png" style="width:20px;height:20px" />
+								<a>Manhattan</a>
+								<ul>
+									<li><a>Times Square</a></li>
+									<li><a>Grand Central</a></li>
+									<li><a>5th Avenue</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<span>2</span>
+				<img src="~/Images/Arrow.png" style="width:20px;height:20px" />
+				<a>California</a>
+				<ul>
+					<li><a>Los Angeles</a></li>
+					<li><a>San Francisco</a></li>
+					<li>
+						<span>1</span>
+						<img src="~/Images/Arrow.png" style="width:20px;height:20px" />
+						<a>San Jose</a>
+						<ul>
+							<li><a>Sunnyvale</a></li>
+							<li><a>Palo Alto</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+
+		</ul>
+	</div>
+
+
+<p>
+    <br>
+    <table>
+        <tr>
+            <td align="center">
+                <a id="btnSubmit" class="mysubmit" href="../../../../Articles/Details/20196/Implement-html-treeview-using-css-and-jquery-asp-net-mvc" style="font-size: 24px">View Code</a>
+            </td>
+        </tr>
+    </table>
+</p>

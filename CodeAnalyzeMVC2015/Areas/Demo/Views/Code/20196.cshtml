@@ -1,0 +1,61 @@
+   @{
+        ViewBag.Title = "Demo - Preview of image selected for upload as profile picture using jquery in asp.net mvc";
+        Layout = "~/Areas/Demo/Views/Shared/_Layout.cshtml";
+    } 
+    <br/>
+   
+    <table style="width: 100%; font-family: Calibri">
+            <tr>
+                <td style="width:100%">
+                    <span style="width: 90%; font-weight: bold; font-family: Calibri; color: #333; font-size: 24px">Demo - Preview of image selected for upload as profile picture using jquery in asp.net mvc</span>
+                </td>
+            </tr>
+    </table>   
+
+    <br />  
+      
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>        
+    <script type="text/javascript">
+        //Hooking the click of the fileupload control with Image.
+        $(document).ready(function () {
+            $('#imgProfile').click(function () {
+                $('#fileUploaderControl').click();
+            });
+        });
+
+        //Using FileReader to convert the image as dataurl.
+        $(document).ready(function () {
+            $("#fileUploaderControl").change(function () {
+                var file = document.getElementById("fileUploaderControl").files[0];
+                var readImg = new FileReader();
+                readImg.readAsDataURL(file);
+                readImg.onload = function (e) {
+                    $('#imgProfile').attr('src', e.target.result).fadeIn();
+                }
+            });
+        });
+    </script>
+      
+  <br /><span style="width: 100%; font-weight: bold; font-family: Calibri; color: Red; font-size:20px">@ViewBag.Message</span>
+
+    @using (Html.BeginForm("ImagePreview", "Code", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-4">
+                <img id="imgProfile" name="imgProfile" src="~/Images/ProfPic.jpg" alt="Profile Image" style="height:100px;width:100px" />
+                <input type="file" name="fileUploaderControl" id="fileUploaderControl" style="display:none;"/><br /><br />
+                &nbsp;&nbsp;<input type="submit" value="Upload" />
+            </div>
+        </div>
+    }
+
+<p>
+    <br>
+    <table>
+        <tr>
+            <td align="center">
+                <a id="btnSubmit" class="mysubmit" href="../../../../Articles/Details/20195/Preview-of-image-selected-for-upload-as-profile-picture-using-jquery-asp-net-mvc" style="font-size: 24px">View Code</a>
+            </td>
+        </tr>
+    </table>
+</p>

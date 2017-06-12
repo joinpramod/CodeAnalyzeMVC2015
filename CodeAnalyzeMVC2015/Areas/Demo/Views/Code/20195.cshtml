@@ -1,0 +1,104 @@
+   @{
+    ViewBag.Title = "Demo - Drag and drop rows in table grid and multi select rows using jquery in asp.net mvc";
+    Layout = "~/Areas/Demo/Views/Shared/_Layout.cshtml";
+    } 
+    <br/>
+    <br/>
+
+    @model IEnumerable<CodeAnalyzeMVC2015.Areas.Demo.Models.Employee>  
+   
+    <table style="width: 100%; font-family: Calibri">
+            <tr>
+                <td style="width:100%">
+                    <span style="width: 90%; font-weight: bold; font-family: Calibri; color: #333; font-size: 24px">Demo - 
+                            Drag and drop rows in table grid and multi select rows using jquery in asp.net mvc</span>
+                </td>
+            </tr>
+    </table>   
+
+    <br />  
+    <style>  
+        table {  
+            border-collapse: collapse;  
+        }  
+        table thead tr {  
+            margin-left: 20px;  
+        }  
+        table tbody tr {  
+            border: 1px solid #ccc;  
+        }  
+        tr-selecting {  
+            background: #FECA40;  
+        }  
+        .selected {  
+            background: #ff6a00;  
+            color: white;  
+            cursor: move;  
+        }  
+        .dataTables_filter {  
+            display: none;  
+        }  
+        .dataTables_length {  
+            display: none !important;  
+        }  
+        .hidden {  
+            display: none;  
+        }  
+    </style>  
+      
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>  
+    <script src="~/Areas/Demo/CSS/jquery.dataTables.min.js"></script>
+    <link href="~/Areas/Demo/CSS/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Areas/Demo/Scripts/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Areas/Demo/Scripts/jquery-ui.min.js"></script>
+      
+    <script type="text/javascript">
+        $(document).ready(function () {        
+
+            $("#tblEmployee tbody").sortable({
+                start: function (e, ui) {
+                    var elements = ui.item.siblings('.selected.hidden').not('.ui-sortable-placeholder');
+                    ui.item.data('items', elements);
+                },
+                update: function (e, ui) {
+                    ui.item.after(ui.item.data("items"));
+                },
+                stop: function (e, ui) {
+                    ui.item.siblings('.selected').removeClass('hidden');
+                    $('tr.selected').removeClass('selected');
+                }
+            });
+
+            $("#tblEmployee").dataTable({
+                "pagingType": "simple"
+            });
+
+        });
+    </script>  
+      
+    <table id="tblEmployee" class="table">  
+        <thead>  
+            <tr>  
+                <th>  
+                    @Html.DisplayNameFor(model => model.ID)  
+                </th>  
+                <th>  
+                    @Html.DisplayNameFor(model => model.Name)  
+                </th>  
+
+            </tr>  
+        </thead>  
+        <tbody>  
+            @foreach (var item in Model)  
+            {  
+                <tr>  
+                    <td>  
+                        @Html.DisplayFor(modelItem => item.ID)  
+                    </td>  
+                    <td>  
+                        @Html.DisplayFor(modelItem => item.Name)  
+                    </td>  
+                </tr>  
+            }  
+        </tbody>  
+    </table>  

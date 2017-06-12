@@ -1,0 +1,108 @@
+   @{
+        ViewBag.Title = "Demo - Session Timeout Warning Popup message using JQuery in ASP.NET MVC with demo";
+        Layout = "~/Areas/Demo/Views/Shared/_Layout.cshtml";
+    } 
+    <br/>
+   
+ <script type="text/javascript">
+            var extendMethodUrl='@Url.Action("ExtendSession","Code")';
+            $(document).ready(function(){
+                TimeOutSession.ScheduleTimer();
+            });
+
+            window.TimeOutSession = (function() {
+                var timeRemaining, PopupTimer, CountTimer;
+                var stopTimers = function() {
+                    window.clearTimeout(PopupTimer);
+                    window.clearTimeout(CountTimer);
+                };
+                var UpdateCount = function() {
+                    var min = Math.floor(timeRemaining / 60);
+                    var sec = timeRemaining % 60;
+                    if(sec < 10)
+                        sec = "0" + sec;
+
+                    document.getElementById("ShowCount").innerHTML = min + ":" + sec;
+
+                    if(timeRemaining > 0) {
+                        timeRemaining--;
+                        CountTimer = window.setTimeout(UpdateCount, 50);
+                    } else  {
+                        //document.location = loginUrl;
+                        alert("Session Expired, user can be redirected to login page here using document.location = loginpage url");
+                    }
+                };
+                var showPopup = function() {
+                    $("#PopupDialog").show();
+                    timeRemaining = 120;
+                    UpdateCount();
+                };
+                var ScheduleTimer = function() {
+                    $("#PopupDialog").hide();
+                    stopTimers();
+                    PopupTimer = window.setTimeout(showPopup, 1);
+                };
+                var EndSessionAfterTime=function(){
+                    $("#PopupDialog").hide();
+                };
+                var ContinueSession = function() {
+                    stopTimers();
+                    $("#PopupDialog").hide();
+                    $.ajax({
+                        type: "GET",
+                        url: extendMethodUrl,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function successFunc(response) {
+                            TimeOutSession.ScheduleTimer();
+                        },
+                        error:function(){
+                        }
+                    });
+                };
+                return {
+                    ScheduleTimer: ScheduleTimer,
+                    ContinueSession: ContinueSession,
+                    EndSessionAfterTime:EndSessionAfterTime,
+                    stopTimers:stopTimers,
+                };
+
+            })();
+            </script>
+
+
+    <table style="width: 100%; font-family: Calibri">
+            <tr>
+                <td style="width:100%">
+                    <span style="width: 90%; font-weight: bold; font-family: Calibri; color: #333; font-size: 24px">Demo - Implement html treeview using css and jquery</span>
+                </td>
+            </tr>
+    </table>   
+
+            <div id="PopupDialog" style="display:none;z-index:9999; height:20%;width:60%;background-color:lightgrey" >
+            <div class="row" style="margin-top:10px; margin-left:10px;">
+                Your session is about to expire! 
+                <br />
+                <span id="ShowCount"></span>
+                <br />
+                Click OK to continue your session.
+            </div>
+            <div class="row">
+                <div style="text-align:center; margin-top:22px;">
+                    <button onclick="TimeOutSession.ContinueSession();">OK</button>
+                    <button onclick="TimeOutSession.EndSessionAfterTime();">Cancel</button>
+                </div>
+            </div>
+        </div> 
+
+
+<p>
+    <br>
+    <table>
+        <tr>
+            <td align="center">
+                <a id="btnSubmit" class="mysubmit" href="../../../../Articles/Details/20199/Session-Timeout-Warning-Popup-message-using-JQuery-in-ASP-NET-MVC-with-demo" style="font-size: 24px">View Code</a>
+            </td>
+        </tr>
+    </table>
+</p>
