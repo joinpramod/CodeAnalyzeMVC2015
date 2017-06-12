@@ -333,6 +333,16 @@ namespace CodeAnalyzeMVC2015.Areas.Demo.Controllers
         }
 
         #endregion
+        
+        
+        #region 20199-session expire popup
+        [HttpGet]
+        public ActionResult ExtendSession()
+        {
+            var data = new { IsSuccess = true };
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
 
     }
 
