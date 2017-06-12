@@ -1,0 +1,37 @@
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+<p style="width:100%">
+
+1. Download jquery plugin from <a href="https://plugins.jquery.com/datetimepicker/">https://plugins.jquery.com/datetimepicker/</a><br />
+2. Refer jquery.datetimepicker.min.js script in the View<br />
+3. Also refer datetimepicker.css file in the view <br />
+4. We can set the current date and time before loaidng the control which is given below<br />
+5. Take a look athe demo and code 
+Below is the code of the view to select date and time using datetimepicker juqry plugin in asp.net mvc
+</p>
+<div style="text-align:center;width:100%">
+        <a href='../../../Demo/Code/Articles/20200/Date-and-Time-picker-using-JQuery-plugin-in-asp-net-mvc-with-demo' class="demo">View Demo</a><br /><br />
+</div>
+<pre class="brush: csharp">
+    &lt;link href="../jquery.datetimepicker.css" rel="stylesheet" /&gt;
+    &lt;script src="../jquery.datetimepicker.min.js"&gt;&lt;/script&gt;
+     &lt;script src="../jquery.js"&gt;&lt;/script&gt;
+
+    &lt;!--View--&gt;
+    &lt;script type="text/javascript"&gt;
+        jQuery('#datetimepicker').datetimepicker();
+    &lt;/script&gt;
+
+    &lt;div class="container"&gt;
+    &lt;div class="row"&gt;
+       @Html.Label("DateTime using Jquery plug in",null, new { @class = "control-label col-sm-3" })
+               &lt;div class="col-sm-3"&gt; 
+                @Html.TextBox("datetimepicker")
+               &lt;/div&gt;
+     &lt;/div&gt;  
+    &lt;/div&gt; 
+
+</pre>
+  
+
+</div>
