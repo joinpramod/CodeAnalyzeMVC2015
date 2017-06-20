@@ -1,0 +1,67 @@
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+<p style="width:100%">
+Here is the procedure to use areas in asp.net core mvc.<br />
+1. We need to edit and update configure method in startup.cs file as shown below. <br />
+2. Create a folder named Areas in the root folder and within this create the necessary MVC folders like View, Controllers and so on. <br />
+3. Lets create couple of controllers called EmployeeController and ManagerController.<br />
+4. Look at the comments for more information on the code<br />
+</p>
+
+<pre class="brush: csharp">
+&lt;!--startup.cs--&gt;
+&lt;!--Make the changes for startup.cs file as shown below--&gt;
+app.UseMvc(routes =&gt;
+{
+    routes.MapRoute("areaRoute", "{area:exists}/{controller=Employee}/{action=Index}/{id?}");
+
+    routes.MapRoute(
+        name: "default",
+        template: "{controller=Home}/{action=Index}/{id?}");
+});
+
+
+
+&lt;!--TestController.cs--&gt;
+&lt;!--TestController inside Controllers folder in Areas--&gt;
+&lt;!--Make sure to create required Views in Views folders for all the actions in Controller--&gt;
+&lt;!--Also the route here is also important--&gt;
+[Area("Employee")]
+[Route("Employee")]
+public class EmployeeController : Controller
+{
+    public EmployeeController()
+    {
+        // do stuff
+    }
+
+    public IActionResult Index()
+    {
+        return View();
+    }
+}
+
+
+
+&lt;!--Suppose if there is another controller then  take a look the route declaration below--&gt;
+
+[Area("Employee")]
+[Route("employee/[controller]")]
+public class ManagerController : Controller
+{
+    public ManagerController()
+    {
+        //
+    }
+
+    [Route("{page:int?}")]
+    public IActionResult Index()
+    {
+        return View();
+    }
+}
+
+</pre>
+  
+
+</div>

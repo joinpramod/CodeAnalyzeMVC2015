@@ -197,6 +197,7 @@
     <Content Include="Articles\Angular2DropDown.html" />
     <Content Include="Articles\AngularJS_Charts.html" />
     <Content Include="Articles\Angular_DataBinding_JSON.html" />
+    <Content Include="Articles\Areas_In_ASPNET_Core_MVC.htm" />
     <Content Include="Articles\AutoComplete_TextField_XCode.html" />
     <Content Include="Articles\AutoComplete_TextField_XCode_1.html" />
     <Content Include="Articles\Bind_JSON_Data_to_JQeury_Grid.html" />
@@ -204,6 +205,7 @@
     <Content Include="Articles\Bind_JSON_To_View.html" />
     <Content Include="Articles\Bind_JSON_To_View2.html" />
     <Content Include="Articles\Bootstrap_Angular2_Transacript.html" />
+    <Content Include="Articles\BreakDataTableIntoChunks.html" />
     <Content Include="Articles\Call_aspnet_method_AngularJS.html" />
     <Content Include="Articles\CascadeDropDownJquery.html" />
     <Content Include="Articles\Charts_ASPNET_MVC.html" />
@@ -224,6 +226,7 @@
     <Content Include="Articles\Custom_fonts_ios_app.html" />
     <Content Include="Articles\Custom_formater_mvc.html" />
     <Content Include="Articles\Data_Binding _Angular2.html" />
+    <Content Include="Articles\DateAndTimePicker_Using_Jquery.htm" />
     <Content Include="Articles\Delete_Multiple_Records_AngularJS_Webapi.html" />
     <Content Include="Articles\Disable_Request_Validation_MVC.html" />
     <Content Include="Articles\Display_CSVFIle_on_HtmlTable_ClientSide.html" />
@@ -249,6 +252,7 @@
     <Content Include="Articles\LinkedIn_Login_iOS.html" />
     <Content Include="Articles\Location_Finder_ObjC.html" />
     <Content Include="Articles\Login_With_Facebook_Swift2.html" />
+    <Content Include="Articles\MultiFileUpload_With_Javascript.html" />
     <Content Include="Articles\Multiple_Form_Submissions.html" />
     <Content Include="Articles\Multiple_Get_MVC.html" />
     <Content Include="Articles\Multi_File_upload_mvc.html" />
@@ -268,6 +272,8 @@
     <Content Include="Articles\Search_CDNDatatable.html" />
     <Content Include="Articles\Send_File_Swift.html" />
     <Content Include="Articles\Send_File_Swift2.html" />
+    <Content Include="Articles\SessionTimoutExpire.htm" />
+    <Content Include="Articles\Show preview of uploaded image for profile.html" />
     <Content Include="Articles\Sorting_Filtering_Paging_Html_Table.html" />
     <Content Include="Articles\Sqlite_Database_AngularJS.html" />
     <Content Include="Articles\Sqlite_Database_Swift.html" />
@@ -276,8 +282,10 @@
     <Content Include="Articles\TableView_Search_Swift.html" />
     <Content Include="Articles\Tabular_layout_in_objective_C.html" />
     <Content Include="Articles\Template.html" />
+    <Content Include="Articles\TreeView_Using_CSS_And_JQuery.html" />
     <Content Include="Articles\Turn_Flash_On_Off_ObjC.html" />
     <Content Include="Articles\Update_DB_From Javascript.html" />
+    <Content Include="Articles\Upload_Large_Files_ASPNET_Core.htm" />
     <Content Include="Articles\Use_GoogleMaps_SDK_Swift.html" />
     <Content Include="Articles\Use_GoogleMaps_SDK_Swift_2.html" />
     <Content Include="Articles\XCode_Display_Loading_Msg.html" />

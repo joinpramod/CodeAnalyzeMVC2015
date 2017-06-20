@@ -1,0 +1,74 @@
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+    <p style="width:100%">
+        Below is the code to upload large file to web api in asp.net core in chunks. <br />
+Basically we need to use Microsoft.AspNetCore.WebUtilities.MultipartReader to achive this
+</p>
+
+<pre class="brush: csharp">
+
+&lt;!--Controller code in asp.net core--&gt;
+app.Use(async (context, next) =&gt;
+{   
+
+    if (string.IsNullOrEmpty(context.Request.ContentType) && context.Request.ContentType.IndexOf("multipart/", StringComparison.OrdinalIgnoreCase) &gt;= 0)
+    {
+        await next();
+        return;
+    }
+
+    var boundary = GetBoundary(context.Request.ContentType);
+    var reader = new MultipartReader(boundary, context.Request.Body);
+    var section = await reader.ReadNextSectionAsync();
+
+    while (section != null)
+    {
+        // process each file
+        const int chunkSize = 1024;
+        var buffer = new byte[chunkSize];
+        var bytesRead = 0;
+        var fileName = section.ContentDisposition
+                        .Split(';')
+                        .SingleOrDefault(part =&gt; part.Contains("filename"))
+                        .Split('=')
+                        .Last()
+                        .Trim('"');   
+
+        using (var stream = new FileStream(fileName, FileMode.Append))
+        {
+            do
+            {
+                bytesRead = await section.Body.ReadAsync(buffer, 0, buffer.Length);
+                stream.Write(buffer, 0, bytesRead);
+
+            } while (bytesRead &gt; 0);
+        }
+
+        section = await reader.ReadNextSectionAsync();
+    }
+
+    context.Response.WriteAsync("Done.");
+});
+
+
+
+&lt;!--Helper functions--&gt;
+
+private static string GetBoundary(string contentType)
+{
+    var elements = contentType.Split(' ');
+    var element = elements.Where(entry =&gt; entry.StartsWith("boundary=")).First();
+    var boundary = element.Substring("boundary=".Length);
+
+    if (boundary.Length &gt;= 2 && boundary[0] == '"' && 
+        boundary[boundary.Length - 1] == '"')
+    {
+        boundary = boundary.Substring(1, boundary.Length - 2);
+    }
+    return boundary;
+}
+
+</pre>
+  
+
+</div>

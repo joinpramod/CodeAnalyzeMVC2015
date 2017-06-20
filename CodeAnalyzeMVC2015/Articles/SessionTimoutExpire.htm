@@ -1,0 +1,125 @@
+<div style="font-size:16px;width:100%;font-family:Calibri">
+
+<p style="width:100%">
+    The following code and demo explains about displaying popup message to the user when his session is about to expire and if he intends to continue his session or end the session.<br />
+    Usually bank websites have these features where they need to keep track of user inactivity after loggingin for long time and logout the user if needed.<br />
+    <br />
+    1. Set the SessionTimeOut Value in web.config file as per your need<br />
+    2. Add the Popup html code in View or mostly commonly in Layout page at one place, here it a div named PopupDialog<br />
+    3. Add the script in the View to handle the session timeout popup<br />
+    <br />
+    Below is the code to implement the same along with the demo<br />
+    </p>
+
+    
+            <div style="text-align:center;width:100%">
+<a href='../../../Demo/Code/Articles/20199/Session-Timeout-Warning-Popup-message-using-JQuery-in-ASP-NET-MVC-with-demo' 
+                          class="demo">View Demo</a><br /><br />
+            </div>
+    
+
+    <pre class="brush: csharp">
+        &lt;!--web.config settings--&gt;
+        &lt;system.web&gt;
+            &lt;httpRuntime maxRequestLength="1048576" executionTimeout="36000" targetFramework="4.5" /&gt;
+        &lt;/system.web&gt;
+
+
+        &lt;!--PopUp Code in View--&gt;
+        &lt;div id="PopupDialog" style="display:none;z-index:9999; height:20%;width:60%;background-color:lightgrey" &gt;
+            &lt;div class="row" style="margin-top:10px; margin-left:10px;"&gt;
+                Your session is about to expire! 
+                &lt;br /&gt;
+                &lt;span id="ShowCount"&gt;&lt;/span&gt;
+                &lt;br /&gt;
+                Click OK to continue your session.
+            &lt;/div&gt;
+            &lt;div class="row"&gt;
+                &lt;div style="text-align:center; margin-top:22px;"&gt;
+                    &lt;button onclick="TimeOutSession.ContinueSession();"&gt;OK&lt;/button&gt;
+                    &lt;button onclick="TimeOutSession.EndSessionAfterTime();"&gt;Cancel&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt; 
+
+
+        &lt;!--Script to handle everything--&gt;
+        &lt;script type="text/javascript"&gt;
+            var extendMethodUrl = '@Url.Action("ExtendSession","Code")';
+            $(document).ready(function () {
+                TimeOutSession.ScheduleTimer();
+            });
+
+            window.TimeOutSession = (function () {
+                var timeRemaining, PopupTimer, CountTimer;
+                var stopTimers = function () {
+                    window.clearTimeout(PopupTimer);
+                    window.clearTimeout(CountTimer);
+                };
+                var UpdateCount = function () {
+                    var min = Math.floor(timeRemaining / 60);
+                    var sec = timeRemaining % 60;
+                    if (sec &lt; 10)
+                        sec = "0" + sec;
+
+                    document.getElementById("ShowCount").innerHTML = min + ":" + sec;
+
+                    if (timeRemaining &gt; 0) {
+                        timeRemaining--;
+                        CountTimer = window.setTimeout(UpdateCount, 50);
+                    } else {
+                        //document.location = loginUrl;
+                        alert("Session Expired, user can be redirected to login page here using document.location = loginpage url");
+                    }
+                };
+                var showPopup = function () {
+                    $("#PopupDialog").show();
+                    timeRemaining = 120;
+                    UpdateCount();
+                };
+                var ScheduleTimer = function () {
+                    $("#PopupDialog").hide();
+                    stopTimers();
+                    PopupTimer = window.setTimeout(showPopup, 1);
+                };
+                var EndSessionAfterTime = function () {
+                    $("#PopupDialog").hide();
+                };
+                var ContinueSession = function () {
+                    stopTimers();
+                    $("#PopupDialog").hide();
+                    $.ajax({
+                        type: "GET",
+                        url: extendMethodUrl,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function successFunc(response) {
+                            TimeOutSession.ScheduleTimer();
+                        },
+                        error: function () {
+                        }
+                    });
+                };
+                return {
+                    ScheduleTimer: ScheduleTimer,
+                    ContinueSession: ContinueSession,
+                    EndSessionAfterTime: EndSessionAfterTime,
+                    stopTimers: stopTimers,
+                };
+
+            })();
+            &lt;/script&gt;
+
+
+            &lt;!--Controller--&gt;
+             [HttpGet]
+            public ActionResult ExtendSession()
+            {
+                var data = new { IsSuccess = true };
+                return Json(data, JsonRequestBehavior.AllowGet);
+            }
+
+</pre>
+  
+
+</div>
