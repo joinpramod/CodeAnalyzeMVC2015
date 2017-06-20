@@ -588,6 +588,11 @@
     <Content Include="Areas\Demo\Views\Code\20192.cshtml" />
     <Content Include="Areas\Demo\Views\Code\20193.cshtml" />
     <Content Include="Areas\Demo\Views\Code\20194.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20195.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20196.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20197.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20199.cshtml" />
+    <Content Include="Areas\Demo\Views\Code\20200.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
