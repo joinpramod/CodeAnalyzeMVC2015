@@ -1,0 +1,239 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    
+
+    <ol>
+          <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+
+This article explains about implementing treeview using css and jquery.
+
+Treeview can quite challenging at times especially in web based applications, because binding the data and get the animation takes lots of our time unless we dont have any third party
+libraries dlls like telerik or infragistics etc. 
+
+Here is a sample implementation of tree using only css and jquery which is not that hard to implement and one should understand by looking at the code as it is self explanatory.
+
+Basically we have this method called LoadChildren which will display all the child nodes based on Node selection, so for this we will need another method called NodeSelection to highlight
+the particular node the user selects. Take a look at the demo to see this in action and to get some idea.
+
+            </pre>
+          </li>
+        <li>
+                  <div style="text-align:center;width:100%">
+                      <a href='../../../Demo/Code/Articles/20196/Implement-html-treeview-using-css-and-jquery-asp-net-mvc' 
+                          class="demo">View Demo</a><br /><br />
+                  </div>
+              </li>
+        <li>
+        <li>
+            <b>CSS</b>
+<pre class="brush: java">
+
+
+
+&lt;style&gt; 
+ 
+body{
+	font-family:Calibri;
+	font-size:12pt;
+}
+
+.TreeContainer {
+	border: solid 0px red;
+	width: 350px;
+	height: 400px;
+	overflow-y: auto;
+	padding: 10px;
+}
+
+.TreeContainer .ParentPlace {
+		border: solid 0px silver;
+		padding: 5px;
+		font-size: 10pt;
+		font-family: Calibri;
+		width:auto;
+	}
+
+.TreeContainer .ParentPlace span 
+{
+			float:left;
+			border:solid 2px grey;
+			padding:5px;
+}
+
+.TreeContainer .MyPlace {
+		border: solid 0px silver;
+		padding: 5px;
+		font-size: 10pt;
+		font-family: 'Calibri';
+		width:auto;
+	}
+
+.TreeContainer .MyPlace span {
+			float:left;
+			border:solid 2px grey;
+			padding:5px;
+		}
+
+.TreeContainer ul.tree,	ul.tree ul {
+		list-style-type: none;
+		background: url(../../../../Images/vline.png) repeat-y;
+		margin: 0;
+		padding: 0;
+
+	}
+
+.TreeContainer ul.tree ul {
+			margin-left: 10px;
+
+		}
+
+.TreeContainer ul.tree li {
+			margin: 0;
+			padding: 0 12px;
+			line-height: 20px;
+			background: url(../../../../Images/node.png) no-repeat;
+		}
+
+.TreeContainer ul.tree li span {
+				background-color: lightblue;
+				padding: 2px 6px;
+				border-radius: 10px;
+				
+			}
+
+.selected {
+				background-color: lightblue;
+				padding: 2px 6px;
+				border-radius: 10px;
+			}
+			
+&lt;/style&gt;
+
+</pre>  
+<br />
+              <li>
+                  <div style="text-align:center;width:100%">
+                      <a href='../../../Demo/Code/Articles/20196/Implement-html-treeview-using-css-and-jquery-asp-net-mvc' 
+                          class="demo">View Demo</a><br /><br />
+                  </div>
+              </li>
+        <li>
+<br />
+<b>Javascript</b>
+<pre class="brush: java">
+&lt;script src="~/Scripts/jquery-1.10.2.min.js"&gt;&lt;/script&gt;        
+
+&lt;script type="text/javascript"&gt;
+    function LoadChildren(ctrl) {
+        if ($(ctrl).next('a').next('ul').is(':visible')) {
+            $(ctrl).next('a').next('ul').hide('slow');
+            $(ctrl).attr('src', 'blueright.png');
+            $(ctrl).attr('style', 'width:20px;height:20px');
+        }
+        else {
+            $(ctrl).next('a').next('ul').show('slow');
+            $(ctrl).attr('src', 'blueright.png');
+            $(ctrl).attr('style', 'width:20px;height:20px');
+        }
+    }
+
+
+    function NodeSelection(ctrl) {
+        $('ul.tree li').find('a').each(function () { $(this).removeClass(); })
+        $(ctrl).addClass("selected");
+    }
+
+    $(document).ready(function () {
+        $('ul.tree li').each(function () {
+            $(this).children('img').click(function () {
+                LoadChildren(this);
+            });
+        });
+
+        $('ul.tree li a').click(function (e) {
+            $('ul.tree li').find('a').each(function () { $(this).removeClass(); })
+
+            $(this).addClass("selected");
+        });
+    });
+&lt;/script&gt;
+      
+</pre>  
+<br />
+              <li>
+                  <div style="text-align:center;width:100%">
+                      <a href='../../../Demo/Code/Articles/20196/Implement-html-treeview-using-css-and-jquery-asp-net-mvc' 
+                          class="demo">View Demo</a><br /><br />
+                  </div>
+              </li>
+        <li>
+<br />
+<b>View or HTML code</b>
+<pre class="brush: java">
+
+&lt;div class="TreeContainer" &gt;
+	&lt;div class="ParentPlace"&gt;
+		&lt;span&gt;Root&lt;/span&gt;
+	&lt;/div&gt;
+	&lt;br&gt;&lt;br&gt;
+	&lt;ul class="tree"&gt;
+		&lt;li&gt;
+			&lt;span&gt;1&lt;/span&gt;
+			&lt;img src="~/Images/Arrow.png" style="width:20px;height:20px" /&gt;
+			&lt;a&gt;USA&lt;/a&gt;
+			&lt;ul&gt;
+				&lt;li&gt;
+					&lt;span&gt;1&lt;/span&gt;
+					&lt;img src="~/Images/Arrow.png" style="width:20px;height:20px" /&gt;
+					&lt;a&gt;New York&lt;/a&gt;
+					&lt;ul&gt;
+						&lt;li&gt;&lt;a&gt;Bronx&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a&gt;Brooklyn&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;
+							&lt;span&gt;3&lt;/span&gt;
+							&lt;img src="~/Images/Arrow.png" style="width:20px;height:20px" /&gt;
+							&lt;a&gt;Manhattan&lt;/a&gt;
+							&lt;ul&gt;
+								&lt;li&gt;&lt;a&gt;Times Square&lt;/a&gt;&lt;/li&gt;
+								&lt;li&gt;&lt;a&gt;Grand Central&lt;/a&gt;&lt;/li&gt;
+								&lt;li&gt;&lt;a&gt;5th Avenue&lt;/a&gt;&lt;/li&gt;
+							&lt;/ul&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;span&gt;2&lt;/span&gt;
+			&lt;img src="~/Images/Arrow.png" style="width:20px;height:20px" /&gt;
+			&lt;a&gt;California&lt;/a&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a&gt;Los Angeles&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a&gt;San Francisco&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;
+					&lt;span&gt;1&lt;/span&gt;
+					&lt;img src="~/Images/Arrow.png" style="width:20px;height:20px" /&gt;
+					&lt;a&gt;San Jose&lt;/a&gt;
+					&lt;ul&gt;
+						&lt;li&gt;&lt;a&gt;Sunnyvale&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a&gt;Palo Alto&lt;/a&gt;&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+
+	&lt;/ul&gt;
+&lt;/div&gt;
+
+</pre>           
+        </li>  
+   
+    </ol> 
+
+</div>
+   

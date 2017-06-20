@@ -1,0 +1,149 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    &nbsp;<ol>
+        <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+This article explains about selecting multiple files to upload along with the option of remove the selecting file for upload with a Remove option.
+
+Basically an html file upload control is used to select a file for upload, after selection selected file is places within a div control and file upload control is made free to select another file. This goes on for as many number of files one want to upload.
+
+Basically there are 2 javascript functions with AddCtlr() and RemoveCtrl().
+
+A div to display the files count.
+
+We can defined the max limit for the number of files to be uploaded by setting the value of <b>maxFilesCount</b></pre>
+        </li>
+        <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">WWith remove option on each file selected for upload, user can remove the previously selected file for upload. This button calls the RemoveCtrl function to do the job along with control id as parameter to remove the selcted file
+            </pre>
+        </li>
+        <li>
+            <div style="text-align:center;width:100%">
+                <a href='../../../Demo/Code/Articles/20193/Multiple-file-upload-in-asp-net-mvc-with-only-jquery-and-javascript' class="demo">View Demo</a><br /><br />
+            </div>
+        </li>
+        <li>
+            <b>Sample code</b>
+            <pre class="brush: java">
+&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"&gt;&lt;/script&gt;
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post))
+{
+&lt;div id="dvUploader"&gt;
+    &lt;div&gt;
+
+        &lt;input id="hdnCurrentCtrlIndex" type="hidden" /&gt;
+        &lt;input id="hdnUploadedFileCount" type="hidden" /&gt;
+    &lt;/div&gt;
+
+    &lt;div id="dvUploadContainer"&gt;
+        &lt;div id="dvCtrl0"&gt;
+            &lt;input id="fuMultipleFile0" type="file" onchange="AddCtlr();" /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id="dvFileList"&gt;&lt;/div&gt;
+    &lt;div id="dvTotalFiles"&gt;&lt;/div&gt;
+    &lt;div id="dvMessage"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script type="text/javascript"&gt;
+
+        $(document).ready(function () {
+            $('#hdnCurrentCtrlIndex').val(0);
+            $('#hdnUploadedFileCount').val(0);
+        });
+
+        function AddCtlr() {
+
+            var maxFilesCount = 5;
+
+            //Add selected file to the list       
+            var i = parseInt($('#hdnCurrentCtrlIndex').val());
+
+            var files = $('#fuMultipleFile' + i).get(0).files;
+            $("#dvFileList").append("&lt;div class='row' id=filecontainer" + i + "&gt;&lt;div class='filename'&gt;" + files[0].name + ' (' + Math.round(files[0].size / 1024) + ' kb)' + "&lt;/div&gt; &lt;div class='removelink'&gt;&lt;a href='#' onclick=RemoveCtrl(" + i + ");&gt;Remove&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;");
+
+            //Hide the active control
+            $('#fuMultipleFile' + i).attr("style", "display:none");
+
+            // Update uploaded file count
+            var uploadedFilesCount = parseInt($('#hdnUploadedFileCount').val());
+            uploadedFilesCount = uploadedFilesCount + 1;
+            $('#hdnUploadedFileCount').val(uploadedFilesCount);
+
+            //Display File Count
+            DisplayFileCount(uploadedFilesCount, maxFilesCount);
+
+            // Increase the control index
+            i = i + 1;
+            $('#hdnCurrentCtrlIndex').val(i);
+
+            // Create new control 
+            if (uploadedFilesCount != maxFilesCount && uploadedFilesCount &lt; maxFilesCount) {
+
+                $('#dvUploadContainer').append("&lt;div id='dvCtrl" + i + "'&gt;&lt;input name='fuCtrl" + i + "'" + " id='fuMultipleFile" + i + "'" + " type='file' onchange='AddCtlr();'&gt;&lt;/div&gt;");
+            }
+        }
+
+        function RemoveCtrl(ctrlindexid) {
+
+            // Remove relevant upload control and added file
+            $("#fuMultipleFile" + ctrlindexid + "").remove();
+            $("#dvCtrl" + ctrlindexid + "").remove();
+            $("#filecontainer" + ctrlindexid + "").remove();
+
+            var i = parseInt($('#hdnCurrentCtrlIndex').val());
+
+            var maxFilesCount = parseInt($('#hdnMaxFile').val());
+            var uploadedFilesCount = parseInt($('#hdnUploadedFileCount').val());
+
+            // create new controls
+            if (uploadedFilesCount == maxFilesCount) {
+
+                $('#dvUploadContainer').append("&lt;div id='dvCtrl" + i + "'&gt;&lt;input name='fuCtrl" + i + "'" + " id='fuMultipleFile" + i + "'" + " type='file' onchange='AddCtlr();'&gt;&lt;/div&gt;");
+            }
+
+            // Update the uploaded file count
+            uploadedFilesCount = uploadedFilesCount - 1;
+
+            // Display File Count
+            DisplayFileCount(uploadedFilesCount, maxFilesCount);
+
+            // Update the uploaded file count
+            $('#hdnUploadedFileCount').val(uploadedFilesCount);
+
+        }
+
+        function DisplayFileCount(uploadedFilesCount, maxFilesCount) {
+            //Display total files
+            $('#dvTotalFiles').empty();
+            $('#dvTotalFiles').append("(" + uploadedFilesCount + " of " + maxFilesCount + ")" + " files are uploaded");
+            $('#dvMessage').empty();
+        }
+
+    &lt;/script&gt;
+
+            &lt;br /&gt;
+        &lt;div&gt;
+            &lt;input id="ibUpload" type="submit" value="Upload" /&gt;
+
+        &lt;/div&gt;
+
+}
+            </pre>           
+        </li>  
+        <li>
+            <div style="text-align:center;width:100%">
+                <a href='../../../Demo/Code/Articles/20193/Multiple-file-upload-in-asp-net-mvc-with-only-jquery-and-javascript' class="demo">View Demo</a><br /><br />
+            </div>
+        </li>
+ 
+    </ol> 
+
+</div>
+   

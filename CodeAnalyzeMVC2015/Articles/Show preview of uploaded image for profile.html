@@ -1,0 +1,68 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    
+
+    <ol>
+          <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+
+This article explains about previewing the image selected for uploaded before submitting it. In many scenarios user might want to look at the preview of the image selected for upload.
+
+With the below code we can achieve this using jquery in asp.net mvc.
+
+            </pre>
+          </li>
+        <li>
+                  <div style="text-align:center;width:100%">
+                      <a href='../../../Demo/Code/Articles/20195/Preview-of-image-selected-for-upload-as-profile-picture-using-jquery-in-asp-net-mvc' 
+                          class="demo">View Demo</a><br /><br />
+                  </div>
+              </li>
+        <li>
+        <li>
+<pre class="brush: java">
+<b>View</b>
+&lt;script src="~/Scripts/jquery-1.10.2.min.js"&gt;&lt;/script&gt;        
+&lt;script type="text/javascript"&gt;
+    //Hooking the click of the fileupload control with Image.
+    $(document).ready(function () {
+        $('#imgProfile').click(function () {
+            $('#fileUploaderControl').click();
+        });
+    });
+
+    //Using FileReader to convert the image as dataurl.
+    $(document).ready(function () {
+        $("#fileUploaderControl").change(function () {
+            var file = document.getElementById("fileUploaderControl").files[0];
+            var readImg = new FileReader();
+            readImg.readAsDataURL(file);
+            readImg.onload = function (e) {
+                $('#imgProfile').attr('src', e.target.result).fadeIn();
+            }
+        });
+    });
+&lt;/script&gt;
+
+@using (Html.BeginForm("ImagePreview", "Code", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    &lt;div class="row"&gt;
+        &lt;div class="col-md-4"&gt;
+            &lt;img id="imgProfile" name="imgProfile" src="~/Images/ProfPic.jpg" alt="Profile Image" style="height:100px;width:100px" /&gt;
+            &lt;input type="file" name="fileUploaderControl" id="fileUploaderControl" style="display:none;"/&gt;&lt;br /&gt;&lt;br /&gt;
+            &nbsp;&nbsp;&lt;input type="submit" value="Upload" /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+}
+
+</pre>           
+        </li>  
+   
+    </ol> 
+
+</div>
+   

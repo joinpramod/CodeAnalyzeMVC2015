@@ -1,0 +1,41 @@
+US Data center
+
+ftp user id = ftpadmin
+password = 2T93p6Q%Oki
+
+
+admin@codeanalyze.com
+$only4Shamu
+
+
+============================
+URL : https://enduserweb16.znetindia.net
+User : aae449d1
+Password : @6D3A31A9dJ
+============================
+
+FTP host : web-16.znetlive.in
+
+Database host-name MSSQL 2012:- sharedmssql5.znetindia.net,1234
+
+
+MySQL database host-name : web-16.znetlive.in
+Localhost:3309 (IN CODING)
+
+
+
+
+winidc5.znetlive.com
+winidc6.znetlive.com
+
+Temp mail access URL : sharedmail4.securehostdns.com
+
+
+Website A record : 74.63.229.205
+
+Mail A record : 216.245.196.9
+
+Name server : 
+
+NS49.znetlive.com
+NS50.znetlive.com

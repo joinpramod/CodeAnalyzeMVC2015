@@ -1,0 +1,93 @@
+﻿<style>
+    li {
+    list-style-type: none;
+}
+
+</style>
+<div style="font-size:16px;width:100%;font-family:Calibri">
+    
+
+    <ol>
+          <li>
+            <pre style="font-size:16px;background-color:transparent;font-family:calibri;border:none;word-break:keep-all">
+This article explains about splitting big datatable into desired smaller size multiple datatable in .net c# and vb.net 
+
+Basically breaking up the huge datatable into small  chunks. Many a times when we are processing huge number of records we might have to break up the records to avoid out of memory exception.
+
+Here is the code in both vb.net and c#.
+            </pre>
+          </li>
+        <li>
+                  <div style="text-align:center;width:100%">
+                      <a href='../../../Demo/Code/Articles/20197/Break-datatable-into-multiple-chunks-split-datatable-into-multiple-small-datatables' 
+                          class="demo">View Demo</a><br /><br />
+                  </div>
+              </li>
+        <li>
+        <li>
+            <b>VB.NET</b>
+<pre class="brush: java">
+
+    Private Shared Function SplitTable(mainTable As DataTable, batchSize As Integer) As List(Of DataTable)
+        Dim tables As New List(Of DataTable)()
+        Dim i As Integer = 0
+        Dim j As Integer = 1
+        Dim rowCount As Integer = 0
+        Dim tempDt As DataTable = mainTable.Clone()
+        tempDt.TableName = "ChunkDataTable" + j.ToString()
+        tempDt.Clear()
+        For Each row As DataRow In mainTable.Rows
+            rowCount += 1
+            Dim newRow As DataRow = tempDt.NewRow()
+            newRow.ItemArray = row.ItemArray
+            tempDt.Rows.Add(newRow)
+            i += 1
+            If i = batchSize Or rowCount = mainTable.Rows.Count Then
+                tables.Add(tempDt)
+                j += 1
+                tempDt = mainTable.Clone()
+                tempDt.TableName = "ChunkDataTable" + j.ToString()
+                tempDt.Clear()
+                i = 0
+            End If
+        Next
+        Return tables
+    End Function
+
+</pre>       
+<b>C#</b>
+<pre class="brush: java">
+
+private static List&lt;DataTable&gt; SplitTable(DataTable mainTable, int batchSize)
+{
+	List&lt;DataTable&gt; tables = new List&lt;DataTable&gt;();
+	int i = 0;
+	int j = 1;
+	int rowCount = 0;
+	DataTable tempDt = mainTable.Clone();
+	tempDt.TableName = "ChunkDataTable" + j.ToString();
+	tempDt.Clear();
+	foreach (DataRow row in mainTable.Rows) {
+		rowCount += 1;
+		DataRow newRow = tempDt.NewRow();
+		newRow.ItemArray = row.ItemArray;
+		tempDt.Rows.Add(newRow);
+		i += 1;
+		if (i == batchSize | rowCount == mainTable.Rows.Count) {
+			tables.Add(tempDt);
+			j += 1;
+			tempDt = mainTable.Clone();
+			tempDt.TableName = "ChunkDataTable" + j.ToString();
+			tempDt.Clear();
+			i = 0;
+		}
+	}
+	return tables;
+}
+</pre>          
+        </li>  
+
+    
+    </ol> 
+
+</div>
