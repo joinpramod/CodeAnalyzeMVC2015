@@ -23,7 +23,10 @@ namespace CodeAnalyzeMVC2015.Controllers
             user = (Users)Session["User"];
             long val = 0;
 
-            string ddType = RouteData.Values["id"].ToString();
+            if (string.IsNullOrEmpty(ddType))
+            {
+                ddType = RouteData.Values["id"].ToString();
+            }
 
             if (!string.IsNullOrEmpty(ddType))
             {
