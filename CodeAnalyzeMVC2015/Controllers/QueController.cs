@@ -14,7 +14,7 @@ namespace CodeAnalyzeMVC2015.Controllers
     {
         private Users user = new Users();
         //[Route("")]
-        public ActionResult UnAns(string ddType)
+        public ActionResult UnAns()
         {
             List<QuestionModel> questions = new List<QuestionModel>();
             //if (ModelState.IsValid)
@@ -23,7 +23,7 @@ namespace CodeAnalyzeMVC2015.Controllers
             user = (Users)Session["User"];
             long val = 0;
 
-            ddType = RouteData.Values["id"].ToString();
+            string ddType = RouteData.Values["id"].ToString();
 
             if (!string.IsNullOrEmpty(ddType))
             {
