@@ -14,7 +14,7 @@ namespace CodeAnalyzeMVC2015.Controllers
     {
         private Users user = new Users();
         //[Route("")]
-        public ActionResult UnAns()
+        public ActionResult UnAns(string ddType)
         {
             List<QuestionModel> questions = new List<QuestionModel>();
             //if (ModelState.IsValid)
